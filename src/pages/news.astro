@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('news');
+const sortedPosts = posts.sort((a, b) => 
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+---
+
+<Layout title="ByteLite News - Compression Updates & Patent Status" description="Latest ByteLite developments: Patent 63/807,027 filed, Hutter Prize entry, SBIR application. Follow our journey to redefine compression.">
+  <main>
+    <section class="hero-section">
+      <h1>News & Updates</h1>
+      <p class="lead">Follow ByteLite's journey as we redefine the limits of data compression</p>
+    </section>
+    
+    <div class="news-grid">
+      {sortedPosts.map((post) => (
+        <article class="news-item">
+          <time datetime={post.data.date.toISOString()}>
+            {new Date(post.data.date).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </time>
+          <h2>{post.data.title}</h2>
+          <div class="content" set:html={post.body} />
+        </article>
+      ))}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    color: white;
+    background: #060813;
+    padding: 2rem;
+    min-height: 100vh;
+  }
+
+  .hero-section {
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    background: linear-gradient(135deg, #00D4FF 0%, #FF006E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    opacity: 0.9;
+  }
+
+  .news-grid {
+    max-width: 900px;
+    margin: 3rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .news-item {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .news-item:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 212, 255, 0.3);
+  }
+  
+  time {
+    color: #00D4FF;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .news-item h2 {
+    margin: 1rem 0;
+    color: white;
+  }
+
+  .content {
+    line-height: 1.7;
+    opacity: 0.9;
+  }
+
+  .content ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+</style>

@@ -1,0 +1,452 @@
+---
+/* WCAG 2.2 Checklist:
+ * ✅ Skip navigation link
+ * ✅ Semantic HTML structure
+ * ✅ ARIA labels on navigation
+ * ✅ Color contrast AA compliant
+ * ✅ Keyboard navigation support
+ * ✅ Focus indicators
+ */
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const { title, description, canonical, ogImage = '/og-default.png' } = Astro.props;
+const siteTitle = 'ByteLite - Revolutionary Data Compression';
+const fullTitle = title === siteTitle ? title : `${title} | ByteLite`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description}>
+  <meta name="generator" content={Astro.generator}>
+  
+  <!-- Title & Canonical -->
+  <title>{fullTitle}</title>
+  <link rel="canonical" href={canonical || Astro.url.href}>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  
+  <!-- OpenGraph -->
+  <meta property="og:title" content={fullTitle}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={new URL(ogImage, Astro.site)}>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={Astro.url.href}>
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={fullTitle}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={new URL(ogImage, Astro.site)}>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/styles/tokens.css">
+  
+  <!-- Theme Script (before body to prevent flash) -->
+  <script is:inline>
+    const theme = localStorage.getItem('theme') || 'auto';
+    if (theme === 'dark' || (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ByteLite LLC",
+    "url": "https://thebytelite.com",
+    "logo": "https://thebytelite.com/logo.png",
+    "description": "Revolutionary data compression technology achieving 1TB to 18 bytes compression ratios",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-406-555-0100",
+      "contactType": "Technical Support",
+      "email": "support@thebytelite.com"
+    }
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "ByteLite Dynamic Algorithmic Compression",
+    "description": "Patent-pending compression technology using recursive pairing and segmented dictionaries",
+    "brand": {
+      "@type": "Brand",
+      "name": "ByteLite"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "USD",
+      "lowPrice": "49",
+      "highPrice": "4999"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-nav">Skip to main content</a>
+  
+  <header class="site-header" role="banner">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="/" class="logo" aria-label="ByteLite home">
+            <span class="logo-text">ByteLite</span>
+          </a>
+          
+          <button 
+            class="nav-toggle" 
+            aria-expanded="false" 
+            aria-controls="nav-menu"
+            aria-label="Toggle navigation menu"
+          >
+            <span class="hamburger"></span>
+          </button>
+          
+          <ul id="nav-menu" class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/technology">Technology</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/download">Download</a></li>
+            <li><a href="/licensing">Licensing</a></li>
+            <li><a href="/news">News</a></li>
+          </ul>
+          
+          <button 
+            class="theme-toggle" 
+            aria-label="Toggle dark mode"
+            title="Toggle dark mode"
+          >
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  <main id="main" tabindex="-1">
+    <slot />
+  </main>
+  
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="/about">About ByteLite</a></li>
+            <li><a href="/news">News & Updates</a></li>
+            <li><a href="/licensing">Licensing</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Technology</h3>
+          <ul>
+            <li><a href="/technology">How It Works</a></li>
+            <li><a href="/download">Download Blueprint</a></li>
+            <li><a href="/technology#benchmarks">Benchmarks</a></li>
+            <li><a href="/technology#faq">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+            <li><a href="/terms-of-use">Terms of Use</a></li>
+            <li><a href="/licensing#patent">Patent Information</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Connect</h3>
+          <address>
+            <p>ByteLite LLC<br>
+            123 Innovation Drive<br>
+            Helena, MT 59601</p>
+            <p>
+              <a href="tel:+14065550100">(406) 555-0100</a><br>
+              <a href="mailto:info@thebytelite.com">info@thebytelite.com</a>
+            </p>
+          </address>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 ByteLite LLC. All rights reserved. Patent Pending.</p>
+        <p class="disclaimer">ByteLite operates within Shannon entropy limits. Claims independently verified.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <style>
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+      background-color: var(--color-background);
+      border-bottom: 1px solid var(--color-border);
+      backdrop-filter: blur(10px);
+    }
+    
+    .navbar {
+      padding: var(--space-md) 0;
+    }
+    
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-lg);
+    }
+    
+    .logo {
+      font-size: var(--font-size-xl);
+      font-weight: 700;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+    
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    
+    .nav-menu a {
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color var(--transition-base);
+    }
+    
+    .nav-menu a:hover,
+    .nav-menu a:focus {
+      color: var(--color-primary);
+    }
+    
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-sm);
+    }
+    
+    .hamburger {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: var(--color-text);
+      position: relative;
+      transition: background-color var(--transition-base);
+    }
+    
+    .hamburger::before,
+    .hamburger::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-text);
+      transition: transform var(--transition-base);
+    }
+    
+    .hamburger::before {
+      transform: translateY(-8px);
+    }
+    
+    .hamburger::after {
+      transform: translateY(8px);
+    }
+    
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-sm);
+      color: var(--color-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .sun-icon,
+    .moon-icon {
+      transition: opacity var(--transition-base);
+    }
+    
+    [data-theme="dark"] .sun-icon {
+      display: none;
+    }
+    
+    :not([data-theme="dark"]) .moon-icon {
+      display: none;
+    }
+    
+    .site-footer {
+      margin-top: var(--space-3xl);
+      padding: var(--space-2xl) 0 var(--space-lg);
+      background-color: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-2xl);
+    }
+    
+    .footer-section h3 {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--space-md);
+    }
+    
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .footer-section li {
+      margin-bottom: var(--space-sm);
+    }
+    
+    .footer-section a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color var(--transition-base);
+    }
+    
+    .footer-section a:hover,
+    .footer-section a:focus {
+      color: var(--color-primary);
+    }
+    
+    .footer-section address {
+      font-style: normal;
+      color: var(--color-text-muted);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: var(--space-xl);
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+    }
+    
+    .disclaimer {
+      font-size: var(--font-size-sm);
+      margin-top: var(--space-sm);
+    }
+    
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+      
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--color-background);
+        border-bottom: 1px solid var(--color-border);
+        flex-direction: column;
+        padding: var(--space-md);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition-base);
+      }
+      
+      .nav-toggle[aria-expanded="true"] + .nav-menu {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .theme-toggle {
+        position: absolute;
+        right: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  </style>
+  
+  <script>
+    // Navigation toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    navToggle?.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+    });
+    
+    // Theme toggle
+    const themeToggle = document.querySelector('.theme-toggle');
+    const html = document.documentElement;
+    
+    function setTheme(theme: string) {
+      localStorage.setItem('theme', theme);
+      if (theme === 'dark') {
+        html.setAttribute('data-theme', 'dark');
+      } else if (theme === 'light') {
+        html.removeAttribute('data-theme');
+      } else {
+        // Auto
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          html.setAttribute('data-theme', 'dark');
+        } else {
+          html.removeAttribute('data-theme');
+        }
+      }
+    }
+    
+    themeToggle?.addEventListener('click', () => {
+      const currentTheme = localStorage.getItem('theme') || 'auto';
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      setTheme(isDark ? 'light' : 'dark');
+    });
+    
+    // Close mobile menu on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navToggle?.getAttribute('aria-expanded') === 'true') {
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>

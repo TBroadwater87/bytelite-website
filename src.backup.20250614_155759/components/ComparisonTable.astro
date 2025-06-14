@@ -1,0 +1,119 @@
+---
+---
+
+<div class="comparison-wrapper">
+  <h3>ByteLite vs Traditional Compression</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th class="highlight">ByteLite</th>
+        <th>ZIP</th>
+        <th>7-Zip</th>
+        <th>RAR</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1GB File Output</td>
+        <td class="highlight">15 bytes</td>
+        <td>~400 MB</td>
+        <td>~350 MB</td>
+        <td>~380 MB</td>
+      </tr>
+      <tr>
+        <td>Compression Ratio</td>
+        <td class="highlight">99.999998%</td>
+        <td>~60%</td>
+        <td>~65%</td>
+        <td>~62%</td>
+      </tr>
+      <tr>
+        <td>Algorithm Type</td>
+        <td class="highlight">Recursive Mathematical</td>
+        <td>DEFLATE</td>
+        <td>LZMA</td>
+        <td>PPM</td>
+      </tr>
+      <tr>
+        <td>Dictionary Size</td>
+        <td class="highlight">12KB Total</td>
+        <td>32KB</td>
+        <td>Up to 4GB</td>
+        <td>4MB</td>
+      </tr>
+      <tr>
+        <td>Lossless</td>
+        <td class="highlight">✓</td>
+        <td>✓</td>
+        <td>✓</td>
+        <td>✓</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .comparison-wrapper {
+    margin: 3rem 0;
+  }
+
+  .comparison-wrapper h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--color-primary);
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-surface);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+  }
+
+  .comparison-table th {
+    background: rgba(0, 212, 255, 0.1);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+  }
+
+  .comparison-table th.highlight {
+    background: var(--gradient-accent);
+    color: white;
+  }
+
+  .comparison-table td.highlight {
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .comparison-table tbody tr:hover {
+    background: rgba(0, 212, 255, 0.05);
+  }
+
+  @media (max-width: 768px) {
+    .comparison-table {
+      font-size: 0.875rem;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+      padding: 0.75rem;
+    }
+  }
+</style>

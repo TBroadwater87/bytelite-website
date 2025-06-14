@@ -1,0 +1,283 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="ByteLite Licensing - Commercial Compression Solutions" description="License ByteLite compression from $149/month. Enterprise solutions for infinite storage. Volume discounts available. Patent pending technology.">
+  <main>
+    <section class="hero-section">
+      <h1>Licensing Options</h1>
+      <p class="lead">Choose the ByteLite license that fits your needs</p>
+    </section>
+
+    <div class="pricing-grid">
+      <div class="pricing-card starter">
+        <h2>Starter</h2>
+        <div class="price">$149<span>/month</span></div>
+        <ul>
+          <li>✓ Single application integration</li>
+          <li>✓ Up to 100GB monthly compression</li>
+          <li>✓ Email support</li>
+          <li>✓ Basic documentation</li>
+        </ul>
+        <a href="/contact" class="btn btn-secondary">Get Started</a>
+      </div>
+
+      <div class="pricing-card professional">
+        <div class="badge">Most Popular</div>
+        <h2>Professional</h2>
+        <div class="price">$499<span>/month</span></div>
+        <ul>
+          <li>✓ Unlimited applications</li>
+          <li>✓ Unlimited compression volume</li>
+          <li>✓ Priority support</li>
+          <li>✓ Advanced documentation</li>
+          <li>✓ Custom integration assistance</li>
+        </ul>
+        <a href="/contact" class="btn btn-primary">Get Started</a>
+      </div>
+
+      <div class="pricing-card enterprise">
+        <h2>Enterprise</h2>
+        <div class="price">$2,499<span>/month</span></div>
+        <ul>
+          <li>✓ Everything in Professional</li>
+          <li>✓ Dedicated support engineer</li>
+          <li>✓ Custom SLA</li>
+          <li>✓ On-premise deployment option</li>
+          <li>✓ Source code access</li>
+        </ul>
+        <a href="/contact" class="btn btn-secondary">Contact Sales</a>
+      </div>
+    </div>
+
+    <section class="comparison-section">
+      <h2>ByteLite vs Traditional Compression</h2>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>ByteLite</th>
+            <th>Traditional (ZIP/RAR)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Compression Ratio</td>
+            <td class="highlight">99.999%+</td>
+            <td>50-90%</td>
+          </tr>
+          <tr>
+            <td>1TB File Result</td>
+            <td class="highlight">18 bytes</td>
+            <td>100-500GB</td>
+          </tr>
+          <tr>
+            <td>Engine Size</td>
+            <td class="highlight">200KB</td>
+            <td>10-50MB</td>
+          </tr>
+          <tr>
+            <td>File Type Support</td>
+            <td class="highlight">Universal</td>
+            <td>Varies by type</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="cta-section">
+      <h2>Ready to Transform Your Data Storage?</h2>
+      <p>Join the compression revolution with ByteLite</p>
+      <a href="/download" class="btn btn-primary">Download Technical Blueprint</a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    color: white;
+    background: #060813;
+    padding: 2rem;
+  }
+
+  .hero-section {
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    background: linear-gradient(135deg, #00D4FF 0%, #FF006E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    opacity: 0.9;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 3rem auto;
+  }
+
+  .pricing-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 212, 255, 0.3);
+  }
+
+  .pricing-card.professional {
+    border-color: rgba(0, 212, 255, 0.3);
+    background: rgba(0, 212, 255, 0.05);
+  }
+
+  .badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #00D4FF;
+    color: #0A0E27;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .pricing-card h2 {
+    margin-bottom: 1rem;
+  }
+
+  .price {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #00D4FF;
+    margin-bottom: 2rem;
+  }
+
+  .price span {
+    font-size: 1rem;
+    opacity: 0.7;
+  }
+
+  .pricing-card ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+
+  .pricing-card li {
+    padding: 0.5rem 0;
+    opacity: 0.9;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .btn-primary {
+    background: #00D4FF;
+    color: #0A0E27;
+  }
+
+  .btn-primary:hover {
+    background: #00A8CC;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #00D4FF;
+    border: 2px solid #00D4FF;
+  }
+
+  .btn-secondary:hover {
+    background: #00D4FF;
+    color: #0A0E27;
+  }
+
+  .comparison-section {
+    max-width: 800px;
+    margin: 4rem auto;
+  }
+
+  .comparison-section h2 {
+    text-align: center;
+    color: #00D4FF;
+    margin-bottom: 2rem;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .comparison-table th {
+    background: rgba(0, 212, 255, 0.1);
+    font-weight: 600;
+  }
+
+  .comparison-table .highlight {
+    color: #00D4FF;
+    font-weight: 600;
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 0, 110, 0.1) 100%);
+    border-radius: 12px;
+    max-width: 800px;
+    margin: 4rem auto;
+  }
+
+  .cta-section h2 {
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .cta-section .btn {
+    display: inline-block;
+    width: auto;
+  }
+</style>

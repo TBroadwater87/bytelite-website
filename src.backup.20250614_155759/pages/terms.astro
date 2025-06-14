@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Terms of Service" description="ByteLite terms of service">
+  <section class="legal-page">
+    <div class="container">
+      <div class="legal-content">
+        <h1>Terms of Service</h1>
+        <p class="last-updated">Last updated: June 14, 2025</p>
+        
+        <h2>Acceptance of Terms</h2>
+        <p>By accessing and using ByteLite technology, you agree to be bound by these Terms of Service and all applicable laws and regulations.</p>
+        
+        <h2>License Terms</h2>
+        <p>ByteLite's compression technology is protected by pending patents. Use of our technology requires a valid license agreement.</p>
+        
+        <h2>Restrictions</h2>
+        <p>You may not reverse engineer, decompile, or disassemble the ByteLite technology, except to the extent that such activity is expressly permitted by applicable law.</p>
+        
+        <h2>Intellectual Property</h2>
+        <p>ByteLite and all related trademarks, service marks, and logos are the property of ByteLite LLC. Patent pending under U.S. Patent Application No. 63/807,027.</p>
+        
+        <h2>Contact</h2>
+        <p>For questions about these Terms, please contact us at <a href="mailto:legal@thebytelite.com">legal@thebytelite.com</a>.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-page {
+    padding: 5rem 0;
+    min-height: 60vh;
+  }
+
+  .legal-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .legal-content h1 {
+    margin-bottom: 1rem;
+  }
+
+  .legal-content h2 {
+    margin: 3rem 0 1rem;
+    color: var(--color-primary);
+  }
+
+  .legal-content p {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .legal-content a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .legal-content a:hover {
+    text-decoration: underline;
+  }
+
+  .last-updated {
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+</style>

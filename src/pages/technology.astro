@@ -1,0 +1,186 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="How ByteLite Works - Recursive Compression Technology" description="Discover ByteLite's patent-pending compression using bijective pairing & SDD encoding. Technical blueprint reveals 90% of our algorithm. See the math.">
+  <main>
+    <section class="hero-section">
+      <h1>The Technology Behind ByteLite</h1>
+      <p class="lead">ByteLite employs recursive bijective pairing and Segmented Domain Dictionaries to achieve mathematically-proven compression beyond traditional limits.</p>
+    </section>
+
+    <section class="pipeline-section">
+      <h2>Compression Pipeline</h2>
+      <div class="pipeline">
+        <div class="stage">
+          <div class="icon">📁</div>
+          <div class="label">1TB Input</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+          <div class="icon">🔄</div>
+          <div class="label">8→16 bit</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+          <div class="icon">🔄</div>
+          <div class="label">16→32 bit</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+          <div class="icon">🔄</div>
+          <div class="label">32→64 bit</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+          <div class="icon">📚</div>
+          <div class="label">SDD</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage final">
+          <div class="icon">💎</div>
+          <div class="label">18 Bytes</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-it-works">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <h3>1. Bijective Pairing</h3>
+          <p>Mathematical functions that uniquely map data pairs into single values, ensuring perfect reversibility.</p>
+        </div>
+        <div class="step">
+          <h3>2. SDD Encoding</h3>
+          <p>Six specialized dictionaries that together cover the entire 64-bit space through optimized pattern matching.</p>
+        </div>
+        <div class="step">
+          <h3>3. Recursive Rounds</h3>
+          <p>Transform data through iterative cycles until reaching minimal representation (≤8 bytes + metadata).</p>
+        </div>
+        <div class="step">
+          <h3>4. Perfect Reversal</h3>
+          <p>Every transformation is mathematically reversible, guaranteeing lossless reconstruction of original data.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="key-innovation">
+      <h2>Key Innovation</h2>
+      <p>Our 200KB engine transforms any data—text, binary, media—through iterative rounds until reaching minimal representation. Information isn't lost, it's transformed into hierarchical instructions for perfect reconstruction.</p>
+      <p class="patent">Patent Pending No. 63/807,027</p>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    color: white;
+    background: #060813;
+    padding: 2rem;
+  }
+
+  .hero-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    border-radius: 12px;
+    margin-bottom: 3rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    background: linear-gradient(135deg, #00D4FF 0%, #FF006E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.9;
+  }
+
+  .pipeline-section {
+    background: rgba(0, 212, 255, 0.05);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+  }
+
+  .pipeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+  }
+
+  .stage {
+    text-align: center;
+    flex: 0 0 auto;
+  }
+
+  .stage .icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .stage.final {
+    color: #00D4FF;
+    font-weight: bold;
+  }
+
+  .arrow {
+    font-size: 1.5rem;
+    color: #00D4FF;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .step {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .step h3 {
+    color: #00D4FF;
+    margin-bottom: 1rem;
+  }
+
+  .key-innovation {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(0, 212, 255, 0.05);
+    border-radius: 12px;
+  }
+
+  .patent {
+    margin-top: 2rem;
+    color: #00D4FF;
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    .pipeline {
+      flex-direction: column;
+    }
+    .arrow {
+      transform: rotate(90deg);
+    }
+  }
+</style>

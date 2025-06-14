@@ -1,0 +1,112 @@
+---
+// Footer.astro
+---
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <h3>ByteLite™</h3>
+      <p>Redefining the limits of data compression</p>
+    </div>
+    
+    <div class="footer-links">
+      <div class="link-column">
+        <h4>Technology</h4>
+        <a href="/technology">How It Works</a>
+        <a href="/download">Blueprint</a>
+        <a href="/licensing">Licensing</a>
+      </div>
+      
+      <div class="link-column">
+        <h4>Company</h4>
+        <a href="/about">About</a>
+        <a href="/news">News</a>
+        <a href="/contact">Contact</a>
+      </div>
+      
+      <div class="link-column">
+        <h4>Legal</h4>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <p>© 2025 ByteLite LLC • Patent Pending U.S. App #63/807,027 • Helena, Montana</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #0a0a0a;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 6rem;
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 4rem;
+  }
+
+  .footer-brand h3 {
+    color: #00d4ff;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-brand p {
+    color: #888888;
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .link-column h4 {
+    color: #ffffff;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .link-column a {
+    display: block;
+    color: #888888;
+    text-decoration: none;
+    padding: 0.25rem 0;
+    transition: color 0.3s ease;
+  }
+
+  .link-column a:hover {
+    color: #00d4ff;
+  }
+
+  .footer-bottom {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1.5rem 2rem;
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    color: #666666;
+    font-size: 0.875rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+    }
+    
+    .footer-links {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

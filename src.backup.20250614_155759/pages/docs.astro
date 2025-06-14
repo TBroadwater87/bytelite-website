@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Documentation" description="ByteLite technical documentation and API reference">
+  <section class="hero-section">
+    <div class="container">
+      <h1>Technical <span class="glow-text">Documentation</span></h1>
+      <p class="hero-subtitle">Everything you need to implement ByteLite</p>
+    </div>
+  </section>
+
+  <section class="docs-section">
+    <div class="container">
+      <div class="docs-grid">
+        <div class="doc-card">
+          <h3>Getting Started</h3>
+          <p>Quick start guide for implementing ByteLite compression in your applications.</p>
+          <a href="/download" class="doc-link">Download Blueprint →</a>
+        </div>
+        
+        <div class="doc-card">
+          <h3>API Reference</h3>
+          <p>Complete API documentation with examples and best practices.</p>
+          <a href="/download" class="doc-link">View API Docs →</a>
+        </div>
+        
+        <div class="doc-card">
+          <h3>Implementation Guide</h3>
+          <p>Step-by-step guide to integrating ByteLite into your infrastructure.</p>
+          <a href="/download" class="doc-link">Read Guide →</a>
+        </div>
+        
+        <div class="doc-card">
+          <h3>Performance Tuning</h3>
+          <p>Optimize ByteLite for your specific use cases and hardware.</p>
+          <a href="/download" class="doc-link">Learn More →</a>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h2>Need Help?</h2>
+        <p>Our team is here to help you get the most out of ByteLite.</p>
+        <a href="/contact" class="btn btn-primary">Contact Support</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-section {
+    padding: 4rem 0;
+    text-align: center;
+    background: var(--gradient-hero);
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-top: 1rem;
+  }
+
+  .docs-section {
+    padding: 5rem 0;
+  }
+
+  .docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .doc-card {
+    background: var(--color-surface);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .doc-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .doc-card h3 {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  .doc-card p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .doc-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.2s;
+  }
+
+  .doc-link:hover {
+    gap: 0.75rem;
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: 3rem;
+    background: var(--color-surface);
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+  }
+
+  .cta-section h2 {
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+</style>

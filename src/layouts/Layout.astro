@@ -1,0 +1,199 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = "Revolutionary data compression achieving 99.999% reduction. Transform 1TB into 18 bytes with ByteLite's patented recursive algorithm. 200KB engine." 
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="ByteLite" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ByteLite LLC",
+        "url": "https://thebytelite.com",
+        "description": "Revolutionary compression technology company",
+        "foundingDate": "2024",
+        "sameAs": []
+      })}
+    </script>
+
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "ByteLite Dynamic Algorithmic Compression",
+        "description": "Compress 1TB to 18 bytes with patent-pending recursive transformation",
+        "brand": {
+          "@type": "Brand",
+          "name": "ByteLite"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": "149",
+          "highPrice": "2499",
+          "priceCurrency": "USD"
+        }
+      })}
+    </script>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <a href="/" class="logo">ByteLite™</a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/technology">Technology</a>
+          <a href="/about">About</a>
+          <a href="/download">Download</a>
+          <a href="/licensing">Licensing</a>
+          <a href="/news">News</a>
+        </div>
+      </div>
+    </nav>
+    
+    <slot />
+    
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2025 ByteLite LLC. All rights reserved. Patent Pending No. 63/807,027</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  :root {
+    --color-primary: #00D4FF;
+    --color-secondary: #FF006E;
+    --color-bg: #060813;
+    --color-surface: rgba(255, 255, 255, 0.02);
+    --color-border: rgba(255, 255, 255, 0.1);
+  }
+  
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  body {
+    background: var(--color-bg);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  code, pre {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  nav {
+    background: rgba(10, 14, 39, 0.95);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    opacity: 1;
+    color: var(--color-primary);
+  }
+  
+  main {
+    flex: 1;
+  }
+  
+  footer {
+    background: rgba(10, 14, 39, 0.95);
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid var(--color-border);
+    margin-top: 4rem;
+  }
+  
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+  }
+</style>
