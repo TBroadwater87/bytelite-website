@@ -1,141 +1,73 @@
 ﻿---
-const faqs = [
-  {
-    question: "How is 1TB to 18 bytes compression possible?",
-    answer: "ByteLite uses recursive mathematical transformations through Szudzik pairing combined with segmented domain dictionaries. The information is preserved in the transformation process and round count metadata."
-  },
-  {
-    question: "Is the compression truly lossless?",
-    answer: "Yes, absolutely. Every bit of the original data can be perfectly reconstructed. The compression is deterministic and reversible."
-  },
-  {
-    question: "What types of data can ByteLite compress?",
-    answer: "ByteLite works with any type of data - text, images, video, databases, executables, or any binary format. It treats all data as bitstreams."
-  },
-  {
-    question: "How fast is the compression process?",
-    answer: "Speed depends on data size. Small files (KB) compress in milliseconds, while larger files (TB) may take 15-30 minutes on standard hardware."
-  },
-  {
-    question: "What's the catch? This sounds too good to be true.",
-    answer: "The 'catch' is that deeply compressed data has a large round count metadata. However, this metadata is still orders of magnitude smaller than traditional compression methods."
-  }
-];
 ---
 
-<div class="faq-container">
-  <h2>Frequently Asked Questions</h2>
-  <div class="faq-list">
-    {faqs.map((faq, index) => (
-      <div class="faq-item">
-        <button class="faq-question" data-index={index}>
-          <span>{faq.question}</span>
-          <svg class="chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <div class="faq-answer" data-index={index}>
-          <p>{faq.answer}</p>
+<section class="py-20 bg-deep-space">
+  <div class="container mx-auto px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12 text-electric-cyan">Frequently Asked Questions</h2>
+      
+      <div class="space-y-6">
+        
+        <!-- Pricing FAQ -->
+        <div class="faq-item bg-dark-navy/50 rounded-lg p-6 border border-electric-cyan/20">
+          <h3 class="text-xl font-semibold mb-3 text-quantum-pink">How much does the ByteLite Blueprint cost?</h3>
+          <p class="text-gray-300">
+            The ByteLite Technical Implementation Blueprint is available for <strong class="text-electric-cyan">$0.99</strong>. 
+            This includes the complete 90-page technical specification, implementation guide, 
+            and all necessary documentation to build the compression engine.
+          </p>
         </div>
+
+        <!-- What's Included FAQ -->
+        <div class="faq-item bg-dark-navy/50 rounded-lg p-6 border border-electric-cyan/20">
+          <h3 class="text-xl font-semibold mb-3 text-quantum-pink">What's included in the Blueprint?</h3>
+          <p class="text-gray-300">
+            • Complete technical specification (90+ pages)<br>
+            • Recursive compression algorithms<br>
+            • Segmented Domain Dictionary system<br>
+            • Implementation examples and code samples<br>
+            • Performance optimization strategies<br>
+            • Dictionary files and configuration data
+          </p>
+        </div>
+
+        <!-- Compression Claims FAQ -->
+        <div class="faq-item bg-dark-navy/50 rounded-lg p-6 border border-electric-cyan/20">
+          <h3 class="text-xl font-semibold mb-3 text-quantum-pink">How is 1TB → 18 bytes possible?</h3>
+          <p class="text-gray-300">
+            ByteLite uses recursive hierarchical compression through mathematical bijections 
+            and specialized dictionaries. The technique transforms data through multiple 
+            rounds until reaching theoretical minimum representation plus metadata.
+          </p>
+        </div>
+
+        <!-- Patent FAQ -->
+        <div class="faq-item bg-dark-navy/50 rounded-lg p-6 border border-electric-cyan/20">
+          <h3 class="text-xl font-semibold mb-3 text-quantum-pink">Is ByteLite patented?</h3>
+          <p class="text-gray-300">
+            Yes, ByteLite is protected by US Provisional Patent 63/807,027 filed May 16, 2025. 
+            We are SBIR certified and have submitted applications for government research funding.
+          </p>
+        </div>
+
+        <!-- Enterprise FAQ -->
+        <div class="faq-item bg-dark-navy/50 rounded-lg p-6 border border-electric-cyan/20">
+          <h3 class="text-xl font-semibold mb-3 text-quantum-pink">Is enterprise licensing available?</h3>
+          <p class="text-gray-300">
+            Yes, we offer enterprise licensing with usage-based pricing starting at $0.001 per GB. 
+            Contact us for custom implementations and volume pricing.
+          </p>
+        </div>
+
       </div>
-    ))}
+    </div>
   </div>
-</div>
+</section>
 
 <style>
-  .faq-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 3rem 0;
-  }
-
-  .faq-container h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .faq-list {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .faq-item {
-    background: var(--color-surface);
-    border-radius: 0.75rem;
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    overflow: hidden;
-  }
-
-  .faq-question {
-    width: 100%;
-    padding: 1.5rem;
-    background: none;
-    border: none;
-    color: var(--color-text);
-    font-size: 1.125rem;
-    font-weight: 600;
-    text-align: left;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .faq-item:hover {
+    border-color: rgba(0, 212, 255, 0.4);
+    background: rgba(10, 14, 39, 0.8);
     transition: all 0.3s ease;
   }
-
-  .faq-question:hover {
-    color: var(--color-primary);
-  }
-
-  .faq-question.active {
-    color: var(--color-primary);
-    background: rgba(0, 212, 255, 0.05);
-  }
-
-  .chevron {
-    transition: transform 0.3s ease;
-    flex-shrink: 0;
-  }
-
-  .faq-question.active .chevron {
-    transform: rotate(180deg);
-  }
-
-  .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
-
-  .faq-answer.open {
-    max-height: 300px;
-  }
-
-  .faq-answer p {
-    padding: 0 1.5rem 1.5rem;
-    color: var(--color-text-muted);
-    line-height: 1.8;
-  }
 </style>
-
-<script>
-  document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
-      const index = button.getAttribute('data-index');
-      const answer = document.querySelector(`.faq-answer[data-index="${index}"]`);
-      
-      // Toggle current item
-      button.classList.toggle('active');
-      answer?.classList.toggle('open');
-      
-      // Close other items
-      document.querySelectorAll('.faq-question').forEach(otherButton => {
-        if (otherButton !== button) {
-          otherButton.classList.remove('active');
-          const otherIndex = otherButton.getAttribute('data-index');
-          document.querySelector(`.faq-answer[data-index="${otherIndex}"]`)?.classList.remove('open');
-        }
-      });
-    });
-  });
-</script>
-
