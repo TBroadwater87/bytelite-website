@@ -1,72 +1,129 @@
 ﻿---
-// Revolutionary Hero component for ByteLite
+// Revolutionary Hero component with infinity logo
 ---
 
-<section class="hero bg-dark-navy text-white min-h-screen flex items-center relative overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-br from-deep-space via-dark-navy to-black opacity-90"></div>
-  
+<section class="hero bg-gradient-to-br from-deep-space via-dark-navy to-void-black text-white min-h-screen flex items-center relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-deep-space/90 via-dark-navy/80 to-black/95"></div>
+
   <div class="container mx-auto px-6 relative z-10">
-    <div class="text-center max-w-4xl mx-auto">
-      <!-- Patent Badge -->
-      <div class="inline-flex items-center bg-electric-cyan/10 border border-electric-cyan/30 rounded-full px-6 py-2 mb-8">
-        <span class="text-electric-cyan text-sm font-mono">US Patent 63/807,027 | Filed May 16, 2025</span>
-      </div>
+    <div class="text-center max-w-5xl mx-auto">
       
+      <!-- Revolutionary Logo -->
+      <div class="mb-8 flex justify-center">
+        <div class="logo-container animate-float">
+          <img src="/bytelite-logo.png" alt="ByteLite - Infinite Compression Technology" 
+               class="h-32 md:h-40 w-auto filter drop-shadow-2xl" />
+        </div>
+      </div>
+
+      <!-- Patent Badge -->
+      <div class="inline-flex items-center bg-electric-cyan/10 border border-electric-cyan/30 rounded-full px-6 py-2 mb-8 backdrop-blur-sm">
+        <span class="text-electric-cyan text-sm font-mono">🏆 US Patent 63/807,027 | Filed May 16, 2025</span>
+      </div>
+
       <!-- Revolutionary Headline -->
-      <h1 class="text-6xl md:text-8xl font-bold mb-6 leading-tight">
+      <h1 class="text-5xl md:text-8xl font-bold mb-6 leading-tight">
         <span class="text-white">1TB</span>
-        <span class="text-electric-cyan mx-4">→</span>
+        <span class="text-electric-cyan mx-4 animate-pulse">→</span>
         <span class="text-quantum-pink">18 Bytes</span>
       </h1>
-      
+
       <!-- Revolutionary Subheading -->
       <h2 class="text-2xl md:text-3xl text-gray-300 mb-4 leading-relaxed">
         Revolutionary Compression That Redefines Data Storage
       </h2>
       <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
-        Accidentally discovered while building AI in Helena, Montana. 
+        Accidentally discovered while building AI in Helena, Montana.
         Now patented technology achieving impossible compression ratios.
       </p>
-      
-      <!-- Key Features -->
+
+      <!-- Key Features Grid -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-        <div class="text-center">
+        <div class="text-center p-4 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
           <div class="text-electric-cyan text-xl font-bold">99.999%+</div>
           <div class="text-gray-400 text-sm">Compression Ratio</div>
         </div>
-        <div class="text-center">
+        <div class="text-center p-4 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
           <div class="text-electric-cyan text-xl font-bold">200KB</div>
           <div class="text-gray-400 text-sm">Engine Size</div>
         </div>
-        <div class="text-center">
-          <div class="text-electric-cyan text-xl font-bold">Lossless</div>
-          <div class="text-gray-400 text-sm">Zero Data Loss</div>
+        <div class="text-center p-4 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
+          <div class="text-electric-cyan text-xl font-bold">∞</div>
+          <div class="text-gray-400 text-sm">Lossless</div>
         </div>
-        <div class="text-center">
+        <div class="text-center p-4 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
           <div class="text-quantum-pink text-xl font-bold">SBIR</div>
           <div class="text-gray-400 text-sm">Certified</div>
         </div>
       </div>
-      
+
       <!-- Revolutionary CTAs -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/download" 
-           class="bg-electric-cyan text-dark-navy px-8 py-4 rounded-lg font-semibold hover:bg-electric-cyan/90 transition-colors">
+        <a href="/download"
+           class="bg-electric-cyan text-dark-navy px-8 py-4 rounded-lg font-semibold hover:bg-electric-cyan/90 transition-all duration-300 transform hover:scale-105 shadow-xl">
           Download Blueprint ($0.99)
         </a>
-        <a href="/about" 
-           class="border border-quantum-pink text-quantum-pink px-8 py-4 rounded-lg font-semibold hover:bg-quantum-pink/10 transition-colors">
+        <a href="/about"
+           class="border border-quantum-pink text-quantum-pink px-8 py-4 rounded-lg font-semibold hover:bg-quantum-pink/10 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
           The Origin Story
         </a>
       </div>
     </div>
   </div>
+
+  <!-- Animated Background Elements -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="infinity-particles"></div>
+  </div>
 </section>
 
 <style>
   .hero {
-    background-image: 
-      radial-gradient(circle at 25% 25%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, rgba(255, 0, 110, 0.1) 0%, transparent 50%);
+    background-image:
+      radial-gradient(circle at 25% 25%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(255, 0, 110, 0.15) 0%, transparent 50%);
+  }
+
+  .logo-container {
+    position: relative;
+  }
+
+  .logo-container::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: glow 3s ease-in-out infinite alternate;
+    z-index: -1;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+  }
+
+  @keyframes glow {
+    0% { opacity: 0.5; transform: scale(0.9); }
+    100% { opacity: 0.8; transform: scale(1.1); }
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .infinity-particles {
+    background: 
+      radial-gradient(2px 2px at 20% 30%, rgba(0, 212, 255, 0.8), transparent),
+      radial-gradient(2px 2px at 40% 70%, rgba(255, 0, 110, 0.6), transparent),
+      radial-gradient(1px 1px at 60% 20%, rgba(0, 212, 255, 0.4), transparent),
+      radial-gradient(1px 1px at 80% 80%, rgba(255, 0, 110, 0.5), transparent);
+    background-size: 200px 200px;
+    animation: drift 20s linear infinite;
+  }
+
+  @keyframes drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-200px, -200px); }
   }
 </style>

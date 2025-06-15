@@ -1,117 +1,78 @@
 ﻿---
-export export interface Props {
+export interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
 
-const { title, description } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, 'https://thebytelite.com');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const { title, description = "Revolutionary compression technology achieving 1TB → 18 bytes through patented algorithmic breakthrough.", image = "/bytelite-logo.png" } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content={description || "ByteLite achieves 1TB â†’ 18 bytes compression through patent-pending recursive mathematical transformation. USPTO 63/807,027. Download technical blueprint."}>
-    <link rel="canonical" href={canonicalURL.href}>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/bytelite-logo.png" />
+    <link rel="apple-touch-icon" href="/bytelite-logo.png" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:site_name" content="ByteLite" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+    
+    <!-- Additional Meta -->
+    <meta name="keywords" content="compression, data storage, ByteLite, patent, SBIR, Montana, technology, 1TB to 18 bytes" />
+    <meta name="author" content="ByteLite LLC" />
+    <meta name="robots" content="index, follow" />
+    
     <title>{title}</title>
     
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="/bytelite-logo.png" as="image" />
     
-    <!-- Preload critical fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet" fetchpriority="high">
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "ByteLite: Revolutionary 1TB to 18 Bytes Compression Technology",
+      "image": "https://thebytelite.com/bytelite-logo.png",
+      "author": {
+        "@type": "Organization",
+        "name": "ByteLite LLC",
+        "url": "https://thebytelite.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ByteLite LLC",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thebytelite.com/bytelite-logo.png"
+        }
+      },
+      "description": "Patent-pending compression technology achieving impossible ratios through recursive hierarchical algorithms."
+    }
+    </script>
   </head>
-  <body>
+  <body class="bg-dark-navy text-white">
     <slot />
   </body>
 </html>
-
-<style is:global>
-  :root {
-    --color-bg: #060813;
-    --color-surface: #0A0E27;
-    --color-primary: #00D4FF;
-    --color-secondary: #FF006E;
-    --color-text: #E6E6E6;
-    --color-text-secondary: #A0A0A0;
-  }
-  
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  html {
-    font-family: 'Inter', system-ui, sans-serif;
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    line-height: 1.6;
-  }
-  
-  body {
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  
-  .btn {
-    display: inline-block;
-    padding: 12px 30px;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: none;
-  }
-  
-  .btn-primary {
-    background: var(--color-primary);
-    color: var(--color-bg);
-  }
-  
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
-  }
-  
-  .btn-secondary {
-    background: transparent;
-    color: var(--color-primary);
-    border: 2px solid var(--color-primary);
-  }
-  
-  .btn-secondary:hover {
-    background: var(--color-primary);
-    color: var(--color-bg);
-  }
-  
-  /* Mobile fixes */
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 2rem;
-      word-wrap: break-word;
-    }
-    
-    .container {
-      padding: 0 15px;
-    }
-    
-    .hero-section {
-      padding: 60px 0;
-    }
-  }
-</style>
-
