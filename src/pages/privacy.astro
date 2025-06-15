@@ -1,67 +1,85 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Privacy Policy" description="ByteLite privacy policy">
-  <section class="legal-page">
-    <div class="container">
-      <div class="legal-content">
+<Layout title="Privacy Policy - ByteLite" description="ByteLite privacy policy and data handling practices. We respect your privacy and protect your data.">
+  <Header />
+  <main>
+    <section class="content-section">
+      <div class="container">
         <h1>Privacy Policy</h1>
         <p class="last-updated">Last updated: June 14, 2025</p>
         
-        <h2>Information We Collect</h2>
-        <p>We collect information you provide directly to us, such as when you request information, download our blueprint, or contact us.</p>
+        <h2>Data Collection</h2>
+        <p>ByteLite collects minimal data necessary to provide our services:</p>
+        <ul>
+          <li>Email addresses (for blueprint downloads and updates)</li>
+          <li>Basic analytics (page views, no personal data)</li>
+          <li>Technical support inquiries</li>
+        </ul>
         
-        <h2>How We Use Your Information</h2>
-        <p>We use the information we collect to provide, maintain, and improve our services, to process transactions, and to communicate with you.</p>
+        <h2>Data Usage</h2>
+        <p>We use collected data solely for:</p>
+        <ul>
+          <li>Sending requested technical blueprints</li>
+          <li>Important product updates and security notices</li>
+          <li>Responding to support requests</li>
+        </ul>
         
-        <h2>Data Security</h2>
-        <p>We implement appropriate technical and organizational measures to protect the security of your personal information.</p>
+        <h2>Data Protection</h2>
+        <p>All data is encrypted in transit (HTTPS) and at rest. We never sell or share your personal information with third parties.</p>
         
-        <h2>Contact Us</h2>
-        <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:privacy@thebytelite.com">privacy@thebytelite.com</a>.</p>
+        <h2>Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+          <li>Request deletion of your data</li>
+          <li>Opt-out of communications</li>
+          <li>Access your stored information</li>
+        </ul>
+        
+        <h2>Contact</h2>
+        <p>For privacy concerns, contact: <a href="mailto:privacy@thebytelite.com">privacy@thebytelite.com</a></p>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
+  <Footer />
 </Layout>
 
 <style>
-  .legal-page {
-    padding: 5rem 0;
-    min-height: 60vh;
-  }
-
-  .legal-content {
+  .content-section {
+    padding: 80px 0;
     max-width: 800px;
     margin: 0 auto;
   }
-
-  .legal-content h1 {
-    margin-bottom: 1rem;
+  
+  .last-updated {
+    color: var(--color-text-secondary);
+    font-style: italic;
+    margin-bottom: 40px;
   }
-
-  .legal-content h2 {
-    margin: 3rem 0 1rem;
+  
+  h2 {
     color: var(--color-primary);
+    margin: 40px 0 20px;
   }
-
-  .legal-content p {
-    color: var(--color-text-muted);
-    line-height: 1.8;
-    margin-bottom: 1rem;
+  
+  ul {
+    margin-left: 30px;
+    color: var(--color-text-secondary);
   }
-
-  .legal-content a {
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  a {
     color: var(--color-primary);
     text-decoration: none;
   }
-
-  .legal-content a:hover {
+  
+  a:hover {
     text-decoration: underline;
-  }
-
-  .last-updated {
-    font-style: italic;
-    margin-bottom: 2rem;
   }
 </style>

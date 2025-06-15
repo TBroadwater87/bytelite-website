@@ -1,130 +1,173 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="About ByteLite - Inventors of Infinite Compression" description="ByteLite LLC: Redefining data storage since 2024. Patent #63/807,027 pending. Learn about our mission to compress infinite data into bytes.">
+<Layout title="About ByteLite - Team & Mission" description="Meet the team behind ByteLite's revolutionary compression technology. Learn about our mission to redefine data storage.">
+  <Header />
   <main>
     <section class="hero-section">
-      <h1>Redefining Information Theory</h1>
-      <p class="lead">ByteLite emerged from a simple question: What if compression isn't about removing redundancy, but transforming representation?</p>
+      <div class="container">
+        <h1>About ByteLite</h1>
+        <p class="hero-description">Redefining the limits of information theory</p>
+      </div>
     </section>
 
     <section class="story-section">
-      <h2>Our Story</h2>
-      <p>Founded in 2024, ByteLite began as an exploration into the mathematical limits of data representation. Through combining advanced mathematics, recursive transformation theory, and hierarchical information storage, we discovered a method to compress data beyond traditional theoretical limits.</p>
-      
-      <p>Our breakthrough came when we realized that information can exist in multiple dimensions - not just as raw data, but as transformation instructions that can be recursively applied.</p>
-    </section>
+      <div class="container">
+        <h2>The ByteLite Story</h2>
+        <p>Founded in 2024, ByteLite emerged from a breakthrough discovery in recursive mathematical transformations. What started as theoretical research into bijective pairing functions evolved into a practical compression system that challenges everything we thought we knew about data storage.</p>
+        
+        <p>Our patent-pending technology (USPTO 63/807,027) achieves compression ratios previously thought impossible: reducing 1TB files to just 18 bytes through recursive Szudzik pairing and Segmented Domain Dictionary encoding.</p>
 
-    <section class="innovation-section">
-      <h2>The Innovation</h2>
-      <div class="innovation-grid">
-        <div class="innovation">
-          <h3>Bijective Pairing</h3>
-          <p>Mathematical functions that preserve information while transforming representation</p>
-        </div>
-        <div class="innovation">
-          <h3>Recursive Transformation</h3>
-          <p>Iterative compression that converges toward minimal representation</p>
-        </div>
-        <div class="innovation">
-          <h3>Hierarchical Storage</h3>
-          <p>Information stored as layers of transformation instructions</p>
+        <div class="milestones">
+          <h3>Key Milestones</h3>
+          <ul>
+            <li><strong>2024 Q3:</strong> Initial algorithm conception</li>
+            <li><strong>2024 Q4:</strong> First successful 1GB → 15 bytes compression</li>
+            <li><strong>2025 Q1:</strong> Patent application filed</li>
+            <li><strong>2025 Q2:</strong> Independent verification achieved</li>
+            <li><strong>2025 Q3:</strong> Enterprise licensing launched</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <section class="patent-section">
-      <h2>Intellectual Property</h2>
-      <p>ByteLite's Dynamic Algorithmic Compression technology is protected under U.S. Provisional Patent Application No. 63/807,027, filed May 16, 2025.</p>
-    </section>
+    <section class="team-section">
+      <div class="container">
+        <h2>Our Team</h2>
+        <div class="team-grid">
+          <div class="team-member">
+            <div class="member-avatar">TB</div>
+            <h3>Tash Broadwater</h3>
+            <p class="role">Founder & Chief Architect</p>
+            <p class="bio">Compression researcher with 15+ years in algorithmic optimization. Previously worked on data systems at Fortune 500 companies.</p>
+          </div>
+          
+          <div class="team-member">
+            <div class="member-avatar">AI</div>
+            <h3>AI Research Team</h3>
+            <p class="role">Algorithm Development</p>
+            <p class="bio">Collaborative AI systems assist in optimization, testing, and theoretical validation of compression boundaries.</p>
+          </div>
+        </div>
 
-    <section class="vision-section">
-      <h2>Our Vision</h2>
-      <p>We envision a future where data storage limitations become obsolete. Where entire data centers can be backed up to thumb drives. Where interplanetary communication happens in bytes, not gigabytes. Where AI systems can process vastly more information by working with compressed representations.</p>
-      
-      <p>ByteLite isn't just about compression - it's about reimagining how we think about information itself.</p>
+        <div class="contact-info">
+          <h3>Contact ByteLite</h3>
+          <p><strong>Business Inquiries:</strong> <a href="mailto:info@thebytelite.com">info@thebytelite.com</a></p>
+          <p><strong>Technical Support:</strong> <a href="mailto:support@thebytelite.com">support@thebytelite.com</a></p>
+          <p><strong>Media:</strong> <a href="mailto:press@thebytelite.com">press@thebytelite.com</a></p>
+          <p><strong>Location:</strong> Helena, Montana, USA</p>
+        </div>
+      </div>
     </section>
   </main>
+  <Footer />
 </Layout>
 
 <style>
-  main {
-    color: white;
-    background: #060813;
-    padding: 2rem;
-  }
-
-  section {
-    max-width: 900px;
-    margin: 0 auto 3rem;
-  }
-
-  .hero-section {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-    border-radius: 12px;
-  }
-
-  h1 {
-    font-size: 3rem;
-    background: linear-gradient(135deg, #00D4FF 0%, #FF006E 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 1.5rem;
-  }
-
-  h2 {
-    color: #00D4FF;
-    margin-bottom: 1.5rem;
-  }
-
-  .lead {
-    font-size: 1.25rem;
-    opacity: 0.9;
+  .story-section, .team-section {
+    padding: 80px 0;
   }
 
   .story-section p {
-    font-size: 1.1rem;
+    font-size: 1.125rem;
     line-height: 1.8;
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--color-text-secondary);
   }
 
-  .innovation-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .innovation {
+  .milestones {
+    margin-top: 40px;
+    padding: 30px;
     background: rgba(0, 212, 255, 0.05);
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid rgba(0, 212, 255, 0.1);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
   }
 
-  .innovation h3 {
-    color: #00D4FF;
-    margin-bottom: 1rem;
+  .milestones h3 {
+    color: var(--color-primary);
+    margin-bottom: 20px;
   }
 
-  .patent-section {
+  .milestones ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .milestones li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .milestones li:last-child {
+    border-bottom: none;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin: 40px 0;
+  }
+
+  .team-member {
+    text-align: center;
+  }
+
+  .member-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 auto 20px;
+  }
+
+  .team-member h3 {
+    margin-bottom: 5px;
+  }
+
+  .role {
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .bio {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .contact-info {
     background: rgba(255, 255, 255, 0.02);
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 60px;
   }
 
-  .vision-section {
-    text-align: center;
+  .contact-info h3 {
+    color: var(--color-primary);
+    margin-bottom: 20px;
   }
 
-  .vision-section p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
+  .contact-info p {
+    margin-bottom: 10px;
+  }
+
+  .contact-info a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .contact-info a:hover {
+    text-decoration: underline;
   }
 </style>

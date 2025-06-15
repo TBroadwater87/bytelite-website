@@ -1,158 +1,68 @@
 ---
-// Hero.astro
+// Hero component for ByteLite
 ---
 
-<section class="hero">
-  <div class="hero-content">
-    <h1 class="hero-title">
-      <span class="hero-metric">1TB → 18 BYTES</span>
-      <span class="hero-subtitle">The Compression Singularity Has Arrived</span>
-    </h1>
-    <p class="hero-description">
-      ByteLite's patent-pending Dynamic Algorithmic Compression achieves the impossible 
-      through recursive mathematical transformation.
-    </p>
-    <div class="hero-cta">
-      <a href="/download" class="btn btn-primary">Download Technical Blueprint</a>
-      <a href="/technology" class="btn btn-secondary">See How It Works</a>
-    </div>
-    <div class="hero-badge">
-      Patent Pending • U.S. App #63/807,027
-    </div>
-  </div>
-  <div class="hero-visual">
-    <div class="compression-animation">
-      <div class="data-large">1TB</div>
-      <div class="arrow">→</div>
-      <div class="data-small">18B</div>
+<section class="hero bg-dark-navy text-white min-h-screen flex items-center relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-deep-space via-dark-navy to-black opacity-90"></div>
+  
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center max-w-4xl mx-auto">
+      <!-- Patent Badge -->
+      <div class="inline-flex items-center bg-electric-cyan/10 border border-electric-cyan/30 rounded-full px-6 py-2 mb-8">
+        <span class="text-electric-cyan text-sm font-mono">US Patent Pending 63/807,027</span>
+      </div>
+      
+      <!-- Main Headline -->
+      <h1 class="text-6xl md:text-8xl font-bold mb-6 leading-tight">
+        <span class="text-white">1TB</span>
+        <span class="text-electric-cyan mx-4">→</span>
+        <span class="text-quantum-pink">18 Bytes</span>
+      </h1>
+      
+      <!-- Subheadline -->
+      <h2 class="text-2xl md:text-3xl text-gray-300 mb-8 leading-relaxed">
+        Revolutionary Compression That Redefines Data Storage
+      </h2>
+      
+      <!-- Key Features -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+        <div class="text-center">
+          <div class="text-electric-cyan text-xl font-bold">99.999%+</div>
+          <div class="text-gray-400 text-sm">Compression Ratio</div>
+        </div>
+        <div class="text-center">
+          <div class="text-electric-cyan text-xl font-bold">200KB</div>
+          <div class="text-gray-400 text-sm">Engine Size</div>
+        </div>
+        <div class="text-center">
+          <div class="text-electric-cyan text-xl font-bold">Lossless</div>
+          <div class="text-gray-400 text-sm">Zero Data Loss</div>
+        </div>
+        <div class="text-center">
+          <div class="text-electric-cyan text-xl font-bold">Universal</div>
+          <div class="text-gray-400 text-sm">Any File Type</div>
+        </div>
+      </div>
+      
+      <!-- Call to Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/download" 
+           class="bg-electric-cyan text-dark-navy px-8 py-4 rounded-lg font-semibold hover:bg-electric-cyan/90 transition-colors">
+          Download Technical Blueprint
+        </a>
+        <a href="/technology" 
+           class="border border-electric-cyan text-electric-cyan px-8 py-4 rounded-lg font-semibold hover:bg-electric-cyan/10 transition-colors">
+          Explore Technology
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    padding: 2rem;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-  }
-
-  .hero-title {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-metric {
-    display: block;
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 900;
-    background: linear-gradient(135deg, #00d4ff 0%, #0080ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
-  }
-
-  .hero-subtitle {
-    display: block;
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
-    font-weight: 300;
-    color: #ffffff;
-    opacity: 0.9;
-  }
-
-  .hero-description {
-    font-size: 1.25rem;
-    color: #cccccc;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-
-  .btn {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
-    display: inline-block;
-  }
-
-  .btn-primary {
-    background: #0080ff;
-    color: #ffffff;
-  }
-
-  .btn-primary:hover {
-    background: #0066cc;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 128, 255, 0.3);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: #00d4ff;
-    border: 2px solid #00d4ff;
-  }
-
-  .btn-secondary:hover {
-    background: #00d4ff;
-    color: #0a0a0a;
-  }
-
-  .hero-badge {
-    font-size: 0.875rem;
-    color: #888888;
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  .compression-animation {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    font-family: 'JetBrains Mono', monospace;
-    color: #00d4ff;
-  }
-
-  .data-large {
-    font-size: 4rem;
-    font-weight: 900;
-  }
-
-  .arrow {
-    font-size: 2rem;
-    animation: pulse 2s infinite;
-  }
-
-  .data-small {
-    font-size: 2rem;
-    color: #0080ff;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.2); }
-  }
-
-  @media (max-width: 768px) {
-    .hero {
-      grid-template-columns: 1fr;
-      text-align: center;
-    }
-    
-    .hero-cta {
-      justify-content: center;
-    }
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(255, 0, 110, 0.1) 0%, transparent 50%);
   }
 </style>
