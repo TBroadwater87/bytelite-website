@@ -1,83 +1,44 @@
 ---
-// Revolutionary Hero component with infinity logo
 ---
 
-<section class="hero bg-gradient-to-br from-deep-space via-dark-navy to-void-black text-white min-h-screen flex items-center relative overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-br from-deep-space/90 via-dark-navy/80 to-black/95"></div>
-
-  <div class="container mx-auto px-6 relative z-10">
+<section class="hero bg-gradient-to-br from-deep-space via-dark-navy to-void-black text-white min-h-screen flex items-center">
+  <div class="container mx-auto px-6">
     <div class="text-center max-w-5xl mx-auto">
       
-      <!-- Revolutionary Logo -->
+      <!-- Logo -->
       <div class="mb-8 flex justify-center">
-        <div class="logo-container animate-float">
-          <img src="/bytelite-logo.png" alt="ByteLite - Infinite Compression Technology" 
-               class="h-32 md:h-40 w-auto filter drop-shadow-2xl" />
-        </div>
+        <img src="/bytelite-logo.png" alt="ByteLite Logo" class="h-32 md:h-40 w-auto" />
       </div>
 
       <!-- Patent Badge -->
-      <div class="inline-flex items-center bg-electric-cyan/10 border border-electric-cyan/30 rounded-full px-6 py-2 mb-8 backdrop-blur-sm">
-        <span class="text-electric-cyan text-sm font-mono">US Patent 63/807,027 | Filed May 16, 2025</span>
+      <div class="inline-flex items-center bg-electric-cyan/10 border border-electric-cyan/30 rounded-full px-6 py-2 mb-8">
+        <span class="text-electric-cyan text-sm font-mono">US Patent 63/807,027</span>
       </div>
 
-      <!-- Revolutionary Headline -->
+      <!-- FIXED HEADLINE WITH PROPER ARROW -->
       <h1 class="text-5xl md:text-8xl font-bold mb-6 leading-tight">
         <span class="text-white">1TB</span>
-        <span class="text-electric-cyan mx-4 animate-pulse">?</span>
+        <span class="text-electric-cyan mx-4">&rarr;</span>
         <span class="text-quantum-pink">18 Bytes</span>
       </h1>
 
-      <!-- Revolutionary Subheading -->
-      <h2 class="text-2xl md:text-3xl text-gray-300 mb-4 leading-relaxed">
+      <!-- Clean Text -->
+      <h2 class="text-2xl md:text-3xl text-gray-300 mb-4">
         Revolutionary Compression That Redefines Data Storage
       </h2>
       <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
-        Accidentally discovered while building AI in Helena, Montana.
-        Now patented technology achieving impossible compression ratios.
+        Patented technology achieving impossible compression ratios.
       </p>
 
-      <!-- Revolutionary CTAs -->
+      <!-- Buttons -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/download"
-           class="bg-electric-cyan text-dark-navy px-8 py-4 rounded-lg font-semibold hover:bg-electric-cyan/90 transition-all duration-300 transform hover:scale-105 shadow-xl">
+        <a href="/download" class="bg-electric-cyan text-dark-navy px-8 py-4 rounded-lg font-semibold">
           Download Blueprint ($0.99)
         </a>
-        <a href="/about"
-           class="border border-quantum-pink text-quantum-pink px-8 py-4 rounded-lg font-semibold hover:bg-quantum-pink/10 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
+        <a href="/about" class="border border-quantum-pink text-quantum-pink px-8 py-4 rounded-lg font-semibold">
           The Origin Story
         </a>
       </div>
     </div>
   </div>
 </section>
-
-<style>
-  .logo-container {
-    position: relative;
-  }
-
-  .logo-container::before {
-    content: '';
-    position: absolute;
-    inset: -20px;
-    background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: glow 3s ease-in-out infinite alternate;
-    z-index: -1;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(2deg); }
-  }
-
-  @keyframes glow {
-    0% { opacity: 0.5; transform: scale(0.9); }
-    100% { opacity: 0.8; transform: scale(1.1); }
-  }
-
-  .animate-float {
-    animation: float 4s ease-in-out infinite;
-  }
-</style>

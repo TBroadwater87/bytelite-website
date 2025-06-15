@@ -1,4 +1,4 @@
-﻿---
+---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -8,48 +8,17 @@ export interface Props {
   image?: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title, description = "Revolutionary compression technology achieving 1TB → 18 bytes through patented algorithmic breakthrough.", image = "/bytelite-logo.png" } = Astro.props;
+const { title, description = "Revolutionary compression technology achieving 1TB to 18 bytes.", image = "/bytelite-logo.png" } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/bytelite-logo.png" />
-    <link rel="apple-touch-icon" href="/bytelite-logo.png" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href={canonicalURL} />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.url)} />
-    <meta property="og:site_name" content="ByteLite" />
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.url)} />
-    
-    <!-- Additional Meta -->
-    <meta name="keywords" content="compression, data storage, ByteLite, patent, SBIR, Montana, technology, 1TB to 18 bytes" />
-    <meta name="author" content="ByteLite LLC" />
-    <meta name="robots" content="index, follow" />
-    
     <title>{title}</title>
-    
-    <!-- Preload Critical Assets -->
-    <link rel="preload" href="/bytelite-logo.png" as="image" />
   </head>
   <body class="bg-dark-navy text-white">
     <Header />
