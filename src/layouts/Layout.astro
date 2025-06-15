@@ -1,5 +1,5 @@
----
-export interface Props {
+﻿---
+export export interface Props {
   title: string;
   description?: string;
 }
@@ -13,7 +13,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thebytelite.com');
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content={description || "ByteLite achieves 1TB → 18 bytes compression through patent-pending recursive mathematical transformation. USPTO 63/807,027. Download technical blueprint."}>
+    <meta name="description" content={description || "ByteLite achieves 1TB â†’ 18 bytes compression through patent-pending recursive mathematical transformation. USPTO 63/807,027. Download technical blueprint."}>
     <link rel="canonical" href={canonicalURL.href}>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
@@ -114,3 +114,4 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thebytelite.com');
     }
   }
 </style>
+

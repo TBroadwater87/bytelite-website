@@ -1,4 +1,4 @@
----
+﻿---
 // CompressionDiagram.astro
 ---
 
@@ -6,40 +6,40 @@
   <h2>Compression Pipeline</h2>
   <div class="pipeline">
     <div class="stage">
-      <div class="stage-icon">📁</div>
+      <div class="stage-icon">ðŸ“</div>
       <div class="stage-label">Input Data</div>
       <div class="stage-detail">Any Size</div>
     </div>
     
-    <div class="arrow">→</div>
+    <div class="arrow">â†’</div>
     
     <div class="stage">
-      <div class="stage-icon">🔄</div>
+      <div class="stage-icon">ðŸ”„</div>
       <div class="stage-label">Recursive Transform</div>
       <div class="stage-detail">Rounds 1-N</div>
     </div>
     
-    <div class="arrow">→</div>
+    <div class="arrow">â†’</div>
     
     <div class="stage">
-      <div class="stage-icon">💎</div>
+      <div class="stage-icon">ðŸ’Ž</div>
       <div class="stage-label">Output</div>
-      <div class="stage-detail">≤18 Bytes</div>
+      <div class="stage-detail">â‰¤18 Bytes</div>
     </div>
   </div>
   
   <div class="diagram-details">
     <div class="detail-box">
       <h4>Round 1-3: Aggregation</h4>
-      <p>8-bit → 16-bit → 32-bit → 64-bit</p>
+      <p>8-bit â†’ 16-bit â†’ 32-bit â†’ 64-bit</p>
     </div>
     <div class="detail-box">
       <h4>Round 0: SDD Encoding</h4>
-      <p>64-bit values → 8-bit dictionary indices</p>
+      <p>64-bit values â†’ 8-bit dictionary indices</p>
     </div>
     <div class="detail-box">
       <h4>Termination</h4>
-      <p>When data ≤ 8 bytes or single element</p>
+      <p>When data â‰¤ 8 bytes or single element</p>
     </div>
   </div>
 </section>
@@ -123,3 +123,4 @@
     font-size: 0.875rem;
   }
 </style>
+

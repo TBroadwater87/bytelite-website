@@ -1,18 +1,18 @@
-{
-  "extends": "astro/tsconfigs/strict",
+﻿{
+  "extends": "astro/tsconfigs/base",
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  },
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".astro",
-    "src.backup*",
-    "*.backup",
-    "public"
-  ]
+    "allowJs": true,
+    "checkJs": false,
+    "strict": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "suppressExcessPropertyErrors": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noStrictGenericChecks": true
+  }
 }

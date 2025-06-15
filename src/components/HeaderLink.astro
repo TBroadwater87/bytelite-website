@@ -1,5 +1,5 @@
----
-import type { HTMLAttributes } from 'astro/types';
+﻿---
+import { HTMLAttributes } from 'astro/types';
 
 type Props = HTMLAttributes<'a'>;
 
@@ -22,3 +22,4 @@ const isActive = href === pathname || href === '/' + (subpath?.[0] || '');
 		text-decoration: underline;
 	}
 </style>
+
