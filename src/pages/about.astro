@@ -1,173 +1,239 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="About ByteLite - Team & Mission" description="Meet the team behind ByteLite's revolutionary compression technology. Learn about our mission to redefine data storage.">
-  <Header />
-  <main>
-    <section class="hero-section">
-      <div class="container">
-        <h1>About ByteLite</h1>
-        <p class="hero-description">Redefining the limits of information theory</p>
-      </div>
-    </section>
-
-    <section class="story-section">
-      <div class="container">
-        <h2>The ByteLite Story</h2>
-        <p>Founded in 2024, ByteLite emerged from a breakthrough discovery in recursive mathematical transformations. What started as theoretical research into bijective pairing functions evolved into a practical compression system that challenges everything we thought we knew about data storage.</p>
-        
-        <p>Our patent-pending technology (USPTO 63/807,027) achieves compression ratios previously thought impossible: reducing 1TB files to just 18 bytes through recursive Szudzik pairing and Segmented Domain Dictionary encoding.</p>
-
-        <div class="milestones">
-          <h3>Key Milestones</h3>
-          <ul>
-            <li><strong>2024 Q3:</strong> Initial algorithm conception</li>
-            <li><strong>2024 Q4:</strong> First successful 1GB → 15 bytes compression</li>
-            <li><strong>2025 Q1:</strong> Patent application filed</li>
-            <li><strong>2025 Q2:</strong> Independent verification achieved</li>
-            <li><strong>2025 Q3:</strong> Enterprise licensing launched</li>
-          </ul>
+<Layout 
+  title="About ByteLite | The Accidental Revolution"
+  description="How ByteLite's revolutionary compression was discovered while building AI technology in Helena, Montana."
+>
+  <div class="bg-dark-navy text-white">
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-br from-deep-space to-dark-navy">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-5xl font-bold mb-6">The Accidental Revolution</h1>
+          <p class="text-xl text-gray-300 mb-8">
+            How a quest to build better AI accidentally discovered 
+            the most powerful compression algorithm ever created
+          </p>
+          <div class="inline-flex items-center bg-electric-cyan/10 border border-electric-cyan/30 rounded-full px-6 py-2">
+            <span class="text-electric-cyan font-mono">US Patent Pending</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="team-section">
-      <div class="container">
-        <h2>Our Team</h2>
-        <div class="team-grid">
-          <div class="team-member">
-            <div class="member-avatar">TB</div>
-            <h3>Tash Broadwater</h3>
-            <p class="role">Founder & Chief Architect</p>
-            <p class="bio">Compression researcher with 15+ years in algorithmic optimization. Previously worked on data systems at Fortune 500 companies.</p>
+    <!-- Origin Story -->
+    <section class="py-20">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold text-electric-cyan mb-8">🚀 The Origin Story</h2>
+          
+          <div class="prose prose-lg text-gray-300 space-y-6">
+            <p class="text-xl">
+              ByteLite was born out of necessity. The goal was to build better AI, 
+              but existing models required too much data and computational power.
+            </p>
+            
+            <p>
+              Rather than accept those limitations, the question became: 
+              <strong>"What if we could train AI using dramatically less data?"</strong>
+            </p>
+            
+            <p>
+              That pursuit led to the invention of a revolutionary compression algorithm 
+              so powerful, it could shrink <strong>1TB of data to under 18 bytes</strong>. 
+              ByteLite was the breakthrough discovered while solving a completely different problem.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="py-20 bg-deep-space/30">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl font-bold mb-8">Founded in Helena, Montana</h2>
+          <p class="text-xl text-gray-300 mb-8">
+            ByteLite was founded by Tash Broadwater, a problem-solver with a 
+            "do it right yourself" mentality and deep technical understanding 
+            of mathematical compression principles.
+          </p>
+          
+          <div class="grid md:grid-cols-3 gap-8 mt-12">
+            <div class="text-center">
+              <div class="text-quantum-pink text-2xl font-bold mb-2">SBIR Certified</div>
+              <div class="text-gray-400">Small Business Innovation Research</div>
+            </div>
+            <div class="text-center">
+              <div class="text-electric-cyan text-2xl font-bold mb-2">Patent Pending</div>
+              <div class="text-gray-400">Provisional Patent Filed</div>
+            </div>
+            <div class="text-center">
+              <div class="text-quantum-pink text-2xl font-bold mb-2">99.999%+</div>
+              <div class="text-gray-400">Compression Ratio Achieved</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Innovation -->
+    <section class="py-20">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold text-electric-cyan mb-8">💡 The Technical Breakthrough</h2>
+          
+          <div class="prose prose-lg text-gray-300 space-y-6">
+            <p>
+              ByteLite uses recursive mathematical transformations and specialized 
+              dictionaries to achieve compression ratios previously thought impossible.
+            </p>
+            
+            <p>
+              Unlike traditional compression that relies on finding patterns, 
+              ByteLite transforms data through mathematical bijections, 
+              progressively reducing information to its theoretical minimum.
+            </p>
           </div>
           
-          <div class="team-member">
-            <div class="member-avatar">AI</div>
-            <h3>AI Research Team</h3>
-            <p class="role">Algorithm Development</p>
-            <p class="bio">Collaborative AI systems assist in optimization, testing, and theoretical validation of compression boundaries.</p>
+          <div class="grid md:grid-cols-2 gap-8 mt-8">
+            <div class="bg-dark-navy/50 border border-electric-cyan/20 rounded-lg p-6">
+              <h3 class="text-lg font-bold text-electric-cyan mb-4">Key Innovation</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li>• Recursive hierarchical compression</li>
+                <li>• Mathematical bijection transforms</li>
+                <li>• Perfect lossless reconstruction</li>
+                <li>• Universal data type support</li>
+              </ul>
+            </div>
+            
+            <div class="bg-dark-navy/50 border border-quantum-pink/20 rounded-lg p-6">
+              <h3 class="text-lg font-bold text-quantum-pink mb-4">Real Results</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li>• 1TB → 18 bytes demonstrated</li>
+                <li>• CPU-only processing</li>
+                <li>• No specialized hardware needed</li>
+                <li>• Theoretical minimum achieved</li>
+              </ul>
+            </div>
           </div>
-        </div>
-
-        <div class="contact-info">
-          <h3>Contact ByteLite</h3>
-          <p><strong>Business Inquiries:</strong> <a href="mailto:info@thebytelite.com">info@thebytelite.com</a></p>
-          <p><strong>Technical Support:</strong> <a href="mailto:support@thebytelite.com">support@thebytelite.com</a></p>
-          <p><strong>Media:</strong> <a href="mailto:press@thebytelite.com">press@thebytelite.com</a></p>
-          <p><strong>Location:</strong> Helena, Montana, USA</p>
         </div>
       </div>
     </section>
-  </main>
-  <Footer />
+
+    <!-- Vision -->
+    <section class="py-20 bg-deep-space/30">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl font-bold text-quantum-pink mb-8">The Future of Data</h2>
+          <p class="text-xl text-gray-300">
+            ByteLite represents more than just better compression—it's the foundation 
+            for a new generation of efficient AI systems and data processing architectures 
+            that require orders of magnitude less computational resources.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
 </Layout>
 
-<style>
-  .story-section, .team-section {
-    padding: 80px 0;
-  }
+            <p>
+              That pursuit led to the invention of a revolutionary compression algorithm 
+              so powerful, it could shrink <strong>1TB of data to under 18 bytes</strong>. 
+              ByteLite was the breakthrough discovered while solving a completely different problem.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  .story-section p {
-    font-size: 1.125rem;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    color: var(--color-text-secondary);
-  }
+    <!-- Founder Section -->
+    <section class="py-20 bg-deep-space/30">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl font-bold mb-8">Founded in Helena, Montana</h2>
+          <p class="text-xl text-gray-300 mb-8">
+            ByteLite was founded by Tash Broadwater, a problem-solver with a 
+            "do it right yourself" mentality and deep technical understanding 
+            of mathematical compression principles.
+          </p>
+          
+          <div class="grid md:grid-cols-3 gap-8 mt-12">
+            <div class="text-center">
+              <div class="text-quantum-pink text-2xl font-bold mb-2">SBIR Certified</div>
+              <div class="text-gray-400">Small Business Innovation Research</div>
+            </div>
+            <div class="text-center">
+              <div class="text-electric-cyan text-2xl font-bold mb-2">Patent Pending</div>
+              <div class="text-gray-400">Provisional Patent Filed</div>
+            </div>
+            <div class="text-center">
+              <div class="text-quantum-pink text-2xl font-bold mb-2">99.999%+</div>
+              <div class="text-gray-400">Compression Ratio Achieved</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  .milestones {
-    margin-top: 40px;
-    padding: 30px;
-    background: rgba(0, 212, 255, 0.05);
-    border-radius: 16px;
-    border: 1px solid rgba(0, 212, 255, 0.2);
-  }
+    <!-- Technical Innovation -->
+    <section class="py-20">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold text-electric-cyan mb-8">💡 The Technical Breakthrough</h2>
+          
+          <div class="prose prose-lg text-gray-300 space-y-6">
+            <p>
+              ByteLite uses recursive mathematical transformations and specialized 
+              dictionaries to achieve compression ratios previously thought impossible.
+            </p>
+            
+            <p>
+              Unlike traditional compression that relies on finding patterns, 
+              ByteLite transforms data through mathematical bijections, 
+              progressively reducing information to its theoretical minimum.
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-8 mt-8">
+            <div class="bg-dark-navy/50 border border-electric-cyan/20 rounded-lg p-6">
+              <h3 class="text-lg font-bold text-electric-cyan mb-4">Key Innovation</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li>• Recursive hierarchical compression</li>
+                <li>• Mathematical bijection transforms</li>
+                <li>• Perfect lossless reconstruction</li>
+                <li>• Universal data type support</li>
+              </ul>
+            </div>
+            
+            <div class="bg-dark-navy/50 border border-quantum-pink/20 rounded-lg p-6">
+              <h3 class="text-lg font-bold text-quantum-pink mb-4">Real Results</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li>• 1TB → 18 bytes demonstrated</li>
+                <li>• CPU-only processing</li>
+                <li>• No specialized hardware needed</li>
+                <li>• Theoretical minimum achieved</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  .milestones h3 {
-    color: var(--color-primary);
-    margin-bottom: 20px;
-  }
-
-  .milestones ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .milestones li {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .milestones li:last-child {
-    border-bottom: none;
-  }
-
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    margin: 40px 0;
-  }
-
-  .team-member {
-    text-align: center;
-  }
-
-  .member-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: var(--color-primary);
-    color: var(--color-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    font-weight: 700;
-    margin: 0 auto 20px;
-  }
-
-  .team-member h3 {
-    margin-bottom: 5px;
-  }
-
-  .role {
-    color: var(--color-primary);
-    font-weight: 600;
-    margin-bottom: 15px;
-  }
-
-  .bio {
-    color: var(--color-text-secondary);
-    line-height: 1.6;
-  }
-
-  .contact-info {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(0, 212, 255, 0.1);
-    border-radius: 16px;
-    padding: 40px;
-    margin-top: 60px;
-  }
-
-  .contact-info h3 {
-    color: var(--color-primary);
-    margin-bottom: 20px;
-  }
-
-  .contact-info p {
-    margin-bottom: 10px;
-  }
-
-  .contact-info a {
-    color: var(--color-primary);
-    text-decoration: none;
-  }
-
-  .contact-info a:hover {
-    text-decoration: underline;
-  }
-</style>
+    <!-- Vision -->
+    <section class="py-20 bg-deep-space/30">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl font-bold text-quantum-pink mb-8">The Future of Data</h2>
+          <p class="text-xl text-gray-300">
+            ByteLite represents more than just better compression—it's the foundation 
+            for a new generation of efficient AI systems and data processing architectures 
+            that require orders of magnitude less computational resources.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
