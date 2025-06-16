@@ -1,538 +1,77 @@
-﻿---
+---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Licensing - ByteLite" description="ByteLite licensing options from personal to enterprise. Pay only 50% of your storage savings with our enterprise model.">
-  <Header />
-  <main>
-    <section class="hero-section">
-      <div class="container">
-        <h1>ByteLite Licensing</h1>
-        <p class="hero-description">Choose the perfect plan for your compression needs. Decompressor is always free.</p>
-      </div>
-    </section>
-
-    <section class="pricing-section">
-      <div class="container">
-        <!-- Personal & Family Tier -->
-        <div class="tier-section">
-          <h2>Personal & Family</h2>
-          <div class="pricing-grid">
-            <div class="pricing-card">
-              <h3>Personal</h3>
-              <div class="price">
-                <span class="price-main">$10</span>
-                <span class="price-period">/month</span>
-              </div>
-              <p class="price-alternate">or $99/year (save 17%)</p>
-              <ul>
-                <li>âœ“ 1 user</li>
-                <li>âœ“ 1 system</li>
-                <li>âœ“ Personal use only</li>
-                <li>âœ“ Community support</li>
-                <li>âœ“ Free decompressor</li>
-              </ul>
-              <a href="/download" class="btn btn-primary">Get Started</a>
-            </div>
-
-            <div class="pricing-card">
-              <h3>Family</h3>
-              <div class="price">
-                <span class="price-main">$50</span>
-                <span class="price-period">/month</span>
-              </div>
-              <p class="price-alternate">Perfect for households</p>
-              <ul>
-                <li>âœ“ Up to 10 users</li>
-                <li>âœ“ Up to 10 systems</li>
-                <li>âœ“ Home & personal use</li>
-                <li>âœ“ Priority support</li>
-                <li>âœ“ Free decompressor</li>
-              </ul>
-              <a href="/download" class="btn btn-primary">Get Started</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Business Tier -->
-        <div class="tier-section">
-          <h2>Business</h2>
-          <p class="tier-description">Fixed-rate pricing for growing businesses. All business tiers include commercial use rights and business support.</p>
-          <div class="pricing-grid business-grid">
-            <div class="pricing-card">
-              <h3>Small Business</h3>
-              <div class="price">
-                <span class="price-main">$299</span>
-                <span class="price-period">/month</span>
-              </div>
-              <p class="price-alternate">Up to 50 employees</p>
-              <ul>
-                <li>âœ“ 50 users maximum</li>
-                <li>âœ“ Unlimited systems</li>
-                <li>âœ“ Commercial use</li>
-                <li>âœ“ Business support</li>
-                <li>âœ“ API access</li>
-                <li>âœ“ Basic analytics</li>
-              </ul>
-              <a href="/contact" class="btn btn-primary">Get Started</a>
-            </div>
-
-            <div class="pricing-card featured">
-              <div class="badge">Most Popular</div>
-              <h3>Medium Business</h3>
-              <div class="price">
-                <span class="price-main">$799</span>
-                <span class="price-period">/month</span>
-              </div>
-              <p class="price-alternate">Up to 100 employees</p>
-              <ul>
-                <li>âœ“ 100 users maximum</li>
-                <li>âœ“ Unlimited systems</li>
-                <li>âœ“ Commercial use</li>
-                <li>âœ“ Priority support</li>
-                <li>âœ“ Advanced API access</li>
-                <li>âœ“ Detailed analytics</li>
-                <li>âœ“ Custom integrations</li>
-              </ul>
-              <a href="/contact" class="btn btn-primary">Get Started</a>
-            </div>
-
-            <div class="pricing-card">
-              <h3>Large Business</h3>
-              <div class="price">
-                <span class="price-main">$1,999</span>
-                <span class="price-period">/month</span>
-              </div>
-              <p class="price-alternate">Up to 250 employees</p>
-              <ul>
-                <li>âœ“ 250 users maximum</li>
-                <li>âœ“ Unlimited systems</li>
-                <li>âœ“ Commercial use</li>
-                <li>âœ“ Premium support</li>
-                <li>âœ“ Full API suite</li>
-                <li>âœ“ Advanced analytics</li>
-                <li>âœ“ White-label options</li>
-                <li>âœ“ Dedicated account manager</li>
-              </ul>
-              <a href="/contact" class="btn btn-primary">Get Started</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Enterprise Tier -->
-        <div class="tier-section">
-          <h2>Enterprise</h2>
-          <div class="enterprise-card">
-            <div class="enterprise-header">
-              <h3>Performance-Based Pricing</h3>
-              <div class="price">
-                <span class="price-main">50%</span>
-                <span class="price-period">of storage savings</span>
+<Layout
+  title="ByteLite Licensing | Enterprise Compression Solutions"
+  description="Enterprise licensing for ByteLite compression technology."
+>
+  <div class="bg-dark-navy text-white">
+    <section class="py-20">
+      <div class="container mx-auto px-6">
+        <div class="max-w-6xl mx-auto">
+          <h1 class="text-5xl font-bold mb-12 text-center">Enterprise Licensing</h1>
+          
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Left Column -->
+            <div class="bg-deep-space/50 rounded-lg p-8">
+              <h2 class="text-3xl font-bold text-electric-cyan mb-6">50% of storage savings</h2>
+              <p class="text-gray-300 mb-8">
+                You only pay 50% of what ByteLite saves you. Since ByteLite achieves 
+                nearly 100% storage reduction (1TB to 18 bytes), you keep 50% of savings.
+              </p>
+              
+              <h3 class="text-xl font-semibold text-quantum-pink mb-4">Example:</h3>
+              <div class="space-y-2 text-gray-300">
+                <p>Current storage cost: <span class="text-electric-cyan">$100,000/year</span></p>
+                <p>After ByteLite: <span class="text-electric-cyan">~$0/year</span></p>
+                <p>Your savings: <span class="text-electric-cyan">$100,000/year</span></p>
+                <p>ByteLite fee: <span class="text-electric-cyan">$50,000/year</span></p>
+                <p class="font-bold text-quantum-pink">Net benefit: $50,000/year saved</p>
               </div>
             </div>
-            
-            <div class="enterprise-content">
-              <div class="enterprise-description">
-                <p>Our revolutionary pricing model: You only pay 50% of what ByteLite saves you. Since ByteLite achieves nearly 100% storage reduction (1TB â†’ 18 bytes), you keep 50% of the savings while transforming your data infrastructure.</p>
-                
-                <div class="savings-example">
-                  <h4>Example Calculation:</h4>
-                  <ul>
-                    <li>Current storage cost: <strong>$100,000/year</strong></li>
-                    <li>After ByteLite: <strong>~$0/year</strong> (99.99999% reduction)</li>
-                    <li>Your savings: <strong>$100,000/year</strong></li>
-                    <li>ByteLite fee: <strong>$50,000/year</strong> (50% of savings)</li>
-                    <li>Your net benefit: <strong>$50,000/year saved</strong></li>
-                  </ul>
+
+            <!-- Right Column - FIXED BULLET POINTS -->
+            <div class="bg-deep-space/50 rounded-lg p-8">
+              <h3 class="text-2xl font-bold text-quantum-pink mb-6">Enterprise Features:</h3>
+              <div class="space-y-3 text-gray-300">
+                <div class="flex items-start space-x-3">
+                  <span class="text-electric-cyan">?</span>
+                  <span>Unlimited users & systems</span>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <span class="text-electric-cyan">?</span>
+                  <span>On-premise deployment option</span>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <span class="text-electric-cyan">?</span>
+                  <span>Custom SLA & support</span>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <span class="text-electric-cyan">?</span>
+                  <span>Source code escrow</span>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <span class="text-electric-cyan">?</span>
+                  <span>Dedicated engineering team</span>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <span class="text-electric-cyan">?</span>
+                  <span>Real-time compression metrics</span>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <span class="text-electric-cyan">?</span>
+                  <span>Automated savings calculation</span>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <span class="text-electric-cyan">?</span>
+                  <span>Minimal telemetry (size & type only)</span>
                 </div>
               </div>
-              
-              <div class="enterprise-features">
-                <h4>Enterprise Features:</h4>
-                <ul>
-                  <li>âœ“ Unlimited users & systems</li>
-                  <li>âœ“ On-premise deployment option</li>
-                  <li>âœ“ Custom SLA & support</li>
-                  <li>âœ“ Source code escrow</li>
-                  <li>âœ“ Dedicated engineering team</li>
-                  <li>âœ“ Real-time compression metrics</li>
-                  <li>âœ“ Automated savings calculation</li>
-                  <li>âœ“ Minimal telemetry (size & type only)</li>
-                </ul>
-              </div>
             </div>
-            
-            <div class="telemetry-note">
-              <p><strong>Privacy First:</strong> Enterprise telemetry only tracks file size before/after compression and file extensions for optimization. No file content or sensitive data ever leaves your infrastructure.</p>
-            </div>
-            
-            <a href="/contact" class="btn btn-primary btn-large">Schedule Enterprise Demo</a>
-          </div>
-        </div>
-
-        <!-- Feature Comparison -->
-        <div class="comparison-section">
-          <h2>Feature Comparison</h2>
-          <div class="comparison-table">
-            <table>
-              <thead>
-                <tr>
-                  <th>Feature</th>
-                  <th>Personal</th>
-                  <th>Family</th>
-                  <th>Business</th>
-                  <th>Enterprise</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Compression Ratio</td>
-                  <td>99.999%+</td>
-                  <td>99.999%+</td>
-                  <td>99.999%+</td>
-                  <td>99.999%+</td>
-                </tr>
-                <tr>
-                  <td>Decompressor</td>
-                  <td>Free</td>
-                  <td>Free</td>
-                  <td>Free</td>
-                  <td>Free</td>
-                </tr>
-                <tr>
-                  <td>Users</td>
-                  <td>1</td>
-                  <td>10</td>
-                  <td>50-250</td>
-                  <td>Unlimited</td>
-                </tr>
-                <tr>
-                  <td>Commercial Use</td>
-                  <td>No</td>
-                  <td>No</td>
-                  <td>Yes</td>
-                  <td>Yes</td>
-                </tr>
-                <tr>
-                  <td>Support</td>
-                  <td>Community</td>
-                  <td>Priority</td>
-                  <td>Business</td>
-                  <td>Dedicated Team</td>
-                </tr>
-                <tr>
-                  <td>API Access</td>
-                  <td>No</td>
-                  <td>No</td>
-                  <td>Yes</td>
-                  <td>Full Suite</td>
-                </tr>
-                <tr>
-                  <td>Analytics</td>
-                  <td>No</td>
-                  <td>Basic</td>
-                  <td>Detailed</td>
-                  <td>Real-time</td>
-                </tr>
-                <tr>
-                  <td>Pricing Model</td>
-                  <td>Fixed</td>
-                  <td>Fixed</td>
-                  <td>Fixed</td>
-                  <td>% of Savings</td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
       </div>
     </section>
-
-    <section class="cta-section">
-      <div class="container">
-        <h2>Ready to Eliminate Storage Costs?</h2>
-        <p>Join thousands of users saving 99.999%+ on data storage</p>
-        <a href="/download" class="btn btn-primary btn-large">Start Free Trial</a>
-      </div>
-    </section>
-  </main>
-  <Footer />
+  </div>
 </Layout>
-
-<style>
-  .pricing-section {
-    padding: 80px 0;
-  }
-
-  .tier-section {
-    margin-bottom: 80px;
-  }
-
-  .tier-section h2 {
-    text-align: center;
-    color: var(--color-primary);
-    margin-bottom: 20px;
-    font-size: 2.5rem;
-  }
-
-  .tier-description {
-    text-align: center;
-    color: var(--color-text-secondary);
-    max-width: 600px;
-    margin: 0 auto 40px;
-  }
-
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  .business-grid {
-    max-width: 100%;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  }
-
-  .pricing-card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(0, 212, 255, 0.1);
-    border-radius: 16px;
-    padding: 40px 30px;
-    position: relative;
-    transition: all 0.3s ease;
-  }
-
-  .pricing-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(0, 212, 255, 0.3);
-    box-shadow: 0 10px 40px rgba(0, 212, 255, 0.1);
-  }
-
-  .pricing-card.featured {
-    border-color: var(--color-primary);
-    background: rgba(0, 212, 255, 0.05);
-  }
-
-  .badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--color-primary);
-    color: var(--color-bg);
-    padding: 4px 20px;
-    border-radius: 20px;
-    font-size: 0.875rem;
-    font-weight: 600;
-  }
-
-  .pricing-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: var(--color-text);
-  }
-
-  .price {
-    display: flex;
-    align-items: baseline;
-    margin-bottom: 10px;
-  }
-
-  .price-main {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--color-primary);
-  }
-
-  .price-period {
-    font-size: 1.2rem;
-    color: var(--color-text-secondary);
-    margin-left: 5px;
-  }
-
-  .price-alternate {
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 30px;
-    font-style: italic;
-  }
-
-  .pricing-card ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 30px 0;
-  }
-
-  .pricing-card li {
-    padding: 10px 0;
-    color: var(--color-text-secondary);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  .pricing-card li:last-child {
-    border-bottom: none;
-  }
-
-  /* Enterprise Card */
-  .enterprise-card {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 0, 110, 0.05) 100%);
-    border: 2px solid rgba(0, 212, 255, 0.3);
-    border-radius: 24px;
-    padding: 60px;
-    margin: 0 auto;
-    max-width: 1000px;
-  }
-
-  .enterprise-header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-
-  .enterprise-header h3 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: var(--color-text);
-  }
-
-  .enterprise-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-  }
-
-  .savings-example {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    padding: 20px;
-    margin-top: 20px;
-  }
-
-  .savings-example h4 {
-    color: var(--color-primary);
-    margin-bottom: 15px;
-  }
-
-  .savings-example ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .savings-example li {
-    padding: 5px 0;
-    color: var(--color-text-secondary);
-  }
-
-  .savings-example strong {
-    color: var(--color-primary);
-  }
-
-  .enterprise-features h4 {
-    color: var(--color-primary);
-    margin-bottom: 15px;
-  }
-
-  .enterprise-features ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .enterprise-features li {
-    padding: 8px 0;
-    color: var(--color-text-secondary);
-  }
-
-  .telemetry-note {
-    background: rgba(0, 212, 255, 0.05);
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 30px;
-  }
-
-  .telemetry-note p {
-    margin: 0;
-    color: var(--color-text);
-    line-height: 1.6;
-  }
-
-  /* Comparison Table */
-  .comparison-section {
-    margin-top: 80px;
-  }
-
-  .comparison-section h2 {
-    text-align: center;
-    color: var(--color-primary);
-    margin-bottom: 40px;
-  }
-
-  .comparison-table {
-    overflow-x: auto;
-  }
-
-  .comparison-table table {
-    width: 100%;
-    border-collapse: collapse;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .comparison-table th,
-  .comparison-table td {
-    padding: 20px;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .comparison-table th {
-    background: rgba(0, 212, 255, 0.1);
-    font-weight: 600;
-    color: var(--color-primary);
-  }
-
-  .comparison-table td:first-child {
-    text-align: left;
-    font-weight: 600;
-    color: var(--color-text);
-  }
-
-  .comparison-table tr:last-child td {
-    border-bottom: none;
-  }
-
-  @media (max-width: 968px) {
-    .enterprise-content {
-      grid-template-columns: 1fr;
-    }
-
-    .enterprise-card {
-      padding: 40px 30px;
-    }
-
-    .comparison-table {
-      font-size: 0.875rem;
-    }
-
-    .comparison-table th,
-    .comparison-table td {
-      padding: 12px 8px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .pricing-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .price-main {
-      font-size: 2.5rem;
-    }
-  }
-</style>
-
