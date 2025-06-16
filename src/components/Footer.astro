@@ -1,114 +1,59 @@
-﻿---
-// Footer.astro
+---
 ---
 
-<footer class="site-footer">
-  <div class="footer-content">
-    <div class="footer-brand">
-      <h3>ByteLiteâ„¢</h3>
-      <p>Redefining the limits of data compression</p>
-    </div>
-    
-    <div class="footer-links">
-      <div class="link-column">
-        <h4>Technology</h4>
-        <a href="/technology">How It Works</a>
-        <a href="/download">Blueprint</a>
-        <a href="/licensing">Licensing</a>
-      </div>
+<footer class="bg-void-black border-t border-electric-cyan/20 py-12">
+  <div class="container mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-8">
       
-      <div class="link-column">
-        <h4>Company</h4>
-        <a href="/about">About</a>
-        <a href="/news">News</a>
-        <a href="/contact">Contact</a>
-          <a href="/privacy">Privacy Policy</a>
+      <!-- Company Info -->
+      <div>
+        <div class="flex items-center space-x-3 mb-4">
+          <img src="/bytelite-logo.png" alt="ByteLite" class="h-8 w-auto" />
+          <span class="text-xl font-bold text-white">ByteLite</span>
+        </div>
+        <p class="text-gray-400 text-sm">
+          Revolutionary compression technology achieving 1TB to 18 bytes.
+        </p>
       </div>
-      
-      <div class="link-column">
-        <h4>Legal</h4>
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/terms">Terms of Use</a>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-white font-semibold mb-4">Company</h3>
+        <div class="space-y-2">
+          <a href="/about" class="text-gray-400 hover:text-electric-cyan text-sm block">About</a>
+          <a href="/technology" class="text-gray-400 hover:text-electric-cyan text-sm block">Technology</a>
+          <a href="/news" class="text-gray-400 hover:text-electric-cyan text-sm block">News</a>
+          <a href="/contact" class="text-gray-400 hover:text-electric-cyan text-sm block">Contact</a>
+        </div>
+      </div>
+
+      <!-- Products -->
+      <div>
+        <h3 class="text-white font-semibold mb-4">Products</h3>
+        <div class="space-y-2">
+          <a href="/download" class="text-gray-400 hover:text-electric-cyan text-sm block">Blueprint ($0.99)</a>
+          <a href="/licensing" class="text-gray-400 hover:text-electric-cyan text-sm block">Enterprise</a>
+        </div>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h3 class="text-white font-semibold mb-4">Legal</h3>
+        <div class="space-y-2">
+          <a href="/privacy" class="text-gray-400 hover:text-electric-cyan text-sm block">Privacy</a>
+          <a href="/terms" class="text-gray-400 hover:text-electric-cyan text-sm block">Terms</a>
+        </div>
       </div>
     </div>
-  </div>
-  
-  <div class="footer-bottom">
-    <p>Â© 2025 ByteLite LLC â€¢ Patent Pending U.S. App #63/807,027 â€¢ Helena, Montana</p>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-gray-400 text-sm">
+        Copyright 2025 ByteLite LLC. All rights reserved.
+      </p>
+      <p class="text-gray-400 text-sm">
+        US Patent 63/807,027 | Helena, Montana
+      </p>
+    </div>
   </div>
 </footer>
-
-<style>
-  .site-footer {
-    background: #0a0a0a;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 6rem;
-  }
-
-  .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 3rem 2rem;
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    gap: 4rem;
-  }
-
-  .footer-brand h3 {
-    color: #00d4ff;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-brand p {
-    color: #888888;
-  }
-
-  .footer-links {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-
-  .link-column h4 {
-    color: #ffffff;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .link-column a {
-    display: block;
-    color: #888888;
-    text-decoration: none;
-    padding: 0.25rem 0;
-    transition: color 0.3s ease;
-  }
-
-  .link-column a:hover {
-    color: #00d4ff;
-  }
-
-  .footer-bottom {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 1.5rem 2rem;
-    text-align: center;
-  }
-
-  .footer-bottom p {
-    color: #666666;
-    font-size: 0.875rem;
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  @media (max-width: 768px) {
-    .footer-content {
-      grid-template-columns: 1fr;
-    }
-    
-    .footer-links {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
-
