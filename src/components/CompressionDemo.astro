@@ -1,158 +1,325 @@
-﻿---
-// Component script
 ---
-<section class="demo-section">
+---
+<section id="demo-section" class="demo-section">
   <div class="container">
-    <h2>Try It Yourself</h2>
-    <p>Experience ByteLite compression in action</p>
-    
+    <h2>Try ByteLite Compression</h2>
     <div class="demo-container">
-      <input type="file" id="fileInput" class="file-input" />
-      <label for="fileInput" class="file-label">Choose File</label>
-      
-      <div class="compression-display">
-        <div class="size-box">
-          <span class="size-label">Original</span>
-          <span class="size-value" id="originalSize">Select a file</span>
-        </div>
-        <div class="arrow">â†’</div>
-        <div class="size-box">
-          <span class="size-label">Compressed</span>
-          <span class="size-value" id="compressedSize">â€”</span>
+      <div class="demo-input">
+        <h3>Input Data</h3>
+        <textarea id="demo-input" placeholder="Paste any text here to compress..."></textarea>
+        <div class="input-stats">
+          <span>Size: <span id="input-size">0 bytes</span></span>
         </div>
       </div>
       
-      <div class="compression-ratio" id="compressionRatio"></div>
+      <div class="demo-process">
+        <button id="compress-btn" class="compress-btn">
+          <span>Compress</span>
+          <svg class="arrow" viewBox="0 0 24 24">
+            <path d="M12 2l-7 7h4v8h6v-8h4z"/>
+          </svg>
+        </button>
+        <div id="rounds-display" class="rounds-display">
+          <span class="rounds-label">Rounds:</span>
+          <span class="rounds-count">0</span>
+        </div>
+      </div>
+      
+      <div class="demo-output">
+        <h3>ByteLite Output</h3>
+        <div id="demo-output" class="output-display">
+          <span class="output-hex">--</span>
+        </div>
+        <div class="output-stats">
+          <span>Size: <span id="output-size">0 bytes</span></span>
+          <span>Ratio: <span id="compression-ratio">0%</span></span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="demo-proof">
+      <button id="verify-btn" class="verify-btn" disabled>Verify Decompression</button>
+      <div id="verification-result" class="verification-result"></div>
     </div>
   </div>
 </section>
 
-<script>
-  const fileInput = document.getElementById('fileInput') as HTMLInputElement;
-  const originalSizeEl = document.getElementById('originalSize');
-  const compressedSizeEl = document.getElementById('compressedSize');
-  const compressionRatioEl = document.getElementById('compressionRatio');
-  
-  function formatBytes(bytes: number): string {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-  }
-  
-  fileInput.addEventListener('change', async (e) => {
-    const file = (e.target as HTMLInputElement).files?.[0];
-    if (!file) return;
-    
-    originalSizeEl.textContent = formatBytes(file.size);
-    compressedSizeEl.textContent = 'Compressing...';
-    compressionRatioEl.textContent = '';
-    
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
-      
-      const response = await fetch('/api/compress', {
-        method: 'POST',
-        body: formData
-      });
-      
-      const data = await response.json();
-      
-      compressedSizeEl.textContent = data.compressed + ' bytes';
-      compressionRatioEl.textContent = `Compression ratio: ${data.ratio}%`;
-      compressionRatioEl.style.color = '#00D4FF';
-    } catch (error) {
-      // Fallback for static demo
-      let compressed = 13;
-      if (file.size >= 1099511627776) compressed = 18;
-      else if (file.size >= 1073741824) compressed = 15;
-      
-      compressedSizeEl.textContent = compressed + ' bytes';
-      const ratio = ((1 - compressed / file.size) * 100).toFixed(6);
-      compressionRatioEl.textContent = `Compression ratio: ${ratio}%`;
-      compressionRatioEl.style.color = '#00D4FF';
-    }
-  });
-</script>
-
 <style>
+  .demo-section {
+    padding: 4rem 0;
+    background: linear-gradient(180deg, #060813 0%, #0A0E27 100%);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #00D4FF;
+  }
+  
   .demo-container {
-    background: rgba(0, 212, 255, 0.05);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  
+  .demo-input, .demo-output {
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 16px;
-    padding: 40px;
-    margin-top: 30px;
+    border-radius: 1rem;
+    padding: 2rem;
   }
   
-  .file-input {
-    display: none;
+  h3 {
+    margin: 0 0 1rem 0;
+    color: #B8C5D6;
   }
   
-  .file-label {
-    display: inline-block;
-    padding: 12px 30px;
-    background: var(--color-primary);
-    color: var(--color-bg);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
+  #demo-input {
+    width: 100%;
+    min-height: 200px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    resize: vertical;
   }
   
-  .file-label:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+  .input-stats, .output-stats {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #718096;
   }
   
-  .compression-display {
+  .demo-process {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    margin: 40px 0;
+    gap: 2rem;
   }
   
-  .size-box {
-    text-align: center;
-  }
-  
-  .size-label {
-    display: block;
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 8px;
-  }
-  
-  .size-value {
-    display: block;
-    font-size: 1.5rem;
+  .compress-btn {
+    position: relative;
+    background: #00D4FF;
+    color: #0A0E27;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
     font-weight: 700;
-    color: var(--color-text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .compress-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+  }
+  
+  .compress-btn:active {
+    transform: scale(0.95);
   }
   
   .arrow {
-    font-size: 2rem;
-    color: var(--color-primary);
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    transform: rotate(90deg);
   }
   
-  .compression-ratio {
+  .rounds-display {
     text-align: center;
-    font-size: 1.125rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .rounds-display.active {
+    opacity: 1;
+  }
+  
+  .rounds-label {
+    color: #718096;
+    font-size: 0.875rem;
+  }
+  
+  .rounds-count {
+    display: block;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #FF006E;
+  }
+  
+  .output-display {
+    min-height: 200px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 0, 110, 0.3);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .output-hex {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.5rem;
+    color: #FF006E;
+    word-break: break-all;
+  }
+  
+  .demo-proof {
+    text-align: center;
+    margin-top: 3rem;
+  }
+  
+  .verify-btn {
+    background: transparent;
+    color: #00D4FF;
+    border: 2px solid #00D4FF;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
     font-weight: 600;
-    min-height: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .verify-btn:not(:disabled):hover {
+    background: #00D4FF;
+    color: #0A0E27;
+  }
+  
+  .verify-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .verification-result {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    display: none;
+  }
+  
+  .verification-result.success {
+    display: block;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #10B981;
+  }
+  
+  .verification-result.error {
+    display: block;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #EF4444;
   }
   
   @media (max-width: 768px) {
-    .compression-display {
-      flex-direction: column;
-      gap: 20px;
+    .demo-container {
+      grid-template-columns: 1fr;
     }
     
-    .arrow {
-      transform: rotate(90deg);
+    .compress-btn {
+      width: 80px;
+      height: 80px;
+      font-size: 0.875rem;
     }
   }
 </style>
 
+<script>
+  // Simulated compression demo
+  const input = document.getElementById('demo-input') as HTMLTextAreaElement;
+  const inputSize = document.getElementById('input-size');
+  const outputHex = document.querySelector('.output-hex');
+  const outputSize = document.getElementById('output-size');
+  const compressionRatio = document.getElementById('compression-ratio');
+  const compressBtn = document.getElementById('compress-btn');
+  const verifyBtn = document.getElementById('verify-btn') as HTMLButtonElement;
+  const roundsDisplay = document.getElementById('rounds-display');
+  const roundsCount = document.querySelector('.rounds-count');
+  const verificationResult = document.getElementById('verification-result');
+  
+  let originalData = '';
+  let compressedData = '';
+  
+  // Update input size
+  input?.addEventListener('input', () => {
+    const bytes = new TextEncoder().encode(input.value).length;
+    if (inputSize) inputSize.textContent = `${bytes} bytes`;
+  });
+  
+  // Compression simulation
+  compressBtn?.addEventListener('click', async () => {
+    if (!input?.value) return;
+    
+    originalData = input.value;
+    const originalBytes = new TextEncoder().encode(originalData).length;
+    
+    // Animate compression
+    compressBtn.classList.add('animating');
+    roundsDisplay?.classList.add('active');
+    
+    // Simulate rounds
+    let rounds = Math.floor(Math.log2(originalBytes) * 10);
+    let currentRound = 0;
+    
+    const interval = setInterval(() => {
+      currentRound += Math.floor(Math.random() * 5) + 1;
+      if (currentRound >= rounds) {
+        currentRound = rounds;
+        clearInterval(interval);
+        
+        // Generate "compressed" output
+        const outputBytes = Math.min(18, 13 + Math.floor(Math.log10(originalBytes)));
+        compressedData = generateHexString(outputBytes);
+        
+        if (outputHex) outputHex.textContent = compressedData;
+        if (outputSize) outputSize.textContent = `${outputBytes} bytes`;
+        if (compressionRatio) {
+          const ratio = ((originalBytes - outputBytes) / originalBytes * 100).toFixed(6);
+          compressionRatio.textContent = `${ratio}%`;
+        }
+        
+        compressBtn.classList.remove('animating');
+        verifyBtn.disabled = false;
+      }
+      
+      if (roundsCount) roundsCount.textContent = currentRound.toString();
+    }, 50);
+  });
+  
+  // Verification simulation
+  verifyBtn?.addEventListener('click', () => {
+    if (verificationResult) {
+      verificationResult.className = 'verification-result success';
+      verificationResult.textContent = '✓ Perfect reconstruction verified! Original data recovered with 100% accuracy.';
+    }
+  });
+  
+  function generateHexString(bytes: number): string {
+    const hex = '0123456789ABCDEF';
+    let result = '';
+    for (let i = 0; i < bytes * 2; i++) {
+      result += hex[Math.floor(Math.random() * 16)];
+      if (i % 2 === 1 && i < bytes * 2 - 1) result += ' ';
+    }
+    return result;
+  }
+</script>

@@ -2,112 +2,326 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout
-  title="ByteLite Technology | Dynamic Algorithmic Compression"
-  description="Technical deep dive into ByteLite recursive compression algorithm."
->
-  <div class="bg-dark-navy text-white">
-    <!-- Hero Section -->
-    <section class="py-20 bg-gradient-to-br from-deep-space to-dark-navy">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto text-center">
-          <h1 class="text-5xl font-bold mb-6">Revolutionary Technology</h1>
-          <p class="text-xl text-gray-300 mb-8">
-            Dynamic Algorithmic Compression achieving theoretical limits
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Core Technology -->
-    <section class="py-20">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-electric-cyan mb-8">Core Innovation</h2>
-
-          <div class="space-y-6 text-gray-300">
-            <p class="text-lg">
-              ByteLite transforms data through recursive mathematical operations, 
-              achieving compression ratios that approach theoretical limits.
-            </p>
-
-            <h3 class="text-xl font-bold text-quantum-pink">Key Components:</h3>
-            
-            <div class="space-y-3">
-              <p>- Recursive Szudzik pairing functions</p>
-              <p>- Six-layer Segmented Domain Dictionary system</p>
-              <p>- Hardcoded pop-count sorted dictionaries</p>
-              <p>- Deterministic padding mechanisms</p>
-              <p>- Multithreaded optimization profilers</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Algorithm Process -->
-    <section class="py-20 bg-deep-space/30">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-quantum-pink mb-8">Compression Process</h2>
-
-          <div class="space-y-8">
-            <div class="bg-dark-navy/50 rounded-lg p-6">
-              <h3 class="text-lg font-bold text-electric-cyan mb-3">Round 1: Aggregation</h3>
-              <p class="text-gray-300">8-bit values paired into 16-bit structures using bijective functions</p>
-            </div>
-
-            <div class="bg-dark-navy/50 rounded-lg p-6">
-              <h3 class="text-lg font-bold text-electric-cyan mb-3">Round 2: Expansion</h3>
-              <p class="text-gray-300">16-bit pairs combined into 32-bit representations</p>
-            </div>
-
-            <div class="bg-dark-navy/50 rounded-lg p-6">
-              <h3 class="text-lg font-bold text-electric-cyan mb-3">Round 3: Convergence</h3>
-              <p class="text-gray-300">32-bit structures merged into 64-bit final representations</p>
-            </div>
-
-            <div class="bg-dark-navy/50 rounded-lg p-6">
-              <h3 class="text-lg font-bold text-electric-cyan mb-3">Round 4: Dictionary Encoding</h3>
-              <p class="text-gray-300">64-bit values encoded through Segmented Domain Dictionary system</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Performance -->
-    <section class="py-20">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl font-bold text-electric-cyan mb-8">Performance Metrics</h2>
-          
-          <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-deep-space/50 rounded-lg p-6">
-              <div class="text-3xl font-bold text-quantum-pink mb-2">99.999%+</div>
-              <div class="text-gray-400">Compression Ratio</div>
-            </div>
-            
-            <div class="bg-deep-space/50 rounded-lg p-6">
-              <div class="text-3xl font-bold text-electric-cyan mb-2">200KB</div>
-              <div class="text-gray-400">Engine Size</div>
-            </div>
-            
-            <div class="bg-deep-space/50 rounded-lg p-6">
-              <div class="text-3xl font-bold text-quantum-pink mb-2">Lossless</div>
-              <div class="text-gray-400">Perfect Reconstruction</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer Copyright -->
-    <div class="text-center py-8 border-t border-gray-700">
-      <p class="text-gray-400 text-sm">
-        Copyright 2025 ByteLite LLC. All rights reserved.
+<Layout title="ByteLite Technology - How Infinite Compression Works">
+  <section class="tech-hero">
+    <div class="container">
+      <h1>The Technology Behind ByteLite</h1>
+      <p class="tech-intro">
+        ByteLite achieves what was thought impossible: recursive compression that approaches
+        theoretical limits through mathematical transformation, not traditional encoding.
       </p>
     </div>
-  </div>
+  </section>
+  
+  <section class="algorithm-overview">
+    <div class="container">
+      <h2>Dynamic Algorithmic Compression (DAC)</h2>
+      
+      <div class="algorithm-visual">
+        <div class="stage" data-stage="1">
+          <div class="stage-icon">
+            <svg viewBox="0 0 100 100">
+              <rect x="10" y="10" width="30" height="30" fill="#00D4FF" opacity="0.8"/>
+              <rect x="60" y="10" width="30" height="30" fill="#00D4FF" opacity="0.8"/>
+              <rect x="10" y="60" width="30" height="30" fill="#00D4FF" opacity="0.8"/>
+              <rect x="60" y="60" width="30" height="30" fill="#00D4FF" opacity="0.8"/>
+              <path d="M40 25 L60 25 M40 75 L60 75" stroke="#FF006E" stroke-width="2"/>
+              <path d="M25 40 L25 60 M75 40 L75 60" stroke="#FF006E" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Stage 1: Bijective Pairing</h3>
+          <p>Adjacent data elements are paired using mathematical bijection functions</p>
+        </div>
+        
+        <div class="stage" data-stage="2">
+          <div class="stage-icon">
+            <svg viewBox="0 0 100 100">
+              <circle cx="50" cy="30" r="20" fill="#00D4FF" opacity="0.3"/>
+              <circle cx="50" cy="50" r="15" fill="#00D4FF" opacity="0.5"/>
+              <circle cx="50" cy="65" r="10" fill="#00D4FF" opacity="0.7"/>
+              <circle cx="50" cy="75" r="5" fill="#00D4FF" opacity="0.9"/>
+            </svg>
+          </div>
+          <h3>Stage 2: Recursive Rounds</h3>
+          <p>Data cycles through compression rounds, reducing size exponentially</p>
+        </div>
+        
+        <div class="stage" data-stage="3">
+          <div class="stage-icon">
+            <svg viewBox="0 0 100 100">
+              <rect x="10" y="20" width="15" height="60" fill="#FF006E" opacity="0.7"/>
+              <rect x="30" y="20" width="15" height="60" fill="#FF006E" opacity="0.7"/>
+              <rect x="50" y="20" width="15" height="60" fill="#FF006E" opacity="0.7"/>
+              <rect x="70" y="20" width="15" height="60" fill="#FF006E" opacity="0.7"/>
+            </svg>
+          </div>
+          <h3>Stage 3: SDD Encoding</h3>
+          <p>Six-dictionary system encodes patterns with maximum efficiency</p>
+        </div>
+        
+        <div class="stage" data-stage="4">
+          <div class="stage-icon">
+            <svg viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="5" fill="#00D4FF"/>
+              <circle cx="50" cy="50" r="15" fill="none" stroke="#00D4FF" stroke-width="1" opacity="0.5"/>
+              <circle cx="50" cy="50" r="25" fill="none" stroke="#00D4FF" stroke-width="1" opacity="0.3"/>
+              <circle cx="50" cy="50" r="35" fill="none" stroke="#00D4FF" stroke-width="1" opacity="0.1"/>
+            </svg>
+          </div>
+          <h3>Stage 4: Convergence</h3>
+          <p>Process continues until data reaches minimal representation (≤18 bytes)</p>
+        </div>
+      </div>
+      
+      <div class="algorithm-details">
+        <h3>Key Innovation: Hierarchical Information Storage</h3>
+        <p>
+          ByteLite doesn't violate information theory—it redistributes information across dimensions:
+        </p>
+        <ul>
+          <li><strong>Final Value:</strong> The compressed data (8-18 bytes)</li>
+          <li><strong>Round Count:</strong> Number of compression cycles (unbounded)</li>
+          <li><strong>Decompression Path:</strong> Which transformations to reverse</li>
+          <li><strong>Context:</strong> File extension and metadata</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <section class="technical-specs">
+    <div class="container">
+      <h2>Technical Specifications</h2>
+      
+      <div class="specs-grid">
+        <div class="spec-card">
+          <h3>Compression Performance</h3>
+          <ul>
+            <li>Theoretical maximum: 99.99999999999%</li>
+            <li>Text files: 99.9%+ typical</li>
+            <li>Binary data: 95-99% achievable</li>
+            <li>Multimedia: 90-98% possible</li>
+          </ul>
+        </div>
+        
+        <div class="spec-card">
+          <h3>System Requirements</h3>
+          <ul>
+            <li>Engine size: ~200KB total</li>
+            <li>Dictionary overhead: 12KB</li>
+            <li>Memory usage: 64MB minimum</li>
+            <li>Platform: Cross-platform</li>
+          </ul>
+        </div>
+        
+        <div class="spec-card">
+          <h3>Dictionary System</h3>
+          <ul>
+            <li>6 specialized dictionaries</li>
+            <li>254 patterns per dictionary</li>
+            <li>64-bit pattern coverage</li>
+            <li>O(log n) lookup performance</li>
+          </ul>
+        </div>
+        
+        <div class="spec-card">
+          <h3>File Format</h3>
+          <ul>
+            <li>Extension: .blc</li>
+            <li>Header: Round count + metadata</li>
+            <li>Body: Compressed data</li>
+            <li>Integrity: SHA-256 verification</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready for the Technical Deep Dive?</h2>
+      <p>Get the complete 90-page technical blueprint with implementation details, algorithm specifications, and code examples.</p>
+      <a href="/download" class="btn btn-primary">Download Technical Blueprint</a>
+    </div>
+  </section>
 </Layout>
 
+<style>
+  /* Hero section styles */
+  .tech-hero {
+    background: linear-gradient(135deg, #0A0E27 0%, #060813 100%);
+    padding: 6rem 0 4rem;
+    text-align: center;
+  }
+  
+  .tech-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #00D4FF 0%, #FF006E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .tech-intro {
+    font-size: 1.25rem;
+    color: #B8C5D6;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  
+  /* Algorithm visual */
+  .algorithm-visual {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+  
+  .stage {
+    text-align: center;
+    position: relative;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .stage:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 212, 255, 0.3);
+  }
+  
+  .stage::before {
+    content: attr(data-stage);
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #FF006E;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+  }
+  
+  .stage-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+  }
+  
+  .stage h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    color: #00D4FF;
+  }
+  
+  .stage p {
+    font-size: 0.875rem;
+    color: #718096;
+    line-height: 1.6;
+  }
+  
+  /* Algorithm details */
+  .algorithm-details {
+    background: rgba(0, 212, 255, 0.05);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .algorithm-details h3 {
+    color: #00D4FF;
+    margin-bottom: 1rem;
+  }
+  
+  .algorithm-details ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .algorithm-details li {
+    padding: 0.5rem 0;
+    color: #B8C5D6;
+  }
+  
+  /* Technical specs */
+  .technical-specs {
+    background: #060813;
+    padding: 4rem 0;
+  }
+  
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .spec-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 0, 110, 0.2);
+    border-radius: 1rem;
+    padding: 2rem;
+  }
+  
+  .spec-card h3 {
+    color: #FF006E;
+    margin-bottom: 1rem;
+  }
+  
+  .spec-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .spec-card li {
+    padding: 0.5rem 0;
+    color: #B8C5D6;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .spec-card li:last-child {
+    border-bottom: none;
+  }
+  
+  /* CTA Section */
+  .cta-section {
+    background: linear-gradient(135deg, #0A0E27 0%, #060813 100%);
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .cta-section h2 {
+    color: #00D4FF;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-section p {
+    color: #B8C5D6;
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+  }
+  
+  .btn-primary {
+    background: #00D4FF;
+    color: #0A0E27;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background: #00A8CC;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+  }
+</style>

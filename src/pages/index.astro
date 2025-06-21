@@ -1,19 +1,250 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import CompressionDemo from '../components/CompressionDemo.astro';
 import ProofSection from '../components/ProofSection.astro';
 import ComparisonTable from '../components/ComparisonTable.astro';
-import FAQ from '../components/FAQ.astro';
-import CallToAction from '../components/CallToAction.astro';
+import CTASection from '../components/CTASection.astro';
 ---
 
-<Layout
-  title="ByteLite: 1TB to 18 Bytes | Revolutionary Compression Technology"
-  description="Patent-pending compression technology achieving impossible ratios."
->
+<Layout title="ByteLite - 1TB → 18 Bytes Compression Technology">
   <Hero />
+  
+  <section class="features">
+    <div class="container">
+      <h2>Why ByteLite Changes Everything</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M9 3v18m6-18v18M3 9h18m-18 6h18" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Infinite Compression</h3>
+          <p>Recursive algorithms achieve theoretical compression limits, transforming terabytes into bytes.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Lossless & Verified</h3>
+          <p>Every bit reconstructed perfectly. SHA-256 checksums confirm 100% data integrity.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>200KB Engine</h3>
+          <p>Entire compression system fits in 200KB. No massive libraries or dependencies.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Patent Pending</h3>
+          <p>Protected innovation (US 63/807,027). SBIR Phase I submitted for government backing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <CompressionDemo />
+  
   <ProofSection />
+  
   <ComparisonTable />
-  <FAQ />
-  <CallToAction />
+  
+  <section class="how-it-works">
+    <div class="container">
+      <h2>The ByteLite Method</h2>
+      <div class="method-visual">
+        <div class="method-step">
+          <div class="step-number">1</div>
+          <h3>Bijective Pairing</h3>
+          <p>Data transformed through mathematical functions</p>
+        </div>
+        <div class="method-arrow">→</div>
+        <div class="method-step">
+          <div class="step-number">2</div>
+          <h3>Recursive Rounds</h3>
+          <p>Multiple compression cycles reduce entropy</p>
+        </div>
+        <div class="method-arrow">→</div>
+        <div class="method-step">
+          <div class="step-number">3</div>
+          <h3>SDD Encoding</h3>
+          <p>Six-dictionary system achieves final compression</p>
+        </div>
+        <div class="method-arrow">→</div>
+        <div class="method-step">
+          <div class="step-number">4</div>
+          <h3>Minimal Output</h3>
+          <p>13-18 bytes represents any amount of data</p>
+        </div>
+      </div>
+      <div class="method-cta">
+        <a href="/technology" class="btn btn-secondary">Deep Dive into the Technology</a>
+      </div>
+    </div>
+  </section>
+  
+  <CTASection />
 </Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  section {
+    padding: 4rem 0;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #00D4FF;
+  }
+  
+  /* Features Section */
+  .features {
+    background: #0A0E27;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .feature-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+  }
+  
+  .feature-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    color: #00D4FF;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+  
+  .feature-card p {
+    color: #718096;
+    line-height: 1.6;
+  }
+  
+  /* How It Works */
+  .how-it-works {
+    background: linear-gradient(180deg, #0A0E27 0%, #060813 100%);
+  }
+  
+  .method-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+  
+  .method-step {
+    text-align: center;
+    flex: 0 1 200px;
+  }
+  
+  .step-number {
+    width: 50px;
+    height: 50px;
+    background: #FF006E;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.5rem;
+    margin: 0 auto 1rem;
+  }
+  
+  .method-step h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    color: #00D4FF;
+  }
+  
+  .method-step p {
+    font-size: 0.875rem;
+    color: #718096;
+  }
+  
+  .method-arrow {
+    font-size: 2rem;
+    color: #00D4FF;
+    flex: 0 0 auto;
+  }
+  
+  .method-cta {
+    text-align: center;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    color: #00D4FF;
+    border-color: #00D4FF;
+  }
+  
+  .btn-secondary:hover {
+    background: #00D4FF;
+    color: #0A0E27;
+  }
+  
+  @media (max-width: 768px) {
+    .method-visual {
+      flex-direction: column;
+    }
+    
+    .method-arrow {
+      transform: rotate(90deg);
+    }
+  }
+</style>

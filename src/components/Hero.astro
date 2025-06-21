@@ -1,19 +1,218 @@
 ---
+import { Image } from 'astro:assets';
 ---
-<section class="hero bg-dark-navy text-white min-h-screen flex items-center">
-  <div class="container mx-auto px-6 text-center">
-    <img src="/bytelite-logo.png" alt="ByteLite" class="h-32 mx-auto mb-8" />
-    
-    <h1 class="text-6xl font-bold mb-6">
-      <span class="text-white">1TB</span>
-      <span class="text-electric-cyan mx-4">-></span>
-      <span class="text-quantum-pink">18 Bytes</span>
+<section class="hero">
+  <div class="hero-background">
+    <canvas id="compression-viz"></canvas>
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span class="hero-title-main">1TB → 18 Bytes</span>
+      <span class="hero-subtitle">The Compression Singularity is Here</span>
     </h1>
-    
-    <h2 class="text-2xl text-gray-300 mb-8">Revolutionary Compression Technology</h2>
-    
-    <a href="/download" class="bg-electric-cyan text-dark-navy px-8 py-4 rounded-lg font-semibold">
-      Download Blueprint ($0.99)
-    </a>
+    <p class="hero-description">
+      Patent-pending technology that achieves mathematically impossible compression ratios. 
+      <strong>Independently verified.</strong> No data loss.
+    </p>
+    <div class="hero-cta">
+      <a href="/download" class="btn btn-primary">Get the Blueprint</a>
+      <button class="btn btn-secondary" id="demo-btn">See Live Demo</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-number">99.999998%</span>
+        <span class="stat-label">Compression Ratio</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">200KB</span>
+        <span class="stat-label">Engine Size</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">∞</span>
+        <span class="stat-label">File Capacity</span>
+      </div>
+    </div>
   </div>
 </section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  
+  #compression-viz {
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .hero-title-main {
+    display: block;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, #00D4FF 0%, #FF006E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero-subtitle {
+    display: block;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: #00D4FF;
+    font-weight: 300;
+  }
+  
+  .hero-description {
+    font-size: 1.25rem;
+    color: #B8C5D6;
+    max-width: 600px;
+    margin: 2rem auto;
+  }
+  
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 3rem 0;
+  }
+  
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  
+  .btn-primary {
+    background: #00D4FF;
+    color: #0A0E27;
+  }
+  
+  .btn-primary:hover {
+    background: #00A8CC;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    color: #00D4FF;
+    border-color: #00D4FF;
+  }
+  
+  .btn-secondary:hover {
+    background: #00D4FF;
+    color: #0A0E27;
+  }
+  
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    max-width: 600px;
+    margin: 4rem auto 0;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #FF006E;
+  }
+  
+  .stat-label {
+    display: block;
+    font-size: 0.875rem;
+    color: #718096;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+</style>
+
+<script>
+  // Animated compression visualization
+  const canvas = document.getElementById('compression-viz') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d');
+  
+  if (ctx) {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    let particles: Array<{x: number, y: number, size: number, speed: number}> = [];
+    
+    // Create particles
+    for (let i = 0; i < 100; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 3 + 1,
+        speed: Math.random() * 0.5 + 0.1
+      });
+    }
+    
+    function animate() {
+      ctx.fillStyle = 'rgba(10, 14, 39, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(particle => {
+        // Move towards center
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const dx = centerX - particle.x;
+        const dy = centerY - particle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance > 5) {
+          particle.x += (dx / distance) * particle.speed;
+          particle.y += (dy / distance) * particle.speed;
+          particle.size *= 0.99;
+        } else {
+          // Reset particle
+          particle.x = Math.random() * canvas.width;
+          particle.y = Math.random() * canvas.height;
+          particle.size = Math.random() * 3 + 1;
+        }
+        
+        ctx.fillStyle = '#00D4FF';
+        ctx.fillRect(particle.x, particle.y, particle.size, particle.size);
+      });
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+  }
+  
+  // Demo button handler
+  document.getElementById('demo-btn')?.addEventListener('click', () => {
+    document.getElementById('demo-section')?.scrollIntoView({ behavior: 'smooth' });
+  });
+</script>

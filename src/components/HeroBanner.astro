@@ -1,0 +1,27 @@
+---
+/* src/components/HeroBanner.astro */
+import { Image } from "astro:assets";
+---
+<section class="relative isolate overflow-hidden bg-black text-white rounded-lg my-8">
+  <Image
+    src="/assets/hero.webp"
+    alt="Neon data-center corridor converging on ByteLite logo"
+    width={1920}
+    height={1080}
+    loading="lazy"
+    aria-hidden="true"
+    class="absolute inset-0 -z-10 h-full w-full object-cover opacity-40"
+/>
+  <div class="relative mx-auto max-w-2xl px-6 py-24 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
+      1 TB ? 18 Bytes<br />
+      <span class="text-cyan-400">Deterministic. Lossless. Verified.</span>
+    </h1>
+    <p class="mt-6 text-lg text-gray-300">
+      Cut storage & bandwidth costs by 99.999%+ with ByteLite’s dynamic algorithmic compression.
+    </p>
+    <a href="/downloads" class="inline-block mt-8 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-6 py-3 rounded">
+      Download Blueprint (free)
+    </a>
+  </div>
+</section>

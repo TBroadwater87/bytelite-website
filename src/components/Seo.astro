@@ -1,0 +1,17 @@
+---
+/* src/components/Seo.astro */
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+}
+const { title, description, canonical } = Astro.props;
+const url = canonical ?? `${Astro.site}${Astro.url.pathname}`.replace(/\/+$/, "");
+---
+<head>
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={url} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+</head>

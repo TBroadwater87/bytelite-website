@@ -1,62 +1,107 @@
-﻿---
-// Comparison table showing ByteLite vs traditional compression
 ---
-
-<section class="comparison-section bg-dark-navy py-20">
-  <div class="container mx-auto px-6">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold text-white mb-4">Beyond Traditional Compression</h2>
-      <p class="text-gray-300 text-xl max-w-3xl mx-auto">
-        See how ByteLite's recursive hierarchical compression compares to conventional methods
-      </p>
-    </div>
-    
-    <div class="max-w-6xl mx-auto overflow-x-auto">
-      <table class="w-full bg-deep-space/50 border border-gray-700 rounded-lg">
+---
+<section class="comparison-section">
+  <div class="container">
+    <h2>Beyond Traditional Compression</h2>
+    <div class="comparison-table">
+      <table>
         <thead>
-          <tr class="border-b border-gray-700">
-            <th class="text-left py-6 px-6 text-gray-300 font-semibold">Method</th>
-            <th class="text-center py-6 px-6 text-gray-300 font-semibold">Typical Ratio</th>
-            <th class="text-center py-6 px-6 text-gray-300 font-semibold">1GB Input Result</th>
-            <th class="text-center py-6 px-6 text-gray-300 font-semibold">Limitations</th>
+          <tr>
+            <th>Technology</th>
+            <th>Compression Ratio</th>
+            <th>Lossless</th>
+            <th>Speed</th>
           </tr>
         </thead>
-        <tbody class="text-white">
-          <tr class="border-b border-gray-700/50 hover:bg-deep-space/30">
-            <td class="py-4 px-6 font-medium">ZIP/DEFLATE</td>
-            <td class="py-4 px-6 text-center text-gray-400">50-70%</td>
-            <td class="py-4 px-6 text-center text-gray-400">300-500 MB</td>
-            <td class="py-4 px-6 text-center text-gray-400 text-sm">Entropy limited</td>
+        <tbody>
+          <tr class="highlight">
+            <td><strong>ByteLite</strong></td>
+            <td><strong>99.999998%</strong></td>
+            <td>✓</td>
+            <td>Fast</td>
           </tr>
-          <tr class="border-b border-gray-700/50 hover:bg-deep-space/30">
-            <td class="py-4 px-6 font-medium">RAR</td>
-            <td class="py-4 px-6 text-center text-gray-400">60-80%</td>
-            <td class="py-4 px-6 text-center text-gray-400">200-400 MB</td>
-            <td class="py-4 px-6 text-center text-gray-400 text-sm">Pattern dependent</td>
+          <tr>
+            <td>ZIP</td>
+            <td>50-60%</td>
+            <td>✓</td>
+            <td>Very Fast</td>
           </tr>
-          <tr class="border-b border-gray-700/50 hover:bg-deep-space/30">
-            <td class="py-4 px-6 font-medium">7-Zip (LZMA)</td>
-            <td class="py-4 px-6 text-center text-gray-400">70-85%</td>
-            <td class="py-4 px-6 text-center text-gray-400">150-300 MB</td>
-            <td class="py-4 px-6 text-center text-gray-400 text-sm">CPU intensive</td>
+          <tr>
+            <td>RAR</td>
+            <td>60-70%</td>
+            <td>✓</td>
+            <td>Fast</td>
           </tr>
-          <tr class="bg-electric-cyan/10 border border-electric-cyan/30">
-            <td class="py-6 px-6 font-bold text-electric-cyan text-lg">ByteLiteâ„¢</td>
-            <td class="py-6 px-6 text-center text-quantum-pink font-bold text-lg">99.999%+</td>
-            <td class="py-6 px-6 text-center text-quantum-pink font-bold text-lg">15 bytes</td>
-            <td class="py-6 px-6 text-center text-electric-cyan font-semibold">Theoretical minimum</td>
+          <tr>
+            <td>7-Zip</td>
+            <td>70-80%</td>
+            <td>✓</td>
+            <td>Slow</td>
           </tr>
         </tbody>
       </table>
     </div>
-    
-    <div class="text-center mt-12">
-      <div class="inline-flex items-center bg-quantum-pink/10 border border-quantum-pink/30 rounded-full px-6 py-3">
-        <span class="text-quantum-pink font-semibold">
-          ðŸš€ ByteLite achieves compression ratios 1000x better than traditional methods
-        </span>
-      </div>
-    </div>
   </div>
 </section>
 
+<style>
+  .comparison-section {
+    padding: 4rem 0;
+    background: #0A0E27;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #00D4FF;
+  }
+  
+  .comparison-table {
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  
+  th {
+    background: rgba(0, 212, 255, 0.1);
+    color: #00D4FF;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+  }
+  
+  td {
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: #B8C5D6;
+  }
+  
+  tr.highlight td {
+    background: rgba(255, 0, 110, 0.05);
+    color: white;
+  }
+  
+  @media (max-width: 600px) {
+    table {
+      font-size: 0.875rem;
+    }
+    
+    th, td {
+      padding: 0.5rem;
+    }
+  }
+</style>

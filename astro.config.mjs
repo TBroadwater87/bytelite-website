@@ -1,7 +1,13 @@
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
+import image   from "@astrojs/image";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  integrations: [tailwind()],
-  site: 'https://thebytelite.com'
+  site: "https://thebytelite.com",
+  integrations: [
+    tailwind(),
+    image(),
+    sitemap()
+  ]
 });
