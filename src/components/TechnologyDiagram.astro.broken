@@ -8,11 +8,11 @@
     <defs>
       <style>
         .background { fill: #1A1A1A; }
-        .box { fill: none; stroke: #E0E0E0; stroke-width: 1.5; }
+        .box { fill: none; stroke: #E0E0E0; stroke-width: 1.5; rx: 8; }
         .box-fill-input { fill: rgba(10, 14, 39, 0.5); }
         .box-fill-process { fill: url(#processGradient); }
         .box-fill-output { fill: rgba(255, 0, 110, 0.1); }
-        .text-main { fill: #E0E0E0; font-family: Inter, sans-serif; }
+        .text-main { fill: #E0E0E0; font-family: 'Inter', sans-serif; }
         .text-title { font-size: 18px; font-weight: 600; }
         .text-subtitle { font-size: 14px; font-weight: 400; opacity: 0.8; }
         .arrow { stroke: #00D4FF; stroke-width: 2.5; fill: none; }
@@ -33,7 +33,7 @@
     <rect width="900" height="300" class="background"/>
     
     <g id="input-box">
-      <rect x="50" y="75" width="200" height="150" class="box box-fill-input" rx="8"/>
+      <rect x="50" y="75" width="200" height="150" class="box box-fill-input"/>
       <text x="150" y="125" text-anchor="middle" class="text-main text-title">Large Data File</text>
       <text x="150" y="148" text-anchor="middle" class="text-main text-subtitle">(e.g., 1GB)</text>
       <g opacity="0.3">
@@ -46,7 +46,7 @@
     <path d="M 255 150 L 325 150" class="arrow glow" marker-end="url(#arrowhead)"/>
     
     <g id="process-box">
-      <rect x="330" y="50" width="240" height="200" class="box box-fill-process" rx="8"/>
+      <rect x="330" y="50" width="240" height="200" class="box box-fill-process"/>
       <text x="450" y="90" text-anchor="middle" class="text-main text-title">The ByteLite Engine</text>
       <text x="450" y="115" text-anchor="middle" class="text-main text-subtitle">(Iterative Bijective</text>
       <text x="450" y="135" text-anchor="middle" class="text-main text-subtitle">Transformation)</text>
@@ -65,7 +65,7 @@
     <path d="M 575 150 L 645 150" class="arrow glow" marker-end="url(#arrowhead)"/>
     
     <g id="output-box">
-      <rect x="650" y="110" width="200" height="80" class="box box-fill-output" rx="8"/>
+      <rect x="650" y="110" width="200" height="80" class="box box-fill-output"/>
       <text x="750" y="140" text-anchor="middle" class="text-main text-title">Computational Recipe</text>
       <text x="750" y="160" text-anchor="middle" class="text-main text-subtitle">{Final 8-Byte Value} + {Round Count N}</text>
     </g>
