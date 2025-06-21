@@ -1,0 +1,104 @@
+---
+// Technology flow diagram
+---
+
+<div class="diagram-container">
+  <h3>ByteLite Transformation Process</h3>
+  <svg width="900" height="300" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" class="tech-diagram">
+    <defs>
+      <style>
+        .background { fill: #1A1A1A; }
+        .box { fill: none; stroke: #E0E0E0; stroke-width: 1.5; rx: 8; }
+        .box-fill-input { fill: rgba(10, 14, 39, 0.5); }
+        .box-fill-process { fill: url(#processGradient); }
+        .box-fill-output { fill: rgba(255, 0, 110, 0.1); }
+        .text-main { fill: #E0E0E0; font-family: 'Inter', sans-serif; }
+        .text-title { font-size: 18px; font-weight: 600; }
+        .text-subtitle { font-size: 14px; font-weight: 400; opacity: 0.8; }
+        .arrow { stroke: #00D4FF; stroke-width: 2.5; fill: none; }
+        .arrow-head { fill: #00D4FF; }
+        .glow { filter: drop-shadow(0 0 8px #00D4FF); }
+      </style>
+      
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="8" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" class="arrow-head"/>
+      </marker>
+      
+      <linearGradient id="processGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#00D4FF;stop-opacity:0.15" />
+        <stop offset="100%" style="stop-color:#0A0E27;stop-opacity:0.3" />
+      </linearGradient>
+    </defs>
+    
+    <rect width="900" height="300" class="background"/>
+    
+    <g id="input-box">
+      <rect x="50" y="75" width="200" height="150" class="box box-fill-input"/>
+      <text x="150" y="125" text-anchor="middle" class="text-main text-title">Large Data File</text>
+      <text x="150" y="148" text-anchor="middle" class="text-main text-subtitle">(e.g., 1GB)</text>
+      <g opacity="0.3">
+        <rect x="80" y="170" width="140" height="8" fill="#00D4FF"/>
+        <rect x="80" y="182" width="140" height="8" fill="#00D4FF"/>
+        <rect x="80" y="194" width="140" height="8" fill="#00D4FF"/>
+      </g>
+    </g>
+    
+    <path d="M 255 150 L 325 150" class="arrow glow" marker-end="url(#arrowhead)"/>
+    
+    <g id="process-box">
+      <rect x="330" y="50" width="240" height="200" class="box box-fill-process"/>
+      <text x="450" y="90" text-anchor="middle" class="text-main text-title">The ByteLite Engine</text>
+      <text x="450" y="115" text-anchor="middle" class="text-main text-subtitle">(Iterative Bijective</text>
+      <text x="450" y="135" text-anchor="middle" class="text-main text-subtitle">Transformation)</text>
+      
+      <circle cx="450" cy="180" r="25" fill="none" stroke="#00D4FF" stroke-width="2" opacity="0.5">
+        <animate attributeName="r" values="25;35;25" dur="2.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;1;0.5" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="450" cy="180" r="15" fill="none" stroke="#FF006E" stroke-width="2" opacity="0.5">
+        <animate attributeName="r" values="15;25;15" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;1;0.5" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="450" cy="180" r="5" fill="#E0E0E0"/>
+    </g>
+    
+    <path d="M 575 150 L 645 150" class="arrow glow" marker-end="url(#arrowhead)"/>
+    
+    <g id="output-box">
+      <rect x="650" y="110" width="200" height="80" class="box box-fill-output"/>
+      <text x="750" y="140" text-anchor="middle" class="text-main text-title">Computational Recipe</text>
+      <text x="750" y="160" text-anchor="middle" class="text-main text-subtitle">{Final 8-Byte Value} + {Round Count N}</text>
+    </g>
+    
+    <g id="size-comparison" opacity="0.7">
+      <text x="150" y="270" text-anchor="middle" class="text-main text-subtitle" style="font-size: 12px;">Input Size: 1,000,000,000 bytes</text>
+      <text x="750" y="270" text-anchor="middle" class="text-main text-subtitle" style="font-size: 12px;">Output Size: ~11 bytes</text>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .diagram-container {
+    margin: 3rem 0;
+    text-align: center;
+  }
+  
+  .diagram-container h3 {
+    color: #00D4FF;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+  }
+  
+  .tech-diagram {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  @media (max-width: 768px) {
+    .tech-diagram {
+      margin: 0 -1rem;
+    }
+  }
+</style>
