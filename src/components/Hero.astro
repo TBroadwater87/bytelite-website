@@ -1,110 +1,190 @@
 ---
-import { Image } from 'astro:assets';
+// src/components/Hero.astro - REFINED VERSION
 ---
+
 <section class="hero">
-  <div class="hero-background">
-    <canvas id="compression-viz"></canvas>
-  </div>
   <div class="hero-content">
-    <h1 class="hero-title">
-      <span class="hero-title-main">1TB → 18 Bytes</span>
-      <span class="hero-subtitle">The Compression Singularity is Here</span>
-    </h1>
-    <p class="hero-description">
-      Patent-pending technology that achieves mathematically impossible compression ratios. 
-      <strong>Independently verified.</strong> No data loss.
-    </p>
-    <div class="hero-cta">
-      <a href="/download" class="btn btn-primary">Get the Blueprint</a>
-      <button class="btn btn-secondary" id="demo-btn">See Live Demo</button>
+    <div class="patent-badge">
+      Patent Pending | US 63/807,027
     </div>
+    
+    <h1 class="hero-title">
+      <span class="size-from">1GB</span>
+      <span class="arrow">→</span>
+      <span class="size-to">11 Bytes</span>
+    </h1>
+    
+    <p class="hero-subtitle">
+      A New Paradigm in Information Theory
+    </p>
+    
+    <p class="hero-description">
+      ByteLite doesn't just compress data—it transforms it through 
+      recursive mathematical operations that achieve compression ratios
+      previously thought impossible.
+    </p>
+    
     <div class="hero-stats">
       <div class="stat">
-        <span class="stat-number">99.999998%</span>
-        <span class="stat-label">Compression Ratio</span>
+        <span class="stat-value">1GB → 11 bytes</span>
+        <span class="stat-label">enwik9 Benchmark</span>
       </div>
       <div class="stat">
-        <span class="stat-number">200KB</span>
+        <span class="stat-value">1TB → ~20 bytes</span>
+        <span class="stat-label">Theoretical Maximum</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">285 KB</span>
         <span class="stat-label">Engine Size</span>
       </div>
-      <div class="stat">
-        <span class="stat-number">∞</span>
-        <span class="stat-label">File Capacity</span>
-      </div>
+    </div>
+    
+    <div class="hero-cta">
+      <a href="#demo" class="btn btn-primary">See Live Demo</a>
+      <a href="/download" class="btn btn-secondary">Download Blueprint</a>
     </div>
   </div>
 </section>
 
 <style>
   .hero {
-    position: relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
-    overflow: hidden;
+    background: #0A0E27;
+    padding: 2rem;
+    position: relative;
   }
   
-  .hero-background {
+  .hero::before {
+    content: '';
     position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-  
-  #compression-viz {
-    width: 100%;
-    height: 100%;
-    opacity: 0.3;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
   }
   
   .hero-content {
-    position: relative;
-    z-index: 1;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
     text-align: center;
+    position: relative;
+    z-index: 1;
   }
   
-  .hero-title-main {
-    display: block;
+  .patent-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid #00D4FF;
+    border-radius: 100px;
+    color: #00D4FF;
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+  }
+  
+  .hero-title {
     font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 900;
-    background: linear-gradient(135deg, #00D4FF 0%, #FF006E 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 0.5rem;
+    font-weight: 800;
+    margin: 0 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .size-from {
+    color: #E0E0E0;
+  }
+  
+  .arrow {
+    color: #00D4FF;
+    font-weight: 400;
+  }
+  
+  .size-to {
+    color: #FF006E;
+    text-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
   }
   
   .hero-subtitle {
-    display: block;
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: 1.5rem;
     color: #00D4FF;
+    margin: 0 0 1.5rem;
     font-weight: 300;
+    letter-spacing: 0.025em;
   }
   
   .hero-description {
-    font-size: 1.25rem;
-    color: #B8C5D6;
+    font-size: 1.125rem;
+    color: rgba(224, 224, 224, 0.8);
     max-width: 600px;
-    margin: 2rem auto;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+  }
+  
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+  }
+  
+  .stat {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(6, 8, 19, 0.4);
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .stat:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    background: rgba(6, 8, 19, 0.6);
+    transform: translateY(-2px);
+  }
+  
+  .stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #00D4FF;
+    margin-bottom: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  .stat-label {
+    display: block;
+    font-size: 0.875rem;
+    color: rgba(224, 224, 224, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
   
   .hero-cta {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
-    margin: 3rem 0;
+    flex-wrap: wrap;
   }
   
   .btn {
-    padding: 1rem 2rem;
-    font-size: 1.125rem;
+    padding: 1rem 2.5rem;
+    border-radius: 6px;
     font-weight: 600;
-    border-radius: 0.5rem;
     text-decoration: none;
     transition: all 0.3s ease;
-    cursor: pointer;
-    border: 2px solid transparent;
+    display: inline-block;
   }
   
   .btn-primary {
@@ -113,106 +193,20 @@ import { Image } from 'astro:assets';
   }
   
   .btn-primary:hover {
-    background: #00A8CC;
+    background: #00B8E6;
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
   }
   
   .btn-secondary {
     background: transparent;
-    color: #00D4FF;
-    border-color: #00D4FF;
+    color: #E0E0E0;
+    border: 1px solid rgba(224, 224, 224, 0.3);
   }
   
   .btn-secondary:hover {
-    background: #00D4FF;
-    color: #0A0E27;
-  }
-  
-  .hero-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 2rem;
-    max-width: 600px;
-    margin: 4rem auto 0;
-  }
-  
-  .stat {
-    text-align: center;
-  }
-  
-  .stat-number {
-    display: block;
-    font-size: 2.5rem;
-    font-weight: 900;
+    border-color: #FF006E;
     color: #FF006E;
-  }
-  
-  .stat-label {
-    display: block;
-    font-size: 0.875rem;
-    color: #718096;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    background: rgba(255, 0, 110, 0.05);
   }
 </style>
-
-<script>
-  // Animated compression visualization
-  const canvas = document.getElementById('compression-viz') as HTMLCanvasElement;
-  const ctx = canvas.getContext('2d');
-  
-  if (ctx) {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    let particles: Array<{x: number, y: number, size: number, speed: number}> = [];
-    
-    // Create particles
-    for (let i = 0; i < 100; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 3 + 1,
-        speed: Math.random() * 0.5 + 0.1
-      });
-    }
-    
-    function animate() {
-      ctx.fillStyle = 'rgba(10, 14, 39, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      particles.forEach(particle => {
-        // Move towards center
-        const centerX = canvas.width / 2;
-        const centerY = canvas.height / 2;
-        const dx = centerX - particle.x;
-        const dy = centerY - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance > 5) {
-          particle.x += (dx / distance) * particle.speed;
-          particle.y += (dy / distance) * particle.speed;
-          particle.size *= 0.99;
-        } else {
-          // Reset particle
-          particle.x = Math.random() * canvas.width;
-          particle.y = Math.random() * canvas.height;
-          particle.size = Math.random() * 3 + 1;
-        }
-        
-        ctx.fillStyle = '#00D4FF';
-        ctx.fillRect(particle.x, particle.y, particle.size, particle.size);
-      });
-      
-      requestAnimationFrame(animate);
-    }
-    
-    animate();
-  }
-  
-  // Demo button handler
-  document.getElementById('demo-btn')?.addEventListener('click', () => {
-    document.getElementById('demo-section')?.scrollIntoView({ behavior: 'smooth' });
-  });
-</script>
