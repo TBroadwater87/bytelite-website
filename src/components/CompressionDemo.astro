@@ -1,39 +1,27 @@
 ---
-// Live compression demo
+// Live compression demo - simplified
 ---
 
 <div class="demo-section">
   <h3>See It In Action</h3>
   <div class="demo-container">
-    <div class="demo-input">
-      <h4>Input File</h4>
+    <div class="demo-box input">
+      <h4>Before</h4>
       <p class="filename">enwik9.txt</p>
-      <p class="filesize">1,000,000,000 bytes</p>
-      <div class="hash">
-        <small>SHA-256:</small>
-        <code>2b492...7c3a</code>
-      </div>
+      <p class="filesize">1 GB</p>
     </div>
     
-    <div class="demo-arrow">
-      <button class="demo-button">
-        Compress →
-      </button>
-    </div>
+    <div class="arrow">→</div>
     
-    <div class="demo-output">
-      <h4>Output File</h4>
+    <div class="demo-box output">
+      <h4>After</h4>
       <p class="filename">enwik9.blc</p>
-      <p class="filesize highlight">11 bytes</p>
-      <div class="hash">
-        <small>SHA-256:</small>
-        <code>8f4e2...9b1d</code>
-      </div>
+      <p class="filesize">11 bytes</p>
     </div>
   </div>
   
   <p class="demo-note">
-    Click to see real-time compression. Decompression produces bit-perfect original.
+    SHA-256 verified. Perfect reconstruction guaranteed.
   </p>
 </div>
 
@@ -57,64 +45,46 @@
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    flex-wrap: wrap;
   }
   
-  .demo-input, .demo-output {
+  .demo-box {
     background: #0A0E27;
     border: 1px solid rgba(224, 224, 224, 0.2);
     border-radius: 8px;
     padding: 1.5rem;
     text-align: center;
-    min-width: 200px;
+    min-width: 150px;
   }
   
-  .demo-output {
+  .demo-box.output {
     border-color: #FF006E;
+  }
+  
+  .demo-box h4 {
+    color: #00D4FF;
+    margin-bottom: 1rem;
   }
   
   .filename {
     font-family: 'JetBrains Mono', monospace;
-    color: #00D4FF;
-    margin: 0.5rem 0;
+    color: rgba(224, 224, 224, 0.8);
+    font-size: 0.9rem;
   }
   
   .filesize {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #E0E0E0;
+    margin-top: 0.5rem;
   }
   
-  .filesize.highlight {
+  .demo-box.output .filesize {
     color: #FF006E;
-    font-size: 1.5rem;
   }
   
-  .hash {
-    margin-top: 1rem;
-    font-size: 0.75rem;
-    color: rgba(224, 224, 224, 0.6);
-  }
-  
-  .hash code {
-    display: block;
-    color: rgba(224, 224, 224, 0.8);
-  }
-  
-  .demo-button {
-    background: #00D4FF;
-    color: #0A0E27;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .demo-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+  .arrow {
+    color: #00D4FF;
+    font-size: 2rem;
   }
   
   .demo-note {
