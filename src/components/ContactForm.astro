@@ -8,31 +8,31 @@
     <label for="website">Website</label>
     <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
   </div>
-  
+
   <div class="form-group">
     <label for="name">Name *</label>
     <input type="text" id="name" name="name" required>
   </div>
-  
+
   <div class="form-group">
     <label for="email">Email *</label>
     <input type="email" id="email" name="email" required>
   </div>
-  
+
   <div class="form-group">
     <label for="subject">Subject</label>
     <input type="text" id="subject" name="subject">
   </div>
-  
+
   <div class="form-group">
     <label for="message">Message *</label>
     <textarea id="message" name="message" rows="5" required></textarea>
   </div>
-  
+
   <button type="submit" class="btn btn-primary">Send Message</button>
-  
+
   <p class="form-note">
-    We typically respond within 24 business hours. For immediate assistance, 
+    We typically respond within 24 business hours. For immediate assistance,
     email us directly at <a href="mailto:info@thebytelite.com">info@thebytelite.com</a>
   </p>
 </form>
@@ -79,6 +79,24 @@
     background: rgba(6, 8, 19, 0.8);
   }
   
+  .btn-primary {
+    background: #00D4FF;
+    color: #0A0E27;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background: #00B8E6;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+  }
+  
   .form-note {
     margin-top: 1rem;
     font-size: 0.875rem;
@@ -88,5 +106,9 @@
   .form-note a {
     color: #00D4FF;
     text-decoration: none;
+  }
+  
+  .form-note a:hover {
+    text-decoration: underline;
   }
 </style>

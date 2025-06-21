@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import TechnologyDiagram from '../components/TechnologyDiagram.astro';
+import BenchmarkSource from '../components/BenchmarkSource.astro';
 ---
 
 <Layout title="ByteLite Technology - How Infinite Compression Works">
@@ -103,6 +104,9 @@ import TechnologyDiagram from '../components/TechnologyDiagram.astro';
           <ul>
             <li>Theoretical maximum: 99.99999999999%</li>
             <li>Text files: 99.9%+ typical</li>
+          </ul>
+          <BenchmarkSource />
+          <ul style="list-style: none; padding: 0;">
             <li>Binary data: 95-99% achievable</li>
             <li>Multimedia: 90-98% possible</li>
           </ul>
