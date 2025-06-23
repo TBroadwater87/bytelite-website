@@ -1,141 +1,349 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
 ---
 
-<Layout
-  title="ByteLite Licensing | Enterprise Compression Solutions"
-  description="Enterprise licensing for ByteLite compression technology."
+<Layout 
+  title="Licensing - ByteLite" 
+  description="Transparent pricing for Personal, Family, and Enterprise solutions. Fund groundbreaking technologies for the greater good of humanity."
 >
-  <div class="bg-dark-navy text-white">
-    <!-- Hero Section -->
-    <section class="py-20 bg-gradient-to-br from-deep-space to-dark-navy">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto text-center">
-          <h1 class="text-5xl font-bold mb-6">Enterprise Licensing</h1>
-          <p class="text-xl text-gray-300 mb-8">
-            Revolutionary compression technology for enterprise deployments
-          </p>
-          <div class="inline-flex items-center bg-electric-cyan/10 border border-electric-cyan/30 rounded-full px-6 py-2">
-            <span class="text-electric-cyan font-mono">Usage-Based Pricing</span>
-          </div>
-        </div>
-      </div>
-    </section>
+  <Hero 
+    variant="minimal"
+    showPatentBadge={false}
+    showStats={false}
+    showBackground={false}
+    title={{ from: "Licensing", to: "Solutions" }}
+    subtitle="Supporting Innovation for Humanity"
+    description="Your licensing fees directly fund groundbreaking technologies aligned with our Genesis Manifesto."
+    primaryCTA={{ text: "Subscribe for Updates", link: "/subscribe" }}
+    secondaryCTA={{ text: "Contact Sales", link: "/contact" }}
+  />
 
-    <!-- Simple Pricing Model -->
-    <section class="py-20">
-      <div class="container mx-auto px-6">
-        <div class="max-w-6xl mx-auto">
-          <div class="grid md:grid-cols-2 gap-8">
-            
-            <!-- Left Column: Pricing Model -->
-            <div class="bg-deep-space/50 rounded-lg p-8 border border-electric-cyan/20">
-              <h2 class="text-3xl font-bold text-electric-cyan mb-6">Simple Usage Pricing</h2>
-              
-              <div class="space-y-6">
-                <div class="border-l-4 border-electric-cyan pl-6">
-                  <h3 class="text-xl font-bold text-white mb-2">Tier 1: Small Scale</h3>
-                  <p class="text-gray-300">Less than 1TB per month</p>
-                  <p class="text-2xl font-bold text-electric-cyan">$0.001 per GB</p>
-                </div>
+  <section class="pricing-section">
+    <div class="container">
+      <h2>Choose Your Plan</h2>
+      <p class="section-intro">
+        All plans include access to the ByteLite Application when available, 
+        priority updates on Deep Kore Neural Recursion, and direct contribution to humanity's technological advancement.
+      </p>
 
-                <div class="border-l-4 border-quantum-pink pl-6">
-                  <h3 class="text-xl font-bold text-white mb-2">Tier 2: Medium Scale</h3>
-                  <p class="text-gray-300">1TB to 100TB per month</p>
-                  <p class="text-2xl font-bold text-quantum-pink">$0.0005 per GB</p>
-                </div>
-
-                <div class="border-l-4 border-electric-cyan pl-6">
-                  <h3 class="text-xl font-bold text-white mb-2">Tier 3: Enterprise</h3>
-                  <p class="text-gray-300">100TB+ per month</p>
-                  <p class="text-2xl font-bold text-electric-cyan">$0.0001 per GB</p>
-                </div>
-              </div>
-
-              <div class="mt-8 p-4 bg-dark-navy/50 rounded-lg">
-                <p class="text-sm text-gray-400">
-                  Setup fee: $2,500 one-time | Minimum contract: 12 months
-                </p>
-              </div>
+      <div class="pricing-grid">
+        <!-- Personal Plan -->
+        <div class="pricing-card">
+          <div class="plan-header">
+            <h3>Personal</h3>
+            <div class="price">
+              <span class="amount">$10</span>
+              <span class="period">/month</span>
             </div>
+            <div class="annual-price">or $99.99/year (save 17%)</div>
+          </div>
+          <ul class="features">
+            <li>1 Individual User</li>
+            <li>1 Account</li>
+            <li>1 System</li>
+            <li>ByteLite Application Access</li>
+            <li>Deep Kore Updates</li>
+            <li>Email Support</li>
+          </ul>
+          <a href="/subscribe" class="btn btn-primary">Get Started</a>
+        </div>
 
-            <!-- Right Column: Enterprise Features -->
-            <div class="bg-deep-space/50 rounded-lg p-8 border border-quantum-pink/20">
-              <h3 class="text-2xl font-bold text-quantum-pink mb-6">Enterprise Features</h3>
-              
-              <div class="space-y-4 text-gray-300">
-                <div class="flex items-start space-x-3">
-                  <span class="text-electric-cyan text-xl">-</span>
-                  <div>
-                    <h4 class="font-semibold text-white">Unlimited Users & Systems</h4>
-                    <p class="text-sm">Deploy across your entire infrastructure</p>
-                  </div>
-                </div>
-
-                <div class="flex items-start space-x-3">
-                  <span class="text-electric-cyan text-xl">-</span>
-                  <div>
-                    <h4 class="font-semibold text-white">On-Premise Deployment</h4>
-                    <p class="text-sm">Install within your secure environment</p>
-                  </div>
-                </div>
-
-                <div class="flex items-start space-x-3">
-                  <span class="text-electric-cyan text-xl">-</span>
-                  <div>
-                    <h4 class="font-semibold text-white">Custom SLA & Support</h4>
-                    <p class="text-sm">24/7 technical support and guarantees</p>
-                  </div>
-                </div>
-
-                <div class="flex items-start space-x-3">
-                  <span class="text-electric-cyan text-xl">-</span>
-                  <div>
-                    <h4 class="font-semibold text-white">Source Code Escrow</h4>
-                    <p class="text-sm">Protection for mission-critical deployments</p>
-                  </div>
-                </div>
-
-                <div class="flex items-start space-x-3">
-                  <span class="text-electric-cyan text-xl">-</span>
-                  <div>
-                    <h4 class="font-semibold text-white">Real-Time Metrics</h4>
-                    <p class="text-sm">Compression analytics and monitoring</p>
-                  </div>
-                </div>
-
-                <div class="flex items-start space-x-3">
-                  <span class="text-electric-cyan text-xl">-</span>
-                  <div>
-                    <h4 class="font-semibold text-white">Automated Billing</h4>
-                    <p class="text-sm">Usage tracking and monthly reporting</p>
-                  </div>
-                </div>
-              </div>
+        <!-- Family Plan -->
+        <div class="pricing-card featured">
+          <div class="badge">Most Popular</div>
+          <div class="plan-header">
+            <h3>Family</h3>
+            <div class="price">
+              <span class="amount">$50</span>
+              <span class="period">/month</span>
             </div>
+            <div class="annual-price">or $499/year (save 17%)</div>
           </div>
+          <ul class="features">
+            <li>10 Individual Users</li>
+            <li>10 Accounts</li>
+            <li>10 Systems</li>
+            <li>ByteLite Application Access</li>
+            <li>Deep Kore Updates</li>
+            <li>Priority Email Support</li>
+            <li>Family Management Dashboard</li>
+          </ul>
+          <a href="/subscribe" class="btn btn-primary">Get Started</a>
         </div>
-      </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section class="py-20 bg-deep-space/30">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-6 text-electric-cyan">Ready to Get Started?</h2>
-          <p class="text-xl text-gray-300 mb-8">
-            Contact us to discuss enterprise licensing and custom implementation.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact" class="bg-electric-cyan text-dark-navy px-8 py-4 rounded-lg font-semibold hover:bg-electric-cyan/90 transition-colors">
-              Contact Sales
-            </a>
-            <a href="/download" class="border border-quantum-pink text-quantum-pink px-8 py-4 rounded-lg font-semibold hover:bg-quantum-pink/10 transition-colors">
-              Download Blueprint ($0.99)
-            </a>
+        <!-- Enterprise Plan -->
+        <div class="pricing-card enterprise">
+          <div class="plan-header">
+            <h3>Professional Enterprise</h3>
+            <div class="price">
+              <span class="amount">50%</span>
+              <span class="period">of savings</span>
+            </div>
+            <div class="annual-price">No savings = No cost</div>
+          </div>
+          <ul class="features">
+            <li>Unlimited Users & Systems</li>
+            <li>Self-Reporting API Integration</li>
+            <li>Assigned Enterprise Auditor</li>
+            <li>Annual Checksum Verification</li>
+            <li>99.99%+ Typical Savings</li>
+            <li>Direct Line Support</li>
+            <li>Custom Integration</li>
+          </ul>
+          <a href="/contact" class="btn btn-secondary">Contact Sales</a>
+        </div>
+      </div>
+
+      <!-- Enterprise Details -->
+      <div class="enterprise-details">
+        <h3>Enterprise Solution Details</h3>
+        <div class="detail-grid">
+          <div class="detail-card">
+            <h4>Fair Usage Model</h4>
+            <p>
+              Pay only 50% of your realized cost savings. With ByteLite achieving 99.99%+ compression rates, 
+              your savings are substantial. Example: Save $100 in storage/transmission → Pay $50 in licensing.
+            </p>
+          </div>
+          <div class="detail-card">
+            <h4>Security & Compliance</h4>
+            <p>
+              Enterprise solutions integrate self-reporting to ByteLite LLC API for security and transparency. 
+              Annual checksum verification ensures reporting software integrity.
+            </p>
+          </div>
+          <div class="detail-card">
+            <h4>Dedicated Support</h4>
+            <p>
+              Each enterprise client receives an assigned Enterprise Solution Auditor for reporting verification, 
+              application updates, and ongoing optimization consultation.
+            </p>
+          </div>
+          <div class="detail-card">
+            <h4>Trust & Innovation</h4>
+            <p>
+              We trust our clients to help fund ByteLite LLC ventures. Your licensing fees directly support 
+              groundbreaking technologies for the greater good of humanity.
+            </p>
           </div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .pricing-section {
+    padding: 6rem 0;
+    background: var(--color-bg-darker);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .pricing-section h2 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .section-intro {
+    text-align: center;
+    color: var(--color-text-dim);
+    font-size: 1.125rem;
+    max-width: 700px;
+    margin: 0 auto 4rem;
+    line-height: 1.6;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .pricing-card {
+    background: rgba(10, 14, 39, 0.8);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary);
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+  }
+
+  .pricing-card.featured {
+    border-color: var(--color-primary);
+    transform: scale(1.05);
+  }
+
+  .pricing-card.enterprise {
+    border-color: var(--color-secondary);
+  }
+
+  .badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: var(--color-bg-dark);
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .plan-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(224, 224, 224, 0.1);
+  }
+
+  .plan-header h3 {
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  .amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .period {
+    font-size: 1rem;
+    color: var(--color-text-dim);
+  }
+
+  .annual-price {
+    font-size: 0.875rem;
+    color: var(--color-text-dim);
+    margin-top: 0.5rem;
+  }
+
+  .features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+  }
+
+  .features li {
+    padding: 0.75rem 0;
+    color: var(--color-text-dim);
+    border-bottom: 1px solid rgba(224, 224, 224, 0.1);
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: var(--color-primary);
+    color: var(--color-bg-dark);
+  }
+
+  .btn-primary:hover {
+    background: #00B8E6;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+  }
+
+  .btn-secondary:hover {
+    background: var(--color-secondary);
+    color: var(--color-bg-dark);
+  }
+
+  .enterprise-details {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .enterprise-details h3 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .detail-card {
+    background: rgba(10, 14, 39, 0.6);
+    border: 1px solid rgba(224, 224, 224, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .detail-card:hover {
+    background: rgba(10, 14, 39, 0.8);
+    border-color: rgba(0, 212, 255, 0.2);
+  }
+
+  .detail-card h4 {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .detail-card p {
+    color: var(--color-text-dim);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing-card.featured {
+      transform: none;
+    }
+  }
+</style>

@@ -1,48 +1,108 @@
 ---
-// src/components/Hero.astro - REFINED VERSION
+export interface Props {
+  variant?: 'default' | 'banner' | 'minimal';
+  showPatentBadge?: boolean;
+  showStats?: boolean;
+  showBackground?: boolean;
+  title?: {
+    from?: string;
+    to?: string;
+  };
+  subtitle?: string;
+  description?: string;
+  primaryCTA?: {
+    text: string;
+    link: string;
+  };
+  secondaryCTA?: {
+    text: string;
+    link: string;
+  };
+  stats?: Array<{
+    value: string;
+    label: string;
+  }>;
+}
+
+const {
+  variant = 'default',
+  showPatentBadge = true,
+  showStats = true,
+  showBackground = true,
+  title = {
+    from: '1GB',
+    to: '11 Bytes'
+  },
+  subtitle = 'A New Paradigm in Information Theory',
+  description = "ByteLite doesn't just compress data—it transforms it through recursive mathematical operations that achieve compression ratios previously thought impossible.",
+  primaryCTA = {
+    text: 'See Live Demo',
+    link: '/demo'
+  },
+  secondaryCTA = {
+    text: 'Subscribe for Updates',
+    link: '/subscribe'
+  },
+  stats = [
+    { value: '1GB → 11 bytes', label: 'enwik9 Benchmark' },
+    { value: '1TB → ~20 bytes', label: 'Theoretical Maximum' },
+    { value: '285 KB', label: 'Engine Size' }
+  ]
+} = Astro.props;
 ---
 
-<section class="hero">
+<section class={`hero ${variant}`}>
+  {showBackground && (
+    <div class="hero-background">
+      <div class="grid-overlay"></div>
+      <div class="gradient-overlay"></div>
+      <div class="particles"></div>
+    </div>
+  )}
   <div class="hero-content">
-    <div class="patent-badge">
-      Patent Pending | US 63/807,027
-    </div>
-    
-    <h1 class="hero-title">
-      <span class="size-from">1GB</span>
-      <span class="arrow">→</span>
-      <span class="size-to">11 Bytes</span>
-    </h1>
-    
-    <p class="hero-subtitle">
-      A New Paradigm in Information Theory
-    </p>
-    
-    <p class="hero-description">
-      ByteLite doesn't just compress data—it transforms it through 
-      recursive mathematical operations that achieve compression ratios
-      previously thought impossible.
-    </p>
-    
-    <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-value">1GB → 11 bytes</span>
-        <span class="stat-label">enwik9 Benchmark</span>
+    {showPatentBadge && (
+      <div class="patent-badge">
+        Patent Pending | US 63/807,027
       </div>
-      <div class="stat">
-        <span class="stat-value">1TB → ~20 bytes</span>
-        <span class="stat-label">Theoretical Maximum</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">285 KB</span>
-        <span class="stat-label">Engine Size</span>
-      </div>
-    </div>
+    )}
     
-    <div class="hero-cta">
-      <a href="#demo" class="btn btn-primary">See Live Demo</a>
-      <a href="/download" class="btn btn-secondary">Download Blueprint</a>
-    </div>
+    {title && (
+      <h1 class="hero-title">
+        <span class="size-from">{title.from}</span>
+        <span class="arrow">→</span>
+        <span class="size-to">{title.to}</span>
+      </h1>
+    )}
+    
+    {subtitle && (
+      <p class="hero-subtitle">
+        {subtitle}
+      </p>
+    )}
+    
+    {description && (
+      <p class="hero-description">
+        {description}
+      </p>
+    )}
+    
+    {showStats && stats && (
+      <div class="hero-stats">
+        {stats.map(stat => (
+          <div class="stat">
+            <span class="stat-value">{stat.value}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    )}
+    
+    {(primaryCTA || secondaryCTA) && (
+      <div class="hero-cta">
+        {primaryCTA && <a href={primaryCTA.link} class="btn btn-primary">{primaryCTA.text}</a>}
+        {secondaryCTA && <a href={secondaryCTA.link} class="btn btn-secondary">{secondaryCTA.text}</a>}
+      </div>
+    )}
   </div>
 </section>
 
@@ -208,5 +268,99 @@
     border-color: #FF006E;
     color: #FF006E;
     background: rgba(255, 0, 110, 0.05);
+  }
+  
+  /* Background styles */
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .grid-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: grid-move 20s linear infinite;
+  }
+
+  @keyframes grid-move {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+  }
+
+  .gradient-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 50%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(255, 0, 110, 0.15) 0%, transparent 50%);
+  }
+
+  .particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .particles::before,
+  .particles::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    box-shadow: 
+      20px 80px 0 0 rgba(0, 212, 255, 0.4),
+      100px 150px 0 0 rgba(0, 212, 255, 0.3),
+      300px 350px 0 0 rgba(255, 0, 110, 0.3),
+      450px 180px 0 0 rgba(0, 212, 255, 0.4),
+      600px 280px 0 0 rgba(255, 0, 110, 0.3);
+    animation: float 15s infinite ease-in-out;
+  }
+
+  .particles::after {
+    animation-delay: 7.5s;
+    left: 50%;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  /* Banner variant */
+  .hero.banner {
+    min-height: auto;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #0A0E27 0%, #060813 100%);
+  }
+  
+  .hero.banner .hero-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+  
+  /* Minimal variant */
+  .hero.minimal {
+    min-height: auto;
+    padding: 3rem 2rem;
+    background: transparent;
+  }
+  
+  .hero.minimal .hero-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+  
+  .hero.minimal .hero-stats {
+    display: none;
   }
 </style>

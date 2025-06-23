@@ -1,12 +1,39 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import CompressionDemo from '../components/CompressionDemo.astro';
-import ProofSection from '../components/ProofSection.astro';
+import SubscribeForm from '../components/SubscribeForm.astro';
 ---
 
-<BaseLayout title="Home">
+<Layout title="ByteLite - Revolutionary Data Compression">
   <Hero />
-  <CompressionDemo />
-  <ProofSection />
-</BaseLayout>
+  
+  <!-- Subscribe Section -->
+  <section class="subscribe-section">
+    <div class="container">
+      <SubscribeForm 
+        variant="default"
+        title="Join the Compression Revolution"
+        description="Be among the first to access ByteLite technology and receive updates on Deep Kore Neural Recursion developments."
+      />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .subscribe-section {
+    padding: 6rem 0;
+    background: var(--color-bg-darker);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .subscribe-section {
+      padding: 4rem 0;
+    }
+  }
+</style>

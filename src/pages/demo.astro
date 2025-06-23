@@ -1,0 +1,173 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import InteractiveCompressionDemo from '../components/InteractiveCompressionDemo.tsx';
+import HighLevelVisualization from '../components/HighLevelVisualization.astro';
+import CompressionDemo from '../components/CompressionDemo.astro';
+---
+
+<Layout 
+  title="Live Demo - ByteLite Compression" 
+  description="Experience ByteLite's revolutionary compression technology in action. Try the interactive demo and see how 1GB becomes 11 bytes."
+>
+  <Hero 
+    variant="minimal"
+    showPatentBadge={false}
+    showStats={false}
+    showBackground={false}
+    title={{ from: "Live Demo", to: "In Action" }}
+    subtitle="Experience the Power of ByteLite Compression"
+    description="Upload any file and watch as ByteLite transforms it using revolutionary recursive mathematical operations."
+    primaryCTA={null}
+    secondaryCTA={null}
+  />
+
+  <section class="demo-content">
+    <div class="container">
+      <!-- Interactive File Upload Demo -->
+      <div class="demo-section">
+        <h2>Try It Yourself</h2>
+        <p class="section-description">
+          Upload any file to see ByteLite's compression ratios in real-time. 
+          Our technology works with any file type - documents, images, videos, and more.
+        </p>
+        <InteractiveCompressionDemo client:load />
+      </div>
+
+      <!-- Static Benchmark Demo -->
+      <div class="demo-section">
+        <h2>Benchmark Results</h2>
+        <p class="section-description">
+          See our verified results on standard compression benchmarks.
+        </p>
+        <CompressionDemo />
+      </div>
+
+      <!-- How It Works -->
+      <div class="demo-section">
+        <h2>How It Works</h2>
+        <p class="section-description">
+          A high-level overview of ByteLite's revolutionary compression technology.
+        </p>
+        <HighLevelVisualization />
+      </div>
+
+      <!-- Call to Action -->
+      <div class="cta-section">
+        <h3>Ready for Deep Kore Neural Recursion?</h3>
+        <p>Subscribe to get notified when the ByteLite Application Demo is available and receive updates on our AGI breakthrough.</p>
+        <div class="cta-buttons">
+          <a href="/subscribe" class="btn btn-primary">Subscribe for Updates</a>
+          <a href="/technology" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .demo-content {
+    padding: 4rem 0;
+    background: var(--color-bg-darker);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .demo-section {
+    margin-bottom: 6rem;
+  }
+
+  .demo-section h2 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .section-description {
+    text-align: center;
+    color: var(--color-text-dim);
+    font-size: 1.125rem;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(255, 0, 110, 0.05) 100%);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 16px;
+    padding: 4rem 2rem;
+    text-align: center;
+    margin-top: 6rem;
+  }
+
+  .cta-section h3 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    color: var(--color-text-dim);
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: var(--color-primary);
+    color: var(--color-bg-dark);
+  }
+
+  .btn-primary:hover {
+    background: #00A8CC;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+
+  .btn-secondary:hover {
+    background: var(--color-primary);
+    color: var(--color-bg-dark);
+  }
+
+  @media (max-width: 768px) {
+    .demo-section h2 {
+      font-size: 2rem;
+    }
+
+    .cta-section {
+      padding: 3rem 1.5rem;
+    }
+
+    .cta-section h3 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
