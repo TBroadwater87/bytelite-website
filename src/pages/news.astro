@@ -1,105 +1,314 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-
+import SubscribeForm from '../components/SubscribeForm.astro';
 ---
 
-<Layout title="News & Updates - ByteLite" description="Latest updates on ByteLite compression technology, patent progress, and technical milestones.">
-  <Header />
-  <main>
-    <section class="hero-section">
-      <div class="container">
-        <h1>News & Updates</h1>
-        <p class="hero-description">Follow ByteLite's journey from concept to revolution</p>
+<Layout title="News & Updates - ByteLite" description="Latest updates on ByteLite compression technology and Deep Kore Neural Recursion developments.">
+  <section class="news-content">
+    <div class="container">
+      <h1 class="page-title">News & Updates</h1>
+      <p class="page-subtitle">Stay informed about ByteLite compression technology and Deep Kore Neural Recursion</p>
+      
+      <!-- Latest Announcement -->
+      <div class="latest-announcement">
+        <div class="announcement-header">
+          <span class="new-badge">NEW</span>
+          <h2>ByteLite Application Demo Coming Soon</h2>
+        </div>
+        <p>
+          Experience ByteLite compression firsthand. Our demonstration application will showcase 
+          the revolutionary technology that transforms 1TB into 18 bytes. Subscribe to be notified 
+          the moment it's available.
+        </p>
+        <a href="/subscribe" class="announcement-cta">Get Early Access</a>
       </div>
-    </section>
 
-    <section class="news-section">
-      <div class="container">
-        <article class="news-item">
-          <time datetime="2025-06-14">June 14, 2025</time>
-          <h2>ByteLite Achieves Independent Verification</h2>
-          <p>Two independent researchers have successfully verified ByteLite's compression claims using our technical blueprint. SHA-256 hashes confirm bit-perfect decompression of 1GB ??? 15 bytes test case.</p>
-          <a href="/download" class="read-more">Download Blueprint ???</a>
-        </article>
+      <!-- Key Updates -->
+      <div class="updates-section">
+        <h3>Recent Milestones</h3>
+        
+        <div class="update-item">
+          <div class="update-date">June 2025</div>
+          <div class="update-content">
+            <h4>Deep Kore Neural Recursion & Access Restrictions</h4>
+            <p>
+              ByteLite's compression mathematics revealed applications in achieving AGI. 
+              Due to dual-use implications, technical specifications are now under controlled release. 
+              Enterprise clients work directly with our team.
+            </p>
+          </div>
+        </div>
 
-        <article class="news-item">
-          <time datetime="2025-05-20">May 20, 2025</time>
-          <h2>SBIR Phase I Submission Complete</h2>
-          <p>ByteLite has submitted for Air Force SBIR Phase I funding to accelerate development of enterprise-grade compression solutions for satellite communications and deep space missions.</p>
-        </article>
+        <div class="update-item">
+          <div class="update-date">May 2025</div>
+          <div class="update-content">
+            <h4>Patent Protection Secured</h4>
+            <p>
+              USPTO Provisional Patent 63/807,027 filed for "DATA COMPRESSION AND DECOMPRESSION PIPELINE," 
+              protecting ByteLite's revolutionary mathematical innovations.
+            </p>
+          </div>
+        </div>
 
-        <article class="news-item">
-          <time datetime="2025-05-16">May 16, 2025</time>
-          <h2>USPTO Patent Application Filed</h2>
-          <p>Provisional Patent Application No. 63/807,027 titled "DATA COMPRESSION AND DECOMPRESSION PIPELINE" has been filed with the United States Patent and Trademark Office.</p>
-          <a href="https://patents.google.com/patent/US63807027" class="read-more" rel="noopener" target="_blank">View Filing ???</a>
-        </article>
-
-        <article class="news-item">
-          <time datetime="2025-04-15">April 15, 2025</time>
-          <h2>xTechSBIR Competition Entry</h2>
-          <p>ByteLite entered the Army xTechSBIR competition, showcasing potential military applications for ultra-compression in battlefield communications and drone data storage.</p>
-        </article>
-
-        <article class="news-item">
-          <time datetime="2025-03-01">March 1, 2025</time>
-          <h2>Hutter Prize Preparation Begins</h2>
-          <p>Development team begins optimization for Hutter Prize submission, targeting the ???50,000 award for compressing human knowledge (100MB Wikipedia) below current records.</p>
-        </article>
+        <div class="update-item">
+          <div class="update-date">Q4 2024</div>
+          <div class="update-content">
+            <h4>The Discovery</h4>
+            <p>
+              While developing HeartStrings AI, founder Tash Broadwater discovers compression method 
+              achieving previously impossible ratios: 1GB compressed to just 11 bytes.
+            </p>
+          </div>
+        </div>
       </div>
-    </section>
-  </main>
-  
+
+      <!-- Subscribe Section -->
+      <div class="subscribe-wrapper">
+        <div class="subscribe-intro">
+          <h3>Don't Miss Important Updates</h3>
+          <p>
+            Be the first to know when the ByteLite Application Demo launches and receive 
+            exclusive insights into Deep Kore Neural Recursion developments.
+          </p>
+        </div>
+        <SubscribeForm variant="compact" />
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <style>
-  .news-section {
-    padding: 80px 0;
+  /* News Content */
+  .news-content {
+    padding: 6rem 0 4rem;
+    background: var(--color-bg-darker);
   }
 
-  .news-item {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(0, 212, 255, 0.1);
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Page Title */
+  .page-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0 0 1rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .page-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-dim);
+    text-align: center;
+    margin: 0 0 3rem;
+    line-height: 1.6;
+  }
+
+  /* Latest Announcement */
+  .latest-announcement {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 0, 110, 0.1) 100%);
+    border: 2px solid rgba(0, 212, 255, 0.3);
     border-radius: 16px;
-    padding: 40px;
-    margin-bottom: 30px;
+    padding: 3rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .latest-announcement::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+    animation: pulse-bg 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-bg {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+  }
+
+  .announcement-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .new-badge {
+    background: var(--color-secondary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 110, 0.5); }
+    50% { box-shadow: 0 0 30px rgba(255, 0, 110, 0.8); }
+  }
+
+  .latest-announcement h2 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  .latest-announcement p {
+    font-size: 1.125rem;
+    color: var(--color-text-dim);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .announcement-cta {
+    display: inline-block;
+    background: var(--color-primary);
+    color: var(--color-bg-dark);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .announcement-cta:hover {
+    background: #00B8E6;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+  }
+
+  /* Updates Section */
+  .updates-section {
+    margin-bottom: 4rem;
+  }
+
+  .updates-section h3 {
+    font-size: 1.75rem;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .update-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: rgba(10, 14, 39, 0.6);
+    border: 1px solid rgba(224, 224, 224, 0.1);
+    border-radius: 12px;
     transition: all 0.3s ease;
   }
 
-  .news-item:hover {
+  .update-item:hover {
+    transform: translateX(5px);
     border-color: rgba(0, 212, 255, 0.3);
-    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 212, 255, 0.1);
   }
 
-  .news-item time {
-    color: var(--color-primary);
+  .update-date {
     font-size: 0.875rem;
+    color: var(--color-primary);
     font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-top: 0.25rem;
   }
 
-  .news-item h2 {
-    margin: 15px 0;
+  .update-content h4 {
+    font-size: 1.25rem;
     color: var(--color-text);
+    margin-bottom: 0.75rem;
   }
 
-  .news-item p {
-    color: var(--color-text-secondary);
-    line-height: 1.8;
-    margin-bottom: 20px;
+  .update-content p {
+    color: var(--color-text-dim);
+    line-height: 1.6;
+    margin: 0;
   }
 
-  .read-more {
+  /* Subscribe Section */
+  .subscribe-wrapper {
+    background: rgba(10, 14, 39, 0.6);
+    border-radius: 16px;
+    padding: 3rem;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+  }
+
+  .subscribe-intro {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .subscribe-intro h3 {
+    font-size: 1.75rem;
     color: var(--color-primary);
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
+    margin-bottom: 1rem;
   }
 
-  .read-more:hover {
-    transform: translateX(5px);
+  .subscribe-intro p {
+    color: var(--color-text-dim);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2rem;
+    }
+
+    .page-subtitle {
+      font-size: 1rem;
+    }
+
+    .latest-announcement {
+      padding: 2rem 1.5rem;
+    }
+
+    .announcement-header {
+      flex-direction: column;
+    }
+
+    .latest-announcement h2 {
+      font-size: 1.5rem;
+    }
+
+    .update-item {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .update-date {
+      color: var(--color-secondary);
+    }
+
+    .subscribe-wrapper {
+      padding: 2rem 1.5rem;
+    }
   }
 </style>
-
-

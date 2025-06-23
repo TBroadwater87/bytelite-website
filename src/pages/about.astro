@@ -1,193 +1,369 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
 ---
 
 <Layout
-  title="About ByteLite | The HeartStrings Discovery"
-  description="How ByteLite revolutionary compression was discovered while building an AI dating app in 2024."
+  title="About ByteLite - Our Mission"
+  description="Transforming data compression to unlock computational intelligence for humanity's benefit."
 >
-  <div class="bg-dark-navy text-white">
-    <!-- Hero Section -->
-    <section class="py-20 bg-gradient-to-br from-deep-space to-dark-navy">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto text-center">
-          <h1 class="text-5xl font-bold mb-6">The HeartStrings Discovery</h1>
-          <p class="text-xl text-gray-300 mb-8">
-            How a quest to build a smarter dating app accidentally discovered
-            the most powerful compression algorithm ever created
+  <Hero 
+    variant="minimal"
+    showPatentBadge={true}
+    showStats={false}
+    showBackground={false}
+    title={{ from: "About", to: "ByteLite" }}
+    subtitle="From Accidental Discovery to Revolutionary Technology"
+    description="What began as a solution for AI efficiency became a breakthrough in compression mathematics with implications for artificial general intelligence."
+    primaryCTA={{ text: "Read Our Story", link: "#story" }}
+    secondaryCTA={{ text: "Subscribe for Updates", link: "/subscribe" }}
+  />
+
+  <section class="about-content">
+    <div class="container">
+      <!-- Origin Story -->
+      <div id="story" class="story-section">
+        <h2>The HeartStrings Discovery</h2>
+        <div class="story-content">
+          <p class="lead">
+            In 2024, while building an AI-powered dating app called HeartStrings, founder Tash Broadwater 
+            faced a common problem: AI models required too much data and computing power for independent developers.
           </p>
-          <div class="inline-flex items-center bg-electric-cyan/10 border border-electric-cyan/30 rounded-full px-6 py-2">
-            <span class="text-electric-cyan font-mono">US Patent 63/807,027</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Origin Story -->
-    <section class="py-20">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-electric-cyan mb-8">The Origin Story</h2>
-
-          <div class="prose prose-lg text-gray-300 space-y-6">
-            <p class="text-xl">
-              ByteLite was born out of necessity?not in a lab, but in the trenches of real-world innovation. 
-              In early 2024, Tash Broadwater began building a dating app called <em>HeartStrings</em>, intended 
-              to feature a smart AI wingman capable of deeply personalized matchmaking. The AI needed to 
-              understand more from less?to intuit character and compatibility from limited input.
-            </p>
-
-            <p>
-              But the available AI models hit a wall. Their appetite for data and hardware made them 
-              inaccessible to independent developers. That bottleneck sparked a new question:
-            </p>
-
-            <blockquote class="text-xl text-electric-cyan font-semibold border-l-4 border-electric-cyan pl-6">
-              "What if the problem isn't the AI?but the way we represent information?"
-            </blockquote>
-
-            <p>
-              This led to a radical shift: convert a hardware problem into a software solution by 
-              compressing data so efficiently that smaller models could gain deeper insights with fewer resources.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- The Discovery -->
-    <section class="py-20 bg-deep-space/30">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-quantum-pink mb-8">The Discovery</h2>
-
-          <div class="prose prose-lg text-gray-300 space-y-6">
-            <p>
-              While developing preprocessing methods to enable lean AI inference, Tash stumbled upon 
-              something much bigger?a method of perfectly lossless, recursive compression. By fusing 
-              <strong>Szudzik pairing functions</strong> with <strong>adaptive multi-layered dictionaries</strong>, 
-              data could be represented far more efficiently than previously thought possible.
-            </p>
-
-            <p>
-              Each round of compression reduced the dataset further, halving its size recursively, 
-              until the entropy floor was reached. Standard compressors failed at this point. 
-              ByteLite didn't. It kept going?reliably.
-            </p>
-
-            <p class="text-xl font-bold text-electric-cyan">
-              In late 2024, a 1GB dataset was compressed down to just 15 bytes using this recursive architecture.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- The Algorithm -->
-    <section class="py-20">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-electric-cyan mb-8">The Algorithm</h2>
-
-          <p class="text-gray-300 mb-6">
-            ByteLite's <strong>Dynamic Algorithmic Compression</strong> system uses:
-          </p>
-
-          <div class="space-y-3 text-gray-300">
-            <p>- Recursive Szudzik pairing of bit-aligned structures</p>
-            <p>- Segmented Domain Dictionary (SDD) encoding with six layers</p>
-            <p>- Hardcoded, pop-count-sorted dictionaries</p>
-            <p>- Padding mechanisms to preserve reversibility</p>
-            <p>- Multithreaded system profilers to optimize for underlying hardware</p>
-          </div>
-
-          <p class="text-gray-300 mt-6">
-            The algorithm isn't just efficient?it's mathematically elegant, consistent, and shockingly scalable.
+          
+          <blockquote>
+            "What if the problem isn't the AI—but the way we represent information?"
+          </blockquote>
+          
+          <p>
+            This question led to ByteLite: a compression algorithm that achieves ratios previously thought 
+            impossible, transforming 1GB into just 11 bytes through recursive mathematical operations.
           </p>
         </div>
       </div>
-    </section>
 
-    <!-- Milestones -->
-    <section class="py-20 bg-deep-space/30">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-quantum-pink mb-8">Milestones</h2>
+      <!-- Mission & Vision -->
+      <div class="mission-section">
+        <div class="mission-card">
+          <h3>Our Mission</h3>
+          <p>
+            To democratize access to advanced computation by making data storage and transmission 
+            virtually free, enabling innovation at every scale.
+          </p>
+        </div>
+        
+        <div class="mission-card">
+          <h3>Our Vision</h3>
+          <p>
+            A world where computational limitations no longer constrain human creativity, 
+            where AGI serves humanity, and where technology amplifies our highest aspirations.
+          </p>
+        </div>
+      </div>
 
-          <div class="space-y-6">
-            <div class="border-l-4 border-electric-cyan pl-6">
-              <h3 class="text-xl font-bold text-electric-cyan">2024 Q3</h3>
-              <p class="text-gray-300">First algorithm prototype, using manual pairing and bit-string testing</p>
-            </div>
-            
-            <div class="border-l-4 border-quantum-pink pl-6">
-              <h3 class="text-xl font-bold text-quantum-pink">2024 Q4</h3>
-              <p class="text-gray-300">1GB to 15 byte test successful; algorithm validated against enwik9</p>
-            </div>
-
-            <div class="border-l-4 border-electric-cyan pl-6">
-              <h3 class="text-xl font-bold text-electric-cyan">2025 Q1</h3>
-              <p class="text-gray-300">Provisional patent filed (USPTO 63/807,027)</p>
-            </div>
-
-            <div class="border-l-4 border-quantum-pink pl-6">
-              <h3 class="text-xl font-bold text-quantum-pink">2025 Q2</h3>
-              <p class="text-gray-300">Independent validation completed; internal benchmarks published</p>
-            </div>
-
-            <div class="border-l-4 border-electric-cyan pl-6">
-              <h3 class="text-xl font-bold text-electric-cyan">2025 Q3</h3>
-              <p class="text-gray-300">Enterprise licensing opened; SBIR & xTechSearch submissions made</p>
-            </div>
-
-            <div class="border-l-4 border-quantum-pink pl-6">
-              <h3 class="text-xl font-bold text-quantum-pink">2025 Q4</h3>
-              <p class="text-gray-300">ByteLite prepares for Hutter Prize & NSF full proposal</p>
-            </div>
+      <!-- Deep Kore Philosophy -->
+      <div class="philosophy-section">
+        <h2>Deep Kore Neural Recursion</h2>
+        <p class="philosophy-intro">
+          ByteLite's compression mathematics revealed unexpected patterns in information processing, 
+          leading to breakthroughs in neural architecture design. This discovery carries profound 
+          implications for achieving true artificial general intelligence.
+        </p>
+        
+        <div class="philosophy-principles">
+          <div class="principle">
+            <span class="icon">🌿</span>
+            <h4>Efficient Intelligence</h4>
+            <p>Doing more with less—transforming constraints into capabilities</p>
+          </div>
+          
+          <div class="principle">
+            <span class="icon">🌊</span>
+            <h4>Recursive Depth</h4>
+            <p>Learning through layers of mathematical transformation</p>
+          </div>
+          
+          <div class="principle">
+            <span class="icon">♾️</span>
+            <h4>Limitless Potential</h4>
+            <p>Approaching theoretical infinity through innovation</p>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Philosophy -->
-    <section class="py-20">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-electric-cyan mb-8">Philosophy and Brand</h2>
-
-          <p class="text-gray-300 mb-6">
-            ByteLite is more than an algorithm?it's a philosophy of efficient intelligence. 
-            Its visual identity reflects this:
-          </p>
-
-          <div class="space-y-4 text-gray-300">
-            <p>- The <strong class="text-green-400">green leaf</strong> symbolizes eco-conscious computation: doing more with less.</p>
-            <p>- The <strong class="text-blue-400">blue wave</strong> stands for recursive depth: learning, compressing, and evolving.</p>
-            <p>- The <strong class="text-electric-cyan">infinity symbol</strong> represents limitless potential through transformation.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Founder Bio -->
-    <section class="py-20 bg-deep-space/30">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-quantum-pink mb-8">Founder Bio ? Tash Broadwater</h2>
-
-          <p class="text-gray-300 text-lg">
-            Tash is a compression researcher and software engineer with over 15 years of experience 
-            optimizing data systems for speed and efficiency. A Montana native with blue-collar grit 
-            and academic curiosity, Tash specializes in algorithmic design, bit-level logic, and AI 
-            systems that work <em>on the edge</em>, not just the cloud.
-          </p>
-
-          <p class="text-gray-300 text-lg mt-6">
-            When traditional solutions fail, Tash builds new ones from scratch?and ByteLite is the 
-            result of that ethos.
+      <!-- Founder -->
+      <div class="founder-section">
+        <h2>Leadership</h2>
+        <div class="founder-card">
+          <h3>Tash Broadwater, Founder & CEO</h3>
+          <p>
+            Compression researcher and software engineer with 15+ years optimizing data systems. 
+            Specializes in algorithmic design and edge AI systems. When traditional solutions fail, 
+            Tash builds new ones from scratch—ByteLite is the result of that ethos.
           </p>
         </div>
       </div>
-    </section>
-  </div>
+
+      <!-- Call to Action -->
+      <div class="cta-section">
+        <h3>Join Our Journey</h3>
+        <p>Be part of the compression revolution and the path to beneficial AGI.</p>
+        <div class="cta-buttons">
+          <a href="/subscribe" class="btn btn-primary">Subscribe for Updates</a>
+          <a href="/licensing" class="btn btn-secondary">Explore Licensing</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .about-content {
+    padding: 4rem 0;
+    background: var(--color-bg-darker);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Story Section */
+  .story-section {
+    margin-bottom: 6rem;
+    scroll-margin-top: 2rem;
+  }
+
+  .story-section h2 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .story-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    color: var(--color-text-dim);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .story-content p {
+    color: var(--color-text-dim);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  blockquote {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    font-style: italic;
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem;
+    border-left: 4px solid var(--color-primary);
+    background: rgba(0, 212, 255, 0.05);
+  }
+
+  /* Mission Section */
+  .mission-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 6rem;
+  }
+
+  .mission-card {
+    background: rgba(10, 14, 39, 0.8);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .mission-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary);
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+  }
+
+  .mission-card h3 {
+    font-size: 1.75rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .mission-card p {
+    color: var(--color-text-dim);
+    line-height: 1.6;
+  }
+
+  /* Philosophy Section */
+  .philosophy-section {
+    background: linear-gradient(135deg, rgba(255, 0, 110, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
+    border-radius: 16px;
+    padding: 4rem;
+    margin-bottom: 6rem;
+  }
+
+  .philosophy-section h2 {
+    font-size: 2.5rem;
+    color: var(--color-secondary);
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
+  }
+
+  .philosophy-intro {
+    text-align: center;
+    color: var(--color-text-dim);
+    font-size: 1.125rem;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+  }
+
+  .philosophy-principles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .principle {
+    text-align: center;
+  }
+
+  .principle .icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .principle h4 {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .principle p {
+    color: var(--color-text-dim);
+    font-size: 0.875rem;
+  }
+
+  /* Founder Section */
+  .founder-section {
+    margin-bottom: 6rem;
+  }
+
+  .founder-section h2 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .founder-card {
+    background: rgba(10, 14, 39, 0.6);
+    border: 1px solid rgba(224, 224, 224, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .founder-card h3 {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .founder-card p {
+    color: var(--color-text-dim);
+    line-height: 1.6;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    text-align: center;
+    padding: 4rem;
+    background: rgba(10, 14, 39, 0.6);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+  }
+
+  .cta-section h3 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    color: var(--color-text-dim);
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: var(--color-primary);
+    color: var(--color-bg-dark);
+  }
+
+  .btn-primary:hover {
+    background: #00B8E6;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+  }
+
+  .btn-secondary:hover {
+    background: var(--color-secondary);
+    color: var(--color-bg-dark);
+  }
+
+  @media (max-width: 768px) {
+    .story-section h2,
+    .philosophy-section h2 {
+      font-size: 2rem;
+    }
+
+    .philosophy-section {
+      padding: 2rem;
+    }
+
+    blockquote {
+      font-size: 1.25rem;
+      padding: 1rem;
+    }
+
+    .cta-section {
+      padding: 2rem;
+    }
+  }
+</style>
