@@ -9,5 +9,17 @@ export default defineConfig({
     tailwind(),
     sitemap(),
     react()
-  ]
+  ],
+  build: {
+    inlineStylesheets: 'auto'
+  },
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp'
+    }
+  },
+  compressHTML: true,
+  prefetch: {
+    prefetchAll: true
+  }
 });

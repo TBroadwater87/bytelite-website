@@ -1,0 +1,176 @@
+---
+export interface Props {
+  text?: string;
+  buttonText?: string;
+}
+
+const { 
+  text = "Join the compression revolution", 
+  buttonText = "Request Early Access" 
+} = Astro.props;
+---
+
+<div class="sticky-cta" id="stickyCTA">
+  <div class="sticky-cta-content">
+    <span class="sticky-cta-text">{text}</span>
+    <button class="sticky-cta-button" data-action="early-access">
+      {buttonText}
+    </button>
+    <button class="sticky-cta-close" aria-label="Close CTA">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<style>
+  .sticky-cta {
+    position: fixed;
+    bottom: -100px;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.98) 0%, rgba(6, 8, 19, 0.98) 100%);
+    border-top: 1px solid rgba(0, 212, 255, 0.3);
+    padding: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 90;
+    backdrop-filter: blur(10px);
+  }
+  
+  .sticky-cta.visible {
+    transform: translateY(0);
+  }
+  
+  .sticky-cta-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    position: relative;
+    padding: 0 3rem;
+  }
+  
+  .sticky-cta-text {
+    color: rgba(224, 224, 224, 0.9);
+    font-weight: 500;
+  }
+  
+  .sticky-cta-button {
+    background: linear-gradient(135deg, #00D4FF 0%, #0099CC 100%);
+    color: #0A0E27;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .sticky-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+  }
+  
+  .sticky-cta-close {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(224, 224, 224, 0.5);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  .sticky-cta-close:hover {
+    color: rgba(224, 224, 224, 0.8);
+  }
+  
+  /* Desktop specific */
+  @media (min-width: 768px) {
+    .sticky-cta {
+      bottom: 2rem;
+      left: auto;
+      right: 2rem;
+      max-width: 500px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .sticky-cta-content {
+      padding: 0 2rem;
+    }
+  }
+  
+  /* Mobile specific */
+  @media (max-width: 767px) {
+    .sticky-cta-content {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 0.5rem 3rem;
+    }
+    
+    .sticky-cta-text {
+      text-align: center;
+      font-size: 0.875rem;
+    }
+    
+    .sticky-cta-button {
+      width: 100%;
+      max-width: 280px;
+    }
+  }
+</style>
+
+<script>
+  const stickyCTA = document.getElementById('stickyCTA');
+  const closeBtn = stickyCTA?.querySelector('.sticky-cta-close');
+  const ctaButton = stickyCTA?.querySelector('.sticky-cta-button');
+  
+  // Check if user has dismissed before
+  const isDismissed = localStorage.getItem('stickyCTADismissed');
+  
+  if (stickyCTA && !isDismissed) {
+    // Show after scrolling 50%
+    let hasShown = false;
+    
+    const checkScroll = () => {
+      const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      
+      if (scrollPercent > 50 && !hasShown) {
+        stickyCTA.classList.add('visible');
+        hasShown = true;
+      }
+    };
+    
+    window.addEventListener('scroll', checkScroll);
+    
+    // Also show after 30 seconds
+    setTimeout(() => {
+      if (!hasShown) {
+        stickyCTA.classList.add('visible');
+        hasShown = true;
+      }
+    }, 30000);
+  }
+  
+  // Close button handler
+  closeBtn?.addEventListener('click', () => {
+    stickyCTA?.classList.remove('visible');
+    localStorage.setItem('stickyCTADismissed', 'true');
+  });
+  
+  // CTA button handler
+  ctaButton?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('show-early-access-modal'));
+    stickyCTA?.classList.remove('visible');
+  });
+</script>

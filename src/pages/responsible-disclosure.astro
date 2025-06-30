@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Responsible Disclosure - ByteLite"
+  description="ByteLite's responsible disclosure policy for security researchers and ethical hackers."
+>
+  <section class="py-20">
+    <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+      <h1 class="text-4xl font-bold mb-8">Responsible Disclosure Policy</h1>
+      
+      <div class="prose prose-lg prose-invert">
+        <p class="text-gray-300">
+          ByteLite values the security community and believes that responsible disclosure of security 
+          vulnerabilities helps us ensure the security and privacy of our users.
+        </p>
+        
+        <h2 class="text-2xl font-semibold mt-8 mb-4">Scope</h2>
+        <p class="text-gray-300">
+          This policy applies to any vulnerabilities discovered in:
+        </p>
+        <ul class="text-gray-300">
+          <li>ByteLite compression technology</li>
+          <li>Deep Kore systems and infrastructure</li>
+          <li>Our websites and web applications</li>
+          <li>Our APIs and backend services</li>
+        </ul>
+        
+        <h2 class="text-2xl font-semibold mt-8 mb-4">How to Report</h2>
+        <p class="text-gray-300">
+          If you believe you've found a security vulnerability, please email us at:
+        </p>
+        <p class="text-center my-6">
+          <a href="mailto:security@thebytelite.com" class="text-cyan-400 hover:text-cyan-300 text-xl font-mono">
+            security@thebytelite.com
+          </a>
+        </p>
+        
+        <h2 class="text-2xl font-semibold mt-8 mb-4">What to Include</h2>
+        <ul class="text-gray-300">
+          <li>Description of the vulnerability</li>
+          <li>Steps to reproduce the issue</li>
+          <li>Potential impact</li>
+          <li>Any proof-of-concept code</li>
+          <li>Your contact information</li>
+        </ul>
+        
+        <h2 class="text-2xl font-semibold mt-8 mb-4">Our Commitment</h2>
+        <ul class="text-gray-300">
+          <li>We will acknowledge receipt within 48 hours</li>
+          <li>We will provide an initial assessment within 7 days</li>
+          <li>We will keep you informed about our progress</li>
+          <li>We will credit you (if desired) when the issue is resolved</li>
+        </ul>
+        
+        <h2 class="text-2xl font-semibold mt-8 mb-4">Please Don't</h2>
+        <ul class="text-gray-300">
+          <li>Access or modify user data without permission</li>
+          <li>Perform actions that could harm our services or users</li>
+          <li>Publicly disclose the issue before we've addressed it</li>
+          <li>Demand compensation or rewards</li>
+        </ul>
+        
+        <h2 class="text-2xl font-semibold mt-8 mb-4">Recognition</h2>
+        <p class="text-gray-300">
+          We appreciate the security community's efforts in helping us maintain the highest security standards. 
+          With your permission, we'll acknowledge your contribution in our security hall of fame.
+        </p>
+        
+        <div class="bg-gray-900/50 border border-cyan-500/30 rounded-lg p-6 mt-8">
+          <h3 class="text-xl font-semibold mb-3 text-cyan-400">Legal Protection</h3>
+          <p class="text-gray-300">
+            We will not pursue legal action against security researchers who:
+          </p>
+          <ul class="text-gray-300 mt-2">
+            <li>Follow this responsible disclosure policy</li>
+            <li>Act in good faith</li>
+            <li>Do not cause harm to our systems or users</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .prose h2 {
+    color: #E0E0E0;
+  }
+  
+  .prose ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .prose li {
+    margin: 0.5rem 0;
+  }
+</style>

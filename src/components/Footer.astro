@@ -1,29 +1,35 @@
 ---
 ---
 
-<footer class="bg-void-black border-t border-electric-cyan/20 py-12">
-  <div class="container mx-auto px-6">
-    <div class="grid md:grid-cols-4 gap-8">
+<footer class="bg-gray-900 border-t border-gray-800 py-12">
+  <div class="container mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
       
       <!-- Company Info -->
-      <div>
+      <div class="col-span-2 md:col-span-1">
         <div class="flex items-center space-x-3 mb-4">
           <img src="/bytelite-logo.png" alt="ByteLite" class="h-8 w-auto" />
           <span class="text-xl font-bold text-white">ByteLite</span>
         </div>
-        <p class="text-gray-400 text-sm">
-          Revolutionary compression technology achieving 1TB to 18 bytes.
+        <p class="text-gray-300 text-sm mb-4">
+          Revolutionary compression technology achieving 1GB to 11 bytes.
         </p>
+        <div class="flex items-center space-x-4">
+          <span class="text-purple-400 font-semibold text-sm">Deep Kore</span>
+          <span class="text-gray-500">|</span>
+          <span class="text-gray-400 text-sm">AGI Awakening</span>
+        </div>
       </div>
 
       <!-- Quick Links -->
       <div>
         <h3 class="text-white font-semibold mb-4">Company</h3>
         <div class="space-y-2">
-          <a href="/about" class="text-gray-400 hover:text-electric-cyan text-sm block">About</a>
-          <a href="/technology" class="text-gray-400 hover:text-electric-cyan text-sm block">Technology</a>
-          <a href="/news" class="text-gray-400 hover:text-electric-cyan text-sm block">News</a>
-          <a href="/contact" class="text-gray-400 hover:text-electric-cyan text-sm block">Contact</a>
+          <a href="/about" class="text-gray-300 hover:text-cyan-400 text-sm block transition-colors">About</a>
+          <a href="/technology" class="text-gray-300 hover:text-cyan-400 text-sm block transition-colors">Technology</a>
+          <a href="/deepkore" class="text-gray-300 hover:text-purple-400 text-sm block transition-colors">Deep Kore</a>
+          <a href="/news" class="text-gray-300 hover:text-cyan-400 text-sm block transition-colors">News</a>
+          <a href="/contact" class="text-gray-300 hover:text-cyan-400 text-sm block transition-colors">Contact</a>
         </div>
       </div>
 
@@ -31,9 +37,10 @@
       <div>
         <h3 class="text-white font-semibold mb-4">Products</h3>
         <div class="space-y-2">
-          <a href="/demo" class="text-gray-400 hover:text-electric-cyan text-sm block">Live Demo</a>
-          <a href="/subscribe" class="text-gray-400 hover:text-electric-cyan text-sm block">Get Updates</a>
-          <a href="/licensing" class="text-gray-400 hover:text-electric-cyan text-sm block">Enterprise</a>
+          <a href="/demo" class="text-gray-300 hover:text-cyan-400 text-sm block transition-colors">Live Demo</a>
+          <a href="/research" class="text-gray-300 hover:text-cyan-400 text-sm block transition-colors">Research</a>
+          <a href="/subscribe" class="text-gray-300 hover:text-cyan-400 text-sm block transition-colors">Get Updates</a>
+          <a href="/licensing" class="text-gray-300 hover:text-cyan-400 text-sm block transition-colors">Enterprise</a>
         </div>
       </div>
 
@@ -41,19 +48,43 @@
       <div>
         <h3 class="text-white font-semibold mb-4">Legal</h3>
         <div class="space-y-2">
-          <a href="/privacy" class="text-gray-400 hover:text-electric-cyan text-sm block">Privacy</a>
-          <a href="/terms" class="text-gray-400 hover:text-electric-cyan text-sm block">Terms</a>
+          <a href="/privacy" class="text-gray-300 hover:text-cyan-400 text-sm block transition-colors">Privacy</a>
+          <a href="/terms" class="text-gray-300 hover:text-cyan-400 text-sm block transition-colors">Terms</a>
+          <a href="/responsible-disclosure" class="text-gray-300 hover:text-cyan-400 text-sm block transition-colors">Responsible Disclosure</a>
+          <p class="text-gray-400 text-xs mt-4">Patent Protected Technology</p>
         </div>
       </div>
     </div>
 
+    <!-- Newsletter Signup -->
+    <div class="border-t border-gray-800 mt-8 pt-8">
+      <div class="max-w-md mx-auto text-center mb-8">
+        <h3 class="text-white font-semibold mb-2">Stay Updated</h3>
+        <p class="text-gray-300 text-sm mb-4">Get notified about breakthroughs in compression and consciousness</p>
+        <form class="flex gap-2">
+          <input 
+            type="email" 
+            placeholder="your@email.com" 
+            class="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-gray-300 placeholder-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
+            aria-label="Email for newsletter"
+          />
+          <button 
+            type="submit" 
+            class="px-6 py-2 bg-cyan-500 hover:bg-cyan-600 text-gray-900 font-semibold rounded-md transition-colors"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+
     <!-- Bottom Bar -->
-    <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-      <p class="text-gray-400 text-sm">
-        Copyright 2025 ByteLite LLC. All rights reserved.
+    <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
+      <p class="text-gray-300 text-sm">
+        © 2025 ByteLite LLC • Helena, MT
       </p>
-      <p class="text-gray-400 text-sm">
-        US Patent 63/807,027 | Helena, Montana
+      <p class="text-gray-300 text-sm">
+        US Patent 63/807,027 • 22 Patents Pending • Working Technology
       </p>
     </div>
   </div>

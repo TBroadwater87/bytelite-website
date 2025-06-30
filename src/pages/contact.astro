@@ -1,41 +1,70 @@
-﻿---
+---
 import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm.astro';
 ---
 
-<Layout title="Contact" description="Get in touch with ByteLite">
-  <section class="hero-section">
+<Layout title="Contact ByteLite" description="Get in touch with ByteLite for licensing, partnerships, and enterprise solutions">
+  <section class="contact-page">
     <div class="container">
-      <h1>Get in <span class="glow-text">Touch</span></h1>
-      <p class="hero-subtitle">Let's discuss how ByteLite can transform your data infrastructure</p>
-    </div>
-  </section>
+      <div class="page-header">
+        <h1>Contact Us</h1>
+        <p>Connect with ByteLite for licensing, partnerships, and enterprise solutions</p>
+      </div>
 
-  <section class="contact-section">
-    <div class="container">
-      <div class="contact-content">
-        <div class="contact-info">
-          <h2>Let's Talk</h2>
-          <p>Whether you're interested in licensing, have technical questions, or want to explore partnership opportunities, we're here to help.</p>
-          
-          <div class="info-items">
-            <div class="info-item">
-              <h3>Email</h3>
-              <p><a href="mailto:info@thebytelite.com">info@thebytelite.com</a></p>
+      <div class="contact-grid">
+        <!-- Contact Information -->
+        <div class="contact-info-section">
+          <div class="info-card primary">
+            <div class="icon-wrapper">
+              <span class="icon">💬</span>
             </div>
-            <div class="info-item">
+            <h2>Let's Start a Conversation</h2>
+            <p>
+              Whether you're exploring enterprise compression solutions, interested in 
+              Deep Kore Neural Recursion applications, or seeking partnership opportunities, 
+              our team is ready to help you transform your data infrastructure.
+            </p>
+          </div>
+
+          <div class="info-cards">
+            <div class="info-card">
+              <h3>Direct Contact</h3>
+              <p class="contact-detail">
+                <a href="mailto:info@thebytelite.com">info@thebytelite.com</a>
+              </p>
+              <p class="note">For general inquiries and licensing</p>
+            </div>
+
+            <div class="info-card">
               <h3>Response Time</h3>
-              <p>We typically respond within 24 business hours</p>
+              <p class="contact-detail">Within 24 hours</p>
+              <p class="note">Business days, priority for enterprise</p>
             </div>
-            <div class="info-item">
-              <h3>Patent Information</h3>
-              <p>U.S. Patent Application No. 63/807,027</p>
+
+            <div class="info-card">
+              <h3>Patent Status</h3>
+              <p class="contact-detail">US 63/807,027</p>
+              <p class="note">Patent pending protection</p>
+            </div>
+
+            <div class="info-card">
+              <h3>Enterprise Solutions</h3>
+              <p class="contact-detail">Custom Integration</p>
+              <p class="note">Dedicated support & API access</p>
             </div>
           </div>
         </div>
 
-        <div class="contact-form-wrapper">
-          <ContactForm />
+        <!-- Contact Form -->
+        <div class="form-section">
+          <div class="form-card">
+            <h3>Send Us a Message</h3>
+            <p class="form-intro">
+              Fill out the form below and we'll get back to you promptly. 
+              For urgent matters, please email us directly.
+            </p>
+            <ContactForm />
+          </div>
         </div>
       </div>
     </div>
@@ -43,76 +72,220 @@ import ContactForm from '../components/ContactForm.astro';
 </Layout>
 
 <style>
-  .hero-section {
-    padding: 4rem 0;
+  .contact-page {
+    padding: 6rem 0 4rem;
+    background: var(--color-bg-darker);
+    min-height: calc(100vh - 200px);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Page Header */
+  .page-header {
     text-align: center;
-    background: var(--gradient-hero);
+    margin-bottom: 4rem;
   }
 
-  .hero-subtitle {
+  .page-header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0 0 1rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .page-header p {
     font-size: 1.25rem;
-    color: var(--color-text-muted);
-    margin-top: 1rem;
+    color: var(--color-text-dim);
+    line-height: 1.6;
   }
 
-  .contact-section {
-    padding: 5rem 0;
-  }
-
-  .contact-content {
+  /* Contact Grid Layout */
+  .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    max-width: 1000px;
-    margin: 0 auto;
+    align-items: start;
   }
 
-  .contact-info h2 {
+  /* Contact Information Section */
+  .contact-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* Primary Info Card */
+  .info-card.primary {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 0, 110, 0.1) 100%);
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .info-card.primary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+    animation: pulse-bg 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-bg {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+  }
+
+  .icon-wrapper {
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .icon {
+    font-size: 3rem;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .info-card.primary h2 {
+    font-size: 2rem;
+    color: var(--color-primary);
     margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
   }
 
-  .contact-info > p {
-    color: var(--color-text-muted);
+  .info-card.primary p {
+    color: var(--color-text-dim);
     line-height: 1.8;
-    margin-bottom: 2rem;
+    font-size: 1.125rem;
+    position: relative;
+    z-index: 1;
   }
 
-  .info-items {
+  /* Info Cards Grid */
+  .info-cards {
     display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
   }
 
-  .info-item h3 {
+  .info-card {
+    background: rgba(10, 14, 39, 0.6);
+    border: 1px solid rgba(224, 224, 224, 0.1);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: all 0.3s ease;
+  }
+
+  .info-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+  }
+
+  .info-card h3 {
     font-size: 1rem;
     color: var(--color-primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
-  .info-item p {
-    color: var(--color-text-muted);
-  }
-
-  .info-item a {
+  .contact-detail {
+    font-size: 1.125rem;
     color: var(--color-text);
-    text-decoration: none;
-    transition: color 0.2s;
+    margin: 0 0 0.5rem;
+    font-weight: 600;
   }
 
-  .info-item a:hover {
+  .contact-detail a {
     color: var(--color-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
   }
 
-  .contact-form-wrapper {
-    background: var(--color-surface);
-    padding: 2.5rem;
-    border-radius: 1rem;
+  .contact-detail a:hover {
+    color: var(--color-secondary);
+    text-shadow: 0 0 10px rgba(255, 0, 110, 0.5);
+  }
+
+  .note {
+    font-size: 0.875rem;
+    color: var(--color-text-dim);
+    margin: 0;
+  }
+
+  /* Form Section */
+  .form-card {
+    background: rgba(10, 14, 39, 0.8);
     border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 16px;
+    padding: 3rem;
+    height: 100%;
+  }
+
+  .form-card h3 {
+    font-size: 1.75rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .form-intro {
+    color: var(--color-text-dim);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 968px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .info-cards {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 768px) {
-    .contact-content {
-      grid-template-columns: 1fr;
-      gap: 3rem;
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .page-header p {
+      font-size: 1rem;
+    }
+
+    .info-card.primary {
+      padding: 2rem;
+    }
+
+    .info-card.primary h2 {
+      font-size: 1.5rem;
+    }
+
+    .form-card {
+      padding: 2rem;
     }
   }
 </style>

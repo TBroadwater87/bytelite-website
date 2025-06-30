@@ -1,6 +1,8 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import EarlyAccessModal from '../components/EarlyAccessModal.astro';
+import StickyCTA from '../components/StickyCTA.astro';
 
 export interface Props {
   title: string;
@@ -11,7 +13,7 @@ export interface Props {
 
 const { 
   title, 
-  description = "ByteLite compression technology transforms 1GB into 11 bytes through revolutionary recursive mathematical operations. Patent pending US 63/807,027.",
+  description = "ByteLite + Deep Kore | Compression meets consciousness. Revolutionary technology transforming 1GB into 11 bytes. Patent pending US 63/807,027.",
   image = "/bytelite-og-image.jpg",
   includeAnalytics = true
 } = Astro.props;
@@ -22,7 +24,7 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title} | ByteLite - 1GB → 11 Bytes</title>
+    <title>{title} | ByteLite + Deep Kore | Compression Meets Consciousness</title>
     <meta name="description" content={description} />
     
     <!-- Open Graph / Social Media -->
@@ -37,9 +39,16 @@ const {
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/bytelite-logo.png" />
     
-    <!-- Fonts -->
+    <!-- Performance Hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="/fonts/Atkinson-Hyperlegible-Regular-102.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/bytelite-logo.png" as="image" type="image/png" />
+    
+    <!-- Fonts with display swap -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet" />
   </head>
   <body class="bg-dark-navy text-white">
@@ -48,10 +57,13 @@ const {
       <slot />
     </main>
     <Footer />
+    <EarlyAccessModal />
+    <StickyCTA />
     <style is:global>
       :root {
         --color-primary: #00D4FF;
         --color-secondary: #FF006E;
+        --color-deepkore: #A855F7;
         --color-bg-dark: #0A0E27;
         --color-bg-darker: #060813;
         --color-text: #E0E0E0;

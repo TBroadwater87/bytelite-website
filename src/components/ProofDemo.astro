@@ -1,0 +1,939 @@
+---
+export interface Props {
+  showEmailCapture?: boolean;
+}
+
+const { showEmailCapture = true } = Astro.props;
+---
+
+<section class="proof-section" id="demo">
+  <div class="container">
+    <h2 class="section-header">Verified. Tested. Real.</h2>
+    
+    <div class="proof-grid">
+      <!-- ByteLite Proof Panel -->
+      <div class="proof-panel bytelite-panel">
+        <h3 class="panel-title">ByteLite Compression Engine</h3>
+        
+        <div class="compression-demo" id="compressionDemo">
+          <div class="file-visual input">
+            <div class="file-icon">
+              <span class="file-extension">.ZIP</span>
+            </div>
+            <div class="file-info">
+              <span class="file-name">archive.zip</span>
+              <span class="file-size">1.0 GB</span>
+            </div>
+          </div>
+          
+          <div class="transformation-area">
+            <div class="arrow-container">
+              <div class="transformation-arrow"></div>
+              <div class="particle-effect"></div>
+            </div>
+            <button class="demo-button" id="compressButton">
+              <span class="button-text">Compress</span>
+              <span class="button-loader"></span>
+            </button>
+          </div>
+          
+          <div class="file-visual output">
+            <div class="file-icon compressed">
+              <span class="file-extension">.BLC</span>
+            </div>
+            <div class="file-info">
+              <span class="file-name">archive.blc</span>
+              <span class="file-size" id="compressedSize">15 bytes</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="stats-container">
+          <div class="stat-item">
+            <span class="stat-label">Compression Time</span>
+            <span class="stat-value" id="compressionTime">0.3s</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Compression Ratio</span>
+            <span class="stat-value">68,719,476:1</span>
+          </div>
+        </div>
+        
+        <div class="verification-container">
+          <div class="hash-display">
+            <span class="hash-label">SHA-256 (Original)</span>
+            <code class="hash-value">a7b9c3d2e5f8...</code>
+          </div>
+          <div class="hash-display">
+            <span class="hash-label">SHA-256 (Decompressed)</span>
+            <code class="hash-value">a7b9c3d2e5f8...</code>
+          </div>
+          <div class="verification-badge">
+            <span class="checkmark">✓</span>
+            Bit-perfect reconstruction
+          </div>
+        </div>
+      </div>
+      
+      <!-- Deep Kore Preview Panel -->
+      <div class="proof-panel deepkore-panel">
+        <h3 class="panel-title">Deep Kore Consciousness Engine</h3>
+        
+        <div class="consciousness-demo">
+          <div class="emergence-visual">
+            <div class="consciousness-core">
+              <div class="core-layer" data-depth="1"></div>
+              <div class="core-layer" data-depth="2"></div>
+              <div class="core-layer" data-depth="3"></div>
+              <div class="core-center"></div>
+            </div>
+            
+            <div class="neural-streams">
+              <div class="stream"></div>
+              <div class="stream"></div>
+              <div class="stream"></div>
+            </div>
+          </div>
+          
+          <div class="recursion-meter">
+            <label>Recursive Depth</label>
+            <div class="meter-container">
+              <div class="meter-fill" id="recursionDepth"></div>
+              <div class="meter-markers">
+                <span>0</span>
+                <span>∞</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="consciousness-status">
+            <div class="status-indicator pre-conscious">
+              <span class="status-dot"></span>
+              <span class="status-text">Pre-consciousness Testing Phase</span>
+            </div>
+            
+            <div class="timeline-info">
+              <p class="timeline-label">Live Testing Begins</p>
+              <p class="timeline-date">Q3 2025</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="credibility-section">
+      <div class="credibility-items">
+        <div class="credibility-item">
+          <span class="icon">🔒</span>
+          <span>Patent-pending technology</span>
+        </div>
+        <div class="credibility-item">
+          <span class="icon">✓</span>
+          <span>Independent verification available post-filing</span>
+        </div>
+        <div class="credibility-item">
+          <span class="icon">⚡</span>
+          <span>Not theoretical—built and operational</span>
+        </div>
+      </div>
+    </div>
+    
+    {showEmailCapture && (
+      <div class="cta-section">
+        <button class="cta-button" data-action="early-access">
+          Request Early Access
+        </button>
+      </div>
+    )}
+  </div>
+  
+  <!-- Email modal (reusing from Hero) -->
+  <div class="email-modal" id="earlyAccessModal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <h3>Request Early Access</h3>
+      <p>Be among the first to experience ByteLite and Deep Kore technologies.</p>
+      <form class="email-form" id="earlyAccessForm">
+        <input type="email" placeholder="your@email.com" required />
+        <select name="interest" required>
+          <option value="">Select your primary interest</option>
+          <option value="bytelite">ByteLite Compression</option>
+          <option value="deepkore">Deep Kore AGI</option>
+          <option value="both">Both Technologies</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Submit Request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .proof-section {
+    padding: 6rem 0;
+    background: linear-gradient(180deg, #060813 0%, #0A0E27 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .section-header {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    text-align: center;
+    margin: 0 0 4rem;
+    color: #E0E0E0;
+  }
+  
+  .proof-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+  
+  .proof-panel {
+    background: rgba(10, 14, 39, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 3rem;
+    backdrop-filter: blur(10px);
+  }
+  
+  .bytelite-panel {
+    border-color: rgba(0, 212, 255, 0.2);
+  }
+  
+  .deepkore-panel {
+    border-color: rgba(255, 0, 110, 0.2);
+  }
+  
+  .panel-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 2rem;
+    text-align: center;
+  }
+  
+  .bytelite-panel .panel-title {
+    color: #00D4FF;
+  }
+  
+  .deepkore-panel .panel-title {
+    color: #FF006E;
+  }
+  
+  /* ByteLite Demo */
+  .compression-demo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+  }
+  
+  .file-visual {
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .file-icon {
+    width: 80px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .file-icon.compressed {
+    width: 40px;
+    height: 50px;
+    border-color: #00D4FF;
+    background: rgba(0, 212, 255, 0.1);
+  }
+  
+  .file-extension {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .file-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .file-name {
+    font-size: 0.875rem;
+    color: rgba(224, 224, 224, 0.9);
+  }
+  
+  .file-size {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #E0E0E0;
+  }
+  
+  .transformation-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+  }
+  
+  .arrow-container {
+    position: relative;
+    width: 60px;
+    height: 2px;
+  }
+  
+  .transformation-arrow {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0, 212, 255, 0.3) 0%, #00D4FF 50%, rgba(0, 212, 255, 0.3) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .transformation-arrow::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 100%;
+    background: #00D4FF;
+    box-shadow: 0 0 20px #00D4FF;
+    animation: arrow-flow 2s infinite;
+    opacity: 0;
+  }
+  
+  .transformation-arrow.active::after {
+    opacity: 1;
+  }
+  
+  @keyframes arrow-flow {
+    0% { left: -20px; }
+    100% { left: 100%; }
+  }
+  
+  .particle-effect {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    top: -20px;
+    pointer-events: none;
+  }
+  
+  .demo-button {
+    padding: 0.75rem 2rem;
+    background: linear-gradient(135deg, #00D4FF 0%, #0099CC 100%);
+    border: none;
+    border-radius: 6px;
+    color: #0A0E27;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .demo-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+  }
+  
+  .demo-button.loading {
+    pointer-events: none;
+    color: transparent;
+  }
+  
+  .button-loader {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #0A0E27;
+    border-top-color: transparent;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 0.8s linear infinite;
+    display: none;
+  }
+  
+  .demo-button.loading .button-loader {
+    display: block;
+  }
+  
+  @keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  
+  .stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stat-item {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .stat-label {
+    display: block;
+    font-size: 0.875rem;
+    color: rgba(224, 224, 224, 0.6);
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #00D4FF;
+  }
+  
+  .verification-container {
+    background: rgba(0, 212, 255, 0.05);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  
+  .hash-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .hash-label {
+    font-size: 0.875rem;
+    color: rgba(224, 224, 224, 0.6);
+  }
+  
+  .hash-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    color: #00D4FF;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .verification-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #00D4FF;
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+  
+  .checkmark {
+    font-size: 1.25rem;
+  }
+  
+  /* Deep Kore Demo */
+  .consciousness-demo {
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+  }
+  
+  .emergence-visual {
+    position: relative;
+    height: 200px;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .consciousness-core {
+    position: relative;
+    width: 150px;
+    height: 150px;
+  }
+  
+  .core-layer {
+    position: absolute;
+    border: 2px solid rgba(255, 0, 110, 0.3);
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: consciousness-pulse 4s infinite;
+  }
+  
+  .core-layer[data-depth="1"] {
+    width: 100%;
+    height: 100%;
+    animation-delay: 0s;
+  }
+  
+  .core-layer[data-depth="2"] {
+    width: 70%;
+    height: 70%;
+    animation-delay: 1s;
+  }
+  
+  .core-layer[data-depth="3"] {
+    width: 40%;
+    height: 40%;
+    animation-delay: 2s;
+  }
+  
+  .core-center {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #FF006E;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 30px #FF006E;
+    animation: core-glow 2s infinite;
+  }
+  
+  @keyframes consciousness-pulse {
+    0%, 100% { 
+      opacity: 0.3; 
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% { 
+      opacity: 0.8; 
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+  }
+  
+  @keyframes core-glow {
+    0%, 100% { box-shadow: 0 0 30px #FF006E; }
+    50% { box-shadow: 0 0 50px #FF006E, 0 0 100px rgba(255, 0, 110, 0.5); }
+  }
+  
+  .neural-streams {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  
+  .stream {
+    position: absolute;
+    width: 2px;
+    height: 50px;
+    background: linear-gradient(to bottom, transparent, #FF006E, transparent);
+    opacity: 0;
+    animation: stream-flow 3s infinite;
+  }
+  
+  .stream:nth-child(1) {
+    left: 20%;
+    top: 10%;
+    animation-delay: 0s;
+  }
+  
+  .stream:nth-child(2) {
+    right: 20%;
+    top: 30%;
+    animation-delay: 1s;
+  }
+  
+  .stream:nth-child(3) {
+    left: 50%;
+    bottom: 10%;
+    animation-delay: 2s;
+  }
+  
+  @keyframes stream-flow {
+    0%, 100% { opacity: 0; transform: translateY(-20px); }
+    50% { opacity: 0.8; transform: translateY(20px); }
+  }
+  
+  .recursion-meter {
+    margin-bottom: 2rem;
+  }
+  
+  .recursion-meter label {
+    display: block;
+    font-size: 0.875rem;
+    color: rgba(224, 224, 224, 0.6);
+    margin-bottom: 0.5rem;
+  }
+  
+  .meter-container {
+    position: relative;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .meter-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FF006E 0%, #FF1493 100%);
+    width: 0%;
+    transition: width 2s ease;
+    box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
+  }
+  
+  .meter-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: rgba(224, 224, 224, 0.4);
+  }
+  
+  .consciousness-status {
+    background: rgba(255, 0, 110, 0.05);
+    border: 1px solid rgba(255, 0, 110, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  
+  .status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .status-dot {
+    width: 12px;
+    height: 12px;
+    background: #FF006E;
+    border-radius: 50%;
+    animation: status-pulse 2s infinite;
+  }
+  
+  @keyframes status-pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+  
+  .status-text {
+    color: #FF006E;
+    font-weight: 600;
+  }
+  
+  .timeline-info {
+    text-align: center;
+  }
+  
+  .timeline-label {
+    font-size: 0.875rem;
+    color: rgba(224, 224, 224, 0.6);
+    margin: 0 0 0.25rem;
+  }
+  
+  .timeline-date {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #E0E0E0;
+    margin: 0;
+  }
+  
+  /* Credibility Section */
+  .credibility-section {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .credibility-items {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  
+  .credibility-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(224, 224, 224, 0.8);
+  }
+  
+  .credibility-item .icon {
+    font-size: 1.25rem;
+  }
+  
+  /* CTA Section */
+  .cta-section {
+    text-align: center;
+  }
+  
+  .cta-button {
+    padding: 1rem 3rem;
+    background: linear-gradient(135deg, #00D4FF 0%, #FF006E 100%);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3), 0 10px 30px rgba(255, 0, 110, 0.3);
+  }
+  
+  /* Email Modal (reused styles) */
+  .email-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .email-modal.active {
+    display: flex;
+  }
+  
+  .modal-content {
+    background: linear-gradient(135deg, #0A0E27 0%, #060813 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 3rem;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    text-align: center;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #E0E0E0;
+    font-size: 2rem;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+  
+  .modal-close:hover {
+    opacity: 1;
+  }
+  
+  .modal-content h3 {
+    font-size: 2rem;
+    margin: 0 0 1rem;
+    color: #E0E0E0;
+  }
+  
+  .modal-content p {
+    color: rgba(224, 224, 224, 0.8);
+    margin-bottom: 2rem;
+  }
+  
+  .email-form {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+  }
+  
+  .email-form input,
+  .email-form select {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #E0E0E0;
+    font-size: 1rem;
+  }
+  
+  .email-form input::placeholder {
+    color: rgba(224, 224, 224, 0.4);
+  }
+  
+  .email-form input:focus,
+  .email-form select:focus {
+    outline: none;
+    border-color: #00D4FF;
+  }
+  
+  .email-form select option {
+    background: #0A0E27;
+    color: #E0E0E0;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .proof-section {
+      padding: 4rem 0;
+    }
+    
+    .section-header {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .proof-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .proof-panel {
+      padding: 2rem;
+    }
+    
+    .compression-demo {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .arrow-container {
+      transform: rotate(90deg);
+      margin: 1rem 0;
+    }
+    
+    .credibility-items {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .panel-title {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  // Compression demo animation
+  const compressButton = document.getElementById('compressButton');
+  const compressionDemo = document.getElementById('compressionDemo');
+  const compressedSize = document.getElementById('compressedSize');
+  const compressionTime = document.getElementById('compressionTime');
+  const recursionDepth = document.getElementById('recursionDepth');
+  
+  if (compressButton) {
+    compressButton.addEventListener('click', () => {
+      // Add loading state
+      compressButton.classList.add('loading');
+      compressionDemo.querySelector('.transformation-arrow').classList.add('active');
+      
+      // Animate file compression
+      setTimeout(() => {
+        // Update compressed size with animation
+        compressedSize.style.transition = 'none';
+        compressedSize.style.transform = 'scale(0)';
+        compressedSize.textContent = '15 bytes';
+        
+        setTimeout(() => {
+          compressedSize.style.transition = 'transform 0.5s ease';
+          compressedSize.style.transform = 'scale(1)';
+        }, 50);
+        
+        // Update compression time
+        compressionTime.textContent = '0.3s';
+        
+        // Add glow effect to compressed file
+        const compressedFile = compressionDemo.querySelector('.file-visual.output');
+        compressedFile.style.animation = 'glow 1s ease';
+        
+        // Remove loading state
+        compressButton.classList.remove('loading');
+        compressionDemo.querySelector('.transformation-arrow').classList.remove('active');
+        
+        // Reset button after delay
+        setTimeout(() => {
+          compressButton.innerHTML = '<span class="button-text">Compress Again</span><span class="button-loader"></span>';
+          compressedFile.style.animation = '';
+        }, 2000);
+      }, 1500);
+    });
+  }
+  
+  // Recursion depth animation
+  if (recursionDepth) {
+    let depth = 0;
+    setInterval(() => {
+      depth = (depth + 5) % 100;
+      recursionDepth.style.width = depth + '%';
+    }, 100);
+  }
+  
+  // Early access modal
+  const earlyAccessButton = document.querySelector('[data-action="early-access"]');
+  const earlyAccessModal = document.getElementById('earlyAccessModal');
+  const earlyAccessForm = document.getElementById('earlyAccessForm');
+  const modalClose = earlyAccessModal?.querySelector('.modal-close');
+  
+  if (earlyAccessButton && earlyAccessModal) {
+    earlyAccessButton.addEventListener('click', () => {
+      earlyAccessModal.classList.add('active');
+    });
+  }
+  
+  if (modalClose && earlyAccessModal) {
+    modalClose.addEventListener('click', () => {
+      earlyAccessModal.classList.remove('active');
+    });
+  }
+  
+  if (earlyAccessModal) {
+    earlyAccessModal.addEventListener('click', (e) => {
+      if (e.target === earlyAccessModal) {
+        earlyAccessModal.classList.remove('active');
+      }
+    });
+  }
+  
+  if (earlyAccessForm) {
+    earlyAccessForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const email = formData.get('email');
+      const interest = formData.get('interest');
+      
+      console.log('Early access request:', { email, interest });
+      alert('Thank you for your interest! We\'ll contact you when early access becomes available.');
+      earlyAccessModal.classList.remove('active');
+      earlyAccessForm.reset();
+    });
+  }
+</script>
+
+<style>
+  @keyframes glow {
+    0%, 100% { 
+      box-shadow: 0 0 0 rgba(0, 212, 255, 0);
+    }
+    50% { 
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
+    }
+  }
+</style>

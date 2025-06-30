@@ -1,39 +1,143 @@
-﻿---
+---
 import HeaderLink from './HeaderLink.astro';
 ---
 
 <header class="bg-dark-navy/95 backdrop-blur-md border-b border-electric-cyan/20 sticky top-0 z-50">
-  <nav class="container mx-auto px-6 py-4">
+  <nav class="container mx-auto px-4 sm:px-6 py-4">
     <div class="flex items-center justify-between">
       
       <!-- Logo -->
-      <div class="flex items-center space-x-3">
+      <div class="flex items-center">
         <a href="/" class="flex items-center space-x-3 group">
-          <img src="/bytelite-logo.png" alt="ByteLite" class="h-10 w-auto transition-transform group-hover:scale-110" />
-          <span class="text-xl font-bold text-white group-hover:text-electric-cyan transition-colors">ByteLite</span>
+          <img src="/bytelite-logo.png" alt="ByteLite" class="h-8 sm:h-10 w-auto transition-transform group-hover:scale-110" />
+          <span class="text-lg sm:text-xl font-bold text-white group-hover:text-electric-cyan transition-colors">ByteLite</span>
         </a>
       </div>
 
       <!-- Navigation Links -->
-      <div class="hidden md:flex items-center space-x-8">
+      <div class="hidden lg:flex items-center space-x-6 xl:space-x-8">
         <HeaderLink href="/">Home</HeaderLink>
         <HeaderLink href="/demo">Demo</HeaderLink>
         <HeaderLink href="/technology">Technology</HeaderLink>
+        <HeaderLink href="/deepkore" class="text-purple-400 hover:text-purple-300">Deep Kore</HeaderLink>
         <HeaderLink href="/about">About</HeaderLink>
-        <HeaderLink href="/subscribe">Subscribe</HeaderLink>
-        <HeaderLink href="/licensing">Licensing</HeaderLink>
-        <HeaderLink href="/news">News</HeaderLink>
         <HeaderLink href="/contact">Contact</HeaderLink>
       </div>
 
       <!-- Mobile Menu Button -->
-      <div class="md:hidden">
-        <button class="text-white hover:text-electric-cyan transition-colors">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="800" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
+      <button 
+        class="lg:hidden text-white hover:text-electric-cyan transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
+        aria-label="Toggle menu"
+        id="mobileMenuToggle"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu lg:hidden">
+      <div class="py-4 space-y-2">
+        <a href="/" class="mobile-menu-link">Home</a>
+        <a href="/demo" class="mobile-menu-link">Demo</a>
+        <a href="/technology" class="mobile-menu-link">Technology</a>
+        <a href="/deepkore" class="mobile-menu-link text-purple-400">Deep Kore</a>
+        <a href="/about" class="mobile-menu-link">About</a>
+        <a href="/subscribe" class="mobile-menu-link">Subscribe</a>
+        <a href="/licensing" class="mobile-menu-link">Licensing</a>
+        <a href="/news" class="mobile-menu-link">News</a>
+        <a href="/contact" class="mobile-menu-link">Contact</a>
       </div>
     </div>
   </nav>
 </header>
+
+<style>
+  .mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+  
+  .mobile-menu.active {
+    max-height: 500px;
+  }
+  
+  .mobile-menu-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: rgba(224, 224, 224, 0.9);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    font-weight: 500;
+  }
+  
+  .mobile-menu-link:hover {
+    background: rgba(0, 212, 255, 0.1);
+    color: #00D4FF;
+  }
+  
+  .mobile-menu-link.text-purple-400:hover {
+    background: rgba(168, 85, 247, 0.1);
+    color: #A855F7;
+  }
+  
+  @media (min-width: 1024px) {
+    .mobile-menu {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const body = document.body;
+  
+  let isMenuOpen = false;
+  
+  mobileMenuToggle?.addEventListener('click', () => {
+    isMenuOpen = !isMenuOpen;
+    
+    if (isMenuOpen) {
+      mobileMenu?.classList.add('active');
+      body.style.overflow = 'hidden';
+      
+      // Add backdrop
+      const backdrop = document.createElement('div');
+      backdrop.className = 'mobile-menu-backdrop';
+      backdrop.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: 40;
+      `;
+      body.appendChild(backdrop);
+      
+      backdrop.addEventListener('click', closeMenu);
+    } else {
+      closeMenu();
+    }
+  });
+  
+  function closeMenu() {
+    isMenuOpen = false;
+    mobileMenu?.classList.remove('active');
+    body.style.overflow = '';
+    
+    const backdrop = document.querySelector('.mobile-menu-backdrop');
+    backdrop?.remove();
+  }
+  
+  // Close menu when clicking links
+  const menuLinks = mobileMenu?.querySelectorAll('a');
+  menuLinks?.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>
