@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
 import InteractiveCompressionDemo from '../components/InteractiveCompressionDemo.tsx';
 import HighLevelVisualization from '../components/HighLevelVisualization.astro';
 import CompressionDemo from '../components/CompressionDemo.astro';
@@ -10,17 +9,6 @@ import CompressionDemo from '../components/CompressionDemo.astro';
   title="Live Demo - ByteLite Compression" 
   description="Experience ByteLite's revolutionary compression technology in action. Try the interactive demo and see how 1GB becomes 11 bytes."
 >
-  <Hero 
-    variant="minimal"
-    showPatentBadge={false}
-    showStats={false}
-    showBackground={false}
-    title={{ from: "Live Demo", to: "In Action" }}
-    subtitle="Experience the Power of ByteLite Compression"
-    description="Upload any file and watch as ByteLite transforms it using revolutionary recursive mathematical operations."
-    primaryCTA={null}
-    secondaryCTA={null}
-  />
 
   <section class="demo-content">
     <div class="container">

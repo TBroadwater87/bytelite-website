@@ -1,23 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
 ---
 
 <Layout
   title="About ByteLite - Our Mission"
   description="Transforming data compression to unlock computational intelligence for humanity's benefit."
 >
-  <Hero 
-    variant="minimal"
-    showPatentBadge={true}
-    showStats={false}
-    showBackground={false}
-    title={{ from: "About", to: "ByteLite" }}
-    subtitle="From Accidental Discovery to Revolutionary Technology"
-    description="What began as a solution for AI efficiency became a breakthrough in compression mathematics with implications for artificial general intelligence."
-    primaryCTA={{ text: "Read Our Story", link: "#story" }}
-    secondaryCTA={{ text: "Subscribe for Updates", link: "/subscribe" }}
-  />
 
   <section class="about-content">
     <div class="container">
