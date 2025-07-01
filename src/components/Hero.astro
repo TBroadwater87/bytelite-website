@@ -154,7 +154,7 @@ const {
   .split-panels {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    gap: 3rem;
+    gap: 2rem;
     margin-bottom: 4rem;
     align-items: stretch;
   }
@@ -213,8 +213,9 @@ const {
   }
   
   .panel-content {
-    padding: 3rem;
+    padding: 3rem 2rem;
     text-align: center;
+    min-width: 0;
   }
   
   /* Panel Typography */
@@ -239,9 +240,11 @@ const {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-size: clamp(1.75rem, 4vw, 3rem);
     font-weight: 700;
     margin-bottom: 1.5rem;
+    white-space: nowrap;
+    flex-wrap: wrap;
   }
   
   .tech-transformation .from {
@@ -382,7 +385,8 @@ const {
     }
     
     .tech-transformation {
-      font-size: 2.25rem; /* Larger for mobile impact */
+      font-size: 1.5rem; /* Adjusted for better fit */
+      gap: 0.5rem;
     }
     
     .tech-headline {
@@ -414,6 +418,24 @@ const {
     .btn {
       width: 100%;
       max-width: 300px;
+    }
+  }
+  
+  /* Extra small screens */
+  @media (max-width: 480px) {
+    .tech-transformation {
+      font-size: 1.25rem;
+      flex-direction: column;
+      gap: 0.25rem;
+      white-space: normal;
+    }
+    
+    .tech-transformation .arrow {
+      transform: rotate(90deg);
+    }
+    
+    .panel-content {
+      padding: 1.5rem 1rem;
     }
   }
   
