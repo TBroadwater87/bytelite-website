@@ -39,6 +39,86 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
 
+      <!-- Infinite Storage Section -->
+      <div class="infinite-storage-section">
+        <h2>Infinite Data Storage in Finite Space</h2>
+        <p class="section-intro">
+          ByteLite's hierarchical compression structure enables a revolutionary approach to data storage 
+          that approaches theoretical infinity through recursive application.
+        </p>
+        
+        <div class="hierarchy-demo">
+          <h3>The Power of Hierarchical Compression</h3>
+          <div class="compression-levels">
+            <div class="level">
+              <div class="level-header">Level 1</div>
+              <div class="level-content">
+                <div class="data-flow">
+                  <span class="data-size">1 GB file</span>
+                  <span class="arrow">→</span>
+                  <span class="compressed-size">15 bytes</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="level">
+              <div class="level-header">Level 2</div>
+              <div class="level-content">
+                <p class="level-description">
+                  Combine multiple compressed files:<br/>
+                  68.3 million × 15 bytes = ~1 GB
+                </p>
+                <div class="data-flow">
+                  <span class="data-size">1 GB of compressed files</span>
+                  <span class="arrow">→</span>
+                  <span class="compressed-size">15 bytes</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="level">
+              <div class="level-header">Level 3</div>
+              <div class="level-content">
+                <p class="level-description">
+                  Recursive compression continues:<br/>
+                  68.3 million × Level 2 files
+                </p>
+                <div class="data-flow">
+                  <span class="data-size">~68.3 million GB</span>
+                  <span class="arrow">→</span>
+                  <span class="compressed-size">15 bytes</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="level infinite">
+              <div class="level-header">Level ∞</div>
+              <div class="level-content">
+                <p class="infinity-text">
+                  Theoretical infinite storage<br/>
+                  in just 15 bytes
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="explanation-box">
+            <h4>How It Works</h4>
+            <p>
+              ByteLite's compression algorithm doesn't just compress data—it creates a hierarchical structure 
+              that can be recursively applied. Each compression level maintains perfect data integrity while 
+              exponentially increasing storage capacity.
+            </p>
+            <ul>
+              <li>Start with any 1GB file → compress to 15 bytes</li>
+              <li>Collect ~68.3 million compressed files (15 bytes each) to equal 1GB</li>
+              <li>Compress this collection → another 15 bytes</li>
+              <li>Repeat infinitely for unlimited storage potential</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <!-- Deep Kore Section -->
       <div class="deep-kore-section">
         <h2>Deep Kore Neural Recursion</h2>
@@ -138,6 +218,144 @@ import Layout from '../layouts/Layout.astro';
   .point-card p {
     color: var(--color-text-dim);
     line-height: 1.6;
+  }
+
+  /* Infinite Storage Section */
+  .infinite-storage-section {
+    margin-bottom: 6rem;
+  }
+
+  .infinite-storage-section h2 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .hierarchy-demo {
+    background: rgba(10, 14, 39, 0.6);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 16px;
+    padding: 3rem;
+    margin-top: 3rem;
+  }
+
+  .hierarchy-demo h3 {
+    font-size: 1.75rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .compression-levels {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .level {
+    background: rgba(0, 212, 255, 0.05);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .level:hover {
+    transform: translateX(10px);
+    border-color: var(--color-primary);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+  }
+
+  .level-header {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .level-description {
+    font-size: 0.875rem;
+    color: var(--color-text-dim);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .data-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-weight: 600;
+  }
+
+  .data-size {
+    color: var(--color-text);
+    font-size: 1.125rem;
+  }
+
+  .arrow {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+  }
+
+  .compressed-size {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+  }
+
+  .level.infinite {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(0, 212, 255, 0.1));
+    border-color: rgba(168, 85, 247, 0.5);
+  }
+
+  .infinity-text {
+    text-align: center;
+    font-size: 1.25rem;
+    color: var(--color-secondary);
+    font-weight: 600;
+    text-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
+  }
+
+  .explanation-box {
+    background: rgba(0, 212, 255, 0.05);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+  }
+
+  .explanation-box h4 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .explanation-box p {
+    color: var(--color-text-dim);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .explanation-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .explanation-box li {
+    color: var(--color-text-dim);
+    padding-left: 2rem;
+    position: relative;
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .explanation-box li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 600;
   }
 
   /* Deep Kore Section */
@@ -242,12 +460,47 @@ import Layout from '../layouts/Layout.astro';
 
   @media (max-width: 768px) {
     .concept-section h2,
+    .infinite-storage-section h2,
     .deep-kore-section h2 {
       font-size: 2rem;
     }
 
     .key-points {
       grid-template-columns: 1fr;
+    }
+
+    .hierarchy-demo {
+      padding: 2rem;
+    }
+
+    .hierarchy-demo h3 {
+      font-size: 1.5rem;
+    }
+
+    .level {
+      padding: 1rem;
+    }
+
+    .level:hover {
+      transform: translateX(5px);
+    }
+
+    .data-flow {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .data-size,
+    .compressed-size {
+      font-size: 1rem;
+    }
+
+    .arrow {
+      transform: rotate(90deg);
+    }
+
+    .explanation-box {
+      padding: 1.5rem;
     }
 
     .deep-kore-section {
