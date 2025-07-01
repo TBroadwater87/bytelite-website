@@ -9,7 +9,14 @@ import HeaderLink from './HeaderLink.astro';
       <!-- Logo -->
       <div class="flex items-center">
         <a href="/" class="flex items-center space-x-3 group">
-          <img src="/bytelite-logo.png" alt="ByteLite" width="120" height="40" class="h-8 sm:h-10 w-auto transition-transform group-hover:scale-110" />
+          <img 
+            src="/bytelite-logo.png" 
+            alt="ByteLite" 
+            width="120" 
+            height="40" 
+            class="h-8 sm:h-10 w-auto transition-transform group-hover:scale-110"
+            decoding="async"
+          />
           <span class="text-lg sm:text-xl font-bold text-white group-hover:text-electric-cyan transition-colors">ByteLite</span>
         </a>
       </div>
@@ -21,6 +28,9 @@ import HeaderLink from './HeaderLink.astro';
         <HeaderLink href="/technology">Technology</HeaderLink>
         <HeaderLink href="/deepkore" class="text-purple-400 hover:text-purple-300">Deep Kore</HeaderLink>
         <HeaderLink href="/about">About</HeaderLink>
+        <HeaderLink href="/subscribe">Subscribe</HeaderLink>
+        <HeaderLink href="/licensing">Licensing</HeaderLink>
+        <HeaderLink href="/news">News</HeaderLink>
         <HeaderLink href="/contact">Contact</HeaderLink>
       </div>
 

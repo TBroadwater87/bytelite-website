@@ -138,14 +138,22 @@ const {
   // Check if user has dismissed before
   const isDismissed = localStorage.getItem('stickyCTADismissed');
   
-  if (stickyCTA && !isDismissed) {
-    // Show after scrolling 50%
+  // Check if we're on a page with prominent CTAs
+  const hasHeroCTAs = document.querySelector('.hero-cta');
+  const hasSubscribeForm = document.querySelector('.subscribe-form');
+  const hasDemoCTA = document.querySelector('.cta-section');
+  
+  // Only show sticky CTA on pages without prominent CTAs
+  const shouldShowSticky = !hasHeroCTAs && !hasSubscribeForm && !hasDemoCTA;
+  
+  if (stickyCTA && !isDismissed && shouldShowSticky) {
+    // Show after scrolling 70% (increased from 50%)
     let hasShown = false;
     
     const checkScroll = () => {
       const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
       
-      if (scrollPercent > 50 && !hasShown) {
+      if (scrollPercent > 70 && !hasShown) {
         stickyCTA.classList.add('visible');
         hasShown = true;
       }
@@ -153,13 +161,16 @@ const {
     
     window.addEventListener('scroll', checkScroll);
     
-    // Also show after 30 seconds
+    // Also show after 45 seconds (increased from 30)
     setTimeout(() => {
       if (!hasShown) {
         stickyCTA.classList.add('visible');
         hasShown = true;
       }
-    }, 30000);
+    }, 45000);
+  } else if (stickyCTA) {
+    // Hide sticky CTA on pages with other prominent CTAs
+    stickyCTA.style.display = 'none';
   }
   
   // Close button handler

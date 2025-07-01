@@ -38,14 +38,13 @@ const {
       <!-- ByteLite Panel -->
       <div class="tech-panel bytelite">
         <div class="panel-content">
+          <h2 class="tech-name">ByteLite</h2>
           <div class="tech-transformation">
             <span class="from">1GB</span>
             <span class="arrow">→</span>
             <span class="to">15 bytes</span>
           </div>
-          <h2 class="tech-headline">Mathematical compression singularity</h2>
-          <div class="tech-metric">99.999% reduction achieved</div>
-          <div class="tech-name">ByteLite</div>
+          <p class="tech-headline">Revolutionary data compression achieving 99.999% reduction</p>
         </div>
       </div>
       
@@ -58,14 +57,13 @@ const {
       <!-- Deep Kore Panel -->
       <div class="tech-panel deepkore">
         <div class="panel-content">
+          <h2 class="tech-name">Deep Kore</h2>
           <div class="tech-transformation">
             <span class="from">Compression</span>
             <span class="arrow">→</span>
             <span class="to">Consciousness</span>
           </div>
-          <h2 class="tech-headline">Recursive AGI awakening</h2>
-          <div class="tech-metric">First tests: Q3 2025</div>
-          <div class="tech-name">Deep Kore</div>
+          <p class="tech-headline">Compression mathematics enabling true artificial general intelligence</p>
         </div>
       </div>
     </div>
@@ -162,7 +160,7 @@ const {
   }
   
   .tech-panel {
-    background: rgba(10, 14, 39, 0.6);
+    background: rgba(10, 14, 39, 0.7);
     border-radius: 16px;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
@@ -220,12 +218,28 @@ const {
   }
   
   /* Panel Typography */
+  .tech-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 1.5rem;
+  }
+  
+  .bytelite .tech-name {
+    color: #00D4FF;
+  }
+  
+  .deepkore .tech-name {
+    color: #A855F7;
+  }
+  
   .tech-transformation {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 700;
     margin-bottom: 1.5rem;
   }
@@ -250,33 +264,11 @@ const {
   }
   
   .tech-headline {
-    font-size: clamp(1.25rem, 2vw, 1.5rem);
-    font-weight: 300;
-    margin: 0 0 1rem;
-    color: rgba(224, 224, 224, 0.9);
-    line-height: 1.4;
-  }
-  
-  .tech-metric {
-    font-size: clamp(1.125rem, 2vw, 1.375rem);
-    font-weight: 600;
-    margin-bottom: 2rem;
-  }
-  
-  .bytelite .tech-metric {
-    color: #00D4FF;
-  }
-  
-  .deepkore .tech-metric {
-    color: #A855F7;
-  }
-  
-  .tech-name {
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    opacity: 0.6;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 400;
+    margin: 0;
+    color: rgba(224, 224, 224, 0.8);
+    line-height: 1.5;
   }
   
   /* Divider */
@@ -390,16 +382,16 @@ const {
     }
     
     .tech-transformation {
-      font-size: 2rem;
+      font-size: 2.25rem; /* Larger for mobile impact */
     }
     
     .tech-headline {
-      font-size: 1.125rem;
+      font-size: 1rem;
     }
     
-    .tech-metric {
-      font-size: 1.25rem;
-      margin-bottom: 1.5rem;
+    .tech-name {
+      font-size: 1rem;
+      margin-bottom: 1rem;
     }
     
     .divider-line {

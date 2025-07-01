@@ -13,12 +13,19 @@ interface CompressionResult {
   time: number;
 }
 
+interface CompressionProgress {
+  percent: number;
+  phase: string;
+}
+
 export default function InteractiveCompressionDemo() {
   const [file, setFile] = useState<FileInfo | null>(null);
   const [isCompressing, setIsCompressing] = useState(false);
   const [result, setResult] = useState<CompressionResult | null>(null);
   const [dragActive, setDragActive] = useState(false);
+  const [progress, setProgress] = useState<CompressionProgress | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const uploadZoneRef = useRef<HTMLDivElement>(null);
 
   const calculateCompressedSize = (originalSize: number): number => {
     // Simulate DAC compression ratios based on file size
@@ -77,11 +84,22 @@ export default function InteractiveCompressionDemo() {
     if (!file) return;
     
     setIsCompressing(true);
+    setProgress({ percent: 0, phase: 'Analyzing file...' });
     
     // Simulate compression time based on file size
     const compressionTime = Math.min(Math.max(file.size / (1024 * 1024) * 10, 500), 3000);
+    const phases = [
+      { percent: 20, phase: 'Analyzing file structure...', duration: 0.2 },
+      { percent: 40, phase: 'Applying ByteLite algorithm...', duration: 0.3 },
+      { percent: 70, phase: 'Recursive compression...', duration: 0.3 },
+      { percent: 90, phase: 'Finalizing...', duration: 0.15 },
+      { percent: 100, phase: 'Complete!', duration: 0.05 }
+    ];
     
-    await new Promise(resolve => setTimeout(resolve, compressionTime));
+    for (const phase of phases) {
+      setProgress({ percent: phase.percent, phase: phase.phase });
+      await new Promise(resolve => setTimeout(resolve, compressionTime * phase.duration));
+    }
     
     const compressedSize = calculateCompressedSize(file.size);
     const ratio = ((1 - compressedSize / file.size) * 100).toFixed(6);
@@ -94,6 +112,7 @@ export default function InteractiveCompressionDemo() {
     });
     
     setIsCompressing(false);
+    setProgress(null);
   };
 
   return (
@@ -104,12 +123,22 @@ export default function InteractiveCompressionDemo() {
       </div>
 
       <div 
+        ref={uploadZoneRef}
         className={`upload-zone ${dragActive ? 'drag-active' : ''} ${file ? 'has-file' : ''}`}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            fileInputRef.current?.click();
+          }
+        }}
+        tabIndex={0}
+        role="button"
+        aria-label="Upload file for compression"
       >
         <input
           ref={fileInputRef}
@@ -141,20 +170,39 @@ export default function InteractiveCompressionDemo() {
       </div>
 
       {file && !result && (
-        <button 
-          className="compress-button"
-          onClick={simulateCompression}
-          disabled={isCompressing}
-        >
-          {isCompressing ? (
-            <>
-              <span className="spinner"></span>
-              Compressing...
-            </>
-          ) : (
-            'Compress with ByteLite'
+        <>
+          <button 
+            className="compress-button"
+            onClick={simulateCompression}
+            disabled={isCompressing}
+            aria-live="polite"
+          >
+            {isCompressing ? (
+              <>
+                <span className="spinner"></span>
+                Compressing...
+              </>
+            ) : (
+              'Compress with ByteLite'
+            )}
+          </button>
+          
+          {progress && (
+            <div className="progress-container" aria-live="polite" aria-label="Compression progress">
+              <div className="progress-bar">
+                <div 
+                  className="progress-fill" 
+                  style={{ width: `${progress.percent}%` }}
+                  role="progressbar"
+                  aria-valuenow={progress.percent}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                />
+              </div>
+              <p className="progress-text">{progress.phase}</p>
+            </div>
           )}
-        </button>
+        </>
       )}
 
       {result && (
