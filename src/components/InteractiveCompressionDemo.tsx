@@ -25,7 +25,7 @@ export default function InteractiveCompressionDemo() {
     if (originalSize < 1024) return 8; // < 1KB → 8 bytes
     if (originalSize < 1024 * 1024) return 9; // < 1MB → 9 bytes
     if (originalSize < 1024 * 1024 * 100) return 10; // < 100MB → 10 bytes
-    if (originalSize < 1024 * 1024 * 1024) return 11; // < 1GB → 11 bytes
+    if (originalSize < 1024 * 1024 * 1024) return 15; // < 1GB → 15 bytes
     if (originalSize < 1024 * 1024 * 1024 * 100) return 14; // < 100GB → 14 bytes
     return 18; // >= 100GB → 18 bytes
   };
