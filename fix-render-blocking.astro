@@ -1,0 +1,24 @@
+---
+// Update layout to defer non-critical scripts
+---
+<html>
+<head>
+  <!-- Critical CSS inline -->
+  <style>
+    /* Critical above-the-fold styles */
+  </style>
+  
+  <!-- Defer non-critical CSS -->
+  <link rel="preload" href="/styles/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <!-- Defer Google Analytics -->
+  <script>
+    window.addEventListener('load', () => {
+      // Load GA after page load
+      const script = document.createElement('script');
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID';
+      script.async = true;
+      document.head.appendChild(script);
+    });
+  </script>
+</head>

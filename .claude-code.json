@@ -1,0 +1,32 @@
+{
+  "project": "ByteLite Multi-Version System",
+  "version": "1.0.0",
+  "preferences": {
+    "typescript": {
+      "strict": true,
+      "target": "ES2022"
+    },
+    "testing": {
+      "framework": "vitest",
+      "e2e": "playwright"
+    },
+    "security": {
+      "headers": ["CSP", "HSTS", "X-Frame-Options"],
+      "authentication": "required-for-deployment"
+    }
+  },
+  "commands": {
+    "dev": "npm run dev",
+    "build": "npm run build",
+    "test": "npm run test",
+    "deploy-commercial": "./scripts/deploy-commercial.sh",
+    "deploy-lighthouse": "./scripts/deploy-lighthouse.sh",
+    "deploy-strategic": "./scripts/deploy-strategic.sh"
+  },
+  "priorities": [
+    "security-vulnerabilities",
+    "typescript-strict-mode",
+    "performance-optimization",
+    "testing-implementation"
+  ]
+}

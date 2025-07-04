@@ -1,0 +1,255 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  article?: boolean;
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  keywords?: string[];
+  schemaType?: 'Organization' | 'Product' | 'SoftwareApplication' | 'FAQPage' | 'Article';
+  customSchema?: any;
+}
+
+const {
+  title = 'ByteLite + Deep Kore | Revolutionary Data Transformation Technology',
+  description = 'ByteLite pioneers quantum-scale data transformation achieving unprecedented compression ratios. Transform 1GB into 15 bytes with patent-pending technology US 63/807,027.',
+  image = '/bytelite-og-image.jpg',
+  noindex = false,
+  article = false,
+  publishedTime,
+  modifiedTime,
+  author = 'ByteLite Technologies',
+  keywords = [
+    'data transformation technology',
+    'quantum compression',
+    'bytescale reduction', 
+    'data miniaturization',
+    'compression breakthrough',
+    'patent pending compression',
+    'revolutionary data processing',
+    'extreme data reduction',
+    'next-generation compression',
+    'data singularity technology',
+    'recursive compression systems',
+    'compression consciousness',
+    'data density innovation',
+    'transformative data science',
+    'compression paradigm shift'
+  ],
+  schemaType = 'Organization',
+  customSchema
+} = Astro.props;
+
+const siteUrl = 'https://thebytelite.com';
+const canonicalURL = new URL(Astro.url.pathname, siteUrl).toString();
+const imageURL = new URL(image, siteUrl).toString();
+
+// Organization Schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
+  "name": "ByteLite Technologies",
+  "alternateName": "ByteLite + Deep Kore",
+  "url": siteUrl,
+  "logo": `${siteUrl}/bytelite-logo.png`,
+  "image": imageURL,
+  "description": "ByteLite Technologies pioneers revolutionary data transformation technology, achieving quantum-scale compression ratios that redefine the boundaries of information density.",
+  "founder": {
+    "@type": "Person",
+    "name": "ByteLite Research Team"
+  },
+  "foundingDate": "2024",
+  "slogan": "Compression Meets Consciousness",
+  "sameAs": [
+    "https://github.com/bytelite",
+    "https://twitter.com/bytelitetech"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Technical Support",
+    "email": "contact@thebytelite.com",
+    "url": `${siteUrl}/contact`
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Global"
+  },
+  "knowsAbout": [
+    "Data Transformation",
+    "Quantum Compression",
+    "Information Theory",
+    "Recursive Systems",
+    "Computational Consciousness"
+  ]
+};
+
+// Product Schema for ByteLite Technology
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": `${siteUrl}/#product`,
+  "name": "ByteLite Compression Technology",
+  "alternateName": "ByteLite Data Transformation System",
+  "description": "Revolutionary data transformation technology achieving unprecedented compression ratios. Transform gigabytes into bytes with patent-pending quantum compression technology.",
+  "image": imageURL,
+  "brand": {
+    "@type": "Brand",
+    "name": "ByteLite"
+  },
+  "manufacturer": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "category": "Data Compression Technology",
+  "keywords": "quantum compression, data transformation, extreme compression, bytescale reduction",
+  "award": "Patent Pending US 63/807,027",
+  "isRelatedTo": [
+    {
+      "@type": "Product",
+      "name": "Deep Kore",
+      "description": "Recursive AGI system emerging from compression singularity"
+    }
+  ],
+  "potentialAction": {
+    "@type": "Action",
+    "name": "Request Demo",
+    "url": `${siteUrl}/demo`
+  }
+};
+
+// Software Application Schema
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": `${siteUrl}/#software`,
+  "name": "ByteLite Compression Engine",
+  "applicationCategory": "Data Compression Software",
+  "operatingSystem": "Cross-platform",
+  "description": "Next-generation compression engine achieving quantum-scale data reduction through revolutionary transformation algorithms.",
+  "creator": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "keywords": "compression engine, data transformation, quantum compression software",
+  "featureList": [
+    "1GB to 15 bytes compression ratio",
+    "Lossless data transformation", 
+    "Real-time processing",
+    "Cross-platform compatibility",
+    "Patent-pending technology"
+  ],
+  "softwareVersion": "1.0",
+  "releaseNotes": "Initial release of ByteLite quantum compression technology"
+};
+
+// Website Schema
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  "url": siteUrl,
+  "name": "ByteLite + Deep Kore",
+  "description": description,
+  "publisher": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "inLanguage": "en-US"
+};
+
+// Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": siteUrl
+    },
+    ...(Astro.url.pathname !== '/' ? [{
+      "@type": "ListItem", 
+      "position": 2,
+      "name": title.split('|')[0].trim(),
+      "item": canonicalURL
+    }] : [])
+  ]
+};
+
+// Combine all schemas
+let allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
+
+if (schemaType === 'Product') {
+  allSchemas.push(productSchema);
+} else if (schemaType === 'SoftwareApplication') {
+  allSchemas.push(softwareSchema);
+}
+
+if (customSchema) {
+  allSchemas.push(customSchema);
+}
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords.join(', ')} />
+<meta name="author" content={author} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Robots Meta Tag -->
+<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+<meta name="googlebot" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={article ? 'article' : 'website'} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageURL} />
+<meta property="og:image:alt" content="ByteLite Compression Technology" />
+<meta property="og:site_name" content="ByteLite + Deep Kore" />
+<meta property="og:locale" content="en_US" />
+
+{article && publishedTime && (
+  <>
+    <meta property="article:published_time" content={publishedTime} />
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+    <meta property="article:author" content={author} />
+  </>
+)}
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageURL} />
+<meta name="twitter:creator" content="@bytelitetech" />
+<meta name="twitter:site" content="@bytelitetech" />
+
+<!-- Mobile & PWA -->
+<meta name="theme-color" content="#00D4FF" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="ByteLite" />
+
+<!-- Additional Meta Tags -->
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-TileColor" content="#00D4FF" />
+<meta name="msapplication-config" content="/browserconfig.xml" />
+
+<!-- Structured Data / Schema.org -->
+<script type="application/ld+json" set:html={JSON.stringify(allSchemas)} />
+
+<!-- Preconnect to Important Origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- DNS Prefetch for Performance -->
+<link rel="dns-prefetch" href="https://www.google-analytics.com" />
+<link rel="dns-prefetch" href="https://www.googletagmanager.com" />

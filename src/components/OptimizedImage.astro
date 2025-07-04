@@ -1,0 +1,70 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  class?: string;
+  sizes?: string;
+  priority?: boolean;
+}
+
+const { 
+  src, 
+  alt, 
+  width, 
+  height, 
+  loading = 'lazy',
+  class: className = '',
+  sizes,
+  priority = false
+} = Astro.props;
+
+// Generate WebP and AVIF versions for supported formats
+const isLocalImage = src.startsWith('/') && !src.startsWith('//');
+const imageBase = isLocalImage ? src.replace(/\.[^.]+$/, '') : src;
+const imageExt = src.match(/\.([^.]+)$/)?.[1] || 'jpg';
+
+// Only generate modern formats for local images
+const supportsModernFormats = isLocalImage && ['jpg', 'jpeg', 'png'].includes(imageExt);
+---
+
+<picture>
+  {supportsModernFormats && (
+    <>
+      <source
+        type="image/avif"
+        srcset={`${imageBase}.avif`}
+        sizes={sizes}
+      />
+      <source
+        type="image/webp"
+        srcset={`${imageBase}.webp`}
+        sizes={sizes}
+      />
+    </>
+  )}
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={priority ? 'eager' : loading}
+    decoding={priority ? 'sync' : 'async'}
+    class={className}
+    fetchpriority={priority ? 'high' : 'auto'}
+  />
+</picture>
+
+<style>
+  picture {
+    display: contents;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>

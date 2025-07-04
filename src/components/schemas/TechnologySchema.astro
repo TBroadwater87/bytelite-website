@@ -1,0 +1,92 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  imageUrl: string;
+}
+
+const { title, description, imageUrl } = Astro.props;
+const siteUrl = 'https://thebytelite.com';
+
+const techArticleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": title,
+  "description": description,
+  "image": imageUrl,
+  "datePublished": "2024-01-15",
+  "dateModified": new Date().toISOString(),
+  "author": {
+    "@type": "Organization",
+    "name": "ByteLite Technologies",
+    "url": siteUrl
+  },
+  "publisher": {
+    "@type": "Organization", 
+    "name": "ByteLite Technologies",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteUrl}/bytelite-logo.png`
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `${siteUrl}/technology`
+  },
+  "articleBody": "ByteLite's quantum compression technology represents a paradigm shift in data transformation, achieving unprecedented compression ratios through recursive quantum-scale processing.",
+  "keywords": "quantum compression, data transformation, bytescale reduction, compression breakthrough",
+  "articleSection": "Technology",
+  "proficiencyLevel": "Advanced",
+  "dependencies": "None - Standalone compression technology",
+  "technicalFeatures": [
+    "1GB to 15 bytes compression ratio",
+    "Quantum-scale data transformation",
+    "Recursive compression patterns",
+    "Patent-pending methodology"
+  ]
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo", 
+  "name": "How ByteLite Quantum Compression Works",
+  "description": "Understanding the revolutionary data transformation process",
+  "image": imageUrl,
+  "supply": [
+    {
+      "@type": "HowToSupply",
+      "name": "Data to be compressed"
+    }
+  ],
+  "tool": [
+    {
+      "@type": "HowToTool", 
+      "name": "ByteLite Compression Engine"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Data Analysis",
+      "text": "ByteLite analyzes data patterns at the quantum scale",
+      "image": `${siteUrl}/assets/diagrams/step1.png`
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Transformation Matrix",
+      "text": "Apply proprietary transformation matrix for bytescale reduction",
+      "image": `${siteUrl}/assets/diagrams/step2.png`
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Recursive Compression",
+      "text": "Recursive patterns compress data to minimal byte representation",
+      "image": `${siteUrl}/assets/diagrams/step3.png`
+    }
+  ],
+  "totalTime": "PT0.001S",
+  "yield": "15 bytes from 1GB input"
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify([techArticleSchema, howToSchema])} />

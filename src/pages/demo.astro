@@ -3,12 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import InteractiveCompressionDemo from '../components/InteractiveCompressionDemo.tsx';
 import HighLevelVisualization from '../components/HighLevelVisualization.astro';
 import CompressionDemo from '../components/CompressionDemo.astro';
+import DemoSchema from '../components/schemas/DemoSchema.astro';
 ---
 
 <Layout 
-  title="Live Demo - ByteLite Compression" 
-  description="Experience ByteLite's revolutionary compression technology in action. Try the interactive demo and see how 1GB becomes 15 bytes."
+  title="Live Demo - ByteLite Data Transformation & Quantum Compression"
+  description="Experience ByteLite's breakthrough data transformation technology live. Upload any file and witness quantum compression achieving bytescale reduction from 1GB to 15 bytes. Interactive demonstration of revolutionary data miniaturization and lossless compression verification."
+  keywords={["compression demo", "data transformation demonstration", "quantum compression test", "bytescale reduction demo", "interactive compression", "data miniaturization tool", "lossless compression verification", "ByteLite demonstration", "file compression technology", "real-time data transformation"]}
+  schemaType="WebApplication"
 >
+  <DemoSchema slot="head" />
 
   <section class="demo-content">
     <div class="container">

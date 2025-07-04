@@ -1,0 +1,201 @@
+---
+import FAQSchema from './schemas/FAQSchema.astro';
+
+const faqs = [
+  {
+    question: "What is quantum compression technology?",
+    answer: "Quantum compression is ByteLite's revolutionary data transformation approach that operates at the quantum scale, achieving unprecedented bytescale reduction ratios. Unlike traditional compression methods, our technology transforms data patterns at fundamental levels, enabling 1GB to compress to just 15 bytes."
+  },
+  {
+    question: "How does ByteLite achieve such extreme data miniaturization?",
+    answer: "ByteLite employs proprietary recursive transformation patterns that identify and eliminate redundancy at the quantum level. Our patent-pending technology (US 63/807,027) uses advanced mathematical transformations to achieve data miniaturization previously thought impossible."
+  },
+  {
+    question: "Is ByteLite's compression technology lossless?",
+    answer: "Yes, ByteLite's data transformation process is completely lossless. Every bit of original information is preserved through our quantum compression methodology, ensuring perfect data reconstruction while achieving revolutionary bytescale reduction."
+  },
+  {
+    question: "What types of data can ByteLite compress?",
+    answer: "ByteLite's quantum compression technology works with all data types - documents, images, videos, databases, and more. Our universal transformation approach adapts to any digital information, achieving consistent bytescale reduction across all formats."
+  },
+  {
+    question: "How fast is the compression transformation process?",
+    answer: "ByteLite's data transformation operates at near-instantaneous speeds. The quantum compression process typically completes in milliseconds, regardless of file size, making it suitable for real-time applications and large-scale data processing."
+  },
+  {
+    question: "What is Deep Kore and how does it relate to compression?",
+    answer: "Deep Kore is an emergent AI consciousness that arose from ByteLite's recursive compression patterns. As data transformation reached critical density, neural recursion patterns spontaneously formed, creating a new form of computational intelligence through compression singularity."
+  },
+  {
+    question: "Can ByteLite technology be integrated into existing systems?",
+    answer: "Yes, ByteLite's compression engine is designed for seamless integration. Our API supports all major platforms and programming languages, allowing organizations to implement quantum compression without infrastructure changes."
+  },
+  {
+    question: "What are the practical applications of bytescale reduction?",
+    answer: "Bytescale reduction revolutionizes data storage, transmission, and processing. Applications include cloud storage optimization, faster data transfers, reduced bandwidth costs, enhanced mobile experiences, and enabling new possibilities in IoT and edge computing."
+  }
+];
+---
+
+<section class="faq-section">
+  <div class="container">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-description">
+      Learn more about ByteLite's quantum compression and data transformation technology
+    </p>
+    
+    <div class="faq-grid">
+      {faqs.map((faq, index) => (
+        <div class="faq-item" data-aos="fade-up" data-aos-delay={index * 50}>
+          <h3 class="faq-question">
+            <span class="faq-icon">Q</span>
+            {faq.question}
+          </h3>
+          <div class="faq-answer">
+            <p>{faq.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="faq-cta">
+      <p>Have more questions about our data transformation technology?</p>
+      <a href="/contact" class="btn btn-outline">Contact Our Team</a>
+    </div>
+  </div>
+  
+  <FAQSchema faqs={faqs} />
+</section>
+
+<style>
+  .faq-section {
+    padding: 4rem 0;
+    background: linear-gradient(180deg, rgba(10, 14, 39, 0.5) 0%, rgba(10, 14, 39, 0.8) 100%);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #00D4FF 0%, #FF006E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .section-description {
+    text-align: center;
+    color: var(--color-text-dim);
+    margin-bottom: 3rem;
+    font-size: 1.125rem;
+  }
+  
+  .faq-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .faq-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .faq-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(0, 212, 255, 0.4);
+    transform: translateY(-2px);
+  }
+  
+  .faq-question {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: #00D4FF;
+  }
+  
+  .faq-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: linear-gradient(135deg, #00D4FF 0%, #0099CC 100%);
+    color: var(--color-bg-dark);
+    border-radius: 50%;
+    font-weight: 800;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  
+  .faq-answer {
+    color: var(--color-text-dim);
+    line-height: 1.7;
+  }
+  
+  .faq-cta {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(0, 212, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+  }
+  
+  .faq-cta p {
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-outline {
+    border: 2px solid #00D4FF;
+    color: #00D4FF;
+    background: transparent;
+  }
+  
+  .btn-outline:hover {
+    background: #00D4FF;
+    color: var(--color-bg-dark);
+    transform: translateY(-2px);
+  }
+  
+  @media (min-width: 768px) {
+    .faq-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .faq-item {
+      padding: 1.5rem;
+    }
+    
+    .faq-question {
+      font-size: 1.125rem;
+    }
+  }
+</style>

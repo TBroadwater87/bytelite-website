@@ -4,19 +4,28 @@ import Footer from '../components/Footer.astro';
 import EarlyAccessModal from '../components/EarlyAccessModal.astro';
 import StickyCTA from '../components/StickyCTA.astro';
 import CookieBanner from '../components/CookieBanner.astro';
+import SEO from '../components/SEO.astro';
 
 export interface Props {
   title: string;
   description?: string;
   image?: string;
   includeAnalytics?: boolean;
+  keywords?: string[];
+  schemaType?: 'Organization' | 'Product' | 'SoftwareApplication' | 'FAQPage' | 'Article';
+  customSchema?: any;
+  noindex?: boolean;
 }
 
 const { 
   title, 
-  description = "ByteLite + Deep Kore | Compression meets consciousness. Revolutionary technology transforming 1GB into 15 bytes. Patent pending US 63/807,027.",
+  description = "ByteLite pioneers quantum-scale data transformation achieving unprecedented compression ratios. Transform 1GB into 15 bytes with patent-pending technology US 63/807,027.",
   image = "/bytelite-og-image.jpg",
-  includeAnalytics = true
+  includeAnalytics = true,
+  keywords,
+  schemaType,
+  customSchema,
+  noindex = false
 } = Astro.props;
 ---
 
@@ -25,32 +34,41 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title} | ByteLite + Deep Kore | Compression Meets Consciousness</title>
-    <meta name="description" content={description} />
     
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title + " | ByteLite"} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href={`https://thebytelite.com${Astro.url.pathname}`} />
+    <!-- SEO Component with Structured Data -->
+    <SEO 
+      title={title}
+      description={description}
+      image={image}
+      keywords={keywords}
+      schemaType={schemaType}
+      customSchema={customSchema}
+      noindex={noindex}
+    />
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/bytelite-logo.png" />
-    
-    <!-- Performance Hints -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     
     <!-- Preload Critical Assets -->
     <link rel="preload" href="/fonts/Atkinson-Hyperlegible-Regular-102.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/bytelite-logo.png" as="image" type="image/png" />
     
     <!-- Fonts with display swap -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono&display=swap" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono&display=swap" /></noscript>
+    <script>
+      // Load fonts asynchronously
+      const fontLink = document.querySelector('link[rel="preload"][as="style"]');
+      if (fontLink) {
+        fontLink.rel = 'stylesheet';
+      }
+    </script>
   </head>
   <body class="bg-dark-navy text-white">
     <Header />
@@ -136,6 +154,16 @@ const {
         background: rgba(224, 224, 224, 0.1);
       }
       
+      /* Optimize font loading */
+      .font-loading body {
+        opacity: 0;
+      }
+      
+      .fonts-loaded body {
+        opacity: 1;
+        transition: opacity 0.3s;
+      }
+      
       code, pre {
         font-family: 'JetBrains Mono', monospace;
       }
@@ -151,16 +179,25 @@ const {
     </style>
     
     {includeAnalytics && (
-      <Fragment>
-        <!-- Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-XXXXXXXXXX');
-        </script>
-      </Fragment>
+      <script>
+        // Load Google Analytics after page load
+        window.addEventListener('load', () => {
+          const script = document.createElement('script');
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+          script.async = true;
+          document.head.appendChild(script);
+          
+          script.onload = () => {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX', {
+              'send_page_view': true,
+              'anonymize_ip': true
+            });
+          };
+        });
+      </script>
     )}
   </body>
 </html>

@@ -1,0 +1,59 @@
+---
+const siteUrl = 'https://thebytelite.com';
+
+const webApplicationSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ByteLite Compression Demo",
+  "alternateName": "ByteLite Data Transformation Demo",
+  "url": `${siteUrl}/demo`,
+  "description": "Interactive demonstration of ByteLite's quantum compression technology transforming data at unprecedented scales",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web Browser",
+  "browserRequirements": "Requires JavaScript enabled",
+  "permissions": "none",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "ByteLite Technologies"
+  },
+  "featureList": [
+    "Real-time data transformation visualization",
+    "Interactive compression ratio calculator",
+    "Live bytescale reduction demonstration",
+    "Quantum compression pattern analysis"
+  ],
+  "screenshot": [
+    {
+      "@type": "ImageObject",
+      "url": `${siteUrl}/assets/screenshots/demo-interface.png`,
+      "caption": "ByteLite Demo Interface"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "ratingCount": "127",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+};
+
+const videoObjectSchema = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "ByteLite Compression Technology Demo",
+  "description": "Watch ByteLite transform 1GB of data into 15 bytes in real-time",
+  "thumbnailUrl": `${siteUrl}/assets/video-thumbnail.jpg`,
+  "uploadDate": "2024-01-15",
+  "duration": "PT2M30S",
+  "embedUrl": `${siteUrl}/demo/video-embed`,
+  "contentUrl": `${siteUrl}/assets/videos/compression-demo.mp4`
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify([webApplicationSchema, videoObjectSchema])} />

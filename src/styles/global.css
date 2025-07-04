@@ -49,6 +49,70 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
   padding: 0 1.5rem;
 }
 
+/* Error Boundary Styles */
+.error-boundary-fallback {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.error-content {
+  text-align: center;
+  max-width: 500px;
+}
+
+.error-content h2 {
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.error-content p {
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+}
+
+.error-details {
+  background: var(--color-surface);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.error-details summary {
+  cursor: pointer;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.error-details pre {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  overflow-x: auto;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+}
+
+.reload-button {
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.reload-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
