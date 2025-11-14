@@ -1,7 +1,9 @@
-# ByteLite Project Context for Claude Code
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
-ByteLite is a sophisticated Astro-based website showcasing revolutionary data compression technology (1GB → 15 bytes, Patent US 63/807,027). The project is a modern, TypeScript-strict, fully-tested web application built with performance and security in mind.
+ByteLite is an Astro 5.0 website showcasing revolutionary data compression technology (1GB → 15 bytes, Patent US 63/807,027). The project uses TypeScript strict mode, React 19 for interactive components, and has comprehensive testing with Vitest and Playwright.
 
 ## Technology Stack
 - **Framework**: Astro 5.0 with React 19 components
@@ -28,184 +30,164 @@ bytelite-website/
 └── 42 total source files
 ```
 
-## Key Commands
+## Essential Commands
+
+### Development
 ```bash
-# Development
 npm run dev              # Start dev server (localhost:4321)
 npm run build            # Production build
-npm run preview          # Preview production build
+npm run preview          # Preview production build locally
+```
 
-# Testing
-npm run test             # Unit & integration tests (Vitest)
-npm run test:coverage    # Test coverage report
-npm run test:e2e         # End-to-end tests (Playwright)
-npm run test:e2e:ui      # E2E tests with UI
-npm run test:all         # All tests with coverage
+### Testing
+```bash
+npm run test             # Run unit & integration tests (Vitest)
+npm run test:ui          # Run tests with Vitest UI
+npm run test:coverage    # Generate test coverage report
+npm run test:e2e         # Run E2E tests (Playwright, all browsers)
+npm run test:e2e:ui      # Run E2E tests with Playwright UI
+npm run test:all         # Run all tests with coverage
 
-# Code Quality
-npm run lint             # ESLint + Astro check + TypeScript
+# Run single test file
+npx vitest tests/unit/ErrorBoundary.test.tsx
+npx vitest tests/unit/ErrorBoundary.test.tsx --ui
+
+# Run single E2E test
+npx playwright test tests/e2e/homepage.spec.ts
+npx playwright test tests/e2e/homepage.spec.ts --ui --project=chromium
+```
+
+### Code Quality
+```bash
+npm run lint             # ESLint + Astro check + TypeScript validation
 npm run lint:fix         # Auto-fix linting issues
 npm run format           # Format code with Prettier
 npm run format:check     # Check code formatting
 ```
 
-## Current Status
+## Architecture
 
-### ✅ Completed Features
+### Key Architectural Patterns
 
-#### Security
-- **Security Headers**: Production middleware with CSP, HSTS, X-Frame-Options, etc.
-- **API Protection**: Rate limiting (10 req/min), CORS, input validation, file size limits
-- **TypeScript Strict Mode**: Full type safety with noImplicitAny, noUncheckedIndexedAccess
-- **Dependency Security**: Zero npm vulnerabilities
+**Middleware Security Layer** (`src/middleware.ts`)
+- All responses pass through security middleware
+- Adds CSP, HSTS (prod only), X-Frame-Options, etc.
+- Applied automatically to all routes
 
-#### Testing
-- **Unit Tests**: React component testing with Testing Library
-- **Integration Tests**: Multi-version system mock tests
-- **E2E Tests**: Playwright tests for critical user paths
-- **All Tests Passing**: 9/9 tests green ✓
+**API Rate Limiting** (`src/pages/api/compress.ts`)
+- In-memory rate limiting (10 req/min per IP)
+- CORS with allowlist for origins
+- File upload validation (max 2GB)
+- Production note: Use Redis for distributed rate limiting
 
-#### Code Quality
-- **ESLint**: Configured with TypeScript, Astro, and accessibility plugins
-- **Prettier**: Code formatting with Astro plugin
-- **Error Handling**: ErrorBoundary component with async support
-- **Environment Config**: .env.example with all configuration options
+**Component Architecture**
+- Astro components for static/SSG content (`.astro`)
+- React components for interactivity (`.tsx`)
+- React components wrapped in ErrorBoundary for production safety
+- Path aliases configured in `vitest.config.ts`:
+  - `@/` → `src/`
+  - `@components` → `src/components`
+  - `@layouts` → `src/layouts`
 
-#### Performance
-- **Async Font Loading**: Google Fonts load after page render
-- **Async Analytics**: Google Analytics loads after page load
-- **Image Optimization**: Sharp configured for Astro
-- **HTML Compression**: Enabled in build
-- **Prefetching**: Configured for better navigation
+**Testing Strategy**
+- Unit tests in `tests/unit/` (React components with Testing Library)
+- Integration tests in `tests/integration/`
+- E2E tests in `tests/e2e/` (Playwright, 5 browser configs)
+- Vitest setup file: `tests/setup.ts`
 
-### 🚧 Known Technical Debt
+### Current Status (9/9 tests passing ✓)
+- Security headers middleware operational
+- API rate limiting functional (use Redis in production)
+- TypeScript strict mode enforced
+- Zero npm audit vulnerabilities
 
-#### High Priority
-1. **Logo Optimization**: bytelite-logo.png is 463KB (should be ~50KB WebP)
-2. **Large Components**: ProofDemo.astro (938 lines) needs refactoring
-3. **Missing Font Files**: Layout.astro references non-existent local font files
-4. **E2E Test Coverage**: Need more comprehensive E2E test scenarios
+## Known Technical Debt
 
-#### Medium Priority
-5. **Component Documentation**: Add JSDoc comments to components
-6. **API Documentation**: Document API endpoints and rate limits
-7. **Monitoring**: Integrate error monitoring (Sentry placeholder in ErrorBoundary)
-8. **Self-hosted Fonts**: Move Google Fonts to self-hosted for better performance
+### High Priority
+1. **Logo Optimization**: `public/bytelite-logo.png` is 463KB (target: ~50KB WebP)
+2. **Component Refactoring**: `ProofDemo.astro` is 938 lines (target: <300 lines per component)
+3. **E2E Coverage**: Only basic E2E tests exist, need comprehensive scenarios
 
-### ⚠️ Important Notes
+### Medium Priority
+4. **Rate Limiting**: API uses in-memory rate limiting; switch to Redis for production
+5. **Error Monitoring**: Sentry placeholder exists in ErrorBoundary, needs implementation
+6. **Font Loading**: Currently Google Fonts; consider self-hosting for better performance
 
-#### Multi-Version System
-**Status**: NOT IMPLEMENTED
+## Environment Configuration
 
-The previous documentation mentioned a "Commercial/Lighthouse/Strategic" multi-version deployment system. **This does not currently exist.** The project is a single unified website.
+Copy `.env.example` to `.env` and configure:
 
-If multi-version functionality is needed in the future:
-- Implement feature flags via environment variables
-- Create deployment scripts (deploy-commercial.sh, etc.)
-- Add version switching logic
-- Estimated effort: 2-3 weeks
-
-For now, ignore references to this system in legacy documentation.
-
-#### Environment Variables
-Create a `.env` file based on `.env.example`:
 ```bash
 cp .env.example .env
-# Edit .env with your actual values
 ```
 
-Critical variables:
+**Critical Variables:**
+- `PUBLIC_SITE_URL`: Production URL (used in sitemap, canonical links)
 - `PUBLIC_GA_ID`: Google Analytics tracking ID
-- `PUBLIC_SITE_URL`: Production site URL
-- `API_RATE_LIMIT_WINDOW`: Rate limit window (default: 60000ms)
-- `API_MAX_REQUESTS_PER_WINDOW`: Max requests per window (default: 10)
+- `API_RATE_LIMIT_WINDOW`: Rate limit window in ms (default: 60000)
+- `API_MAX_REQUESTS_PER_WINDOW`: Max API requests per window (default: 10)
+- `API_MAX_FILE_SIZE`: Max upload size in bytes (default: 2147483648 = 2GB)
 
 ## Development Guidelines
 
-### TypeScript
-- Strict mode is ENABLED and ENFORCED
-- No implicit any allowed
+### TypeScript Strict Mode (ENFORCED)
+TypeScript strict mode is enabled with additional strictness settings:
+- `noImplicitAny`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`
+- `noImplicitReturns`, `noImplicitThis`, `noUnusedLocals`, `noUnusedParameters`
 - All optional properties must be explicitly typed
 - Use type guards for runtime type checking
 
 ### Component Development
-- Use Astro components for static content
-- Use React components for interactivity
-- Wrap React components in ErrorBoundary for production safety
-- Keep components under 300 lines (refactor if larger)
+- **Static content**: Use `.astro` components
+- **Interactive elements**: Use `.tsx` React components
+- Always wrap React components in `<ErrorBoundary>` when used in production
+- Target: Keep components under 300 lines (refactor if larger)
+- Use path aliases: `@components`, `@layouts`, `@/`
 
-### Testing
-- Write tests for all new React components
-- E2E tests for critical user paths
+### Testing Requirements
+- Write tests for all new React components (use Testing Library)
+- Add E2E tests for critical user flows
+- Run `npm run test:all` before committing
 - Aim for >80% code coverage
-- Run tests before committing: `npm run test:all`
 
-### Code Style
-- Run `npm run lint:fix` before committing
-- Run `npm run format` to auto-format code
-- Follow existing patterns in codebase
-- Use semantic HTML and ARIA labels
+## Important Context
 
-### Security
-- Never commit secrets or API keys
-- Validate all user inputs
-- Use environment variables for configuration
-- Test API endpoints with rate limiting
+**Multi-Version System**: NOT IMPLEMENTED. Ignore any legacy documentation mentioning "Commercial/Lighthouse/Strategic" versions. The project is a single unified website.
 
-## Business Context
-- **Founder**: Tash Broadwater, Helena MT
-- **Patent**: US 63/807,027 (pending)
-- **Technology**: Revolutionary compression (1GB → 15 bytes)
-- **Revenue Model**: 50% of customer savings
-- **Competition**: Preparing for Hutter Prize
+**Business Context:**
+- Patent US 63/807,027 (pending) - Revolutionary compression technology
+- Founder: Tash Broadwater, Helena MT
+- Revenue model: 50% of customer savings
+- Competing in Hutter Prize
 
-## Performance Targets
-- **Desktop Lighthouse**: 95+ (currently ~85-90)
-- **Mobile Lighthouse**: 90+ (currently ~70-75)
-- **First Contentful Paint**: <1.5s
-- **Time to Interactive**: <3.0s
+**Performance Targets:**
+- Desktop Lighthouse: 95+ (current: ~85-90)
+- Mobile Lighthouse: 90+ (current: ~70-75)
+- First Contentful Paint: <1.5s
+- Time to Interactive: <3.0s
 
 ## Deployment
 
-### Build Process
+### Build & Preview
 ```bash
 npm run build           # Creates ./dist directory
 npm run preview         # Test production build locally
 ```
 
-### Production Checklist
-- [ ] Update `.env` with production values
-- [ ] Run `npm run test:all` - all tests pass
-- [ ] Run `npm run lint` - no errors
-- [ ] Run `npm run build` - successful build
-- [ ] Optimize logo image (manual step - see technical debt)
-- [ ] Configure hosting platform security headers (middleware handles most)
-- [ ] Set up error monitoring
-- [ ] Configure CI/CD pipeline
+### Pre-deployment Checklist
+1. All tests pass: `npm run test:all`
+2. No linting errors: `npm run lint`
+3. Successful build: `npm run build`
+4. Environment variables configured for production
+5. Logo optimization complete (see technical debt)
 
-### Hosting Recommendations
-- **Vercel**: Automatic deployments, edge functions support
-- **Netlify**: Easy setup, good CDN
-- **Cloudflare Pages**: Excellent performance, DDoS protection
-
-All support Astro SSR and will work with the middleware security headers.
-
-## Getting Help
-- Astro Docs: https://docs.astro.build
-- React Docs: https://react.dev
-- Tailwind CSS: https://tailwindcss.com/docs
-- Project Issues: Check git commit history for context
-
-## Recent Improvements
-See `IMPROVEMENTS-IMPLEMENTED.md` for detailed list of recent changes including:
-- NPM vulnerability fixes
-- Test infrastructure setup and fixes
-- ESLint/Prettier configuration
-- API security enhancements
-- Environment variable configuration
-- Production security headers middleware
+### Recommended Hosting
+All platforms support Astro SSR and middleware security headers:
+- **Vercel**: Automatic deployments, serverless functions
+- **Netlify**: Easy setup, excellent CDN
+- **Cloudflare Pages**: Best performance, DDoS protection
 
 ---
 
 **Last Updated**: 2025-11-14
-**Project Status**: Development-ready, production-ready pending logo optimization and comprehensive E2E tests
+**Status**: Production-ready (pending logo optimization and expanded E2E tests)
