@@ -17,8 +17,8 @@ export interface Props {
   noindex?: boolean;
 }
 
-const { 
-  title, 
+const {
+  title,
   description = "ByteLite pioneers quantum-scale data transformation achieving unprecedented compression ratios. Transform 1GB into 15 bytes with patent-pending technology US 63/807,027.",
   image = "/bytelite-og-image.jpg",
   includeAnalytics = true,
@@ -27,6 +27,8 @@ const {
   customSchema,
   noindex = false
 } = Astro.props;
+
+const GA_ID = import.meta.env.PUBLIC_GA_ID || '';
 ---
 
 <!DOCTYPE html>
@@ -54,7 +56,6 @@ const {
     <link rel="manifest" href="/site.webmanifest" />
     
     <!-- Preload Critical Assets -->
-    <link rel="preload" href="/fonts/Atkinson-Hyperlegible-Regular-102.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/bytelite-logo.png" as="image" type="image/png" />
     
     <!-- Fonts with display swap -->
@@ -178,20 +179,20 @@ const {
       }
     </style>
     
-    {includeAnalytics && (
-      <script>
+    {includeAnalytics && GA_ID && (
+      <script define:vars={{ gaId: GA_ID }}>
         // Load Google Analytics after page load
         window.addEventListener('load', () => {
           const script = document.createElement('script');
-          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+          script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
           script.async = true;
           document.head.appendChild(script);
-          
+
           script.onload = () => {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX', {
+            gtag('config', gaId, {
               'send_page_view': true,
               'anonymize_ip': true
             });

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import InteractiveCompressionDemo from '../../src/components/InteractiveCompressionDemo';
+import InteractiveCompressionDemo from '../../src/components/InteractiveCompressionDemo.tsx';
 
 describe('InteractiveCompressionDemo', () => {
   it('renders upload zone initially', () => {
