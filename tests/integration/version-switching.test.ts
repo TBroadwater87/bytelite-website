@@ -4,9 +4,15 @@ import path from 'path';
 
 // Mock version switching functionality
 const switchVersion = async (version: 'commercial' | 'lighthouse' | 'strategic') => {
+  const validVersions = ['commercial', 'lighthouse', 'strategic'];
+
+  if (!validVersions.includes(version)) {
+    throw new Error(`Invalid version: ${version}. Must be one of: ${validVersions.join(', ')}`);
+  }
+
   const sourcePath = path.join('..', 'site-versions', version, 'dist');
   const targetPath = path.join('.', 'dist');
-  
+
   // Simulate version switching
   return {
     success: true,
