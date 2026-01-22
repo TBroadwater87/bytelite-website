@@ -27,14 +27,26 @@ import SubscribeForm from '../components/SubscribeForm.astro';
       <div class="updates-section">
         <h3>Recent Milestones</h3>
 
+        <div class="update-item highlight">
+          <div class="update-date">Jan 2026</div>
+          <div class="update-content">
+            <h4>2026 Status Update - Verification and Submission in Progress</h4>
+            <p>
+              Site refresh and infrastructure stabilization complete. Universal dictionaries are undergoing
+              verification testing. Hutter Prize submission is actively in progress with the verifier and
+              demonstration harness in final development. ByteLite and Deep Kore development ongoing.
+            </p>
+          </div>
+        </div>
+
         <div class="update-item">
           <div class="update-date">Nov 2025</div>
           <div class="update-content">
-            <h4>Universal Dictionaries Complete - Hutter Prize Submission Imminent</h4>
+            <h4>Universal Dictionaries Complete - Verification Underway</h4>
             <p>
-              ByteLite's Universal Dictionaries have been completed and are in final testing phase.
-              Achieving 1GB → 15 bytes compression with perfect lossless reconstruction.
-              Hutter Prize submission is imminent, representing a major milestone in compression technology.
+              ByteLite's Universal Dictionaries have been completed and are in verification phase.
+              Achieving 1GB to 15 bytes compression in controlled tests on enwik9 corpus.
+              Hutter Prize submission preparation continues.
             </p>
           </div>
         </div>
@@ -275,6 +287,11 @@ import SubscribeForm from '../components/SubscribeForm.astro';
     transform: translateX(5px);
     border-color: rgba(0, 212, 255, 0.3);
     box-shadow: 0 5px 20px rgba(0, 212, 255, 0.1);
+  }
+
+  .update-item.highlight {
+    border-color: rgba(0, 212, 255, 0.4);
+    background: rgba(0, 212, 255, 0.05);
   }
 
   .update-date {
