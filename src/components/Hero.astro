@@ -17,9 +17,9 @@ const {
 <!-- Trust Bar - Sticky -->
 <div class="trust-bar">
   <div class="trust-bar-content">
-    <span class="trust-item">US Patent 63/807,027 Filed</span>
+    <span class="trust-item">Patent pending (US 63/807,027)</span>
     <span class="trust-separator">•</span>
-    <span class="trust-item">Hutter Prize Submission Imminent</span>
+    <span class="trust-item">Hutter Prize submission planned</span>
     <span class="trust-separator">•</span>
     <span class="trust-item">Working Technology</span>
   </div>
@@ -45,6 +45,7 @@ const {
             <span class="to">15 bytes</span>
           </div>
           <p class="tech-headline">We didn't tweak compression. We changed the architecture.</p>
+          <p class="tech-disclaimer">Observed in controlled tests on enwik9 corpus. Results vary by data type and dictionary coverage.</p>
         </div>
       </div>
       
@@ -288,6 +289,14 @@ const {
     margin: 0;
     color: rgba(224, 224, 224, 0.8);
     line-height: 1.5;
+  }
+
+  .tech-disclaimer {
+    font-size: 0.75rem;
+    font-style: italic;
+    margin-top: 0.75rem;
+    color: rgba(224, 224, 224, 0.5);
+    line-height: 1.4;
   }
   
   /* Divider */

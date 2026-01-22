@@ -25,6 +25,17 @@ import DemoSchema from '../components/schemas/DemoSchema.astro';
           Try it and see.
         </p>
         <InteractiveCompressionDemo client:load />
+
+        <!-- Data Handling Notice -->
+        <div class="data-handling-notice">
+          <h4>Demo Data Handling</h4>
+          <ul>
+            <li><strong>Processing:</strong> Files are processed locally in your browser. No data is uploaded to our servers.</li>
+            <li><strong>Retention:</strong> No files or content are stored after you close this page.</li>
+            <li><strong>Privacy:</strong> Do not upload sensitive, confidential, or personal data.</li>
+            <li><strong>Purpose:</strong> This demo is for educational and evaluation purposes only.</li>
+          </ul>
+        </div>
       </div>
 
       <!-- Static Benchmark Demo -->
@@ -88,6 +99,46 @@ import DemoSchema from '../components/schemas/DemoSchema.astro';
     max-width: 600px;
     margin: 0 auto 3rem;
     line-height: 1.6;
+  }
+
+  .data-handling-notice {
+    background: rgba(10, 14, 39, 0.8);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-top: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .data-handling-notice h4 {
+    color: #A855F7;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .data-handling-notice ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .data-handling-notice li {
+    color: var(--color-text-dim);
+    font-size: 0.875rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    line-height: 1.5;
+  }
+
+  .data-handling-notice li:last-child {
+    border-bottom: none;
+  }
+
+  .data-handling-notice strong {
+    color: var(--color-text);
   }
 
   .cta-section {

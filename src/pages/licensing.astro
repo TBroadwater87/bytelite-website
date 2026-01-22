@@ -62,6 +62,7 @@ import Layout from '../layouts/Layout.astro';
 
         <!-- Enterprise Plan -->
         <div class="pricing-card enterprise">
+          <div class="badge planned">Coming Soon</div>
           <div class="plan-header">
             <h3>Professional Enterprise</h3>
             <div class="price">
@@ -72,46 +73,46 @@ import Layout from '../layouts/Layout.astro';
           </div>
           <ul class="features">
             <li>Unlimited Users & Systems</li>
-            <li>Self-Reporting API Integration</li>
-            <li>Assigned Enterprise Auditor</li>
-            <li>Annual Checksum Verification</li>
-            <li>99.99%+ Typical Savings</li>
+            <li>Self-Reporting API Integration (planned)</li>
+            <li>Assigned Enterprise Auditor (planned)</li>
+            <li>Annual Checksum Verification (planned)</li>
             <li>Direct Line Support</li>
             <li>Custom Integration</li>
           </ul>
-          <a href="/contact" class="btn btn-secondary">Contact Sales</a>
+          <a href="/contact" class="btn btn-secondary">Contact for Details</a>
         </div>
       </div>
 
       <!-- Enterprise Details -->
       <div class="enterprise-details">
-        <h3>Enterprise Solution Details</h3>
+        <h3>Enterprise Solution Details (Planned)</h3>
+        <p class="enterprise-note">Enterprise features are under development. Contact us to discuss early access and custom integration requirements.</p>
         <div class="detail-grid">
           <div class="detail-card">
             <h4>Fair Usage Model</h4>
             <p>
-              Pay only 50% of your realized cost savings. With ByteLite achieving 99.99%+ compression rates, 
-              your savings are substantial. Example: Save $100 in storage/transmission → Pay $50 in licensing.
+              Pay only 50% of your realized cost savings. With ByteLite compression,
+              your savings scale with usage. Example: Save $100 in storage/transmission - Pay $50 in licensing.
             </p>
           </div>
           <div class="detail-card">
-            <h4>Security & Compliance</h4>
+            <h4>Security & Compliance (Planned)</h4>
             <p>
-              Enterprise solutions integrate self-reporting to ByteLite LLC API for security and transparency. 
-              Annual checksum verification ensures reporting software integrity.
+              Enterprise solutions will integrate self-reporting to ByteLite LLC API for security and transparency.
+              Annual checksum verification will ensure reporting software integrity.
             </p>
           </div>
           <div class="detail-card">
             <h4>Dedicated Support</h4>
             <p>
-              Each enterprise client receives an assigned Enterprise Solution Auditor for reporting verification, 
+              Enterprise clients will receive an assigned Enterprise Solution Auditor for reporting verification,
               application updates, and ongoing optimization consultation.
             </p>
           </div>
           <div class="detail-card">
             <h4>Trust & Innovation</h4>
             <p>
-              We trust our clients to help fund ByteLite LLC ventures. Your licensing fees directly support 
+              Your licensing fees directly support ByteLite LLC ventures and
               groundbreaking technologies for the greater good of humanity.
             </p>
           </div>
@@ -191,6 +192,11 @@ import Layout from '../layouts/Layout.astro';
     border-radius: 20px;
     font-size: 0.875rem;
     font-weight: 600;
+  }
+
+  .badge.planned {
+    background: var(--color-secondary);
+    color: white;
   }
 
   .plan-header {
@@ -292,7 +298,15 @@ import Layout from '../layouts/Layout.astro';
     font-size: 2rem;
     color: var(--color-primary);
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .enterprise-note {
+    text-align: center;
+    color: var(--color-text-dim);
+    font-style: italic;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
   }
 
   .detail-grid {
