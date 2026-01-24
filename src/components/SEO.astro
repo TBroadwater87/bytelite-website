@@ -15,7 +15,7 @@ export interface Props {
 
 const {
   title = 'ByteLite + Deep Kore | Revolutionary Data Transformation Technology',
-  description = 'ByteLite pioneers quantum-scale data transformation achieving unprecedented compression ratios. Transform 1GB into 15 bytes with patent-filed technology US 63/807,027.',
+  description = 'ByteLite pioneers extreme data transformation achieving unprecedented compression ratios. Transform 1GB into 15 bytes with patent-filed technology US 63/807,027. Observed in controlled tests on enwik9 corpus.',
   image = '/bytelite-og-image.jpg',
   noindex = false,
   article = false,
@@ -24,17 +24,17 @@ const {
   author = 'ByteLite Technologies',
   keywords = [
     'data transformation technology',
-    'quantum compression',
-    'bytescale reduction', 
+    'dictionary cascade compression',
+    'bytescale reduction',
     'data miniaturization',
     'compression breakthrough',
     'patent filed compression',
     'revolutionary data processing',
     'extreme data reduction',
     'next-generation compression',
-    'data singularity technology',
+    'Hutter Prize compression',
     'recursive compression systems',
-    'compression consciousness',
+    'deterministic compression',
     'data density innovation',
     'transformative data science',
     'compression paradigm shift'
@@ -43,7 +43,7 @@ const {
   customSchema
 } = Astro.props;
 
-const siteUrl = 'https://thebytelite.com';
+const siteUrl = 'https://www.thebytelite.com';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl).toString();
 const imageURL = new URL(image, siteUrl).toString();
 
@@ -57,7 +57,7 @@ const organizationSchema = {
   "url": siteUrl,
   "logo": `${siteUrl}/bytelite-logo.png`,
   "image": imageURL,
-  "description": "ByteLite Technologies pioneers revolutionary data transformation technology, achieving quantum-scale compression ratios that redefine the boundaries of information density.",
+  "description": "ByteLite Technologies pioneers revolutionary data transformation technology, achieving extreme compression ratios through dictionary-cascade architecture. Verification pending.",
   "founder": {
     "@type": "Person",
     "name": "ByteLite Research Team"
@@ -80,10 +80,10 @@ const organizationSchema = {
   },
   "knowsAbout": [
     "Data Transformation",
-    "Quantum Compression",
+    "Dictionary Cascade Compression",
     "Information Theory",
     "Recursive Systems",
-    "Computational Consciousness"
+    "Deterministic Compression"
   ]
 };
 
@@ -94,7 +94,7 @@ const productSchema = {
   "@id": `${siteUrl}/#product`,
   "name": "ByteLite Compression Technology",
   "alternateName": "ByteLite Data Transformation System",
-  "description": "Revolutionary data transformation technology achieving unprecedented compression ratios. Transform gigabytes into bytes with patent-filed quantum compression technology.",
+  "description": "Revolutionary data transformation technology achieving unprecedented compression ratios. Transform gigabytes into bytes with patent-filed dictionary-cascade technology. Observed in controlled tests.",
   "image": imageURL,
   "brand": {
     "@type": "Brand",
@@ -104,7 +104,7 @@ const productSchema = {
     "@id": `${siteUrl}/#organization`
   },
   "category": "Data Compression Technology",
-  "keywords": "quantum compression, data transformation, extreme compression, bytescale reduction",
+  "keywords": "dictionary cascade compression, data transformation, extreme compression, bytescale reduction",
   "award": "Patent Filed US 63/807,027",
   "isRelatedTo": [
     {
@@ -128,20 +128,20 @@ const softwareSchema = {
   "name": "ByteLite Compression Engine",
   "applicationCategory": "Data Compression Software",
   "operatingSystem": "Cross-platform",
-  "description": "Next-generation compression engine achieving quantum-scale data reduction through revolutionary transformation algorithms.",
+  "description": "Next-generation compression engine achieving extreme data reduction through dictionary-cascade transformation algorithms. Verification pending.",
   "creator": {
     "@id": `${siteUrl}/#organization`
   },
-  "keywords": "compression engine, data transformation, quantum compression software",
+  "keywords": "compression engine, data transformation, dictionary cascade compression software",
   "featureList": [
-    "1GB to 15 bytes compression ratio",
+    "Observed extreme ratios in controlled tests on the enwik9 corpus",
     "Lossless data transformation", 
     "Real-time processing",
     "Cross-platform compatibility",
     "Patent-filed technology"
   ],
   "softwareVersion": "1.0",
-  "releaseNotes": "Initial release of ByteLite quantum compression technology"
+  "releaseNotes": "Initial release of ByteLite dictionary-cascade compression technology"
 };
 
 // Website Schema

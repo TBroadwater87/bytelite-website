@@ -1,7 +1,7 @@
 {
   "name": "ByteLite + Deep Kore",
   "short_name": "ByteLite",
-  "description": "Revolutionary data transformation technology achieving quantum-scale compression. Transform 1GB into 15 bytes.",
+  "description": "Revolutionary data transformation technology achieving extreme compression ratios. Transform 1GB into 15 bytes. Observed in controlled tests on the enwik9 corpus.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#060813",
