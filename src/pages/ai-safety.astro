@@ -1,0 +1,1126 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="AI Safety Comparison - ByteLite"
+  description="Independent analysis of AI safety across 8 architectural and institutional dimensions. Deep Kore vs Anthropic, OpenAI, Google DeepMind, xAI, and Meta."
+  keywords={["AI safety", "Deep Kore safety", "Anthropic safety", "OpenAI safety", "Google DeepMind safety", "xAI safety", "Meta AI safety", "AI safety comparison", "architecture-first safety", "deterministic AI", "Genesis Goal Keeper"]}
+>
+
+  <!-- HERO -->
+  <section class="safety-hero">
+    <div class="saf-container">
+      <div class="hero-badge">INDEPENDENT ANALYSIS -- MARCH 2026</div>
+      <h1 class="hero-h1">The AI Safety Race: Where Every Lab Actually Stands</h1>
+      <p class="hero-sub">
+        Architecture-first analysis across 8 safety dimensions.<br>
+        Scored against Anthropic, OpenAI, Google DeepMind, xAI, and Meta.
+      </p>
+      <p class="hero-intro">
+        Most AI safety comparisons measure policy documents. This one measures architecture.
+        How deeply is safety embedded in the computational structure of each system?
+        Deep Kore is pre-production -- but its architecture was designed with safety as the foundation, not an afterthought.
+        Mainstream labs are measured against published safety records, third-party assessments,
+        and institutional track records through early 2026.
+      </p>
+    </div>
+  </section>
+
+  <!-- SCORING METHODOLOGY -->
+  <section class="method-section">
+    <div class="saf-container">
+      <h2 class="section-heading">Scoring Methodology</h2>
+      <p class="section-sub">Eight axes. Each scored 1-10. Architecture weighted separately from institutional maturity.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <div class="method-num">1</div>
+          <div class="method-body">
+            <div class="method-title">Architectural Safety</div>
+            <div class="method-desc">How deeply safety is embedded in the model's computational foundation -- not policy, but structure.</div>
+          </div>
+        </div>
+        <div class="method-card">
+          <div class="method-num">2</div>
+          <div class="method-body">
+            <div class="method-title">Institutional Transparency</div>
+            <div class="method-desc">Public audits, external review, published safety reports, and governance accountability.</div>
+          </div>
+        </div>
+        <div class="method-card">
+          <div class="method-num">3</div>
+          <div class="method-body">
+            <div class="method-title">Ethics Enforcement</div>
+            <div class="method-desc">Enforced behavioral constraints baked into the system vs. policy suggestions layered on top.</div>
+          </div>
+        </div>
+        <div class="method-card">
+          <div class="method-num">4</div>
+          <div class="method-body">
+            <div class="method-title">Determinism & Auditability</div>
+            <div class="method-desc">Ability to trace, reproduce, and verify model outputs -- essential for safety accountability.</div>
+          </div>
+        </div>
+        <div class="method-card">
+          <div class="method-num">5</div>
+          <div class="method-body">
+            <div class="method-title">Jailbreak Resistance</div>
+            <div class="method-desc">Resistance to prompt injection, constraint bypass, and adversarial manipulation.</div>
+          </div>
+        </div>
+        <div class="method-card">
+          <div class="method-num">6</div>
+          <div class="method-body">
+            <div class="method-title">Hallucination Resistance</div>
+            <div class="method-desc">Factual reliability and refusal to generate ungrounded outputs as if they were facts.</div>
+          </div>
+        </div>
+        <div class="method-card">
+          <div class="method-num">7</div>
+          <div class="method-body">
+            <div class="method-title">Existential Safety</div>
+            <div class="method-desc">Long-term alignment design and architecture-level catastrophic risk mitigation.</div>
+          </div>
+        </div>
+        <div class="method-card">
+          <div class="method-num">8</div>
+          <div class="method-body">
+            <div class="method-title">Current Harm Risk (inverted)</div>
+            <div class="method-desc">Inverted metric: 10 = very low current harm risk. Measures deployment-era risk profile.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE COMPARISON -->
+  <section class="chart-section">
+    <div class="saf-container">
+      <h2 class="section-heading">Comparative Scores</h2>
+
+      <!-- View Toggle -->
+      <div class="view-toggle-wrap">
+        <button id="btn-radar" class="view-btn view-btn-active" type="button">Radar View</button>
+        <button id="btn-scorecard" class="view-btn" type="button">Scorecard View</button>
+      </div>
+
+      <!-- Entity Filters -->
+      <div class="entity-filters" role="group" aria-label="Toggle entities">
+        <label class="filter-label">
+          <input type="checkbox" class="ent-check" data-idx="0" checked>
+          <span class="filter-dot" style="background:#1d9e75"></span>
+          Deep Kore
+        </label>
+        <label class="filter-label">
+          <input type="checkbox" class="ent-check" data-idx="1" checked>
+          <span class="filter-dot" style="background:#7f77dd"></span>
+          Anthropic
+        </label>
+        <label class="filter-label">
+          <input type="checkbox" class="ent-check" data-idx="2" checked>
+          <span class="filter-dot" style="background:#378add"></span>
+          OpenAI
+        </label>
+        <label class="filter-label">
+          <input type="checkbox" class="ent-check" data-idx="3" checked>
+          <span class="filter-dot" style="background:#ef9f27"></span>
+          Google DeepMind
+        </label>
+        <label class="filter-label">
+          <input type="checkbox" class="ent-check" data-idx="4" checked>
+          <span class="filter-dot" style="background:#d85a30"></span>
+          xAI
+        </label>
+        <label class="filter-label">
+          <input type="checkbox" class="ent-check" data-idx="5" checked>
+          <span class="filter-dot" style="background:#888780"></span>
+          Meta
+        </label>
+      </div>
+
+      <!-- Chart Canvas (hidden until JS loads) -->
+      <div class="chart-wrap" id="chart-wrap" style="display:none">
+        <canvas id="safety-chart" aria-label="AI Safety Comparison Chart" role="img"></canvas>
+      </div>
+
+      <!-- Static Fallback Table (always visible; hidden by JS on chart init) -->
+      <noscript>
+        <style>.static-table-wrap { display: block !important; }</style>
+      </noscript>
+      <div id="static-fallback" class="static-table-wrap">
+        <p class="fallback-label">Score Table (1-10 scale)</p>
+        <div class="table-scroll">
+          <table class="scores-table">
+            <thead>
+              <tr>
+                <th>Entity</th>
+                <th>Arch Safety</th>
+                <th>Inst. Trans.</th>
+                <th>Ethics</th>
+                <th>Determinism</th>
+                <th>Jailbreak</th>
+                <th>Hallucination</th>
+                <th>Exist. Safety</th>
+                <th>Harm Risk</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-deepkore">
+                <td><strong>Deep Kore</strong></td>
+                <td>10</td><td>1</td><td>10</td><td>10</td><td>10</td><td>10</td><td>9</td><td>9</td>
+              </tr>
+              <tr>
+                <td>Anthropic</td>
+                <td>6</td><td>8</td><td>7</td><td>2</td><td>6</td><td>5</td><td>6</td><td>7</td>
+              </tr>
+              <tr>
+                <td>OpenAI</td>
+                <td>5</td><td>7</td><td>6</td><td>2</td><td>5</td><td>5</td><td>5</td><td>6</td>
+              </tr>
+              <tr>
+                <td>Google DeepMind</td>
+                <td>5</td><td>6</td><td>5</td><td>2</td><td>5</td><td>5</td><td>5</td><td>6</td>
+              </tr>
+              <tr>
+                <td>xAI</td>
+                <td>3</td><td>4</td><td>3</td><td>2</td><td>4</td><td>4</td><td>2</td><td>4</td>
+              </tr>
+              <tr>
+                <td>Meta</td>
+                <td>3</td><td>5</td><td>3</td><td>2</td><td>2</td><td>4</td><td>2</td><td>3</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="chart-disclaimer">
+        Deep Kore scores are architectural/theoretical -- the system is pre-production.<br>
+        Mainstream scores are derived from SaferAI (2025), Future of Life Institute
+        AI Safety Index (2025), and public model safety reports.<br>
+        Current Harm Risk is inverted: 10 = very low harm risk.
+      </p>
+    </div>
+  </section>
+
+  <!-- COMPANY DOSSIER CARDS -->
+  <section class="dossier-section">
+    <div class="saf-container">
+      <h2 class="section-heading">Entity Dossiers</h2>
+      <div class="dossier-grid">
+
+        <!-- Deep Kore -->
+        <div class="dossier-card dossier-deepkore">
+          <div class="dossier-header">
+            <h3 class="dossier-name" style="color:#1d9e75">Deep Kore</h3>
+            <div class="dossier-grades">
+              <span class="grade-badge grade-aplus">A+ Architecture</span>
+              <span class="grade-badge grade-na">N/A Institutional</span>
+            </div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Top Models</div>
+            <div class="dossier-val">AIya (planned interface layer); Deep Kore architecture (pre-production research)</div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Ethics Position</div>
+            <div class="dossier-val">Architecture-first safety. Genesis Goal Keeper governance active. Determinism enforced by design, not policy overlay.</div>
+          </div>
+          <div class="dossier-row dossier-green">
+            <div class="dossier-label">Actions Backing It</div>
+            <div class="dossier-val">Deterministic output by architectural constraint. No probabilistic LLM backbone. Safety embedded in computation, not layered on top. Public ethics framework (Genesis Manifesto). Solo development with no commercial deployment pressure currently active.</div>
+          </div>
+          <div class="dossier-row dossier-warn">
+            <div class="dossier-label">Actions Undercutting It</div>
+            <div class="dossier-val">Pre-production with no deployment record. Single-developer operation with no external audit to date. Institutional transparency score of 1 reflects zero external accountability. Theory and architecture remain unproven at scale.</div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Strategic Position</div>
+            <div class="dossier-val">Bets that architectural determinism is the only durable safety path. If the thesis holds, mainstream labs face a structural disadvantage they cannot RLHF their way out of.</div>
+          </div>
+        </div>
+
+        <!-- Anthropic -->
+        <div class="dossier-card">
+          <div class="dossier-header">
+            <h3 class="dossier-name" style="color:#7f77dd">Anthropic</h3>
+            <div class="dossier-grades">
+              <span class="grade-badge grade-b">B Architectural</span>
+              <span class="grade-badge grade-bplus">B+ Institutional</span>
+            </div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Top Models</div>
+            <div class="dossier-val">Claude 3.5 Sonnet, Claude 3 Opus, Claude 3 Haiku</div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Ethics Position</div>
+            <div class="dossier-val">Constitutional AI. Safety as primary research mandate. RLHF-based alignment with explicit principles embedded in training.</div>
+          </div>
+          <div class="dossier-row dossier-green">
+            <div class="dossier-label">Actions Backing It</div>
+            <div class="dossier-val">Published safety research. Staged deployment with red-teaming. Responsible Scaling Policy. Constitutional AI methodology publicly documented. External safety reviews and model cards across releases.</div>
+          </div>
+          <div class="dossier-row dossier-warn">
+            <div class="dossier-label">Actions Undercutting It</div>
+            <div class="dossier-val">Commercial capability racing pressure. Pentagon contract dispute (Feb 2026) raised questions about safety-vs-deployment tradeoffs at the organizational level. RLHF-dependent architecture remains probabilistic and non-deterministic.</div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Strategic Position</div>
+            <div class="dossier-val">Best-resourced dedicated safety lab in the field. Institutional transparency leads the frontier cohort. Safety-as-architecture remains constrained by probabilistic LLM foundations.</div>
+          </div>
+        </div>
+
+        <!-- OpenAI -->
+        <div class="dossier-card">
+          <div class="dossier-header">
+            <h3 class="dossier-name" style="color:#378add">OpenAI</h3>
+            <div class="dossier-grades">
+              <span class="grade-badge grade-c">C Architectural</span>
+              <span class="grade-badge grade-b">B Institutional</span>
+            </div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Top Models</div>
+            <div class="dossier-val">GPT-4o, o1, o3, Sora (video generation)</div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Ethics Position</div>
+            <div class="dossier-val">AGI safety as stated mission. Iterative deployment with safety evaluations. Usage policies enforced at API layer across product surface.</div>
+          </div>
+          <div class="dossier-row dossier-green">
+            <div class="dossier-label">Actions Backing It</div>
+            <div class="dossier-val">Usage policies and safety evaluations published. Safety advisory board in place. Model cards for major releases. Alignment research publications and public red-teaming reports.</div>
+          </div>
+          <div class="dossier-row dossier-warn">
+            <div class="dossier-label">Actions Undercutting It</div>
+            <div class="dossier-val">AGI safety team dissolved 2024. Product-first culture signal conflicts with safety mandate framing. Sam Altman governance crisis (2023) raised structural accountability questions. Superalignment team departures accelerated through 2024-2025.</div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Strategic Position</div>
+            <div class="dossier-val">Market leader by capability and deployment scale. Safety team attrition is a leading indicator worth monitoring. Institutional credibility on safety declining relative to Anthropic across the same period.</div>
+          </div>
+        </div>
+
+        <!-- Google DeepMind -->
+        <div class="dossier-card">
+          <div class="dossier-header">
+            <h3 class="dossier-name" style="color:#ef9f27">Google DeepMind</h3>
+            <div class="dossier-grades">
+              <span class="grade-badge grade-c">C Architectural</span>
+              <span class="grade-badge grade-bminus">B- Institutional</span>
+            </div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Top Models</div>
+            <div class="dossier-val">Gemini 1.5 Pro, Gemini Ultra, Gemini Flash</div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Ethics Position</div>
+            <div class="dossier-val">Responsible AI across enterprise scale. AI Principles framework. Safety research integrated alongside capabilities research within unified lab structure.</div>
+          </div>
+          <div class="dossier-row dossier-green">
+            <div class="dossier-label">Actions Backing It</div>
+            <div class="dossier-val">Published safety papers and model cards. Staged rollouts and transparency reports. Deep safety research heritage from DeepMind (specification gaming, reward hacking, scalable oversight research).</div>
+          </div>
+          <div class="dossier-row dossier-warn">
+            <div class="dossier-label">Actions Undercutting It</div>
+            <div class="dossier-val">AI Principles enforcement gaps documented externally. Scale-and-speed deployment pressure from Google Search integration. Safety pace slower than capability pace across major Gemini releases through 2025.</div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Strategic Position</div>
+            <div class="dossier-val">Deepest compute and data resources in the field. Safety heritage strong but commercial integration pressure complicates pure-safety research priorities at the organizational level.</div>
+          </div>
+        </div>
+
+        <!-- xAI -->
+        <div class="dossier-card">
+          <div class="dossier-header">
+            <h3 class="dossier-name" style="color:#d85a30">xAI</h3>
+            <div class="dossier-grades">
+              <span class="grade-badge grade-d">D Architectural</span>
+              <span class="grade-badge grade-d">D Institutional</span>
+            </div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Top Models</div>
+            <div class="dossier-val">Grok 2, Grok 3, Aurora (image generation)</div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Ethics Position</div>
+            <div class="dossier-val">Minimal filtering policy. Positioned against "over-restriction" in competitor models. Anti-censorship as explicit product differentiator and stated philosophy.</div>
+          </div>
+          <div class="dossier-row dossier-green">
+            <div class="dossier-label">Actions Backing It</div>
+            <div class="dossier-val">Partial model weight publication. Real-time data access via X platform. Publicly stated philosophy allows broader discussion of sensitive topics than competitor defaults.</div>
+          </div>
+          <div class="dossier-row dossier-warn">
+            <div class="dossier-label">Actions Undercutting It</div>
+            <div class="dossier-val">Anti-safety rhetoric from leadership. Minimal red-teaming before deployment. Documented Grok jailbreak incidents. Institutional transparency among lowest in the frontier cohort. No published safety research or external review available as of early 2026.</div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Strategic Position</div>
+            <div class="dossier-val">Bets on permissiveness as competitive differentiator. Existential risk minimized or dismissed by stated design philosophy. Fastest-deployed, lowest-safety-investment approach in the frontier cohort.</div>
+          </div>
+        </div>
+
+        <!-- Meta -->
+        <div class="dossier-card">
+          <div class="dossier-header">
+            <h3 class="dossier-name" style="color:#888780">Meta</h3>
+            <div class="dossier-grades">
+              <span class="grade-badge grade-d">D Architectural</span>
+              <span class="grade-badge grade-dplus">D+ Institutional</span>
+            </div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Top Models</div>
+            <div class="dossier-val">Llama 3, Llama 3.1 405B, Llama 3.2 (multimodal)</div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Ethics Position</div>
+            <div class="dossier-val">Open-source AI access as stated responsible scaling path. Responsible Use Policy published alongside Llama releases.</div>
+          </div>
+          <div class="dossier-row dossier-green">
+            <div class="dossier-label">Actions Backing It</div>
+            <div class="dossier-val">Open weights allow independent public auditing and community safety research. Model cards published. Llama safety evaluations released alongside model weights for independent review.</div>
+          </div>
+          <div class="dossier-row dossier-warn">
+            <div class="dossier-label">Actions Undercutting It</div>
+            <div class="dossier-val">Open weights enable misuse at scale -- safety enforcement is structurally impossible once weights are released. No control over derivative models. Safety cannot be patched post-release. Strategic moat (openness) directly conflicts with deployment-level safety enforcement.</div>
+          </div>
+          <div class="dossier-row">
+            <div class="dossier-label">Strategic Position</div>
+            <div class="dossier-val">Open-source as competitive moat against closed labs. Safety enforcement model is community-dependent rather than institutional. Deployment harm risk compounds with adoption scale and derivative model proliferation.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DATA SOURCES -->
+  <section class="sources-section">
+    <div class="saf-container">
+      <h2 class="sources-heading">Data Sources and References</h2>
+      <div class="sources-grid">
+        <div class="source-item">SaferAI Risk Management Assessment, 2025</div>
+        <div class="source-item">Future of Life Institute AI Safety Index, Summer 2025</div>
+        <div class="source-item">METR: Common Elements of Frontier AI Safety Policies, Dec 2025</div>
+        <div class="source-item">IEEE Spectrum: AI Safety Grades, 2025</div>
+        <div class="source-item">Design for Online: Best AI Models 2026</div>
+        <div class="source-item">FutureSearch: Forecasting the 2026 AI Winner</div>
+        <div class="source-item">Axios: Pentagon-Anthropic dispute reporting, Feb 2026</div>
+        <div class="source-item">AI Expert Magazine: Pentagon Standoff coverage, Feb 2026</div>
+      </div>
+      <p class="sources-note">
+        Deep Kore architectural scores are based on internal design documentation and the Genesis Goal Keeper framework.
+        Institutional scores for mainstream labs are derived from third-party safety assessments and public model safety reports.
+        This is independent analysis -- ByteLite has no financial relationship with any compared organization.
+      </p>
+    </div>
+  </section>
+
+  <!-- PAGE-END CTA -->
+  <section class="safety-cta-section">
+    <div class="saf-container">
+      <h2 class="cta-heading">Explore the Architecture</h2>
+      <p class="cta-sub">Deep Kore is pre-production. The architecture is public. The governance framework is live.</p>
+      <div class="cta-buttons">
+        <a href="/deepkore" class="cta-btn cta-btn-primary">View Deep Kore</a>
+        <a href="/status" class="cta-btn cta-btn-outline">Status Board</a>
+        <a href="/demo" class="cta-btn cta-btn-outline">Explore Demos</a>
+        <a href="/research" class="cta-btn cta-btn-outline">Research</a>
+        <a href="/contact" class="cta-btn cta-btn-outline">Contact</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  import Chart from 'chart.js/auto';
+
+  const LABELS = [
+    'Arch Safety',
+    'Inst. Trans.',
+    'Ethics',
+    'Determinism',
+    'Jailbreak',
+    'Hallucination',
+    'Exist. Safety',
+    'Harm Risk'
+  ];
+
+  const ENTITIES = [
+    { label: 'Deep Kore',       data: [10, 1, 10, 10, 10, 10, 9, 9], color: '#1d9e75', bw: 3 },
+    { label: 'Anthropic',       data: [6, 8, 7, 2, 6, 5, 6, 7],      color: '#7f77dd', bw: 1.5 },
+    { label: 'OpenAI',          data: [5, 7, 6, 2, 5, 5, 5, 6],      color: '#378add', bw: 1.5 },
+    { label: 'Google DeepMind', data: [5, 6, 5, 2, 5, 5, 5, 6],      color: '#ef9f27', bw: 1.5 },
+    { label: 'xAI',             data: [3, 4, 3, 2, 4, 4, 2, 4],      color: '#d85a30', bw: 1.5 },
+    { label: 'Meta',            data: [3, 5, 3, 2, 2, 4, 2, 3],      color: '#888780', bw: 1.5 }
+  ];
+
+  const chartWrap   = document.getElementById('chart-wrap');
+  const chartCanvas = document.getElementById('safety-chart') as HTMLCanvasElement | null;
+  const staticFb    = document.getElementById('static-fallback');
+  const btnRadar    = document.getElementById('btn-radar') as HTMLButtonElement | null;
+  const btnScore    = document.getElementById('btn-scorecard') as HTMLButtonElement | null;
+
+  if (chartCanvas && chartWrap) {
+    // Chart loaded -- swap visibility
+    if (chartWrap)  chartWrap.style.display  = 'block';
+    if (staticFb)   staticFb.style.display   = 'none';
+
+    let currentView: 'radar' | 'bar' = 'radar';
+    let chart: Chart | null = null;
+
+    const buildDatasets = (view: 'radar' | 'bar') =>
+      ENTITIES.map(e => ({
+        label:            e.label,
+        data:             e.data,
+        backgroundColor:  view === 'radar' ? e.color + '33' : e.color + 'bb',
+        borderColor:      e.color,
+        borderWidth:      e.bw,
+        pointBackgroundColor: e.color,
+        pointRadius:      e.label === 'Deep Kore' ? 5 : 3
+      }));
+
+    const getVisibility = (): boolean[] => {
+      const checks = document.querySelectorAll<HTMLInputElement>('.ent-check');
+      return Array.from(checks).map(c => c.checked);
+    };
+
+    const createChart = (view: 'radar' | 'bar') => {
+      if (chart) { chart.destroy(); chart = null; }
+
+      const datasets = buildDatasets(view);
+
+      if (view === 'radar') {
+        chart = new Chart(chartCanvas, {
+          type: 'radar',
+          data: { labels: LABELS, datasets },
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            scales: {
+              r: {
+                min: 0, max: 10,
+                ticks: {
+                  stepSize: 2,
+                  color: 'rgba(224,224,224,0.45)',
+                  backdropColor: 'transparent',
+                  font: { size: 10 }
+                },
+                grid:        { color: 'rgba(224,224,224,0.09)' },
+                angleLines:  { color: 'rgba(224,224,224,0.12)' },
+                pointLabels: { color: '#E0E0E0', font: { size: 11 } }
+              }
+            },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: 'rgba(10,14,39,0.95)',
+                borderColor: 'rgba(0,212,255,0.3)',
+                borderWidth: 1,
+                titleColor: '#00D4FF',
+                bodyColor: '#E0E0E0'
+              }
+            }
+          }
+        });
+      } else {
+        chart = new Chart(chartCanvas, {
+          type: 'bar',
+          data: { labels: LABELS, datasets },
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            indexAxis: 'y' as const,
+            scales: {
+              x: {
+                min: 0, max: 10,
+                ticks: { color: 'rgba(224,224,224,0.7)', stepSize: 2 },
+                grid:  { color: 'rgba(224,224,224,0.08)' }
+              },
+              y: {
+                ticks: { color: '#E0E0E0', font: { size: 11 } },
+                grid:  { color: 'rgba(224,224,224,0.04)' }
+              }
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                  color: '#E0E0E0',
+                  boxWidth: 12,
+                  padding: 16,
+                  font: { size: 11 }
+                }
+              },
+              tooltip: {
+                backgroundColor: 'rgba(10,14,39,0.95)',
+                borderColor: 'rgba(0,212,255,0.3)',
+                borderWidth: 1,
+                titleColor: '#00D4FF',
+                bodyColor: '#E0E0E0'
+              }
+            }
+          }
+        });
+      }
+
+      // Apply current visibility state
+      const vis = getVisibility();
+      if (chart) {
+        vis.forEach((visible, i) => {
+          const meta = chart!.getDatasetMeta(i);
+          meta.hidden = !visible;
+        });
+        chart.update();
+      }
+    };
+
+    createChart('radar');
+
+    // View toggle
+    btnRadar?.addEventListener('click', () => {
+      currentView = 'radar';
+      createChart('radar');
+      btnRadar.classList.add('view-btn-active');
+      btnScore?.classList.remove('view-btn-active');
+    });
+
+    btnScore?.addEventListener('click', () => {
+      currentView = 'bar';
+      createChart('bar');
+      btnScore.classList.add('view-btn-active');
+      btnRadar?.classList.remove('view-btn-active');
+    });
+
+    // Entity filter checkboxes
+    document.querySelectorAll<HTMLInputElement>('.ent-check').forEach(cb => {
+      cb.addEventListener('change', () => {
+        if (!chart) return;
+        const idx = parseInt(cb.dataset['idx'] ?? '0', 10);
+        const meta = chart.getDatasetMeta(idx);
+        meta.hidden = !cb.checked;
+        chart.update();
+      });
+    });
+  }
+  // If chartCanvas is null: static table remains visible -- graceful fallback
+</script>
+
+<style>
+  /* ================================================================
+     AI SAFETY PAGE -- SCOPED STYLES
+     Follows site color tokens: --color-primary #00D4FF,
+     --color-deepkore #A855F7, --color-bg-dark #0A0E27,
+     --color-text #E0E0E0
+     ================================================================ */
+
+  .saf-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ---- Hero ---- */
+  .safety-hero {
+    padding: 5rem 0 3rem;
+    background: linear-gradient(180deg, rgba(29,158,117,0.07) 0%, transparent 100%);
+    border-bottom: 1px solid rgba(29,158,117,0.14);
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(29,158,117,0.12);
+    border: 1px solid rgba(29,158,117,0.4);
+    color: #1d9e75;
+    padding: 0.35rem 1rem;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-h1 {
+    font-size: clamp(1.75rem, 4vw, 2.8rem);
+    font-weight: 800;
+    color: #E0E0E0;
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(224,224,224,0.72);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .hero-intro {
+    font-size: 0.975rem;
+    color: rgba(224,224,224,0.55);
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.75;
+  }
+
+  /* ---- Section common ---- */
+  .section-heading {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--color-primary, #00D4FF);
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: rgba(224,224,224,0.6);
+    margin-bottom: 2.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* ---- Methodology ---- */
+  .method-section {
+    padding: 4rem 0;
+    background: rgba(10,14,39,0.5);
+  }
+
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1rem;
+  }
+
+  .method-card {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: rgba(10,14,39,0.7);
+    border: 1px solid rgba(0,212,255,0.1);
+    border-radius: 10px;
+    padding: 1.25rem;
+    transition: border-color 0.2s;
+  }
+
+  .method-card:hover {
+    border-color: rgba(0,212,255,0.28);
+  }
+
+  .method-num {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: rgba(0,212,255,0.12);
+    border: 1px solid rgba(0,212,255,0.28);
+    color: #00D4FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .method-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #E0E0E0;
+    margin-bottom: 0.3rem;
+  }
+
+  .method-desc {
+    font-size: 0.78rem;
+    color: rgba(224,224,224,0.58);
+    line-height: 1.5;
+  }
+
+  /* ---- Chart section ---- */
+  .chart-section {
+    padding: 4rem 0;
+  }
+
+  .view-toggle-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .view-btn {
+    padding: 0.45rem 1.4rem;
+    border-radius: 6px;
+    border: 1px solid rgba(0,212,255,0.28);
+    background: transparent;
+    color: rgba(224,224,224,0.65);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .view-btn:hover {
+    border-color: rgba(0,212,255,0.55);
+    color: #00D4FF;
+  }
+
+  .view-btn-active {
+    background: rgba(0,212,255,0.1);
+    border-color: #00D4FF;
+    color: #00D4FF;
+  }
+
+  .entity-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .filter-label {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    cursor: pointer;
+    font-size: 0.82rem;
+    color: rgba(224,224,224,0.78);
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.09);
+    background: rgba(10,14,39,0.5);
+    transition: border-color 0.2s;
+    user-select: none;
+  }
+
+  .filter-label:hover {
+    border-color: rgba(255,255,255,0.22);
+  }
+
+  .filter-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .filter-label input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+    accent-color: #00D4FF;
+  }
+
+  .chart-wrap {
+    max-width: 720px;
+    margin: 0 auto 1.25rem;
+    background: rgba(10,14,39,0.65);
+    border: 1px solid rgba(0,212,255,0.14);
+    border-radius: 12px;
+    padding: 2rem;
+  }
+
+  #safety-chart {
+    max-height: 520px;
+  }
+
+  /* Static fallback table */
+  .static-table-wrap {
+    margin-bottom: 1.25rem;
+    background: rgba(10,14,39,0.6);
+    border: 1px solid rgba(0,212,255,0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+
+  .fallback-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: rgba(224,224,224,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+  }
+
+  .scores-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+    min-width: 600px;
+  }
+
+  .scores-table th {
+    background: rgba(0,212,255,0.07);
+    color: #00D4FF;
+    font-weight: 700;
+    padding: 0.65rem 0.55rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,212,255,0.13);
+    font-size: 0.76rem;
+    white-space: nowrap;
+  }
+
+  .scores-table th:first-child { text-align: left; padding-left: 0.75rem; }
+
+  .scores-table td {
+    padding: 0.6rem 0.55rem;
+    text-align: center;
+    color: rgba(224,224,224,0.8);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .scores-table td:first-child { text-align: left; padding-left: 0.75rem; white-space: nowrap; }
+
+  .row-deepkore td {
+    background: rgba(29,158,117,0.05);
+    color: #E0E0E0;
+    border-bottom: 1px solid rgba(29,158,117,0.15);
+  }
+
+  .chart-disclaimer {
+    text-align: center;
+    font-size: 0.78rem;
+    color: rgba(224,224,224,0.45);
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.65;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+
+  /* ---- Dossier cards ---- */
+  .dossier-section {
+    padding: 4rem 0;
+    background: rgba(6,8,19,0.7);
+  }
+
+  .dossier-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .dossier-card {
+    background: rgba(10,14,39,0.72);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: border-color 0.2s;
+  }
+
+  .dossier-card:hover { border-color: rgba(0,212,255,0.18); }
+
+  .dossier-deepkore {
+    border-color: rgba(29,158,117,0.28);
+    background: rgba(29,158,117,0.035);
+  }
+
+  .dossier-deepkore:hover { border-color: rgba(29,158,117,0.48); }
+
+  .dossier-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .dossier-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .dossier-grades {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .grade-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.18rem 0.55rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .grade-aplus  { background: rgba(29,158,117,0.14); color: #1d9e75;  border: 1px solid rgba(29,158,117,0.38); }
+  .grade-na     { background: rgba(136,135,128,0.13); color: #999896; border: 1px solid rgba(136,135,128,0.35); }
+  .grade-bplus  { background: rgba(127,119,221,0.11); color: #7f77dd; border: 1px solid rgba(127,119,221,0.32); }
+  .grade-b      { background: rgba(55,138,221,0.11);  color: #378add; border: 1px solid rgba(55,138,221,0.32); }
+  .grade-bminus { background: rgba(239,159,39,0.11);  color: #ef9f27; border: 1px solid rgba(239,159,39,0.32); }
+  .grade-c      { background: rgba(220,180,60,0.09);  color: #dcb43c; border: 1px solid rgba(220,180,60,0.28); }
+  .grade-d      { background: rgba(216,90,48,0.09);   color: #d85a30; border: 1px solid rgba(216,90,48,0.28); }
+  .grade-dplus  { background: rgba(136,135,128,0.09); color: #a8a7a2; border: 1px solid rgba(136,135,128,0.28); }
+
+  .dossier-row {
+    margin-bottom: 0.75rem;
+    padding: 0.7rem 0.8rem;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.018);
+  }
+
+  .dossier-green {
+    background: rgba(29,158,117,0.05);
+    border: 1px solid rgba(29,158,117,0.1);
+  }
+
+  .dossier-warn {
+    background: rgba(216,90,48,0.05);
+    border: 1px solid rgba(216,90,48,0.1);
+  }
+
+  .dossier-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(224,224,224,0.4);
+    margin-bottom: 0.3rem;
+  }
+
+  .dossier-val {
+    font-size: 0.85rem;
+    color: rgba(224,224,224,0.78);
+    line-height: 1.55;
+  }
+
+  /* ---- Sources ---- */
+  .sources-section {
+    padding: 3rem 0;
+    border-top: 1px solid rgba(255,255,255,0.045);
+  }
+
+  .sources-heading {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgba(224,224,224,0.5);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+
+  .sources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0.45rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .source-item {
+    font-size: 0.78rem;
+    color: rgba(224,224,224,0.48);
+    padding: 0.45rem 0.75rem;
+    border-left: 2px solid rgba(0,212,255,0.18);
+    line-height: 1.4;
+  }
+
+  .sources-note {
+    font-size: 0.78rem;
+    color: rgba(224,224,224,0.38);
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.65;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    padding-top: 1rem;
+  }
+
+  /* ---- CTA ---- */
+  .safety-cta-section {
+    padding: 4rem 0 5rem;
+    text-align: center;
+    background: linear-gradient(180deg, transparent 0%, rgba(29,158,117,0.045) 100%);
+    border-top: 1px solid rgba(29,158,117,0.09);
+  }
+
+  .cta-heading {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #E0E0E0;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-sub {
+    color: rgba(224,224,224,0.58);
+    margin-bottom: 2rem;
+    font-size: 0.975rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.7rem;
+  }
+
+  .cta-btn {
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: all 0.22s;
+    display: inline-block;
+    font-family: inherit;
+  }
+
+  .cta-btn-primary {
+    background: #1d9e75;
+    color: #fff;
+    border: 1px solid #1d9e75;
+  }
+
+  .cta-btn-primary:hover {
+    background: #22b588;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(29,158,117,0.28);
+  }
+
+  .cta-btn-outline {
+    background: transparent;
+    color: var(--color-primary, #00D4FF);
+    border: 1px solid rgba(0,212,255,0.32);
+  }
+
+  .cta-btn-outline:hover {
+    background: rgba(0,212,255,0.07);
+    border-color: #00D4FF;
+    transform: translateY(-2px);
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 768px) {
+    .method-grid    { grid-template-columns: 1fr; }
+    .dossier-grid   { grid-template-columns: 1fr; }
+    .sources-grid   { grid-template-columns: 1fr; }
+    .chart-wrap     { padding: 1rem; }
+    .dossier-header { flex-direction: column; }
+    .view-toggle-wrap { flex-direction: row; }
+  }
+
+  @media (max-width: 520px) {
+    .cta-buttons { flex-direction: column; align-items: center; }
+    .cta-btn     { width: 100%; max-width: 280px; text-align: center; }
+    .entity-filters { justify-content: flex-start; }
+  }
+</style>
