@@ -3,11 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import SubscribeForm from '../components/SubscribeForm.astro';
 ---
 
-<Layout title="News & Updates - ByteLite" description="Latest updates on ByteLite compression technology and Deep Kore Neural Recursion developments.">
+<Layout title="News & Updates - ByteLite" description="Historical milestones and announcements for ByteLite compression, Deep Kore / AIya research, and HeartStrings. Current status at /status.">
   <section class="news-content">
     <div class="container">
+      <div class="status-redirect-notice">
+        The primary status destination has moved. <a href="/status">View the Status Board</a> for current live/preview/development state across all three systems.
+      </div>
       <h1 class="page-title">News & Updates</h1>
-      <p class="page-subtitle">Stay informed about ByteLite compression technology and Deep Kore Neural Recursion</p>
+      <p class="page-subtitle">Historical milestones and announcements for ByteLite, Deep Kore, and HeartStrings</p>
       
       <!-- Latest Announcement -->
       <div class="latest-announcement">
@@ -16,11 +19,11 @@ import SubscribeForm from '../components/SubscribeForm.astro';
           <h2>ByteLite Application Demo Coming Soon</h2>
         </div>
         <p>
-          Experience ByteLite compression firsthand. Our demonstration application will showcase 
-          the revolutionary technology that transforms 1TB into 18 bytes. Subscribe to be notified 
-          the moment it's available.
+          Experience ByteLite compression firsthand. Our demonstration application will showcase
+          the dictionary-cascade architecture that achieves 1GB to 15 bytes on the enwik9 corpus.
+          Contact us to be notified when it is available.
         </p>
-        <a href="/subscribe" class="announcement-cta">Get Early Access</a>
+        <a href="/contact" class="announcement-cta">Get Early Access</a>
       </div>
 
       <!-- Key Updates -->
@@ -34,7 +37,7 @@ import SubscribeForm from '../components/SubscribeForm.astro';
             <p>
               Website copy and disclosure audit completed. Terminology standardized across site.
               Universal dictionaries implemented and undergoing verification testing.
-              Hutter Prize submission planned; verifier and demonstration harness in development.
+              Demonstration harness in development.
               All compression claims reflect controlled tests on enwik9 corpus; results depend on data structure and may vary.
             </p>
           </div>
@@ -47,7 +50,7 @@ import SubscribeForm from '../components/SubscribeForm.astro';
             <p>
               ByteLite's Universal Dictionaries have been implemented and are in verification phase.
               Achieving 1GB to 15 bytes compression in controlled tests on enwik9 corpus.
-              Hutter Prize submission preparation continues.
+              Verification harness in development.
             </p>
           </div>
         </div>
@@ -81,9 +84,9 @@ import SubscribeForm from '../components/SubscribeForm.astro';
           <div class="update-content">
             <h4>HeartStrings Development Paused</h4>
             <p>
-              As a solo developer, Tash Broadwater has prioritized Hutter Prize submission and ByteLite
-              compression technology. HeartStrings AI dating platform development is on hold at 40%
-              completion and will resume after ByteLite demonstration application launch.
+              As a solo developer, Tash Broadwater is focused on ByteLite compression technology
+              and the public lab structure. HeartStrings relationship platform is at interface prototype
+              stage and will expand after the ByteLite demonstration application launches.
             </p>
           </div>
         </div>
@@ -91,10 +94,10 @@ import SubscribeForm from '../components/SubscribeForm.astro';
         <div class="update-item">
           <div class="update-date">June 2025</div>
           <div class="update-content">
-            <h4>Deep Kore Neural Recursion & Access Restrictions</h4>
+            <h4>Deep Kore Research & Access Status</h4>
             <p>
-              ByteLite's compression mathematics revealed applications in achieving AGI.
-              Due to dual-use implications, technical specifications are now under controlled release.
+              ByteLite's compression mathematics revealed potential architectural applications beyond storage.
+              Deep Kore research proceeds under Genesis Goal Keeper governance.
               Enterprise clients work directly with our team.
             </p>
           </div>
@@ -106,7 +109,7 @@ import SubscribeForm from '../components/SubscribeForm.astro';
             <h4>Patent Protection Secured</h4>
             <p>
               USPTO Provisional Patent 63/807,027 filed for "DATA COMPRESSION AND DECOMPRESSION PIPELINE,"
-              protecting ByteLite's revolutionary mathematical innovations.
+              protecting ByteLite's dictionary-cascade compression mathematics.
             </p>
           </div>
         </div>
@@ -129,7 +132,7 @@ import SubscribeForm from '../components/SubscribeForm.astro';
           <h3>Don't Miss Important Updates</h3>
           <p>
             Be the first to know when the ByteLite Application Demo launches and receive 
-            exclusive insights into Deep Kore Neural Recursion developments.
+            updates across ByteLite, Deep Kore / AIya, and HeartStrings.
           </p>
         </div>
         <SubscribeForm variant="compact" />
@@ -139,6 +142,26 @@ import SubscribeForm from '../components/SubscribeForm.astro';
 </Layout>
 
 <style>
+  .status-redirect-notice {
+    background: rgba(0, 212, 255, 0.07);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 8px;
+    padding: 0.875rem 1.25rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.9rem;
+    color: rgba(224, 224, 224, 0.8);
+  }
+
+  .status-redirect-notice a {
+    color: #00D4FF;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .status-redirect-notice a:hover {
+    text-decoration: underline;
+  }
+
   /* News Content */
   .news-content {
     padding: 6rem 0 4rem;

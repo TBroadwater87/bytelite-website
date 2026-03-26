@@ -7,8 +7,8 @@ export interface Props {
 
 const {
   variant = 'default',
-  title = 'Stay Updated on Deep Kore Neural Recursion',
-  description = 'Be the first to know when the ByteLite Application Demo is ready. Get exclusive updates on our revolutionary compression technology and its applications in computational intelligence.'
+  title = 'Stay Updated on ByteLite, Deep Kore, and HeartStrings',
+  description = 'Be the first to know when the ByteLite Application Demo is ready. Get updates on Deep Kore / AIya research and HeartStrings development.'
 } = Astro.props;
 ---
 
@@ -39,13 +39,12 @@ const {
         </label>
         <label class="checkbox-label">
           <input type="checkbox" name="notifyAGI" checked />
-          <span>Updates on Deep Kore Neural Recursion & AGI developments</span>
+          <span>Updates on Deep Kore / AIya research and HeartStrings</span>
         </label>
       </div>
       
       <p class="form-note">
-        Due to the dual-use nature of our mathematics in achieving true computational intelligence (AGI), 
-        technical details are currently restricted. Subscribe for authorized updates.
+        Updates sent when milestones are reached. No spam.
       </p>
     </form>
     
@@ -245,7 +244,7 @@ const {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // Success message
-      messageDiv.textContent = 'Successfully subscribed! You\'ll be notified about ByteLite Application Demo and Deep Kore Neural Recursion updates.';
+      messageDiv.textContent = 'You are on the list. We will be in touch with ByteLite, Deep Kore, and HeartStrings updates.';
       messageDiv.className = 'message success';
       
       // Reset form
