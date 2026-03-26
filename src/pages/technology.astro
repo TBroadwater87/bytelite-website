@@ -39,7 +39,7 @@ import InteractiveCompressionDemo from '../components/InteractiveCompressionDemo
       <!-- How It Works -->
       <div class="section-block">
         <div class="section-label">How It Works</div>
-        <h2>Three Steps to Extreme Compression</h2>
+        <h2>Three Stages in the Compression Pipeline</h2>
         <div class="how-grid">
           <div class="how-card">
             <div class="how-num">01</div>
@@ -79,33 +79,33 @@ import InteractiveCompressionDemo from '../components/InteractiveCompressionDemo
           <div class="stage-card">
             <div class="stage-num">Stage 1</div>
             <div class="stage-name">Pattern Identification</div>
-            <div class="stage-size">1,000,000 bytes</div>
+            <div class="stage-size">input</div>
             <div class="stage-desc">domain pattern matching</div>
             <div class="stage-bar-wrap"><div class="stage-bar" style="width:100%; background:rgba(0,212,255,0.7);"></div></div>
           </div>
           <div class="stage-card">
             <div class="stage-num">Stage 2</div>
             <div class="stage-name">Dictionary Matching</div>
-            <div class="stage-size">42,000 bytes</div>
+            <div class="stage-size">reduced</div>
             <div class="stage-desc">cascade key lookup</div>
             <div class="stage-bar-wrap"><div class="stage-bar" style="width:42%; background:rgba(0,212,255,0.6);"></div></div>
           </div>
           <div class="stage-card">
             <div class="stage-num">Stage 3</div>
             <div class="stage-name">Szudzik Encoding</div>
-            <div class="stage-size">1,200 bytes</div>
+            <div class="stage-size">further reduced</div>
             <div class="stage-desc">pairing function compression</div>
             <div class="stage-bar-wrap"><div class="stage-bar" style="width:12%; background:rgba(168,85,247,0.7);"></div></div>
           </div>
           <div class="stage-card stage-final">
             <div class="stage-num">Stage 4</div>
             <div class="stage-name">Output Key</div>
-            <div class="stage-size stage-size-final">15 bytes</div>
-            <div class="stage-desc">compact representation</div>
+            <div class="stage-size stage-size-final">compact key</div>
+            <div class="stage-desc">controlled test: 15 bytes on enwik9</div>
             <div class="stage-bar-wrap"><div class="stage-bar" style="width:2%; background:rgba(0,212,255,1); min-width:6px;"></div></div>
           </div>
         </div>
-        <p class="stage-note">Conceptual pipeline on enwik9 corpus data. Implementation details under patent protection (US 63/807,027).</p>
+        <p class="stage-note">Educational pipeline visualization. Relative proportions are illustrative. Controlled test result: 1GB to 15 bytes on enwik9 corpus. Intermediate stage sizes depend on data profile and dictionary coverage. Patent US 63/807,027 pending.</p>
       </div>
 
       <!-- What Is Real Today -->
