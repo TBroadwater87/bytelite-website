@@ -4,90 +4,41 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="HeartStrings - Relationship Intelligence Platform"
-  description="HeartStrings is a deterministic relationship intelligence platform. Authentic connection through structured compatibility, honest matching rationale, and safety-first design. Built on ByteLite + Deep Kore infrastructure."
-  keywords={["HeartStrings", "relationship platform", "deterministic matching", "AI dating", "compatibility engine", "ByteLite", "Deep Kore"]}
+  description="HeartStrings is a deterministic relationship intelligence platform. Authentic connection through structured compatibility and honest matching rationale. Interface prototype stage."
+  keywords={["HeartStrings", "relationship platform", "deterministic matching", "compatibility engine", "ByteLite"]}
+  schemaType="WebPage"
 >
 
-  <div class="page-banner" style="width:100%; overflow:hidden;">
-    <img
-      src="/HeartStrings_Banner.png"
-      alt="HeartStrings - Relationship Intelligence Platform"
-      style="width:100%; height:auto; display:block; max-height:480px; object-fit:cover;"
-    />
-  </div>
+  <!-- Banner -->
+  <img src="/HeartStrings_Banner.png" style="width:100%; height:auto; max-height:340px; object-fit:cover; display:block;" alt="HeartStrings - Relationship Intelligence Platform">
 
+  <!-- Hero -->
   <section class="hs-hero">
     <div class="container">
       <div class="hero-badge">Interface Prototype</div>
       <h1>HeartStrings</h1>
-      <p class="hero-tagline">Relationship intelligence built on deterministic structure, not black-box scores.</p>
+      <p class="hero-tagline">Relationship intelligence built on deterministic compatibility.</p>
+      <p class="hero-sub">Every match shows exactly why it ranked — structured dimensions, no opaque scores, no engagement-optimized dark patterns.</p>
       <div class="hero-cta">
-        <a href="/contact" class="btn btn-pink">Express Interest</a>
-        <a href="/demo" class="btn btn-outline">See Demos</a>
+        <a href="/demo" class="btn btn-pink">See Demo</a>
+        <a href="/status" class="btn btn-outline">Current Status</a>
       </div>
     </div>
   </section>
 
-  <section class="hs-summary">
-    <div class="container">
-      <div class="summary-grid">
-        <div class="summary-text">
-          <h2>What HeartStrings Is</h2>
-          <p>
-            HeartStrings is a relationship platform that uses deterministic matching rationale instead
-            of opaque recommendation scores. When you see a match, you see exactly why — structured
-            compatibility dimensions, honest alignment on values, and a clear explanation of what
-            you share and where you differ.
-          </p>
-          <p>
-            It is built on the same deterministic engineering philosophy as ByteLite and Deep Kore.
-            No mystery box. No engagement-optimized dark patterns. Authentic connection through
-            transparent structure.
-          </p>
-        </div>
-        <div class="summary-status">
-          <h3>Current Status</h3>
-          <ul class="status-list">
-            <li><span class="dot prototype"></span> Interface design: Prototype stage</li>
-            <li><span class="dot active"></span> Core matching logic: In development</li>
-            <li><span class="dot active"></span> ByteLite integration: Planned</li>
-            <li><span class="dot planned"></span> Public access: Post-ByteLite demo launch</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="hs-origin">
-    <div class="container">
-      <blockquote>
-        "HeartStrings started as the problem that created ByteLite. AI models required too much
-        storage and compute for an independent developer. That constraint became the research question
-        that became ByteLite's architecture."
-      </blockquote>
-      <cite>— Tash Broadwater, Founder</cite>
-    </div>
-  </section>
-
-  <!-- SECTION A: Interface Gallery -->
+  <!-- Interface Gallery -->
   <section class="hs-gallery">
     <div class="container">
-      <h2>Interface Samples</h2>
-      <p class="section-subtitle">
-        Prototype UI - these panels show the planned HeartStrings interface design. Not yet backed by live matching data.
-      </p>
+      <h2>Interface Gallery</h2>
+      <p class="section-subtitle">Prototype UI — panels below show planned interface design. Not backed by live matching data.</p>
       <div class="gallery-grid">
 
-        <!-- Panel 1: Profile Card -->
         <div class="ui-panel panel-pink">
           <div class="preview-badge">Preview</div>
-          <div class="panel-header">
-            <span class="panel-label">Profile Card</span>
-          </div>
+          <div class="panel-label">Profile Card</div>
           <div class="profile-name">Alex M.</div>
-          <div class="profile-location">Helena, MT</div>
+          <div class="profile-meta">Helena, MT &nbsp;|&nbsp; Long-term relationship</div>
           <div class="profile-values">Authenticity | Depth | Growth</div>
-          <div class="profile-intent">Intent: Long-term relationship</div>
           <div class="interest-tags">
             <span class="tag">Engineering</span>
             <span class="tag">Hiking</span>
@@ -97,68 +48,36 @@ import Layout from '../layouts/Layout.astro';
             <span class="compat-label">Compatibility</span>
             <span class="compat-pct">87%</span>
           </div>
-          <div class="bar-track">
-            <div class="bar-fill bar-pink" style="width:87%;"></div>
-          </div>
-          <button class="mock-btn btn-pink-sm" disabled>Match</button>
+          <div class="bar-track"><div class="bar-fill bar-pink" style="width:87%;"></div></div>
+          <button class="mock-btn" disabled>Match</button>
         </div>
 
-        <!-- Panel 2: Match Detail View -->
         <div class="ui-panel panel-cyan">
           <div class="preview-badge">Preview</div>
-          <div class="panel-header">
-            <span class="panel-label">Why This Match</span>
-          </div>
-          <div class="dim-row">
-            <span class="dim-name">Values alignment</span>
-            <span class="dim-pct pct-green">94%</span>
-          </div>
+          <div class="panel-label">Why This Match</div>
+          <div class="dim-row"><span class="dim-name">Values alignment</span><span class="dim-pct pct-green">94%</span></div>
           <div class="bar-track"><div class="bar-fill bar-green" style="width:94%;"></div></div>
-          <div class="dim-row">
-            <span class="dim-name">Communication style</span>
-            <span class="dim-pct pct-cyan">81%</span>
-          </div>
+          <div class="dim-row"><span class="dim-name">Communication style</span><span class="dim-pct pct-cyan">81%</span></div>
           <div class="bar-track"><div class="bar-fill bar-cyan" style="width:81%;"></div></div>
-          <div class="dim-row">
-            <span class="dim-name">Life goals</span>
-            <span class="dim-pct pct-green">89%</span>
-          </div>
+          <div class="dim-row"><span class="dim-name">Life goals</span><span class="dim-pct pct-green">89%</span></div>
           <div class="bar-track"><div class="bar-fill bar-green" style="width:89%;"></div></div>
-          <div class="dim-row dealbreaker-row">
-            <span class="dim-name">Dealbreakers</span>
-            <span class="check-ok">[OK] None flagged</span>
-          </div>
-          <a href="#" class="mock-link" onclick="return false;">See full breakdown</a>
+          <div class="dim-row dealbreaker-row"><span class="dim-name">Dealbreakers</span><span class="check-ok">[OK] None flagged</span></div>
         </div>
 
-        <!-- Panel 3: Conversation Screen -->
         <div class="ui-panel panel-purple">
           <div class="preview-badge">Preview</div>
-          <div class="panel-header">
-            <span class="panel-label">Conversation</span>
-          </div>
+          <div class="panel-label">Conversation</div>
           <div class="chat-area">
-            <div class="chat-msg chat-you">
-              <span class="chat-sender">You:</span> What drew you to engineering originally?
-            </div>
-            <div class="chat-msg chat-them">
-              <span class="chat-sender">Alex:</span> Honestly, it started with trying to build a better mousetrap as a kid...
-            </div>
+            <div class="chat-msg chat-you"><span class="chat-sender">You:</span> What drew you to engineering originally?</div>
+            <div class="chat-msg chat-them"><span class="chat-sender">Alex:</span> Honestly, it started with trying to build a better mousetrap as a kid...</div>
           </div>
-          <div class="chat-input-bar">
-            <span class="chat-input-placeholder">Type a message...</span>
-          </div>
-          <div class="conv-tip">
-            HeartStrings tip: Authentic curiosity builds connection.
-          </div>
+          <div class="chat-input-bar"><span class="chat-placeholder">Type a message...</span></div>
+          <div class="conv-tip">HeartStrings tip: Authentic curiosity builds connection.</div>
         </div>
 
-        <!-- Panel 4: Values and Intent Panel -->
         <div class="ui-panel panel-pink">
           <div class="preview-badge">Preview</div>
-          <div class="panel-header">
-            <span class="panel-label">Your Filters</span>
-          </div>
+          <div class="panel-label">Your Filters</div>
           <div class="filter-list">
             <div class="filter-item">[x] Must share growth mindset</div>
             <div class="filter-item">[x] Open to long-term commitment</div>
@@ -177,46 +96,15 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Panel 5: Safety Tools Panel -->
-        <div class="ui-panel panel-green">
-          <div class="preview-badge">Preview</div>
-          <div class="panel-header">
-            <span class="panel-label">Boundary Settings</span>
-          </div>
-          <div class="toggle-list">
-            <div class="toggle-item">
-              <span class="toggle-on">ON</span>
-              <span class="toggle-label">Block unsolicited contact requests</span>
-            </div>
-            <div class="toggle-item">
-              <span class="toggle-on">ON</span>
-              <span class="toggle-label">Anonymous browsing mode</span>
-            </div>
-            <div class="toggle-item">
-              <span class="toggle-on">ON</span>
-              <span class="toggle-label">AI conversation screening</span>
-            </div>
-            <div class="toggle-item">
-              <span class="toggle-on">ON</span>
-              <span class="toggle-label">Match explanation required before chat</span>
-            </div>
-          </div>
-          <div class="safety-note">
-            HeartStrings requires that every match comes with a rationale. No blind swiping.
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- SECTION B: Clickable Prototype Flow -->
+  <!-- Prototype Flow -->
   <section class="hs-flow">
     <div class="container">
-      <h2>How It Flows</h2>
-      <p class="section-subtitle">
-        Walk through the HeartStrings experience. Interactive Preview - local state only.
-      </p>
+      <h2>Prototype Flow</h2>
+      <p class="section-subtitle">Walk through the HeartStrings experience — interactive preview, local state only.</p>
 
       <div class="flow-step-indicators" id="flow-indicators">
         <button class="step-dot step-active" onclick="goToStep(1)">1</button>
@@ -227,24 +115,20 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="flow-panels">
 
-        <!-- Step 1 -->
         <div class="flow-panel" id="flow-step-1">
           <div class="flow-card">
-            <div class="flow-card-title">Your Profile</div>
+            <div class="flow-card-title">Step 1 — Profile</div>
             <div class="flow-row"><span class="flow-key">Compatibility style</span><span class="flow-val">Deep Connector</span></div>
             <div class="flow-row"><span class="flow-key">Top values</span><span class="flow-val">Authenticity, Depth, Intellectual curiosity</span></div>
             <div class="flow-row"><span class="flow-key">Intent</span><span class="flow-val">Long-term relationship</span></div>
             <div class="flow-row"><span class="flow-key">Match radius</span><span class="flow-val">50 miles</span></div>
-            <div class="flow-badge-row">
-              <span class="flow-badge">Profile Complete</span>
-            </div>
+            <div class="flow-badge-row"><span class="flow-badge">Profile Complete</span></div>
           </div>
         </div>
 
-        <!-- Step 2 -->
         <div class="flow-panel flow-hidden" id="flow-step-2">
           <div class="flow-card">
-            <div class="flow-card-title">Alex M. - 87% Match</div>
+            <div class="flow-card-title">Step 2 — Match: Alex M. (87%)</div>
             <div class="flow-dim-row">
               <span class="flow-dim-name">Values</span>
               <span class="flow-dim-bar-wrap"><span class="flow-dim-bar bar-green" style="width:94%;"></span></span>
@@ -261,23 +145,17 @@ import Layout from '../layouts/Layout.astro';
               <span class="flow-dim-pct">89%</span>
             </div>
             <div class="flow-dim-row">
-              <span class="flow-dim-name">Emotional Intelligence</span>
-              <span class="flow-dim-bar-wrap"><span class="flow-dim-bar bar-cyan" style="width:85%;"></span></span>
-              <span class="flow-dim-pct">85%</span>
-            </div>
-            <div class="flow-dim-row">
               <span class="flow-dim-name">Shared Interests</span>
               <span class="flow-dim-bar-wrap"><span class="flow-dim-bar bar-pink" style="width:76%;"></span></span>
               <span class="flow-dim-pct">76%</span>
             </div>
-            <div class="flow-note">These dimensions are weighted by what matters most to you.</div>
+            <div class="flow-note">Dimensions weighted by what matters most to you.</div>
           </div>
         </div>
 
-        <!-- Step 3 -->
         <div class="flow-panel flow-hidden" id="flow-step-3">
           <div class="flow-card">
-            <div class="flow-card-title">Why Alex ranks above 94% of your matches:</div>
+            <div class="flow-card-title">Step 3 — Compatibility Rationale</div>
             <ul class="flow-bullet-list">
               <li>Shares your top value: Authenticity (confirmed, not inferred)</li>
               <li>Communication style: Reflective and direct (matches your preference)</li>
@@ -285,19 +163,18 @@ import Layout from '../layouts/Layout.astro';
               <li>No dealbreaker flags</li>
               <li>Mutual interest: Philosophy and systems thinking</li>
             </ul>
-            <div class="flow-note">This rationale is built from stated preferences, not behavioral inference.</div>
+            <div class="flow-note">Rationale built from stated preferences, not behavioral inference.</div>
           </div>
         </div>
 
-        <!-- Step 4 -->
         <div class="flow-panel flow-hidden" id="flow-step-4">
           <div class="flow-card">
-            <div class="flow-card-title">Conversation Starters</div>
+            <div class="flow-card-title">Step 4 — Conversation</div>
             <div class="starter-card">"What project are you most proud of from the last year?"</div>
-            <div class="starter-card">"You both listed philosophy - is there a thinker who changed how you see things?"</div>
-            <div class="starter-card">"You flagged depth as your top value. What does that look like in your day-to-day?"</div>
-            <button class="mock-btn btn-pink-sm" style="margin-top:1rem;" disabled>Start Conversation</button>
-            <div class="flow-note">Conversation starters are generated from your shared match dimensions.</div>
+            <div class="starter-card">"You both listed philosophy — is there a thinker who changed how you see things?"</div>
+            <div class="starter-card">"You flagged depth as your top value. What does that look like day-to-day?"</div>
+            <button class="mock-btn" style="margin-top:0.75rem;" disabled>Start Conversation</button>
+            <div class="flow-note">Conversation starters generated from your shared match dimensions.</div>
           </div>
         </div>
 
@@ -311,149 +188,41 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- SECTION C: Deterministic Match Explanation -->
+  <!-- Deterministic Match Explanation -->
   <section class="hs-deterministic">
     <div class="container">
-      <h2>Why Deterministic Matching Matters</h2>
+      <h2>Deterministic Matching</h2>
       <div class="det-grid">
         <div class="det-col">
-          <h3 class="det-col-title col-title-pink">The Problem</h3>
-          <p class="det-col-text">
-            Most platforms use engagement-optimized recommendation engines that favor matches who will
-            keep you swiping, not matches who will work out. The scoring is opaque. You cannot verify
-            or contest it.
-          </p>
+          <h3 class="col-title-pink">Problem</h3>
+          <p>Most platforms use engagement-optimized engines that favor matches who keep you swiping, not matches who will work out. Scoring is opaque and unverifiable.</p>
         </div>
         <div class="det-col">
-          <h3 class="det-col-title col-title-cyan">The HeartStrings Approach</h3>
-          <p class="det-col-text">
-            Every match is scored against your stated, structured preferences. The dimensions are
-            public. The scoring logic is deterministic. If the same two profiles run through the
-            system twice, they get the same score. No A/B testing on your relationship outcomes.
-          </p>
+          <h3 class="col-title-cyan">Approach</h3>
+          <p>Every match scored against your stated, structured preferences. Dimensions are public. Same two profiles always produce the same score — no A/B testing on your outcomes.</p>
         </div>
         <div class="det-col">
-          <h3 class="det-col-title col-title-green">What You See</h3>
-          <p class="det-col-text">
-            A ranked list with a full rationale for each position. Not a swipe deck. Not a mystery
-            algorithm. A structured explanation of why this person is or is not a good fit for what
-            you said you wanted.
-          </p>
+          <h3 class="col-title-green">What You See</h3>
+          <p>A ranked list with a full rationale for each position. Not a swipe deck. A structured explanation of why this person is or is not a fit for what you said you wanted.</p>
         </div>
       </div>
-
       <div class="factor-table-wrap">
-        <h3 class="factor-table-title">Sample Match Factor Table</h3>
         <table class="factor-table">
           <thead>
-            <tr>
-              <th>Factor</th>
-              <th>Your Preference</th>
-              <th>Their Profile</th>
-              <th>Match</th>
-            </tr>
+            <tr><th>Factor</th><th>Your Preference</th><th>Their Profile</th><th>Result</th></tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Values</td>
-              <td>Authenticity first</td>
-              <td>Authenticity first</td>
-              <td class="match-strong">Strong match</td>
-            </tr>
-            <tr>
-              <td>Commitment</td>
-              <td>Long-term</td>
-              <td>Long-term</td>
-              <td class="match-strong">Strong match</td>
-            </tr>
-            <tr>
-              <td>Communication</td>
-              <td>Direct + reflective</td>
-              <td>Direct</td>
-              <td class="match-good">Good match</td>
-            </tr>
-            <tr>
-              <td>Distance</td>
-              <td>50 miles</td>
-              <td>12 miles</td>
-              <td class="match-good">Within range</td>
-            </tr>
+            <tr><td>Values</td><td>Authenticity first</td><td>Authenticity first</td><td class="match-strong">Strong match</td></tr>
+            <tr><td>Commitment</td><td>Long-term</td><td>Long-term</td><td class="match-strong">Strong match</td></tr>
+            <tr><td>Communication</td><td>Direct + reflective</td><td>Direct</td><td class="match-good">Good match</td></tr>
+            <tr><td>Distance</td><td>50 miles</td><td>12 miles</td><td class="match-good">Within range</td></tr>
           </tbody>
         </table>
       </div>
-
     </div>
   </section>
 
-  <section class="hs-features">
-    <div class="container">
-      <h2>How It Works</h2>
-      <div class="features-grid">
-
-        <div class="feature-card">
-          <div class="feature-icon-text">[+]</div>
-          <h3>Structured Compatibility</h3>
-          <p>
-            Compatibility is not a single score. HeartStrings breaks it into explicit dimensions —
-            values, communication style, life goals, boundaries — and shows you the breakdown.
-          </p>
-          <span class="status-badge prototype">Prototype UI</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-text">[?]</div>
-          <h3>Match Rationale</h3>
-          <p>
-            Every match comes with a deterministic explanation: what aligned, what differs, and
-            what is genuinely unknown. No black box. No engagement bait.
-          </p>
-          <span class="status-badge prototype">Prototype UI</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-text">[S]</div>
-          <h3>Safety-First Design</h3>
-          <p>
-            Boundary settings, authenticity tools, and safety prompts built into the interaction
-            layer — not added as an afterthought.
-          </p>
-          <span class="status-badge development">In Development</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-text">[B]</div>
-          <h3>ByteLite Integration</h3>
-          <p>
-            HeartStrings is the first planned consumer application of ByteLite compression.
-            AI model deployment at a fraction of traditional storage cost.
-          </p>
-          <span class="status-badge planned">Planned</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-text">[A]</div>
-          <h3>AIya Conversation Layer</h3>
-          <p>
-            Deep Kore's AIya provides the conversation and reasoning layer —
-            structured, deterministic, and governed by the Genesis Goal Keeper framework.
-          </p>
-          <span class="status-badge planned">Planned</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-text">[D]</div>
-          <h3>Relationship Dashboard</h3>
-          <p>
-            A personal dashboard showing compatibility trends, communication health,
-            and genuine insights — not engagement metrics dressed up as relationship data.
-          </p>
-          <span class="status-badge prototype">Prototype UI</span>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
+  <!-- What Is Real Today -->
   <section class="hs-what-real">
     <div class="container">
       <h2>What Is Real Today</h2>
@@ -471,8 +240,7 @@ import Layout from '../layouts/Layout.astro';
           <ul>
             <li>Match view UI</li>
             <li>Conversation screen layout</li>
-            <li>Settings / values / intent filters</li>
-            <li>Relationship dashboard wireframe</li>
+            <li>Filters and intent settings</li>
           </ul>
         </div>
         <div class="reality-card development">
@@ -481,28 +249,39 @@ import Layout from '../layouts/Layout.astro';
             <li>Core matching engine</li>
             <li>Safety and authenticity tools</li>
             <li>ByteLite compression integration</li>
-            <li>AIya conversation layer</li>
+          </ul>
+        </div>
+        <div class="reality-card planned">
+          <h3>Access Timeline</h3>
+          <ul>
+            <li>Public beta after ByteLite demo</li>
+            <li>Early interest list open now</li>
+            <li>No launch date set</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- What Is Next -->
   <section class="hs-next">
     <div class="container">
-      <h2>What Comes Next</h2>
-      <p>
-        HeartStrings expands after the ByteLite demonstration application launches.
-        The sequence matters: ByteLite compression first, then HeartStrings as the first
-        live deployment of that infrastructure.
-      </p>
-      <p>
-        If you are interested in early access, partnership, or following development,
-        reach out directly.
-      </p>
-      <div class="next-cta">
-        <a href="/contact" class="btn btn-pink">Get In Touch</a>
-        <a href="/news" class="btn btn-outline">Current Status</a>
+      <h2>What Is Next</h2>
+      <ol class="next-list">
+        <li>ByteLite demonstration application launches first — HeartStrings depends on that infrastructure.</li>
+        <li>Matching engine development begins in parallel once ByteLite core is stable.</li>
+        <li>Public beta opens to early interest list after successful ByteLite demo.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- CTA Row -->
+  <section class="hs-cta">
+    <div class="container">
+      <div class="cta-row">
+        <a href="/demo" class="btn btn-pink">See Demo</a>
+        <a href="/status" class="btn btn-outline">Current Status</a>
+        <a href="/contact" class="btn btn-outline">Contact</a>
       </div>
     </div>
   </section>
@@ -519,18 +298,12 @@ import Layout from '../layouts/Layout.astro';
       const dots = document.querySelectorAll('.flow-step-indicators .step-dot');
       const dot = dots[i - 1];
       if (panel) {
-        if (i === n) {
-          panel.classList.remove('flow-hidden');
-        } else {
-          panel.classList.add('flow-hidden');
-        }
+        if (i === n) { panel.classList.remove('flow-hidden'); }
+        else { panel.classList.add('flow-hidden'); }
       }
       if (dot) {
-        if (i === n) {
-          dot.classList.add('step-active');
-        } else {
-          dot.classList.remove('step-active');
-        }
+        if (i === n) { dot.classList.add('step-active'); }
+        else { dot.classList.remove('step-active'); }
       }
     }
     const prevBtn = document.getElementById('flow-prev') as HTMLButtonElement | null;
@@ -551,51 +324,64 @@ import Layout from '../layouts/Layout.astro';
 </script>
 
 <style>
+  :root {
+    --hs-pink: #EC4899;
+    --hs-primary: #00D4FF;
+    --hs-bg: #0A0E27;
+  }
+
   .container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
   }
 
   /* Hero */
   .hs-hero {
-    padding: 8rem 0 5rem;
+    padding: 4.5rem 0 3.5rem;
     text-align: center;
     background: linear-gradient(180deg, #0A0E27 0%, rgba(236, 72, 153, 0.05) 50%, #060813 100%);
-    position: relative;
   }
 
   .hero-badge {
     display: inline-block;
-    padding: 0.375rem 1rem;
+    padding: 0.3rem 0.9rem;
     border-radius: 100px;
     background: rgba(236, 72, 153, 0.1);
     border: 1px solid rgba(236, 72, 153, 0.3);
     color: #EC4899;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .hs-hero h1 {
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
     font-weight: 800;
     background: linear-gradient(135deg, #F9A8D4 0%, #EC4899 50%, #BE185D 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin: 0 0 1.5rem;
+    margin: 0 0 1rem;
     line-height: 1;
   }
 
   .hero-tagline {
-    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-    color: rgba(224, 224, 224, 0.8);
-    max-width: 600px;
-    margin: 0 auto 2.5rem;
-    line-height: 1.5;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(224, 224, 224, 0.9);
+    max-width: 560px;
+    margin: 0 auto 0.5rem;
+    font-weight: 600;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    color: rgba(224, 224, 224, 0.6);
+    max-width: 520px;
+    margin: 0 auto 2rem;
+    line-height: 1.55;
   }
 
   .hero-cta {
@@ -607,1025 +393,371 @@ import Layout from '../layouts/Layout.astro';
 
   /* Buttons */
   .btn {
-    padding: 0.875rem 2rem;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
     display: inline-block;
-    font-size: 1rem;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: opacity 0.2s;
   }
+
+  .btn:hover { opacity: 0.85; }
 
   .btn-pink {
-    background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);
-    color: white;
-  }
-
-  .btn-pink:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+    background: #EC4899;
+    color: #fff;
+    border: 1px solid #EC4899;
   }
 
   .btn-outline {
     background: transparent;
-    color: #E0E0E0;
-    border: 2px solid rgba(224, 224, 224, 0.3);
+    color: #00D4FF;
+    border: 1px solid #00D4FF;
   }
 
-  .btn-outline:hover {
-    border-color: #EC4899;
-    color: #EC4899;
-    transform: translateY(-2px);
+  /* Section commons */
+  .hs-gallery, .hs-flow, .hs-deterministic, .hs-what-real, .hs-next, .hs-cta {
+    padding: 3.5rem 0;
   }
 
-  /* Summary */
-  .hs-summary {
-    padding: 5rem 0;
-    background: #060813;
-  }
+  .hs-gallery { background: rgba(236, 72, 153, 0.02); }
+  .hs-flow { background: rgba(0, 212, 255, 0.02); }
+  .hs-deterministic { background: rgba(236, 72, 153, 0.03); }
+  .hs-what-real { background: rgba(0, 212, 255, 0.02); }
+  .hs-next { background: rgba(236, 72, 153, 0.02); }
+  .hs-cta { padding: 2.5rem 0 3.5rem; background: #060813; }
 
-  .summary-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .summary-text h2 {
-    font-size: 2rem;
+  section h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
     font-weight: 700;
-    color: #F9A8D4;
-    margin: 0 0 1.5rem;
-  }
-
-  .summary-text p {
-    color: rgba(224, 224, 224, 0.8);
-    line-height: 1.7;
-    margin-bottom: 1rem;
-  }
-
-  .summary-status {
-    background: rgba(10, 14, 39, 0.7);
-    border: 1px solid rgba(236, 72, 153, 0.2);
-    border-radius: 12px;
-    padding: 2rem;
-  }
-
-  .summary-status h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #EC4899;
-    margin: 0 0 1.25rem;
-  }
-
-  .status-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.875rem;
-  }
-
-  .status-list li {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: rgba(224, 224, 224, 0.8);
-    font-size: 0.9rem;
-  }
-
-  .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .dot.active { background: #22C55E; }
-  .dot.prototype { background: #EC4899; }
-  .dot.planned { background: #A855F7; }
-
-  /* Origin */
-  .hs-origin {
-    padding: 4rem 0;
-    background: rgba(236, 72, 153, 0.03);
-    border-top: 1px solid rgba(236, 72, 153, 0.1);
-    border-bottom: 1px solid rgba(236, 72, 153, 0.1);
-    text-align: center;
-  }
-
-  .hs-origin blockquote {
-    font-size: clamp(1.125rem, 2vw, 1.375rem);
-    color: rgba(224, 224, 224, 0.9);
-    font-style: italic;
-    line-height: 1.7;
-    max-width: 700px;
-    margin: 0 auto 1rem;
-  }
-
-  .hs-origin cite {
-    color: #EC4899;
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 600;
-  }
-
-  /* ===== SECTION A: Interface Gallery ===== */
-  .hs-gallery {
-    padding: 5rem 0;
-    background: #0A0E27;
-  }
-
-  .hs-gallery h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #E0E0E0;
-    margin: 0 0 0.75rem;
-    text-align: center;
+    color: #fff;
+    margin: 0 0 0.5rem;
   }
 
   .section-subtitle {
-    color: rgba(224, 224, 224, 0.6);
-    font-size: 0.95rem;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 3rem;
-    line-height: 1.6;
-    font-style: italic;
+    color: rgba(224, 224, 224, 0.55);
+    font-size: 0.88rem;
+    margin: 0 0 1.75rem;
+    max-width: 600px;
   }
 
+  /* Gallery grid */
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
   }
 
   .ui-panel {
-    background: rgba(10, 14, 39, 0.85);
-    border-radius: 12px;
-    padding: 1.5rem;
+    background: rgba(10, 14, 39, 0.9);
+    border-radius: 10px;
+    padding: 1rem;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-  }
-
-  .panel-pink { border: 1.5px solid rgba(236, 72, 153, 0.45); }
-  .panel-cyan { border: 1.5px solid rgba(0, 212, 255, 0.45); }
-  .panel-purple { border: 1.5px solid rgba(168, 85, 247, 0.45); }
-  .panel-green { border: 1.5px solid rgba(34, 197, 94, 0.45); }
-
-  .preview-badge {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.15);
-    color: rgba(224,224,224,0.5);
-    font-size: 0.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0.15rem 0.5rem;
-    border-radius: 20px;
-  }
-
-  .panel-header {
-    margin-bottom: 0.25rem;
-  }
-
-  .panel-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(224,224,224,0.4);
-  }
-
-  .profile-name {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #F9A8D4;
-  }
-
-  .profile-location {
-    font-size: 0.8rem;
-    color: rgba(224,224,224,0.5);
-  }
-
-  .profile-values {
-    font-size: 0.75rem;
-    color: #EC4899;
-    font-weight: 600;
-    margin-top: 0.1rem;
-  }
-
-  .profile-intent {
-    font-size: 0.8rem;
-    color: rgba(224,224,224,0.65);
-  }
-
-  .interest-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.25rem;
-  }
-
-  .tag {
-    background: rgba(236, 72, 153, 0.1);
-    border: 1px solid rgba(236, 72, 153, 0.25);
-    color: #F9A8D4;
-    font-size: 0.65rem;
-    padding: 0.15rem 0.5rem;
-    border-radius: 20px;
-    font-weight: 600;
-  }
-
-  .compat-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 0.5rem;
-  }
-
-  .compat-label {
-    font-size: 0.75rem;
-    color: rgba(224,224,224,0.55);
-  }
-
-  .compat-pct {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #EC4899;
-  }
-
-  .bar-track {
-    background: rgba(255,255,255,0.08);
-    border-radius: 4px;
-    height: 6px;
-    overflow: hidden;
-  }
-
-  .bar-fill {
-    height: 100%;
-    border-radius: 4px;
-  }
-
-  .bar-pink { background: linear-gradient(90deg, #EC4899, #BE185D); }
-  .bar-cyan { background: linear-gradient(90deg, #00D4FF, #0099cc); }
-  .bar-green { background: linear-gradient(90deg, #22C55E, #16a34a); }
-
-  .mock-btn {
-    cursor: default;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.8rem;
-    margin-top: 0.5rem;
-  }
-
-  .btn-pink-sm {
-    background: linear-gradient(135deg, #EC4899, #BE185D);
-    color: white;
-    padding: 0.4rem 1.2rem;
-  }
-
-  .dim-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.78rem;
-  }
-
-  .dim-name { color: rgba(224,224,224,0.7); }
-
-  .dim-pct {
-    font-weight: 700;
-    font-size: 0.78rem;
-  }
-
-  .pct-green { color: #22C55E; }
-  .pct-cyan { color: #00D4FF; }
-
-  .dealbreaker-row { margin-top: 0.25rem; }
-
-  .check-ok {
-    font-size: 0.75rem;
-    color: #22C55E;
-    font-weight: 600;
-  }
-
-  .mock-link {
-    font-size: 0.75rem;
-    color: #00D4FF;
-    text-decoration: underline;
-    margin-top: 0.5rem;
-    cursor: default;
-    pointer-events: none;
-  }
-
-  .chat-area {
-    background: rgba(0,0,0,0.25);
-    border-radius: 8px;
-    padding: 0.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    min-height: 90px;
-    margin-top: 0.25rem;
-  }
-
-  .chat-msg {
-    font-size: 0.75rem;
-    line-height: 1.5;
-  }
-
-  .chat-you { color: rgba(224,224,224,0.8); }
-  .chat-them { color: rgba(168,85,247,0.9); }
-
-  .chat-sender {
-    font-weight: 700;
-    margin-right: 0.25rem;
-  }
-
-  .chat-input-bar {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(168,85,247,0.25);
-    border-radius: 6px;
-    padding: 0.4rem 0.75rem;
-    margin-top: 0.25rem;
-  }
-
-  .chat-input-placeholder {
-    font-size: 0.72rem;
-    color: rgba(224,224,224,0.25);
-  }
-
-  .conv-tip {
-    font-size: 0.7rem;
-    color: #A855F7;
-    font-style: italic;
-    margin-top: 0.25rem;
-    line-height: 1.5;
-  }
-
-  .filter-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    margin-top: 0.25rem;
-  }
-
-  .filter-item {
-    font-size: 0.78rem;
-    color: rgba(224,224,224,0.75);
-    font-family: monospace;
-  }
-
-  .slider-visual {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.4rem;
-  }
-
-  .slider-label {
-    font-size: 0.72rem;
-    color: rgba(224,224,224,0.5);
-    min-width: 70px;
-  }
-
-  .slider-track {
-    flex: 1;
-    height: 4px;
-    background: rgba(236,72,153,0.2);
-    border-radius: 4px;
-    position: relative;
-    display: block;
-  }
-
-  .slider-thumb {
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    background: #EC4899;
-    border-radius: 50%;
-    display: block;
-  }
-
-  .slider-value {
-    font-size: 0.72rem;
-    color: #F9A8D4;
-    font-weight: 600;
-    min-width: 50px;
-    text-align: right;
-  }
-
-  .toggle-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 0.25rem;
-  }
-
-  .toggle-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .toggle-on {
-    background: rgba(34,197,94,0.15);
-    border: 1px solid rgba(34,197,94,0.4);
-    color: #22C55E;
-    font-size: 0.6rem;
-    font-weight: 700;
-    padding: 0.1rem 0.35rem;
-    border-radius: 4px;
-    flex-shrink: 0;
-  }
-
-  .toggle-label {
-    font-size: 0.75rem;
-    color: rgba(224,224,224,0.75);
-    line-height: 1.4;
-  }
-
-  .safety-note {
-    font-size: 0.72rem;
-    color: rgba(34,197,94,0.7);
-    font-style: italic;
-    line-height: 1.5;
-    margin-top: 0.5rem;
-    border-top: 1px solid rgba(34,197,94,0.1);
-    padding-top: 0.5rem;
-  }
-
-  /* ===== SECTION B: Flow ===== */
-  .hs-flow {
-    padding: 5rem 0;
-    background: #060813;
-  }
-
-  .hs-flow h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #E0E0E0;
-    margin: 0 0 0.75rem;
-    text-align: center;
-  }
-
-  .flow-step-indicators {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-    margin: 2rem 0 1.5rem;
-  }
-
-  .step-dot {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.06);
-    border: 2px solid rgba(255,255,255,0.12);
-    color: rgba(224,224,224,0.5);
-    font-size: 0.875rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .step-dot:hover {
-    border-color: rgba(236,72,153,0.5);
-    color: #F9A8D4;
-  }
-
-  .step-dot.step-active {
-    background: linear-gradient(135deg, #EC4899, #BE185D);
-    border-color: #EC4899;
-    color: white;
-  }
-
-  .flow-panels {
-    max-width: 680px;
-    margin: 0 auto;
-  }
-
-  .flow-panel {
-    display: block;
-  }
-
-  .flow-hidden {
-    display: none;
-  }
-
-  .flow-card {
-    background: rgba(10,14,39,0.8);
-    border: 1px solid rgba(236,72,153,0.2);
-    border-radius: 12px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .flow-card-title {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #F9A8D4;
-    margin-bottom: 0.25rem;
-  }
-
-  .flow-row {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-    font-size: 0.9rem;
-  }
-
-  .flow-key {
-    color: rgba(224,224,224,0.45);
-    min-width: 150px;
-    flex-shrink: 0;
     font-size: 0.82rem;
   }
 
-  .flow-val {
-    color: #E0E0E0;
-    font-weight: 500;
-  }
+  .panel-pink { border: 1px solid rgba(236, 72, 153, 0.3); }
+  .panel-cyan { border: 1px solid rgba(0, 212, 255, 0.3); }
+  .panel-purple { border: 1px solid rgba(139, 92, 246, 0.3); }
 
-  .flow-badge-row {
-    margin-top: 0.25rem;
-  }
-
-  .flow-badge {
-    display: inline-block;
-    background: rgba(34,197,94,0.12);
-    border: 1px solid rgba(34,197,94,0.35);
-    color: #22C55E;
-    font-size: 0.72rem;
+  .preview-badge {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    background: rgba(236, 72, 153, 0.15);
+    border: 1px solid rgba(236, 72, 153, 0.3);
+    color: #EC4899;
+    font-size: 0.65rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.07em;
-    padding: 0.2rem 0.65rem;
-    border-radius: 20px;
-  }
-
-  .flow-dim-row {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.85rem;
-  }
-
-  .flow-dim-name {
-    color: rgba(224,224,224,0.65);
-    min-width: 170px;
-    flex-shrink: 0;
-  }
-
-  .flow-dim-bar-wrap {
-    flex: 1;
-    background: rgba(255,255,255,0.06);
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.45rem;
     border-radius: 4px;
-    height: 7px;
-    overflow: hidden;
   }
 
-  .flow-dim-bar {
+  .panel-label {
     display: block;
-    height: 100%;
+    font-weight: 700;
+    color: #EC4899;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.75rem;
+  }
+
+  .profile-name { font-size: 1.05rem; font-weight: 700; color: #fff; }
+  .profile-meta { color: rgba(224,224,224,0.5); font-size: 0.75rem; margin: 0.2rem 0 0.4rem; }
+  .profile-values { color: rgba(236,72,153,0.8); font-size: 0.75rem; margin-bottom: 0.5rem; }
+
+  .interest-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.6rem; }
+  .tag {
+    background: rgba(236,72,153,0.1);
+    border: 1px solid rgba(236,72,153,0.25);
+    color: rgba(236,72,153,0.9);
+    font-size: 0.68rem;
+    padding: 0.1rem 0.4rem;
     border-radius: 4px;
   }
 
-  .flow-dim-pct {
-    font-weight: 700;
-    color: #E0E0E0;
-    min-width: 35px;
-    text-align: right;
-  }
+  .compat-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; }
+  .compat-label { color: rgba(224,224,224,0.6); font-size: 0.75rem; }
+  .compat-pct { color: #EC4899; font-weight: 700; font-size: 0.9rem; }
 
-  .flow-note {
-    font-size: 0.78rem;
-    color: rgba(224,224,224,0.45);
-    font-style: italic;
-    line-height: 1.5;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    padding-top: 0.75rem;
-    margin-top: 0.25rem;
-  }
+  .bar-track { height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-bottom: 0.5rem; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 2px; }
+  .bar-pink { background: #EC4899; }
+  .bar-green { background: #22c55e; }
+  .bar-cyan { background: #00D4FF; }
 
-  .flow-bullet-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-  }
+  .dim-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem; font-size: 0.78rem; }
+  .dim-name { color: rgba(224,224,224,0.7); }
+  .dim-pct { font-weight: 700; }
+  .pct-green { color: #22c55e; }
+  .pct-cyan { color: #00D4FF; }
+  .dealbreaker-row { margin-top: 0.5rem; }
+  .check-ok { color: #22c55e; font-size: 0.75rem; }
 
-  .flow-bullet-list li {
-    color: rgba(224,224,224,0.8);
-    font-size: 0.875rem;
-    line-height: 1.5;
-    padding-left: 1.1rem;
-    position: relative;
-  }
-
-  .flow-bullet-list li::before {
-    content: '-';
-    position: absolute;
-    left: 0;
+  .mock-btn {
+    background: rgba(236,72,153,0.15);
+    border: 1px solid rgba(236,72,153,0.4);
     color: #EC4899;
-    opacity: 0.7;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: not-allowed;
+    opacity: 0.6;
+    margin-top: 0.4rem;
   }
+
+  .chat-area { background: rgba(255,255,255,0.03); border-radius: 6px; padding: 0.5rem; margin-bottom: 0.4rem; }
+  .chat-msg { font-size: 0.75rem; color: rgba(224,224,224,0.7); margin-bottom: 0.35rem; line-height: 1.4; }
+  .chat-sender { font-weight: 700; color: #EC4899; }
+  .chat-them .chat-sender { color: #00D4FF; }
+  .chat-input-bar {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.72rem;
+    color: rgba(224,224,224,0.3);
+    margin-bottom: 0.4rem;
+  }
+  .conv-tip { font-size: 0.68rem; color: rgba(236,72,153,0.6); font-style: italic; }
+
+  .filter-list { margin-bottom: 0.6rem; }
+  .filter-item { color: rgba(224,224,224,0.7); font-size: 0.75rem; padding: 0.15rem 0; }
+
+  .slider-visual { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.3rem; font-size: 0.72rem; }
+  .slider-label { color: rgba(224,224,224,0.5); min-width: 65px; }
+  .slider-track { flex: 1; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; position: relative; }
+  .slider-thumb { position: absolute; top: -3px; width: 9px; height: 9px; background: #EC4899; border-radius: 50%; transform: translateX(-50%); }
+  .slider-value { color: #EC4899; font-weight: 600; min-width: 50px; text-align: right; }
+
+  /* Prototype Flow */
+  .flow-step-indicators {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .step-dot {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(224,224,224,0.5);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .step-dot.step-active {
+    background: rgba(236,72,153,0.15);
+    border-color: #EC4899;
+    color: #EC4899;
+  }
+
+  .flow-panel { display: block; }
+  .flow-hidden { display: none; }
+
+  .flow-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(236,72,153,0.2);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    max-width: 560px;
+  }
+
+  .flow-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #EC4899;
+    margin-bottom: 0.9rem;
+  }
+
+  .flow-row { display: flex; gap: 1rem; justify-content: space-between; padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
+  .flow-key { color: rgba(224,224,224,0.55); }
+  .flow-val { color: #fff; font-weight: 500; text-align: right; }
+
+  .flow-badge-row { margin-top: 0.75rem; }
+  .flow-badge {
+    background: rgba(34,197,94,0.12);
+    border: 1px solid rgba(34,197,94,0.3);
+    color: #22c55e;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .flow-dim-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; font-size: 0.82rem; }
+  .flow-dim-name { color: rgba(224,224,224,0.65); min-width: 120px; }
+  .flow-dim-bar-wrap { flex: 1; height: 5px; background: rgba(255,255,255,0.07); border-radius: 3px; overflow: hidden; }
+  .flow-dim-bar { height: 100%; border-radius: 3px; }
+  .flow-dim-pct { color: rgba(224,224,224,0.8); font-weight: 600; min-width: 36px; text-align: right; }
+
+  .flow-bullet-list { padding-left: 1.1rem; margin: 0 0 0.75rem; }
+  .flow-bullet-list li { color: rgba(224,224,224,0.75); font-size: 0.85rem; padding: 0.2rem 0; }
+
+  .flow-note { font-size: 0.75rem; color: rgba(236,72,153,0.6); font-style: italic; margin-top: 0.6rem; }
 
   .starter-card {
     background: rgba(236,72,153,0.06);
-    border: 1px solid rgba(236,72,153,0.18);
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
-    color: rgba(224,224,224,0.85);
-    line-height: 1.5;
+    border: 1px solid rgba(236,72,153,0.15);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.82rem;
+    color: rgba(224,224,224,0.8);
+    margin-bottom: 0.4rem;
     font-style: italic;
   }
 
   .flow-nav {
     display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 2rem;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
   }
 
   .flow-btn {
-    padding: 0.65rem 1.75rem;
-    border-radius: 8px;
+    padding: 0.45rem 1.1rem;
+    border-radius: 5px;
+    font-size: 0.85rem;
     font-weight: 600;
-    font-size: 0.9rem;
     cursor: pointer;
-    background: transparent;
-    border: 2px solid rgba(224,224,224,0.2);
-    color: rgba(224,224,224,0.65);
-    transition: all 0.2s ease;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.05);
+    color: rgba(224,224,224,0.7);
+    transition: all 0.2s;
   }
 
-  .flow-btn:hover:not(:disabled) {
-    border-color: rgba(224,224,224,0.4);
-    color: #E0E0E0;
-  }
-
-  .flow-btn:disabled {
-    opacity: 0.3;
-    cursor: default;
-  }
+  .flow-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .flow-btn:hover:not(:disabled) { background: rgba(255,255,255,0.09); }
 
   .flow-btn-primary {
-    background: linear-gradient(135deg, #EC4899, #BE185D);
-    border-color: #EC4899;
-    color: white;
+    background: rgba(236,72,153,0.15);
+    border-color: rgba(236,72,153,0.4);
+    color: #EC4899;
   }
 
-  .flow-btn-primary:hover:not(:disabled) {
-    box-shadow: 0 6px 20px rgba(236,72,153,0.35);
-    transform: translateY(-1px);
-    border-color: #EC4899;
-    color: white;
-  }
+  .flow-btn-primary:hover:not(:disabled) { background: rgba(236,72,153,0.25); }
 
-  /* ===== SECTION C: Deterministic ===== */
-  .hs-deterministic {
-    padding: 5rem 0;
-    background: #0A0E27;
-    border-top: 1px solid rgba(236,72,153,0.08);
-  }
-
-  .hs-deterministic h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #E0E0E0;
-    margin: 0 0 3rem;
-    text-align: center;
-  }
-
+  /* Deterministic */
   .det-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-bottom: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .det-col {
-    background: rgba(6,8,19,0.7);
-    border-radius: 12px;
-    padding: 2rem;
+    background: rgba(255,255,255,0.02);
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(255,255,255,0.06);
   }
 
-  .det-col-title {
-    font-size: 1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin: 0 0 1rem;
-  }
-
+  .det-col h3 { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 0.5rem; }
   .col-title-pink { color: #EC4899; }
   .col-title-cyan { color: #00D4FF; }
-  .col-title-green { color: #22C55E; }
+  .col-title-green { color: #22c55e; }
+  .det-col p { font-size: 0.85rem; color: rgba(224,224,224,0.65); line-height: 1.55; margin: 0; }
 
-  .det-col-text {
-    color: rgba(224,224,224,0.75);
-    font-size: 0.9rem;
-    line-height: 1.7;
-    margin: 0;
-  }
-
-  .factor-table-wrap {
-    background: rgba(6,8,19,0.7);
-    border: 1px solid rgba(236,72,153,0.12);
-    border-radius: 12px;
-    padding: 2rem;
-  }
-
-  .factor-table-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: rgba(224,224,224,0.6);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin: 0 0 1.25rem;
-  }
+  .factor-table-wrap { overflow-x: auto; }
 
   .factor-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.875rem;
+    font-size: 0.82rem;
   }
 
   .factor-table th {
+    background: rgba(236,72,153,0.08);
+    color: #EC4899;
     text-align: left;
-    padding: 0.6rem 1rem;
-    color: rgba(224,224,224,0.45);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid rgba(236,72,153,0.2);
     font-size: 0.75rem;
-    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+    letter-spacing: 0.05em;
   }
 
   .factor-table td {
-    padding: 0.7rem 1rem;
-    color: rgba(224,224,224,0.8);
+    padding: 0.45rem 0.75rem;
+    color: rgba(224,224,224,0.7);
     border-bottom: 1px solid rgba(255,255,255,0.04);
   }
 
-  .factor-table tr:last-child td {
-    border-bottom: none;
-  }
-
-  .match-strong { color: #22C55E; font-weight: 600; }
+  .match-strong { color: #22c55e; font-weight: 600; }
   .match-good { color: #00D4FF; font-weight: 600; }
 
-  /* Features */
-  .hs-features {
-    padding: 5rem 0;
-    background: #060813;
-  }
-
-  .hs-features h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #E0E0E0;
-    margin: 0 0 3rem;
-    text-align: center;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .feature-card {
-    background: rgba(10, 14, 39, 0.6);
-    border: 1px solid rgba(236, 72, 153, 0.15);
-    border-radius: 12px;
-    padding: 2rem;
-    transition: all 0.3s ease;
-  }
-
-  .feature-card:hover {
-    border-color: rgba(236, 72, 153, 0.35);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(236, 72, 153, 0.1);
-  }
-
-  .feature-icon-text {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #EC4899;
-    margin-bottom: 1rem;
-    font-family: monospace;
-  }
-
-  .feature-card h3 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #F9A8D4;
-    margin: 0 0 0.75rem;
-  }
-
-  .feature-card p {
-    color: rgba(224, 224, 224, 0.7);
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin: 0 0 1rem;
-  }
-
-  .status-badge {
-    display: inline-block;
-    padding: 0.2rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-
-  .status-badge.prototype {
-    background: rgba(236, 72, 153, 0.1);
-    color: #EC4899;
-    border: 1px solid rgba(236, 72, 153, 0.3);
-  }
-
-  .status-badge.development {
-    background: rgba(0, 212, 255, 0.1);
-    color: #00D4FF;
-    border: 1px solid rgba(0, 212, 255, 0.3);
-  }
-
-  .status-badge.planned {
-    background: rgba(168, 85, 247, 0.1);
-    color: #A855F7;
-    border: 1px solid rgba(168, 85, 247, 0.3);
-  }
-
-  /* What is Real */
-  .hs-what-real {
-    padding: 5rem 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(236, 72, 153, 0.03) 50%, transparent 100%);
-  }
-
-  .hs-what-real h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #E0E0E0;
-    margin: 0 0 3rem;
-    text-align: center;
-  }
-
+  /* What Is Real Today */
   .reality-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.85rem;
   }
 
   .reality-card {
-    background: rgba(10, 14, 39, 0.6);
-    border-radius: 12px;
-    padding: 2rem;
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.82rem;
   }
 
-  .reality-card.live {
-    border: 1px solid rgba(34, 197, 94, 0.3);
-  }
+  .reality-card h3 { font-size: 0.85rem; font-weight: 700; margin: 0 0 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .reality-card ul { padding-left: 1rem; margin: 0; }
+  .reality-card li { color: rgba(224,224,224,0.65); padding: 0.15rem 0; }
 
-  .reality-card.live h3 {
-    color: #22C55E;
-  }
+  .reality-card.live { background: rgba(34,197,94,0.05); border: 1px solid rgba(34,197,94,0.2); }
+  .reality-card.live h3 { color: #22c55e; }
+  .reality-card.preview { background: rgba(236,72,153,0.05); border: 1px solid rgba(236,72,153,0.2); }
+  .reality-card.preview h3 { color: #EC4899; }
+  .reality-card.development { background: rgba(0,212,255,0.05); border: 1px solid rgba(0,212,255,0.2); }
+  .reality-card.development h3 { color: #00D4FF; }
+  .reality-card.planned { background: rgba(139,92,246,0.05); border: 1px solid rgba(139,92,246,0.2); }
+  .reality-card.planned h3 { color: #a78bfa; }
 
-  .reality-card.preview {
-    border: 1px solid rgba(236, 72, 153, 0.3);
-  }
-
-  .reality-card.preview h3 {
-    color: #EC4899;
-  }
-
-  .reality-card.development {
-    border: 1px solid rgba(0, 212, 255, 0.3);
-  }
-
-  .reality-card.development h3 {
-    color: #00D4FF;
-  }
-
-  .reality-card h3 {
-    font-weight: 700;
-    margin: 0 0 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: 0.875rem;
-  }
-
-  .reality-card ul {
-    list-style: none;
-    padding: 0;
+  /* What Is Next */
+  .next-list {
+    padding-left: 1.4rem;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    max-width: 680px;
   }
 
-  .reality-card li {
-    color: rgba(224, 224, 224, 0.75);
+  .next-list li {
+    color: rgba(224,224,224,0.7);
     font-size: 0.9rem;
-    padding-left: 1rem;
-    position: relative;
+    padding: 0.35rem 0;
+    line-height: 1.55;
   }
 
-  .reality-card li::before {
-    content: '-';
-    position: absolute;
-    left: 0;
-    opacity: 0.4;
-  }
-
-  /* Next */
-  .hs-next {
-    padding: 5rem 0 7rem;
-    background: #060813;
-    text-align: center;
-  }
-
-  .hs-next h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #E0E0E0;
-    margin: 0 0 1.5rem;
-  }
-
-  .hs-next p {
-    color: rgba(224, 224, 224, 0.75);
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    max-width: 580px;
-    margin: 0 auto 1rem;
-  }
-
-  .next-cta {
+  /* CTA row */
+  .cta-row {
     display: flex;
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 2.5rem;
-  }
-
-  /* Responsive */
-  @media (max-width: 1024px) {
-    .gallery-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .det-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .summary-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .reality-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .features-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .gallery-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .det-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .flow-dim-name {
-      min-width: 120px;
-    }
-
-    .factor-table th,
-    .factor-table td {
-      padding: 0.5rem 0.5rem;
-      font-size: 0.8rem;
-    }
   }
 </style>

@@ -4,89 +4,25 @@ import SubscribeForm from '../components/SubscribeForm.astro';
 ---
 
 <Layout
-  title="Subscribe for Updates - ByteLite"
-  description="Get updates on ByteLite compression demo, Deep Kore / AIya research, and HeartStrings platform. Follow the public lab."
+  title="Subscribe - ByteLite Public Lab"
+  description="Get updates on ByteLite, Deep Kore / AIya, and HeartStrings. Notified when demos launch and milestones are reached."
 >
 
-  <section class="subscribe-content">
-    <div class="container">
-      <!-- Main Subscription Form -->
-      <SubscribeForm variant="hero" />
-
-      <!-- Information Sections -->
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="info-icon">🧠</div>
-          <h3>Deep Kore / AIya Research</h3>
-          <p>
-            Blueprint-stage research exploring whether recursive compression structures share properties
-            with computational cognition. AIya is the planned interface layer. All work governed by Genesis Goal Keeper.
-          </p>
-        </div>
-        
-        <div class="info-card">
-          <div class="info-icon">🔒</div>
-          <h3>Milestone Updates</h3>
-          <p>
-            Updates go out when milestones are reached: demos, research publications,
-            HeartStrings access, and ByteLite API availability.
-          </p>
-        </div>
-        
-        <div class="info-card">
-          <div class="info-icon">📱</div>
-          <h3>ByteLite Application Demo</h3>
-          <p>
-            Experience the compression technology firsthand. Be notified immediately when our 
-            demonstration application is ready for public release.
-          </p>
-        </div>
+  <section class="sub-page">
+    <div class="sub-container">
+      <div class="sub-header">
+        <h1>Stay in the Loop</h1>
+        <p>Updates go out when milestones are reached. No spam.</p>
       </div>
+      <SubscribeForm variant="compact" />
 
-      <!-- FAQ Section -->
-      <div class="faq-section">
-        <h2>Frequently Asked Questions</h2>
-        
-        <div class="faq-item">
-          <h4>Why is the blueprint no longer available?</h4>
-          <p>
-            Our mathematical framework has implications beyond compression, particularly in achieving 
-            true computational intelligence. We're working with appropriate authorities to ensure 
-            responsible disclosure while protecting this breakthrough technology.
-          </p>
+      <div class="sub-links">
+        <p>Want the current picture now?</p>
+        <div class="link-row">
+          <a href="/status">View Status Board</a>
+          <a href="/demo">Try the Demos</a>
+          <a href="/ethics">Read the Genesis Manifesto</a>
         </div>
-        
-        <div class="faq-item">
-          <h4>What is Deep Kore / AIya?</h4>
-          <p>
-            Deep Kore is blueprint-stage research exploring whether the recursive structures in extreme compression
-            share properties with computational cognition architectures. AIya is the planned interface layer.
-            Genesis Goal Keeper governs all development.
-          </p>
-        </div>
-        
-        <div class="faq-item">
-          <h4>When will the ByteLite Application Demo be available?</h4>
-          <p>
-            We're finalizing security protocols and usage restrictions. Subscribe above to be 
-            notified the moment it's released. Early access will be limited.
-          </p>
-        </div>
-        
-        <div class="faq-item">
-          <h4>Will technical details ever be released?</h4>
-          <p>
-            We're committed to advancing the field while ensuring responsible use. Technical 
-            publications will follow appropriate review and clearance processes.
-          </p>
-        </div>
-      </div>
-
-      <!-- Ethics CTA -->
-      <div class="ethics-cta">
-        <h3>Our Ethical Framework</h3>
-        <p>Learn about our commitment to responsible AI development and the principles guiding Deep Kore's emergence.</p>
-        <a href="/ethics" class="btn btn-primary">Read the Genesis Manifesto</a>
       </div>
     </div>
   </section>
@@ -94,148 +30,62 @@ import SubscribeForm from '../components/SubscribeForm.astro';
 </Layout>
 
 <style>
-  .subscribe-content {
-    padding: 4rem 0;
+  .sub-page {
+    padding: 3rem 0 4rem;
     background: var(--color-bg-darker);
+    min-height: 60vh;
   }
 
-  .container {
-    max-width: 1200px;
+  .sub-container {
+    max-width: 560px;
     margin: 0 auto;
     padding: 0 2rem;
   }
 
-  .info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 4rem 0;
-  }
-
-  .info-card {
-    background: rgba(10, 14, 39, 0.6);
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 12px;
-    padding: 2rem;
+  .sub-header {
     text-align: center;
-    transition: all 0.3s ease;
-  }
-
-  .info-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--color-primary);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
-  }
-
-  .info-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-
-  .info-card h3 {
-    color: var(--color-primary);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .info-card p {
-    color: var(--color-text-dim);
-    line-height: 1.6;
-  }
-
-  .faq-section {
-    margin-top: 6rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .faq-section h2 {
-    font-size: 2.5rem;
-    color: var(--color-primary);
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .faq-item {
-    background: rgba(10, 14, 39, 0.4);
-    border: 1px solid rgba(224, 224, 224, 0.1);
-    border-radius: 8px;
-    padding: 2rem;
-    margin-bottom: 1.5rem;
-    transition: all 0.3s ease;
-  }
-
-  .faq-item:hover {
-    background: rgba(10, 14, 39, 0.6);
-    border-color: rgba(0, 212, 255, 0.2);
-  }
-
-  .faq-item h4 {
-    color: var(--color-primary);
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-  }
-
-  .faq-item p {
-    color: var(--color-text-dim);
-    line-height: 1.6;
-  }
-
-  @media (max-width: 768px) {
-    .info-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .faq-section h2 {
-      font-size: 2rem;
-    }
-  }
-
-  /* Ethics CTA */
-  .ethics-cta {
-    margin-top: 6rem;
-    text-align: center;
-    padding: 3rem;
-    background: linear-gradient(135deg, rgba(168, 85, 247, 0.05), rgba(255, 0, 110, 0.05));
-    border-radius: 16px;
-    border: 1px solid rgba(168, 85, 247, 0.2);
-  }
-
-  .ethics-cta h3 {
-    font-size: 2rem;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-  }
-
-  .ethics-cta p {
-    color: var(--color-text-dim);
-    font-size: 1.125rem;
     margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
-  .btn {
-    display: inline-block;
-    padding: 1rem 2rem;
-    font-size: 1.125rem;
-    font-weight: 600;
-    border-radius: 0.5rem;
+  .sub-header h1 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .sub-header p {
+    color: rgba(224, 224, 224, 0.6);
+    font-size: 0.9rem;
+  }
+
+  .sub-links {
+    margin-top: 2.5rem;
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .sub-links p {
+    font-size: 0.85rem;
+    color: rgba(224, 224, 224, 0.45);
+    margin-bottom: 0.75rem;
+  }
+
+  .link-row {
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .link-row a {
+    font-size: 0.82rem;
+    color: #00D4FF;
     text-decoration: none;
-    transition: all 0.3s ease;
+    opacity: 0.8;
+    transition: opacity 0.2s;
   }
 
-  .btn-primary {
-    background: var(--color-primary);
-    color: var(--color-bg-dark);
-  }
-
-  .btn-primary:hover {
-    background: #00A8CC;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-  }
-
+  .link-row a:hover { opacity: 1; }
 </style>

@@ -1,328 +1,146 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import InteractiveCompressionDemo from '../components/InteractiveCompressionDemo.tsx';
 ---
 
 <Layout
-  title="ByteLite Technology - We Didn't Improve Compression. We Changed the Architecture."
-  description="Dictionary cascades. Szudzik pairing. Shared-model assumptions. ByteLite is engineered toward compression ratios on real-world data that would make today's best look bloated. Verification pending."
-  keywords={["dictionary cascade compression", "Szudzik pairing", "shared model compression", "structured data compression", "frontier compression technology", "deterministic compression", "lossless compression"]}
-  schemaType="TechArticle"
+  title="ByteLite Technology - Dictionary-Cascade Compression Engine"
+  description="Dictionary cascades, Szudzik pairing, and shared-model assumptions. ByteLite is engineered toward compression ratios on real-world structured data that redefine what compressed means. Patent US 63/807,027 pending."
+  keywords={["dictionary cascade compression", "Szudzik pairing", "shared model compression", "structured data compression", "lossless compression", "ByteLite technology"]}
+  schemaType="Article"
 >
 
-  <!-- Page Banner -->
-  <div class="page-banner">
-    <img
-      src="/ByteLite_Banner.png"
-      alt="ByteLite - Structural Compression Engine"
-      style="width:100%; height:auto; display:block; max-height:480px; object-fit:cover;"
-    />
-  </div>
+  <!-- Banner -->
+  <img src="/ByteLite_Banner.png" style="width:100%; height:auto; max-height:340px; object-fit:cover; display:block;" alt="ByteLite - Dictionary-cascade compression">
 
-  <section class="technology-content">
+  <section class="tech-wrap">
     <div class="container">
-      <!-- Core Concept -->
-      <div class="concept-section">
-        <h2>Classical Compression Hit a Wall. We Built Around It.</h2>
-        <p class="lead-text">
-          Most compressors fight entropy file by file. ByteLite treats structured data as a domain:
-          shared dictionaries, deterministic cascades, and a model that travels with the data.
-          The result? We're chasing ratios that would rewrite the leaderboards.
-        </p>
+
+      <!-- Hero -->
+      <div class="hero-block">
+        <h1>Not Incremental. Architectural.</h1>
+        <p class="hero-sub">ByteLite replaces per-file entropy battles with shared dictionaries, deterministic cascades, and a model that travels with the data. Controlled test result: 1GB to 15 bytes on enwik9 corpus -- results vary by data type.</p>
+        <div class="hero-ctas">
+          <a href="/demos" class="btn btn-primary">Interactive Demo</a>
+          <a href="/status" class="btn btn-outline">Current Status</a>
+        </div>
+        <p class="patent-tag">Patent US 63/807,027 pending &nbsp;|&nbsp; Lossless, SHA-256 verified</p>
       </div>
 
-      <!-- Key Points -->
-      <div class="key-points">
-        <div class="point-card">
-          <div class="point-icon-text">[Patent]</div>
-          <h3>Patent Filed</h3>
-          <p>US 63/807,027 - Protecting groundbreaking compression mathematics</p>
-        </div>
-
-        <div class="point-card">
-          <div class="point-icon-text">[Lossless]</div>
-          <h3>Lossless Compression</h3>
-          <p>Perfect data reconstruction with SHA-256 verification</p>
-        </div>
-
-        <div class="point-card">
-          <div class="point-icon-text">[Arch]</div>
-          <h3>Not Incremental. Architectural.</h3>
-          <p>We're not chasing 10% gains. We're chasing a different order of magnitude.</p>
+      <!-- File Playground -->
+      <div class="section-block">
+        <div class="section-label">File Playground</div>
+        <h2>Try It</h2>
+        <div class="demo-wrap">
+          <InteractiveCompressionDemo client:load />
         </div>
       </div>
 
-      <!-- Extreme Compression Section -->
-      <div class="infinite-storage-section">
-        <h2>What If "Compressed" Meant Something Completely Different?</h2>
-        <p class="section-intro">
-          Classical compression asks: "How small can I make this file?"
-          ByteLite asks: "If we share the model, how little do I actually need to send?"
-          For structured data, the answer might be shockingly small.
-        </p>
-
-        <div class="hierarchy-demo">
-          <h3>Shared-Model Compression Architecture</h3>
-          <div class="compression-levels">
-            <div class="level">
-              <div class="level-header">The Core Insight</div>
-              <div class="level-content">
-                <div class="data-flow">
-                  <span class="data-size">Structured data</span>
-                  <span class="arrow">-&gt;</span>
-                  <span class="compressed-size">Compact key/seed</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="level">
-              <div class="level-header">How It Works</div>
-              <div class="level-content">
-                <p class="level-description">
-                  Engine + pre-trained dictionaries = shared context<br/>
-                  Only the difference needs to travel
-                </p>
-                <div class="data-flow">
-                  <span class="data-size">Similar domain data</span>
-                  <span class="arrow">-&gt;</span>
-                  <span class="compressed-size">Dramatically smaller</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="level">
-              <div class="level-header">The Target</div>
-              <div class="level-content">
-                <p class="level-description">
-                  GB-scale corpora like enwik9<br/>
-                  Represented in bytes, not megabytes
-                </p>
-                <div class="data-flow">
-                  <span class="data-size">1GB structured corpus</span>
-                  <span class="arrow">-&gt;</span>
-                  <span class="compressed-size">Engineering goal: handful of bytes</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="level target">
-              <div class="level-header">Research Phase</div>
-              <div class="level-content">
-                <p class="target-text">
-                  1GB corpora -&gt; handful of bytes. That's the engineering goal.<br/>
-                  Verification will tell us how close we get.
-                </p>
-              </div>
-            </div>
+      <!-- How It Works -->
+      <div class="section-block">
+        <div class="section-label">How It Works</div>
+        <h2>Three Steps to Extreme Compression</h2>
+        <div class="how-grid">
+          <div class="how-card">
+            <div class="how-num">01</div>
+            <h3>Data Input</h3>
+            <ul class="tight-list">
+              <li>Structured data enters the engine</li>
+              <li>Domain profile selected (text, code, logs)</li>
+              <li>Pre-trained dictionaries loaded</li>
+            </ul>
           </div>
-
-          <div class="explanation-box">
-            <h4>The Architecture</h4>
-            <p>
-              ByteLite doesn't just compress data -- it exploits shared context.
-              When compressor and decompressor share the engine and dictionaries,
-              only a small key needs to travel. The ratio depends on how well the data fits the model.
-            </p>
-            <ul>
-              <li>Real-world structured data -- text, documents, code, logs</li>
-              <li>Shared engine + pre-trained dictionaries = massive effective compression</li>
-              <li>Not magic. Architecture. The ratio depends on domain similarity.</li>
-              <li>We're building toward numbers that would reset the leaderboards on structured data.</li>
+          <div class="how-card">
+            <div class="how-num">02</div>
+            <h3>Dictionary Cascade</h3>
+            <ul class="tight-list">
+              <li>Pattern matching against shared dictionaries</li>
+              <li>Szudzik pairing function encodes residuals</li>
+              <li>Only delta from shared model must travel</li>
+            </ul>
+          </div>
+          <div class="how-card how-card-final">
+            <div class="how-num">03</div>
+            <h3>Convergence</h3>
+            <ul class="tight-list">
+              <li>Sequential stages reduce structural redundancy</li>
+              <li>Output: compact key + profile reference</li>
+              <li>Decompressor reconstructs from shared context</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <!-- Deep Kore Section -->
-      <div class="deep-kore-section">
-        <h2>Deep Kore: Compression as a Blueprint for Intelligence</h2>
-        <p class="section-intro">
-          What if the math that compresses data is also the math that organizes thought?
-          Deep Kore is our physics-inspired architecture for testing that hypothesis.
-          Only real-world experiments will show how far it actually goes.
-        </p>
-
-        <div class="notice-box">
-          <p>
-            <strong>Research Notice:</strong> Deep Kore is blueprint-stage. Dual-use considerations apply.
-            Technical details gated. We're building carefully.
-          </p>
-        </div>
-      </div>
-
-      <!-- Call to Action -->
-      <div class="cta-section">
-        <h3>Explore ByteLite Technology</h3>
-        <p>Experience the future of data compression and computational intelligence.</p>
-        <div class="cta-buttons">
-          <a href="/demos" class="btn btn-primary">Try Interactive Demo</a>
-          <a href="/contact" class="btn btn-secondary">Get Technical Updates</a>
-        </div>
-      </div>
-
-      <!-- SECTION A: Determinism Checker -->
-      <div class="new-section determinism-section">
-        <h2>Determinism Proof</h2>
-        <p class="section-subtitle">
-          Same input, same output. Every time. That is not a property of probabilistic systems.
-        </p>
-
-        <div class="determinism-card">
-          <div class="det-input-label">Sample Input</div>
-          <div class="det-input-value">enwik9 corpus slice</div>
-
-          <div class="det-runs">
-            <div class="det-run-block">
-              <div class="det-run-title">Run 1</div>
-              <div class="det-run-detail">Output size: <span class="det-highlight">15 bytes</span></div>
-              <div class="det-run-detail">SHA-256: <span class="det-hash">a4f8c2b7...</span></div>
-              <div class="det-run-status det-status-ok">PASS</div>
-            </div>
-            <div class="det-separator">=</div>
-            <div class="det-run-block">
-              <div class="det-run-title">Run 2</div>
-              <div class="det-run-detail">Output size: <span class="det-highlight">15 bytes</span></div>
-              <div class="det-run-detail">SHA-256: <span class="det-hash">a4f8c2b7...</span></div>
-              <div class="det-run-status det-status-ok">PASS</div>
-            </div>
-          </div>
-
-          <div class="det-label-tag">Sample Data - Educational Preview</div>
-        </div>
-
-        <div class="honest-note">
-          <strong>Note:</strong> Deterministic output is a core property of dictionary-cascade compression.
-          This card shows sample data, not a live computation.
-        </div>
-      </div>
-
-      <!-- SECTION B: Stage Visualizer -->
-      <div class="new-section stage-section">
-        <h2>Dictionary Cascade Stages</h2>
-        <p class="section-subtitle">
-          ByteLite applies transformation stages sequentially. Each stage reduces structural redundancy.
-        </p>
-
+      <!-- Stage Visualizer -->
+      <div class="section-block">
+        <div class="section-label">Compression Pipeline</div>
+        <h2>Round / Stage Reduction</h2>
         <div class="stage-grid">
           <div class="stage-card">
-            <div class="stage-number">Stage 1</div>
+            <div class="stage-num">Stage 1</div>
             <div class="stage-name">Pattern Identification</div>
             <div class="stage-size">1,000,000 bytes</div>
-            <div class="stage-activity">domain pattern matching</div>
-            <div class="stage-bar-wrap">
-              <div class="stage-bar" style="width: 100%; background: rgba(0,212,255,0.7);"></div>
-            </div>
+            <div class="stage-desc">domain pattern matching</div>
+            <div class="stage-bar-wrap"><div class="stage-bar" style="width:100%; background:rgba(0,212,255,0.7);"></div></div>
           </div>
-
           <div class="stage-card">
-            <div class="stage-number">Stage 2</div>
+            <div class="stage-num">Stage 2</div>
             <div class="stage-name">Dictionary Matching</div>
             <div class="stage-size">42,000 bytes</div>
-            <div class="stage-activity">cascade key lookup</div>
-            <div class="stage-bar-wrap">
-              <div class="stage-bar" style="width: 42%; background: rgba(0,212,255,0.6);"></div>
-            </div>
+            <div class="stage-desc">cascade key lookup</div>
+            <div class="stage-bar-wrap"><div class="stage-bar" style="width:42%; background:rgba(0,212,255,0.6);"></div></div>
           </div>
-
           <div class="stage-card">
-            <div class="stage-number">Stage 3</div>
+            <div class="stage-num">Stage 3</div>
             <div class="stage-name">Szudzik Encoding</div>
             <div class="stage-size">1,200 bytes</div>
-            <div class="stage-activity">pairing function compression</div>
-            <div class="stage-bar-wrap">
-              <div class="stage-bar" style="width: 12%; background: rgba(168,85,247,0.7);"></div>
-            </div>
+            <div class="stage-desc">pairing function compression</div>
+            <div class="stage-bar-wrap"><div class="stage-bar" style="width:12%; background:rgba(168,85,247,0.7);"></div></div>
           </div>
-
-          <div class="stage-card stage-card-final">
-            <div class="stage-number">Stage 4</div>
+          <div class="stage-card stage-final">
+            <div class="stage-num">Stage 4</div>
             <div class="stage-name">Output Key</div>
-            <div class="stage-size">15 bytes</div>
-            <div class="stage-activity">compact representation</div>
-            <div class="stage-bar-wrap">
-              <div class="stage-bar" style="width: 2%; background: rgba(0,212,255,1); min-width: 6px;"></div>
-            </div>
+            <div class="stage-size stage-size-final">15 bytes</div>
+            <div class="stage-desc">compact representation</div>
+            <div class="stage-bar-wrap"><div class="stage-bar" style="width:2%; background:rgba(0,212,255,1); min-width:6px;"></div></div>
           </div>
         </div>
-
-        <div class="stage-note">
-          Conceptual representation of the compression pipeline on enwik9 corpus data.
-          Actual implementation details are under patent protection.
-        </div>
+        <p class="stage-note">Conceptual pipeline on enwik9 corpus data. Implementation details under patent protection (US 63/807,027).</p>
       </div>
 
-      <!-- SECTION C: Developer / Integration Panel -->
-      <div class="new-section integration-section">
-        <h2>Integration Interface</h2>
-        <p class="section-subtitle">
-          ByteLite is engineered as a component, not a black box. API access is in planning.
-        </p>
-
-        <div class="api-panel-label">Planned API Interface - Not Yet Live</div>
-
-        <div class="api-code-block">
-          <div class="api-code-line api-method">POST /api/v1/compress</div>
-          <div class="api-code-line api-header">Content-Type: application/json</div>
-          <div class="api-code-line api-blank">&nbsp;</div>
-          <div class="api-code-line api-brace">&#123;</div>
-          <div class="api-code-line api-field">&nbsp;&nbsp;"data": "&lt;base64-encoded-input&gt;",</div>
-          <div class="api-code-line api-field">&nbsp;&nbsp;"dictionary_profile": "universal-v1",</div>
-          <div class="api-code-line api-field">&nbsp;&nbsp;"mode": "structured"</div>
-          <div class="api-code-line api-brace">&#125;</div>
-          <div class="api-code-line api-blank">&nbsp;</div>
-          <div class="api-code-line api-comment">Response:</div>
-          <div class="api-code-line api-brace">&#123;</div>
-          <div class="api-code-line api-field">&nbsp;&nbsp;"compressed_key": "a4f8c2b7...",</div>
-          <div class="api-code-line api-field">&nbsp;&nbsp;"original_bytes": 1000000,</div>
-          <div class="api-code-line api-field">&nbsp;&nbsp;"compressed_bytes": 15,</div>
-          <div class="api-code-line api-field">&nbsp;&nbsp;"profile_used": "universal-v1",</div>
-          <div class="api-code-line api-field">&nbsp;&nbsp;"verification_hash": "sha256:a4f8c2b7..."</div>
-          <div class="api-code-line api-brace">&#125;</div>
-        </div>
-
-        <div class="integration-note">
-          Enterprise partnerships available now. Contact us to discuss integration timelines.
-        </div>
-        <div class="integration-cta">
-          <a href="/contact" class="btn btn-primary">Contact for Enterprise</a>
-        </div>
-      </div>
-
-      <!-- SECTION D: What Is Real Today -->
-      <div class="new-section reality-section">
+      <!-- What Is Real Today -->
+      <div class="section-block">
+        <div class="section-label">Transparency</div>
         <h2>What Is Real Today</h2>
-
         <div class="reality-grid">
-          <div class="reality-box reality-box-green">
-            <div class="reality-box-title">Live Now</div>
-            <ul class="reality-list">
+          <div class="reality-box box-green">
+            <div class="box-title">Live Now</div>
+            <ul class="tight-list">
               <li>Universal dictionaries implemented</li>
               <li>Lossless compression engine</li>
-              <li>SHA-256 verification</li>
+              <li>SHA-256 output verification</li>
               <li>Patent US 63/807,027 filed</li>
             </ul>
           </div>
-
-          <div class="reality-box reality-box-cyan">
-            <div class="reality-box-title">Interactive Preview</div>
-            <ul class="reality-list">
-              <li>Browser-based demo on /demos</li>
+          <div class="reality-box box-cyan">
+            <div class="box-title">Interactive Preview</div>
+            <ul class="tight-list">
+              <li>Browser-based demo at /demos</li>
               <li>Educational stage visualizer</li>
               <li>Sample determinism proof</li>
             </ul>
           </div>
-
-          <div class="reality-box reality-box-purple">
-            <div class="reality-box-title">In Active Development</div>
-            <ul class="reality-list">
+          <div class="reality-box box-purple">
+            <div class="box-title">In Development</div>
+            <ul class="tight-list">
               <li>Demonstration application</li>
               <li>Public verification harness</li>
               <li>Performance benchmarking suite</li>
             </ul>
           </div>
-
-          <div class="reality-box reality-box-gray">
-            <div class="reality-box-title">Planned</div>
-            <ul class="reality-list">
+          <div class="reality-box box-gray">
+            <div class="box-title">Planned</div>
+            <ul class="tight-list">
               <li>Public API access</li>
               <li>Enterprise licensing portal</li>
               <li>Open-source verifier</li>
@@ -331,20 +149,46 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
 
+      <!-- Developer API Preview -->
+      <div class="section-block api-section">
+        <div class="section-label">Planned API Interface</div>
+        <h2>Integration Interface</h2>
+        <p class="api-note">API access is in planning. Enterprise partnerships available now.</p>
+        <div class="api-block">
+          <div class="api-line api-method">POST /api/v1/compress</div>
+          <div class="api-line api-header">Content-Type: application/json</div>
+          <div class="api-line">&nbsp;</div>
+          <div class="api-line api-brace">&#123;</div>
+          <div class="api-line api-field">&nbsp;&nbsp;"data": "&lt;base64-encoded-input&gt;",</div>
+          <div class="api-line api-field">&nbsp;&nbsp;"dictionary_profile": "universal-v1",</div>
+          <div class="api-line api-field">&nbsp;&nbsp;"mode": "structured"</div>
+          <div class="api-line api-brace">&#125;</div>
+          <div class="api-line">&nbsp;</div>
+          <div class="api-line api-comment">// Response</div>
+          <div class="api-line api-brace">&#123;</div>
+          <div class="api-line api-field">&nbsp;&nbsp;"compressed_key": "a4f8c2b7...",</div>
+          <div class="api-line api-field">&nbsp;&nbsp;"original_bytes": 1000000,</div>
+          <div class="api-line api-field">&nbsp;&nbsp;"compressed_bytes": 15,</div>
+          <div class="api-line api-field">&nbsp;&nbsp;"verification_hash": "sha256:a4f8c2b7..."</div>
+          <div class="api-line api-brace">&#125;</div>
+        </div>
+      </div>
+
+      <!-- CTA Row -->
+      <div class="cta-row">
+        <a href="/demos" class="btn btn-primary">Try Demo</a>
+        <a href="/status" class="btn btn-outline">View Status</a>
+        <a href="/contact" class="btn btn-outline">Contact Us</a>
+      </div>
+
     </div>
   </section>
 </Layout>
 
 <style>
-  /* Page Banner */
-  .page-banner {
-    width: 100%;
-    overflow: hidden;
-  }
-
-  .technology-content {
-    padding: 4rem 0;
+  .tech-wrap {
     background: var(--color-bg-darker);
+    padding: 3rem 0;
   }
 
   .container {
@@ -353,283 +197,299 @@ import Layout from '../layouts/Layout.astro';
     padding: 0 2rem;
   }
 
-  /* Concept Section */
-  .concept-section {
+  /* Hero */
+  .hero-block {
     text-align: center;
-    margin-bottom: 6rem;
-  }
-
-  .concept-section h2 {
-    font-size: 2.5rem;
-    color: var(--color-primary);
-    margin-bottom: 1.5rem;
-  }
-
-  .lead-text {
-    font-size: 1.25rem;
-    color: var(--color-text-dim);
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.8;
-  }
-
-  /* Key Points */
-  .key-points {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 6rem;
-  }
-
-  .point-card {
-    background: rgba(10, 14, 39, 0.6);
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 12px;
-    padding: 2.5rem;
-    text-align: center;
-    transition: all 0.3s ease;
-  }
-
-  .point-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--color-primary);
-    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
-  }
-
-  .point-icon-text {
-    font-size: 1rem;
-    font-family: monospace;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-    letter-spacing: 0.05em;
-  }
-
-  .point-card h3 {
-    font-size: 1.5rem;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-  }
-
-  .point-card p {
-    color: var(--color-text-dim);
-    line-height: 1.6;
-  }
-
-  /* Infinite Storage Section */
-  .infinite-storage-section {
-    margin-bottom: 6rem;
-  }
-
-  .infinite-storage-section h2 {
-    font-size: 2.5rem;
-    color: var(--color-primary);
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
-  .hierarchy-demo {
-    background: rgba(10, 14, 39, 0.6);
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 16px;
-    padding: 3rem;
-    margin-top: 3rem;
-  }
-
-  .hierarchy-demo h3 {
-    font-size: 1.75rem;
-    color: var(--color-primary);
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .compression-levels {
-    display: grid;
-    gap: 2rem;
-    margin-bottom: 3rem;
-  }
-
-  .level {
-    background: rgba(0, 212, 255, 0.05);
-    border: 1px solid rgba(0, 212, 255, 0.3);
-    border-radius: 12px;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-  }
-
-  .level:hover {
-    transform: translateX(10px);
-    border-color: var(--color-primary);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
-  }
-
-  .level-header {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-  }
-
-  .level-description {
-    font-size: 0.875rem;
-    color: var(--color-text-dim);
-    margin-bottom: 1rem;
-    line-height: 1.5;
-  }
-
-  .data-flow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    font-weight: 600;
-  }
-
-  .data-size {
-    color: var(--color-text);
-    font-size: 1.125rem;
-  }
-
-  .arrow {
-    color: var(--color-primary);
-    font-size: 1.5rem;
-    font-family: monospace;
-  }
-
-  .compressed-size {
-    color: var(--color-primary);
-    font-size: 1.25rem;
-    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-  }
-
-  .level.target {
-    background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(0, 212, 255, 0.1));
-    border-color: rgba(168, 85, 247, 0.5);
-  }
-
-  .target-text {
-    text-align: center;
-    font-size: 1rem;
-    color: rgba(224, 224, 224, 0.7);
-    line-height: 1.6;
-  }
-
-  .explanation-box {
-    background: rgba(0, 212, 255, 0.05);
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 12px;
-    padding: 2rem;
-  }
-
-  .explanation-box h4 {
-    font-size: 1.5rem;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-  }
-
-  .explanation-box p {
-    color: var(--color-text-dim);
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-
-  .explanation-box ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .explanation-box li {
-    color: var(--color-text-dim);
-    padding-left: 2rem;
-    position: relative;
-    margin-bottom: 0.75rem;
-    line-height: 1.5;
-  }
-
-  .explanation-box li::before {
-    content: "->";
-    position: absolute;
-    left: 0;
-    color: var(--color-primary);
-    font-weight: 600;
-    font-family: monospace;
-  }
-
-  /* Deep Kore Section */
-  .deep-kore-section {
-    background: linear-gradient(135deg, rgba(255, 0, 110, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
-    border-radius: 16px;
-    padding: 4rem;
     margin-bottom: 4rem;
   }
 
-  .deep-kore-section h2 {
-    font-size: 2.5rem;
-    color: var(--color-secondary);
-    text-align: center;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
-  }
-
-  .section-intro {
-    text-align: center;
-    color: var(--color-text-dim);
-    font-size: 1.125rem;
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    line-height: 1.6;
-  }
-
-  .notice-box {
-    background: rgba(255, 0, 110, 0.1);
-    border: 1px solid rgba(255, 0, 110, 0.3);
-    border-radius: 8px;
-    padding: 1.5rem;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  .notice-box p {
-    color: var(--color-text-dim);
-    font-size: 0.875rem;
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  /* CTA Section */
-  .cta-section {
-    text-align: center;
-    padding: 4rem;
-    background: rgba(10, 14, 39, 0.6);
-    border-radius: 16px;
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    margin-bottom: 4rem;
-  }
-
-  .cta-section h3 {
+  .hero-block h1 {
     font-size: 2rem;
     color: var(--color-primary);
     margin-bottom: 1rem;
   }
 
-  .cta-section p {
-    color: var(--color-text-dim);
-    font-size: 1.125rem;
-    margin-bottom: 2rem;
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(224, 224, 224, 0.75);
+    max-width: 740px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.7;
   }
 
-  .cta-buttons {
+  .hero-ctas {
     display: flex;
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 1rem;
   }
 
-  .btn {
-    padding: 1rem 2rem;
+  .patent-tag {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: rgba(224, 224, 224, 0.4);
+    font-family: monospace;
+    margin: 0;
+  }
+
+  /* Section blocks */
+  .section-block {
+    margin-bottom: 4rem;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-deepkore);
+    background: rgba(168, 85, 247, 0.1);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 4px;
+    padding: 0.2rem 0.65rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .section-block h2 {
+    font-size: 1.6rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  /* Demo wrap */
+  .demo-wrap {
+    background: rgba(10, 14, 39, 0.6);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+  }
+
+  /* How It Works */
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .how-card {
+    background: rgba(10, 14, 39, 0.7);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .how-card:hover {
+    border-color: var(--color-primary);
+  }
+
+  .how-card-final {
+    border-color: rgba(168, 85, 247, 0.3);
+  }
+
+  .how-card-final:hover {
+    border-color: var(--color-deepkore);
+  }
+
+  .how-num {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: rgba(224, 224, 224, 0.35);
+    font-family: monospace;
+    margin-bottom: 0.4rem;
+  }
+
+  .how-card h3 {
+    font-size: 1rem;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .how-card-final h3 {
+    color: var(--color-deepkore);
+  }
+
+  /* Tight list shared */
+  .tight-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .tight-list li {
+    font-size: 0.875rem;
+    color: rgba(224, 224, 224, 0.7);
+    padding-left: 1.2rem;
+    position: relative;
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+  }
+
+  .tight-list li::before {
+    content: "-";
+    position: absolute;
+    left: 0;
+    color: rgba(0, 212, 255, 0.5);
+    font-family: monospace;
+  }
+
+  /* Stage Visualizer */
+  .stage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .stage-card {
+    background: var(--color-bg-dark);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 10px;
+    padding: 1.25rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .stage-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-primary);
+  }
+
+  .stage-final {
+    border-color: rgba(168, 85, 247, 0.35);
+  }
+
+  .stage-final:hover {
+    border-color: var(--color-deepkore);
+  }
+
+  .stage-num {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(224, 224, 224, 0.38);
+    margin-bottom: 0.35rem;
+  }
+
+  .stage-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #E0E0E0;
+    margin-bottom: 0.6rem;
+  }
+
+  .stage-size {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    font-family: monospace;
+    margin-bottom: 0.25rem;
+  }
+
+  .stage-size-final {
+    color: var(--color-deepkore);
+  }
+
+  .stage-desc {
+    font-size: 0.75rem;
+    color: rgba(224, 224, 224, 0.5);
+    margin-bottom: 1rem;
+  }
+
+  .stage-bar-wrap {
+    height: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .stage-bar {
+    height: 100%;
+    border-radius: 3px;
+  }
+
+  .stage-note {
+    font-size: 0.78rem;
+    color: rgba(224, 224, 224, 0.4);
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* Reality Grid */
+  .reality-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .reality-box {
+    background: var(--color-bg-dark);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  .box-green  { border-color: rgba(34, 197, 94, 0.4); }
+  .box-cyan   { border-color: rgba(0, 212, 255, 0.4); }
+  .box-purple { border-color: rgba(168, 85, 247, 0.4); }
+  .box-gray   { border-color: rgba(224, 224, 224, 0.18); }
+
+  .box-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .box-green  .box-title { color: #22c55e; }
+  .box-cyan   .box-title { color: var(--color-primary); }
+  .box-purple .box-title { color: var(--color-deepkore); }
+  .box-gray   .box-title { color: rgba(224, 224, 224, 0.45); }
+
+  /* API Section */
+  .api-section {
+    background: var(--color-bg-darker);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 14px;
+    padding: 2rem;
+  }
+
+  .api-note {
+    font-size: 0.9rem;
+    color: rgba(224, 224, 224, 0.55);
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .api-block {
+    background: var(--color-bg-darker);
+    border: 1px solid rgba(0, 212, 255, 0.15);
     border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    font-family: monospace;
+    font-size: 0.85rem;
+    overflow-x: auto;
+  }
+
+  .api-line { line-height: 1.65; }
+  .api-method  { color: var(--color-primary); font-weight: 700; }
+  .api-header  { color: rgba(224, 224, 224, 0.5); }
+  .api-brace   { color: #E0E0E0; }
+  .api-field   { color: rgba(224, 224, 224, 0.8); }
+  .api-comment { color: var(--color-deepkore); }
+
+  /* Buttons */
+  .btn {
+    padding: 0.65rem 1.5rem;
+    border-radius: 7px;
     font-weight: 600;
+    font-size: 0.95rem;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     display: inline-block;
   }
 
@@ -641,480 +501,42 @@ import Layout from '../layouts/Layout.astro';
   .btn-primary:hover {
     background: #00B8E6;
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.25);
   }
 
-  .btn-secondary {
+  .btn-outline {
     background: transparent;
-    color: var(--color-secondary);
-    border: 2px solid var(--color-secondary);
+    color: var(--color-primary);
+    border: 1px solid rgba(0, 212, 255, 0.5);
   }
 
-  .btn-secondary:hover {
-    background: var(--color-secondary);
-    color: var(--color-bg-dark);
+  .btn-outline:hover {
+    border-color: var(--color-primary);
+    background: rgba(0, 212, 255, 0.08);
   }
 
-  /* ============================================================
-     NEW SECTIONS
-  ============================================================ */
-
-  .new-section {
-    margin-bottom: 5rem;
-  }
-
-  .new-section h2 {
-    font-size: 2rem;
-    color: #00D4FF;
-    text-align: center;
-    margin-bottom: 0.75rem;
-  }
-
-  .section-subtitle {
-    text-align: center;
-    color: rgba(224, 224, 224, 0.7);
-    font-size: 1.05rem;
-    max-width: 740px;
-    margin: 0 auto 2.5rem;
-    line-height: 1.65;
-  }
-
-  /* --- SECTION A: Determinism --- */
-  .determinism-card {
-    background: #0A0E27;
-    border: 1px solid rgba(0, 212, 255, 0.3);
-    border-radius: 14px;
-    padding: 2.5rem;
-    max-width: 700px;
-    margin: 0 auto 1.5rem;
-  }
-
-  .det-input-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(224, 224, 224, 0.5);
-    margin-bottom: 0.35rem;
-  }
-
-  .det-input-value {
-    font-size: 1rem;
-    font-family: monospace;
-    color: #E0E0E0;
-    margin-bottom: 2rem;
-  }
-
-  .det-runs {
+  /* CTA Row */
+  .cta-row {
     display: flex;
-    gap: 1.5rem;
-    align-items: center;
+    gap: 1rem;
     justify-content: center;
-    margin-bottom: 1.75rem;
     flex-wrap: wrap;
+    padding: 2rem 0 1rem;
+    border-top: 1px solid rgba(0, 212, 255, 0.1);
+    margin-top: 1rem;
   }
 
-  .det-run-block {
-    flex: 1;
-    min-width: 180px;
-    background: rgba(0, 212, 255, 0.05);
-    border: 1px solid rgba(0, 212, 255, 0.25);
-    border-radius: 10px;
-    padding: 1.25rem 1.5rem;
-  }
-
-  .det-run-title {
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #00D4FF;
-    margin-bottom: 0.75rem;
-    font-weight: 700;
-  }
-
-  .det-run-detail {
-    font-size: 0.875rem;
-    color: rgba(224, 224, 224, 0.75);
-    margin-bottom: 0.4rem;
-    font-family: monospace;
-  }
-
-  .det-highlight {
-    color: #00D4FF;
-    font-weight: 700;
-  }
-
-  .det-hash {
-    color: #A855F7;
-  }
-
-  .det-run-status {
-    margin-top: 0.75rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .det-status-ok {
-    color: #22c55e;
-  }
-
-  .det-separator {
-    font-size: 2rem;
-    color: #00D4FF;
-    font-weight: 700;
-    font-family: monospace;
-    flex-shrink: 0;
-  }
-
-  .det-label-tag {
-    text-align: center;
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(224, 224, 224, 0.4);
-    border-top: 1px solid rgba(0, 212, 255, 0.12);
-    padding-top: 1rem;
-  }
-
-  .honest-note {
-    max-width: 700px;
-    margin: 0 auto;
-    background: rgba(0, 212, 255, 0.04);
-    border: 1px solid rgba(0, 212, 255, 0.15);
-    border-radius: 8px;
-    padding: 1rem 1.5rem;
-    font-size: 0.85rem;
-    color: rgba(224, 224, 224, 0.6);
-    line-height: 1.6;
-    text-align: center;
-  }
-
-  /* --- SECTION B: Stage Visualizer --- */
-  .stage-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .stage-card {
-    background: #0A0E27;
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 12px;
-    padding: 1.75rem 1.5rem;
-    transition: transform 0.2s ease, border-color 0.2s ease;
-  }
-
-  .stage-card:hover {
-    transform: translateY(-4px);
-    border-color: #00D4FF;
-  }
-
-  .stage-card-final {
-    border-color: rgba(168, 85, 247, 0.4);
-  }
-
-  .stage-card-final:hover {
-    border-color: #A855F7;
-  }
-
-  .stage-number {
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(224, 224, 224, 0.45);
-    margin-bottom: 0.4rem;
-  }
-
-  .stage-name {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #E0E0E0;
-    margin-bottom: 0.75rem;
-  }
-
-  .stage-size {
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: #00D4FF;
-    font-family: monospace;
-    margin-bottom: 0.35rem;
-  }
-
-  .stage-card-final .stage-size {
-    color: #A855F7;
-  }
-
-  .stage-activity {
-    font-size: 0.8rem;
-    color: rgba(224, 224, 224, 0.55);
-    margin-bottom: 1.25rem;
-  }
-
-  .stage-bar-wrap {
-    height: 6px;
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .stage-bar {
-    height: 100%;
-    border-radius: 4px;
-    transition: width 0.4s ease;
-  }
-
-  .stage-note {
-    text-align: center;
-    font-size: 0.8rem;
-    color: rgba(224, 224, 224, 0.45);
-    max-width: 680px;
-    margin: 0 auto;
-    line-height: 1.5;
-  }
-
-  /* --- SECTION C: Integration --- */
-  .integration-section {
-    background: #060813;
-    border: 1px solid rgba(168, 85, 247, 0.25);
-    border-radius: 16px;
-    padding: 3rem;
-  }
-
-  .api-panel-label {
-    display: inline-block;
-    background: rgba(168, 85, 247, 0.15);
-    border: 1px solid rgba(168, 85, 247, 0.4);
-    border-radius: 6px;
-    padding: 0.3rem 0.85rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #A855F7;
-    margin-bottom: 1.5rem;
-  }
-
-  .api-code-block {
-    background: #060813;
-    border: 1px solid rgba(0, 212, 255, 0.18);
-    border-radius: 10px;
-    padding: 1.75rem 2rem;
-    margin-bottom: 1.5rem;
-    font-family: monospace;
-    font-size: 0.875rem;
-    overflow-x: auto;
-  }
-
-  .api-code-line {
-    line-height: 1.65;
-  }
-
-  .api-method {
-    color: #00D4FF;
-    font-weight: 700;
-  }
-
-  .api-header {
-    color: rgba(224, 224, 224, 0.55);
-  }
-
-  .api-brace {
-    color: #E0E0E0;
-  }
-
-  .api-field {
-    color: rgba(224, 224, 224, 0.8);
-  }
-
-  .api-comment {
-    color: #A855F7;
-    font-weight: 600;
-  }
-
-  .integration-note {
-    font-size: 0.95rem;
-    color: rgba(224, 224, 224, 0.65);
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-    text-align: center;
-  }
-
-  .integration-cta {
-    text-align: center;
-  }
-
-  /* --- SECTION D: What Is Real Today --- */
-  .reality-section h2 {
-    color: #E0E0E0;
-  }
-
-  .reality-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-
-  .reality-box {
-    background: #0A0E27;
-    border-radius: 12px;
-    padding: 1.75rem;
-    border-width: 1px;
-    border-style: solid;
-  }
-
-  .reality-box-green {
-    border-color: rgba(34, 197, 94, 0.45);
-  }
-
-  .reality-box-cyan {
-    border-color: rgba(0, 212, 255, 0.45);
-  }
-
-  .reality-box-purple {
-    border-color: rgba(168, 85, 247, 0.45);
-  }
-
-  .reality-box-gray {
-    border-color: rgba(224, 224, 224, 0.2);
-  }
-
-  .reality-box-title {
-    font-size: 0.8rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-
-  .reality-box-green .reality-box-title {
-    color: #22c55e;
-  }
-
-  .reality-box-cyan .reality-box-title {
-    color: #00D4FF;
-  }
-
-  .reality-box-purple .reality-box-title {
-    color: #A855F7;
-  }
-
-  .reality-box-gray .reality-box-title {
-    color: rgba(224, 224, 224, 0.5);
-  }
-
-  .reality-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .reality-list li {
-    font-size: 0.9rem;
-    color: rgba(224, 224, 224, 0.75);
-    padding-left: 1.25rem;
-    position: relative;
-    margin-bottom: 0.5rem;
-    line-height: 1.5;
-  }
-
-  .reality-list li::before {
-    content: "-";
-    position: absolute;
-    left: 0;
-    color: rgba(224, 224, 224, 0.35);
-  }
-
-  /* ============================================================
-     RESPONSIVE
-  ============================================================ */
-
+  /* Responsive */
   @media (max-width: 768px) {
-    .concept-section h2,
-    .infinite-storage-section h2,
-    .deep-kore-section h2 {
-      font-size: 2rem;
-    }
-
-    .key-points {
-      grid-template-columns: 1fr;
-    }
-
-    .hierarchy-demo {
-      padding: 2rem;
-    }
-
-    .hierarchy-demo h3 {
-      font-size: 1.5rem;
-    }
-
-    .level {
-      padding: 1rem;
-    }
-
-    .level:hover {
-      transform: translateX(5px);
-    }
-
-    .data-flow {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .data-size,
-    .compressed-size {
-      font-size: 1rem;
-    }
-
-    .arrow {
-      transform: rotate(90deg);
-    }
-
-    .explanation-box {
-      padding: 1.5rem;
-    }
-
-    .deep-kore-section {
-      padding: 2rem;
-    }
-
-    .cta-section {
-      padding: 2rem;
-    }
-
-    .new-section h2 {
-      font-size: 1.65rem;
-    }
-
-    .det-runs {
-      flex-direction: column;
-    }
-
-    .det-separator {
-      transform: rotate(90deg);
-    }
-
-    .stage-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .reality-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .integration-section {
-      padding: 2rem 1.5rem;
-    }
-
-    .api-code-block {
-      font-size: 0.78rem;
-      padding: 1.25rem;
-    }
+    .hero-block h1 { font-size: 1.65rem; }
+    .section-block h2 { font-size: 1.35rem; }
+    .how-grid { grid-template-columns: 1fr; }
+    .reality-grid { grid-template-columns: 1fr; }
+    .api-block { font-size: 0.76rem; padding: 1rem; }
+    .api-section { padding: 1.5rem 1.25rem; }
   }
 
   @media (max-width: 480px) {
-    .stage-grid {
-      grid-template-columns: 1fr;
-    }
+    .stage-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
