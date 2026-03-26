@@ -1,0 +1,653 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Status - ByteLite Public Lab"
+  description="Current status of ByteLite compression, Deep Kore / AIya research, and HeartStrings platform. Honest, up-to-date, no hype."
+  keywords={["ByteLite status", "Deep Kore status", "HeartStrings status", "product roadmap", "development status", "live features"]}
+>
+  <!-- Last Updated Banner -->
+  <div class="last-updated-bar">
+    Last updated: March 2026
+  </div>
+
+  <section class="status-content">
+    <div class="container">
+
+      <!-- PAGE HERO -->
+      <div class="page-hero">
+        <h1 class="page-title">Status Board</h1>
+        <p class="page-subtitle">What is live, what is preview, and what is under active development. Updated as things change.</p>
+        <p class="page-note">This page replaces the old News page as the primary status destination.</p>
+      </div>
+
+      <!-- ============================
+           BLOCK 1: ByteLite
+           ============================ -->
+      <div class="product-block" id="bytelite">
+        <div class="product-block-header product-block-header--cyan">
+          <h2>ByteLite</h2>
+          <div class="milestone-row">
+            <div class="milestone">
+              <span class="milestone-label">Current milestone</span>
+              <span class="milestone-text">Universal Dictionaries Implemented - Demo Application In Preparation</span>
+            </div>
+            <div class="milestone">
+              <span class="milestone-label">Next milestone</span>
+              <span class="milestone-text">Public Demonstration Application Launch</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="status-table-wrap">
+          <table class="status-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Status</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Compression Engine</td>
+                <td><span class="status-badge status-live">Live</span></td>
+                <td>Controlled tests on enwik9 corpus</td>
+              </tr>
+              <tr>
+                <td>Universal Dictionaries</td>
+                <td><span class="status-badge status-live">Live</span></td>
+                <td>Domain-specific vocabulary sets implemented</td>
+              </tr>
+              <tr>
+                <td>SHA-256 Verification</td>
+                <td><span class="status-badge status-live">Live</span></td>
+                <td>Round-trip verification operational</td>
+              </tr>
+              <tr>
+                <td>Patent Filing</td>
+                <td><span class="status-badge status-live">Live</span></td>
+                <td>US 63/807,027 pending</td>
+              </tr>
+              <tr>
+                <td>Browser Demo</td>
+                <td><span class="status-badge status-live">Live</span></td>
+                <td>/demo - browser-local, no server upload</td>
+              </tr>
+              <tr>
+                <td>Stage Visualizer</td>
+                <td><span class="status-badge status-preview">Interactive Preview</span></td>
+                <td>Pedagogical representation on /technology</td>
+              </tr>
+              <tr>
+                <td>Demonstration Application</td>
+                <td><span class="status-badge status-indev">In Development</span></td>
+                <td>Full public demo app in preparation</td>
+              </tr>
+              <tr>
+                <td>Verification Harness</td>
+                <td><span class="status-badge status-indev">In Development</span></td>
+                <td>Open-source verifier planned</td>
+              </tr>
+              <tr>
+                <td>Public API</td>
+                <td><span class="status-badge status-planned">Planned</span></td>
+                <td>Enterprise partnerships available now</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ============================
+           BLOCK 2: Deep Kore / AIya
+           ============================ -->
+      <div class="product-block" id="deepkore">
+        <div class="product-block-header product-block-header--purple">
+          <h2>Deep Kore / AIya</h2>
+          <div class="milestone-row">
+            <div class="milestone">
+              <span class="milestone-label">Current milestone</span>
+              <span class="milestone-text">Blueprint-Stage Architecture Research - AIya Preview Live</span>
+            </div>
+            <div class="milestone">
+              <span class="milestone-label">Next milestone</span>
+              <span class="milestone-text">Experimental Validation Phase</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="status-table-wrap">
+          <table class="status-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Status</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Genesis Goal Keeper</td>
+                <td><span class="status-badge status-live">Live</span></td>
+                <td>Ethical governance framework operational</td>
+              </tr>
+              <tr>
+                <td>Architecture Research</td>
+                <td><span class="status-badge status-inprogress">In Progress</span></td>
+                <td>Blueprint stage, unproven until tested</td>
+              </tr>
+              <tr>
+                <td>AIya Conversation Gallery</td>
+                <td><span class="status-badge status-preview">Interactive Preview</span></td>
+                <td>4 curated sample convos on /deepkore</td>
+              </tr>
+              <tr>
+                <td>AIya Mini Sandbox</td>
+                <td><span class="status-badge status-preview">Interactive Preview</span></td>
+                <td>Preset prompts, deterministic responses</td>
+              </tr>
+              <tr>
+                <td>Governance Panel</td>
+                <td><span class="status-badge status-preview">Interactive Preview</span></td>
+                <td>Public metadata view on /deepkore</td>
+              </tr>
+              <tr>
+                <td>AIya Live Interaction</td>
+                <td><span class="status-badge status-indev">In Development</span></td>
+                <td>Full interaction layer in development</td>
+              </tr>
+              <tr>
+                <td>Academic Papers</td>
+                <td><span class="status-badge status-planned">Planned</span></td>
+                <td>Planned for 2026</td>
+              </tr>
+              <tr>
+                <td>Public Research Interface</td>
+                <td><span class="status-badge status-planned">Planned</span></td>
+                <td>Post-validation</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ============================
+           BLOCK 3: HeartStrings
+           ============================ -->
+      <div class="product-block" id="heartstrings">
+        <div class="product-block-header product-block-header--pink">
+          <h2>HeartStrings</h2>
+          <div class="milestone-row">
+            <div class="milestone">
+              <span class="milestone-label">Current milestone</span>
+              <span class="milestone-text">Interface Prototype - Matching Engine In Development</span>
+            </div>
+            <div class="milestone">
+              <span class="milestone-label">Next milestone</span>
+              <span class="milestone-text">Beta Access (Post-ByteLite Demo Launch)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="status-table-wrap">
+          <table class="status-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Status</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Interface Design System</td>
+                <td><span class="status-badge status-live">Live</span></td>
+                <td>Profile cards, match view, conversation UI designed</td>
+              </tr>
+              <tr>
+                <td>Compatibility Framework</td>
+                <td><span class="status-badge status-live">Live</span></td>
+                <td>Dimension structure defined</td>
+              </tr>
+              <tr>
+                <td>Interface Gallery</td>
+                <td><span class="status-badge status-preview">Interactive Preview</span></td>
+                <td>5 mock UI panels on /heartstrings</td>
+              </tr>
+              <tr>
+                <td>Prototype Flow</td>
+                <td><span class="status-badge status-preview">Interactive Preview</span></td>
+                <td>4-step walkthrough on /heartstrings</td>
+              </tr>
+              <tr>
+                <td>Match Explanation Panel</td>
+                <td><span class="status-badge status-preview">Interactive Preview</span></td>
+                <td>Sample deterministic rationale on /heartstrings</td>
+              </tr>
+              <tr>
+                <td>Matching Engine</td>
+                <td><span class="status-badge status-indev">In Development</span></td>
+                <td>Core scoring logic in development</td>
+              </tr>
+              <tr>
+                <td>ByteLite Integration</td>
+                <td><span class="status-badge status-planned">Planned</span></td>
+                <td>First consumer use of ByteLite compression</td>
+              </tr>
+              <tr>
+                <td>AIya Integration</td>
+                <td><span class="status-badge status-planned">Planned</span></td>
+                <td>Conversation layer via Deep Kore</td>
+              </tr>
+              <tr>
+                <td>Public Beta</td>
+                <td><span class="status-badge status-planned">Planned</span></td>
+                <td>After ByteLite demo launch</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ============================
+           KNOWN LIMITATIONS
+           ============================ -->
+      <div class="limitations-block">
+        <h2 class="limitations-title">Known Limitations</h2>
+        <ul class="limitations-list">
+          <li>ByteLite compression results depend heavily on data type and dictionary coverage. Results on random binary data will not match enwik9 corpus results.</li>
+          <li>AIya is currently curated and deterministic only. It is not a live AI system. All responses on this site are pre-written samples.</li>
+          <li>HeartStrings matching engine is not yet live. Interface panels are prototype UI only.</li>
+          <li>Academic verification papers have not been published. Peer review is planned for 2026.</li>
+          <li>No Hutter Prize submission is planned. That framing has been retired.</li>
+        </ul>
+      </div>
+
+      <!-- ============================
+           CONTACT / UPDATES
+           ============================ -->
+      <div class="contact-block">
+        <p class="contact-text">
+          Reach out at <a href="mailto:info@thebytelite.com" class="contact-link">info@thebytelite.com</a> for enterprise discussions or to follow specific development.
+        </p>
+        <a href="/contact" class="contact-cta">Contact Page</a>
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* =====================
+     LAST UPDATED BAR
+     ===================== */
+  .last-updated-bar {
+    background: rgba(0, 212, 255, 0.06);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    color: rgba(0, 212, 255, 0.7);
+    letter-spacing: 0.03em;
+  }
+
+  /* =====================
+     PAGE LAYOUT
+     ===================== */
+  .status-content {
+    padding: 4rem 0 6rem;
+    background: var(--color-bg-darker);
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* =====================
+     PAGE HERO
+     ===================== */
+  .page-hero {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .page-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0 0 1rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .page-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-text-dim);
+    max-width: 580px;
+    margin: 0 auto 1rem;
+    line-height: 1.6;
+  }
+
+  .page-note {
+    font-size: 0.875rem;
+    color: rgba(224, 224, 224, 0.4);
+    margin: 0;
+  }
+
+  /* =====================
+     PRODUCT BLOCKS
+     ===================== */
+  .product-block {
+    margin-bottom: 4.5rem;
+  }
+
+  .product-block-header {
+    padding: 1.5rem 2rem;
+    border-radius: 12px 12px 0 0;
+    border: 1px solid;
+    border-bottom: none;
+  }
+
+  .product-block-header h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin: 0 0 1rem;
+  }
+
+  .product-block-header--cyan {
+    background: rgba(0, 212, 255, 0.06);
+    border-color: rgba(0, 212, 255, 0.25);
+  }
+
+  .product-block-header--cyan h2 {
+    color: #00D4FF;
+  }
+
+  .product-block-header--purple {
+    background: rgba(168, 85, 247, 0.06);
+    border-color: rgba(168, 85, 247, 0.25);
+  }
+
+  .product-block-header--purple h2 {
+    color: #A855F7;
+  }
+
+  .product-block-header--pink {
+    background: rgba(236, 72, 153, 0.06);
+    border-color: rgba(236, 72, 153, 0.25);
+  }
+
+  .product-block-header--pink h2 {
+    color: #EC4899;
+  }
+
+  /* Milestones */
+  .milestone-row {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .milestone {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .milestone-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: rgba(224, 224, 224, 0.4);
+    font-weight: 600;
+  }
+
+  .milestone-text {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  /* =====================
+     STATUS TABLE
+     ===================== */
+  .status-table-wrap {
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .status-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .status-table thead tr {
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .status-table th {
+    padding: 0.85rem 1.25rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(224, 224, 224, 0.45);
+  }
+
+  .status-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.2s ease;
+  }
+
+  .status-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .status-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .status-table td {
+    padding: 0.85rem 1.25rem;
+    color: var(--color-text);
+    vertical-align: middle;
+  }
+
+  .status-table td:first-child {
+    font-weight: 600;
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+
+  .status-table td:last-child {
+    color: var(--color-text-dim);
+    font-size: 0.85rem;
+  }
+
+  /* =====================
+     STATUS BADGES
+     ===================== */
+  .status-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.65rem;
+    border-radius: 20px;
+    white-space: nowrap;
+    border: 1px solid;
+  }
+
+  .status-live {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22C55E;
+    border-color: rgba(34, 197, 94, 0.4);
+  }
+
+  .status-preview {
+    background: rgba(0, 212, 255, 0.1);
+    color: #00D4FF;
+    border-color: rgba(0, 212, 255, 0.35);
+  }
+
+  .status-inprogress {
+    background: rgba(168, 85, 247, 0.1);
+    color: #A855F7;
+    border-color: rgba(168, 85, 247, 0.35);
+  }
+
+  .status-indev {
+    background: rgba(168, 85, 247, 0.1);
+    color: #A855F7;
+    border-color: rgba(168, 85, 247, 0.35);
+  }
+
+  .status-planned {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(224, 224, 224, 0.5);
+    border-color: rgba(224, 224, 224, 0.15);
+  }
+
+  /* =====================
+     KNOWN LIMITATIONS
+     ===================== */
+  .limitations-block {
+    background: rgba(10, 14, 39, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .limitations-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 1.5rem;
+  }
+
+  .limitations-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .limitations-list li {
+    color: var(--color-text-dim);
+    font-size: 0.925rem;
+    line-height: 1.6;
+    padding-left: 1.4rem;
+    position: relative;
+  }
+
+  .limitations-list li::before {
+    content: '[*]';
+    position: absolute;
+    left: 0;
+    color: rgba(224, 224, 224, 0.3);
+    font-size: 0.75rem;
+    top: 0.15rem;
+  }
+
+  /* =====================
+     CONTACT BLOCK
+     ===================== */
+  .contact-block {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.04) 0%, rgba(168, 85, 247, 0.04) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+  }
+
+  .contact-text {
+    font-size: 1rem;
+    color: var(--color-text-dim);
+    margin: 0 0 1.25rem;
+    line-height: 1.6;
+  }
+
+  .contact-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+    transition: border-color 0.2s ease;
+  }
+
+  .contact-link:hover {
+    border-color: var(--color-primary);
+  }
+
+  .contact-cta {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .contact-cta:hover {
+    background: var(--color-primary);
+    color: var(--color-bg-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.25);
+  }
+
+  /* =====================
+     RESPONSIVE
+     ===================== */
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2rem;
+    }
+
+    .page-subtitle {
+      font-size: 1rem;
+    }
+
+    .product-block-header {
+      padding: 1.25rem 1.25rem;
+    }
+
+    .milestone-row {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .status-table th,
+    .status-table td {
+      padding: 0.7rem 1rem;
+    }
+
+    .status-table td:first-child {
+      white-space: normal;
+    }
+
+    .limitations-block {
+      padding: 1.75rem 1.25rem;
+    }
+
+    .contact-block {
+      padding: 2rem 1.25rem;
+    }
+  }
+</style>

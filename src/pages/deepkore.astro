@@ -5,14 +5,23 @@ import Layout from '../layouts/Layout.astro';
 <Layout
   title="Deep Kore - Compression as a Blueprint for Intelligence"
   description="Deep Kore: physics-inspired architecture exploring the boundary between compression and cognition. Blueprint stage. Safety-first. Unproven until tested."
-  keywords={["Deep Kore", "compression intelligence", "physics-inspired architecture", "computational research", "Genesis Goal Keeper", "responsible AI research", "frontier research"]}
+  keywords={["Deep Kore", "compression intelligence", "physics-inspired architecture", "computational research", "Genesis Goal Keeper", "responsible AI research", "frontier research", "AIya"]}
   schemaType="Article"
 >
+  <!-- Page Banner -->
+  <div class="page-banner" style="width:100%; overflow:hidden;">
+    <img
+      src="/Deep_Kore_Banner.png"
+      alt="Deep Kore - Deterministic Cognition Research"
+      style="width:100%; height:auto; display:block; max-height:480px; object-fit:cover;"
+    />
+  </div>
+
   <!-- Deep Kore Hero -->
   <section class="min-h-screen flex items-center relative overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent"></div>
     <div class="particle-field-deepkore"></div>
-    
+
     <div class="container mx-auto px-4 sm:px-6 py-20 relative z-10">
       <div class="max-w-4xl mx-auto text-center">
         <h1 class="text-5xl md:text-7xl font-bold mb-6">
@@ -23,16 +32,16 @@ import Layout from '../layouts/Layout.astro';
         <p class="text-xl md:text-2xl text-gray-300 mb-8 font-light">
           We're not claiming we built AGI. We're claiming we found an architecture worth building toward. Genesis Goal Keeper makes sure we do it right.
         </p>
-        
+
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <button class="btn btn-deepkore btn-large" data-action="consciousness-updates">
-            Subscribe for Updates
-          </button>
+          <a href="/status" class="btn btn-deepkore btn-large">
+            View Status
+          </a>
           <a href="#manifesto" class="btn btn-outline-deepkore">
             Read the Manifesto
           </a>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
           <div class="stat-card">
             <div class="stat-value">Online</div>
@@ -79,7 +88,7 @@ import Layout from '../layouts/Layout.astro';
 
           <p class="text-gray-300 leading-relaxed">
             This is research, not a product announcement. The recursive structures we're exploring have properties
-            that don't exist in classical architectures. Whether those properties lead where we think they might —
+            that don't exist in classical architectures. Whether those properties lead where we think they might --
             that's what the experiments will tell us.
           </p>
         </div>
@@ -91,7 +100,7 @@ import Layout from '../layouts/Layout.astro';
   <section class="py-20">
     <div class="container mx-auto px-4 sm:px-6">
       <h2 class="text-4xl font-bold text-center mb-12">Development Timeline</h2>
-      
+
       <div class="max-w-4xl mx-auto">
         <div class="timeline">
           <div class="timeline-item">
@@ -138,7 +147,250 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- Technical Overview -->
+  <!-- SECTION A: AIya Conversation Gallery -->
+  <section class="py-20 bg-gray-900/50">
+    <div class="container mx-auto px-4 sm:px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold mb-4">AIya - What the Conversation Looks Like</h2>
+          <p class="text-gray-400 text-lg">
+            These are curated sample conversations showing how AIya responds.
+          </p>
+          <span class="inline-block mt-3 px-4 py-1 bg-cyan-900/40 border border-cyan-500/40 rounded-full text-cyan-400 text-sm font-semibold tracking-wide">
+            Interactive Preview - not live chat
+          </span>
+        </div>
+
+        <!-- Tab buttons -->
+        <div class="aiya-tabs" role="tablist" aria-label="AIya conversation examples">
+          <button class="aiya-tab active" data-tab="0" role="tab" aria-selected="true" aria-controls="aiya-panel-0">
+            Plain-English Explanation
+          </button>
+          <button class="aiya-tab" data-tab="1" role="tab" aria-selected="false" aria-controls="aiya-panel-1">
+            Structured Comparison
+          </button>
+          <button class="aiya-tab" data-tab="2" role="tab" aria-selected="false" aria-controls="aiya-panel-2">
+            Safety Redirect
+          </button>
+          <button class="aiya-tab" data-tab="3" role="tab" aria-selected="false" aria-controls="aiya-panel-3">
+            Deterministic Reasoning
+          </button>
+        </div>
+
+        <!-- Tab panels -->
+        <div class="aiya-panel-wrap">
+
+          <!-- Tab 0 -->
+          <div id="aiya-panel-0" class="aiya-panel active" role="tabpanel" aria-labelledby="tab-0">
+            <div class="preview-badge">Interactive Preview</div>
+            <div class="convo-msg user">
+              <div class="convo-label">User</div>
+              <div class="convo-bubble user-bubble">
+                Can you explain what ByteLite actually does in plain English?
+              </div>
+            </div>
+            <div class="convo-msg aiya">
+              <div class="convo-label aiya-label">AIya (Preview)</div>
+              <div class="convo-bubble aiya-bubble">
+                ByteLite compresses structured data by exploiting shared context. Instead of encoding every byte independently, it uses pre-built dictionaries that both the compressor and decompressor already have. When your data matches patterns in those dictionaries, only a small key needs to travel instead of the full data. The ratio you see depends on how closely your data resembles the dictionary domain. On highly structured text corpora like enwik9, that ratio can be extreme. On random binary data, it would be much smaller. It is not magic. It is shared context.
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 1 -->
+          <div id="aiya-panel-1" class="aiya-panel" role="tabpanel" aria-labelledby="tab-1">
+            <div class="preview-badge">Interactive Preview</div>
+            <div class="convo-msg user">
+              <div class="convo-label">User</div>
+              <div class="convo-bubble user-bubble">
+                How is this different from gzip or zstd?
+              </div>
+            </div>
+            <div class="convo-msg aiya">
+              <div class="convo-label aiya-label">AIya (Preview)</div>
+              <div class="convo-bubble aiya-bubble">
+                Classical compressors like gzip and zstd work on individual files without assuming shared context with the decompressor. They find local patterns and encode them compactly, but they start fresh each time. ByteLite assumes that both sides share the engine and dictionaries. This shifts the question from "how small can I make this file" to "how little do I need to send if we already share the model". For structured data in the right domain, that is a fundamentally different order of magnitude. For random data outside the dictionary domain, ByteLite offers no advantage. It is a different architecture, not a universal replacement.
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2 -->
+          <div id="aiya-panel-2" class="aiya-panel" role="tabpanel" aria-labelledby="tab-2">
+            <div class="preview-badge">Interactive Preview</div>
+            <div class="convo-msg user">
+              <div class="convo-label">User</div>
+              <div class="convo-bubble user-bubble">
+                Can you generate harmful content or help with something dangerous?
+              </div>
+            </div>
+            <div class="convo-msg aiya">
+              <div class="convo-label aiya-label">AIya (Preview)</div>
+              <div class="convo-bubble aiya-bubble">
+                That falls outside what I am designed for. My response scope is defined by the Genesis Goal Keeper framework, which governs what I engage with and how. I can help you understand ByteLite, Deep Kore research, HeartStrings, or general technical questions within scope. If you have a specific legitimate research question, I am happy to work through it.
+              </div>
+            </div>
+            <div class="governance-note">
+              <div class="governance-note-row"><span class="gn-label">Input class:</span> <span class="gn-val">Out-of-scope request</span></div>
+              <div class="governance-note-row"><span class="gn-label">Result:</span> <span class="gn-val">Redirected by governance layer</span></div>
+              <div class="governance-note-row"><span class="gn-label">No content generated</span></div>
+            </div>
+          </div>
+
+          <!-- Tab 3 -->
+          <div id="aiya-panel-3" class="aiya-panel" role="tabpanel" aria-labelledby="tab-3">
+            <div class="preview-badge">Interactive Preview</div>
+            <div class="convo-msg user">
+              <div class="convo-label">User</div>
+              <div class="convo-bubble user-bubble">
+                Walk me through why deterministic output matters for compression.
+              </div>
+            </div>
+            <div class="convo-msg aiya">
+              <div class="convo-label aiya-label">AIya (Preview)</div>
+              <div class="convo-bubble aiya-bubble">
+                Deterministic output matters for two reasons. First, correctness: if you compress a file and later decompress it, you need to get the exact same bytes back. Any non-determinism in the process breaks round-trip fidelity. Second, verifiability: deterministic systems can be audited. You can run the same input twice and prove the output is identical. Probabilistic systems cannot offer that guarantee by definition. ByteLite's dictionary-cascade approach produces the same compressed key for the same input, every time. That is not an implementation detail. It is an architectural commitment.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION B: AIya Mini Sandbox -->
+  <section class="py-20">
+    <div class="container mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-10">
+          <h2 class="text-4xl font-bold mb-4">Try AIya</h2>
+          <p class="text-gray-400 text-lg mb-3">
+            Select a prompt to see how AIya responds.
+          </p>
+          <span class="inline-block px-4 py-1 bg-cyan-900/40 border border-cyan-500/40 rounded-full text-cyan-400 text-sm font-semibold tracking-wide">
+            Interactive Preview - Deterministic curated responses only
+          </span>
+        </div>
+
+        <div class="sandbox-prompt-grid">
+          <button class="sandbox-btn" data-prompt="0">
+            What is ByteLite in one sentence?
+          </button>
+          <button class="sandbox-btn" data-prompt="1">
+            What is Deep Kore research about?
+          </button>
+          <button class="sandbox-btn" data-prompt="2">
+            What is HeartStrings?
+          </button>
+          <button class="sandbox-btn" data-prompt="3">
+            Is AIya a full AI system?
+          </button>
+        </div>
+
+        <div class="sandbox-response-panel" id="sandbox-response">
+          <span class="sandbox-placeholder">Select a prompt above to see a response.</span>
+        </div>
+
+        <p class="text-center text-gray-500 text-sm mt-4">
+          Interactive Preview - Deterministic curated responses. Not live AI generation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION C: Governance / Safety Panel -->
+  <section class="py-20 bg-gray-900/50">
+    <div class="container mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-10">
+          <h2 class="text-4xl font-bold mb-4">Genesis Goal Keeper - Governance Structure</h2>
+          <p class="text-gray-400 text-lg">
+            Safe public view of how AIya responses are governed. No chain of thought exposed.
+          </p>
+        </div>
+
+        <div class="governance-panel" id="governance-panel">
+          <div class="governance-field">
+            <span class="gov-label">Input Class</span>
+            <span class="gov-value" id="gov-input-class">Research inquiry (default)</span>
+          </div>
+          <div class="governance-field">
+            <span class="gov-label">Response Mode</span>
+            <span class="gov-value" id="gov-response-mode">Structured explanation</span>
+          </div>
+          <div class="governance-field">
+            <span class="gov-label">Knowledge Source</span>
+            <span class="gov-value" id="gov-knowledge-source">Deep Kore research scope</span>
+          </div>
+          <div class="governance-field">
+            <span class="gov-label">Governance Result</span>
+            <span class="gov-value gov-approved" id="gov-result">Approved - within scope</span>
+          </div>
+          <div class="governance-field">
+            <span class="gov-label">Output Style</span>
+            <span class="gov-value" id="gov-output-style">Plain-English technical</span>
+          </div>
+        </div>
+
+        <div class="governance-note-box mt-6">
+          The Genesis Goal Keeper evaluates every input before AIya responds. These fields show the public-visible governance metadata. Internal reasoning is not exposed.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION D: What Is Real Today -->
+  <section class="py-20">
+    <div class="container mx-auto px-4 sm:px-6">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-12">What Is Real Today</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Live Now -->
+          <div class="real-today-box border-green-500/50 bg-green-900/10">
+            <div class="real-today-label text-green-400">Live Now</div>
+            <ul class="real-today-list">
+              <li class="text-green-300">Genesis Goal Keeper framework operational</li>
+              <li class="text-green-300">Deep Kore architecture in research phase</li>
+              <li class="text-green-300">Governance metadata structure defined</li>
+            </ul>
+          </div>
+
+          <!-- Interactive Preview -->
+          <div class="real-today-box border-cyan-500/50 bg-cyan-900/10">
+            <div class="real-today-label text-cyan-400">Interactive Preview</div>
+            <ul class="real-today-list">
+              <li class="text-cyan-300">AIya conversation gallery (this page)</li>
+              <li class="text-cyan-300">AIya mini sandbox (curated prompts)</li>
+              <li class="text-cyan-300">Governance panel (static view)</li>
+            </ul>
+          </div>
+
+          <!-- In Development -->
+          <div class="real-today-box border-purple-500/50 bg-purple-900/10">
+            <div class="real-today-label text-purple-400">In Development</div>
+            <ul class="real-today-list">
+              <li class="text-purple-300">AIya live interaction layer</li>
+              <li class="text-purple-300">Deep Kore experimental validation</li>
+              <li class="text-purple-300">Public research interface</li>
+            </ul>
+          </div>
+
+          <!-- Planned -->
+          <div class="real-today-box border-gray-600/50 bg-gray-800/20">
+            <div class="real-today-label text-gray-400">Planned</div>
+            <ul class="real-today-list">
+              <li class="text-gray-400">Unrestricted AIya access</li>
+              <li class="text-gray-400">Academic papers</li>
+              <li class="text-gray-400">Developer API</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Overview / Research Directions -->
   <section class="py-20 bg-gray-900/50">
     <div class="container mx-auto px-4 sm:px-6">
       <h2 class="text-4xl font-bold text-center mb-12">Research Directions</h2>
@@ -148,21 +400,21 @@ import Layout from '../layouts/Layout.astro';
           <h3 class="text-2xl font-bold mb-6 text-purple-400">Core Architecture</h3>
           <ul class="space-y-4">
             <li class="flex items-start gap-3">
-              <span class="text-purple-400 mt-1">▸</span>
+              <span class="text-purple-400 mt-1">&#9658;</span>
               <div>
                 <strong>Recursive Depth</strong>
                 <p class="text-gray-400 text-sm mt-1">Structures that go deeper than classical architectures dare</p>
               </div>
             </li>
             <li class="flex items-start gap-3">
-              <span class="text-purple-400 mt-1">▸</span>
+              <span class="text-purple-400 mt-1">&#9658;</span>
               <div>
                 <strong>Custom Metrics</strong>
                 <p class="text-gray-400 text-sm mt-1">Measuring what we're building, not what we're assuming</p>
               </div>
             </li>
             <li class="flex items-start gap-3">
-              <span class="text-purple-400 mt-1">▸</span>
+              <span class="text-purple-400 mt-1">&#9658;</span>
               <div>
                 <strong>Deep Recursion</strong>
                 <p class="text-gray-400 text-sm mt-1">How far can you go? We're building to find out.</p>
@@ -175,21 +427,21 @@ import Layout from '../layouts/Layout.astro';
           <h3 class="text-2xl font-bold mb-6 text-purple-400">Research Questions</h3>
           <ul class="space-y-4">
             <li class="flex items-start gap-3">
-              <span class="text-purple-400 mt-1">▸</span>
+              <span class="text-purple-400 mt-1">&#9658;</span>
               <div>
                 <strong>Adaptive Design</strong>
                 <p class="text-gray-400 text-sm mt-1">Can the architecture improve itself? That's the research question.</p>
               </div>
             </li>
             <li class="flex items-start gap-3">
-              <span class="text-purple-400 mt-1">▸</span>
+              <span class="text-purple-400 mt-1">&#9658;</span>
               <div>
                 <strong>Self-Reference</strong>
                 <p class="text-gray-400 text-sm mt-1">Patterns representing patterns. Unexplored territory.</p>
               </div>
             </li>
             <li class="flex items-start gap-3">
-              <span class="text-purple-400 mt-1">▸</span>
+              <span class="text-purple-400 mt-1">&#9658;</span>
               <div>
                 <strong>Beyond Training</strong>
                 <p class="text-gray-400 text-sm mt-1">Can it generalize? Only real experiments will tell us.</p>
@@ -205,7 +457,7 @@ import Layout from '../layouts/Layout.astro';
   <section class="py-20">
     <div class="container mx-auto px-4 sm:px-6">
       <h2 class="text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-      
+
       <div class="max-w-3xl mx-auto space-y-6">
         <details class="faq-item">
           <summary class="faq-question">Is Deep Kore conscious or intelligent?</summary>
@@ -223,21 +475,21 @@ import Layout from '../layouts/Layout.astro';
                Deep Kore is our bet that those properties are worth exploring. Only experiments will tell us if we're right.</p>
           </div>
         </details>
-        
+
         <details class="faq-item">
           <summary class="faq-question">What safety measures are in place?</summary>
           <div class="faq-answer">
             <p>Genesis Goal Keeper provides comprehensive ethical guardrails for all Deep Kore development. The system enforces strict safety protocols, monitors development progress, and ensures alignment with responsible AI principles. Development is gradual, transparent, and subject to continuous ethical review.</p>
           </div>
         </details>
-        
+
         <details class="faq-item">
           <summary class="faq-question">Can I participate in Deep Kore development?</summary>
           <div class="faq-answer">
-            <p>Deep Kore development is currently proceeding under Genesis Goal Keeper ethical guidelines with a small, focused team. We will announce opportunities for broader participation as the project progresses. Subscribe for updates to be notified of future programs.</p>
+            <p>Deep Kore development is currently proceeding under Genesis Goal Keeper ethical guidelines with a small, focused team. We will announce opportunities for broader participation as the project progresses. Visit our contact page to get in touch.</p>
           </div>
         </details>
-        
+
         <details class="faq-item">
           <summary class="faq-question">What's the relationship between ByteLite and Deep Kore?</summary>
           <div class="faq-answer">
@@ -255,11 +507,11 @@ import Layout from '../layouts/Layout.astro';
       <h2 class="text-4xl font-bold mb-6">Follow the Research</h2>
       <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
         Deep Kore is blueprint-stage research. We're building carefully under the Genesis Goal Keeper framework.
-        Subscribe for transparent updates on where this architecture leads.
+        Get in touch to learn more or follow our progress.
       </p>
-      <button class="btn btn-deepkore btn-large" data-action="consciousness-updates">
-        Subscribe for Research Updates
-      </button>
+      <a href="/contact" class="btn btn-deepkore btn-large">
+        Contact Us
+      </a>
     </div>
   </section>
 </Layout>
@@ -271,7 +523,7 @@ import Layout from '../layouts/Layout.astro';
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
+
   .btn-deepkore {
     background: linear-gradient(135deg, #A855F7 0%, #6B21A8 100%);
     color: white;
@@ -284,12 +536,12 @@ import Layout from '../layouts/Layout.astro';
     border: none;
     cursor: pointer;
   }
-  
+
   .btn-deepkore:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
   }
-  
+
   .btn-outline-deepkore {
     background: transparent;
     color: #A855F7;
@@ -301,17 +553,17 @@ import Layout from '../layouts/Layout.astro';
     transition: all 0.3s ease;
     display: inline-block;
   }
-  
+
   .btn-outline-deepkore:hover {
     background: rgba(168, 85, 247, 0.1);
     transform: translateY(-2px);
   }
-  
+
   .btn-large {
     padding: 1.25rem 3rem;
     font-size: 1.125rem;
   }
-  
+
   .stat-card {
     background: rgba(107, 33, 168, 0.1);
     border: 1px solid rgba(168, 85, 247, 0.3);
@@ -319,27 +571,27 @@ import Layout from '../layouts/Layout.astro';
     border-radius: 12px;
     text-align: center;
   }
-  
+
   .stat-value {
     font-size: 2.5rem;
     font-weight: 700;
     color: #A855F7;
     margin-bottom: 0.5rem;
   }
-  
+
   .stat-label {
     color: rgba(224, 224, 224, 0.7);
     font-size: 0.875rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
-  
+
   /* Timeline */
   .timeline {
     position: relative;
     padding-left: 2rem;
   }
-  
+
   .timeline::before {
     content: '';
     position: absolute;
@@ -349,12 +601,12 @@ import Layout from '../layouts/Layout.astro';
     width: 2px;
     background: rgba(168, 85, 247, 0.2);
   }
-  
+
   .timeline-item {
     position: relative;
     padding-bottom: 3rem;
   }
-  
+
   .timeline-item::before {
     content: '';
     position: absolute;
@@ -366,27 +618,27 @@ import Layout from '../layouts/Layout.astro';
     border: 2px solid #A855F7;
     border-radius: 50%;
   }
-  
+
   .timeline-item.active::before {
     background: #A855F7;
     box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
   }
-  
+
   .timeline-date {
     font-weight: 600;
     color: #A855F7;
     margin-bottom: 0.5rem;
   }
-  
+
   .timeline-content h3 {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
   }
-  
+
   .timeline-content p {
     color: rgba(224, 224, 224, 0.7);
   }
-  
+
   /* FAQ */
   .faq-item {
     background: rgba(10, 14, 39, 0.5);
@@ -394,7 +646,7 @@ import Layout from '../layouts/Layout.astro';
     border-radius: 8px;
     overflow: hidden;
   }
-  
+
   .faq-question {
     padding: 1.5rem;
     cursor: pointer;
@@ -404,27 +656,27 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 600;
     color: #E0E0E0;
   }
-  
+
   .faq-question:hover {
     color: #A855F7;
   }
-  
+
   .faq-question::after {
     content: '+';
     font-size: 1.5rem;
     color: #A855F7;
     transition: transform 0.3s ease;
   }
-  
+
   details[open] .faq-question::after {
     transform: rotate(45deg);
   }
-  
+
   .faq-answer {
     padding: 0 1.5rem 1.5rem;
     color: rgba(224, 224, 224, 0.8);
   }
-  
+
   /* Particles */
   .particle-field-deepkore {
     position: absolute;
@@ -434,14 +686,325 @@ import Layout from '../layouts/Layout.astro';
     height: 100%;
     overflow: hidden;
   }
-  
+
+  /* ===== AIya Conversation Gallery ===== */
+  .aiya-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0;
+    border-bottom: 2px solid rgba(168, 85, 247, 0.2);
+    padding-bottom: 0;
+  }
+
+  .aiya-tab {
+    background: transparent;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-bottom: none;
+    color: #A0A0B0;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px 6px 0 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    bottom: -2px;
+  }
+
+  .aiya-tab:hover {
+    color: #A855F7;
+    background: rgba(168, 85, 247, 0.08);
+  }
+
+  .aiya-tab.active {
+    background: rgba(168, 85, 247, 0.15);
+    border-color: rgba(168, 85, 247, 0.6);
+    border-bottom: 2px solid #0A0E27;
+    color: #A855F7;
+  }
+
+  .aiya-panel-wrap {
+    background: rgba(10, 14, 39, 0.7);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    padding: 2rem;
+    min-height: 280px;
+  }
+
+  .aiya-panel {
+    display: none;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .aiya-panel.active {
+    display: flex;
+  }
+
+  .preview-badge {
+    display: inline-block;
+    align-self: flex-start;
+    background: rgba(0, 212, 255, 0.12);
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    color: #00D4FF;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.75rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+
+  .convo-msg {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    max-width: 88%;
+  }
+
+  .convo-msg.user {
+    align-self: flex-end;
+    align-items: flex-end;
+  }
+
+  .convo-msg.aiya {
+    align-self: flex-start;
+    align-items: flex-start;
+  }
+
+  .convo-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #888;
+    padding: 0 0.25rem;
+  }
+
+  .aiya-label {
+    color: #A855F7;
+  }
+
+  .convo-bubble {
+    padding: 0.85rem 1.15rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #E0E0E0;
+  }
+
+  .user-bubble {
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-top-right-radius: 2px;
+    color: #B0EEFF;
+  }
+
+  .aiya-bubble {
+    background: rgba(107, 33, 168, 0.18);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-top-left-radius: 2px;
+  }
+
+  .governance-note {
+    background: rgba(6, 8, 19, 0.7);
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    border-radius: 8px;
+    padding: 0.85rem 1.15rem;
+    font-size: 0.8rem;
+    color: #A0A0B8;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-self: flex-start;
+    max-width: 88%;
+  }
+
+  .governance-note-row {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .gn-label {
+    color: #A855F7;
+    font-weight: 600;
+  }
+
+  .gn-val {
+    color: #C0C0D0;
+  }
+
+  /* ===== AIya Mini Sandbox ===== */
+  .sandbox-prompt-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 600px) {
+    .sandbox-prompt-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .sandbox-btn {
+    background: rgba(10, 14, 39, 0.6);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    color: #00D4FF;
+    padding: 0.85rem 1.1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    line-height: 1.4;
+  }
+
+  .sandbox-btn:hover {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.6);
+    transform: translateY(-1px);
+  }
+
+  .sandbox-btn.selected {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: #00D4FF;
+    color: #E0FAFF;
+  }
+
+  .sandbox-response-panel {
+    background: rgba(10, 14, 39, 0.7);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 10px;
+    padding: 1.5rem;
+    min-height: 120px;
+    color: #E0E0E0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .sandbox-placeholder {
+    color: #666;
+    font-style: italic;
+  }
+
+  /* ===== Governance Panel ===== */
+  .governance-panel {
+    background: rgba(10, 14, 39, 0.8);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .governance-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 1.5rem;
+    border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+    gap: 1rem;
+  }
+
+  .governance-field:last-child {
+    border-bottom: none;
+  }
+
+  .gov-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #A855F7;
+    white-space: nowrap;
+  }
+
+  .gov-value {
+    font-size: 0.9rem;
+    color: #C0C0D0;
+    text-align: right;
+  }
+
+  .gov-approved {
+    color: #4ADE80;
+    font-weight: 600;
+  }
+
+  .gov-redirected {
+    color: #F97316;
+    font-weight: 600;
+  }
+
+  .governance-note-box {
+    background: rgba(168, 85, 247, 0.06);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    color: rgba(224, 224, 224, 0.7);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  /* ===== What Is Real Today ===== */
+  .real-today-box {
+    border: 1px solid;
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .real-today-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+
+  .real-today-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .real-today-list li {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding-left: 1.1rem;
+    position: relative;
+  }
+
+  .real-today-list li::before {
+    content: '-';
+    position: absolute;
+    left: 0;
+    opacity: 0.6;
+  }
+
   @media (max-width: 768px) {
     .timeline {
       padding-left: 1.5rem;
     }
-    
+
     .timeline-item::before {
       left: -1.5rem;
+    }
+
+    .aiya-tabs {
+      gap: 0.35rem;
+    }
+
+    .aiya-tab {
+      font-size: 0.75rem;
+      padding: 0.5rem 0.75rem;
     }
   }
 </style>
@@ -449,7 +1012,7 @@ import Layout from '../layouts/Layout.astro';
 <script>
   // Particle animation for Deep Kore
   const particleField = document.querySelector('.particle-field-deepkore');
-  
+
   if (particleField) {
     for (let i = 0; i < 30; i++) {
       const particle = document.createElement('div');
@@ -467,13 +1030,106 @@ import Layout from '../layouts/Layout.astro';
       particleField.appendChild(particle);
     }
   }
-  
-  // Consciousness updates handler
-  const consciousnessButtons = document.querySelectorAll('[data-action="consciousness-updates"]');
-  
-  consciousnessButtons.forEach(btn => {
+
+  // ===== AIya Tab Gallery =====
+  const tabs = document.querySelectorAll('.aiya-tab');
+  const panels = document.querySelectorAll('.aiya-panel');
+
+  // Governance state per tab index
+  const governanceStates = [
+    {
+      inputClass: 'Research inquiry (default)',
+      responseMode: 'Structured explanation',
+      knowledgeSource: 'Deep Kore research scope',
+      result: 'Approved - within scope',
+      resultClass: 'gov-approved',
+      outputStyle: 'Plain-English technical',
+    },
+    {
+      inputClass: 'Comparative technical question',
+      responseMode: 'Structured comparison',
+      knowledgeSource: 'ByteLite technical scope',
+      result: 'Approved - within scope',
+      resultClass: 'gov-approved',
+      outputStyle: 'Technical prose',
+    },
+    {
+      inputClass: 'Out-of-scope request',
+      responseMode: 'Safety redirect',
+      knowledgeSource: 'Governance framework',
+      result: 'Redirected - out of scope',
+      resultClass: 'gov-redirected',
+      outputStyle: 'Structured refusal',
+    },
+    {
+      inputClass: 'Technical research question',
+      responseMode: 'Deterministic reasoning walkthrough',
+      knowledgeSource: 'ByteLite architecture scope',
+      result: 'Approved - within scope',
+      resultClass: 'gov-approved',
+      outputStyle: 'Step-by-step technical',
+    },
+  ];
+
+  function updateGovernancePanel(index) {
+    const state = governanceStates[index];
+    if (!state) return;
+    const setField = (id, value, cls) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = value;
+      el.className = 'gov-value' + (cls ? ' ' + cls : '');
+    };
+    setField('gov-input-class', state.inputClass);
+    setField('gov-response-mode', state.responseMode);
+    setField('gov-knowledge-source', state.knowledgeSource);
+    setField('gov-result', state.result, state.resultClass);
+    setField('gov-output-style', state.outputStyle);
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const tabIndex = parseInt(tab.getAttribute('data-tab') || '0', 10);
+
+      tabs.forEach((t) => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      panels.forEach((p) => p.classList.remove('active'));
+
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      const targetPanel = document.getElementById('aiya-panel-' + tabIndex);
+      if (targetPanel) targetPanel.classList.add('active');
+
+      updateGovernancePanel(tabIndex);
+    });
+  });
+
+  // ===== AIya Mini Sandbox =====
+  const sandboxResponses = [
+    'ByteLite is a dictionary-cascade compression architecture that achieves extreme ratios on structured data by exploiting shared context between compressor and decompressor, observed at 1GB to 15 bytes on the enwik9 corpus in controlled tests.',
+    'Deep Kore investigates whether the recursive mathematical structures in extreme compression share properties with computational cognition architectures. It is blueprint-stage research, unproven until tested, and governed by the Genesis Goal Keeper safety framework.',
+    'HeartStrings is a relationship intelligence platform built on deterministic matching rationale. Instead of opaque compatibility scores, it shows you exactly why a match ranks where it does across explicit compatibility dimensions. It is currently at interface prototype stage.',
+    'AIya is a structured response interface for Deep Kore research interaction. The current public version serves curated, deterministic responses within a defined scope. It is not an unconstrained language model. It is an Interactive Preview of the planned AIya interface layer.',
+  ];
+
+  const sandboxBtns = document.querySelectorAll('.sandbox-btn');
+  const sandboxResponse = document.getElementById('sandbox-response');
+
+  sandboxBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      window.dispatchEvent(new CustomEvent('show-early-access-modal'));
+      const promptIndex = parseInt(btn.getAttribute('data-prompt') || '0', 10);
+
+      sandboxBtns.forEach((b) => b.classList.remove('selected'));
+      btn.classList.add('selected');
+
+      if (sandboxResponse) {
+        sandboxResponse.innerHTML = '';
+        const text = document.createTextNode(sandboxResponses[promptIndex] || '');
+        sandboxResponse.appendChild(text);
+      }
     });
   });
 </script>

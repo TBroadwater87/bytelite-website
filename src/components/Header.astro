@@ -24,14 +24,12 @@ import HeaderLink from './HeaderLink.astro';
       <!-- Navigation Links -->
       <div class="hidden lg:flex items-center space-x-6 xl:space-x-8">
         <HeaderLink href="/">Home</HeaderLink>
-        <HeaderLink href="/demo">Demo</HeaderLink>
-        <HeaderLink href="/technology">Technology</HeaderLink>
+        <HeaderLink href="/technology">ByteLite</HeaderLink>
         <HeaderLink href="/deepkore" class="text-purple-400 hover:text-purple-300">Deep Kore</HeaderLink>
-        <HeaderLink href="/ethics">Ethics</HeaderLink>
-        <HeaderLink href="/about">About</HeaderLink>
-        <HeaderLink href="/subscribe">Subscribe</HeaderLink>
-        <HeaderLink href="/licensing">Licensing</HeaderLink>
-        <HeaderLink href="/news">News</HeaderLink>
+        <HeaderLink href="/heartstrings" class="text-pink-400 hover:text-pink-300">HeartStrings</HeaderLink>
+        <HeaderLink href="/demo">Demos</HeaderLink>
+        <HeaderLink href="/status">Status</HeaderLink>
+        <HeaderLink href="/about">Company</HeaderLink>
         <HeaderLink href="/contact">Contact</HeaderLink>
       </div>
 
@@ -51,14 +49,12 @@ import HeaderLink from './HeaderLink.astro';
     <div id="mobileMenu" class="mobile-menu lg:hidden">
       <div class="py-4 space-y-2">
         <a href="/" class="mobile-menu-link">Home</a>
-        <a href="/demo" class="mobile-menu-link">Demo</a>
-        <a href="/technology" class="mobile-menu-link">Technology</a>
+        <a href="/technology" class="mobile-menu-link">ByteLite</a>
         <a href="/deepkore" class="mobile-menu-link text-purple-400">Deep Kore</a>
-        <a href="/ethics" class="mobile-menu-link">Ethics</a>
-        <a href="/about" class="mobile-menu-link">About</a>
-        <a href="/subscribe" class="mobile-menu-link">Subscribe</a>
-        <a href="/licensing" class="mobile-menu-link">Licensing</a>
-        <a href="/news" class="mobile-menu-link">News</a>
+        <a href="/heartstrings" class="mobile-menu-link text-pink-400">HeartStrings</a>
+        <a href="/demo" class="mobile-menu-link">Demos</a>
+        <a href="/news" class="mobile-menu-link">Status</a>
+        <a href="/about" class="mobile-menu-link">Company</a>
         <a href="/contact" class="mobile-menu-link">Contact</a>
       </div>
     </div>
@@ -94,6 +90,11 @@ import HeaderLink from './HeaderLink.astro';
   .mobile-menu-link.text-purple-400:hover {
     background: rgba(168, 85, 247, 0.1);
     color: #A855F7;
+  }
+
+  .mobile-menu-link.text-pink-400:hover {
+    background: rgba(236, 72, 153, 0.1);
+    color: #EC4899;
   }
   
   @media (min-width: 1024px) {

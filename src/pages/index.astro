@@ -1,283 +1,632 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import ParadigmShift from '../components/ParadigmShift.astro';
-import ProofDemo from '../components/ProofDemo.astro';
-import SubscribeForm from '../components/SubscribeForm.astro';
-import VerificationSection from '../components/VerificationSection.astro';
 ---
 
 <Layout
-  title="ByteLite - Classical Compression Peaked. This Is What Comes Next."
-  description="Patent filed. Hutter Prize submission planned. ByteLite is a dictionary-cascade architecture engineered toward compression ratios on structured data that would leave today's leaders behind. Verification decides how far we actually get."
-  keywords={["frontier compression", "dictionary cascade", "Hutter Prize compression", "structured data compression", "deterministic compression", "lossless compression", "ByteLite"]}
+  title="ByteLite - Three Deterministic Systems. One Public Lab."
+  description="ByteLite is structural compression. Deep Kore / AIya is deterministic cognition research. HeartStrings is relationship intelligence. Three systems, one public lab — built by Tash Broadwater in Helena, MT."
+  keywords={["ByteLite", "Deep Kore", "AIya", "HeartStrings", "dictionary cascade compression", "deterministic compression", "deterministic cognition", "relationship platform"]}
   schemaType="Organization"
 >
-  <Hero />
-  
-  <!-- Paradigm Shift Section -->
-  <ParadigmShift />
-  
-  <!-- Deep Kore Section -->
-  <section class="deep-kore-section py-20">
-    <div class="container mx-auto px-4 sm:px-6">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl md:text-5xl font-bold mb-6">
-            <span class="text-gradient-purple">Deep Kore</span><br/>
-            <span class="text-gradient-purple">Beyond Compression. Toward Cognition.</span>
-          </h2>
-          <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-            What if the mathematics of extreme compression were also the mathematics of intelligence?
-            Deep Kore is our physics-inspired architecture for finding out. Research in progress. Details restricted.
+
+  <!-- Hero -->
+  <section class="lab-hero">
+    <div class="hero-bg">
+      <div class="hero-gradient"></div>
+    </div>
+    <div class="container">
+      <p class="hero-eyebrow">Public Lab — March 2026</p>
+      <h1>Three deterministic systems.<br/>Three different fronts.<br/>One public lab.</h1>
+      <p class="hero-sub">
+        Not a manifesto site. Not a future-hype site. A lab with three active projects and honest status on each.
+      </p>
+      <div class="hero-cta">
+        <a href="/technology" class="btn btn-cyan">Explore ByteLite</a>
+        <a href="/deepkore" class="btn btn-purple">Talk to AIya</a>
+        <a href="/heartstrings" class="btn btn-pink">View HeartStrings</a>
+        <a href="/status" class="btn btn-outline">Current Status</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three-Product Cards -->
+  <section class="products-section">
+    <div class="container">
+      <div class="products-grid">
+
+        <!-- ByteLite -->
+        <div class="product-card bytelite">
+          <div class="card-header">
+            <div class="product-name bytelite">ByteLite</div>
+            <span class="maturity-badge active">Active Engineering</span>
+          </div>
+          <p class="product-one-liner">
+            Structural compression. Dictionary-cascade architecture engineered toward extreme ratios
+            on structured data.
           </p>
-        </div>
-        
-        <div class="neural-visualization mb-12">
-          <div class="neural-container">
-            <div class="neural-core"></div>
-            <div class="neural-ring ring-1"></div>
-            <div class="neural-ring ring-2"></div>
-            <div class="neural-ring ring-3"></div>
+          <div class="product-stat">
+            <span class="stat-label">Controlled test result</span>
+            <span class="stat-value bytelite">1GB → 15 bytes</span>
+            <span class="stat-note">enwik9 corpus. Results vary by data type.</span>
           </div>
-        </div>
-        
-        <div class="grid md:grid-cols-3 gap-8 mb-12">
-          <div class="feature-card purple">
-            <div class="feature-icon">🧠</div>
-            <h3 class="feature-title">Structure, Not Just Storage</h3>
-            <p class="feature-description">
-              Compression that might be a blueprint for something bigger
-            </p>
+          <div class="product-status-line">
+            <span class="status-dot active"></span>
+            Patent pending US 63/807,027 · Demo in preparation
           </div>
+          <a href="/technology" class="card-link bytelite">See ByteLite →</a>
+        </div>
 
-          <div class="feature-card purple">
-            <div class="feature-icon">🔬</div>
-            <h3 class="feature-title">Recursive Depth</h3>
-            <p class="feature-description">
-              How far can you go? We're building to find out.
-            </p>
+        <!-- Deep Kore / AIya -->
+        <div class="product-card deepkore">
+          <div class="card-header">
+            <div class="product-name deepkore">Deep Kore / AIya</div>
+            <span class="maturity-badge research">Research Preview</span>
           </div>
-
-          <div class="feature-card purple">
-            <div class="feature-icon">⚡</div>
-            <h3 class="feature-title">Guardrails Built In</h3>
-            <p class="feature-description">
-              Genesis Goal Keeper: because "move fast and break things" doesn't apply here
-            </p>
+          <p class="product-one-liner">
+            Deterministic cognition research. AIya is the interface layer — structured, governed,
+            and honest about what it is.
+          </p>
+          <div class="product-stat">
+            <span class="stat-label">Research direction</span>
+            <span class="stat-value deepkore">Structure → Cognition</span>
+            <span class="stat-note">Blueprint stage. Genesis Goal Keeper safety framework operational.</span>
           </div>
+          <div class="product-status-line">
+            <span class="status-dot research"></span>
+            Genesis Goal Keeper: Active · AIya: Interactive preview
+          </div>
+          <a href="/deepkore" class="card-link deepkore">See Deep Kore →</a>
         </div>
-        
-        <div class="text-center">
-          <a href="/deepkore" class="btn btn-purple btn-large">
-            See What's Beyond Compression
-          </a>
+
+        <!-- HeartStrings -->
+        <div class="product-card heartstrings">
+          <div class="card-header">
+            <div class="product-name heartstrings">HeartStrings</div>
+            <span class="maturity-badge prototype">Interface Prototype</span>
+          </div>
+          <p class="product-one-liner">
+            Relationship intelligence platform. Deterministic matching rationale — you see exactly
+            why a match scores where it does.
+          </p>
+          <div class="product-stat">
+            <span class="stat-label">The origin story</span>
+            <span class="stat-value heartstrings">HeartStrings → ByteLite</span>
+            <span class="stat-note">The storage problem that triggered ByteLite's architecture.</span>
+          </div>
+          <div class="product-status-line">
+            <span class="status-dot prototype"></span>
+            UI prototype ready · Expanding post-ByteLite demo launch
+          </div>
+          <a href="/heartstrings" class="card-link heartstrings">See HeartStrings →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Status Snapshot -->
+  <section class="status-section">
+    <div class="container">
+      <h2>Status Snapshot</h2>
+      <p class="status-intro">What is real today. No ambiguity.</p>
+
+      <div class="status-grid">
+        <div class="status-col">
+          <div class="status-header live">Live Now</div>
+          <ul class="status-list">
+            <li>ByteLite compression engine (controlled tests)</li>
+            <li>Universal dictionaries implemented</li>
+            <li>Genesis Goal Keeper safety framework</li>
+            <li>HeartStrings interface design system</li>
+            <li>Patent US 63/807,027 filed</li>
+          </ul>
+        </div>
+
+        <div class="status-col">
+          <div class="status-header preview">Interactive Preview</div>
+          <ul class="status-list">
+            <li>ByteLite compression demo (this site)</li>
+            <li>AIya conversation samples (Deep Kore page)</li>
+            <li>HeartStrings profile card UI</li>
+          </ul>
+        </div>
+
+        <div class="status-col">
+          <div class="status-header development">In Active Development</div>
+          <ul class="status-list">
+            <li>ByteLite demonstration application</li>
+            <li>Verification harness</li>
+            <li>AIya public interaction layer</li>
+            <li>HeartStrings matching engine</li>
+          </ul>
+        </div>
+
+        <div class="status-col">
+          <div class="status-header planned">Next Build Target</div>
+          <ul class="status-list">
+            <li>ByteLite public demo launch</li>
+            <li>HeartStrings beta (post-ByteLite)</li>
+            <li>Academic verification papers</li>
+            <li>API access (enterprise)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="status-footer">
+        <a href="/status" class="btn btn-outline">Full Status Page →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Patent / Trust -->
+  <section class="trust-section">
+    <div class="container">
+      <div class="trust-strip">
+        <div class="trust-item">
+          <span class="trust-label">Patent</span>
+          <span class="trust-value">US 63/807,027 Pending</span>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <span class="trust-label">Founder</span>
+          <span class="trust-value">Tash Broadwater, Helena MT</span>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <span class="trust-label">Verification</span>
+          <span class="trust-value">In Progress</span>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <span class="trust-label">Status</span>
+          <span class="trust-value">Active Development</span>
         </div>
       </div>
     </div>
   </section>
-  
-  <!-- Proof Demo Section -->
-  <ProofDemo />
-  
-  <!-- Verification Section -->
-  <VerificationSection />
-  
-  <!-- Subscribe Section -->
-  <section class="subscribe-section">
-    <div class="container">
-      <SubscribeForm
-        variant="default"
-        title="The Waiting List Is Open"
-        description="ByteLite early access. Deep Kore research updates. No spam, just milestones."
-      />
-    </div>
-  </section>
+
 </Layout>
 
 <style>
-  .subscribe-section {
-    padding: 6rem 0;
-    background: var(--color-bg-darker);
-  }
-
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
   }
-  
-  /* Deep Kore Section */
-  .deep-kore-section {
-    background: linear-gradient(180deg, transparent 0%, rgba(107, 33, 168, 0.05) 50%, transparent 100%);
+
+  /* Hero */
+  .lab-hero {
     position: relative;
+    padding: 8rem 0 6rem;
     overflow: hidden;
-  }
-  
-  .text-gradient-purple {
-    background: linear-gradient(135deg, #A855F7 0%, #6B21A8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  /* Neural Visualization */
-  .neural-visualization {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 300px;
-    position: relative;
-  }
-  
-  .neural-container {
-    position: relative;
-    width: 200px;
-    height: 200px;
-  }
-  
-  .neural-core {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
-    background: radial-gradient(circle, #A855F7, #6B21A8);
-    border-radius: 50%;
-    box-shadow: 0 0 60px rgba(168, 85, 247, 0.8);
-    animation: pulse 2s infinite;
-  }
-  
-  .neural-ring {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 2px solid rgba(168, 85, 247, 0.3);
-    border-radius: 50%;
-    animation: rotate 20s linear infinite;
-  }
-  
-  .ring-1 {
-    width: 100px;
-    height: 100px;
-    animation-duration: 10s;
-  }
-  
-  .ring-2 {
-    width: 150px;
-    height: 150px;
-    animation-duration: 15s;
-    animation-direction: reverse;
-  }
-  
-  .ring-3 {
-    width: 200px;
-    height: 200px;
-    animation-duration: 20s;
-  }
-  
-  /* Feature Cards */
-  .feature-card {
-    background: rgba(10, 14, 39, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 2rem;
     text-align: center;
-    transition: all 0.3s ease;
   }
-  
-  .feature-card.purple {
-    border-color: rgba(168, 85, 247, 0.3);
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
   }
-  
-  .feature-card.purple:hover {
-    border-color: rgba(168, 85, 247, 0.5);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);
+
+  .hero-gradient {
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.05) 0%, transparent 50%),
+      linear-gradient(180deg, #0A0E27 0%, #060813 100%);
   }
-  
-  .feature-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+
+  .lab-hero .container {
+    position: relative;
+    z-index: 1;
   }
-  
-  .feature-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(224, 224, 224, 0.5);
+    margin: 0 0 1.5rem;
+  }
+
+  .lab-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.15;
     color: #E0E0E0;
+    margin: 0 0 1.5rem;
   }
-  
-  .feature-description {
-    color: rgba(224, 224, 224, 0.7);
-    font-size: 0.875rem;
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(224, 224, 224, 0.65);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
   }
-  
+
+  .hero-cta {
+    display: flex;
+    gap: 0.875rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
   /* Buttons */
   .btn {
-    padding: 1rem 2.5rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 8px;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     display: inline-block;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9375rem;
   }
-  
-  .btn-large {
-    padding: 1.25rem 3rem;
-    font-size: 1.125rem;
+
+  .btn-cyan {
+    background: linear-gradient(135deg, #00D4FF 0%, #0099CC 100%);
+    color: #0A0E27;
   }
-  
+  .btn-cyan:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 212, 255, 0.35); }
+
   .btn-purple {
     background: linear-gradient(135deg, #A855F7 0%, #6B21A8 100%);
     color: white;
   }
-  
-  .btn-purple:hover {
+  .btn-purple:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(168, 85, 247, 0.35); }
+
+  .btn-pink {
+    background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);
+    color: white;
+  }
+  .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(236, 72, 153, 0.35); }
+
+  .btn-outline {
+    background: transparent;
+    color: rgba(224, 224, 224, 0.8);
+    border: 1px solid rgba(224, 224, 224, 0.25);
+  }
+  .btn-outline:hover {
+    border-color: rgba(224, 224, 224, 0.5);
+    color: #E0E0E0;
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
   }
-  
-  @keyframes pulse {
-    0% {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: translate(-50%, -50%) scale(1.2);
-      opacity: 0.8;
-    }
-    100% {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-    }
+
+  /* Products Section */
+  .products-section {
+    padding: 5rem 0;
+    background: #060813;
   }
-  
-  @keyframes rotate {
-    from {
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
-    to {
-      transform: translate(-50%, -50%) rotate(360deg);
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    background: rgba(10, 14, 39, 0.7);
+    border-radius: 16px;
+    padding: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .product-card.bytelite {
+    border: 1px solid rgba(0, 212, 255, 0.2);
+  }
+  .product-card.bytelite:hover {
+    box-shadow: 0 16px 40px rgba(0, 212, 255, 0.12);
+    border-color: rgba(0, 212, 255, 0.35);
+  }
+
+  .product-card.deepkore {
+    border: 1px solid rgba(168, 85, 247, 0.2);
+  }
+  .product-card.deepkore:hover {
+    box-shadow: 0 16px 40px rgba(168, 85, 247, 0.12);
+    border-color: rgba(168, 85, 247, 0.35);
+  }
+
+  .product-card.heartstrings {
+    border: 1px solid rgba(236, 72, 153, 0.2);
+  }
+  .product-card.heartstrings:hover {
+    box-shadow: 0 16px 40px rgba(236, 72, 153, 0.12);
+    border-color: rgba(236, 72, 153, 0.35);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .product-name {
+    font-size: 1.125rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+  }
+  .product-name.bytelite { color: #00D4FF; }
+  .product-name.deepkore { color: #A855F7; }
+  .product-name.heartstrings { color: #EC4899; }
+
+  .maturity-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+  }
+
+  .maturity-badge.active {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22C55E;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+  }
+
+  .maturity-badge.research {
+    background: rgba(168, 85, 247, 0.1);
+    color: #A855F7;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+  }
+
+  .maturity-badge.prototype {
+    background: rgba(236, 72, 153, 0.1);
+    color: #EC4899;
+    border: 1px solid rgba(236, 72, 153, 0.3);
+  }
+
+  .product-one-liner {
+    color: rgba(224, 224, 224, 0.75);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .product-stat {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(224, 224, 224, 0.4);
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  .stat-value.bytelite { color: #00D4FF; }
+  .stat-value.deepkore { color: #A855F7; }
+  .stat-value.heartstrings { color: #EC4899; }
+
+  .stat-note {
+    font-size: 0.75rem;
+    color: rgba(224, 224, 224, 0.4);
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  .product-status-line {
+    font-size: 0.8125rem;
+    color: rgba(224, 224, 224, 0.55);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .status-dot.active { background: #22C55E; }
+  .status-dot.research { background: #A855F7; }
+  .status-dot.prototype { background: #EC4899; }
+
+  .card-link {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    margin-top: auto;
+  }
+  .card-link.bytelite { color: #00D4FF; }
+  .card-link.deepkore { color: #A855F7; }
+  .card-link.heartstrings { color: #EC4899; }
+  .card-link:hover { opacity: 0.75; }
+
+  /* Status Section */
+  .status-section {
+    padding: 5rem 0;
+    background: linear-gradient(180deg, #060813 0%, rgba(0, 212, 255, 0.02) 50%, #060813 100%);
+  }
+
+  .status-section h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #E0E0E0;
+    text-align: center;
+    margin: 0 0 0.5rem;
+  }
+
+  .status-intro {
+    text-align: center;
+    color: rgba(224, 224, 224, 0.5);
+    margin: 0 0 3rem;
+    font-size: 0.9375rem;
+  }
+
+  .status-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .status-col {
+    background: rgba(10, 14, 39, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .status-header {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .status-header.live {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22C55E;
+    border-bottom: 1px solid rgba(34, 197, 94, 0.15);
+  }
+
+  .status-header.preview {
+    background: rgba(0, 212, 255, 0.08);
+    color: #00D4FF;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.12);
+  }
+
+  .status-header.development {
+    background: rgba(168, 85, 247, 0.08);
+    color: #A855F7;
+    border-bottom: 1px solid rgba(168, 85, 247, 0.12);
+  }
+
+  .status-header.planned {
+    background: rgba(236, 72, 153, 0.08);
+    color: #EC4899;
+    border-bottom: 1px solid rgba(236, 72, 153, 0.12);
+  }
+
+  .status-list {
+    list-style: none;
+    padding: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .status-list li {
+    color: rgba(224, 224, 224, 0.65);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    padding-left: 0.75rem;
+    position: relative;
+  }
+
+  .status-list li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    opacity: 0.3;
+  }
+
+  .status-footer {
+    text-align: center;
+  }
+
+  /* Trust Strip */
+  .trust-section {
+    padding: 3rem 0;
+    background: #060813;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .trust-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    text-align: center;
+  }
+
+  .trust-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(224, 224, 224, 0.35);
+  }
+
+  .trust-value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgba(224, 224, 224, 0.7);
+  }
+
+  .trust-divider {
+    width: 1px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .status-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (max-width: 768px) {
-    .subscribe-section {
-      padding: 4rem 0;
+    .products-grid {
+      grid-template-columns: 1fr;
     }
-    
-    .neural-visualization {
-      height: 200px;
+
+    .status-grid {
+      grid-template-columns: 1fr;
     }
-    
-    .neural-container {
-      transform: scale(0.7);
+
+    .trust-divider {
+      display: none;
+    }
+
+    .lab-hero {
+      padding: 6rem 0 4rem;
+    }
+
+    .hero-cta {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 280px;
+      text-align: center;
     }
   }
 </style>
