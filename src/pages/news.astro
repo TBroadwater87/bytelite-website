@@ -3,32 +3,18 @@ import Layout from '../layouts/Layout.astro';
 import SubscribeForm from '../components/SubscribeForm.astro';
 ---
 
-<Layout title="News & Updates - ByteLite" description="Historical milestones and announcements for ByteLite compression, Deep Kore / AIya research, and HeartStrings. Current status at /status.">
+<Layout title="Milestone Archive - ByteLite" description="Archive of ByteLite, Deep Kore / AIya, and HeartStrings milestones. For current status, visit /status.">
   <section class="news-content">
     <div class="container">
       <div class="status-redirect-notice">
-        The primary status destination has moved. <a href="/status">View the Status Board</a> for current live/preview/development state across all three systems.
+        For current live/preview/development state, see the <a href="/status">Status Board</a>. This page is a historical milestone archive.
       </div>
-      <h1 class="page-title">News & Updates</h1>
-      <p class="page-subtitle">Historical milestones and announcements for ByteLite, Deep Kore, and HeartStrings</p>
-      
-      <!-- Latest Announcement -->
-      <div class="latest-announcement">
-        <div class="announcement-header">
-          <span class="new-badge">NEW</span>
-          <h2>ByteLite Application Demo Coming Soon</h2>
-        </div>
-        <p>
-          Experience ByteLite compression firsthand. Our demonstration application will showcase
-          the dictionary-cascade architecture that achieves 1GB to 15 bytes on the enwik9 corpus.
-          Contact us to be notified when it is available.
-        </p>
-        <a href="/contact" class="announcement-cta">Get Early Access</a>
-      </div>
+      <h1 class="page-title">Milestone Archive</h1>
+      <p class="page-subtitle">A record of development milestones across ByteLite, Deep Kore, and HeartStrings</p>
 
       <!-- Key Updates -->
       <div class="updates-section">
-        <h3>Recent Milestones</h3>
+        <h3>Development Milestones</h3>
 
         <div class="update-item highlight">
           <div class="update-date">Jan 2026</div>
@@ -120,7 +106,7 @@ import SubscribeForm from '../components/SubscribeForm.astro';
             <h4>The Discovery</h4>
             <p>
               While developing HeartStrings AI, founder Tash Broadwater discovers compression method
-              achieving previously impossible ratios: 1GB compressed to just 15 bytes.
+              achieving 1GB to 15 bytes in controlled testing on the enwik9 corpus.
             </p>
           </div>
         </div>
@@ -129,10 +115,10 @@ import SubscribeForm from '../components/SubscribeForm.astro';
       <!-- Subscribe Section -->
       <div class="subscribe-wrapper">
         <div class="subscribe-intro">
-          <h3>Don't Miss Important Updates</h3>
+          <h3>Get Milestone Updates</h3>
           <p>
-            Be the first to know when the ByteLite Application Demo launches and receive 
-            updates across ByteLite, Deep Kore / AIya, and HeartStrings.
+            Notified when the ByteLite demo launches and when milestones are reached across
+            ByteLite, Deep Kore / AIya, and HeartStrings.
           </p>
         </div>
         <SubscribeForm variant="compact" />
@@ -192,95 +178,6 @@ import SubscribeForm from '../components/SubscribeForm.astro';
     text-align: center;
     margin: 0 0 3rem;
     line-height: 1.6;
-  }
-
-  /* Latest Announcement */
-  .latest-announcement {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 0, 110, 0.1) 100%);
-    border: 2px solid rgba(0, 212, 255, 0.3);
-    border-radius: 16px;
-    padding: 3rem;
-    margin-bottom: 4rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .latest-announcement::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
-    animation: pulse-bg 4s ease-in-out infinite;
-  }
-
-  @keyframes pulse-bg {
-    0%, 100% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.1); opacity: 0.8; }
-  }
-
-  .announcement-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .new-badge {
-    background: var(--color-secondary);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    animation: glow 2s ease-in-out infinite;
-  }
-
-  @keyframes glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 110, 0.5); }
-    50% { box-shadow: 0 0 30px rgba(255, 0, 110, 0.8); }
-  }
-
-  .latest-announcement h2 {
-    font-size: 2rem;
-    color: var(--color-primary);
-    margin: 0;
-  }
-
-  .latest-announcement p {
-    font-size: 1.125rem;
-    color: var(--color-text-dim);
-    line-height: 1.6;
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .announcement-cta {
-    display: inline-block;
-    background: var(--color-primary);
-    color: var(--color-bg-dark);
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 1;
-  }
-
-  .announcement-cta:hover {
-    background: #00B8E6;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
   }
 
   /* Updates Section */

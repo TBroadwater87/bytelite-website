@@ -35,11 +35,15 @@ const {
       <div class="form-options">
         <label class="checkbox-label">
           <input type="checkbox" name="notifyDemo" checked />
-          <span>Notify me when ByteLite Application Demo is available</span>
+          <span>ByteLite: demo launch and compression milestones</span>
         </label>
         <label class="checkbox-label">
-          <input type="checkbox" name="notifyAGI" checked />
-          <span>Updates on Deep Kore / AIya research and HeartStrings</span>
+          <input type="checkbox" name="notifyDeepKore" checked />
+          <span>Deep Kore / AIya: architecture research updates</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="notifyHeartStrings" checked />
+          <span>HeartStrings: platform development updates</span>
         </label>
       </div>
       
@@ -232,7 +236,8 @@ const {
     const formData = new FormData(form);
     const email = formData.get('email');
     const notifyDemo = formData.get('notifyDemo');
-    const notifyAGI = formData.get('notifyAGI');
+    const notifyDeepKore = formData.get('notifyDeepKore');
+    const notifyHeartStrings = formData.get('notifyHeartStrings');
     
     // Show loading state
     messageDiv.textContent = 'Subscribing...';
