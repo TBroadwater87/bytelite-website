@@ -13,50 +13,58 @@ const { className = '' } = Astro.props;
     
     <div class="modal-header">
       <h2>Get Early Access</h2>
-      <p>Be among the first to access ByteLite demos, AIya previews, and HeartStrings.</p>
+      <p>HeartStrings Play is launching. Follow the ByteLite LLC ecosystem.</p>
     </div>
-    
+
     <form class="early-access-form" id="earlyAccessForm">
       <div class="form-section">
         <label for="email">Email Address</label>
-        <input 
-          type="email" 
-          id="email" 
-          name="email" 
-          placeholder="your@email.com" 
-          required 
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="your@email.com"
+          required
                   />
       </div>
-      
+
       <div class="form-section">
         <label for="name">Full Name</label>
-        <input 
-          type="text" 
-          id="name" 
-          name="name" 
-          placeholder="John Doe" 
-          required 
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="John Doe"
+          required
                   />
       </div>
-      
+
       <div class="form-section">
         <label for="company">Company (Optional)</label>
-        <input 
-          type="text" 
-          id="company" 
-          name="company" 
-          placeholder="Your Company" 
+        <input
+          type="text"
+          id="company"
+          name="company"
+          placeholder="Your Company"
                   />
       </div>
-      
+
       <div class="form-section checkbox-group">
         <label class="checkbox-label">
+          <input type="checkbox" name="heartstrings_play_interest" checked />
+          <span>HeartStrings Play: board game launch and availability</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="heartstrings_app_interest" checked />
+          <span>HeartStrings App: companion app development updates</span>
+        </label>
+        <label class="checkbox-label">
           <input type="checkbox" name="bytelite_interest" checked />
-          <span>Interested in ByteLite compression technology</span>
+          <span>ByteLite: demo launch and compression milestones</span>
         </label>
         <label class="checkbox-label">
           <input type="checkbox" name="deepkore_interest" />
-          <span>Interested in Deep Kore AGI updates</span>
+          <span>Deep Kore / AIya: architecture research updates</span>
         </label>
       </div>
       
@@ -345,7 +353,7 @@ const { className = '' } = Astro.props;
         <button class="modal-close" aria-label="Close modal">&times;</button>
         <div class="form-success">
           <h3>You're on the list.</h3>
-          <p>Thank you. We will be in touch with updates on ByteLite, Deep Kore, and HeartStrings.</p>
+          <p>Thank you. We will be in touch with updates across the ByteLite LLC ecosystem.</p>
           <button class="btn btn-primary" onclick="window.location.reload()">Got it</button>
         </div>
       `;
