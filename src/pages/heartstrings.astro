@@ -3,8 +3,8 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="HeartStrings Play - A Premium Social Board Game"
-  description="HeartStrings Play is the first public launch product from ByteLite LLC. A premium social board game for couples, dates, and intimate gatherings. Guided by AIya and AIon. Six escalating card tiers."
+  title="HeartStrings Play - A Premium Social Board Game for 2 to 18 Players"
+  description="A premium social board game for two to eighteen players. Six card tiers, six path mechanics, seven decks, 371 cards, 18 collectible tokens, and a Mischief Handbook with 3,996 group activities. Built by ByteLite LLC in Helena, MT."
   keywords={["HeartStrings Play", "social board game", "relationship game", "couples game", "AIya", "AIon", "HeartStrings", "ByteLite LLC"]}
   schemaType="Product"
 >
@@ -21,9 +21,9 @@ import Layout from '../layouts/Layout.astro';
     />
     <div class="hero-overlay">
       <div class="container">
-        <span class="launch-pill">Launch Product</span>
+        <span class="launch-pill">Pre-Launch</span>
         <h1>HeartStrings Play</h1>
-        <p class="hero-tagline">A premium social board game. Guided by AIya and AIon.<br/>Built for couples, dates, and intimate gatherings.</p>
+        <p class="hero-tagline">A premium social board game for two to eighteen players. Guided by AIya and AIon.</p>
         <div class="hero-cta">
           <a href="/contact" class="btn btn-pink">Express Interest</a>
           <a href="/heartstrings-app" class="btn btn-rose-outline">See the App Companion</a>
@@ -40,15 +40,15 @@ import Layout from '../layouts/Layout.astro';
         <div class="intro-copy">
           <h2>What is HeartStrings Play?</h2>
           <p>HeartStrings Play is a premium social board game designed to create genuine connection and chemistry between players. It is not a generic trivia night. It is not a one-trick dare deck. It is a structured, guided experience that escalates naturally through six card tiers.</p>
-          <p>Two to four players navigate the heart-shaped board, drawing cards that open conversation, build vulnerability, and raise the stakes at a pace the players control. AIya and AIon serve as your session hosts -- appearing on the board and in the companion app to guide, prompt, and respond.</p>
-          <div class="intro-specs">
+          <p>Two to eighteen players navigate the heart-shaped board, drawing cards that open conversation, build vulnerability, and raise the stakes at a pace the players control. AIya and AIon serve as your session hosts -- appearing on the board and in the companion app to guide, prompt, and respond.</p>
+          <div class="intro-specs" style="grid-template-columns: repeat(3, 1fr);">
             <div class="spec-item">
               <span class="spec-label">Players</span>
-              <span class="spec-value">2 -- 4</span>
+              <span class="spec-value">2 -- 18</span>
             </div>
             <div class="spec-item">
               <span class="spec-label">Session Length</span>
-              <span class="spec-value">45 -- 90 min</span>
+              <span class="spec-value">45 -- 120 min</span>
             </div>
             <div class="spec-item">
               <span class="spec-label">Card Tiers</span>
@@ -57,6 +57,26 @@ import Layout from '../layouts/Layout.astro';
             <div class="spec-item">
               <span class="spec-label">Audience</span>
               <span class="spec-value">Adults</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Path Space Types</span>
+              <span class="spec-value">6</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Card Decks</span>
+              <span class="spec-value">7</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Cards</span>
+              <span class="spec-value">371</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Group Activities</span>
+              <span class="spec-value">3,996</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Collectible Tokens</span>
+              <span class="spec-value">18</span>
             </div>
           </div>
         </div>
@@ -78,8 +98,8 @@ import Layout from '../layouts/Layout.astro';
   <!-- How It Plays -->
   <section class="how-it-plays">
     <div class="container">
-      <h2>How It Plays</h2>
-      <p class="section-sub">Six escalating card tiers. One heart-shaped board. You set the pace.</p>
+      <h2>The Six Card Tiers</h2>
+      <p class="section-sub">Six escalating tiers. You set the pace.</p>
 
       <div class="tier-grid">
         <div class="tier-card tier-1">
@@ -111,6 +131,78 @@ import Layout from '../layouts/Layout.astro';
           <div class="tier-number">06</div>
           <div class="tier-name">Climax</div>
           <p class="tier-desc">Peak experience. The final tier is earned, not jumped to. What happens is between the players.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Six Path Spaces -->
+  <section class="path-spaces">
+    <div class="container">
+      <h2>The Six Path Spaces</h2>
+      <p class="section-sub">Every space on the board is one of six types. Path tells you what. Tier tells you how far.</p>
+      <div class="path-grid">
+        <div class="path-card">
+          <div class="path-label">BOND</div>
+          <p>Draw from the current tier of the Bond deck. Tier-scaled conversation content. The core connection mechanic.</p>
+        </div>
+        <div class="path-card">
+          <div class="path-label">TEASE</div>
+          <p>Roll one die for the action. Tier determines intensity. Same action structure at every tier, different stakes.</p>
+        </div>
+        <div class="path-card">
+          <div class="path-label">STRIP</div>
+          <p>Remove one article of clothing. Tier-independent. Same rule at every tier. Straightforward.</p>
+        </div>
+        <div class="path-card path-card--mischief">
+          <div class="path-label">MISCHIEF</div>
+          <p>Roll three color-coded dice (pink, purple, red). Look up the activity number in the Mischief Handbook at the current tier. 666 activities per tier. 3,996 total across all six tiers.</p>
+        </div>
+        <div class="path-card">
+          <div class="path-label">ELIXIR</div>
+          <p>Roll one die. Odd, you drink. Even, everyone else drinks. Tier-independent drinking space.</p>
+        </div>
+        <div class="path-card">
+          <div class="path-label">CONTACT</div>
+          <p>Roll one die to determine the body location. Tier determines the action performed at that location.</p>
+        </div>
+      </div>
+      <div class="consent-callout">
+        The tier only climbs when the table agrees. Consent is a first-class mechanic.
+      </div>
+    </div>
+  </section>
+
+  <!-- How a Turn Works -->
+  <section class="turn-mechanics">
+    <div class="container">
+      <div class="turn-inner">
+        <h2>How a Turn Works</h2>
+        <div class="turn-steps">
+          <div class="turn-step">
+            <div class="step-num">01</div>
+            <div class="step-text">Roll the universal die to move.</div>
+          </div>
+          <div class="turn-step">
+            <div class="step-num">02</div>
+            <div class="step-text">Advance to the new space on the heart-shaped board.</div>
+          </div>
+          <div class="turn-step">
+            <div class="step-num">03</div>
+            <div class="step-text">Identify the path type of the space you landed on.</div>
+          </div>
+          <div class="turn-step">
+            <div class="step-num">04</div>
+            <div class="step-text">Resolve the path mechanic for that space.</div>
+          </div>
+          <div class="turn-step">
+            <div class="step-num">05</div>
+            <div class="step-text">Pass if chosen. Passing is a valid game state. No pressure.</div>
+          </div>
+          <div class="turn-step">
+            <div class="step-num">06</div>
+            <div class="step-text">Next player takes their turn.</div>
+          </div>
         </div>
       </div>
     </div>
@@ -178,6 +270,36 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+  <!-- Mischief Handbook -->
+  <section class="mischief-section">
+    <div class="container">
+      <div class="mischief-inner">
+        <h2>The Mischief Handbook</h2>
+        <p class="mischief-lead">3,996 group activities. Six tiers. Three color-coded dice.</p>
+        <p>The Mischief Handbook is a bound companion volume included with every copy. 666 unique activities per tier. Pink, purple, and red dice combine to yield the activity number. Open to the current tier, find the number, follow the instructions.</p>
+        <p>With 3,996 total activities, a weekly game night runs for 76+ years before exhausting the Mischief pool alone.</p>
+        <div class="mischief-stat-row">
+          <div class="mischief-stat">
+            <div class="mischief-num">666</div>
+            <div class="mischief-label">Activities per tier</div>
+          </div>
+          <div class="mischief-stat">
+            <div class="mischief-num">6</div>
+            <div class="mischief-label">Tiers</div>
+          </div>
+          <div class="mischief-stat">
+            <div class="mischief-num">3,996</div>
+            <div class="mischief-label">Total activities</div>
+          </div>
+          <div class="mischief-stat">
+            <div class="mischief-num">76+</div>
+            <div class="mischief-label">Years of weekly play</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Gallery -->
   <section class="gallery-section">
     <div class="container">
@@ -193,7 +315,7 @@ import Layout from '../layouts/Layout.astro';
             loading="lazy"
             decoding="async"
           />
-          <div class="gallery-caption">Game Board -- Heart-shaped path with 40 spaces</div>
+          <div class="gallery-caption">Game Board -- Heart-shaped board with six path space types</div>
         </div>
         <div class="gallery-item">
           <img
@@ -288,6 +410,26 @@ import Layout from '../layouts/Layout.astro';
               <li>Expanded card expansions</li>
             </ul>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Is in the Box -->
+  <section class="inbox-section">
+    <div class="container">
+      <div class="inbox-inner">
+        <h2>What Is in the Box</h2>
+        <div class="inbox-grid">
+          <div class="inbox-item">Heart-shaped game board</div>
+          <div class="inbox-item">Seven card decks (371 cards total)</div>
+          <div class="inbox-item">The Mischief Handbook (3,996 activities across six tiers)</div>
+          <div class="inbox-item">Universal movement die</div>
+          <div class="inbox-item">Action die for Tease, Elixir, and Contact resolution</div>
+          <div class="inbox-item">Three color-coded dice (pink, purple, red) for Mischief lookup</div>
+          <div class="inbox-item">18 collectible miniature tokens</div>
+          <div class="inbox-item">Rulebook and tier-escalation guide</div>
+          <div class="inbox-item">Quick-start card for first-time play</div>
         </div>
       </div>
     </div>
@@ -967,5 +1109,211 @@ import Layout from '../layouts/Layout.astro';
   @media (max-width: 480px) {
     .gallery-grid { grid-template-columns: 1fr; }
     .tier-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Path Spaces */
+  .path-spaces {
+    padding: 3rem 0;
+    background: linear-gradient(180deg, #060813 0%, rgba(236,72,153,0.03) 50%, #060813 100%);
+  }
+  .path-spaces h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #E0E0E0;
+    text-align: center;
+    margin: 0 0 0.5rem;
+  }
+  .path-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .path-card {
+    background: rgba(10,14,39,0.8);
+    border: 1px solid rgba(236,72,153,0.2);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+  .path-card--mischief {
+    border-color: rgba(168,85,247,0.35);
+    background: rgba(168,85,247,0.04);
+  }
+  .path-label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #EC4899;
+    margin-bottom: 0.625rem;
+  }
+  .path-card--mischief .path-label { color: #A855F7; }
+  .path-card p {
+    font-size: 0.8125rem;
+    color: rgba(224,224,224,0.65);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .consent-callout {
+    text-align: center;
+    font-size: 0.875rem;
+    color: rgba(236,72,153,0.7);
+    font-style: italic;
+    padding: 1rem;
+    border: 1px solid rgba(236,72,153,0.15);
+    border-radius: 8px;
+    background: rgba(236,72,153,0.04);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Turn Mechanics */
+  .turn-mechanics {
+    padding: 3rem 0;
+    background: #060813;
+  }
+  .turn-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .turn-inner h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #E0E0E0;
+    text-align: center;
+    margin: 0 0 2rem;
+  }
+  .turn-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .turn-step {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 0.875rem 1rem;
+    background: rgba(10,14,39,0.6);
+    border: 1px solid rgba(236,72,153,0.12);
+    border-radius: 8px;
+  }
+  .step-num {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: rgba(236,72,153,0.5);
+    padding-top: 0.1rem;
+  }
+  .step-text {
+    font-size: 0.875rem;
+    color: rgba(224,224,224,0.75);
+    line-height: 1.5;
+  }
+
+  /* Mischief Handbook */
+  .mischief-section {
+    padding: 3rem 0;
+    background: linear-gradient(180deg, #060813 0%, rgba(168,85,247,0.04) 50%, #060813 100%);
+    border-top: 1px solid rgba(168,85,247,0.1);
+  }
+  .mischief-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .mischief-inner h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #A855F7;
+    margin: 0 0 0.5rem;
+  }
+  .mischief-lead {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: rgba(224,224,224,0.85);
+    margin: 0 0 1.25rem;
+  }
+  .mischief-inner p {
+    font-size: 0.9375rem;
+    color: rgba(224,224,224,0.65);
+    line-height: 1.65;
+    margin: 0 0 1rem;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .mischief-stat-row {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  .mischief-stat {
+    background: rgba(168,85,247,0.08);
+    border: 1px solid rgba(168,85,247,0.2);
+    border-radius: 10px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+  }
+  .mischief-num {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #A855F7;
+    margin-bottom: 0.35rem;
+  }
+  .mischief-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(224,224,224,0.45);
+  }
+
+  /* What Is in the Box */
+  .inbox-section {
+    padding: 3rem 0;
+    background: #060813;
+  }
+  .inbox-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .inbox-inner h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #E0E0E0;
+    text-align: center;
+    margin: 0 0 2rem;
+  }
+  .inbox-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .inbox-item {
+    padding: 0.875rem 1rem;
+    background: rgba(10,14,39,0.6);
+    border: 1px solid rgba(236,72,153,0.12);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: rgba(224,224,224,0.75);
+    padding-left: 1.5rem;
+    position: relative;
+  }
+  .inbox-item::before {
+    content: '+';
+    position: absolute;
+    left: 0.625rem;
+    color: #EC4899;
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .path-grid { grid-template-columns: 1fr 1fr; }
+    .mischief-stat-row { grid-template-columns: repeat(2,1fr); }
+    .inbox-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .path-grid { grid-template-columns: 1fr; }
   }
 </style>

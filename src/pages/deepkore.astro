@@ -103,7 +103,7 @@ import Layout from '../layouts/Layout.astro';
             <div class="convo-msg aiya">
               <div class="convo-label aiya-label">AIya (Preview)</div>
               <div class="convo-bubble aiya-bubble">
-                ByteLite compresses structured data by exploiting shared context. Instead of encoding every byte independently, it uses pre-built dictionaries that both the compressor and decompressor already have. When your data matches patterns in those dictionaries, only a small key needs to travel instead of the full data. The ratio you see depends on how closely your data resembles the dictionary domain. On highly structured text corpora like enwik9, that ratio can be extreme. On random binary data, it would be much smaller. It is not magic. It is shared context.
+                ByteLite compresses data by normalizing its source stream into a canonical form over the Sigma-9 alphabet, then encoding it using Bit Motion Encoding. Each motion value in the stream is a REF-relative choice from a 510-sequence motion dictionary. The Mode Ladder governs which representation is active at each round. Rounds converge until the payload reaches terminal form. On highly structured text corpora, convergence is extreme. On random binary data, it is much smaller. It is not magic. It is deterministic structure.
               </div>
             </div>
           </div>
@@ -118,7 +118,7 @@ import Layout from '../layouts/Layout.astro';
             <div class="convo-msg aiya">
               <div class="convo-label aiya-label">AIya (Preview)</div>
               <div class="convo-bubble aiya-bubble">
-                Classical compressors like gzip and zstd work on individual files without assuming shared context with the decompressor. They find local patterns and encode them compactly, but they start fresh each time. ByteLite assumes that both sides share the engine and dictionaries. This shifts the question from "how small can I make this file" to "how little do I need to send if we already share the model". For structured data in the right domain, that is a fundamentally different order of magnitude. For random data outside the dictionary domain, ByteLite offers no advantage. It is a different architecture, not a universal replacement.
+                Classical compressors like gzip and zstd encode each file from scratch using local pattern matching. ByteLite operates on a different premise entirely. Source data is first bitwise normalized into a canonical form over the Sigma-9 alphabet. Bit Motion Encoding then represents the stream as a sequence of REF-relative motion values. Rounds converge toward a terminal payload. The same input produces the same payload every time. That is not an implementation detail. It is an architectural commitment. For random data outside the Sigma-9 domain, ByteLite offers no advantage. It is a different architecture, not a universal replacement.
               </div>
             </div>
           </div>
@@ -242,8 +242,12 @@ import Layout from '../layouts/Layout.astro';
             <div class="real-today-label text-green-400">Live Now</div>
             <ul class="real-today-list">
               <li class="text-green-300">Genesis Goal Keeper framework operational</li>
-              <li class="text-green-300">Deep Kore architecture in research phase</li>
-              <li class="text-green-300">Governance metadata structure defined</li>
+              <li class="text-green-300">Deep Kore Pass 1 implemented (ESEE Stages 0-3)</li>
+              <li class="text-green-300">703 regression tests passing (0 regressions)</li>
+              <li class="text-green-300">MCP AIya Ingest Bridge operational</li>
+              <li class="text-green-300">27-section interactive React blueprint frozen</li>
+              <li class="text-green-300">12-phase build roadmap defined</li>
+              <li class="text-green-300">6-milestone ladder locked</li>
             </ul>
           </div>
           <div class="real-today-box border-cyan-500/50 bg-cyan-900/10">
@@ -257,9 +261,9 @@ import Layout from '../layouts/Layout.astro';
           <div class="real-today-box border-purple-500/50 bg-purple-900/10">
             <div class="real-today-label text-purple-400">In Development</div>
             <ul class="real-today-list">
+              <li class="text-purple-300">Deep Kore Pass 2</li>
               <li class="text-purple-300">AIya live interaction layer</li>
-              <li class="text-purple-300">Deep Kore experimental validation</li>
-              <li class="text-purple-300">Public research interface</li>
+              <li class="text-purple-300">Deep Kore Glass Box public demo</li>
             </ul>
           </div>
           <div class="real-today-box border-gray-600/50 bg-gray-800/20">
@@ -748,7 +752,7 @@ import Layout from '../layouts/Layout.astro';
 
   // ===== AIya Mini Sandbox =====
   const sandboxResponses = [
-    'ByteLite is a dictionary-cascade compression architecture that achieves extreme ratios on structured data by exploiting shared context between compressor and decompressor, observed at 1GB to 15 bytes on the enwik9 corpus in controlled tests.',
+    'ByteLite is a deterministic lossless compression system using Bit Motion Encoding over the Sigma-9 alphabet, achieving extreme payload convergence on structured text corpora in controlled tests.',
     'Deep Kore investigates whether the recursive mathematical structures in extreme compression share properties with computational cognition architectures. It is blueprint-stage research, unproven until tested, and governed by the Genesis Goal Keeper safety framework.',
     'HeartStrings Play is a physical board game with a six-tier emotional card progression, guide characters AIya and AIon, and a token-based mechanics system. It is the first public launch product from ByteLite LLC. A companion app called HeartStrings App is in development alongside the physical game.',
     'AIya is a structured response interface for Deep Kore research interaction. The current public version serves curated, deterministic responses within a defined scope. It is not an unconstrained language model. It is an Interactive Preview of the planned AIya interface layer.',

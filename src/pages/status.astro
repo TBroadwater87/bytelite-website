@@ -17,6 +17,11 @@ import Layout from '../layouts/Layout.astro';
         <p class="page-sub">What is live, what is in development, what is planned. Updated as things change.</p>
       </div>
 
+      <!-- KNOWN LIMITATIONS CALLOUT -->
+      <div class="limits-callout">
+        This status board reflects the current engineering state as of the last update. Claims are measured against internal test suites and reference corpora. Independent verification and peer review are targeted for 2026.
+      </div>
+
       <!-- LAUNCH ORDER CONTEXT -->
       <div class="launch-context">
         <div class="launch-note">
@@ -41,7 +46,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="col-header col-header--play">
             <div class="col-title-row">
               <h2>HeartStrings Play</h2>
-              <span class="col-badge launch">Launch Product</span>
+              <span class="col-badge launch">Pre-Launch</span>
             </div>
           </div>
           <div class="col-body">
@@ -58,7 +63,23 @@ import Layout from '../layouts/Layout.astro';
               <span class="badge badge-live">Live</span>
             </div>
             <div class="status-row">
-              <span class="item-name">Token Set Design</span>
+              <span class="item-name">Token Set Design (18 tokens)</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Mischief Handbook (3,996 activities)</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Six Path Space Types</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Card Count (371 cards, 7 decks)</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Player Count (2 to 18)</span>
               <span class="badge badge-live">Live</span>
             </div>
             <div class="status-row">
@@ -137,11 +158,31 @@ import Layout from '../layouts/Layout.astro';
           </div>
           <div class="col-body">
             <div class="status-row">
-              <span class="item-name">Compression Engine</span>
+              <span class="item-name">Compression Engine (BME)</span>
               <span class="badge badge-live">Live</span>
             </div>
             <div class="status-row">
-              <span class="item-name">Universal Dictionaries</span>
+              <span class="item-name">BME Specification Canonical (1,600 lines)</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Modes A through F Locked</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">SDP Two-Byte Format Locked</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Bitwise Normalization Locked</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">510-Sequence Sigma-9 Motion Dictionary</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">1,029-Test Validation Suite Passing</span>
               <span class="badge badge-live">Live</span>
             </div>
             <div class="status-row">
@@ -149,7 +190,7 @@ import Layout from '../layouts/Layout.astro';
               <span class="badge badge-live">Live</span>
             </div>
             <div class="status-row">
-              <span class="item-name">Patent Filing</span>
+              <span class="item-name">Patent Filing (Pending)</span>
               <span class="badge badge-live">Live</span>
             </div>
             <div class="status-row">
@@ -185,6 +226,22 @@ import Layout from '../layouts/Layout.astro';
           <div class="col-body">
             <div class="status-row">
               <span class="item-name">Genesis Goal Keeper</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Pass 1 Complete (ESEE Stages 0-3)</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">703 Regression Tests Passing</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">MCP AIya Ingest Bridge</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Interactive React Blueprint (27 sections)</span>
               <span class="badge badge-live">Live</span>
             </div>
             <div class="status-row">
@@ -281,6 +338,20 @@ import Layout from '../layouts/Layout.astro';
     margin: 0 auto;
     max-width: 520px;
     line-height: 1.55;
+  }
+
+  /* Known Limitations Callout */
+  .limits-callout {
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    padding: 0.875rem 1.25rem;
+    background: rgba(0, 212, 255, 0.04);
+    border: 1px solid rgba(0, 212, 255, 0.12);
+    border-radius: 8px;
+    font-size: 0.8125rem;
+    color: rgba(224, 224, 224, 0.55);
+    line-height: 1.6;
+    text-align: center;
   }
 
   /* Launch context bar */
