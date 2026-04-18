@@ -24,10 +24,10 @@ import HeaderLink from './HeaderLink.astro';
       <!-- Navigation Links -->
       <div class="hidden lg:flex items-center space-x-6 xl:space-x-8">
         <HeaderLink href="/">Home</HeaderLink>
+        <HeaderLink href="/heartstrings" class="text-pink-400 hover:text-pink-300">HeartStrings Play</HeaderLink>
+        <HeaderLink href="/heartstrings-app" class="text-rose-400 hover:text-rose-300">HS App</HeaderLink>
         <HeaderLink href="/technology">ByteLite</HeaderLink>
         <HeaderLink href="/deepkore" class="text-purple-400 hover:text-purple-300">Deep Kore</HeaderLink>
-        <HeaderLink href="/heartstrings" class="text-pink-400 hover:text-pink-300">HeartStrings</HeaderLink>
-        <HeaderLink href="/demo">Demos</HeaderLink>
         <HeaderLink href="/status">Status</HeaderLink>
         <HeaderLink href="/about">Company</HeaderLink>
         <HeaderLink href="/contact">Contact</HeaderLink>
@@ -49,10 +49,10 @@ import HeaderLink from './HeaderLink.astro';
     <div id="mobileMenu" class="mobile-menu lg:hidden">
       <div class="py-4 space-y-2">
         <a href="/" class="mobile-menu-link">Home</a>
+        <a href="/heartstrings" class="mobile-menu-link text-pink-400">HeartStrings Play</a>
+        <a href="/heartstrings-app" class="mobile-menu-link text-rose-400">HeartStrings App</a>
         <a href="/technology" class="mobile-menu-link">ByteLite</a>
         <a href="/deepkore" class="mobile-menu-link text-purple-400">Deep Kore</a>
-        <a href="/heartstrings" class="mobile-menu-link text-pink-400">HeartStrings</a>
-        <a href="/demo" class="mobile-menu-link">Demos</a>
         <a href="/status" class="mobile-menu-link">Status</a>
         <a href="/about" class="mobile-menu-link">Company</a>
         <a href="/contact" class="mobile-menu-link">Contact</a>
@@ -95,6 +95,11 @@ import HeaderLink from './HeaderLink.astro';
   .mobile-menu-link.text-pink-400:hover {
     background: rgba(236, 72, 153, 0.1);
     color: #EC4899;
+  }
+
+  .mobile-menu-link.text-rose-400:hover {
+    background: rgba(251, 113, 133, 0.1);
+    color: #FB7185;
   }
   
   @media (min-width: 1024px) {

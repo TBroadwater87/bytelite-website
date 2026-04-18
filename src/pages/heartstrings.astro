@@ -3,761 +3,969 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="HeartStrings - Relationship Intelligence Platform"
-  description="HeartStrings is a deterministic relationship intelligence platform. Authentic connection through structured compatibility and honest matching rationale. Interface prototype stage."
-  keywords={["HeartStrings", "relationship platform", "deterministic matching", "compatibility engine", "ByteLite"]}
-  schemaType="WebPage"
+  title="HeartStrings Play - A Premium Social Board Game"
+  description="HeartStrings Play is the first public launch product from ByteLite LLC. A premium social board game for couples, dates, and intimate gatherings. Guided by AIya and AIon. Six escalating card tiers."
+  keywords={["HeartStrings Play", "social board game", "relationship game", "couples game", "AIya", "AIon", "HeartStrings", "ByteLite LLC"]}
+  schemaType="Product"
 >
 
-  <!-- Banner -->
-  <img src="/HeartStrings_Banner.png" style="width:100%; height:auto; max-height:340px; object-fit:cover; display:block;" alt="HeartStrings - Relationship Intelligence Platform">
+  <!-- Hero Image -->
+  <div class="hero-banner">
+    <img
+      src="/heartstrings/heartstrings-gameboard.png"
+      alt="HeartStrings Play - premium social board game"
+      width="900"
+      height="900"
+      class="hero-board-img"
+      decoding="async"
+    />
+    <div class="hero-overlay">
+      <div class="container">
+        <span class="launch-pill">Launch Product</span>
+        <h1>HeartStrings Play</h1>
+        <p class="hero-tagline">A premium social board game. Guided by AIya and AIon.<br/>Built for couples, dates, and intimate gatherings.</p>
+        <div class="hero-cta">
+          <a href="/contact" class="btn btn-pink">Express Interest</a>
+          <a href="/heartstrings-app" class="btn btn-rose-outline">See the App Companion</a>
+          <a href="/status" class="btn btn-outline">Current Status</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- Hero -->
-  <section class="hs-hero">
+  <!-- What is the Game -->
+  <section class="game-intro">
     <div class="container">
-      <div class="hero-badge">Interface Prototype</div>
-      <h1>HeartStrings</h1>
-      <p class="hero-tagline">Relationship intelligence built on deterministic compatibility.</p>
-      <p class="hero-sub">Every match shows exactly why it ranked — structured dimensions, no opaque scores, no engagement-optimized dark patterns.</p>
-      <div class="hero-cta">
-        <a href="/demo" class="btn btn-pink">See Demo</a>
-        <a href="/status" class="btn btn-outline">Current Status</a>
+      <div class="intro-grid">
+        <div class="intro-copy">
+          <h2>What is HeartStrings Play?</h2>
+          <p>HeartStrings Play is a premium social board game designed to create genuine connection and chemistry between players. It is not a generic trivia night. It is not a one-trick dare deck. It is a structured, guided experience that escalates naturally through six card tiers.</p>
+          <p>Two to four players navigate the heart-shaped board, drawing cards that open conversation, build vulnerability, and raise the stakes at a pace the players control. AIya and AIon serve as your session hosts -- appearing on the board and in the companion app to guide, prompt, and respond.</p>
+          <div class="intro-specs">
+            <div class="spec-item">
+              <span class="spec-label">Players</span>
+              <span class="spec-value">2 -- 4</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Session Length</span>
+              <span class="spec-value">45 -- 90 min</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Card Tiers</span>
+              <span class="spec-value">6</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Audience</span>
+              <span class="spec-value">Adults</span>
+            </div>
+          </div>
+        </div>
+        <div class="intro-visual">
+          <img
+            src="/heartstrings/heartstrings-decree-card.png"
+            alt="HeartStrings Decree card"
+            width="280"
+            height="400"
+            loading="lazy"
+            decoding="async"
+            class="decree-card-img"
+          />
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Interface Gallery -->
-  <section class="hs-gallery">
+  <!-- How It Plays -->
+  <section class="how-it-plays">
     <div class="container">
-      <h2>Interface Gallery</h2>
-      <p class="section-subtitle">Prototype UI — panels below show planned interface design. Not backed by live matching data.</p>
-      <div class="gallery-grid">
+      <h2>How It Plays</h2>
+      <p class="section-sub">Six escalating card tiers. One heart-shaped board. You set the pace.</p>
 
-        <div class="ui-panel panel-pink">
-          <div class="preview-badge">Preview</div>
-          <div class="panel-label">Profile Card</div>
-          <div class="profile-name">Alex M.</div>
-          <div class="profile-meta">Helena, MT &nbsp;|&nbsp; Long-term relationship</div>
-          <div class="profile-values">Authenticity | Depth | Growth</div>
-          <div class="interest-tags">
-            <span class="tag">Engineering</span>
-            <span class="tag">Hiking</span>
-            <span class="tag">Philosophy</span>
-          </div>
-          <div class="compat-row">
-            <span class="compat-label">Compatibility</span>
-            <span class="compat-pct">87%</span>
-          </div>
-          <div class="bar-track"><div class="bar-fill bar-pink" style="width:87%;"></div></div>
-          <button class="mock-btn" disabled>Match</button>
+      <div class="tier-grid">
+        <div class="tier-card tier-1">
+          <div class="tier-number">01</div>
+          <div class="tier-name">Initiate</div>
+          <p class="tier-desc">Opening moves. Light questions that reveal personality, values, and style without pressure.</p>
         </div>
-
-        <div class="ui-panel panel-cyan">
-          <div class="preview-badge">Preview</div>
-          <div class="panel-label">Why This Match</div>
-          <div class="dim-row"><span class="dim-name">Values alignment</span><span class="dim-pct pct-green">94%</span></div>
-          <div class="bar-track"><div class="bar-fill bar-green" style="width:94%;"></div></div>
-          <div class="dim-row"><span class="dim-name">Communication style</span><span class="dim-pct pct-cyan">81%</span></div>
-          <div class="bar-track"><div class="bar-fill bar-cyan" style="width:81%;"></div></div>
-          <div class="dim-row"><span class="dim-name">Life goals</span><span class="dim-pct pct-green">89%</span></div>
-          <div class="bar-track"><div class="bar-fill bar-green" style="width:89%;"></div></div>
-          <div class="dim-row dealbreaker-row"><span class="dim-name">Dealbreakers</span><span class="check-ok">[OK] None flagged</span></div>
+        <div class="tier-card tier-2">
+          <div class="tier-number">02</div>
+          <div class="tier-name">Connect</div>
+          <p class="tier-desc">Deeper conversation. Stories, preferences, and discoveries that build real familiarity.</p>
         </div>
-
-        <div class="ui-panel panel-purple">
-          <div class="preview-badge">Preview</div>
-          <div class="panel-label">Conversation</div>
-          <div class="chat-area">
-            <div class="chat-msg chat-you"><span class="chat-sender">You:</span> What drew you to engineering originally?</div>
-            <div class="chat-msg chat-them"><span class="chat-sender">Alex:</span> Honestly, it started with trying to build a better mousetrap as a kid...</div>
-          </div>
-          <div class="chat-input-bar"><span class="chat-placeholder">Type a message...</span></div>
-          <div class="conv-tip">HeartStrings tip: Authentic curiosity builds connection.</div>
+        <div class="tier-card tier-3">
+          <div class="tier-number">03</div>
+          <div class="tier-name">Seduce</div>
+          <p class="tier-desc">Flirtatious tension. Prompts that invite playfulness and signal mutual attraction.</p>
         </div>
-
-        <div class="ui-panel panel-pink">
-          <div class="preview-badge">Preview</div>
-          <div class="panel-label">Your Filters</div>
-          <div class="filter-list">
-            <div class="filter-item">[x] Must share growth mindset</div>
-            <div class="filter-item">[x] Open to long-term commitment</div>
-            <div class="filter-item">[x] Respect for boundaries</div>
-            <div class="filter-item">[x] Intellectual curiosity</div>
-          </div>
-          <div class="slider-visual">
-            <span class="slider-label">Distance:</span>
-            <span class="slider-track"><span class="slider-thumb" style="left:50%;"></span></span>
-            <span class="slider-value">50 miles</span>
-          </div>
-          <div class="slider-visual">
-            <span class="slider-label">Age range:</span>
-            <span class="slider-track"><span class="slider-thumb" style="left:30%;"></span></span>
-            <span class="slider-value">28-45</span>
-          </div>
+        <div class="tier-card tier-4">
+          <div class="tier-number">04</div>
+          <div class="tier-name">Stimulate</div>
+          <p class="tier-desc">Bold territory. Honest answers, revealing moments, deliberate provocation.</p>
         </div>
-
+        <div class="tier-card tier-5">
+          <div class="tier-number">05</div>
+          <div class="tier-name">Edge</div>
+          <p class="tier-desc">High-stakes prompts for players who want to push the experience further.</p>
+        </div>
+        <div class="tier-card tier-6">
+          <div class="tier-number">06</div>
+          <div class="tier-name">Climax</div>
+          <p class="tier-desc">Peak experience. The final tier is earned, not jumped to. What happens is between the players.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Prototype Flow -->
-  <section class="hs-flow">
+  <!-- Why Different -->
+  <section class="why-different">
     <div class="container">
-      <h2>Prototype Flow</h2>
-      <p class="section-subtitle">Walk through the HeartStrings experience — interactive preview, local state only.</p>
-
-      <div class="flow-step-indicators" id="flow-indicators">
-        <button class="step-dot step-active" onclick="goToStep(1)">1</button>
-        <button class="step-dot" onclick="goToStep(2)">2</button>
-        <button class="step-dot" onclick="goToStep(3)">3</button>
-        <button class="step-dot" onclick="goToStep(4)">4</button>
-      </div>
-
-      <div class="flow-panels">
-
-        <div class="flow-panel" id="flow-step-1">
-          <div class="flow-card">
-            <div class="flow-card-title">Step 1 — Profile</div>
-            <div class="flow-row"><span class="flow-key">Compatibility style</span><span class="flow-val">Deep Connector</span></div>
-            <div class="flow-row"><span class="flow-key">Top values</span><span class="flow-val">Authenticity, Depth, Intellectual curiosity</span></div>
-            <div class="flow-row"><span class="flow-key">Intent</span><span class="flow-val">Long-term relationship</span></div>
-            <div class="flow-row"><span class="flow-key">Match radius</span><span class="flow-val">50 miles</span></div>
-            <div class="flow-badge-row"><span class="flow-badge">Profile Complete</span></div>
-          </div>
-        </div>
-
-        <div class="flow-panel flow-hidden" id="flow-step-2">
-          <div class="flow-card">
-            <div class="flow-card-title">Step 2 — Match: Alex M. (87%)</div>
-            <div class="flow-dim-row">
-              <span class="flow-dim-name">Values</span>
-              <span class="flow-dim-bar-wrap"><span class="flow-dim-bar bar-green" style="width:94%;"></span></span>
-              <span class="flow-dim-pct">94%</span>
-            </div>
-            <div class="flow-dim-row">
-              <span class="flow-dim-name">Communication</span>
-              <span class="flow-dim-bar-wrap"><span class="flow-dim-bar bar-cyan" style="width:81%;"></span></span>
-              <span class="flow-dim-pct">81%</span>
-            </div>
-            <div class="flow-dim-row">
-              <span class="flow-dim-name">Life Goals</span>
-              <span class="flow-dim-bar-wrap"><span class="flow-dim-bar bar-green" style="width:89%;"></span></span>
-              <span class="flow-dim-pct">89%</span>
-            </div>
-            <div class="flow-dim-row">
-              <span class="flow-dim-name">Shared Interests</span>
-              <span class="flow-dim-bar-wrap"><span class="flow-dim-bar bar-pink" style="width:76%;"></span></span>
-              <span class="flow-dim-pct">76%</span>
-            </div>
-            <div class="flow-note">Dimensions weighted by what matters most to you.</div>
-          </div>
-        </div>
-
-        <div class="flow-panel flow-hidden" id="flow-step-3">
-          <div class="flow-card">
-            <div class="flow-card-title">Step 3 — Compatibility Rationale</div>
-            <ul class="flow-bullet-list">
-              <li>Shares your top value: Authenticity (confirmed, not inferred)</li>
-              <li>Communication style: Reflective and direct (matches your preference)</li>
-              <li>Life goal: Long-term commitment (stated, not assumed)</li>
-              <li>No dealbreaker flags</li>
-              <li>Mutual interest: Philosophy and systems thinking</li>
+      <div class="diff-inner">
+        <h2>Not Like Other Games</h2>
+        <div class="diff-grid">
+          <div class="diff-col bad">
+            <div class="diff-label bad">Generic alternatives</div>
+            <ul class="diff-list">
+              <li>Random dare decks with no progression</li>
+              <li>Trivia nights that avoid intimacy entirely</li>
+              <li>Party games that peak in the first ten minutes</li>
+              <li>No guided host or framing</li>
+              <li>No connection to any digital layer</li>
             </ul>
-            <div class="flow-note">Rationale built from stated preferences, not behavioral inference.</div>
+          </div>
+          <div class="diff-col good">
+            <div class="diff-label good">HeartStrings Play</div>
+            <ul class="diff-list">
+              <li>Six tiers that escalate at your pace</li>
+              <li>AIya and AIon as in-session guides</li>
+              <li>Premium materials designed for repeat play</li>
+              <li>Structured progression, not random chaos</li>
+              <li>Connects to the HeartStrings App ecosystem</li>
+            </ul>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="flow-panel flow-hidden" id="flow-step-4">
-          <div class="flow-card">
-            <div class="flow-card-title">Step 4 — Conversation</div>
-            <div class="starter-card">"What project are you most proud of from the last year?"</div>
-            <div class="starter-card">"You both listed philosophy — is there a thinker who changed how you see things?"</div>
-            <div class="starter-card">"You flagged depth as your top value. What does that look like day-to-day?"</div>
-            <button class="mock-btn" style="margin-top:0.75rem;" disabled>Start Conversation</button>
-            <div class="flow-note">Conversation starters generated from your shared match dimensions.</div>
+  <!-- AIya + AIon Guide Section -->
+  <section class="guides-section">
+    <div class="container">
+      <div class="guides-inner">
+        <div class="guides-copy">
+          <h2>Meet AIya and AIon</h2>
+          <p>AIya and AIon are the AI guides designed for the HeartStrings world. On the board they appear as hosts. In the HeartStrings App they become interactive -- responding, suggesting, and helping players understand their compatibility.</p>
+          <p>They are not just mascots. They are the connective tissue between the physical game and the digital companion layer.</p>
+          <ul class="guide-features">
+            <li>Host and frame each session</li>
+            <li>Appear on the board and in the companion app</li>
+            <li>Guide players through the tier progression</li>
+            <li>Power the compatibility and matching layer in the app</li>
+          </ul>
+          <a href="/heartstrings-app" class="btn btn-rose-outline" style="margin-top:0.5rem; display:inline-block;">See them in the App</a>
+        </div>
+        <div class="guides-visual">
+          <img
+            src="/heartstrings/heartstrings-guides-banner.png"
+            alt="AIya and AIon - HeartStrings AI guides"
+            width="480"
+            height="320"
+            loading="lazy"
+            decoding="async"
+            class="guides-banner-img"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery-section">
+    <div class="container">
+      <h2>Game Gallery</h2>
+      <p class="section-sub">Board design, character guides, and game components.</p>
+      <div class="gallery-grid">
+        <div class="gallery-item gallery-large">
+          <img
+            src="/heartstrings/heartstrings-gameboard.png"
+            alt="HeartStrings Play game board"
+            width="600"
+            height="600"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="gallery-caption">Game Board -- Heart-shaped path with 40 spaces</div>
+        </div>
+        <div class="gallery-item">
+          <img
+            src="/heartstrings/heartstrings-aion-portrait.png"
+            alt="AIon game character portrait"
+            width="280"
+            height="280"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="gallery-caption">AIon -- Session guide</div>
+        </div>
+        <div class="gallery-item">
+          <img
+            src="/heartstrings/heartstrings-aiya-portrait.png"
+            alt="AIya game character portrait"
+            width="280"
+            height="280"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="gallery-caption">AIya -- Session guide</div>
+        </div>
+        <div class="gallery-item">
+          <img
+            src="/heartstrings/heartstrings-decree-card.png"
+            alt="HeartStrings Decree card"
+            width="280"
+            height="400"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="gallery-caption">Decree card design</div>
+        </div>
+        <div class="gallery-item">
+          <img
+            src="/heartstrings/heartstrings-tokens-1.png"
+            alt="Game tokens"
+            width="280"
+            height="280"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="gallery-caption">Game tokens (set 1)</div>
+        </div>
+        <div class="gallery-item">
+          <img
+            src="/heartstrings/heartstrings-tokens-2.png"
+            alt="Game tokens"
+            width="280"
+            height="280"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="gallery-caption">Game tokens (set 2)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Honest Status -->
+  <section class="honesty-section">
+    <div class="container">
+      <div class="honesty-inner">
+        <h2>Where Things Stand</h2>
+        <div class="honesty-grid">
+          <div class="honesty-card live">
+            <div class="honesty-label live">Done</div>
+            <ul>
+              <li>Game board design (final)</li>
+              <li>Card deck tier structure (6 tiers)</li>
+              <li>AIya and AIon character design</li>
+              <li>Token set design</li>
+              <li>Game rules and mechanics</li>
+            </ul>
+          </div>
+          <div class="honesty-card indev">
+            <div class="honesty-label indev">In Development</div>
+            <ul>
+              <li>Physical prototype production</li>
+              <li>Card deck print run</li>
+              <li>Manufacturing specifications</li>
+              <li>Packaging design</li>
+            </ul>
+          </div>
+          <div class="honesty-card planned">
+            <div class="honesty-label planned">Planned</div>
+            <ul>
+              <li>Manufacturing partner selected</li>
+              <li>Retail / direct launch</li>
+              <li>HeartStrings App integration</li>
+              <li>Expanded card expansions</li>
+            </ul>
           </div>
         </div>
-
-      </div>
-
-      <div class="flow-nav">
-        <button class="flow-btn" id="flow-prev" onclick="flowNav(-1)" disabled>Previous</button>
-        <button class="flow-btn flow-btn-primary" id="flow-next" onclick="flowNav(1)">Next</button>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Deterministic Match Explanation -->
-  <section class="hs-deterministic">
-    <div class="container">
-      <h2>Deterministic Matching</h2>
-      <div class="det-grid">
-        <div class="det-col">
-          <h3 class="col-title-pink">Problem</h3>
-          <p>Most platforms use engagement-optimized engines that favor matches who keep you swiping, not matches who will work out. Scoring is opaque and unverifiable.</p>
-        </div>
-        <div class="det-col">
-          <h3 class="col-title-cyan">Approach</h3>
-          <p>Every match scored against your stated, structured preferences. Dimensions are public. Same two profiles always produce the same score — no A/B testing on your outcomes.</p>
-        </div>
-        <div class="det-col">
-          <h3 class="col-title-green">What You See</h3>
-          <p>A ranked list with a full rationale for each position. Not a swipe deck. A structured explanation of why this person is or is not a fit for what you said you wanted.</p>
-        </div>
-      </div>
-      <div class="factor-table-wrap">
-        <table class="factor-table">
-          <thead>
-            <tr><th>Factor</th><th>Your Preference</th><th>Their Profile</th><th>Result</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Values</td><td>Authenticity first</td><td>Authenticity first</td><td class="match-strong">Strong match</td></tr>
-            <tr><td>Commitment</td><td>Long-term</td><td>Long-term</td><td class="match-strong">Strong match</td></tr>
-            <tr><td>Communication</td><td>Direct + reflective</td><td>Direct</td><td class="match-good">Good match</td></tr>
-            <tr><td>Distance</td><td>50 miles</td><td>12 miles</td><td class="match-good">Within range</td></tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </section>
 
-  <!-- What Is Real Today -->
-  <section class="hs-what-real">
+  <!-- Waitlist CTA -->
+  <section class="waitlist-section">
     <div class="container">
-      <h2>What Is Real Today</h2>
-      <div class="reality-grid">
-        <div class="reality-card live">
-          <h3>Live Now</h3>
-          <ul>
-            <li>Interface design system</li>
-            <li>Profile card components</li>
-            <li>Compatibility dimension framework</li>
-          </ul>
-        </div>
-        <div class="reality-card preview">
-          <h3>Prototype / Preview</h3>
-          <ul>
-            <li>Match view UI</li>
-            <li>Conversation screen layout</li>
-            <li>Filters and intent settings</li>
-          </ul>
-        </div>
-        <div class="reality-card development">
-          <h3>In Development</h3>
-          <ul>
-            <li>Core matching engine</li>
-            <li>Safety and authenticity tools</li>
-            <li>ByteLite compression integration</li>
-          </ul>
-        </div>
-        <div class="reality-card planned">
-          <h3>Access Timeline</h3>
-          <ul>
-            <li>Public beta after ByteLite demo</li>
-            <li>Early interest list open now</li>
-            <li>No launch date set</li>
-          </ul>
+      <div class="waitlist-inner">
+        <h2>Be First to Know</h2>
+        <p>HeartStrings Play is in active development. Express interest now and we will contact you directly when the game is available for purchase or pre-order.</p>
+        <div class="waitlist-cta">
+          <a href="/contact" class="btn btn-pink">Express Interest</a>
+          <a href="/subscribe" class="btn btn-outline">Subscribe for Updates</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- What Is Next -->
-  <section class="hs-next">
+  <!-- Bridge to App -->
+  <section class="bridge-section">
     <div class="container">
-      <h2>What Is Next</h2>
-      <ol class="next-list">
-        <li>ByteLite demonstration application launches first — HeartStrings depends on that infrastructure.</li>
-        <li>Matching engine development begins in parallel once ByteLite core is stable.</li>
-        <li>Public beta opens to early interest list after successful ByteLite demo.</li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- CTA Row -->
-  <section class="hs-cta">
-    <div class="container">
-      <div class="cta-row">
-        <a href="/demo" class="btn btn-pink">See Demo</a>
-        <a href="/status" class="btn btn-outline">Current Status</a>
-        <a href="/contact" class="btn btn-outline">Contact</a>
+      <div class="bridge-inner">
+        <div class="bridge-copy">
+          <span class="bridge-eyebrow">The Companion Layer</span>
+          <h2>HeartStrings App</h2>
+          <p>Play creates the shared language. The app extends it -- profiles, guided matching, compatibility rationale, and AIya and AIon as digital guides who already know how your session went.</p>
+          <p>The app is currently in development. The UI design exists. The matching engine is being built on ByteLite infrastructure.</p>
+          <a href="/heartstrings-app" class="btn btn-rose-outline" style="margin-top:0.5rem; display:inline-block;">See the HeartStrings App</a>
+        </div>
+        <div class="bridge-visual">
+          <img
+            src="/heartstrings/heartstrings-app-logo.png"
+            alt="HeartStrings App"
+            width="200"
+            height="200"
+            loading="lazy"
+            decoding="async"
+            class="bridge-app-logo"
+          />
+        </div>
       </div>
     </div>
   </section>
 
 </Layout>
 
-<script>
-  let currentStep = 1;
-  const totalSteps = 4;
-
-  function showStep(n: number) {
-    for (let i = 1; i <= totalSteps; i++) {
-      const panel = document.getElementById('flow-step-' + i);
-      const dots = document.querySelectorAll('.flow-step-indicators .step-dot');
-      const dot = dots[i - 1];
-      if (panel) {
-        if (i === n) { panel.classList.remove('flow-hidden'); }
-        else { panel.classList.add('flow-hidden'); }
-      }
-      if (dot) {
-        if (i === n) { dot.classList.add('step-active'); }
-        else { dot.classList.remove('step-active'); }
-      }
-    }
-    const prevBtn = document.getElementById('flow-prev') as HTMLButtonElement | null;
-    const nextBtn = document.getElementById('flow-next') as HTMLButtonElement | null;
-    if (prevBtn) prevBtn.disabled = n <= 1;
-    if (nextBtn) nextBtn.disabled = n >= totalSteps;
-  }
-
-  (window as any).goToStep = function(n: number) {
-    currentStep = n;
-    showStep(currentStep);
-  };
-
-  (window as any).flowNav = function(dir: number) {
-    currentStep = Math.max(1, Math.min(totalSteps, currentStep + dir));
-    showStep(currentStep);
-  };
-</script>
-
 <style>
-  :root {
-    --hs-pink: #EC4899;
-    --hs-primary: #00D4FF;
-    --hs-bg: #0A0E27;
-  }
-
   .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 2rem;
   }
 
   /* Hero */
-  .hs-hero {
-    padding: 4.5rem 0 3.5rem;
-    text-align: center;
-    background: linear-gradient(180deg, #0A0E27 0%, rgba(236, 72, 153, 0.05) 50%, #060813 100%);
+  .hero-banner {
+    position: relative;
+    overflow: hidden;
+    background: #0A0E27;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .hero-badge {
+  .hero-board-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.22;
+  }
+
+  .hero-overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 4rem 2rem;
+    width: 100%;
+  }
+
+  .launch-pill {
     display: inline-block;
-    padding: 0.3rem 0.9rem;
-    border-radius: 100px;
-    background: rgba(236, 72, 153, 0.1);
-    border: 1px solid rgba(236, 72, 153, 0.3);
-    color: #EC4899;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    background: rgba(236, 72, 153, 0.2);
+    color: #EC4899;
+    border: 1px solid rgba(236, 72, 153, 0.5);
     margin-bottom: 1.25rem;
   }
 
-  .hs-hero h1 {
-    font-size: clamp(2.5rem, 7vw, 4.5rem);
+  .hero-overlay h1 {
+    font-size: clamp(2rem, 5vw, 3.75rem);
     font-weight: 800;
-    background: linear-gradient(135deg, #F9A8D4 0%, #EC4899 50%, #BE185D 100%);
+    color: #fff;
+    margin: 0 0 1rem;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    background: linear-gradient(135deg, #fff 0%, #EC4899 60%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin: 0 0 1rem;
-    line-height: 1;
   }
 
   .hero-tagline {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: rgba(224, 224, 224, 0.9);
-    max-width: 560px;
-    margin: 0 auto 0.5rem;
-    font-weight: 600;
-  }
-
-  .hero-sub {
-    font-size: 0.95rem;
-    color: rgba(224, 224, 224, 0.6);
-    max-width: 520px;
+    font-size: clamp(0.875rem, 1.5vw, 1.0625rem);
+    color: rgba(224, 224, 224, 0.85);
+    max-width: 500px;
     margin: 0 auto 2rem;
-    line-height: 1.55;
+    line-height: 1.6;
   }
 
   .hero-cta {
     display: flex;
-    gap: 1rem;
+    gap: 0.875rem;
     justify-content: center;
     flex-wrap: wrap;
   }
 
   /* Buttons */
   .btn {
-    display: inline-block;
-    padding: 0.6rem 1.5rem;
-    border-radius: 6px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
     font-weight: 600;
-    font-size: 0.9rem;
     text-decoration: none;
-    transition: opacity 0.2s;
+    transition: all 0.25s ease;
+    display: inline-block;
+    font-size: 0.9375rem;
   }
 
-  .btn:hover { opacity: 0.85; }
-
   .btn-pink {
-    background: #EC4899;
-    color: #fff;
-    border: 1px solid #EC4899;
+    background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);
+    color: white;
+  }
+  .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(236, 72, 153, 0.4); }
+
+  .btn-rose-outline {
+    background: transparent;
+    color: #FB7185;
+    border: 1px solid rgba(251, 113, 133, 0.4);
+  }
+  .btn-rose-outline:hover {
+    border-color: #FB7185;
+    background: rgba(251, 113, 133, 0.08);
+    transform: translateY(-2px);
   }
 
   .btn-outline {
     background: transparent;
-    color: #00D4FF;
-    border: 1px solid #00D4FF;
+    color: rgba(224, 224, 224, 0.8);
+    border: 1px solid rgba(224, 224, 224, 0.25);
+  }
+  .btn-outline:hover {
+    border-color: rgba(224, 224, 224, 0.5);
+    color: #E0E0E0;
+    transform: translateY(-2px);
   }
 
-  /* Section commons */
-  .hs-gallery, .hs-flow, .hs-deterministic, .hs-what-real, .hs-next, .hs-cta {
+  /* Game Intro */
+  .game-intro {
     padding: 3.5rem 0;
+    background: #060813;
   }
 
-  .hs-gallery { background: rgba(236, 72, 153, 0.02); }
-  .hs-flow { background: rgba(0, 212, 255, 0.02); }
-  .hs-deterministic { background: rgba(236, 72, 153, 0.03); }
-  .hs-what-real { background: rgba(0, 212, 255, 0.02); }
-  .hs-next { background: rgba(236, 72, 153, 0.02); }
-  .hs-cta { padding: 2.5rem 0 3.5rem; background: #060813; }
-
-  section h2 {
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    font-weight: 700;
-    color: #fff;
-    margin: 0 0 0.5rem;
-  }
-
-  .section-subtitle {
-    color: rgba(224, 224, 224, 0.55);
-    font-size: 0.88rem;
-    margin: 0 0 1.75rem;
-    max-width: 600px;
-  }
-
-  /* Gallery grid */
-  .gallery-grid {
+  .intro-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
+    grid-template-columns: 1fr 320px;
+    gap: 3rem;
+    align-items: center;
   }
 
-  .ui-panel {
-    background: rgba(10, 14, 39, 0.9);
-    border-radius: 10px;
-    padding: 1rem;
-    position: relative;
-    font-size: 0.82rem;
-  }
-
-  .panel-pink { border: 1px solid rgba(236, 72, 153, 0.3); }
-  .panel-cyan { border: 1px solid rgba(0, 212, 255, 0.3); }
-  .panel-purple { border: 1px solid rgba(139, 92, 246, 0.3); }
-
-  .preview-badge {
-    position: absolute;
-    top: 0.6rem;
-    right: 0.6rem;
-    background: rgba(236, 72, 153, 0.15);
-    border: 1px solid rgba(236, 72, 153, 0.3);
+  .intro-copy h2 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 800;
     color: #EC4899;
+    margin: 0 0 1.25rem;
+  }
+
+  .intro-copy p {
+    color: rgba(224, 224, 224, 0.75);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    margin: 0 0 1rem;
+  }
+
+  .intro-specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1.75rem;
+    padding: 1.25rem;
+    background: rgba(236, 72, 153, 0.05);
+    border: 1px solid rgba(236, 72, 153, 0.15);
+    border-radius: 10px;
+  }
+
+  .spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-align: center;
+  }
+
+  .spec-label {
     font-size: 0.65rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    padding: 0.15rem 0.45rem;
-    border-radius: 4px;
+    color: rgba(224, 224, 224, 0.4);
   }
 
-  .panel-label {
-    display: block;
-    font-weight: 700;
-    color: #EC4899;
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 0.75rem;
-  }
-
-  .profile-name { font-size: 1.05rem; font-weight: 700; color: #fff; }
-  .profile-meta { color: rgba(224,224,224,0.5); font-size: 0.75rem; margin: 0.2rem 0 0.4rem; }
-  .profile-values { color: rgba(236,72,153,0.8); font-size: 0.75rem; margin-bottom: 0.5rem; }
-
-  .interest-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.6rem; }
-  .tag {
-    background: rgba(236,72,153,0.1);
-    border: 1px solid rgba(236,72,153,0.25);
-    color: rgba(236,72,153,0.9);
-    font-size: 0.68rem;
-    padding: 0.1rem 0.4rem;
-    border-radius: 4px;
-  }
-
-  .compat-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; }
-  .compat-label { color: rgba(224,224,224,0.6); font-size: 0.75rem; }
-  .compat-pct { color: #EC4899; font-weight: 700; font-size: 0.9rem; }
-
-  .bar-track { height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-bottom: 0.5rem; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 2px; }
-  .bar-pink { background: #EC4899; }
-  .bar-green { background: #22c55e; }
-  .bar-cyan { background: #00D4FF; }
-
-  .dim-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem; font-size: 0.78rem; }
-  .dim-name { color: rgba(224,224,224,0.7); }
-  .dim-pct { font-weight: 700; }
-  .pct-green { color: #22c55e; }
-  .pct-cyan { color: #00D4FF; }
-  .dealbreaker-row { margin-top: 0.5rem; }
-  .check-ok { color: #22c55e; font-size: 0.75rem; }
-
-  .mock-btn {
-    background: rgba(236,72,153,0.15);
-    border: 1px solid rgba(236,72,153,0.4);
-    color: #EC4899;
-    padding: 0.3rem 0.8rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    cursor: not-allowed;
-    opacity: 0.6;
-    margin-top: 0.4rem;
-  }
-
-  .chat-area { background: rgba(255,255,255,0.03); border-radius: 6px; padding: 0.5rem; margin-bottom: 0.4rem; }
-  .chat-msg { font-size: 0.75rem; color: rgba(224,224,224,0.7); margin-bottom: 0.35rem; line-height: 1.4; }
-  .chat-sender { font-weight: 700; color: #EC4899; }
-  .chat-them .chat-sender { color: #00D4FF; }
-  .chat-input-bar {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 4px;
-    padding: 0.3rem 0.5rem;
-    font-size: 0.72rem;
-    color: rgba(224,224,224,0.3);
-    margin-bottom: 0.4rem;
-  }
-  .conv-tip { font-size: 0.68rem; color: rgba(236,72,153,0.6); font-style: italic; }
-
-  .filter-list { margin-bottom: 0.6rem; }
-  .filter-item { color: rgba(224,224,224,0.7); font-size: 0.75rem; padding: 0.15rem 0; }
-
-  .slider-visual { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.3rem; font-size: 0.72rem; }
-  .slider-label { color: rgba(224,224,224,0.5); min-width: 65px; }
-  .slider-track { flex: 1; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; position: relative; }
-  .slider-thumb { position: absolute; top: -3px; width: 9px; height: 9px; background: #EC4899; border-radius: 50%; transform: translateX(-50%); }
-  .slider-value { color: #EC4899; font-weight: 600; min-width: 50px; text-align: right; }
-
-  /* Prototype Flow */
-  .flow-step-indicators {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .step-dot {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    color: rgba(224,224,224,0.5);
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .step-dot.step-active {
-    background: rgba(236,72,153,0.15);
-    border-color: #EC4899;
-    color: #EC4899;
-  }
-
-  .flow-panel { display: block; }
-  .flow-hidden { display: none; }
-
-  .flow-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(236,72,153,0.2);
-    border-radius: 10px;
-    padding: 1.25rem 1.5rem;
-    max-width: 560px;
-  }
-
-  .flow-card-title {
+  .spec-value {
     font-size: 1rem;
     font-weight: 700;
     color: #EC4899;
-    margin-bottom: 0.9rem;
   }
 
-  .flow-row { display: flex; gap: 1rem; justify-content: space-between; padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
-  .flow-key { color: rgba(224,224,224,0.55); }
-  .flow-val { color: #fff; font-weight: 500; text-align: right; }
-
-  .flow-badge-row { margin-top: 0.75rem; }
-  .flow-badge {
-    background: rgba(34,197,94,0.12);
-    border: 1px solid rgba(34,197,94,0.3);
-    color: #22c55e;
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-  }
-
-  .flow-dim-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; font-size: 0.82rem; }
-  .flow-dim-name { color: rgba(224,224,224,0.65); min-width: 120px; }
-  .flow-dim-bar-wrap { flex: 1; height: 5px; background: rgba(255,255,255,0.07); border-radius: 3px; overflow: hidden; }
-  .flow-dim-bar { height: 100%; border-radius: 3px; }
-  .flow-dim-pct { color: rgba(224,224,224,0.8); font-weight: 600; min-width: 36px; text-align: right; }
-
-  .flow-bullet-list { padding-left: 1.1rem; margin: 0 0 0.75rem; }
-  .flow-bullet-list li { color: rgba(224,224,224,0.75); font-size: 0.85rem; padding: 0.2rem 0; }
-
-  .flow-note { font-size: 0.75rem; color: rgba(236,72,153,0.6); font-style: italic; margin-top: 0.6rem; }
-
-  .starter-card {
-    background: rgba(236,72,153,0.06);
-    border: 1px solid rgba(236,72,153,0.15);
-    border-radius: 6px;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.82rem;
-    color: rgba(224,224,224,0.8);
-    margin-bottom: 0.4rem;
-    font-style: italic;
-  }
-
-  .flow-nav {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1.25rem;
-  }
-
-  .flow-btn {
-    padding: 0.45rem 1.1rem;
-    border-radius: 5px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.15);
-    background: rgba(255,255,255,0.05);
-    color: rgba(224,224,224,0.7);
-    transition: all 0.2s;
-  }
-
-  .flow-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-  .flow-btn:hover:not(:disabled) { background: rgba(255,255,255,0.09); }
-
-  .flow-btn-primary {
-    background: rgba(236,72,153,0.15);
-    border-color: rgba(236,72,153,0.4);
-    color: #EC4899;
-  }
-
-  .flow-btn-primary:hover:not(:disabled) { background: rgba(236,72,153,0.25); }
-
-  /* Deterministic */
-  .det-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .det-col {
-    background: rgba(255,255,255,0.02);
-    border-radius: 8px;
-    padding: 1rem 1.1rem;
-    border: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .det-col h3 { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 0.5rem; }
-  .col-title-pink { color: #EC4899; }
-  .col-title-cyan { color: #00D4FF; }
-  .col-title-green { color: #22c55e; }
-  .det-col p { font-size: 0.85rem; color: rgba(224,224,224,0.65); line-height: 1.55; margin: 0; }
-
-  .factor-table-wrap { overflow-x: auto; }
-
-  .factor-table {
+  .decree-card-img {
     width: 100%;
-    border-collapse: collapse;
-    font-size: 0.82rem;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(168, 85, 247, 0.25);
   }
 
-  .factor-table th {
-    background: rgba(236,72,153,0.08);
-    color: #EC4899;
-    text-align: left;
-    padding: 0.5rem 0.75rem;
-    border-bottom: 1px solid rgba(236,72,153,0.2);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  /* How It Plays */
+  .how-it-plays {
+    padding: 3rem 0;
+    background: linear-gradient(180deg, #060813 0%, rgba(236, 72, 153, 0.03) 50%, #060813 100%);
   }
 
-  .factor-table td {
-    padding: 0.45rem 0.75rem;
-    color: rgba(224,224,224,0.7);
-    border-bottom: 1px solid rgba(255,255,255,0.04);
+  .how-it-plays h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #E0E0E0;
+    text-align: center;
+    margin: 0 0 0.5rem;
   }
 
-  .match-strong { color: #22c55e; font-weight: 600; }
-  .match-good { color: #00D4FF; font-weight: 600; }
+  .section-sub {
+    text-align: center;
+    color: rgba(224, 224, 224, 0.5);
+    font-size: 0.875rem;
+    margin: 0 0 2rem;
+  }
 
-  /* What Is Real Today */
-  .reality-grid {
+  .tier-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0.85rem;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
   }
 
-  .reality-card {
-    border-radius: 8px;
-    padding: 1rem;
-    font-size: 0.82rem;
+  .tier-card {
+    background: rgba(10, 14, 39, 0.8);
+    border-radius: 10px;
+    padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
 
-  .reality-card h3 { font-size: 0.85rem; font-weight: 700; margin: 0 0 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
-  .reality-card ul { padding-left: 1rem; margin: 0; }
-  .reality-card li { color: rgba(224,224,224,0.65); padding: 0.15rem 0; }
+  .tier-card:hover { transform: translateY(-4px); }
 
-  .reality-card.live { background: rgba(34,197,94,0.05); border: 1px solid rgba(34,197,94,0.2); }
-  .reality-card.live h3 { color: #22c55e; }
-  .reality-card.preview { background: rgba(236,72,153,0.05); border: 1px solid rgba(236,72,153,0.2); }
-  .reality-card.preview h3 { color: #EC4899; }
-  .reality-card.development { background: rgba(0,212,255,0.05); border: 1px solid rgba(0,212,255,0.2); }
-  .reality-card.development h3 { color: #00D4FF; }
-  .reality-card.planned { background: rgba(139,92,246,0.05); border: 1px solid rgba(139,92,246,0.2); }
-  .reality-card.planned h3 { color: #a78bfa; }
+  .tier-number {
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: rgba(224, 224, 224, 0.25);
+  }
 
-  /* What Is Next */
-  .next-list {
-    padding-left: 1.4rem;
+  .tier-name {
+    font-size: 0.9375rem;
+    font-weight: 800;
+  }
+
+  .tier-desc {
+    font-size: 0.8rem;
+    color: rgba(224, 224, 224, 0.6);
+    line-height: 1.5;
     margin: 0;
-    max-width: 680px;
   }
 
-  .next-list li {
-    color: rgba(224,224,224,0.7);
-    font-size: 0.9rem;
-    padding: 0.35rem 0;
-    line-height: 1.55;
+  .tier-1 { border: 1px solid rgba(255, 182, 193, 0.3); }
+  .tier-1 .tier-name { color: #FFB6C1; }
+  .tier-2 { border: 1px solid rgba(255, 105, 135, 0.3); }
+  .tier-2 .tier-name { color: #FF6987; }
+  .tier-3 { border: 1px solid rgba(236, 72, 153, 0.4); }
+  .tier-3 .tier-name { color: #EC4899; }
+  .tier-4 { border: 1px solid rgba(219, 39, 119, 0.4); }
+  .tier-4 .tier-name { color: #DB2777; }
+  .tier-5 { border: 1px solid rgba(190, 24, 93, 0.4); }
+  .tier-5 .tier-name { color: #BE185D; }
+  .tier-6 { border: 1px solid rgba(157, 23, 77, 0.5); }
+  .tier-6 .tier-name { color: #9D174D; }
+  .tier-6:hover { box-shadow: 0 12px 30px rgba(157, 23, 77, 0.2); }
+
+  /* Why Different */
+  .why-different {
+    padding: 3rem 0;
+    background: #060813;
   }
 
-  /* CTA row */
-  .cta-row {
+  .diff-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .diff-inner h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #E0E0E0;
+    text-align: center;
+    margin: 0 0 2rem;
+  }
+
+  .diff-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .diff-col {
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .diff-col.bad {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .diff-col.good {
+    background: rgba(236, 72, 153, 0.05);
+    border: 1px solid rgba(236, 72, 153, 0.25);
+  }
+
+  .diff-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .diff-label.bad { color: rgba(224, 224, 224, 0.35); }
+  .diff-label.good { color: #EC4899; }
+
+  .diff-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .diff-list li {
+    font-size: 0.875rem;
+    line-height: 1.45;
+    padding-left: 1rem;
+    position: relative;
+    color: rgba(224, 224, 224, 0.7);
+  }
+
+  .diff-col.bad .diff-list li::before {
+    content: '--';
+    position: absolute;
+    left: 0;
+    color: rgba(224, 224, 224, 0.2);
+  }
+
+  .diff-col.good .diff-list li::before {
+    content: '+';
+    position: absolute;
+    left: 0;
+    color: #EC4899;
+  }
+
+  /* Guides Section */
+  .guides-section {
+    padding: 3rem 0;
+    background: linear-gradient(180deg, #060813 0%, rgba(251, 113, 133, 0.04) 50%, #060813 100%);
+    border-top: 1px solid rgba(236, 72, 153, 0.1);
+  }
+
+  .guides-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .guides-copy h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #E0E0E0;
+    margin: 0 0 1.25rem;
+  }
+
+  .guides-copy p {
+    color: rgba(224, 224, 224, 0.75);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    margin: 0 0 1rem;
+  }
+
+  .guide-features {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .guide-features li {
+    font-size: 0.875rem;
+    color: rgba(224, 224, 224, 0.7);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.45;
+  }
+
+  .guide-features li::before {
+    content: '+';
+    position: absolute;
+    left: 0;
+    color: #FB7185;
+  }
+
+  .guides-banner-img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(251, 113, 133, 0.15);
+  }
+
+  /* Gallery */
+  .gallery-section {
+    padding: 3rem 0;
+    background: #060813;
+  }
+
+  .gallery-section h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #E0E0E0;
+    text-align: center;
+    margin: 0 0 0.5rem;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1rem;
+  }
+
+  .gallery-item {
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(10, 14, 39, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-4px);
+    border-color: rgba(236, 72, 153, 0.25);
+  }
+
+  .gallery-large {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .gallery-large img {
+    height: 100%;
+    object-fit: contain;
+    background: rgba(10, 14, 39, 0.4);
+  }
+
+  .gallery-caption {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.72rem;
+    color: rgba(224, 224, 224, 0.4);
+    text-align: center;
+  }
+
+  /* Honesty Section */
+  .honesty-section {
+    padding: 3rem 0;
+    background: linear-gradient(180deg, #060813 0%, rgba(0, 212, 255, 0.02) 50%, #060813 100%);
+  }
+
+  .honesty-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .honesty-inner h2 {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 800;
+    color: #E0E0E0;
+    text-align: center;
+    margin: 0 0 2rem;
+  }
+
+  .honesty-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .honesty-card {
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+
+  .honesty-card.live { background: rgba(34, 197, 94, 0.05); border: 1px solid rgba(34, 197, 94, 0.2); }
+  .honesty-card.indev { background: rgba(168, 85, 247, 0.05); border: 1px solid rgba(168, 85, 247, 0.2); }
+  .honesty-card.planned { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.07); }
+
+  .honesty-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.875rem;
+  }
+
+  .honesty-label.live { color: #22C55E; }
+  .honesty-label.indev { color: #A855F7; }
+  .honesty-label.planned { color: rgba(224, 224, 224, 0.35); }
+
+  .honesty-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .honesty-card ul li {
+    font-size: 0.8125rem;
+    color: rgba(224, 224, 224, 0.7);
+    line-height: 1.4;
+    padding-left: 0.875rem;
+    position: relative;
+  }
+
+  .honesty-card ul li::before {
+    content: '--';
+    position: absolute;
+    left: 0;
+    color: rgba(224, 224, 224, 0.2);
+    font-size: 0.7rem;
+  }
+
+  /* Waitlist */
+  .waitlist-section {
+    padding: 3rem 0;
+    background: #060813;
+  }
+
+  .waitlist-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2.5rem;
+    background: rgba(236, 72, 153, 0.06);
+    border: 1px solid rgba(236, 72, 153, 0.25);
+    border-radius: 16px;
+  }
+
+  .waitlist-inner h2 {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 800;
+    color: #EC4899;
+    margin: 0 0 1rem;
+  }
+
+  .waitlist-inner p {
+    color: rgba(224, 224, 224, 0.7);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    margin: 0 0 1.75rem;
+  }
+
+  .waitlist-cta {
     display: flex;
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  /* Bridge to App */
+  .bridge-section {
+    padding: 3rem 0;
+    background: linear-gradient(180deg, #060813 0%, rgba(251, 113, 133, 0.04) 100%);
+    border-top: 1px solid rgba(251, 113, 133, 0.1);
+  }
+
+  .bridge-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .bridge-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #FB7185;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .bridge-copy h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #E0E0E0;
+    margin: 0 0 1rem;
+  }
+
+  .bridge-copy p {
+    color: rgba(224, 224, 224, 0.7);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    margin: 0 0 0.875rem;
+  }
+
+  .bridge-app-logo {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    border-radius: 24px;
+    box-shadow: 0 16px 40px rgba(251, 113, 133, 0.2);
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .tier-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .intro-grid { grid-template-columns: 1fr; }
+    .intro-visual { display: none; }
+    .guides-inner { grid-template-columns: 1fr; }
+    .diff-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-large { grid-column: 1 / -1; grid-row: auto; }
+    .honesty-grid { grid-template-columns: 1fr; }
+    .bridge-inner { grid-template-columns: 1fr; }
+    .bridge-visual { display: none; }
+    .intro-specs { grid-template-columns: repeat(2, 1fr); }
+    .tier-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .tier-grid { grid-template-columns: 1fr; }
   }
 </style>
