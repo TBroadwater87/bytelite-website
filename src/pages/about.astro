@@ -3,176 +3,198 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="About ByteLite - A Different Architecture for Compression"
-  description="Classical compression peaked. ByteLite is an engineered attempt to push past it — dictionary cascades, Szudzik pairing, shared models. Deep Kore asks: what if this architecture is a blueprint for more than storage?"
-  keywords={["ByteLite mission", "dictionary cascade compression", "frontier compression", "Tash Broadwater", "compression technology", "Deep Kore research", "HeartStrings"]}
-  schemaType="AboutPage"
+  title="About ByteLite LLC - Building HeartStrings, ByteLite, and Deep Kore"
+  description="ByteLite LLC builds products people actually want. HeartStrings Play is the first public launch product. HeartStrings sparked ByteLite. ByteLite powers the app. Deep Kore drives future intelligence. Founder: Tash Broadwater, Helena MT."
+  keywords={["ByteLite LLC", "HeartStrings Play", "HeartStrings App", "ByteLite", "Deep Kore", "Tash Broadwater", "Helena MT", "compression technology"]}
+  schemaType="Organization"
 >
 
   <section class="about-content">
     <div class="container">
-      <!-- Origin Story -->
-      <div id="story" class="story-section">
-        <h2>The HeartStrings Discovery</h2>
+
+      <!-- Company Story -->
+      <div class="story-section">
+        <h2>ByteLite LLC</h2>
         <div class="story-content">
           <p class="lead">
-            In 2024, while developing HeartStrings, an AI-powered dating platform,
-            founder Tash Broadwater encountered a fundamental challenge: AI models demanded excessive data
-            storage and computing resources, limiting innovation for independent developers.
+            ByteLite LLC is a product company built in Helena, MT by founder Tash Broadwater.
+            We build products people actually want, backed by infrastructure we built ourselves.
           </p>
 
           <blockquote>
-            "What if the problem isn't the AI—but the way we represent information?"
+            "HeartStrings was the original idea. ByteLite is what we built to make it possible."
           </blockquote>
 
           <p>
-            That question became ByteLite. Not a better compressor — a different kind of compressor.
-            Dictionary cascades. Szudzik pairing. Shared-model assumptions.
-            We're building toward ratios well past current enwik9 benchmarks.
-            Verification will tell us how close we actually get.
+            In 2024, while developing HeartStrings -- a relationship intelligence platform -- founder Tash Broadwater
+            hit a fundamental constraint: AI models demanded storage and compute that put the product out of reach for
+            an independent team. The question that followed became ByteLite.
+          </p>
+
+          <p>
+            HeartStrings Play is the first public launch product. A premium social board game that does not require
+            any backend infrastructure to deliver a real experience right now. The HeartStrings App follows -- powered
+            by ByteLite compression and Deep Kore intelligence. The ecosystem is designed from the outside in:
+            consumer product first, infrastructure supporting it.
           </p>
         </div>
       </div>
 
-      <!-- Mission & Vision -->
+      <!-- Ecosystem Overview -->
+      <div class="ecosystem-section">
+        <h2>The Ecosystem</h2>
+        <div class="ecosystem-grid">
+
+          <div class="eco-card play">
+            <div class="eco-header">
+              <h3>HeartStrings Play</h3>
+              <span class="badge launch">Launch Product</span>
+            </div>
+            <p>A premium social board game for couples, dates, and intimate gatherings. Six escalating card tiers. AIya and AIon as guides. The first public-facing product from ByteLite LLC.</p>
+            <a href="/heartstrings" class="eco-link play">See HeartStrings Play</a>
+          </div>
+
+          <div class="eco-card app">
+            <div class="eco-header">
+              <h3>HeartStrings App</h3>
+              <span class="badge indev">In Development</span>
+            </div>
+            <p>The digital companion. Profiles, match rationale, and guided interaction powered by AIya and AIon. Connects game sessions to digital continuity. Built on ByteLite infrastructure.</p>
+            <a href="/heartstrings-app" class="eco-link app">See the App</a>
+          </div>
+
+          <div class="eco-card bytelite">
+            <div class="eco-header">
+              <h3>ByteLite</h3>
+              <span class="badge active">Active Engineering</span>
+            </div>
+            <p>The infrastructure layer. Structural compression using dictionary-cascade architecture. Patent US 63/807,027. Born from the storage problem HeartStrings surfaced in 2024.</p>
+            <a href="/technology" class="eco-link bytelite">See ByteLite</a>
+          </div>
+
+          <div class="eco-card deepkore">
+            <div class="eco-header">
+              <h3>Deep Kore / AIya</h3>
+              <span class="badge research">Research</span>
+            </div>
+            <p>The intelligence and governance layer. AIya and AIon are its first public face. Genesis Goal Keeper safety framework governs all research. Blueprint-stage architecture building carefully.</p>
+            <a href="/deepkore" class="eco-link deepkore">See Deep Kore</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Mission -->
       <div class="mission-section">
         <div class="mission-card">
-          <h3>Our Mission</h3>
+          <h3>What We Are Building</h3>
           <p>
-            To democratize access to advanced computation by making data storage and transmission 
-            virtually free, enabling innovation at every scale.
+            We are building a consumer product ecosystem where every layer is owned by the team.
+            HeartStrings Play is the front door. The app is the expansion. ByteLite is the engine underneath.
+            Deep Kore is the long bet on what intelligent infrastructure can become.
           </p>
         </div>
-        
+
         <div class="mission-card">
-          <h3>Our Vision</h3>
+          <h3>Why This Approach</h3>
           <p>
-            Storage and bandwidth shouldn't be the limiting factor.
-            ByteLite is our attempt to remove that bottleneck for structured data.
-            Deep Kore is our bet that the same architecture might matter for more than just storage.
+            The launch product -- HeartStrings Play -- requires no backend. It works now. It generates interest.
+            It creates the context the app and the ecosystem need to matter to real people.
+            Infrastructure without a product is just research. We built both.
           </p>
         </div>
       </div>
 
-      <!-- Current Status -->
+      <!-- Project Status -->
       <div class="status-section">
         <h2>Project Status</h2>
         <div class="status-grid">
-          <div class="status-card">
+
+          <div class="status-card heartstrings-play">
             <div class="status-header">
-              <h3>ByteLite Compression</h3>
-              <span class="status-badge ready">Active Development</span>
+              <h3>HeartStrings Play</h3>
+              <span class="status-badge launch">Launch Product</span>
             </div>
             <p>
-              Dictionary-cascade architecture in advanced development. Patent US 63/807,027 filed.
-              Active engineering on dictionary-cascade compression for structured data.
-              Browser demo live at /demo. Broader verification application in development. Enterprise licensing discussions underway.
+              Game design is complete. Board, card tiers, and character design are finalized.
+              Physical prototype production is in progress. Manufacturing and retail launch planned
+              once prototype is validated.
             </p>
             <div class="progress-bar">
-              <div class="progress-fill" style="width: 85%"></div>
-            </div>
-          </div>
-          
-          <div class="status-card">
-            <div class="status-header">
-              <h3>Genesis Goal Keeper</h3>
-              <span class="status-badge complete">Active</span>
-            </div>
-            <p>
-              Safety framework operational. Guides all Deep Kore research under responsible
-              development protocols. Provides constraint enforcement and ethical guardrails
-              for blueprint-stage intelligence research.
-            </p>
-            <div class="progress-bar">
-              <div class="progress-fill deepkore" style="width: 100%"></div>
+              <div class="progress-fill heartstrings-play" style="width: 70%"></div>
             </div>
           </div>
 
-          <div class="status-card">
+          <div class="status-card heartstrings-app">
             <div class="status-header">
-              <h3>Deep Kore</h3>
-              <span class="status-badge development">Research Phase</span>
+              <h3>HeartStrings App</h3>
+              <span class="status-badge indev">In Development</span>
             </div>
             <p>
-              What if extreme compression and intelligence share the same math?
-              Deep Kore is our attempt to find out. Blueprint-stage architecture.
-              Genesis Goal Keeper safety framework. We're building carefully because
-              we're building toward something that might actually matter.
+              UI design system and login screens are designed. Profile and match engine
+              under active development. AIya and AIon integration in progress.
+              First access will be for HeartStrings Play purchasers.
+            </p>
+            <div class="progress-bar">
+              <div class="progress-fill heartstrings-app" style="width: 35%"></div>
+            </div>
+          </div>
+
+          <div class="status-card bytelite">
+            <div class="status-header">
+              <h3>ByteLite Compression</h3>
+              <span class="status-badge active">Active Development</span>
+            </div>
+            <p>
+              Dictionary-cascade compression in advanced development. Patent US 63/807,027 filed.
+              Browser demo live at /demo. Broader verification application in development.
+            </p>
+            <div class="progress-bar">
+              <div class="progress-fill bytelite" style="width: 80%"></div>
+            </div>
+          </div>
+
+          <div class="status-card deepkore">
+            <div class="status-header">
+              <h3>Deep Kore / AIya</h3>
+              <span class="status-badge research">Research Phase</span>
+            </div>
+            <p>
+              Blueprint-stage architecture research. Genesis Goal Keeper safety framework operational.
+              AIya and AIon character layer active. Research is intentionally careful and governed.
             </p>
             <div class="progress-bar">
               <div class="progress-fill deepkore" style="width: 35%"></div>
             </div>
           </div>
-          
-          <div class="status-card">
-            <div class="status-header">
-              <h3>HeartStrings</h3>
-              <span class="status-badge on-hold">On Hold</span>
-            </div>
-            <p>
-              The AI-powered relationship platform that sparked ByteLite's discovery.
-              Currently at interface prototype stage. Will be the first consumer application
-              to leverage ByteLite's compression technology for efficient AI model deployment.
-            </p>
-            <div class="progress-bar">
-              <div class="progress-fill heartstrings" style="width: 40%"></div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Deep Kore Philosophy -->
-      <div class="philosophy-section">
-        <h2>Deep Kore: Compression as a Map to Something Bigger</h2>
-        <p class="philosophy-intro">
-          The math that compresses data might also be the math that organizes thought.
-          Deep Kore is our physics-inspired attempt to find out. We're not claiming we've built AGI.
-          We're claiming we've found an architecture worth building toward.
-        </p>
-
-        <div class="philosophy-principles">
-          <div class="principle">
-            <span class="icon">🔬</span>
-            <h4>Efficient Architecture</h4>
-            <p>Doing more with less — that's what compression teaches us</p>
-          </div>
-
-          <div class="principle">
-            <span class="icon">🌊</span>
-            <h4>Recursive Depth</h4>
-            <p>Structures that go deeper than classical architectures dare</p>
-          </div>
-
-          <div class="principle">
-            <span class="icon">❓</span>
-            <h4>Open Questions</h4>
-            <p>How far does this go? We're building to find out.</p>
-          </div>
         </div>
       </div>
 
       <!-- Founder -->
       <div class="founder-section">
-        <h2>Leadership</h2>
+        <h2>Founder</h2>
         <div class="founder-card">
-          <h3>Tash Broadwater, Founder & CEO</h3>
+          <h3>Tash Broadwater, Founder and CEO</h3>
           <p>
-            Compression researcher and software engineer with 15+ years optimizing data systems. 
-            Specializes in algorithmic design and edge AI systems. When traditional solutions fail, 
-            Tash builds new ones from scratch—ByteLite is the result of that ethos.
+            Software engineer and compression researcher based in Helena, MT. 15+ years optimizing data systems.
+            Specializes in algorithmic design and edge AI systems. Built ByteLite to solve the storage problem
+            that HeartStrings surfaced. Building the ecosystem from the consumer product layer down.
           </p>
         </div>
       </div>
 
-      <!-- Call to Action -->
+      <!-- CTA -->
       <div class="cta-section">
-        <h3>Join Our Journey</h3>
-        <p>ByteLite early access. Deep Kore research updates. We're building something different.</p>
+        <h3>Get Involved</h3>
+        <p>Follow HeartStrings Play development. Express interest in the app. Discuss ByteLite enterprise integration.</p>
         <div class="cta-buttons">
+          <a href="/heartstrings" class="btn btn-pink">HeartStrings Play</a>
           <a href="/contact" class="btn btn-primary">Get In Touch</a>
           <a href="/status" class="btn btn-secondary">View Status</a>
         </div>
       </div>
+
     </div>
   </section>
 </Layout>
@@ -192,14 +214,13 @@ import Layout from '../layouts/Layout.astro';
   /* Story Section */
   .story-section {
     margin-bottom: 3rem;
-    scroll-margin-top: 2rem;
   }
 
   .story-section h2 {
     font-size: 1.75rem;
     color: var(--color-primary);
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   .story-content {
@@ -208,35 +229,153 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .lead {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     color: var(--color-text-dim);
-    line-height: 1.8;
-    margin-bottom: 2rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
   }
 
   .story-content p {
     color: var(--color-text-dim);
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    font-size: 0.9375rem;
   }
 
   blockquote {
-    font-size: 1.5rem;
-    color: var(--color-primary);
+    font-size: 1.25rem;
+    color: #EC4899;
     font-style: italic;
     text-align: center;
-    margin: 3rem 0;
-    padding: 2rem;
-    border-left: 4px solid var(--color-primary);
-    background: rgba(0, 212, 255, 0.05);
+    margin: 2.5rem 0;
+    padding: 1.5rem 2rem;
+    border-left: 3px solid #EC4899;
+    background: rgba(236, 72, 153, 0.05);
+    border-radius: 0 8px 8px 0;
   }
+
+  /* Ecosystem Section */
+  .ecosystem-section {
+    margin-bottom: 3rem;
+  }
+
+  .ecosystem-section h2 {
+    font-size: 1.75rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .ecosystem-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .eco-card {
+    background: rgba(10, 14, 39, 0.6);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    transition: transform 0.2s;
+  }
+
+  .eco-card:hover { transform: translateY(-4px); }
+
+  .eco-card.play    { border: 1px solid rgba(236, 72, 153, 0.3); }
+  .eco-card.app     { border: 1px solid rgba(251, 113, 133, 0.25); }
+  .eco-card.bytelite { border: 1px solid rgba(0, 212, 255, 0.2); }
+  .eco-card.deepkore { border: 1px solid rgba(168, 85, 247, 0.2); }
+
+  .eco-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .eco-header h3 {
+    font-size: 1.125rem;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .eco-card.play h3    { color: #EC4899; }
+  .eco-card.app h3     { color: #FB7185; }
+  .eco-card.bytelite h3 { color: #00D4FF; }
+  .eco-card.deepkore h3 { color: #A855F7; }
+
+  .badge {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+  }
+
+  .badge.launch  { background: rgba(236, 72, 153, 0.15); color: #EC4899; border: 1px solid rgba(236, 72, 153, 0.4); }
+  .badge.indev   { background: rgba(168, 85, 247, 0.1); color: #A855F7; border: 1px solid rgba(168, 85, 247, 0.3); }
+  .badge.active  { background: rgba(34, 197, 94, 0.1); color: #22C55E; border: 1px solid rgba(34, 197, 94, 0.3); }
+  .badge.research { background: rgba(168, 85, 247, 0.1); color: #A855F7; border: 1px solid rgba(168, 85, 247, 0.3); }
+
+  .eco-card p {
+    color: var(--color-text-dim);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0;
+    flex: 1;
+  }
+
+  .eco-link {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .eco-link.play    { color: #EC4899; }
+  .eco-link.app     { color: #FB7185; }
+  .eco-link.bytelite { color: #00D4FF; }
+  .eco-link.deepkore { color: #A855F7; }
+  .eco-link:hover { opacity: 0.75; }
 
   /* Mission Section */
   .mission-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
     margin-bottom: 3rem;
+  }
+
+  .mission-card {
+    background: rgba(10, 14, 39, 0.8);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .mission-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: 0 16px 40px rgba(0, 212, 255, 0.08);
+  }
+
+  .mission-card h3 {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 0.875rem;
+  }
+
+  .mission-card p {
+    color: var(--color-text-dim);
+    line-height: 1.65;
+    font-size: 0.9375rem;
   }
 
   /* Status Section */
@@ -248,256 +387,145 @@ import Layout from '../layouts/Layout.astro';
     font-size: 1.75rem;
     color: var(--color-primary);
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .status-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 
   .status-card {
     background: rgba(10, 14, 39, 0.6);
-    border: 1px solid rgba(0, 212, 255, 0.2);
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1.5rem;
     transition: all 0.3s ease;
   }
 
   .status-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+    transform: translateY(-4px);
   }
+
+  .status-card.heartstrings-play { border: 1px solid rgba(236, 72, 153, 0.25); }
+  .status-card.heartstrings-app  { border: 1px solid rgba(251, 113, 133, 0.2); }
+  .status-card.bytelite          { border: 1px solid rgba(0, 212, 255, 0.2); }
+  .status-card.deepkore          { border: 1px solid rgba(168, 85, 247, 0.2); }
 
   .status-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .status-header h3 {
-    font-size: 1.5rem;
-    color: var(--color-primary);
+    font-size: 1.0625rem;
+    font-weight: 800;
     margin: 0;
   }
 
+  .status-card.heartstrings-play .status-header h3 { color: #EC4899; }
+  .status-card.heartstrings-app .status-header h3  { color: #FB7185; }
+  .status-card.bytelite .status-header h3          { color: #00D4FF; }
+  .status-card.deepkore .status-header h3          { color: #A855F7; }
+
   .status-badge {
-    padding: 0.25rem 0.75rem;
+    padding: 0.2rem 0.65rem;
     border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.65rem;
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
-  .status-badge.ready {
-    background: rgba(0, 212, 255, 0.2);
-    color: var(--color-primary);
-    border: 1px solid var(--color-primary);
-  }
-
-  .status-badge.complete {
-    background: rgba(168, 85, 247, 0.2);
-    color: #A855F7;
-    border: 1px solid #A855F7;
-  }
-
-  .status-badge.development {
-    background: rgba(255, 171, 0, 0.2);
-    color: #FFAB00;
-    border: 1px solid #FFAB00;
-  }
-
-  .status-badge.on-hold {
-    background: rgba(128, 128, 128, 0.2);
-    color: #999999;
-    border: 1px solid #999999;
-  }
+  .status-badge.launch  { background: rgba(236, 72, 153, 0.15); color: #EC4899; border: 1px solid rgba(236, 72, 153, 0.4); }
+  .status-badge.indev   { background: rgba(168, 85, 247, 0.1); color: #A855F7; border: 1px solid rgba(168, 85, 247, 0.3); }
+  .status-badge.active  { background: rgba(0, 212, 255, 0.12); color: #00D4FF; border: 1px solid rgba(0, 212, 255, 0.4); }
+  .status-badge.research { background: rgba(255, 171, 0, 0.12); color: #FFAB00; border: 1px solid rgba(255, 171, 0, 0.3); }
 
   .status-card p {
     color: var(--color-text-dim);
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.875rem;
   }
 
   .progress-bar {
-    height: 8px;
-    background: rgba(255, 255, 255, 0.1);
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 4px;
     overflow: hidden;
   }
 
   .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--color-primary), #00A8CC);
     border-radius: 4px;
-    transition: width 0.3s ease;
     position: relative;
   }
 
-  .progress-fill.deepkore {
-    background: linear-gradient(90deg, #A855F7, #FF006E);
-  }
+  .progress-fill.heartstrings-play { background: linear-gradient(90deg, #EC4899, #FB7185); }
+  .progress-fill.heartstrings-app  { background: linear-gradient(90deg, #FB7185, #A855F7); }
+  .progress-fill.bytelite          { background: linear-gradient(90deg, #00D4FF, #0099CC); }
+  .progress-fill.deepkore          { background: linear-gradient(90deg, #A855F7, #FF006E); }
 
-  .progress-fill.heartstrings {
-    background: linear-gradient(90deg, #FF006E, #FFAB00);
-  }
-
-  .progress-fill::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.3),
-      transparent
-    );
-    animation: shimmer 2s infinite;
-  }
-
-  @keyframes shimmer {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(100%);
-    }
-  }
-
-  .mission-card {
-    background: rgba(10, 14, 39, 0.8);
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 12px;
-    padding: 3rem;
-    text-align: center;
-    transition: all 0.3s ease;
-  }
-
-  .mission-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--color-primary);
-    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
-  }
-
-  .mission-card h3 {
-    font-size: 1.75rem;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-  }
-
-  .mission-card p {
-    color: var(--color-text-dim);
-    line-height: 1.6;
-  }
-
-  /* Philosophy Section */
-  .philosophy-section {
-    background: linear-gradient(135deg, rgba(255, 0, 110, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
-    border-radius: 16px;
-    padding: 4rem;
-    margin-bottom: 3rem;
-  }
-
-  .philosophy-section h2 {
-    font-size: 2.5rem;
-    color: var(--color-secondary);
-    text-align: center;
-    margin-bottom: 2rem;
-    text-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
-  }
-
-  .philosophy-intro {
-    text-align: center;
-    color: var(--color-text-dim);
-    font-size: 1.125rem;
-    max-width: 700px;
-    margin: 0 auto 3rem;
-    line-height: 1.6;
-  }
-
-  .philosophy-principles {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-  }
-
-  .principle {
-    text-align: center;
-  }
-
-  .principle .icon {
-    font-size: 3rem;
-    display: block;
-    margin-bottom: 1rem;
-  }
-
-  .principle h4 {
-    font-size: 1.25rem;
-    color: var(--color-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .principle p {
-    color: var(--color-text-dim);
-    font-size: 0.875rem;
-  }
-
-  /* Founder Section */
+  /* Founder */
   .founder-section {
     margin-bottom: 3rem;
   }
 
   .founder-section h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--color-primary);
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .founder-card {
     background: rgba(10, 14, 39, 0.6);
     border: 1px solid rgba(224, 224, 224, 0.1);
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1.75rem;
     max-width: 700px;
     margin: 0 auto;
   }
 
   .founder-card h3 {
     color: var(--color-primary);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.0625rem;
+    font-weight: 800;
+    margin-bottom: 0.875rem;
   }
 
   .founder-card p {
     color: var(--color-text-dim);
-    line-height: 1.6;
+    line-height: 1.65;
+    font-size: 0.9375rem;
   }
 
   /* CTA Section */
   .cta-section {
     text-align: center;
-    padding: 4rem;
+    padding: 3rem;
     background: rgba(10, 14, 39, 0.6);
     border-radius: 16px;
-    border: 1px solid rgba(0, 212, 255, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.15);
   }
 
   .cta-section h3 {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    font-weight: 800;
     color: var(--color-primary);
-    margin-bottom: 1rem;
+    margin-bottom: 0.875rem;
   }
 
   .cta-section p {
     color: var(--color-text-dim);
-    font-size: 1.125rem;
+    font-size: 0.9375rem;
     margin-bottom: 2rem;
+    line-height: 1.6;
   }
 
   .cta-buttons {
@@ -508,46 +536,39 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .btn {
-    padding: 1rem 2rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 8px;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
     display: inline-block;
+    font-size: 0.9375rem;
   }
+
+  .btn-pink {
+    background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);
+    color: white;
+  }
+  .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(236, 72, 153, 0.4); }
 
   .btn-primary {
     background: var(--color-primary);
     color: var(--color-bg-dark);
+    font-weight: 700;
   }
-
-  .btn-primary:hover {
-    background: #00B8E6;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-  }
+  .btn-primary:hover { background: #00B8E6; transform: translateY(-2px); }
 
   .btn-secondary {
     background: transparent;
-    color: var(--color-secondary);
-    border: 2px solid var(--color-secondary);
+    color: var(--color-text-dim);
+    border: 1px solid rgba(224, 224, 224, 0.25);
   }
-
-  .btn-secondary:hover {
-    background: var(--color-secondary);
-    color: var(--color-bg-dark);
-  }
+  .btn-secondary:hover { border-color: rgba(224, 224, 224, 0.5); color: #E0E0E0; transform: translateY(-2px); }
 
   @media (max-width: 768px) {
-    .story-section h2,
-    .status-section h2,
-    .philosophy-section h2 {
-      font-size: 2rem;
-    }
-
-    .status-grid {
-      grid-template-columns: 1fr;
-    }
+    .ecosystem-grid { grid-template-columns: 1fr; }
+    .mission-section { grid-template-columns: 1fr; }
+    .status-grid { grid-template-columns: 1fr; }
 
     .status-header {
       flex-direction: column;
@@ -555,17 +576,13 @@ import Layout from '../layouts/Layout.astro';
       gap: 0.5rem;
     }
 
-    .philosophy-section {
+    .cta-section {
       padding: 2rem;
     }
 
     blockquote {
-      font-size: 1.25rem;
-      padding: 1rem;
-    }
-
-    .cta-section {
-      padding: 2rem;
+      font-size: 1.0625rem;
+      padding: 1rem 1.25rem;
     }
   }
 </style>

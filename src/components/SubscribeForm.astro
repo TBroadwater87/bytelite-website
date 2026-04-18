@@ -7,8 +7,8 @@ export interface Props {
 
 const {
   variant = 'default',
-  title = 'Stay Updated on ByteLite, Deep Kore, and HeartStrings',
-  description = 'Be the first to know when the ByteLite Application Demo is ready. Get updates on Deep Kore / AIya research and HeartStrings development.'
+  title = 'Follow the ByteLite LLC Ecosystem',
+  description = 'Be the first to hear about HeartStrings Play availability, the HeartStrings App companion launch, ByteLite milestones, and Deep Kore research.'
 } = Astro.props;
 ---
 
@@ -34,16 +34,20 @@ const {
       
       <div class="form-options">
         <label class="checkbox-label">
-          <input type="checkbox" name="notifyDemo" checked />
+          <input type="checkbox" name="notifyPlay" checked />
+          <span>HeartStrings Play: board game launch and availability</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="notifyApp" checked />
+          <span>HeartStrings App: companion app development updates</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="notifyBytelite" checked />
           <span>ByteLite: demo launch and compression milestones</span>
         </label>
         <label class="checkbox-label">
           <input type="checkbox" name="notifyDeepKore" checked />
           <span>Deep Kore / AIya: architecture research updates</span>
-        </label>
-        <label class="checkbox-label">
-          <input type="checkbox" name="notifyHeartStrings" checked />
-          <span>HeartStrings: platform development updates</span>
         </label>
       </div>
       
@@ -249,7 +253,7 @@ const {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // Success message
-      messageDiv.textContent = 'You are on the list. We will be in touch with ByteLite, Deep Kore, and HeartStrings updates.';
+      messageDiv.textContent = 'You are on the list. We will be in touch about HeartStrings Play, the HeartStrings App, ByteLite, and Deep Kore updates.';
       messageDiv.className = 'message success';
       
       // Reset form

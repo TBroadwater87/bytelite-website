@@ -3,27 +3,137 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Status - ByteLite Public Lab"
-  description="Current status of ByteLite compression, Deep Kore / AIya research, and HeartStrings platform. Honest, up-to-date, no hype."
-  keywords={["ByteLite status", "Deep Kore status", "HeartStrings status", "product roadmap", "development status", "live features"]}
+  title="Status - ByteLite LLC Products"
+  description="Current status of HeartStrings Play, HeartStrings App, ByteLite compression, and Deep Kore / AIya research. Honest, up-to-date, no hype."
+  keywords={["HeartStrings Play status", "HeartStrings App status", "ByteLite status", "Deep Kore status", "product roadmap", "development status"]}
 >
-  <div class="updated-bar">Last updated: March 2026</div>
+  <div class="updated-bar">Last updated: April 2026</div>
 
   <section class="status-page">
     <div class="container">
 
       <div class="page-hero">
         <h1 class="page-title">Status Board</h1>
-        <p class="page-sub">What is live, what is preview, what is under active development. Updated as things change.</p>
+        <p class="page-sub">What is live, what is in development, what is planned. Updated as things change.</p>
       </div>
 
-      <!-- 3-COLUMN STATUS TABLES -->
+      <!-- LAUNCH ORDER CONTEXT -->
+      <div class="launch-context">
+        <div class="launch-note">
+          <span class="launch-label">Launch Order</span>
+          <span class="launch-flow">
+            HeartStrings Play (first)
+            <span class="arrow">--&gt;</span>
+            HeartStrings App (companion)
+            <span class="arrow">--&gt;</span>
+            ByteLite API (enterprise)
+            <span class="arrow">--&gt;</span>
+            Deep Kore (long-term research)
+          </span>
+        </div>
+      </div>
+
+      <!-- 4-COLUMN STATUS TABLES -->
       <div class="status-grid">
+
+        <!-- HeartStrings Play -->
+        <div class="status-col">
+          <div class="col-header col-header--play">
+            <div class="col-title-row">
+              <h2>HeartStrings Play</h2>
+              <span class="col-badge launch">Launch Product</span>
+            </div>
+          </div>
+          <div class="col-body">
+            <div class="status-row">
+              <span class="item-name">Game Board Design</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Card Tier Structure (6 tiers)</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">AIya and AIon Character Design</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Token Set Design</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Game Rules and Mechanics</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Physical Prototype</span>
+              <span class="badge badge-indev">In Development</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Card Deck Print Run</span>
+              <span class="badge badge-indev">In Development</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Manufacturing Specs</span>
+              <span class="badge badge-indev">In Development</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Retail / Direct Launch</span>
+              <span class="badge badge-planned">Planned</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HeartStrings App -->
+        <div class="status-col">
+          <div class="col-header col-header--app">
+            <div class="col-title-row">
+              <h2>HeartStrings App</h2>
+              <span class="col-badge indev">Companion</span>
+            </div>
+          </div>
+          <div class="col-body">
+            <div class="status-row">
+              <span class="item-name">App Logo and Brand</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Sign In / Onboarding UI</span>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Profile Architecture</span>
+              <span class="badge badge-indev">In Development</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Match Scoring Engine</span>
+              <span class="badge badge-indev">In Development</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">AIya / AIon Integration</span>
+              <span class="badge badge-indev">In Development</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">ByteLite Integration</span>
+              <span class="badge badge-indev">In Development</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">Closed Beta (Play purchasers)</span>
+              <span class="badge badge-planned">Planned</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">App Store Launch</span>
+              <span class="badge badge-planned">Planned</span>
+            </div>
+          </div>
+        </div>
 
         <!-- ByteLite -->
         <div class="status-col">
           <div class="col-header col-header--cyan">
-            <h2>ByteLite</h2>
+            <div class="col-title-row">
+              <h2>ByteLite</h2>
+            </div>
           </div>
           <div class="col-body">
             <div class="status-row">
@@ -68,7 +178,9 @@ import Layout from '../layouts/Layout.astro';
         <!-- Deep Kore / AIya -->
         <div class="status-col">
           <div class="col-header col-header--purple">
-            <h2>Deep Kore / AIya</h2>
+            <div class="col-title-row">
+              <h2>Deep Kore / AIya</h2>
+            </div>
           </div>
           <div class="col-body">
             <div class="status-row">
@@ -78,6 +190,10 @@ import Layout from '../layouts/Layout.astro';
             <div class="status-row">
               <span class="item-name">Architecture Research</span>
               <span class="badge badge-inprogress">In Progress</span>
+            </div>
+            <div class="status-row">
+              <span class="item-name">AIya and AIon Characters</span>
+              <span class="badge badge-live">Live</span>
             </div>
             <div class="status-row">
               <span class="item-name">AIya Gallery</span>
@@ -98,56 +214,23 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- HeartStrings -->
-        <div class="status-col">
-          <div class="col-header col-header--pink">
-            <h2>HeartStrings</h2>
-          </div>
-          <div class="col-body">
-            <div class="status-row">
-              <span class="item-name">Interface Design System</span>
-              <span class="badge badge-live">Live</span>
-            </div>
-            <div class="status-row">
-              <span class="item-name">Compatibility Framework</span>
-              <span class="badge badge-live">Live</span>
-            </div>
-            <div class="status-row">
-              <span class="item-name">Interface Gallery</span>
-              <span class="badge badge-preview">Interactive Preview</span>
-            </div>
-            <div class="status-row">
-              <span class="item-name">Prototype Flow</span>
-              <span class="badge badge-preview">Interactive Preview</span>
-            </div>
-            <div class="status-row">
-              <span class="item-name">Matching Engine</span>
-              <span class="badge badge-indev">In Development</span>
-            </div>
-            <div class="status-row">
-              <span class="item-name">Public Beta</span>
-              <span class="badge badge-planned">Planned</span>
-            </div>
-          </div>
-        </div>
-
       </div>
 
       <!-- KNOWN LIMITATIONS -->
       <div class="limits-block">
         <h2 class="limits-title">Known Limitations</h2>
         <ul class="limits-list">
-          <li>ByteLite compression results depend on data type and dictionary coverage. Results on random binary data will not match enwik9 corpus results.</li>
-          <li>AIya is currently curated and deterministic only. It is not a live AI system. All responses on this site are pre-written samples.</li>
-          <li>HeartStrings matching engine is not yet live. Interface panels are prototype UI only.</li>
+          <li>HeartStrings Play is in active development. Physical prototype is not yet complete. No retail purchase is available.</li>
+          <li>HeartStrings App matching engine is not live. Login UI is designed but the app is not functional yet.</li>
+          <li>AIya and AIon in the app are not interactive. All current interactions are curated samples.</li>
+          <li>ByteLite compression results depend on data type and dictionary coverage. Random binary data results will not match structured data results.</li>
           <li>Academic verification papers have not been published. Peer review is planned for 2026.</li>
-          <li>No Hutter Prize submission is planned. That framing has been retired.</li>
         </ul>
       </div>
 
       <!-- CONTACT -->
       <div class="contact-row">
-        <p>Reach out at <a href="mailto:info@thebytelite.com" class="contact-link">info@thebytelite.com</a> for enterprise discussions or to follow specific development.</p>
+        <p>Reach out at <a href="mailto:info@thebytelite.com" class="contact-link">info@thebytelite.com</a> for HeartStrings Play interest, enterprise ByteLite discussions, or to follow specific development.</p>
         <a href="/contact" class="contact-btn">Contact Page</a>
       </div>
 
@@ -157,12 +240,12 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   .updated-bar {
-    background: rgba(0,212,255,0.05);
-    border-bottom: 1px solid rgba(0,212,255,0.15);
+    background: rgba(236,72,153,0.05);
+    border-bottom: 1px solid rgba(236,72,153,0.15);
     text-align: center;
     padding: 0.45rem 1rem;
     font-size: 0.78rem;
-    color: rgba(0,212,255,0.65);
+    color: rgba(236,72,153,0.65);
     letter-spacing: 0.03em;
   }
 
@@ -172,21 +255,21 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
   }
 
   .page-hero {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   .page-title {
     font-size: 2.75rem;
     font-weight: 800;
     margin: 0 0 0.65rem;
-    background: linear-gradient(135deg, #00D4FF 0%, #A855F7 100%);
+    background: linear-gradient(135deg, #EC4899 0%, #00D4FF 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -195,17 +278,57 @@ import Layout from '../layouts/Layout.astro';
   .page-sub {
     font-size: 1rem;
     color: var(--color-text-dim);
-    margin: 0;
-    max-width: 520px;
     margin: 0 auto;
+    max-width: 520px;
     line-height: 1.55;
   }
 
-  /* 3-column grid */
+  /* Launch context bar */
+  .launch-context {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .launch-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.875rem 1.5rem;
+    background: rgba(236, 72, 153, 0.05);
+    border: 1px solid rgba(236, 72, 153, 0.2);
+    border-radius: 10px;
+  }
+
+  .launch-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(236, 72, 153, 0.7);
+  }
+
+  .launch-flow {
+    font-size: 0.8125rem;
+    color: rgba(224, 224, 224, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .arrow {
+    color: rgba(236, 72, 153, 0.4);
+    font-weight: 700;
+  }
+
+  /* 4-column grid */
   .status-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.1rem;
     margin-bottom: 3.5rem;
     align-items: start;
   }
@@ -217,22 +340,43 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .col-header {
-    padding: 1rem 1.25rem 0.85rem;
+    padding: 0.875rem 1.25rem 0.75rem;
     border-bottom: 1px solid rgba(255,255,255,0.07);
   }
 
+  .col-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
   .col-header h2 {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 800;
     margin: 0;
   }
 
-  .col-header--cyan { background: rgba(0,212,255,0.06); }
+  .col-badge {
+    font-size: 0.56rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 0.15rem 0.45rem;
+    border-radius: 100px;
+  }
+
+  .col-badge.launch { background: rgba(236,72,153,0.15); color: #EC4899; border: 1px solid rgba(236,72,153,0.4); }
+  .col-badge.indev  { background: rgba(168,85,247,0.1); color: #A855F7; border: 1px solid rgba(168,85,247,0.3); }
+
+  .col-header--play   { background: rgba(236,72,153,0.07); }
+  .col-header--play h2 { color: #EC4899; }
+  .col-header--app    { background: rgba(251,113,133,0.06); }
+  .col-header--app h2  { color: #FB7185; }
+  .col-header--cyan   { background: rgba(0,212,255,0.06); }
   .col-header--cyan h2 { color: #00D4FF; }
   .col-header--purple { background: rgba(168,85,247,0.06); }
   .col-header--purple h2 { color: #A855F7; }
-  .col-header--pink { background: rgba(236,72,153,0.06); }
-  .col-header--pink h2 { color: #EC4899; }
 
   .col-body {
     padding: 0.5rem 0;
@@ -243,7 +387,7 @@ import Layout from '../layouts/Layout.astro';
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
-    padding: 0.6rem 1.25rem;
+    padding: 0.55rem 1rem;
     border-bottom: 1px solid rgba(255,255,255,0.04);
     transition: background 0.15s ease;
   }
@@ -257,7 +401,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .item-name {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     color: var(--color-text);
     font-weight: 500;
     line-height: 1.3;
@@ -266,11 +410,11 @@ import Layout from '../layouts/Layout.astro';
   /* Badges */
   .badge {
     display: inline-block;
-    font-size: 0.64rem;
+    font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    padding: 0.18rem 0.55rem;
+    padding: 0.16rem 0.48rem;
     border-radius: 20px;
     white-space: nowrap;
     border: 1px solid;
@@ -317,10 +461,10 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .limits-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--color-text);
-    margin: 0 0 1.1rem;
+    margin: 0 0 1rem;
   }
 
   .limits-list {
@@ -329,7 +473,7 @@ import Layout from '../layouts/Layout.astro';
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: 0.625rem;
   }
 
   .limits-list li {
@@ -352,7 +496,7 @@ import Layout from '../layouts/Layout.astro';
   .contact-row {
     text-align: center;
     padding: 2rem;
-    background: linear-gradient(135deg, rgba(0,212,255,0.04) 0%, rgba(168,85,247,0.04) 100%);
+    background: linear-gradient(135deg, rgba(236,72,153,0.04) 0%, rgba(0,212,255,0.04) 100%);
     border: 1px solid rgba(255,255,255,0.06);
     border-radius: 12px;
     display: flex;
@@ -370,22 +514,22 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .contact-link {
-    color: #00D4FF;
+    color: #EC4899;
     text-decoration: none;
-    border-bottom: 1px solid rgba(0,212,255,0.3);
+    border-bottom: 1px solid rgba(236,72,153,0.3);
     transition: border-color 0.2s ease;
   }
 
   .contact-link:hover {
-    border-color: #00D4FF;
+    border-color: #EC4899;
   }
 
   .contact-btn {
     display: inline-block;
     padding: 0.6rem 1.5rem;
     background: transparent;
-    color: #00D4FF;
-    border: 1px solid rgba(0,212,255,0.4);
+    color: #EC4899;
+    border: 1px solid rgba(236,72,153,0.4);
     border-radius: 8px;
     font-weight: 600;
     font-size: 0.875rem;
@@ -395,18 +539,22 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .contact-btn:hover {
-    background: rgba(0,212,255,0.1);
-    border-color: #00D4FF;
+    background: rgba(236,72,153,0.1);
+    border-color: #EC4899;
   }
 
   /* Responsive */
-  @media (max-width: 900px) {
+  @media (max-width: 1100px) {
     .status-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
+    .status-grid {
+      grid-template-columns: 1fr;
+    }
+
     .page-title { font-size: 2rem; }
 
     .limits-block {
@@ -418,5 +566,13 @@ import Layout from '../layouts/Layout.astro';
       gap: 1rem;
       padding: 1.5rem 1.25rem;
     }
+
+    .launch-flow {
+      flex-direction: column;
+      gap: 0.375rem;
+      text-align: center;
+    }
+
+    .arrow { transform: rotate(90deg); }
   }
 </style>
