@@ -181,22 +181,36 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || '';
     
     {includeAnalytics && GA_ID && (
       <script define:vars={{ gaId: GA_ID }}>
-        // Load Google Analytics after page load
-        window.addEventListener('load', () => {
+        const BL_CONSENT_KEY = 'bl_cookie_consent';
+
+        function loadGA() {
+          if ((window as any).__blGaLoaded) return;
+          (window as any).__blGaLoaded = true;
           const script = document.createElement('script');
           script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
           script.async = true;
           document.head.appendChild(script);
-
           script.onload = () => {
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+            (window as any).dataLayer = (window as any).dataLayer || [];
+            function gtag(...args: any[]) { (window as any).dataLayer.push(args); }
             gtag('js', new Date());
-            gtag('config', gaId, {
-              'send_page_view': true,
-              'anonymize_ip': true
-            });
+            gtag('config', gaId, { anonymize_ip: true });
           };
+        }
+
+        function checkConsent() {
+          try {
+            const raw = localStorage.getItem(BL_CONSENT_KEY);
+            if (!raw) return;
+            const consent = JSON.parse(raw);
+            if (consent?.analytics) loadGA();
+          } catch {}
+        }
+
+        window.addEventListener('load', checkConsent);
+        window.addEventListener('cookieConsentUpdated', (e: Event) => {
+          const detail = (e as CustomEvent).detail;
+          if (detail?.analytics) loadGA();
         });
       </script>
     )}

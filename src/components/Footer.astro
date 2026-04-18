@@ -1,6 +1,12 @@
 ---
 ---
 
+<script>
+  document.getElementById('footerCookieSettings')?.addEventListener('click', () => {
+    window.dispatchEvent(new Event('openCookieSettings'));
+  });
+</script>
+
 <footer class="bg-gray-900 border-t border-gray-800 py-8">
   <div class="container mx-auto px-4 sm:px-6">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -57,6 +63,7 @@
           <a href="/privacy" class="text-gray-400 hover:text-cyan-400 text-xs block transition-colors">Privacy</a>
           <a href="/terms" class="text-gray-400 hover:text-cyan-400 text-xs block transition-colors">Terms</a>
           <a href="/responsible-disclosure" class="text-gray-400 hover:text-cyan-400 text-xs block transition-colors">Responsible Disclosure</a>
+          <button id="footerCookieSettings" class="text-gray-400 hover:text-cyan-400 text-xs block transition-colors bg-transparent border-0 p-0 cursor-pointer">Cookie settings</button>
         </div>
       </div>
     </div>
