@@ -5,8 +5,8 @@ import InteractiveCompressionDemo from '../components/InteractiveCompressionDemo
 
 <Layout
   title="ByteLite Technology - Dictionary-Cascade Compression Engine"
-  description="ByteLite compression: dictionary-cascade architecture targeting aggressive ratios on structured data. Controlled result: 1GB to 15 bytes on enwik9 corpus. Browser demo live. Verification in progress. Patent US 63/807,027 pending."
-  keywords={["dictionary cascade compression", "Szudzik pairing", "shared model compression", "structured data compression", "lossless compression", "ByteLite technology"]}
+  description="ByteLite compression: Bit Motion Encoding over the Sigma-9 alphabet. Deterministic, lossless, structured-data compression. Payload convergence to under 64 bytes on structured text corpora. S-formula verification in progress. Patent pending."
+  keywords={["Bit Motion Encoding", "Sigma-9 alphabet", "BME compression", "structured data compression", "lossless compression", "ByteLite technology"]}
   schemaType="Article"
 >
 
@@ -19,12 +19,12 @@ import InteractiveCompressionDemo from '../components/InteractiveCompressionDemo
       <!-- Hero -->
       <div class="hero-block">
         <h1>Not Incremental. Architectural.</h1>
-        <p class="hero-sub">ByteLite replaces per-file entropy battles with shared dictionaries, deterministic cascades, and a model that travels with the data. Controlled test result: 1GB to 15 bytes on enwik9 corpus -- results vary by data type.</p>
+        <p class="hero-sub">ByteLite is a deterministic lossless compression system built on Bit Motion Encoding over the Sigma-9 alphabet. Every byte normalizes bitwise. Every round narrows toward a terminal payload. The model travels with the data. Controlled test on structured text corpora: payload convergence to under 64 bytes. Full S-formula (payload plus decompressor) under independent verification. Results vary by data type.</p>
         <div class="hero-ctas">
           <a href="/demo" class="btn btn-primary">Interactive Demo</a>
           <a href="/status" class="btn btn-outline">Current Status</a>
         </div>
-        <p class="patent-tag">Patent US 63/807,027 pending &nbsp;|&nbsp; Lossless, SHA-256 verified</p>
+        <p class="patent-tag">Patent pending &nbsp;|&nbsp; Lossless, SHA-256 verified</p>
       </div>
 
       <!-- File Playground -->
@@ -43,29 +43,32 @@ import InteractiveCompressionDemo from '../components/InteractiveCompressionDemo
         <div class="how-grid">
           <div class="how-card">
             <div class="how-num">01</div>
-            <h3>Data Input</h3>
+            <h3>Normalization</h3>
             <ul class="tight-list">
-              <li>Structured data enters the engine</li>
-              <li>Domain profile selected (text, code, logs)</li>
-              <li>Pre-trained dictionaries loaded</li>
+              <li>Source stream enters the engine</li>
+              <li>Bitwise normalization into canonical form</li>
+              <li>Source bit 0 becomes a single normalized 0. Source bit 1 expands to the eight-bit sequence 00000001</li>
+              <li>Stream is now deterministic across any input</li>
             </ul>
           </div>
           <div class="how-card">
             <div class="how-num">02</div>
-            <h3>Dictionary Cascade</h3>
+            <h3>Motion Encoding</h3>
             <ul class="tight-list">
-              <li>Pattern matching against shared dictionaries</li>
-              <li>Szudzik pairing function encodes residuals</li>
-              <li>Only delta from shared model must travel</li>
+              <li>Bit Motion Encoding operates over the Sigma-9 alphabet</li>
+              <li>Each motion value is a REF-relative successor choice</li>
+              <li>510-sequence motion dictionary governs choices</li>
+              <li>Mode Ladder A through F governs which representation is active</li>
             </ul>
           </div>
           <div class="how-card how-card-final">
             <div class="how-num">03</div>
             <h3>Convergence</h3>
             <ul class="tight-list">
-              <li>Sequential stages reduce structural redundancy</li>
-              <li>Output: compact key + profile reference</li>
-              <li>Decompressor reconstructs from shared context</li>
+              <li>Sequential rounds reduce structural redundancy</li>
+              <li>Payload reaches terminal form</li>
+              <li>Output: compressed payload plus round-count in 255-carry format</li>
+              <li>Decompressor replays motions in reverse to reconstruct bit-for-bit</li>
             </ul>
           </div>
         </div>
@@ -78,34 +81,44 @@ import InteractiveCompressionDemo from '../components/InteractiveCompressionDemo
         <div class="stage-grid">
           <div class="stage-card">
             <div class="stage-num">Stage 1</div>
-            <div class="stage-name">Pattern Identification</div>
+            <div class="stage-name">Normalization</div>
             <div class="stage-size">input</div>
-            <div class="stage-desc">domain pattern matching</div>
+            <div class="stage-desc">bitwise normalization</div>
             <div class="stage-bar-wrap"><div class="stage-bar" style="width:100%; background:rgba(0,212,255,0.7);"></div></div>
           </div>
           <div class="stage-card">
             <div class="stage-num">Stage 2</div>
-            <div class="stage-name">Dictionary Matching</div>
+            <div class="stage-name">Motion Encoding</div>
             <div class="stage-size">reduced</div>
-            <div class="stage-desc">cascade key lookup</div>
+            <div class="stage-desc">REF-relative motion over Sigma-9</div>
             <div class="stage-bar-wrap"><div class="stage-bar" style="width:42%; background:rgba(0,212,255,0.6);"></div></div>
           </div>
           <div class="stage-card">
             <div class="stage-num">Stage 3</div>
-            <div class="stage-name">Szudzik Encoding</div>
+            <div class="stage-name">Mode Convergence</div>
             <div class="stage-size">further reduced</div>
-            <div class="stage-desc">pairing function compression</div>
+            <div class="stage-desc">Mode Ladder A-F active</div>
             <div class="stage-bar-wrap"><div class="stage-bar" style="width:12%; background:rgba(168,85,247,0.7);"></div></div>
           </div>
           <div class="stage-card stage-final">
             <div class="stage-num">Stage 4</div>
             <div class="stage-name">Output Key</div>
             <div class="stage-size stage-size-final">compact key</div>
-            <div class="stage-desc">controlled test: 15 bytes on enwik9</div>
+            <div class="stage-desc">controlled test: under 64 bytes on structured text</div>
             <div class="stage-bar-wrap"><div class="stage-bar" style="width:2%; background:rgba(0,212,255,1); min-width:6px;"></div></div>
           </div>
         </div>
-        <p class="stage-note">Educational pipeline visualization. Relative proportions are illustrative. Controlled test result: 1GB to 15 bytes on enwik9 corpus. Intermediate stage sizes depend on data profile and dictionary coverage. Patent US 63/807,027 pending.</p>
+        <p class="stage-note">Educational pipeline visualization. Relative proportions are illustrative. Controlled test on structured text corpora: payload convergence to under 64 bytes. Full S-formula (payload plus decompressor) under independent verification. Results vary by data type. Patent pending.</p>
+      </div>
+
+      <!-- S-Formula Note -->
+      <div class="section-block">
+        <div class="section-label">Measurement</div>
+        <h2>How Results Are Measured</h2>
+        <div class="footnote-box">
+          <p>Compression ratios are measured against the Hutter Prize S-formula, which sums the compressed payload size and the decompressor binary size. Dictionary tables, when required, count in S. The S-formula is the standard for the Hutter Prize competition on the enwik9 corpus.</p>
+          <p>Random binary data outside the Sigma-9 alphabet domain receives no advantage from BME. Results reported on this site reflect structured text corpora. Performance on other data types varies.</p>
+        </div>
       </div>
 
       <!-- What Is Real Today -->
@@ -119,7 +132,7 @@ import InteractiveCompressionDemo from '../components/InteractiveCompressionDemo
               <li>Universal dictionaries implemented</li>
               <li>Lossless compression engine</li>
               <li>SHA-256 output verification</li>
-              <li>Patent US 63/807,027 filed</li>
+              <li>Patent pending</li>
             </ul>
           </div>
           <div class="reality-box box-cyan">
@@ -539,4 +552,18 @@ import InteractiveCompressionDemo from '../components/InteractiveCompressionDemo
   @media (max-width: 480px) {
     .stage-grid { grid-template-columns: 1fr 1fr; }
   }
+
+  .footnote-box {
+    background: rgba(168, 85, 247, 0.06);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+  .footnote-box p {
+    font-size: 0.875rem;
+    color: rgba(224, 224, 224, 0.65);
+    line-height: 1.65;
+    margin: 0 0 0.875rem;
+  }
+  .footnote-box p:last-child { margin-bottom: 0; }
 </style>

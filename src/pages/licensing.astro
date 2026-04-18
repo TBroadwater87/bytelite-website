@@ -4,62 +4,43 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Access & Licensing - ByteLite LLC"
-  description="Interest registration for HeartStrings Play, HeartStrings App early access, and ByteLite enterprise compression licensing. ByteLite LLC."
+  description="Early Supporter access and ByteLite enterprise compression licensing. ByteLite LLC."
 >
 
   <section class="pricing-section">
     <div class="container">
       <h2>Access &amp; Licensing</h2>
       <p class="section-intro">
-        Products at different stages. Register interest for what matters to you.
+        Support the ecosystem or license the infrastructure.
       </p>
 
       <div class="pricing-grid">
-        <!-- HeartStrings Play -->
-        <div class="pricing-card card-play">
-          <div class="card-stage stage-live">Launching Now</div>
+
+        <!-- Early Supporter -->
+        <div class="pricing-card card-supporter">
+          <div class="card-stage stage-supporter">Early Supporter</div>
           <div class="plan-header">
-            <h3>HeartStrings Play</h3>
+            <h3>Early Supporter</h3>
             <div class="price">
-              <span class="amount-label">Board Game</span>
+              <span class="amount-label">Pay what feels right</span>
             </div>
-            <div class="annual-price">Physical product. Launch availability TBA.</div>
+            <div class="annual-price">$25 minimum. No maximum.</div>
           </div>
           <ul class="features">
-            <li>Six-tier card progression</li>
-            <li>Guide characters AIya and AIon</li>
-            <li>Token set and full ruleset</li>
-            <li>2-4 players, 45-90 min</li>
-            <li>Physical prototype in preparation</li>
+            <li>Priority updates on all ByteLite LLC products</li>
+            <li>First access to ByteLite demos when available</li>
+            <li>HeartStrings App closed beta access (when live)</li>
+            <li>Recognition on the project supporter list</li>
+            <li>No recurring charges. No obligations.</li>
           </ul>
-          <a href="/heartstrings" class="btn btn-play">Join the Waitlist</a>
+          <a href="/contact" class="btn btn-supporter">Become a Supporter</a>
         </div>
 
-        <!-- HeartStrings App -->
-        <div class="pricing-card card-app">
-          <div class="card-stage stage-dev">In Development</div>
-          <div class="plan-header">
-            <h3>HeartStrings App</h3>
-            <div class="price">
-              <span class="amount-label">Digital Companion</span>
-            </div>
-            <div class="annual-price">Companion to the physical game. Pricing TBA.</div>
-          </div>
-          <ul class="features">
-            <li>Matching engine (in development)</li>
-            <li>AIya interaction layer</li>
-            <li>Companion to HeartStrings Play</li>
-            <li>Mobile-first design</li>
-            <li>Early access registration open</li>
-          </ul>
-          <a href="/heartstrings-app" class="btn btn-app">Register Interest</a>
-        </div>
-
-        <!-- ByteLite Enterprise -->
+        <!-- Professional Enterprise -->
         <div class="pricing-card card-enterprise">
-          <div class="card-stage stage-enterprise">Enterprise Inquiry</div>
+          <div class="card-stage stage-enterprise">Professional Enterprise</div>
           <div class="plan-header">
-            <h3>ByteLite Enterprise</h3>
+            <h3>ByteLite compression licensing</h3>
             <div class="price">
               <span class="amount">50%</span>
               <span class="period">of savings</span>
@@ -67,7 +48,7 @@ import Layout from '../layouts/Layout.astro';
             <div class="annual-price">No savings = No cost</div>
           </div>
           <ul class="features">
-            <li>Dictionary-cascade compression infrastructure</li>
+            <li>Bit Motion Encoding compression infrastructure</li>
             <li>Self-reporting API integration (planned)</li>
             <li>Assigned enterprise auditor (planned)</li>
             <li>Annual checksum verification (planned)</li>
@@ -76,6 +57,7 @@ import Layout from '../layouts/Layout.astro';
           </ul>
           <a href="/contact" class="btn btn-enterprise">Contact for Details</a>
         </div>
+
       </div>
 
       <!-- Enterprise Model Details -->
@@ -87,7 +69,7 @@ import Layout from '../layouts/Layout.astro';
             <h4>Fair Usage Model</h4>
             <p>
               Pay only 50% of your realized cost savings. With ByteLite compression,
-              your savings scale with usage. Example: Save $100 in storage/transmission - pay $50 in licensing.
+              your savings scale with usage. Example: Save $100 in storage/transmission -- pay $50 in licensing.
             </p>
           </div>
           <div class="detail-card">
@@ -107,12 +89,18 @@ import Layout from '../layouts/Layout.astro';
           <div class="detail-card">
             <h4>Patent Protection</h4>
             <p>
-              ByteLite compression is protected under USPTO Provisional Patent 63/807,027.
+              ByteLite compression is protected under USPTO patent-pending status.
               Enterprise partnerships are direct licensing agreements with ByteLite LLC.
             </p>
           </div>
         </div>
       </div>
+
+      <div class="trust-note">
+        <h4>Trust &amp; Innovation</h4>
+        <p>Your licensing fees directly support ByteLite LLC product development and infrastructure research.</p>
+      </div>
+
     </div>
   </section>
 </Layout>
@@ -150,6 +138,9 @@ import Layout from '../layouts/Layout.astro';
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-bottom: 4rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .pricing-card {
@@ -167,8 +158,7 @@ import Layout from '../layouts/Layout.astro';
     box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
   }
 
-  .card-play    { border-color: rgba(236, 72, 153, 0.35); }
-  .card-app     { border-color: rgba(251, 113, 133, 0.35); }
+  .card-supporter  { border-color: rgba(236, 72, 153, 0.35); }
   .card-enterprise { border-color: rgba(0, 212, 255, 0.35); }
 
   .card-stage {
@@ -182,8 +172,7 @@ import Layout from '../layouts/Layout.astro';
     margin-bottom: 1rem;
   }
 
-  .stage-live       { background: rgba(236,72,153,0.15); color: #EC4899; border: 1px solid rgba(236,72,153,0.35); }
-  .stage-dev        { background: rgba(251,113,133,0.12); color: #FB7185; border: 1px solid rgba(251,113,133,0.35); }
+  .stage-supporter  { background: rgba(236,72,153,0.15); color: #EC4899; border: 1px solid rgba(236,72,153,0.35); }
   .stage-enterprise { background: rgba(0,212,255,0.1); color: #00D4FF; border: 1px solid rgba(0,212,255,0.35); }
 
   .amount-label {
@@ -244,7 +233,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .features li::before {
-    content: "✓";
+    content: "+";
     position: absolute;
     left: 0;
     color: var(--color-primary);
@@ -261,22 +250,12 @@ import Layout from '../layouts/Layout.astro';
     transition: all 0.3s ease;
   }
 
-  .btn-play {
+  .btn-supporter {
     background: linear-gradient(135deg, #EC4899 0%, #be185d 100%);
     color: white;
   }
 
-  .btn-play:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-  }
-
-  .btn-app {
-    background: linear-gradient(135deg, #FB7185 0%, #e11d48 100%);
-    color: white;
-  }
-
-  .btn-app:hover {
+  .btn-supporter:hover {
     opacity: 0.9;
     transform: translateY(-2px);
   }
@@ -294,7 +273,7 @@ import Layout from '../layouts/Layout.astro';
 
   .enterprise-details {
     max-width: 1000px;
-    margin: 0 auto;
+    margin: 0 auto 3rem;
   }
 
   .enterprise-details h3 {
@@ -342,13 +321,35 @@ import Layout from '../layouts/Layout.astro';
     line-height: 1.6;
   }
 
+  .trust-note {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    background: rgba(0, 212, 255, 0.04);
+    border: 1px solid rgba(0, 212, 255, 0.12);
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .trust-note h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .trust-note p {
+    font-size: 0.875rem;
+    color: rgba(224, 224, 224, 0.55);
+    line-height: 1.6;
+    margin: 0;
+  }
+
   @media (max-width: 768px) {
     .pricing-grid {
       grid-template-columns: 1fr;
-    }
-
-    .pricing-card.featured {
-      transform: none;
     }
   }
 </style>

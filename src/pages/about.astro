@@ -48,7 +48,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="eco-card play">
             <div class="eco-header">
               <h3>HeartStrings Play</h3>
-              <span class="badge launch">Launch Product</span>
+              <span class="badge launch">Pre-Launch</span>
             </div>
             <p>A premium social board game for couples, dates, and intimate gatherings. Six escalating card tiers. AIya and AIon as guides. The first public-facing product from ByteLite LLC.</p>
             <a href="/heartstrings" class="eco-link play">See HeartStrings Play</a>
@@ -68,7 +68,7 @@ import Layout from '../layouts/Layout.astro';
               <h3>ByteLite</h3>
               <span class="badge active">Active Engineering</span>
             </div>
-            <p>The infrastructure layer. Structural compression using dictionary-cascade architecture. Patent US 63/807,027. Born from the storage problem HeartStrings surfaced in 2024.</p>
+            <p>The infrastructure layer. Structural compression using Bit Motion Encoding over the Sigma-9 alphabet. Patent pending. Born from the storage problem HeartStrings surfaced in 2024.</p>
             <a href="/technology" class="eco-link bytelite">See ByteLite</a>
           </div>
 
@@ -136,7 +136,7 @@ import Layout from '../layouts/Layout.astro';
               First access will be for HeartStrings Play purchasers.
             </p>
             <div class="progress-bar">
-              <div class="progress-fill heartstrings-app" style="width: 35%"></div>
+              <div class="progress-fill heartstrings-app" style="width: 85%"></div>
             </div>
           </div>
 
@@ -146,8 +146,8 @@ import Layout from '../layouts/Layout.astro';
               <span class="status-badge active">Active Development</span>
             </div>
             <p>
-              Dictionary-cascade compression in advanced development. Patent US 63/807,027 filed.
-              Browser demo live at /demo. Broader verification application in development.
+              Bit Motion Encoding compression in advanced development. Patent pending.
+              Browser demo live at /demo. Verification application in development.
             </p>
             <div class="progress-bar">
               <div class="progress-fill bytelite" style="width: 80%"></div>
@@ -177,11 +177,15 @@ import Layout from '../layouts/Layout.astro';
         <div class="founder-card">
           <h3>Tash Broadwater, Founder and CEO</h3>
           <p>
-            Software engineer and compression researcher based in Helena, MT. 15+ years optimizing data systems.
-            Specializes in algorithmic design and edge AI systems. Built ByteLite to solve the storage problem
-            that HeartStrings surfaced. Building the ecosystem from the consumer product layer down.
+            Software engineer based in Helena, MT. Fifteen years in software engineering broadly.
+            Compression research and AI architecture work since 2024. Founder and sole member of ByteLite LLC.
+            Built ByteLite to solve the storage problem that HeartStrings surfaced. Building the ecosystem from the consumer product layer down.
           </p>
         </div>
+      </div>
+
+      <div class="founder-cred">
+        <p>ByteLite LLC is registered in Montana. EIN 33-3972096. UEI U3V9EX3NJ3P3. The technology stack is patent-pending and built under Micro Entity USPTO status. All funding to date is non-dilutive.</p>
       </div>
 
       <!-- CTA -->
@@ -503,6 +507,22 @@ import Layout from '../layouts/Layout.astro';
     color: var(--color-text-dim);
     line-height: 1.65;
     font-size: 0.9375rem;
+  }
+
+  /* Founder Cred */
+  .founder-cred {
+    max-width: 700px;
+    margin: 1rem auto 0;
+    padding: 1rem 1.5rem;
+    background: rgba(0,212,255,0.04);
+    border: 1px solid rgba(0,212,255,0.12);
+    border-radius: 8px;
+  }
+  .founder-cred p {
+    font-size: 0.8125rem;
+    color: rgba(224,224,224,0.5);
+    line-height: 1.6;
+    margin: 0;
   }
 
   /* CTA Section */
