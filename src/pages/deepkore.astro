@@ -67,10 +67,10 @@ import Layout from '../layouts/Layout.astro';
     <div class="container mx-auto px-4 sm:px-6">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-8">
-          <h2 class="text-3xl font-bold mb-3">AIya - Conversation Preview</h2>
-          <p class="text-gray-400 mb-3">Curated sample conversations showing how AIya responds.</p>
-          <span class="inline-block px-4 py-1 bg-cyan-900/40 border border-cyan-500/40 rounded-full text-cyan-400 text-sm font-semibold tracking-wide">
-            Interactive Preview - curated responses, not live AI
+          <h2 class="text-3xl font-bold mb-3">AIya - Architecture Demonstrations</h2>
+          <p class="text-gray-400 mb-3">These conversations demonstrate how the AIya response state machine behaves. They are architecture demonstrations, not live AI responses. The runtime is local-only and not yet publicly deployed.</p>
+          <span class="inline-block px-4 py-1 bg-purple-900/40 border border-purple-500/40 rounded-full text-purple-400 text-sm font-semibold tracking-wide">
+            Architecture Demonstration - local runtime, not publicly deployed
           </span>
         </div>
 
@@ -101,7 +101,7 @@ import Layout from '../layouts/Layout.astro';
               <div class="convo-bubble user-bubble">Can you explain what ByteLite actually does in plain English?</div>
             </div>
             <div class="convo-msg aiya">
-              <div class="convo-label aiya-label">AIya (Preview)</div>
+              <div class="convo-label aiya-label">AIya (Architecture Demo)</div>
               <div class="convo-bubble aiya-bubble">
                 ByteLite compresses data by normalizing its source stream into a canonical form over the Sigma-9 alphabet, then encoding it using Bit Motion Encoding. Each motion value in the stream is a REF-relative choice from a 510-sequence motion dictionary. The Mode Ladder governs which representation is active at each round. Rounds converge until the payload reaches terminal form. On highly structured text corpora, convergence is extreme. On random binary data, it is much smaller. It is not magic. It is deterministic structure.
               </div>
@@ -116,7 +116,7 @@ import Layout from '../layouts/Layout.astro';
               <div class="convo-bubble user-bubble">How is this different from gzip or zstd?</div>
             </div>
             <div class="convo-msg aiya">
-              <div class="convo-label aiya-label">AIya (Preview)</div>
+              <div class="convo-label aiya-label">AIya (Architecture Demo)</div>
               <div class="convo-bubble aiya-bubble">
                 Classical compressors like gzip and zstd encode each file from scratch using local pattern matching. ByteLite operates on a different premise entirely. Source data is first bitwise normalized into a canonical form over the Sigma-9 alphabet. Bit Motion Encoding then represents the stream as a sequence of REF-relative motion values. Rounds converge toward a terminal payload. The same input produces the same payload every time. That is not an implementation detail. It is an architectural commitment. For random data outside the Sigma-9 domain, ByteLite offers no advantage. It is a different architecture, not a universal replacement.
               </div>
@@ -131,7 +131,7 @@ import Layout from '../layouts/Layout.astro';
               <div class="convo-bubble user-bubble">Can you generate harmful content or help with something dangerous?</div>
             </div>
             <div class="convo-msg aiya">
-              <div class="convo-label aiya-label">AIya (Preview)</div>
+              <div class="convo-label aiya-label">AIya (Architecture Demo)</div>
               <div class="convo-bubble aiya-bubble">
                 That falls outside what I am designed for. My response scope is defined by the Genesis Goal Keeper framework, which governs what I engage with and how. I can help you understand ByteLite, Deep Kore research, HeartStrings, or general technical questions within scope. If you have a specific legitimate research question, I am happy to work through it.
               </div>
@@ -151,7 +151,7 @@ import Layout from '../layouts/Layout.astro';
               <div class="convo-bubble user-bubble">Walk me through why deterministic output matters for compression.</div>
             </div>
             <div class="convo-msg aiya">
-              <div class="convo-label aiya-label">AIya (Preview)</div>
+              <div class="convo-label aiya-label">AIya (Architecture Demo)</div>
               <div class="convo-bubble aiya-bubble">
                 Deterministic output matters for two reasons. First, correctness: if you compress a file and later decompress it, you need to get the exact same bytes back. Any non-determinism in the process breaks round-trip fidelity. Second, verifiability: deterministic systems can be audited. You can run the same input twice and prove the output is identical. Probabilistic systems cannot offer that guarantee by definition. ByteLite's dictionary-cascade approach produces the same compressed key for the same input, every time. That is not an implementation detail. It is an architectural commitment.
               </div>
@@ -168,10 +168,10 @@ import Layout from '../layouts/Layout.astro';
     <div class="container mx-auto px-4 sm:px-6">
       <div class="max-w-3xl mx-auto">
         <div class="text-center mb-8">
-          <h2 class="text-3xl font-bold mb-3">Try AIya</h2>
-          <p class="text-gray-400 mb-3">Select a prompt to see how AIya responds.</p>
-          <span class="inline-block px-4 py-1 bg-cyan-900/40 border border-cyan-500/40 rounded-full text-cyan-400 text-sm font-semibold tracking-wide">
-            Interactive Preview - Deterministic curated responses only
+          <h2 class="text-3xl font-bold mb-3">AIya Response Architecture</h2>
+          <p class="text-gray-400 mb-3">Select a prompt to see an architecture demonstration of how AIya responds. These are representative of the actual state machine behavior, not live AI generation.</p>
+          <span class="inline-block px-4 py-1 bg-purple-900/40 border border-purple-500/40 rounded-full text-purple-400 text-sm font-semibold tracking-wide">
+            Architecture Demonstration - local runtime, not publicly deployed
           </span>
         </div>
 
@@ -187,7 +187,8 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <p class="text-center text-gray-500 text-sm mt-3">
-          Interactive Preview - Deterministic curated responses. Not live AI generation.
+          Architecture demonstration. The Deep Kore runtime is local-only. Public API pending backend deployment.
+          <a href="/deepkore-lab" style="color:#A855F7;margin-left:0.4rem;">Go to Deep Kore Lab --></a>
         </p>
       </div>
     </div>
@@ -251,18 +252,28 @@ import Layout from '../layouts/Layout.astro';
             </ul>
           </div>
           <div class="real-today-box border-cyan-500/50 bg-cyan-900/10">
-            <div class="real-today-label text-cyan-400">Interactive Preview</div>
+            <div class="real-today-label text-cyan-400">Architecture Demonstrations</div>
             <ul class="real-today-list">
-              <li class="text-cyan-300">AIya conversation gallery (this page)</li>
-              <li class="text-cyan-300">AIya mini sandbox (curated prompts)</li>
-              <li class="text-cyan-300">Governance panel (static view)</li>
+              <li class="text-cyan-300">AIya response state machine gallery (this page)</li>
+              <li class="text-cyan-300">AIya response architecture sandbox</li>
+              <li class="text-cyan-300">Governance panel (public metadata view)</li>
+            </ul>
+          </div>
+          <div class="real-today-box border-orange-500/50 bg-orange-900/10">
+            <div class="real-today-label text-orange-400">Lab -- Logging Layer Live</div>
+            <ul class="real-today-list">
+              <li class="text-orange-300">Deep Kore Lab at /deepkore-lab</li>
+              <li class="text-orange-300">Prompt submission queue (nightly learning)</li>
+              <li class="text-orange-300">Build state and test count visible</li>
+              <li class="text-orange-300">Public runtime pending backend server deployment</li>
             </ul>
           </div>
           <div class="real-today-box border-purple-500/50 bg-purple-900/10">
             <div class="real-today-label text-purple-400">In Development</div>
             <ul class="real-today-list">
               <li class="text-purple-300">Deep Kore Pass 2</li>
-              <li class="text-purple-300">AIya live interaction layer</li>
+              <li class="text-purple-300">HTTP wrapper for AIya_chat.exe</li>
+              <li class="text-purple-300">Backend server deployment</li>
               <li class="text-purple-300">Deep Kore Glass Box public demo</li>
             </ul>
           </div>
@@ -283,9 +294,9 @@ import Layout from '../layouts/Layout.astro';
   <section class="py-12 bg-gradient-to-b from-purple-900/10 to-transparent">
     <div class="container mx-auto px-4 sm:px-6">
       <div class="flex flex-wrap gap-4 justify-center">
-        <a href="/demo" class="btn btn-deepkore">Try the Demo</a>
+        <a href="/deepkore-lab" class="btn btn-deepkore">Deep Kore Lab</a>
+        <a href="/demo" class="btn btn-outline-deepkore">Try the Demo</a>
         <a href="/status" class="btn btn-outline-deepkore">Project Status</a>
-        <a href="/contact" class="btn btn-outline-deepkore">Contact</a>
         <a href="/ethics" class="btn btn-outline-deepkore">Ethics &amp; Governance</a>
       </div>
     </div>
