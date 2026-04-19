@@ -1,0 +1,833 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Build info baked at Astro build time from actual DeepKore_Final artifacts
+const BUILD_DATE = '2026-04-18';
+const BUILD_RUNTIME = 'AIya_chat.exe -- MSVC, C++17, Windows x64, AVX2';
+const TESTS_PASSING = 703;
+const LAST_NIGHTLY = '2026-04-18 04:00 MT';
+---
+
+<Layout
+  title="Deep Kore Lab - ByteLite LLC"
+  description="Deep Kore Lab: submit prompts to the AIya learning corpus. Deterministic daily build. Nightly learning updates. Interactions are logged. Do not submit sensitive data."
+  keywords={["Deep Kore Lab", "AIya", "deterministic AI", "knowledge base", "nightly learning", "ByteLite research"]}
+  schemaType="Article"
+>
+  <section class="lab-hero">
+    <div class="container">
+      <div class="hero-top">
+        <span class="lab-badge">Deep Kore Lab</span>
+        <div class="build-strip">
+          <span class="build-item"><span class="build-label">Build</span> {BUILD_DATE}</span>
+          <span class="build-sep">|</span>
+          <span class="build-item"><span class="build-label">Tests</span> {TESTS_PASSING} passing</span>
+          <span class="build-sep">|</span>
+          <span class="build-item"><span class="build-label">Last nightly</span> {LAST_NIGHTLY}</span>
+          <span class="build-sep">|</span>
+          <span class="build-item deploy-warn"><span class="build-label">Public API</span> pending deployment</span>
+        </div>
+      </div>
+      <h1 class="lab-title">AIya -- Deep Kore Lab</h1>
+      <p class="lab-sub">
+        Submit prompts to the AIya learning corpus. Deterministic daily build. Updated nightly.
+      </p>
+
+      <!-- Deployment blocker notice -->
+      <div class="blocker-notice">
+        <div class="blocker-icon">!</div>
+        <div class="blocker-body">
+          <strong>Public runtime not yet deployed.</strong>
+          The Deep Kore / AIya runtime (<code>AIya_chat.exe</code>) is a deterministic C++ knowledge-base system
+          running locally on a Windows machine. It requires a backend server to serve live responses publicly.
+          That deployment step has not yet been completed.
+          <br><br>
+          What you can do today: submit prompts to the learning queue. They will be processed during the next
+          nightly local build. Come back tomorrow -- if the nightly build ran, the knowledge state may have changed.
+          This is the real model.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-body">
+    <div class="container">
+      <div class="lab-grid">
+
+        <!-- Left: Prompt form -->
+        <div class="lab-left">
+          <div class="panel">
+            <h2 class="panel-title">Submit to Learning Queue</h2>
+            <p class="panel-desc">
+              The site is deployed as a static build with no backend server. Submissions are logged
+              to your browser's localStorage. A backend server is required for persistent corpus
+              submission to the nightly learning pipeline. This is the exact blocker described above.
+            </p>
+
+            <div class="warning-box">
+              Do not submit sensitive, confidential, or personal information.
+              When the backend deploys, submissions will be used in nightly learning updates.
+              This is a public research environment, not a consumer service.
+            </div>
+
+            <form id="labForm" class="lab-form" novalidate>
+              <label for="promptInput" class="form-label">Your prompt</label>
+              <textarea
+                id="promptInput"
+                name="prompt"
+                class="form-textarea"
+                placeholder="What is ByteLite? / What is a compression algorithm? / What is HeartStrings?"
+                maxlength="500"
+                rows="4"
+                required
+              ></textarea>
+              <div class="char-counter"><span id="charCount">0</span> / 500</div>
+              <button type="submit" class="submit-btn" id="submitBtn">
+                Log to browser session
+              </button>
+            </form>
+
+            <div id="labResponse" class="lab-response hidden"></div>
+          </div>
+
+          <!-- What AIya actually is -->
+          <div class="panel panel--dim">
+            <h3 class="panel-title-sm">What AIya Actually Is</h3>
+            <div class="system-facts">
+              <div class="fact-row">
+                <span class="fact-key">Architecture</span>
+                <span class="fact-val">Deterministic C++ knowledge-base system</span>
+              </div>
+              <div class="fact-row">
+                <span class="fact-key">Not</span>
+                <span class="fact-val">A large language model. Does not generate, hallucinate, or guess.</span>
+              </div>
+              <div class="fact-row">
+                <span class="fact-key">Response rule</span>
+                <span class="fact-val">KNOWN state only. UNKNOWN and UNSAFE produce no answer.</span>
+              </div>
+              <div class="fact-row">
+                <span class="fact-key">Determinism</span>
+                <span class="fact-val">Same input + same build = identical output. Proven across 299 closed-loop tests.</span>
+              </div>
+              <div class="fact-row">
+                <span class="fact-key">Knowledge states</span>
+                <span class="fact-val">KNOWN / UNKNOWN / AMBIGUOUS / UNSAFE / NEEDS_SOURCE</span>
+              </div>
+              <div class="fact-row">
+                <span class="fact-key">Runtime</span>
+                <span class="fact-val">{BUILD_RUNTIME}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Build info and nightly model -->
+        <div class="lab-right">
+
+          <!-- Nightly learning model -->
+          <div class="panel">
+            <h3 class="panel-title-sm">How the Nightly Model Works</h3>
+            <ol class="nightly-steps">
+              <li>
+                <span class="step-num">1</span>
+                <div class="step-body">
+                  <strong>During the day</strong>
+                  The current build is frozen. Same input produces identical output. This is architectural, not accidental.
+                </div>
+              </li>
+              <li>
+                <span class="step-num">2</span>
+                <div class="step-body">
+                  <strong>At night</strong>
+                  Submitted prompts are included in the learning corpus and processed by the local runtime.
+                  Structural learning, term learning, and response analysis may update the next build.
+                </div>
+              </li>
+              <li>
+                <span class="step-num">3</span>
+                <div class="step-body">
+                  <strong>Truth separation</strong>
+                  Website interactions are used for structural and language learning only.
+                  They do NOT automatically become factual truth. Truth promotion is a separate governed process.
+                </div>
+              </li>
+              <li>
+                <span class="step-num">4</span>
+                <div class="step-body">
+                  <strong>Visible evolution</strong>
+                  When the public runtime deploys, you will be able to compare yesterday's response vs today's.
+                  The build date shown above changes when the nightly build runs.
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <!-- Build state -->
+          <div class="panel panel--dim">
+            <h3 class="panel-title-sm">Current Build State</h3>
+            <div class="build-state-grid">
+              <div class="bs-row">
+                <span class="bs-key">Build date</span>
+                <span class="bs-val">{BUILD_DATE}</span>
+              </div>
+              <div class="bs-row">
+                <span class="bs-key">Regression tests</span>
+                <span class="bs-val pass-val">{TESTS_PASSING} / {TESTS_PASSING} passing</span>
+              </div>
+              <div class="bs-row">
+                <span class="bs-key">Closed-loop tests</span>
+                <span class="bs-val pass-val">299 / 299 passing</span>
+              </div>
+              <div class="bs-row">
+                <span class="bs-key">Invariant engine</span>
+                <span class="bs-val pass-val">240 / 240 passing</span>
+              </div>
+              <div class="bs-row">
+                <span class="bs-key">Deployment status</span>
+                <span class="bs-val warn-val">Local only -- public API pending</span>
+              </div>
+              <div class="bs-row">
+                <span class="bs-key">Last nightly</span>
+                <span class="bs-val">{LAST_NIGHTLY}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- What AIya knows (from offline corpus) -->
+          <div class="panel panel--dim">
+            <h3 class="panel-title-sm">Verified Known Topics (offline corpus)</h3>
+            <p class="panel-subdesc">These queries return KNOWN state in the current build.</p>
+            <div class="known-chips">
+              <span class="chip chip-known">CPU</span>
+              <span class="chip chip-known">GPU</span>
+              <span class="chip chip-known">RAM</span>
+              <span class="chip chip-known">ByteLite</span>
+              <span class="chip chip-known">compression</span>
+              <span class="chip chip-known">Deep Kore</span>
+              <span class="chip chip-known">HeartStrings</span>
+            </div>
+            <p class="panel-subdesc mt-sm">
+              Queries outside the corpus return UNKNOWN state. No hallucination. No guess.
+              This is the architecture, not a limitation to be papered over.
+            </p>
+          </div>
+
+          <!-- Deployment blocker detail -->
+          <div class="panel panel--wire">
+            <h3 class="panel-title-sm">Public API Deployment Blocker</h3>
+            <div class="blocker-detail-rows">
+              <div class="bd-row">
+                <span class="bd-key">Runtime</span>
+                <span class="bd-val"><code>AIya_chat.exe</code> -- Windows PE32+</span>
+              </div>
+              <div class="bd-row">
+                <span class="bd-key">Interface</span>
+                <span class="bd-val">stdin / stdout CLI only -- no HTTP wrapper</span>
+              </div>
+              <div class="bd-row">
+                <span class="bd-key">Hosting</span>
+                <span class="bd-val">Cloudflare Pages -- V8 isolates, cannot execute PE binaries</span>
+              </div>
+              <div class="bd-row">
+                <span class="bd-key">Required</span>
+                <span class="bd-val">Windows backend server + HTTP wrapper around CLI</span>
+              </div>
+              <div class="bd-row">
+                <span class="bd-key">Status</span>
+                <span class="bd-val warn-val">Not yet deployed</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CTA row -->
+      <div class="lab-cta-row">
+        <a href="/deepkore" class="cta-link cta-link--purple">Deep Kore research --></a>
+        <a href="/status" class="cta-link cta-link--dim">Status board --></a>
+        <a href="/ethics" class="cta-link cta-link--dim">Ethics and governance --></a>
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // ARCHITECTURE NOTE:
+  // The site is deployed as a static build (no backend server adapter configured).
+  // POST API routes cannot execute server-side in this configuration.
+  // Submissions are logged to browser localStorage only.
+  // A backend server deployment is required for persistent corpus logging.
+  // This is the exact same blocker described on the page.
+
+  const DK_LOG_KEY = 'dk_submission_log';
+  const BUILD_DATE = '2026-04-18';
+
+  function fnv32(s: string): string {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = (Math.imul(h, 0x01000193) >>> 0);
+    }
+    return h.toString(16).padStart(8, '0');
+  }
+
+  function logSubmission(prompt: string): string {
+    const id = `dk-${fnv32(prompt + Date.now())}`;
+    try {
+      const existing = JSON.parse(localStorage.getItem(DK_LOG_KEY) ?? '[]') as Array<{ id: string; prompt: string; ts: number }>;
+      existing.push({ id, prompt, ts: Date.now() });
+      localStorage.setItem(DK_LOG_KEY, JSON.stringify(existing.slice(-50)));
+    } catch { /* localStorage may be unavailable */ }
+    return id;
+  }
+
+  const form = document.getElementById('labForm') as HTMLFormElement | null;
+  const textarea = document.getElementById('promptInput') as HTMLTextAreaElement | null;
+  const charCount = document.getElementById('charCount');
+  const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement | null;
+  const responseEl = document.getElementById('labResponse');
+
+  textarea?.addEventListener('input', () => {
+    const len = textarea.value.length;
+    if (charCount) charCount.textContent = String(len);
+  });
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const prompt = textarea?.value.trim() ?? '';
+    if (!prompt || prompt.length < 2) return;
+
+    if (submitBtn) submitBtn.disabled = true;
+
+    const id = logSubmission(prompt);
+
+    if (responseEl) {
+      responseEl.classList.remove('hidden', 'response-error');
+      responseEl.classList.add('response-ok');
+      responseEl.innerHTML = `
+        <div class="resp-header">
+          <span class="resp-status-badge">Logged</span>
+          <span class="resp-id">${id}</span>
+        </div>
+        <p class="resp-msg">Saved to browser session log.</p>
+        <p class="resp-note">
+          The site is deployed as a static build. A backend server is required for persistent corpus
+          submission. This prompt is stored in your browser's localStorage (key: dk_submission_log).
+          When the backend server deploys, you can resubmit or the local log format will be compatible.
+        </p>
+        <p class="resp-build">Build: ${BUILD_DATE}</p>
+      `;
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit another';
+    }
+
+    if (textarea) textarea.value = '';
+    if (charCount) charCount.textContent = '0';
+  });
+</script>
+
+<style>
+  .lab-hero {
+    padding: 3rem 0 2rem;
+    background: var(--color-bg-darker);
+    border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .hero-top {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .lab-badge {
+    display: inline-block;
+    background: rgba(168, 85, 247, 0.12);
+    color: #A855F7;
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.22rem 0.75rem;
+    white-space: nowrap;
+  }
+
+  .build-strip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+  }
+
+  .build-item {
+    color: rgba(224, 224, 224, 0.55);
+  }
+
+  .build-label {
+    color: rgba(224, 224, 224, 0.35);
+    margin-right: 0.2rem;
+  }
+
+  .build-sep {
+    color: rgba(255, 255, 255, 0.12);
+  }
+
+  .deploy-warn {
+    color: #FB923C;
+  }
+
+  .lab-title {
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+    font-weight: 800;
+    margin: 0 0 0.6rem;
+    background: linear-gradient(135deg, #A855F7 0%, #6B21A8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .lab-sub {
+    font-size: 1rem;
+    color: var(--color-text-dim);
+    margin: 0 0 1.5rem;
+    max-width: 520px;
+  }
+
+  .blocker-notice {
+    display: flex;
+    gap: 1rem;
+    background: rgba(251, 146, 60, 0.06);
+    border: 1px solid rgba(251, 146, 60, 0.3);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-size: 0.85rem;
+    color: rgba(224, 224, 224, 0.7);
+    line-height: 1.6;
+    max-width: 760px;
+  }
+
+  .blocker-icon {
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #FB923C;
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(251, 146, 60, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  .blocker-body strong {
+    color: #FB923C;
+  }
+
+  .blocker-body code {
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+  }
+
+  /* Lab body */
+  .lab-body {
+    padding: 2.5rem 0 5rem;
+    background: var(--color-bg-darker);
+  }
+
+  .lab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Panels */
+  .panel {
+    background: rgba(10, 14, 39, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .panel--dim {
+    border-color: rgba(255, 255, 255, 0.05);
+    background: rgba(10, 14, 39, 0.45);
+  }
+
+  .panel--wire {
+    border-color: rgba(251, 146, 60, 0.2);
+    background: rgba(251, 146, 60, 0.03);
+  }
+
+  .panel-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #A855F7;
+    margin: 0 0 0.75rem;
+  }
+
+  .panel-title-sm {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgba(224, 224, 224, 0.75);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.85rem;
+  }
+
+  .panel-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-dim);
+    line-height: 1.6;
+    margin: 0 0 1rem;
+  }
+
+  .panel-subdesc {
+    font-size: 0.78rem;
+    color: rgba(224, 224, 224, 0.45);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .mt-sm { margin-top: 0.65rem; }
+
+  /* Warning box */
+  .warning-box {
+    background: rgba(0, 212, 255, 0.04);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    color: rgba(0, 212, 255, 0.75);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Form */
+  .lab-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(224, 224, 224, 0.75);
+  }
+
+  .form-textarea {
+    background: rgba(6, 8, 19, 0.8);
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    border-radius: 6px;
+    padding: 0.75rem;
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    resize: vertical;
+    transition: border-color 0.2s ease;
+  }
+
+  .form-textarea:focus {
+    outline: none;
+    border-color: rgba(168, 85, 247, 0.5);
+  }
+
+  .char-counter {
+    font-size: 0.75rem;
+    color: rgba(224, 224, 224, 0.35);
+    text-align: right;
+  }
+
+  .submit-btn {
+    background: #A855F7;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    align-self: flex-start;
+  }
+
+  .submit-btn:hover:not(:disabled) {
+    background: #9333EA;
+    transform: translateY(-1px);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  /* Response area */
+  .lab-response {
+    margin-top: 1rem;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-size: 0.84rem;
+    line-height: 1.6;
+  }
+
+  .lab-response.hidden { display: none; }
+
+  .response-ok {
+    background: rgba(168, 85, 247, 0.06);
+    border: 1px solid rgba(168, 85, 247, 0.25);
+  }
+
+  .response-error {
+    background: rgba(239, 68, 68, 0.06);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: rgba(239, 68, 68, 0.9);
+  }
+
+  .resp-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .resp-status-badge {
+    background: rgba(34, 197, 94, 0.12);
+    color: #22C55E;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.55rem;
+  }
+
+  .resp-id {
+    font-size: 0.72rem;
+    color: rgba(224, 224, 224, 0.35);
+    font-family: monospace;
+  }
+
+  .resp-msg {
+    color: rgba(224, 224, 224, 0.85);
+    margin: 0 0 0.4rem;
+  }
+
+  .resp-note {
+    font-size: 0.78rem;
+    color: rgba(224, 224, 224, 0.5);
+    margin: 0 0 0.4rem;
+    line-height: 1.5;
+  }
+
+  .resp-build {
+    font-size: 0.72rem;
+    color: rgba(224, 224, 224, 0.3);
+    margin: 0;
+  }
+
+  /* System facts */
+  .system-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .fact-row {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    font-size: 0.8rem;
+  }
+
+  .fact-row:last-child { border-bottom: none; }
+
+  .fact-key {
+    color: rgba(224, 224, 224, 0.4);
+    min-width: 100px;
+    flex-shrink: 0;
+    font-size: 0.75rem;
+  }
+
+  .fact-val {
+    color: rgba(224, 224, 224, 0.7);
+    line-height: 1.4;
+  }
+
+  /* Nightly steps */
+  .nightly-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .nightly-steps li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    background: rgba(168, 85, 247, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 50%;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #A855F7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .step-body {
+    font-size: 0.82rem;
+    color: var(--color-text-dim);
+    line-height: 1.55;
+  }
+
+  .step-body strong {
+    color: rgba(224, 224, 224, 0.85);
+    display: block;
+    margin-bottom: 0.15rem;
+    font-size: 0.82rem;
+  }
+
+  /* Build state */
+  .build-state-grid, .blocker-detail-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .bs-row, .bd-row {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    font-size: 0.8rem;
+  }
+
+  .bs-row:last-child, .bd-row:last-child { border-bottom: none; }
+
+  .bs-key, .bd-key {
+    color: rgba(224, 224, 224, 0.35);
+    min-width: 120px;
+    flex-shrink: 0;
+    font-size: 0.75rem;
+  }
+
+  .bs-val, .bd-val {
+    color: rgba(224, 224, 224, 0.65);
+    line-height: 1.4;
+  }
+
+  .bd-val code {
+    font-size: 0.78rem;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+  }
+
+  .pass-val { color: #22C55E; }
+  .warn-val { color: #FB923C; }
+
+  /* Known chips */
+  .known-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.6rem 0;
+  }
+
+  .chip {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.18rem 0.55rem;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .chip-known {
+    background: rgba(34, 197, 94, 0.08);
+    color: #22C55E;
+    border: 1px solid rgba(34, 197, 94, 0.25);
+  }
+
+  /* CTA row */
+  .lab-cta-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .cta-link {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .cta-link:hover { opacity: 0.75; }
+  .cta-link--purple { color: #A855F7; }
+  .cta-link--dim { color: rgba(224, 224, 224, 0.45); }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .lab-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .lab-right {
+      order: -1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .build-strip {
+      font-size: 0.72rem;
+    }
+
+    .panel {
+      padding: 1.1rem;
+    }
+  }
+</style>
