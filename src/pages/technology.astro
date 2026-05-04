@@ -4,14 +4,14 @@ import InteractiveCompressionDemo from '../components/InteractiveCompressionDemo
 ---
 
 <Layout
-  title="ByteLite Technology - Dictionary-Cascade Compression Engine"
+  title="ByteLite Technology - Bit Motion Encoding Compression Engine"
   description="ByteLite compression: Bit Motion Encoding over the Sigma-9 alphabet. Deterministic, lossless, structured-data compression. Payload convergence to under 64 bytes on structured text corpora. S-formula verification in progress. Patent pending."
   keywords={["Bit Motion Encoding", "Sigma-9 alphabet", "BME compression", "structured data compression", "lossless compression", "ByteLite technology"]}
   schemaType="Article"
 >
 
   <!-- Banner -->
-  <img src="/ByteLite_Banner.png" style="width:100%; height:auto; max-height:340px; object-fit:cover; display:block;" alt="ByteLite - Dictionary-cascade compression">
+  <img src="/ByteLite_Banner.png" style="width:100%; height:auto; max-height:340px; object-fit:cover; display:block;" alt="ByteLite - Bit Motion Encoding compression">
 
   <section class="tech-wrap">
     <div class="container">
@@ -129,7 +129,7 @@ import InteractiveCompressionDemo from '../components/InteractiveCompressionDemo
           <div class="reality-box box-green">
             <div class="box-title">Live Now</div>
             <ul class="tight-list">
-              <li>Universal dictionaries implemented</li>
+              <li>BME specification canonical (1,600 lines)</li>
               <li>Lossless compression engine</li>
               <li>SHA-256 output verification</li>
               <li>Patent pending</li>
@@ -173,16 +173,18 @@ import InteractiveCompressionDemo from '../components/InteractiveCompressionDemo
           <div class="api-line">&nbsp;</div>
           <div class="api-line api-brace">&#123;</div>
           <div class="api-line api-field">&nbsp;&nbsp;"data": "&lt;base64-encoded-input&gt;",</div>
-          <div class="api-line api-field">&nbsp;&nbsp;"dictionary_profile": "universal-v1",</div>
-          <div class="api-line api-field">&nbsp;&nbsp;"mode": "structured"</div>
+          <div class="api-line api-field">&nbsp;&nbsp;"mode": "sigma9"</div>
           <div class="api-line api-brace">&#125;</div>
           <div class="api-line">&nbsp;</div>
           <div class="api-line api-comment">// Response</div>
           <div class="api-line api-brace">&#123;</div>
-          <div class="api-line api-field">&nbsp;&nbsp;"compressed_key": "a4f8c2b7...",</div>
+          <div class="api-line api-field">&nbsp;&nbsp;"blc_payload": "a4f8c2b7...",</div>
           <div class="api-line api-field">&nbsp;&nbsp;"original_bytes": 1000000,</div>
-          <div class="api-line api-field">&nbsp;&nbsp;"compressed_bytes": 15,</div>
-          <div class="api-line api-field">&nbsp;&nbsp;"verification_hash": "sha256:a4f8c2b7..."</div>
+          <div class="api-line api-field">&nbsp;&nbsp;"compressed_bytes": 412,</div>
+          <div class="api-line api-field">&nbsp;&nbsp;"engine_version": "bme-1.0",</div>
+          <div class="api-line api-field">&nbsp;&nbsp;"rounds": 7,</div>
+          <div class="api-line api-field">&nbsp;&nbsp;"sha256_input": "9f86d081...",</div>
+          <div class="api-line api-field">&nbsp;&nbsp;"sha256_roundtrip": "9f86d081..."</div>
           <div class="api-line api-brace">&#125;</div>
         </div>
       </div>

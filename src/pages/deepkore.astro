@@ -153,7 +153,7 @@ import Layout from '../layouts/Layout.astro';
             <div class="convo-msg aiya">
               <div class="convo-label aiya-label">AIya (Architecture Demo)</div>
               <div class="convo-bubble aiya-bubble">
-                Deterministic output matters for two reasons. First, correctness: if you compress a file and later decompress it, you need to get the exact same bytes back. Any non-determinism in the process breaks round-trip fidelity. Second, verifiability: deterministic systems can be audited. You can run the same input twice and prove the output is identical. Probabilistic systems cannot offer that guarantee by definition. ByteLite's dictionary-cascade approach produces the same compressed key for the same input, every time. That is not an implementation detail. It is an architectural commitment.
+                Deterministic output matters for two reasons. First, correctness: if you compress a file and later decompress it, you need to get the exact same bytes back. Any non-determinism in the process breaks round-trip fidelity. Second, verifiability: deterministic systems can be audited. You can run the same input twice and prove the output is identical. Probabilistic systems cannot offer that guarantee by definition. ByteLite's BME rounds converge to the same terminal payload for the same input, every time. That is not an implementation detail. It is an architectural commitment.
               </div>
             </div>
           </div>
@@ -765,7 +765,7 @@ import Layout from '../layouts/Layout.astro';
   const sandboxResponses = [
     'ByteLite is a deterministic lossless compression system using Bit Motion Encoding over the Sigma-9 alphabet, achieving extreme payload convergence on structured text corpora in controlled tests.',
     'Deep Kore investigates whether the recursive mathematical structures in extreme compression share properties with computational cognition architectures. It is blueprint-stage research, unproven until tested, and governed by the Genesis Goal Keeper safety framework.',
-    'HeartStrings Play is a physical board game with a six-tier emotional card progression, guide characters AIya and AIon, and a token-based mechanics system. It is the first public launch product from ByteLite LLC. A companion app called HeartStrings App is in development alongside the physical game.',
+    'HeartStrings Play is a physical board game with six escalating card tiers, five path space types, and a Decree-based consent economy. 2 to 8 players, 305 cards, 60 to 90 minutes. Pre-launch. A companion app called HeartStrings App is in development alongside the physical game.',
     'AIya is a structured response interface for Deep Kore research interaction. The current public version serves curated, deterministic responses within a defined scope. It is not an unconstrained language model. It is an Interactive Preview of the planned AIya interface layer.',
   ];
 

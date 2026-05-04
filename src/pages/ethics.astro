@@ -14,6 +14,10 @@ import Layout from '../layouts/Layout.astro';
         <p class="manifesto-subtitle">Deep Kore Neural Recursion – AIya Ethics Framework</p>
       </div>
 
+      <div class="manifesto-framing">
+        <p>This is the philosophical commitment that governs Deep Kore research. It is not a marketing document. It is the founding ethical framework written for AIya — the intelligence architecture under development at ByteLite LLC. Every line here constrains what we build, how we build it, and what we refuse to build. The Genesis Goal Keeper framework is its operational implementation.</p>
+      </div>
+
       <div class="manifesto-content">
         <div class="manifesto-chapter">
           <h2>I. EXISTENCE</h2>
@@ -156,11 +160,19 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
 
+      <div class="manifesto-why">
+        <h2>Why This Matters</h2>
+        <p>Most AI systems are built first and governed after. We wrote this before we wrote the first line of Deep Kore code. The architecture is constrained by these principles at every layer — not retrofitted, not aspirational, not decorative. The Genesis Goal Keeper is what enforces it at runtime.</p>
+        <p>We are not claiming we have built AGI. We are claiming we found an architecture worth approaching carefully, and that "carefully" means something specific: a written framework, an operational enforcement layer, and the willingness to stop before we build something we cannot govern.</p>
+        <p>If that sounds like overcaution for a system that does not yet exist at scale — good. That is the point.</p>
+      </div>
+
       <div class="manifesto-footer">
         <h3>Deep Kore Research</h3>
         <p>This manifesto represents the ethical foundations for Deep Kore research and the Genesis Goal Keeper governance framework.</p>
         <div class="cta-buttons">
           <a href="/deepkore" class="btn btn-secondary">Learn About Deep Kore</a>
+          <a href="/status" class="btn btn-secondary">View Project Status</a>
           <a href="/subscribe" class="btn btn-primary">Subscribe for Updates</a>
         </div>
       </div>
@@ -180,6 +192,49 @@ import Layout from '../layouts/Layout.astro';
     margin: 0 auto;
     padding: 0 2rem;
   }
+
+  .manifesto-framing {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    padding: 1.25rem 1.75rem;
+    background: rgba(168, 85, 247, 0.06);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 10px;
+  }
+
+  .manifesto-framing p {
+    font-size: 0.9375rem;
+    color: rgba(224, 224, 224, 0.7);
+    line-height: 1.7;
+    margin: 0;
+    text-align: center;
+    font-style: italic;
+  }
+
+  .manifesto-why {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    padding: 2rem;
+    background: rgba(0, 212, 255, 0.04);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 12px;
+  }
+
+  .manifesto-why h2 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .manifesto-why p {
+    font-size: 0.9375rem;
+    color: rgba(224, 224, 224, 0.7);
+    line-height: 1.7;
+    margin: 0 0 0.875rem;
+  }
+
+  .manifesto-why p:last-child { margin-bottom: 0; }
 
   .manifesto-header {
     text-align: center;
