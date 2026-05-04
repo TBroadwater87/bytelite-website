@@ -56,7 +56,7 @@ describe('InteractiveCompressionDemo', () => {
       expect(screen.getByText('Compression Complete!')).toBeInTheDocument();
     }, { timeout: 5000 });
     
-    expect(screen.getByText('10 bytes')).toBeInTheDocument(); // 1MB file compresses to 10 bytes
+    expect(screen.getByText('20 bytes')).toBeInTheDocument(); // 1MB demo result (log2 simulation)
   });
 
   it('calculates correct compression ratios', async () => {

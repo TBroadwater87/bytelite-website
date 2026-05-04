@@ -108,18 +108,11 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    // ByteLite compression simulation
-    // 1TB → 18 bytes, 1GB → 15 bytes, anything → minimum 13 bytes
-    let compressed = 13; // minimum
-    if (file.size >= 1099511627776) {
-      // 1TB+
-      compressed = 18;
-    } else if (file.size >= 1073741824) {
-      // 1GB+
-      compressed = 15;
-    } else if (file.size > 0) {
-      // Logarithmic scale for smaller files
-      compressed = Math.max(13, Math.floor(Math.log2(file.size) / 2) + 8);
+    // ByteLite compression simulation — results vary by data type and BME coverage
+    let compressed = 8; // minimum demo value
+    if (file.size > 0) {
+      const log2 = Math.floor(Math.log2(file.size));
+      compressed = Math.max(8, Math.min(log2, 40));
     }
 
     return new Response(

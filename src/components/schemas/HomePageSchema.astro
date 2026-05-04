@@ -25,35 +25,6 @@ const innovationSchema = {
   }
 };
 
-const claimReviewSchema = {
-  "@context": "https://schema.org",
-  "@type": "ClaimReview",
-  "url": `${siteUrl}/technology`,
-  "claimReviewed": "ByteLite can compress 1GB of data to 15 bytes",
-  "itemReviewed": {
-    "@type": "Claim",
-    "author": {
-      "@type": "Organization",
-      "name": "ByteLite Technologies"
-    },
-    "datePublished": "2024-01-15",
-    "appearance": {
-      "@type": "CreativeWork",
-      "url": siteUrl
-    }
-  },
-  "author": {
-    "@type": "Organization",
-    "name": "ByteLite Research Lab"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": 5,
-    "bestRating": 5,
-    "alternateName": "True - Patent Pending"
-  }
-};
-
 const eventSchema = {
   "@context": "https://schema.org",
   "@type": "Event",
@@ -109,4 +80,4 @@ const specialAnnouncementSchema = {
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify([innovationSchema, claimReviewSchema, eventSchema, specialAnnouncementSchema])} />
+<script type="application/ld+json" set:html={JSON.stringify([innovationSchema, eventSchema, specialAnnouncementSchema])} />
