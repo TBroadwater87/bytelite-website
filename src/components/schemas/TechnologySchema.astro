@@ -33,8 +33,8 @@ const techArticleSchema = {
     "@type": "WebPage",
     "@id": `${siteUrl}/technology`
   },
-  "articleBody": "Classical compression hit a wall. ByteLite is an engineered attempt to get around it for structured data: dictionary cascades, Szudzik pairing, and shared-model assumptions. Controlled result: 1GB to 15 bytes on the enwik9 corpus. Verification in progress.",
-  "keywords": "dictionary cascade compression, structured data compression, Szudzik pairing, frontier compression",
+  "articleBody": "Classical compression hit a wall. ByteLite is an engineered attempt to get around it for structured data using Bit Motion Encoding over the Sigma-9 alphabet, a 510-sequence motion dictionary, and a mode ladder governing representation. Controlled results on the enwik9 corpus are under independent verification. Patent pending.",
+  "keywords": "ByteLite compression, Bit Motion Encoding, BME, structured data compression, deterministic compression, frontier compression",
   "articleSection": "Technology",
   "proficiencyLevel": "Advanced",
   "dependencies": "None - Standalone compression technology",
@@ -50,7 +50,7 @@ const howToSchema = {
   "@context": "https://schema.org",
   "@type": "HowTo",
   "name": "How ByteLite Compression Works",
-  "description": "Understanding the dictionary-cascade compression architecture",
+  "description": "Understanding the Bit Motion Encoding compression architecture",
   "image": imageUrl,
   "supply": [
     {
@@ -73,8 +73,8 @@ const howToSchema = {
     },
     {
       "@type": "HowToStep",
-      "name": "Dictionary Cascade",
-      "text": "Apply dictionary cascade with Szudzik pairing for compact representation",
+      "name": "Motion Encoding",
+      "text": "Apply Bit Motion Encoding over the Sigma-9 alphabet using the 510-sequence motion dictionary",
       "image": `${siteUrl}/assets/diagrams/step2.png`
     },
     {
