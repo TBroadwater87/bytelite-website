@@ -43,7 +43,7 @@ const { showEmailCapture = true } = Astro.props;
             </div>
             <div class="file-info">
               <span class="file-name">archive.blc</span>
-              <span class="file-size" id="compressedSize">15 bytes</span>
+              <span class="file-size" id="compressedSize">—</span>
             </div>
           </div>
         </div>
@@ -55,7 +55,7 @@ const { showEmailCapture = true } = Astro.props;
           </div>
           <div class="stat-item">
             <span class="stat-label">Compression Ratio</span>
-            <span class="stat-value">68,719,476:1</span>
+            <span class="stat-value" id="compressionRatio">—</span>
           </div>
         </div>
         
@@ -850,7 +850,7 @@ const { showEmailCapture = true } = Astro.props;
         // Update compressed size with animation
         compressedSize.style.transition = 'none';
         compressedSize.style.transform = 'scale(0)';
-        compressedSize.textContent = '15 bytes';
+        compressedSize.textContent = 'BME result';
         
         setTimeout(() => {
           compressedSize.style.transition = 'transform 0.5s ease';

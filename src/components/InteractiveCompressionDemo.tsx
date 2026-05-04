@@ -28,13 +28,9 @@ export default function InteractiveCompressionDemo() {
   const uploadZoneRef = useRef<HTMLDivElement>(null);
 
   const calculateCompressedSize = (originalSize: number): number => {
-    // Simulate DAC compression ratios based on file size
-    if (originalSize < 1024) return 8; // < 1KB → 8 bytes
-    if (originalSize < 1024 * 1024) return 9; // < 1MB → 9 bytes
-    if (originalSize < 1024 * 1024 * 100) return 10; // < 100MB → 10 bytes
-    if (originalSize < 1024 * 1024 * 1024) return 15; // < 1GB → 15 bytes
-    if (originalSize < 1024 * 1024 * 1024 * 100) return 14; // < 100GB → 14 bytes
-    return 18; // >= 100GB → 18 bytes
+    // Demo simulation only — BME results vary by data type and Sigma-9 coverage
+    const log2 = Math.floor(Math.log2(Math.max(originalSize, 1)));
+    return Math.max(8, Math.min(log2, 40));
   };
 
   const formatFileSize = (bytes: number): string => {
