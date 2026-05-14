@@ -1,1267 +1,198 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout
-  title="HeartStrings Play - Premium Adult Social Board Game by ByteLite LLC"
-  description="HeartStrings Play is a premium adult social board game with six escalating card tiers — from Initiate to Climax. 2 to 8 players. 305 cards across six decks. Single loop board, five path types, Decree economy. Built by ByteLite LLC in Helena, MT."
-  keywords={["HeartStrings Play", "social board game", "relationship game", "couples game", "AIya", "AIon", "HeartStrings", "ByteLite LLC"]}
-  schemaType="Product"
+  title="HeartStrings Play | Premium Consent-First Adult Social Board Game"
+  description="HeartStrings Play is a pre-launch premium adult social board game for private groups, built around consent-first connection and escalating card-based play."
+  keywords="HeartStrings Play, adult social board game, consent-first, pre-launch, ByteLite LLC"
+  
 >
+  <Header slot="header" />
 
-  <!-- Hero Image -->
-  <div class="hero-banner">
-    <img
-      src="/heartstrings/heartstrings-gameboard.png"
-      alt="HeartStrings Play - premium social board game"
-      width="900"
-      height="900"
-      class="hero-board-img"
-      decoding="async"
-    />
-    <div class="hero-overlay">
-      <div class="container">
-        <span class="launch-pill">Pre-Launch</span>
-        <h1>HeartStrings Play</h1>
-        <p class="hero-tagline">A premium adult social board game. 2 to 8 players. Five path types. 60 to 90 minutes.</p>
-        <div class="hero-cta">
-          <a href="/contact" class="btn btn-pink">Express Interest</a>
-          <a href="/heartstrings-app" class="btn btn-rose-outline">See the App Companion</a>
-          <a href="/status" class="btn btn-outline">Current Status</a>
-        </div>
+  <!-- Hero -->
+  <section class="hs-hero">
+    <div class="container">
+      <p class="eyebrow">HeartStrings Play</p>
+      <h1>A consent-first social board game<br/>for private groups.</h1>
+      <p class="hs-hero-sub">
+        Premium adult social play designed around intentional connection,
+        shared agency, and escalating card-based experiences.
+        For private groups of two to eight players.
+      </p>
+      <div class="hs-hero-badges">
+        <span class="badge badge-prelaunch">Pre-launch</span>
+        <span class="hs-badge-detail">Manufacturing preparation underway</span>
+      </div>
+      <div style="display:flex;gap:.875rem;flex-wrap:wrap;margin-top:2rem;">
+        <a href="/contact" class="btn btn-pink">Express Interest</a>
+        <a href="/status" class="btn btn-outline btn-sm" style="align-self:center;">View Status</a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- What is the Game -->
-  <section class="game-intro">
+  <!-- Quick specs -->
+  <section class="section-sm section-alt">
+    <div class="container hs-specs-row">
+      <div class="hs-spec"><span class="hs-spec-num">2–8</span><span class="hs-spec-label">Players</span></div>
+      <div class="hs-spec-div"></div>
+      <div class="hs-spec"><span class="hs-spec-num">305</span><span class="hs-spec-label">Cards</span></div>
+      <div class="hs-spec-div"></div>
+      <div class="hs-spec"><span class="hs-spec-num">5</span><span class="hs-spec-label">Path types</span></div>
+      <div class="hs-spec-div"></div>
+      <div class="hs-spec"><span class="hs-spec-num">6</span><span class="hs-spec-label">Escalation tiers</span></div>
+      <div class="hs-spec-div"></div>
+      <div class="hs-spec"><span class="hs-spec-num">1</span><span class="hs-spec-label">Loop board</span></div>
+    </div>
+  </section>
+
+  <!-- About the game -->
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <p class="eyebrow">The Game</p>
+      <h2 style="margin-bottom:1.25rem;">Designed for intentional play.</h2>
+      <p style="font-size:1.0625rem;line-height:1.8;margin-bottom:1.5rem;">
+        HeartStrings Play is a premium adult social board game built around a single loop board
+        where players draw from path-specific card decks and progress through six escalating tiers.
+        Each session is shaped by the players in it — not by a fixed script.
+      </p>
+      <p style="font-size:1.0625rem;line-height:1.8;">
+        Decree cards allow any player to skip or redraw at any time.
+        Consent is built into the game structure, not handled separately.
+        The Consent Cup is available at any time for any player to end or pause play gracefully.
+      </p>
+    </div>
+  </section>
+
+  <!-- Five Paths -->
+  <section class="section section-alt">
     <div class="container">
-      <div class="intro-grid">
-        <div class="intro-copy">
-          <h2>What is HeartStrings Play?</h2>
-          <p>HeartStrings Play is a premium adult social board game designed to create genuine connection and chemistry between players. It is not a generic trivia night. It is not a one-trick dare deck. It is a structured, guided experience that escalates naturally through six card tiers.</p>
-          <p>Players navigate the single perimeter loop board through six escalating card tiers, drawing cards that open conversation, build vulnerability, and raise the stakes at a pace the players control. 2 to 8 players. A central tier dial tracks progression. Players control the pace via the Decree economy.</p>
-          <div class="intro-specs" style="grid-template-columns: repeat(3, 1fr);">
-            <div class="spec-item">
-              <span class="spec-label">Player Range</span>
-              <span class="spec-value">2 -- 8</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Session Length</span>
-              <span class="spec-value">60 -- 90 min</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Card Tiers</span>
-              <span class="spec-value">6</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Audience</span>
-              <span class="spec-value">Adults 18+</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Path Space Types</span>
-              <span class="spec-value">5</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Card Decks</span>
-              <span class="spec-value">6 + 5 ref</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Total Cards</span>
-              <span class="spec-value">305</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">A/B Chips</span>
-              <span class="spec-value">8 dual-faced</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Consent Cup</span>
-              <span class="spec-value">8 spheres</span>
-            </div>
-          </div>
+      <p class="eyebrow" style="text-align:center;">Five Path Types</p>
+      <h2 style="text-align:center;margin-bottom:3rem;">Choose your path.</h2>
+      <div class="paths-grid">
+        <div class="card path-card">
+          <div class="path-name">Bond</div>
+          <p class="path-desc">Connection-focused play. Emotional depth, shared experience, meaningful questions.</p>
         </div>
-        <div class="intro-visual">
-          <img
-            src="/heartstrings/heartstrings-decree-card.png"
-            alt="HeartStrings Decree card"
-            width="280"
-            height="400"
-            loading="lazy"
-            decoding="async"
-            class="decree-card-img"
-          />
+        <div class="card path-card">
+          <div class="path-name">Tease</div>
+          <p class="path-desc">Playful, flirtatious energy. Light touch, laughter, low-stakes moments.</p>
+        </div>
+        <div class="card path-card">
+          <div class="path-name">Strip</div>
+          <p class="path-desc">Physical presence and escalating vulnerability. Structured and progressive.</p>
+        </div>
+        <div class="card path-card">
+          <div class="path-name">Elixir</div>
+          <p class="path-desc">Sensory and experiential. Taste, texture, atmosphere, and sensation.</p>
+        </div>
+        <div class="card path-card path-contact">
+          <div class="path-name">Contact</div>
+          <p class="path-desc">Intentional touch and physical closeness. Progressive and always consent-gated.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- How It Plays -->
-  <section class="how-it-plays">
+  <!-- Six Tiers -->
+  <section class="section">
     <div class="container">
-      <h2>The Six Card Tiers</h2>
-      <p class="section-sub">Six escalating tiers. You set the pace.</p>
-
-      <div class="tier-grid">
-        <div class="tier-card tier-1">
-          <div class="tier-number">01</div>
-          <div class="tier-name">Initiate</div>
-          <p class="tier-desc">Opening moves. Light questions that reveal personality, values, and style without pressure.</p>
-        </div>
-        <div class="tier-card tier-2">
-          <div class="tier-number">02</div>
-          <div class="tier-name">Connect</div>
-          <p class="tier-desc">Deeper conversation. Stories, preferences, and discoveries that build real familiarity.</p>
-        </div>
-        <div class="tier-card tier-3">
-          <div class="tier-number">03</div>
-          <div class="tier-name">Seduce</div>
-          <p class="tier-desc">Flirtatious tension. Prompts that invite playfulness and signal mutual attraction.</p>
-        </div>
-        <div class="tier-card tier-4">
-          <div class="tier-number">04</div>
-          <div class="tier-name">Stimulate</div>
-          <p class="tier-desc">Bold territory. Honest answers, revealing moments, deliberate provocation.</p>
-        </div>
-        <div class="tier-card tier-5">
-          <div class="tier-number">05</div>
-          <div class="tier-name">Edge</div>
-          <p class="tier-desc">High-stakes prompts for players who want to push the experience further.</p>
-        </div>
-        <div class="tier-card tier-6">
-          <div class="tier-number">06</div>
-          <div class="tier-name">Climax</div>
-          <p class="tier-desc">Peak experience. The final tier is earned, not jumped to. What happens is between the players.</p>
-        </div>
+      <p class="eyebrow">Six Escalation Tiers</p>
+      <h2 style="margin-bottom:2.5rem;">Progress at your pace.</h2>
+      <div class="tiers-list">
+        <div class="tier-row tier-1"><span class="tier-num">1</span><span class="tier-name">Initiate</span><span class="tier-desc">Entry. Low stakes. Setting the tone.</span></div>
+        <div class="tier-row tier-2"><span class="tier-num">2</span><span class="tier-name">Connect</span><span class="tier-desc">Building rapport. Shared presence.</span></div>
+        <div class="tier-row tier-3"><span class="tier-num">3</span><span class="tier-name">Seduce</span><span class="tier-desc">Intentional flirtation. Energy shifts.</span></div>
+        <div class="tier-row tier-4"><span class="tier-num">4</span><span class="tier-name">Stimulate</span><span class="tier-desc">Heightened engagement. Closer attention.</span></div>
+        <div class="tier-row tier-5"><span class="tier-num">5</span><span class="tier-name">Edge</span><span class="tier-desc">Near the limit. High intention required.</span></div>
+        <div class="tier-row tier-6"><span class="tier-num">6</span><span class="tier-name">Climax</span><span class="tier-desc">Full escalation. For groups who have agreed.</span></div>
       </div>
     </div>
   </section>
 
-  <!-- Six Path Spaces -->
-  <section class="path-spaces">
-    <div class="container">
-      <h2>The Five Path Spaces</h2>
-      <p class="section-sub">Every space on the board is one of five types. Path tells you what. Tier tells you how far.</p>
-      <div class="path-grid" style="grid-template-columns: repeat(5, 1fr);">
-        <div class="path-card">
-          <div class="path-label">BOND</div>
-          <p>Draw from the current tier of the Bond deck. Tier-scaled conversation content. The core connection mechanic.</p>
-        </div>
-        <div class="path-card">
-          <div class="path-label">TEASE</div>
-          <p>Roll one die for the action. Tier determines intensity. Same action structure at every tier, different stakes.</p>
-        </div>
-        <div class="path-card">
-          <div class="path-label">STRIP</div>
-          <p>Remove one article of clothing. Tier-independent. Same rule at every tier. Straightforward.</p>
-        </div>
-        <div class="path-card">
-          <div class="path-label">ELIXIR</div>
-          <p>Roll one die. Odd, you drink. Even, everyone else drinks. Tier-independent drinking space.</p>
-        </div>
-        <div class="path-card">
-          <div class="path-label">CONTACT</div>
-          <p>Roll one die to determine the body location. Tier determines the action performed at that location.</p>
-        </div>
+  <!-- Mechanics -->
+  <section class="section section-alt">
+    <div class="container mech-grid">
+      <div class="card">
+        <h3 style="margin-bottom:.875rem;color:#e4e7f2;">Decree Cards</h3>
+        <p>Any player can play a Decree card at any time to skip a card or redraw. Maximum two Decree cards per hand. Built-in pressure relief without requiring a verbal request.</p>
       </div>
-      <div class="consent-callout">
-        The tier only climbs when the table agrees. Consent is a first-class mechanic.
+      <div class="card">
+        <h3 style="margin-bottom:.875rem;color:#e4e7f2;">The Consent Cup</h3>
+        <p>The Consent Cup is available at all times. Any player can use it to pause or end the session without explanation. It is not a game mechanic — it is a standing option.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:.875rem;color:#e4e7f2;">Single Loop Board</h3>
+        <p>One shared board. Players move together through escalating tiers. No player is left behind. The game's pace is determined by all players together.</p>
       </div>
     </div>
   </section>
 
-  <!-- How a Turn Works -->
-  <section class="turn-mechanics">
-    <div class="container">
-      <div class="turn-inner">
-        <h2>How a Turn Works</h2>
-        <div class="turn-steps">
-          <div class="turn-step">
-            <div class="step-num">01</div>
-            <div class="step-text">Roll the universal die to move.</div>
-          </div>
-          <div class="turn-step">
-            <div class="step-num">02</div>
-            <div class="step-text">Advance to the new space on the board loop.</div>
-          </div>
-          <div class="turn-step">
-            <div class="step-num">03</div>
-            <div class="step-text">Identify the path type of the space you landed on.</div>
-          </div>
-          <div class="turn-step">
-            <div class="step-num">04</div>
-            <div class="step-text">Resolve the path mechanic for that space.</div>
-          </div>
-          <div class="turn-step">
-            <div class="step-num">05</div>
-            <div class="step-text">Pass if chosen. Passing is a valid game state. No pressure.</div>
-          </div>
-          <div class="turn-step">
-            <div class="step-num">06</div>
-            <div class="step-text">Next player takes their turn.</div>
-          </div>
+  <!-- Status notice -->
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <div class="hs-status-box">
+        <div class="hs-status-header">
+          <span class="badge badge-prelaunch">Pre-launch</span>
+          <strong>Manufacturing preparation underway</strong>
         </div>
+        <p>HeartStrings Play has not been released for retail sale. No purchase date has been announced. Product design is complete. Manufacturing is in preparation. To express interest or be notified when pre-orders open, contact below.</p>
+        <a href="/contact" class="btn btn-pink btn-sm" style="margin-top:1.25rem;">Express Interest</a>
       </div>
     </div>
   </section>
 
-  <!-- Why Different -->
-  <section class="why-different">
-    <div class="container">
-      <div class="diff-inner">
-        <h2>Not Like Other Games</h2>
-        <div class="diff-grid">
-          <div class="diff-col bad">
-            <div class="diff-label bad">Generic alternatives</div>
-            <ul class="diff-list">
-              <li>Random dare decks with no progression</li>
-              <li>Trivia nights that avoid intimacy entirely</li>
-              <li>Party games that peak in the first ten minutes</li>
-              <li>No guided host or framing</li>
-              <li>No connection to any digital layer</li>
-            </ul>
-          </div>
-          <div class="diff-col good">
-            <div class="diff-label good">HeartStrings Play</div>
-            <ul class="diff-list">
-              <li>Six tiers that escalate at your pace</li>
-              <li>Decree economy — you control the pace</li>
-              <li>Premium materials designed for repeat play</li>
-              <li>Structured progression, not random chaos</li>
-              <li>Connects to the HeartStrings App ecosystem</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Decree Economy -->
-  <section class="decree-section">
-    <div class="container">
-      <div class="decree-inner">
-        <h2>The Decree Economy</h2>
-        <p class="decree-lead">You are never trapped. You are never forced. But every choice has a cost.</p>
-        <p>Every player holds a hand of Decree cards. Each Decree lets you alter the flow: SKIP a prompt you do not want, or REDRAW to pull a different card from the same tier. Hand cap is two. When you use one, you do not draw another until the group reaches the next tier.</p>
-        <div class="decree-grid">
-          <div class="decree-card">
-            <div class="decree-type">SKIP</div>
-            <p>Pass on the current prompt without consequence. No explanation required.</p>
-          </div>
-          <div class="decree-card">
-            <div class="decree-type">REDRAW</div>
-            <p>Return the current card and draw another from the same tier deck.</p>
-          </div>
-        </div>
-        <p class="decree-note">Decrees are not unlimited. Managing your hand is part of the game.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section class="gallery-section">
-    <div class="container">
-      <h2>Game Gallery</h2>
-      <p class="section-sub">Board design, character guides, and game components.</p>
-      <div class="gallery-grid">
-        <div class="gallery-item gallery-large">
-          <img
-            src="/heartstrings/heartstrings-gameboard.png"
-            alt="HeartStrings Play game board"
-            width="600"
-            height="600"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="gallery-caption">Game Board -- single perimeter loop with central tier dial, five path space types</div>
-        </div>
-        <div class="gallery-item">
-          <img
-            src="/heartstrings/heartstrings-aion-portrait.png"
-            alt="AIon game character portrait"
-            width="280"
-            height="280"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="gallery-caption">AIon -- Session guide</div>
-        </div>
-        <div class="gallery-item">
-          <img
-            src="/heartstrings/heartstrings-aiya-portrait.png"
-            alt="AIya game character portrait"
-            width="280"
-            height="280"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="gallery-caption">AIya -- Session guide</div>
-        </div>
-        <div class="gallery-item">
-          <img
-            src="/heartstrings/heartstrings-decree-card.png"
-            alt="HeartStrings Decree card"
-            width="280"
-            height="400"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="gallery-caption">Decree card design</div>
-        </div>
-        <div class="gallery-item">
-          <img
-            src="/heartstrings/heartstrings-tokens-1.png"
-            alt="Game tokens"
-            width="280"
-            height="280"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="gallery-caption">Game tokens (set 1)</div>
-        </div>
-        <div class="gallery-item">
-          <img
-            src="/heartstrings/heartstrings-tokens-2.png"
-            alt="Game tokens"
-            width="280"
-            height="280"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="gallery-caption">Game tokens (set 2)</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Honest Status -->
-  <section class="honesty-section">
-    <div class="container">
-      <div class="honesty-inner">
-        <h2>Where Things Stand</h2>
-        <div class="honesty-grid">
-          <div class="honesty-card live">
-            <div class="honesty-label live">Done</div>
-            <ul>
-              <li>Board design spec (single loop, 300x300mm)</li>
-              <li>Card tier structure (6 tiers, 305 cards)</li>
-              <li>Five path space types locked</li>
-              <li>Decree economy spec (SKIP / REDRAW)</li>
-              <li>Component spec (A/B chips, Consent Cup, dice)</li>
-              <li>Game rules and mechanics</li>
-            </ul>
-          </div>
-          <div class="honesty-card indev">
-            <div class="honesty-label indev">In Development</div>
-            <ul>
-              <li>Physical prototype production</li>
-              <li>Card deck print run</li>
-              <li>Manufacturing specifications</li>
-              <li>Packaging design</li>
-            </ul>
-          </div>
-          <div class="honesty-card planned">
-            <div class="honesty-label planned">Planned</div>
-            <ul>
-              <li>Manufacturing partner selected</li>
-              <li>Retail / direct launch</li>
-              <li>HeartStrings App integration</li>
-              <li>Expanded card expansions</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- What Is in the Box -->
-  <section class="inbox-section">
-    <div class="container">
-      <div class="inbox-inner">
-        <h2>What Is in the Box</h2>
-        <p class="inbox-config-note">HeartStrings Play is a single SKU. Everything listed below ships in every box.</p>
-        <div class="inbox-configs">
-          <div class="inbox-config-block">
-            <div class="inbox-config-label">What Is In Every Box</div>
-            <div class="inbox-grid">
-              <div class="inbox-item">300x300mm two-panel folding game board (single perimeter loop)</div>
-              <div class="inbox-item">Six tier card decks (305 cards — 50 per deck, plus 5 reference)</div>
-              <div class="inbox-item">8 dual-faced A/B chips</div>
-              <div class="inbox-item">8 token pawns</div>
-              <div class="inbox-item">Consent Cup (8 numbered spheres)</div>
-              <div class="inbox-item">3 six-sided dice</div>
-              <div class="inbox-item">~32-page rulebook</div>
-              <div class="inbox-item">Quick-start sheet</div>
-              <div class="inbox-item">Thermoformed insert (6 corrals + 6 dual-role lids)</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Waitlist CTA -->
-  <section class="waitlist-section">
-    <div class="container">
-      <div class="waitlist-inner">
-        <h2>Be First to Know</h2>
-        <p>HeartStrings Play is in active development. Express interest now and we will contact you directly when the game is available for purchase or pre-order.</p>
-        <div class="waitlist-cta">
-          <a href="/contact" class="btn btn-pink">Express Interest</a>
-          <a href="/subscribe" class="btn btn-outline">Subscribe for Updates</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Bridge to App -->
-  <section class="bridge-section">
-    <div class="container">
-      <div class="bridge-inner">
-        <div class="bridge-copy">
-          <span class="bridge-eyebrow">The Companion Layer</span>
-          <h2>HeartStrings App</h2>
-          <p>Play creates the shared language. The app extends it -- profiles, guided matching, compatibility rationale, and AIya and AIon as digital guides who already know how your session went.</p>
-          <p>The app is currently in development. The UI design exists. The matching engine is being built on ByteLite infrastructure.</p>
-          <a href="/heartstrings-app" class="btn btn-rose-outline" style="margin-top:0.5rem; display:inline-block;">See the HeartStrings App</a>
-        </div>
-        <div class="bridge-visual">
-          <img
-            src="/heartstrings/heartstrings-app-logo.png"
-            alt="HeartStrings App"
-            width="200"
-            height="200"
-            loading="lazy"
-            decoding="async"
-            class="bridge-app-logo"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <Footer slot="footer" />
 </Layout>
 
 <style>
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
 
-  /* Hero */
-  .hero-banner {
-    position: relative;
-    overflow: hidden;
-    background: #0A0E27;
-    min-height: 420px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.hs-hero {
+  padding: 6rem 0 4.5rem;
+  background: radial-gradient(ellipse 70% 50% at 50% -5%, rgba(236,72,153,.07) 0%, transparent 70%);
+}
+.hs-hero h1 { max-width: 680px; }
+.hs-hero-sub { max-width: 560px; margin-top: 1.25rem; font-size: 1.0625rem; color: #7b829e; line-height: 1.75; }
+.hs-hero-badges { display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.hs-badge-detail { font-size: .8125rem; color: #555e7a; }
+.hs-specs-row {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.hs-spec { text-align: center; flex: 1; min-width: 80px; }
+.hs-spec-num { display: block; font-size: 2rem; font-weight: 700; color: #f472b6; letter-spacing: -.04em; line-height: 1; }
+.hs-spec-label { font-size: .75rem; color: #7b829e; margin-top: .25rem; }
+.hs-spec-div { width: 1px; height: 2.5rem; background: #1a2235; flex-shrink: 0; }
+@media (max-width: 640px) { .hs-spec-div { display: none; } }
+.paths-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+@media (max-width: 640px) { .paths-grid { grid-template-columns: 1fr; } }
+.path-card {}
+.path-name { font-size: 1.125rem; font-weight: 700; color: #f472b6; margin-bottom: .5rem; }
+.path-contact .path-name { color: #ec4899; }
+.path-desc { font-size: .9375rem; color: #7b829e; }
+.tiers-list { display: flex; flex-direction: column; gap: .75rem; max-width: 640px; }
+.tier-row {
+  display: flex; align-items: center; gap: 1.25rem;
+  background: #0d1120; border: 1px solid #1a2235;
+  border-radius: .625rem; padding: 1rem 1.25rem;
+  transition: border-color .2s;
+}
+.tier-row:hover { border-color: #24304a; }
+.tier-num { font-size: .8125rem; font-weight: 600; color: #4a5068; width: 1.25rem; flex-shrink: 0; }
+.tier-name { font-size: 1rem; font-weight: 600; color: #e4e7f2; min-width: 90px; }
+.tier-desc { font-size: .9375rem; color: #7b829e; }
+.mech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+@media (max-width: 767px) { .mech-grid { grid-template-columns: 1fr; } }
+.hs-status-box {
+  background: #0d1120; border: 1px solid #24304a;
+  border-radius: .875rem; padding: 2rem;
+}
+.hs-status-header {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 1rem; flex-wrap: wrap;
+}
+.hs-status-header strong { color: #e4e7f2; font-size: 1rem; }
+.hs-status-box p { font-size: .9375rem; line-height: 1.7; }
 
-  .hero-board-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    opacity: 0.22;
-  }
-
-  .hero-overlay {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 4rem 2rem;
-    width: 100%;
-  }
-
-  .launch-pill {
-    display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 0.25rem 0.75rem;
-    border-radius: 100px;
-    background: rgba(236, 72, 153, 0.2);
-    color: #EC4899;
-    border: 1px solid rgba(236, 72, 153, 0.5);
-    margin-bottom: 1.25rem;
-  }
-
-  .hero-overlay h1 {
-    font-size: clamp(2rem, 5vw, 3.75rem);
-    font-weight: 800;
-    color: #fff;
-    margin: 0 0 1rem;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
-    background: linear-gradient(135deg, #fff 0%, #EC4899 60%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-tagline {
-    font-size: clamp(0.875rem, 1.5vw, 1.0625rem);
-    color: rgba(224, 224, 224, 0.85);
-    max-width: 500px;
-    margin: 0 auto 2rem;
-    line-height: 1.6;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 0.875rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  /* Buttons */
-  .btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.25s ease;
-    display: inline-block;
-    font-size: 0.9375rem;
-  }
-
-  .btn-pink {
-    background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);
-    color: white;
-  }
-  .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(236, 72, 153, 0.4); }
-
-  .btn-rose-outline {
-    background: transparent;
-    color: #FB7185;
-    border: 1px solid rgba(251, 113, 133, 0.4);
-  }
-  .btn-rose-outline:hover {
-    border-color: #FB7185;
-    background: rgba(251, 113, 133, 0.08);
-    transform: translateY(-2px);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: rgba(224, 224, 224, 0.8);
-    border: 1px solid rgba(224, 224, 224, 0.25);
-  }
-  .btn-outline:hover {
-    border-color: rgba(224, 224, 224, 0.5);
-    color: #E0E0E0;
-    transform: translateY(-2px);
-  }
-
-  /* Game Intro */
-  .game-intro {
-    padding: 3.5rem 0;
-    background: #060813;
-  }
-
-  .intro-grid {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 3rem;
-    align-items: center;
-  }
-
-  .intro-copy h2 {
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    font-weight: 800;
-    color: #EC4899;
-    margin: 0 0 1.25rem;
-  }
-
-  .intro-copy p {
-    color: rgba(224, 224, 224, 0.75);
-    font-size: 0.9375rem;
-    line-height: 1.65;
-    margin: 0 0 1rem;
-  }
-
-  .intro-specs {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-top: 1.75rem;
-    padding: 1.25rem;
-    background: rgba(236, 72, 153, 0.05);
-    border: 1px solid rgba(236, 72, 153, 0.15);
-    border-radius: 10px;
-  }
-
-  .spec-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    text-align: center;
-  }
-
-  .spec-label {
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: rgba(224, 224, 224, 0.4);
-  }
-
-  .spec-value {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #EC4899;
-  }
-
-  .decree-card-img {
-    width: 100%;
-    height: auto;
-    border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(168, 85, 247, 0.25);
-  }
-
-  /* How It Plays */
-  .how-it-plays {
-    padding: 3rem 0;
-    background: linear-gradient(180deg, #060813 0%, rgba(236, 72, 153, 0.03) 50%, #060813 100%);
-  }
-
-  .how-it-plays h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 800;
-    color: #E0E0E0;
-    text-align: center;
-    margin: 0 0 0.5rem;
-  }
-
-  .section-sub {
-    text-align: center;
-    color: rgba(224, 224, 224, 0.5);
-    font-size: 0.875rem;
-    margin: 0 0 2rem;
-  }
-
-  .tier-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 1rem;
-  }
-
-  .tier-card {
-    background: rgba(10, 14, 39, 0.8);
-    border-radius: 10px;
-    padding: 1.25rem 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .tier-card:hover { transform: translateY(-4px); }
-
-  .tier-number {
-    font-size: 0.6rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    color: rgba(224, 224, 224, 0.25);
-  }
-
-  .tier-name {
-    font-size: 0.9375rem;
-    font-weight: 800;
-  }
-
-  .tier-desc {
-    font-size: 0.8rem;
-    color: rgba(224, 224, 224, 0.6);
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  .tier-1 { border: 1px solid rgba(255, 182, 193, 0.3); }
-  .tier-1 .tier-name { color: #FFB6C1; }
-  .tier-2 { border: 1px solid rgba(255, 105, 135, 0.3); }
-  .tier-2 .tier-name { color: #FF6987; }
-  .tier-3 { border: 1px solid rgba(236, 72, 153, 0.4); }
-  .tier-3 .tier-name { color: #EC4899; }
-  .tier-4 { border: 1px solid rgba(219, 39, 119, 0.4); }
-  .tier-4 .tier-name { color: #DB2777; }
-  .tier-5 { border: 1px solid rgba(190, 24, 93, 0.4); }
-  .tier-5 .tier-name { color: #BE185D; }
-  .tier-6 { border: 1px solid rgba(157, 23, 77, 0.5); }
-  .tier-6 .tier-name { color: #9D174D; }
-  .tier-6:hover { box-shadow: 0 12px 30px rgba(157, 23, 77, 0.2); }
-
-  /* Why Different */
-  .why-different {
-    padding: 3rem 0;
-    background: #060813;
-  }
-
-  .diff-inner {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .diff-inner h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 800;
-    color: #E0E0E0;
-    text-align: center;
-    margin: 0 0 2rem;
-  }
-
-  .diff-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-
-  .diff-col {
-    border-radius: 12px;
-    padding: 1.5rem;
-  }
-
-  .diff-col.bad {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .diff-col.good {
-    background: rgba(236, 72, 153, 0.05);
-    border: 1px solid rgba(236, 72, 153, 0.25);
-  }
-
-  .diff-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 1rem;
-  }
-
-  .diff-label.bad { color: rgba(224, 224, 224, 0.35); }
-  .diff-label.good { color: #EC4899; }
-
-  .diff-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-  }
-
-  .diff-list li {
-    font-size: 0.875rem;
-    line-height: 1.45;
-    padding-left: 1rem;
-    position: relative;
-    color: rgba(224, 224, 224, 0.7);
-  }
-
-  .diff-col.bad .diff-list li::before {
-    content: '--';
-    position: absolute;
-    left: 0;
-    color: rgba(224, 224, 224, 0.2);
-  }
-
-  .diff-col.good .diff-list li::before {
-    content: '+';
-    position: absolute;
-    left: 0;
-    color: #EC4899;
-  }
-
-
-  /* Gallery */
-  .gallery-section {
-    padding: 3rem 0;
-    background: #060813;
-  }
-
-  .gallery-section h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 800;
-    color: #E0E0E0;
-    text-align: center;
-    margin: 0 0 0.5rem;
-  }
-
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto;
-    gap: 1rem;
-  }
-
-  .gallery-item {
-    border-radius: 12px;
-    overflow: hidden;
-    background: rgba(10, 14, 39, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    transition: transform 0.2s, border-color 0.2s;
-  }
-
-  .gallery-item:hover {
-    transform: translateY(-4px);
-    border-color: rgba(236, 72, 153, 0.25);
-  }
-
-  .gallery-large {
-    grid-column: 1;
-    grid-row: 1 / 3;
-  }
-
-  .gallery-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-  }
-
-  .gallery-large img {
-    height: 100%;
-    object-fit: contain;
-    background: rgba(10, 14, 39, 0.4);
-  }
-
-  .gallery-caption {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.72rem;
-    color: rgba(224, 224, 224, 0.4);
-    text-align: center;
-  }
-
-  /* Honesty Section */
-  .honesty-section {
-    padding: 3rem 0;
-    background: linear-gradient(180deg, #060813 0%, rgba(0, 212, 255, 0.02) 50%, #060813 100%);
-  }
-
-  .honesty-inner {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .honesty-inner h2 {
-    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    font-weight: 800;
-    color: #E0E0E0;
-    text-align: center;
-    margin: 0 0 2rem;
-  }
-
-  .honesty-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-  }
-
-  .honesty-card {
-    border-radius: 12px;
-    padding: 1.25rem;
-  }
-
-  .honesty-card.live { background: rgba(34, 197, 94, 0.05); border: 1px solid rgba(34, 197, 94, 0.2); }
-  .honesty-card.indev { background: rgba(168, 85, 247, 0.05); border: 1px solid rgba(168, 85, 247, 0.2); }
-  .honesty-card.planned { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.07); }
-
-  .honesty-label {
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.875rem;
-  }
-
-  .honesty-label.live { color: #22C55E; }
-  .honesty-label.indev { color: #A855F7; }
-  .honesty-label.planned { color: rgba(224, 224, 224, 0.35); }
-
-  .honesty-card ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .honesty-card ul li {
-    font-size: 0.8125rem;
-    color: rgba(224, 224, 224, 0.7);
-    line-height: 1.4;
-    padding-left: 0.875rem;
-    position: relative;
-  }
-
-  .honesty-card ul li::before {
-    content: '--';
-    position: absolute;
-    left: 0;
-    color: rgba(224, 224, 224, 0.2);
-    font-size: 0.7rem;
-  }
-
-  /* Waitlist */
-  .waitlist-section {
-    padding: 3rem 0;
-    background: #060813;
-  }
-
-  .waitlist-inner {
-    max-width: 640px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 2.5rem;
-    background: rgba(236, 72, 153, 0.06);
-    border: 1px solid rgba(236, 72, 153, 0.25);
-    border-radius: 16px;
-  }
-
-  .waitlist-inner h2 {
-    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    font-weight: 800;
-    color: #EC4899;
-    margin: 0 0 1rem;
-  }
-
-  .waitlist-inner p {
-    color: rgba(224, 224, 224, 0.7);
-    font-size: 0.9375rem;
-    line-height: 1.65;
-    margin: 0 0 1.75rem;
-  }
-
-  .waitlist-cta {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  /* Bridge to App */
-  .bridge-section {
-    padding: 3rem 0;
-    background: linear-gradient(180deg, #060813 0%, rgba(251, 113, 133, 0.04) 100%);
-    border-top: 1px solid rgba(251, 113, 133, 0.1);
-  }
-
-  .bridge-inner {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 3rem;
-    align-items: center;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .bridge-eyebrow {
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #FB7185;
-    display: block;
-    margin-bottom: 0.75rem;
-  }
-
-  .bridge-copy h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 800;
-    color: #E0E0E0;
-    margin: 0 0 1rem;
-  }
-
-  .bridge-copy p {
-    color: rgba(224, 224, 224, 0.7);
-    font-size: 0.9375rem;
-    line-height: 1.65;
-    margin: 0 0 0.875rem;
-  }
-
-  .bridge-app-logo {
-    width: 140px;
-    height: 140px;
-    object-fit: contain;
-    border-radius: 24px;
-    box-shadow: 0 16px 40px rgba(251, 113, 133, 0.2);
-  }
-
-  /* Responsive */
-  @media (max-width: 1024px) {
-    .tier-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  @media (max-width: 768px) {
-    .intro-grid { grid-template-columns: 1fr; }
-    .intro-visual { display: none; }
-    .guides-inner { grid-template-columns: 1fr; }
-    .diff-grid { grid-template-columns: 1fr; }
-    .gallery-grid { grid-template-columns: 1fr 1fr; }
-    .gallery-large { grid-column: 1 / -1; grid-row: auto; }
-    .honesty-grid { grid-template-columns: 1fr; }
-    .bridge-inner { grid-template-columns: 1fr; }
-    .bridge-visual { display: none; }
-    .intro-specs { grid-template-columns: repeat(2, 1fr); }
-    .tier-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 480px) {
-    .gallery-grid { grid-template-columns: 1fr; }
-    .tier-grid { grid-template-columns: 1fr; }
-  }
-
-  /* Path Spaces */
-  .path-spaces {
-    padding: 3rem 0;
-    background: linear-gradient(180deg, #060813 0%, rgba(236,72,153,0.03) 50%, #060813 100%);
-  }
-  .path-spaces h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 800;
-    color: #E0E0E0;
-    text-align: center;
-    margin: 0 0 0.5rem;
-  }
-  .path-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    margin-bottom: 1.5rem;
-  }
-  .path-card {
-    background: rgba(10,14,39,0.8);
-    border: 1px solid rgba(236,72,153,0.2);
-    border-radius: 10px;
-    padding: 1.25rem;
-  }
-  .path-card--mischief {
-    border-color: rgba(168,85,247,0.35);
-    background: rgba(168,85,247,0.04);
-  }
-  .path-label {
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #EC4899;
-    margin-bottom: 0.625rem;
-  }
-  .path-card--mischief .path-label { color: #A855F7; }
-  .path-card p {
-    font-size: 0.8125rem;
-    color: rgba(224,224,224,0.65);
-    line-height: 1.55;
-    margin: 0;
-  }
-  .consent-callout {
-    text-align: center;
-    font-size: 0.875rem;
-    color: rgba(236,72,153,0.7);
-    font-style: italic;
-    padding: 1rem;
-    border: 1px solid rgba(236,72,153,0.15);
-    border-radius: 8px;
-    background: rgba(236,72,153,0.04);
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  /* Turn Mechanics */
-  .turn-mechanics {
-    padding: 3rem 0;
-    background: #060813;
-  }
-  .turn-inner {
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  .turn-inner h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 800;
-    color: #E0E0E0;
-    text-align: center;
-    margin: 0 0 2rem;
-  }
-  .turn-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  .turn-step {
-    display: grid;
-    grid-template-columns: 40px 1fr;
-    gap: 1rem;
-    align-items: start;
-    padding: 0.875rem 1rem;
-    background: rgba(10,14,39,0.6);
-    border: 1px solid rgba(236,72,153,0.12);
-    border-radius: 8px;
-  }
-  .step-num {
-    font-size: 0.65rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    color: rgba(236,72,153,0.5);
-    padding-top: 0.1rem;
-  }
-  .step-text {
-    font-size: 0.875rem;
-    color: rgba(224,224,224,0.75);
-    line-height: 1.5;
-  }
-
-  /* Decree Economy */
-  .decree-section {
-    padding: 3rem 0;
-    background: linear-gradient(180deg, #060813 0%, rgba(236,72,153,0.03) 50%, #060813 100%);
-    border-top: 1px solid rgba(236,72,153,0.1);
-  }
-  .decree-inner {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .decree-inner h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 800;
-    color: #EC4899;
-    margin: 0 0 0.5rem;
-  }
-  .decree-lead {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: rgba(224,224,224,0.85);
-    margin: 0 0 1.25rem;
-  }
-  .decree-inner p {
-    font-size: 0.9375rem;
-    color: rgba(224,224,224,0.65);
-    line-height: 1.65;
-    margin: 0 0 1rem;
-    max-width: 640px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .decree-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
-    margin: 1.75rem 0;
-    max-width: 560px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .decree-card {
-    background: rgba(236,72,153,0.06);
-    border: 1px solid rgba(236,72,153,0.2);
-    border-radius: 10px;
-    padding: 1.25rem 1rem;
-    text-align: center;
-  }
-  .decree-type {
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #EC4899;
-    margin-bottom: 0.625rem;
-  }
-  .decree-card p {
-    font-size: 0.8125rem;
-    color: rgba(224,224,224,0.65);
-    line-height: 1.5;
-    margin: 0;
-  }
-  .decree-note {
-    font-size: 0.875rem;
-    font-style: italic;
-    color: rgba(236,72,153,0.6);
-  }
-
-  /* What Is in the Box */
-  .inbox-section {
-    padding: 3rem 0;
-    background: #060813;
-  }
-  .inbox-inner {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .inbox-inner h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 800;
-    color: #E0E0E0;
-    text-align: center;
-    margin: 0 0 0.75rem;
-  }
-  .inbox-config-note {
-    text-align: center;
-    color: rgba(224,224,224,0.5);
-    font-size: 0.875rem;
-    margin: 0 0 2rem;
-  }
-  .inbox-configs {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  .inbox-config-block {
-    border: 1px solid rgba(236,72,153,0.15);
-    border-radius: 10px;
-    padding: 1.25rem;
-    background: rgba(10,14,39,0.4);
-  }
-  .inbox-config-deluxe {
-    border-color: rgba(168,85,247,0.2);
-    background: rgba(168,85,247,0.03);
-  }
-  .inbox-config-label {
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #EC4899;
-    margin-bottom: 1rem;
-  }
-  .inbox-config-deluxe .inbox-config-label {
-    color: #A855F7;
-  }
-  .inbox-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-  }
-  .inbox-item {
-    padding: 0.875rem 1rem;
-    background: rgba(10,14,39,0.6);
-    border: 1px solid rgba(236,72,153,0.12);
-    border-radius: 8px;
-    font-size: 0.875rem;
-    color: rgba(224,224,224,0.75);
-    padding-left: 1.5rem;
-    position: relative;
-  }
-  .inbox-item::before {
-    content: '+';
-    position: absolute;
-    left: 0.625rem;
-    color: #EC4899;
-    font-weight: 700;
-  }
-
-  @media (max-width: 768px) {
-    .path-grid { grid-template-columns: 1fr 1fr; }
-    .mischief-stat-row { grid-template-columns: repeat(2,1fr); }
-    .inbox-grid { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 480px) {
-    .path-grid { grid-template-columns: 1fr; }
-  }
 </style>

@@ -1,125 +1,99 @@
-﻿---
+---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Privacy Policy - ByteLite" description="ByteLite privacy policy and data handling practices. We respect your privacy and protect your data.">
-    <section class="content-section">
-      <div class="container">
-        <h1>Privacy Policy</h1>
-        <p class="last-updated">Last updated: April 18, 2026</p>
-        
-        <h2>Data Collection</h2>
-        <p>ByteLite collects minimal data necessary to provide our services:</p>
-        <ul>
-          <li>Email addresses (for early-access notifications and product updates)</li>
-          <li>Basic analytics (page views, no personal data -- Google Analytics, requires consent)</li>
-          <li>Technical support inquiries</li>
-          <li>Deep Kore Lab prompt submissions (see section below)</li>
-        </ul>
+<Layout
+  title="Privacy Policy | ByteLite LLC"
+  description="Privacy policy for the ByteLite LLC website and HeartStrings ecosystem."
+  keywords="ByteLite LLC privacy policy"
+  
+>
+  <Header slot="header" />
 
-        <h2>Data Usage</h2>
-        <p>We use collected data solely for:</p>
-        <ul>
-          <li>Sending product updates, early-access invitations, and security notices</li>
-          <li>Responding to support requests and feedback</li>
-          <li>Deep Kore nightly learning updates (prompt corpus, see section below)</li>
-        </ul>
+  <section class="legal-hero">
+    <div class="container">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="legal-sub">Last updated: May 2026</p>
+    </div>
+  </section>
 
-        <h2>Deep Kore Lab Interactions</h2>
-        <p>The Deep Kore Lab at /deepkore-lab allows users to submit prompts to the AIya learning corpus. The following applies to all Deep Kore Lab interactions:</p>
-        <ul>
-          <li><strong>Interactions are logged.</strong> Prompts submitted through the Deep Kore Lab are recorded by our server.</li>
-          <li><strong>Used for nightly learning updates.</strong> Submitted prompts may be included in the nightly learning corpus and processed by the local Deep Kore runtime during overnight builds. This is the purpose of the lab.</li>
-          <li><strong>Structural and language learning only.</strong> Website interactions are used for structural learning, term learning, response analysis, and language deconstruction. They do NOT automatically become factual truth in the knowledge base. Truth and fact promotion is a separate governed process.</li>
-          <li><strong>No live responses.</strong> The Deep Kore runtime is not yet publicly deployed. Prompt submissions are queued. No real-time AI response is generated from the website.</li>
-          <li><strong>Do not submit sensitive information.</strong> Do not submit sensitive, confidential, personal, or identifying information through the Deep Kore Lab. Treat all submissions as potentially stored and used for system improvement.</li>
-          <li><strong>Email and newsletter data is separate.</strong> Email addresses collected for updates are not included in the Deep Kore learning corpus.</li>
-          <li><strong>Governance.</strong> All learning updates are governed by the Genesis Goal Keeper framework, which enforces safety constraints on what the system may learn and how it may respond.</li>
-        </ul>
+  <section class="section">
+    <div class="container legal-body">
 
-        <h2>Demo Upload Handling</h2>
-        <p>When you use our compression demo:</p>
-        <ul>
-          <li><strong>Local Processing:</strong> Files are processed entirely in your browser. No data is uploaded to our servers.</li>
-          <li><strong>No Retention:</strong> We do not store, retain, or access any files you process through the demo.</li>
-          <li><strong>No Training:</strong> Demo data is never used for machine learning or model training.</li>
-          <li><strong>Privacy:</strong> Please do not upload sensitive, confidential, or personal data to the demo.</li>
-        </ul>
-        
-        <h2>Data Protection</h2>
-        <p>All data is encrypted in transit (HTTPS) and at rest. We never sell or share your personal information with third parties.</p>
-        
-        <h2>Your Rights</h2>
-        <p>You have the right to:</p>
-        <ul>
-          <li>Request deletion of your data</li>
-          <li>Opt-out of communications</li>
-          <li>Access your stored information</li>
-        </ul>
-        
-        <h2>GDPR Compliance</h2>
-        <p>For users in the European Union, we comply with GDPR regulations:</p>
-        <ul>
-          <li><strong>Legal Basis:</strong> We process data based on consent or legitimate interests</li>
-          <li><strong>Data Portability:</strong> Request your data in a portable format</li>
-          <li><strong>Right to Erasure:</strong> Request complete deletion of your personal data</li>
-          <li><strong>Right to Rectification:</strong> Correct any inaccurate personal data</li>
-          <li><strong>Right to Restrict Processing:</strong> Limit how we use your data</li>
-        </ul>
-        
-        <h2 id="cookie-settings">Cookie Policy</h2>
-        <p>We use the following types of cookies:</p>
-        <ul>
-          <li><strong>Essential Cookies:</strong> Required for basic site functionality</li>
-          <li><strong>Analytics Cookies:</strong> Help us understand site usage (optional)</li>
-          <li><strong>Preference Cookies:</strong> Remember your settings (optional)</li>
-        </ul>
-        <p>You can manage cookie preferences using the banner at the bottom of the page or by clearing your browser's localStorage.</p>
-        
-        <h2>Data Protection Officer</h2>
-        <p>Our Data Protection Officer can be reached at: <a href="mailto:dpo@thebytelite.com">dpo@thebytelite.com</a></p>
-        <p>ByteLite LLC<br>Helena, MT, USA</p>
-        
-        <h2>Contact</h2>
-        <p>For privacy concerns, contact: <a href="mailto:privacy@thebytelite.com">privacy@thebytelite.com</a></p>
+      <div class="legal-section">
+        <h2>Overview</h2>
+        <p>ByteLite LLC is committed to privacy as a design requirement, not a legal checkbox. This policy describes what data is collected through this website and under what conditions.</p>
       </div>
-    </section>
+
+      <div class="legal-section">
+        <h2>What this website collects</h2>
+        <h3>Contact form submissions</h3>
+        <p>If you submit the contact form, your name, email address, and message are collected. This data is used solely to respond to your inquiry. It is not sold, shared with third parties, or used for marketing without your consent.</p>
+        <h3>Analytics</h3>
+        <p>This website may use privacy-respecting analytics to understand aggregate traffic patterns. If used, analytics are configured to anonymize IP addresses and not track individuals across sites. No advertising profiles are created.</p>
+        <h3>Cookies</h3>
+        <p>A minimal cookie consent preference may be stored locally to remember your choice. No advertising cookies are set by this website.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>What this website does not do</h2>
+        <ul class="legal-list">
+          <li>Sell personal information to third parties</li>
+          <li>Create advertising profiles</li>
+          <li>Track individuals across other websites</li>
+          <li>Use behavioral targeting advertising</li>
+          <li>Retain contact form data beyond the purpose of responding</li>
+        </ul>
+      </div>
+
+      <div class="legal-section">
+        <h2>HeartStrings App</h2>
+        <p>HeartStrings App is in private Android test and beta development only. It is not available on any public app store. A separate, app-specific privacy policy will be published before any broader beta release or public app launch. Beta participants are informed of data handling specific to their testing role.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Third-party services</h2>
+        <p>This website may use third-party services for hosting, form handling, or analytics. Such services are selected for their privacy posture. ByteLite LLC does not use advertising networks on this website.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Your rights</h2>
+        <p>You may request deletion of any contact form data submitted by emailing through the <a href="/contact">contact page</a>. ByteLite LLC will respond within a reasonable timeframe.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Changes to this policy</h2>
+        <p>This policy may be updated as ByteLite LLC's products develop. The updated date at the top of this page reflects the most recent revision. Material changes will be noted.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Contact</h2>
+        <p>Privacy questions may be directed through the <a href="/contact">contact page</a>. ByteLite LLC is based in Helena, Montana, USA.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer slot="footer" />
 </Layout>
 
 <style>
-  .content-section {
-    padding: 80px 0;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .last-updated {
-    color: var(--color-text-secondary);
-    font-style: italic;
-    margin-bottom: 40px;
-  }
-  
-  h2 {
-    color: var(--color-primary);
-    margin: 40px 0 20px;
-  }
-  
-  ul {
-    margin-left: 30px;
-    color: var(--color-text-secondary);
-  }
-  
-  li {
-    margin-bottom: 10px;
-  }
-  
-  a {
-    color: var(--color-primary);
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-</style>
 
+.legal-hero { padding: 5rem 0 3.5rem; }
+.legal-hero h1 { max-width: 480px; }
+.legal-sub { margin-top: .75rem; font-size: .9375rem; color: #555e7a; }
+.legal-body { max-width: 760px; }
+.legal-section { margin-bottom: 3rem; }
+.legal-section h2 { font-size: 1.375rem; color: #e4e7f2; margin-bottom: 1rem; padding-bottom: .75rem; border-bottom: 1px solid #1a2235; }
+.legal-section h3 { font-size: 1.0625rem; color: #e4e7f2; margin: 1.5rem 0 .5rem; }
+.legal-section p { font-size: .9375rem; color: #7b829e; line-height: 1.75; margin-bottom: .875rem; }
+.legal-section a { color: #818cf8; }
+.legal-section a:hover { color: #a5b4fc; }
+.legal-list { list-style: none; display: flex; flex-direction: column; gap: .625rem; }
+.legal-list li { font-size: .9375rem; color: #7b829e; padding-left: 1.25rem; position: relative; line-height: 1.6; }
+.legal-list li::before { content: "—"; position: absolute; left: 0; color: #4a5068; }
+
+</style>

@@ -1,218 +1,150 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import EarlyAccessModal from '../components/EarlyAccessModal.astro';
-import StickyCTA from '../components/StickyCTA.astro';
-import CookieBanner from '../components/CookieBanner.astro';
-import SEO from '../components/SEO.astro';
-
 export interface Props {
   title: string;
   description?: string;
-  image?: string;
-  includeAnalytics?: boolean;
-  keywords?: string[];
-  schemaType?: 'Organization' | 'Product' | 'SoftwareApplication' | 'FAQPage' | 'Article';
-  customSchema?: any;
+  keywords?: string;
+  canonical?: string;
   noindex?: boolean;
+  ogImage?: string;
 }
 
 const {
   title,
-  description = "ByteLite LLC builds products people actually want. HeartStrings Play is a premium adult social board game. ByteLite compression technology is patent-pending. Deep Kore AI research is in active development.",
-  image = "/bytelite-og-image.jpg",
-  includeAnalytics = true,
-  keywords,
-  schemaType,
-  customSchema,
-  noindex = false
+  description = "ByteLite LLC builds privacy-first products and deterministic systems research from Helena, Montana.",
+  keywords = "ByteLite LLC, HeartStrings Play, privacy-first products, deterministic systems research, Helena Montana",
+  canonical,
+  noindex = false,
+  ogImage = "/bytelite-logo.png",
 } = Astro.props;
 
-const GA_ID = import.meta.env.PUBLIC_GA_ID || '';
+const canonicalURL = canonical || Astro.url.href;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- SEO Component with Structured Data -->
-    <SEO 
-      title={title}
-      description={description}
-      image={image}
-      keywords={keywords}
-      schemaType={schemaType}
-      customSchema={customSchema}
-      noindex={noindex}
-    />
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/bytelite-logo.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    
-    <!-- Preload Critical Assets -->
-    <link rel="preload" href="/bytelite-logo.png" as="image" type="image/png" />
-    
-    <!-- Fonts with display swap -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono&display=swap" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono&display=swap" /></noscript>
-    <script>
-      // Load fonts asynchronously
-      const fontLink = document.querySelector('link[rel="preload"][as="style"]');
-      if (fontLink) {
-        fontLink.rel = 'stylesheet';
-      }
-    </script>
-  </head>
-  <body class="bg-dark-navy text-white">
-    <Header />
-    <main>
-      <slot />
-    </main>
-    <Footer />
-    <EarlyAccessModal />
-    <StickyCTA />
-    <CookieBanner />
-    <style is:global>
-      :root {
-        --color-primary: #00D4FF;
-        --color-secondary: #FF006E;
-        --color-deepkore: #A855F7;
-        --color-bg-dark: #0A0E27;
-        --color-bg-darker: #060813;
-        --color-text: #E0E0E0;
-        --color-text-dim: rgba(224, 224, 224, 0.7);
-      }
-      
-      /* Add padding to main when hero is not present */
-      main {
-        padding-top: 1rem;
-      }
-      
-      /* Remove padding when index page with hero */
-      body:has(.hero) main {
-        padding-top: 0;
-      }
-      
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      
-      body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        background: var(--color-bg-darker);
-        color: var(--color-text);
-        line-height: 1.6;
-        overflow-x: hidden;
-      }
-      
-      /* Global responsive typography -- tighter scale */
-      h1 {
-        font-size: clamp(1.6rem, 3.5vw, 2.75rem);
-        line-height: 1.15;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+  <link rel="canonical" href={canonicalURL} />
 
-      h2 {
-        font-size: clamp(1.2rem, 2.5vw, 1.875rem);
-        line-height: 1.2;
-      }
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:site_name" content="ByteLite LLC" />
 
-      h3 {
-        font-size: clamp(1rem, 2vw, 1.4rem);
-        line-height: 1.3;
-      }
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
 
-      p {
-        font-size: clamp(0.875rem, 1.5vw, 1rem);
-        line-height: 1.65;
-      }
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/bytelite-logo.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
-      /* Mobile typography */
-      @media (max-width: 640px) {
-        body {
-          font-size: 15px;
-        }
-      }
-      
-      /* Image optimization defaults */
-      img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-      }
-      
-      /* Lazy loading placeholder style */
-      img[loading="lazy"] {
-        background: rgba(224, 224, 224, 0.1);
-      }
-      
-      /* Optimize font loading */
-      .font-loading body {
-        opacity: 0;
-      }
-      
-      .fonts-loaded body {
-        opacity: 1;
-        transition: opacity 0.3s;
-      }
-      
-      code, pre {
-        font-family: 'JetBrains Mono', monospace;
-      }
-      
-      ::selection {
-        background: var(--color-primary);
-        color: var(--color-bg-dark);
-      }
-      
-      html {
-        scroll-behavior: smooth;
-      }
-    </style>
-    
-    {includeAnalytics && GA_ID && (
-      <script define:vars={{ gaId: GA_ID }}>
-        const BL_CONSENT_KEY = 'bl_cookie_consent';
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" />
 
-        function loadGA() {
-          if ((window as any).__blGaLoaded) return;
-          (window as any).__blGaLoaded = true;
-          const script = document.createElement('script');
-          script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
-          script.async = true;
-          document.head.appendChild(script);
-          script.onload = () => {
-            (window as any).dataLayer = (window as any).dataLayer || [];
-            function gtag(...args: any[]) { (window as any).dataLayer.push(args); }
-            gtag('js', new Date());
-            gtag('config', gaId, { anonymize_ip: true });
-          };
-        }
-
-        function checkConsent() {
-          try {
-            const raw = localStorage.getItem(BL_CONSENT_KEY);
-            if (!raw) return;
-            const consent = JSON.parse(raw);
-            if (consent?.analytics) loadGA();
-          } catch {}
-        }
-
-        window.addEventListener('load', checkConsent);
-        window.addEventListener('cookieConsentUpdated', (e: Event) => {
-          const detail = (e as CustomEvent).detail;
-          if (detail?.analytics) loadGA();
-        });
-      </script>
-    )}
-  </body>
+  <!-- Cloudflare Beacon -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": ""}' is:inline></script>
+</head>
+<body>
+  <slot name="header" />
+  <main>
+    <slot />
+  </main>
+  <slot name="footer" />
+</body>
 </html>
+
+<style is:global>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  background: #07090f;
+  color: #e4e7f2;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; }
+
+/* Container */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+@media (min-width: 768px) { .container { padding: 0 2rem; } }
+
+/* Sections */
+.section      { padding: 5rem 0; }
+.section-sm   { padding: 3rem 0; }
+.section-alt  { background: #0d1120; }
+@media (max-width: 767px) { .section { padding: 3.5rem 0; } }
+
+/* Typography */
+h1 { font-size: clamp(2rem, 4.5vw, 3.25rem); font-weight: 700; line-height: 1.12; letter-spacing: -.02em; }
+h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; line-height: 1.18; letter-spacing: -.015em; }
+h3 { font-size: clamp(1.1rem, 2.2vw, 1.5rem); font-weight: 600; line-height: 1.25; }
+h4 { font-size: 1.125rem; font-weight: 600; }
+p  { color: #a0a8c0; line-height: 1.7; }
+.text-primary { color: #e4e7f2; }
+
+/* Eyebrow */
+.eyebrow {
+  font-size: .75rem; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: #6366f1; margin-bottom: .75rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .75rem 1.75rem; border-radius: .5rem;
+  font-size: .9375rem; font-weight: 500; transition: all .2s;
+  border: none; white-space: nowrap;
+}
+.btn-primary  { background: #6366f1; color: #fff; }
+.btn-primary:hover  { background: #4f52d1; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,.35); }
+.btn-pink     { background: #ec4899; color: #fff; }
+.btn-pink:hover     { background: #db2777; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(236,72,153,.35); }
+.btn-outline  { background: transparent; color: #e4e7f2; border: 1px solid #1a2235; }
+.btn-outline:hover  { border-color: #6366f1; color: #818cf8; }
+.btn-ghost    { background: transparent; color: #7b829e; border: 1px solid #1a2235; }
+.btn-ghost:hover    { color: #e4e7f2; border-color: #24304a; }
+.btn-sm { padding: .5rem 1.25rem; font-size: .875rem; }
+
+/* Status badges */
+.badge {
+  display: inline-flex; align-items: center;
+  padding: .25rem .75rem; border-radius: 9999px;
+  font-size: .75rem; font-weight: 500; white-space: nowrap;
+}
+.badge-prelaunch  { background: rgba(236,72,153,.12);  color: #f472b6; border: 1px solid rgba(236,72,153,.25); }
+.badge-private    { background: rgba(99,102,241,.12);  color: #818cf8; border: 1px solid rgba(99,102,241,.25); }
+.badge-research   { background: rgba(167,139,250,.12); color: #a78bfa; border: 1px solid rgba(167,139,250,.25); }
+.badge-active     { background: rgba(52,211,153,.12);  color: #34d399; border: 1px solid rgba(52,211,153,.25); }
+.badge-planned    { background: rgba(245,158,11,.12);  color: #fbbf24; border: 1px solid rgba(245,158,11,.25); }
+.badge-none       { background: rgba(123,130,158,.1);  color: #7b829e; border: 1px solid rgba(123,130,158,.2); }
+
+/* Cards */
+.card {
+  background: #0d1120; border: 1px solid #1a2235;
+  border-radius: .75rem; padding: 1.75rem;
+  transition: border-color .2s, box-shadow .2s;
+}
+.card:hover { border-color: #24304a; box-shadow: 0 4px 24px rgba(0,0,0,.25); }
+
+/* Divider */
+.divider { border: none; border-top: 1px solid #1a2235; margin: 0; }
+
+</style>

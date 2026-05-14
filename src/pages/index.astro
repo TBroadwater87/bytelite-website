@@ -1,728 +1,245 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout
-  title="ByteLite LLC - HeartStrings Play and the ByteLite Ecosystem"
-  description="ByteLite LLC builds products people actually want. HeartStrings Play is the first public launch product -- a premium social board game. HeartStrings App, ByteLite compression, and Deep Kore AI research round out the ecosystem."
-  keywords={["HeartStrings Play", "HeartStrings App", "ByteLite", "Deep Kore", "AIya", "AIon", "social board game", "relationship game", "compression technology"]}
-  schemaType="Organization"
+  title="ByteLite LLC | Privacy-First Products and Deterministic Systems Research"
+  description="ByteLite LLC builds HeartStrings Play, develops private companion tools, and advances research in privacy-first and deterministic software systems."
+  keywords="ByteLite LLC, HeartStrings Play, deterministic systems research, privacy-first products, Helena Montana"
+  
 >
+  <Header slot="header" />
 
   <!-- Hero -->
-  <section class="company-hero">
-    <div class="hero-bg">
-      <div class="hero-gradient"></div>
-    </div>
+  <section class="hero">
     <div class="container">
-      <p class="hero-eyebrow">ByteLite LLC</p>
-      <h1>HeartStrings Play is in pre-launch.<br/>The infrastructure underneath is real.</h1>
+      <p class="eyebrow">ByteLite LLC</p>
+      <h1>Privacy-first products<br/>and deterministic systems research.</h1>
       <p class="hero-sub">
-        A premium social board game. A companion app. Compression infrastructure. AI-guided intelligence.
-        Built by one team in Helena, MT.
+        ByteLite LLC builds HeartStrings Play, develops private companion tools,
+        and advances research in more inspectable software systems.
+        Built by one founder in Helena, Montana.
       </p>
       <div class="hero-cta">
         <a href="/heartstrings" class="btn btn-pink">Explore HeartStrings Play</a>
-        <a href="/heartstrings-app" class="btn btn-rose-outline">See the App</a>
-        <a href="/contact" class="btn btn-outline">Express Interest</a>
+        <a href="/status" class="btn btn-outline">View Status</a>
+        <a href="/contact" class="btn btn-ghost">Contact</a>
       </div>
     </div>
   </section>
 
-  <!-- Ecosystem Bridge - 4 cards -->
-  <section class="ecosystem-section">
-    <div class="container">
-      <p class="section-eyebrow">The ByteLite LLC Ecosystem</p>
-      <div class="ecosystem-grid">
-
-        <!-- HeartStrings Play -->
-        <div class="eco-card eco-play">
-          <div class="eco-card-header">
-            <span class="eco-launch-badge">Pre-Launch</span>
-          </div>
-          <div class="eco-name play">HeartStrings Play</div>
-          <p class="eco-desc">2 to 8 players, five path types, 305 cards across six decks. Six escalating tiers — Initiate to Climax. Single loop board. Decree economy. Pre-launch.</p>
-          <a href="/heartstrings" class="eco-link play">See HeartStrings Play →</a>
-        </div>
-
-        <!-- HeartStrings App -->
-        <div class="eco-card eco-app">
-          <div class="eco-card-header">
-            <img src="/heartstrings/heartstrings-app-logo.png" alt="HeartStrings App" width="36" height="36" class="eco-app-logo" loading="lazy" />
-            <span class="eco-badge-dev">In Development</span>
-          </div>
-          <div class="eco-name app">HeartStrings App</div>
-          <p class="eco-desc">The digital companion. Profiles, guided matching, and compatibility rationale powered by AIya and AIon. Play creates the shared language. The app extends it.</p>
-          <a href="/heartstrings-app" class="eco-link app">See the App →</a>
-        </div>
-
-        <!-- ByteLite -->
-        <div class="eco-card eco-bytelite">
-          <div class="eco-card-header">
-            <span class="eco-badge-active">Active Engineering</span>
-          </div>
-          <div class="eco-name bytelite">ByteLite</div>
-          <p class="eco-desc">Structural compression infrastructure. Bit Motion Encoding over the Sigma-9 alphabet. Deterministic. Lossless. Patent pending.</p>
-          <a href="/technology" class="eco-link bytelite">See ByteLite →</a>
-        </div>
-
-        <!-- Deep Kore -->
-        <div class="eco-card eco-deepkore">
-          <div class="eco-card-header">
-            <span class="eco-badge-research">Research</span>
-          </div>
-          <div class="eco-name deepkore">Deep Kore / AIya</div>
-          <p class="eco-desc">The intelligence and governance layer. AIya and AIon are its first public face. Genesis Goal Keeper ensures research stays governed and responsible.</p>
-          <a href="/deepkore" class="eco-link deepkore">See Deep Kore →</a>
-        </div>
-
+  <!-- Status strip -->
+  <section class="section-sm section-alt">
+    <div class="container status-strip">
+      <div class="status-item">
+        <span class="status-label">HeartStrings Play</span>
+        <span class="badge badge-prelaunch">Pre-launch</span>
+      </div>
+      <div class="status-divider"></div>
+      <div class="status-item">
+        <span class="status-label">HeartStrings App</span>
+        <span class="badge badge-private">Private beta development</span>
+      </div>
+      <div class="status-divider"></div>
+      <div class="status-item">
+        <span class="status-label">ByteLite Research</span>
+        <span class="badge badge-research">Private validation</span>
       </div>
     </div>
   </section>
 
-  <!-- HeartStrings Play Feature Banner -->
-  <section class="play-feature">
-    <div class="container">
-      <div class="play-feature-inner">
-        <div class="play-feature-img">
-          <img
-            src="/heartstrings/heartstrings-gameboard.png"
-            alt="HeartStrings Play board game"
-            width="480"
-            height="480"
-            loading="lazy"
-            decoding="async"
-            class="gameboard-img"
-          />
+  <!-- Featured: HeartStrings Play -->
+  <section class="section">
+    <div class="container featured-grid">
+      <div class="featured-text">
+        <p class="eyebrow">Featured Product</p>
+        <h2>HeartStrings Play</h2>
+        <p class="featured-desc">
+          A premium adult social board game for private groups that want a more intentional,
+          consent-first way to connect. Designed around escalating card-based play with
+          clear boundaries and shared agency.
+        </p>
+        <div class="featured-specs">
+          <div class="spec"><span class="spec-num">2–8</span><span class="spec-label">Players</span></div>
+          <div class="spec"><span class="spec-num">305</span><span class="spec-label">Cards</span></div>
+          <div class="spec"><span class="spec-num">5</span><span class="spec-label">Path types</span></div>
+          <div class="spec"><span class="spec-num">6</span><span class="spec-label">Tiers</span></div>
         </div>
-        <div class="play-feature-copy">
-          <span class="feature-eyebrow">Pre-Launch</span>
-          <h2>HeartStrings Play</h2>
-          <p>A premium adult social board game. Six escalating card tiers — from Initiate to Climax. 2 to 8 players, five path types, 305 cards. Single perimeter loop board, Decree economy, Consent Cup mechanics.</p>
-          <p class="play-sub">Not a trivia night. Not a one-trick dare deck. A guided social experience designed to build real chemistry.</p>
-          <div class="play-feature-cta">
-            <a href="/heartstrings" class="btn btn-pink">See the Full Game</a>
-            <a href="/contact" class="btn btn-outline">Express Interest</a>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.75rem;">
+          <a href="/heartstrings" class="btn btn-pink">See HeartStrings Play</a>
+          <a href="/contact" class="btn btn-outline btn-sm" style="align-self:center;">Express Interest</a>
+        </div>
+      </div>
+      <div class="featured-badge-area">
+        <div class="featured-badge">
+          <div class="fb-inner">
+            <div class="fb-title">HeartStrings Play</div>
+            <div class="fb-status"><span class="badge badge-prelaunch">Pre-launch</span></div>
+            <div class="fb-tagline">Consent-first.<br/>Adult social play.<br/>Private groups.</div>
+            <div class="fb-detail">Manufacturing preparation underway.<br/>No retail release date announced.</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Status Snapshot -->
-  <section class="status-section">
+  <!-- Ecosystem cards -->
+  <section class="section section-alt">
     <div class="container">
-      <h2>Status Snapshot</h2>
-      <p class="status-intro">What is real today. No ambiguity.</p>
-
-      <div class="status-grid">
-        <div class="status-col">
-          <div class="status-header live">Live Now</div>
-          <ul class="status-list">
-            <li>HeartStrings Play: game design and board</li>
-            <li>HeartStrings App: UI design system</li>
-            <li>ByteLite compression engine</li>
-            <li>Genesis Goal Keeper safety framework</li>
-            <li>Patent pending</li>
-          </ul>
-        </div>
-
-        <div class="status-col">
-          <div class="status-header preview">In Development</div>
-          <ul class="status-list">
-            <li>HeartStrings Play: card deck production</li>
-            <li>HeartStrings Play: physical prototype</li>
-            <li>HeartStrings App: profile and match engine</li>
-            <li>ByteLite: standalone demo application</li>
-          </ul>
-        </div>
-
-        <div class="status-col">
-          <div class="status-header development">Coming Next</div>
-          <ul class="status-list">
-            <li>HeartStrings Play: manufacturing and retail</li>
-            <li>HeartStrings App: beta access</li>
-            <li>ByteLite: public API</li>
-            <li>Academic verification papers</li>
-          </ul>
-        </div>
-
-        <div class="status-col">
-          <div class="status-header planned">Research</div>
-          <ul class="status-list">
-            <li>Deep Kore: architecture blueprint</li>
-            <li>AIya / AIon: live interaction layer</li>
-            <li>Deep Kore: academic papers</li>
-            <li>Governance framework expansion</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="status-footer">
-        <a href="/status" class="btn btn-outline">Full Status Page →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Quick Access Row -->
-  <section class="quick-row">
-    <div class="container">
-      <p class="qr-label">Explore the Ecosystem</p>
-      <div class="qr-grid">
-        <a href="/heartstrings" class="qr-item qr-play">
-          <span class="qr-badge launch">Pre-Launch</span>
-          <span class="qr-name">HeartStrings Play</span>
+      <p class="eyebrow" style="text-align:center;">The ByteLite LLC Ecosystem</p>
+      <h2 style="text-align:center;margin-bottom:3rem;">Four projects. One company.</h2>
+      <div class="eco-grid">
+        <a href="/heartstrings" class="card eco-card eco-play">
+          <div class="eco-header">
+            <span class="badge badge-prelaunch">Pre-launch</span>
+          </div>
+          <h3 class="eco-title">HeartStrings Play</h3>
+          <p class="eco-desc">Premium adult social board game. Consent-first. 2–8 players. Pre-launch manufacturing preparation.</p>
+          <span class="eco-arrow">Explore &rarr;</span>
         </a>
-        <a href="/heartstrings-app" class="qr-item">
-          <span class="qr-badge indev">In Development</span>
-          <span class="qr-name">HeartStrings App</span>
+        <a href="/heartstrings-app" class="card eco-card eco-app">
+          <div class="eco-header">
+            <span class="badge badge-private">Private beta</span>
+          </div>
+          <h3 class="eco-title">HeartStrings App</h3>
+          <p class="eco-desc">Private-test digital companion for the HeartStrings ecosystem. No public app store release yet.</p>
+          <span class="eco-arrow">See App &rarr;</span>
         </a>
-        <a href="/demo" class="qr-item">
-          <span class="qr-badge live">Live Demo</span>
-          <span class="qr-name">ByteLite Compression</span>
+        <a href="/research" class="card eco-card eco-research">
+          <div class="eco-header">
+            <span class="badge badge-research">Private research</span>
+          </div>
+          <h3 class="eco-title">ByteLite Research</h3>
+          <p class="eco-desc">Private deterministic infrastructure research. Mechanisms intentionally not public during validation.</p>
+          <span class="eco-arrow">See Research &rarr;</span>
         </a>
-        <a href="/deepkore" class="qr-item">
-          <span class="qr-badge preview">Preview</span>
-          <span class="qr-name">Deep Kore / AIya</span>
+        <a href="/research#deep-kore" class="card eco-card eco-deepkore">
+          <div class="eco-header">
+            <span class="badge badge-research">Private research</span>
+          </div>
+          <h3 class="eco-title">Deep Kore / AIya</h3>
+          <p class="eco-desc">Private reasoning research and guide concept. Not a public AI product. Not AGI.</p>
+          <span class="eco-arrow">See Research &rarr;</span>
         </a>
       </div>
     </div>
   </section>
 
+  <!-- Privacy stance -->
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <p class="eyebrow" style="text-align:center;">Privacy First</p>
+      <h2 style="text-align:center;margin-bottom:1.5rem;">Privacy as a starting constraint,<br/>not an afterthought.</h2>
+      <p style="text-align:center;font-size:1.0625rem;line-height:1.8;">
+        ByteLite LLC builds products where privacy is a design requirement, not a legal checkbox.
+        No surveillance advertising. No data brokering. No hidden collection.
+        Product status is clearly separated from research status, so nothing is implied that is not real.
+      </p>
+    </div>
+  </section>
+
+  <!-- Founder / About -->
+  <section class="section section-alt">
+    <div class="container" style="max-width:760px;text-align:center;">
+      <p class="eyebrow">The Company</p>
+      <h2 style="margin-bottom:1.5rem;">Founder-led from Helena, Montana.</h2>
+      <p style="font-size:1.0625rem;line-height:1.8;margin-bottom:2rem;">
+        ByteLite LLC is a solo-founder company. One team, four projects, clear product status.
+        HeartStrings Play is the public-facing product. Research into deterministic systems continues privately.
+        No investor pressure to overclaim. No hype that cannot be defended.
+      </p>
+      <a href="/about" class="btn btn-outline">About ByteLite LLC</a>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="section">
+    <div class="container cta-block">
+      <h2>Questions or partnership inquiries?</h2>
+      <p>HeartStrings Play pre-launch interest, app beta requests, research partnerships, and investor conversations are all welcome.</p>
+      <a href="/contact" class="btn btn-primary">Get in touch</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
 </Layout>
 
 <style>
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
 
-  /* Hero */
-  .company-hero {
-    position: relative;
-    padding: 4rem 0 3rem;
-    overflow: hidden;
-    text-align: center;
-  }
+.hero {
+  padding: 7rem 0 5rem;
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(99,102,241,.08) 0%, transparent 70%);
+}
+.hero h1 { max-width: 720px; }
+.hero-sub {
+  max-width: 600px; font-size: 1.125rem; margin-top: 1.5rem;
+  color: #7b829e; line-height: 1.7;
+}
+.hero-cta { display: flex; flex-wrap: wrap; gap: .875rem; margin-top: 2.25rem; }
+@media (max-width: 540px) { .hero { padding: 4.5rem 0 3.5rem; } }
+
+/* Status strip */
+.status-strip {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.status-item { display: flex; align-items: center; gap: .875rem; }
+.status-label { font-size: .9375rem; font-weight: 500; color: #e4e7f2; }
+.status-divider {
+  width: 1px; height: 1.75rem; background: #1a2235; flex-shrink: 0;
+}
+@media (max-width: 767px) { .status-divider { display: none; } }
+
+/* Featured grid */
+.featured-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+}
+@media (max-width: 767px) { .featured-grid { grid-template-columns: 1fr; gap: 3rem; } }
+.featured-desc { font-size: 1.0625rem; margin-top: 1rem; line-height: 1.75; }
+.featured-specs {
+  display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;
+}
+.spec { text-align: center; }
+.spec-num {
+  display: block; font-size: 2rem; font-weight: 700; color: #e4e7f2;
+  line-height: 1; letter-spacing: -.04em;
+}
+.spec-label { font-size: .8125rem; color: #7b829e; margin-top: .25rem; }
+.featured-badge-area {
+  display: flex; justify-content: center; align-items: center;
+}
+.featured-badge {
+  background: #0d1120; border: 1px solid #24304a;
+  border-radius: 1rem; padding: 2.5rem; max-width: 320px; width: 100%;
+  background: linear-gradient(135deg, #0d1120 0%, #12142b 100%);
+  box-shadow: 0 0 40px rgba(236,72,153,.06);
+}
+.fb-inner { display: flex; flex-direction: column; gap: 1rem; }
+.fb-title { font-size: 1.375rem; font-weight: 700; color: #e4e7f2; }
+.fb-status {}
+.fb-tagline { font-size: .9375rem; color: #a0a8c0; line-height: 1.6; }
+.fb-detail { font-size: .8125rem; color: #4a5068; line-height: 1.6; }
+
+/* Eco grid */
+.eco-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+@media (max-width: 767px) { .eco-grid { grid-template-columns: 1fr; } }
+.eco-card { display: flex; flex-direction: column; gap: .875rem; text-decoration: none; }
+.eco-header {}
+.eco-title { color: #e4e7f2; margin: 0; }
+.eco-desc { color: #7b829e; font-size: .9375rem; flex: 1; }
+.eco-play .eco-title, .eco-play .eco-arrow { color: #f472b6; }
+.eco-app .eco-title, .eco-app .eco-arrow { color: #818cf8; }
+.eco-research .eco-title, .eco-research .eco-arrow { color: #6366f1; }
+.eco-deepkore .eco-title, .eco-deepkore .eco-arrow { color: #a78bfa; }
+.eco-arrow { font-size: .875rem; font-weight: 500; margin-top: auto; }
+
+/* CTA block */
+.cta-block {
+  background: #0d1120; border: 1px solid #1a2235;
+  border-radius: 1rem; padding: 3.5rem; text-align: center;
+}
+.cta-block h2 { margin-bottom: 1rem; }
+.cta-block p { max-width: 480px; margin: 0 auto 2rem; font-size: 1.0625rem; }
 
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-
-  .hero-gradient {
-    width: 100%;
-    height: 100%;
-    background:
-      radial-gradient(circle at 20% 50%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 50%, rgba(168, 85, 247, 0.07) 0%, transparent 50%),
-      radial-gradient(circle at 50% 80%, rgba(0, 212, 255, 0.04) 0%, transparent 50%),
-      linear-gradient(180deg, #0A0E27 0%, #060813 100%);
-  }
-
-  .company-hero .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-eyebrow {
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: rgba(224, 224, 224, 0.5);
-    margin: 0 0 1.5rem;
-  }
-
-  .company-hero h1 {
-    font-size: clamp(1.75rem, 4.5vw, 3.25rem);
-    font-weight: 800;
-    line-height: 1.15;
-    color: #E0E0E0;
-    margin: 0 0 1rem;
-  }
-
-  .hero-sub {
-    font-size: clamp(0.875rem, 1.5vw, 1rem);
-    color: rgba(224, 224, 224, 0.65);
-    max-width: 520px;
-    margin: 0 auto 1.75rem;
-    line-height: 1.6;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 0.875rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  /* Buttons */
-  .btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.25s ease;
-    display: inline-block;
-    font-size: 0.9375rem;
-  }
-
-  .btn-cyan {
-    background: linear-gradient(135deg, #00D4FF 0%, #0099CC 100%);
-    color: #0A0E27;
-  }
-  .btn-cyan:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 212, 255, 0.35); }
-
-  .btn-pink {
-    background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);
-    color: white;
-  }
-  .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(236, 72, 153, 0.4); }
-
-  .btn-rose-outline {
-    background: transparent;
-    color: #FB7185;
-    border: 1px solid rgba(251, 113, 133, 0.4);
-  }
-  .btn-rose-outline:hover {
-    border-color: #FB7185;
-    background: rgba(251, 113, 133, 0.08);
-    transform: translateY(-2px);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: rgba(224, 224, 224, 0.8);
-    border: 1px solid rgba(224, 224, 224, 0.25);
-  }
-  .btn-outline:hover {
-    border-color: rgba(224, 224, 224, 0.5);
-    color: #E0E0E0;
-    transform: translateY(-2px);
-  }
-
-  /* Ecosystem Section */
-  .ecosystem-section {
-    padding: 3rem 0 2.5rem;
-    background: #060813;
-  }
-
-  .section-eyebrow {
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: rgba(224, 224, 224, 0.4);
-    text-align: center;
-    margin: 0 0 1.5rem;
-  }
-
-  .ecosystem-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
-  }
-
-  .eco-card {
-    background: rgba(10, 14, 39, 0.7);
-    border-radius: 12px;
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .eco-card:hover { transform: translateY(-5px); }
-
-  .eco-play { border: 1px solid rgba(236, 72, 153, 0.3); }
-  .eco-play:hover { box-shadow: 0 16px 40px rgba(236, 72, 153, 0.15); border-color: rgba(236, 72, 153, 0.5); }
-
-  .eco-app { border: 1px solid rgba(251, 113, 133, 0.2); }
-  .eco-app:hover { box-shadow: 0 16px 40px rgba(251, 113, 133, 0.12); border-color: rgba(251, 113, 133, 0.4); }
-
-  .eco-bytelite { border: 1px solid rgba(0, 212, 255, 0.2); }
-  .eco-bytelite:hover { box-shadow: 0 16px 40px rgba(0, 212, 255, 0.12); border-color: rgba(0, 212, 255, 0.35); }
-
-  .eco-deepkore { border: 1px solid rgba(168, 85, 247, 0.2); }
-  .eco-deepkore:hover { box-shadow: 0 16px 40px rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.35); }
-
-  .eco-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .eco-icon-row {
-    display: flex;
-    gap: 0.25rem;
-  }
-
-  .eco-guide-icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 1px solid rgba(236, 72, 153, 0.3);
-  }
-
-  .eco-app-logo {
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
-    object-fit: contain;
-  }
-
-  .eco-launch-badge {
-    font-size: 0.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0.18rem 0.55rem;
-    border-radius: 100px;
-    background: rgba(236, 72, 153, 0.15);
-    color: #EC4899;
-    border: 1px solid rgba(236, 72, 153, 0.4);
-  }
-
-  .eco-badge-dev {
-    font-size: 0.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0.18rem 0.55rem;
-    border-radius: 100px;
-    background: rgba(168, 85, 247, 0.1);
-    color: #A855F7;
-    border: 1px solid rgba(168, 85, 247, 0.3);
-  }
-
-  .eco-badge-active {
-    font-size: 0.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0.18rem 0.55rem;
-    border-radius: 100px;
-    background: rgba(34, 197, 94, 0.1);
-    color: #22C55E;
-    border: 1px solid rgba(34, 197, 94, 0.3);
-  }
-
-  .eco-badge-research {
-    font-size: 0.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0.18rem 0.55rem;
-    border-radius: 100px;
-    background: rgba(168, 85, 247, 0.1);
-    color: #A855F7;
-    border: 1px solid rgba(168, 85, 247, 0.3);
-  }
-
-  .eco-name {
-    font-size: 1.05rem;
-    font-weight: 800;
-    letter-spacing: 0.03em;
-  }
-  .eco-name.play { color: #EC4899; }
-  .eco-name.app { color: #FB7185; }
-  .eco-name.bytelite { color: #00D4FF; }
-  .eco-name.deepkore { color: #A855F7; }
-
-  .eco-desc {
-    color: rgba(224, 224, 224, 0.7);
-    font-size: 0.875rem;
-    line-height: 1.55;
-    margin: 0;
-    flex: 1;
-  }
-
-  .eco-link {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: opacity 0.2s;
-    margin-top: auto;
-  }
-  .eco-link.play { color: #EC4899; }
-  .eco-link.app { color: #FB7185; }
-  .eco-link.bytelite { color: #00D4FF; }
-  .eco-link.deepkore { color: #A855F7; }
-  .eco-link:hover { opacity: 0.75; }
-
-  /* HeartStrings Play Feature */
-  .play-feature {
-    padding: 3rem 0;
-    background: linear-gradient(180deg, #060813 0%, rgba(236, 72, 153, 0.04) 50%, #060813 100%);
-    border-top: 1px solid rgba(236, 72, 153, 0.1);
-    border-bottom: 1px solid rgba(236, 72, 153, 0.1);
-  }
-
-  .play-feature-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-  }
-
-  .play-feature-img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .gameboard-img {
-    width: 100%;
-    max-width: 420px;
-    height: auto;
-    border-radius: 16px;
-    box-shadow: 0 24px 60px rgba(236, 72, 153, 0.2), 0 0 0 1px rgba(236, 72, 153, 0.15);
-  }
-
-  .play-feature-copy {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .feature-eyebrow {
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: #EC4899;
-  }
-
-  .play-feature-copy h2 {
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
-    font-weight: 800;
-    color: #E0E0E0;
-    margin: 0;
-    background: linear-gradient(135deg, #EC4899 0%, #FB7185 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .play-feature-copy p {
-    color: rgba(224, 224, 224, 0.75);
-    font-size: 0.9375rem;
-    line-height: 1.65;
-    margin: 0;
-  }
-
-  .play-sub {
-    font-style: italic;
-    color: rgba(224, 224, 224, 0.5) !important;
-    font-size: 0.875rem !important;
-  }
-
-  .play-feature-cta {
-    display: flex;
-    gap: 0.875rem;
-    flex-wrap: wrap;
-    margin-top: 0.5rem;
-  }
-
-  /* Status Section */
-  .status-section {
-    padding: 2.5rem 0;
-    background: linear-gradient(180deg, #060813 0%, rgba(0, 212, 255, 0.02) 50%, #060813 100%);
-  }
-
-  .status-section h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #E0E0E0;
-    text-align: center;
-    margin: 0 0 0.375rem;
-  }
-
-  .status-intro {
-    text-align: center;
-    color: rgba(224, 224, 224, 0.5);
-    margin: 0 0 1.75rem;
-    font-size: 0.875rem;
-  }
-
-  .status-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .status-col {
-    background: rgba(10, 14, 39, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .status-header {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .status-header.live {
-    background: rgba(34, 197, 94, 0.1);
-    color: #22C55E;
-    border-bottom: 1px solid rgba(34, 197, 94, 0.15);
-  }
-
-  .status-header.preview {
-    background: rgba(236, 72, 153, 0.08);
-    color: #EC4899;
-    border-bottom: 1px solid rgba(236, 72, 153, 0.12);
-  }
-
-  .status-header.development {
-    background: rgba(168, 85, 247, 0.08);
-    color: #A855F7;
-    border-bottom: 1px solid rgba(168, 85, 247, 0.12);
-  }
-
-  .status-header.planned {
-    background: rgba(0, 212, 255, 0.06);
-    color: #00D4FF;
-    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
-  }
-
-  .status-list {
-    list-style: none;
-    padding: 1.25rem;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-  }
-
-  .status-list li {
-    color: rgba(224, 224, 224, 0.65);
-    font-size: 0.8125rem;
-    line-height: 1.4;
-    padding-left: 0.75rem;
-    position: relative;
-  }
-
-  .status-list li::before {
-    content: '--';
-    position: absolute;
-    left: 0;
-    opacity: 0.3;
-  }
-
-  .status-footer {
-    text-align: center;
-  }
-
-  /* Quick Access Row */
-  .quick-row {
-    padding: 1.5rem 0 2rem;
-    background: #060813;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  .qr-label {
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: rgba(224, 224, 224, 0.35);
-    text-align: center;
-    margin-bottom: 0.875rem;
-  }
-
-  .qr-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.75rem;
-  }
-
-  .qr-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    padding: 0.875rem;
-    background: rgba(10, 14, 39, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 8px;
-    text-decoration: none;
-    transition: border-color 0.2s;
-  }
-
-  .qr-item:hover { border-color: rgba(236, 72, 153, 0.25); }
-  .qr-play { border-color: rgba(236, 72, 153, 0.2); }
-  .qr-play:hover { border-color: rgba(236, 72, 153, 0.4); }
-
-  .qr-badge {
-    font-size: 0.62rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 0.1rem 0.45rem;
-    border-radius: 4px;
-    width: fit-content;
-  }
-
-  .qr-badge.launch {
-    background: rgba(236, 72, 153, 0.15);
-    color: #EC4899;
-    border: 1px solid rgba(236, 72, 153, 0.35);
-  }
-
-  .qr-badge.live {
-    background: rgba(34, 197, 94, 0.12);
-    color: #22C55E;
-    border: 1px solid rgba(34, 197, 94, 0.25);
-  }
-
-  .qr-badge.indev {
-    background: rgba(168, 85, 247, 0.1);
-    color: #A855F7;
-    border: 1px solid rgba(168, 85, 247, 0.25);
-  }
-
-  .qr-badge.preview {
-    background: rgba(0, 212, 255, 0.1);
-    color: #00D4FF;
-    border: 1px solid rgba(0, 212, 255, 0.2);
-  }
-
-  .qr-name {
-    font-size: 0.8rem;
-    color: rgba(224, 224, 224, 0.7);
-    font-weight: 500;
-    line-height: 1.35;
-  }
-
-  /* Responsive */
-  @media (max-width: 1024px) {
-    .ecosystem-grid { grid-template-columns: repeat(2, 1fr); }
-    .status-grid    { grid-template-columns: repeat(2, 1fr); }
-    .qr-grid        { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 768px) {
-    .play-feature-inner { grid-template-columns: 1fr; }
-    .play-feature-img   { order: -1; }
-    .ecosystem-grid     { grid-template-columns: 1fr; }
-    .status-grid        { grid-template-columns: 1fr; }
-    .qr-grid            { grid-template-columns: repeat(2, 1fr); }
-    .company-hero       { padding: 3rem 0 2rem; }
-    .hero-cta           { flex-direction: row; flex-wrap: wrap; justify-content: center; }
-  }
-
-  @media (max-width: 480px) {
-    .qr-grid { grid-template-columns: 1fr; }
-  }
 </style>

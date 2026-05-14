@@ -1,501 +1,196 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout 
-  title="Research - ByteLite Compression Technology"
-  description="Academic research, verification tools, and technical papers on ByteLite's Bit Motion Encoding compression technology. Verification in progress."
+<Layout
+  title="Research | ByteLite LLC"
+  description="ByteLite LLC conducts private deterministic systems research while keeping technical mechanisms intentionally non-public during validation."
+  keywords="ByteLite LLC research, deterministic systems, private research, Helena Montana"
+  
 >
-  <section class="hero-mini">
-    <div class="container mx-auto px-4 sm:px-6 py-10">
-      <h1 class="text-3xl md:text-4xl font-bold text-center mb-4">Research & Verification</h1>
-      <p class="text-xl text-gray-300 text-center max-w-3xl mx-auto">
-        Advancing the science of compression through transparent research and independent verification
+  <Header slot="header" />
+
+  <!-- Hero -->
+  <section class="res-hero">
+    <div class="container">
+      <p class="eyebrow">Research</p>
+      <h1>Private systems research.</h1>
+      <p class="res-hero-sub">
+        ByteLite LLC conducts private research into deterministic infrastructure,
+        verification-focused systems, media tooling, and reasoning interfaces.
+        Technical mechanisms are intentionally not public during validation.
       </p>
     </div>
   </section>
 
-  <!-- Academic Papers -->
-  <section class="py-8">
-    <div class="container mx-auto px-4 sm:px-6">
-      <h2 class="text-3xl font-bold mb-8">Academic Publications</h2>
-      
-      <div class="papers-grid">
-        <div class="paper-card placeholder">
-          <div class="paper-icon">📄</div>
-          <h3>Mathematical Foundations of Extreme Compression</h3>
-          <p class="paper-authors">ByteLite Research Team</p>
-          <p class="paper-status">In Preparation • Planned for 2026</p>
-          <p class="paper-abstract">
-            Exploring the theoretical limits of lossless compression through proprietary transformation algorithms.
-            Publication planned for 2026.
-          </p>
+  <!-- Why it matters -->
+  <section class="section section-alt">
+    <div class="container res-why">
+      <div>
+        <p class="eyebrow">Why It Matters</p>
+        <h2>The software stack needs better foundations.</h2>
+      </div>
+      <div class="res-why-points">
+        <div class="res-point">
+          <h4 style="color:#e4e7f2;margin-bottom:.5rem;">Data growth is accelerating.</h4>
+          <p>Storage, bandwidth, and infrastructure costs compound yearly. Systems built without deterministic foundations accumulate technical debt that compounds the same way.</p>
         </div>
-
-        <div class="paper-card placeholder">
-          <div class="paper-icon">📊</div>
-          <h3>Empirical Analysis of ByteLite Performance</h3>
-          <p class="paper-authors">Independent Research Consortium</p>
-          <p class="paper-status">Planned for 2026</p>
-          <p class="paper-abstract">
-            Comprehensive benchmarking across diverse data types and compression scenarios.
-            Independent verification following public demonstration application release.
-          </p>
+        <div class="res-point">
+          <h4 style="color:#e4e7f2;margin-bottom:.5rem;">Opacity is a risk.</h4>
+          <p>Software systems that cannot be inspected cannot be trusted at scale. Deterministic, verifiable approaches reduce the inspection surface for critical infrastructure.</p>
         </div>
-        
-        <div class="paper-card placeholder">
-          <div class="paper-icon">🧠</div>
-          <h3>Beyond Storage: Structural Properties of Deep Compression</h3>
-          <p class="paper-authors">Deep Kore Research Division</p>
-          <p class="paper-status">Planned • 2026</p>
-          <p class="paper-abstract">
-            What else do ByteLite's recursive structures do? Early explorations and open questions.
-          </p>
+        <div class="res-point">
+          <h4 style="color:#e4e7f2;margin-bottom:.5rem;">Privacy requires architecture, not policy.</h4>
+          <p>Genuine privacy cannot be bolted onto systems built without it. It requires decisions at the architectural level from the start.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Verification Examples -->
-  <section class="py-8 bg-gray-900/30">
-    <div class="container mx-auto px-4 sm:px-6">
-      <h2 class="text-3xl font-bold mb-8">Checksum Verification</h2>
-      
-      <div class="verification-demo">
-        <h3 class="text-xl font-semibold mb-4">Example: Round-Trip Lossless Verification</h3>
-
-        <div class="code-blocks-3">
-          <div class="code-block">
-            <div class="code-header code-header--green">1. Original File</div>
-            <pre><code>File: dataset.bin
-Size: 1,073,741,824 bytes (1 GB)
-SHA-256: 3b4c5d6e...fb0c1d2e
-                     [hash A]</code></pre>
-          </div>
-
-          <div class="arrow">compress &rarr;</div>
-
-          <div class="code-block">
-            <div class="code-header code-header--cyan">2. Compressed Artifact</div>
-            <pre><code>File: dataset.blc
-Size: [BME output — varies by data]
-SHA-256: 9f1a2b3c...e4d5f6a7
-                     [hash B -- different]</code></pre>
-          </div>
-
-          <div class="arrow">decompress &rarr;</div>
-
-          <div class="code-block">
-            <div class="code-header code-header--green">3. Reconstructed Output</div>
-            <pre><code>File: dataset_out.bin
-Size: 1,073,741,824 bytes (1 GB)
-SHA-256: 3b4c5d6e...fb0c1d2e
-                     [hash A -- matches original]</code></pre>
-          </div>
+  <!-- Research areas -->
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Research Areas</p>
+      <h2 style="margin-bottom:2.5rem;">What ByteLite LLC researches.</h2>
+      <div class="res-areas-grid">
+        <div class="card res-area-card">
+          <div class="res-area-icon">&#9632;</div>
+          <h3 style="color:#e4e7f2;margin:.75rem 0 .625rem;">Data Infrastructure</h3>
+          <p>Deterministic data representation and verification. Private research into how data can be encoded, stored, and reconstructed with guaranteed properties. No public product available yet.</p>
+          <div style="margin-top:1rem;"><span class="badge badge-research">Private research</span></div>
         </div>
-
-        <p class="verification-note">
-          Lossless proof: <strong>hash(original) == hash(reconstructed output)</strong> (hash A = hash A).
-          The compressed artifact has a different hash (hash B) because it contains different bytes --
-          a compact key, not a copy of the original data. Round-trip fidelity is verified by
-          comparing original and decompressed output, not the compressed artifact.
-          Verification harness in development.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Open Source Tools -->
-  <section class="py-8">
-    <div class="container mx-auto px-4 sm:px-6">
-      <h2 class="text-3xl font-bold mb-8">Verification Tools</h2>
-      
-      <div class="tools-grid">
-        <div class="tool-card">
-          <div class="tool-header">
-            <h3>ByteLite Verifier</h3>
-            <span class="coming-soon">Coming Soon</span>
-          </div>
-          <p class="tool-description">
-            Open-source tool for independent verification of ByteLite compression claims. 
-            Test compression ratios and validate checksum integrity.
-          </p>
-          <div class="tool-features">
-            <span class="feature">✓ Checksum Validation</span>
-            <span class="feature">✓ Ratio Verification</span>
-            <span class="feature">✓ Performance Metrics</span>
-          </div>
-          <button class="btn btn-outline" disabled>
-            Coming 2026
-          </button>
+        <div class="card res-area-card">
+          <div class="res-area-icon res-icon-blue">&#9632;</div>
+          <h3 style="color:#e4e7f2;margin:.75rem 0 .625rem;">Verification Systems</h3>
+          <p>Research into verifiable, inspectable system behavior. The goal is software that can be independently confirmed to do what it claims, without requiring trust in opaque implementations.</p>
+          <div style="margin-top:1rem;"><span class="badge badge-research">Private research</span></div>
         </div>
-
-        <div class="tool-card">
-          <div class="tool-header">
-            <h3>Academic Test Suite</h3>
-            <span class="coming-soon">In Development</span>
-          </div>
-          <p class="tool-description">
-            Comprehensive testing framework for researchers to validate ByteLite technology
-            against established compression benchmarks.
-          </p>
-          <div class="tool-features">
-            <span class="feature">✓ Calgary Corpus</span>
-            <span class="feature">✓ Canterbury Corpus</span>
-            <span class="feature">✓ Custom Datasets</span>
-          </div>
-          <button class="btn btn-outline" disabled>
-            Coming 2026
-          </button>
+        <div class="card res-area-card">
+          <div class="res-area-icon res-icon-amber">&#9632;</div>
+          <h3 style="color:#e4e7f2;margin:.75rem 0 .625rem;">Media Tooling</h3>
+          <p>Private research into consistent, controllable visual media workflows. No public product. Technical details not disclosed during active development.</p>
+          <div style="margin-top:1rem;"><span class="badge badge-planned">Early research</span></div>
+        </div>
+        <div class="card res-area-card">
+          <div class="res-area-icon res-icon-purple">&#9632;</div>
+          <h3 style="color:#e4e7f2;margin:.75rem 0 .625rem;">Reasoning Interfaces</h3>
+          <p>Research into more inspectable software reasoning. Connected to the Deep Kore research project. Not claiming AGI. Not a production AI system. See below for public stance.</p>
+          <div style="margin-top:1rem;"><span class="badge badge-research">Private research</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- AI Safety Analysis -->
-  <section class="py-8">
-    <div class="container mx-auto px-4 sm:px-6">
-      <h2 class="text-3xl font-bold mb-8">Independent Analysis</h2>
-      <div class="tools-grid">
-        <div class="tool-card" style="border-color: rgba(29,158,117,0.3); background: rgba(29,158,117,0.04);">
-          <div class="tool-header">
-            <h3 style="color: #1d9e75;">AI Safety Comparison</h3>
-            <span class="coming-soon" style="background: rgba(29,158,117,0.1); color: #1d9e75; border-color: rgba(29,158,117,0.3);">March 2026</span>
-          </div>
-          <p class="tool-description">
-            Architecture-first analysis across 8 safety dimensions. Deep Kore compared against
-            Anthropic, OpenAI, Google DeepMind, xAI, and Meta. Includes interactive radar chart,
-            scorecard view, and full entity dossiers.
-          </p>
-          <div class="tool-features">
-            <span class="feature">8 Safety Axes</span>
-            <span class="feature">6 Labs Compared</span>
-            <span class="feature">Interactive Chart</span>
-          </div>
-          <a href="/ai-safety" class="btn btn-primary" style="text-align:center;">
-            View AI Safety Analysis
-          </a>
+  <!-- Public boundary -->
+  <section class="section section-alt">
+    <div class="container" style="max-width:760px;">
+      <p class="eyebrow">Public Boundary</p>
+      <h2 style="margin-bottom:1.25rem;">What is intentionally not public.</h2>
+      <p style="font-size:1.0625rem;line-height:1.8;margin-bottom:1.5rem;">
+        Detailed technical mechanisms for all research areas are intentionally not public
+        while development and validation continue. This is not unusual for early-stage private research.
+      </p>
+      <div class="boundary-box">
+        <h4 style="color:#e4e7f2;margin-bottom:1rem;">No public claim exists for:</h4>
+        <ul class="boundary-list">
+          <li>A public production data infrastructure product</li>
+          <li>A public API of any kind</li>
+          <li>Published independent benchmark results</li>
+          <li>A public media tooling product</li>
+          <li>A production AI or reasoning system</li>
+          <li>AGI of any kind</li>
+        </ul>
+      </div>
+      <p style="font-size:.9375rem;color:#555e7a;margin-top:1.5rem;">
+        Research, partnership, and investor inquiries are welcome.
+        Technical details are shared selectively under appropriate agreements.
+      </p>
+    </div>
+  </section>
+
+  <!-- Deep Kore section -->
+  <section class="section" id="deep-kore">
+    <div class="container" style="max-width:760px;">
+      <p class="eyebrow">Deep Kore / AIya</p>
+      <h2 style="margin-bottom:1.25rem;">Private reasoning research.</h2>
+      <p style="font-size:1.0625rem;line-height:1.8;margin-bottom:1.5rem;">
+        Deep Kore is private reasoning research exploring more inspectable software behavior.
+        AIya is the human-facing guide concept connected to that work.
+      </p>
+      <div class="deepkore-stance">
+        <div class="stance-item">
+          <span class="stance-no">&#10005;</span>
+          <span>Not AGI</span>
+        </div>
+        <div class="stance-item">
+          <span class="stance-no">&#10005;</span>
+          <span>Not a public production AI system</span>
+        </div>
+        <div class="stance-item">
+          <span class="stance-no">&#10005;</span>
+          <span>No architecture details are public</span>
+        </div>
+        <div class="stance-item">
+          <span class="stance-yes">&#10003;</span>
+          <span>Safety-first principles govern all research</span>
+        </div>
+        <div class="stance-item">
+          <span class="stance-yes">&#10003;</span>
+          <span>Research prototype — not a commercial product</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Research Collaboration -->
-  <section class="py-8 bg-gradient-to-b from-cyan-900/10 to-transparent">
-    <div class="container mx-auto px-4 sm:px-6">
-      <div class="collaboration-card">
-        <h2 class="text-3xl font-bold mb-6">Collaborate With Us</h2>
-        <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-          We're seeking partnerships with academic institutions and research organizations 
-          to advance the science of compression and explore the implications of our discoveries.
-        </p>
-        
-        <div class="collaboration-areas">
-          <div class="area">
-            <h4>Theoretical Research</h4>
-            <p>Mathematical foundations and limits of compression</p>
-          </div>
-          <div class="area">
-            <h4>Applied Research</h4>
-            <p>Real-world applications and optimization</p>
-          </div>
-          <div class="area">
-            <h4>Beyond Compression</h4>
-            <p>What else can these structures do? Let's find out.</p>
-          </div>
-        </div>
-        
-        <a href="/contact" class="btn btn-primary btn-large">
-          Propose Research Collaboration
-        </a>
-      </div>
+  <!-- Contact CTA -->
+  <section class="section section-alt">
+    <div class="container cta-block-alt">
+      <h2>Research, partnership, and investor inquiries.</h2>
+      <p>Technical details are not public by default. To discuss research, partnership potential, or investment, contact directly.</p>
+      <a href="/contact" class="btn btn-primary">Contact ByteLite LLC</a>
     </div>
   </section>
+
+  <Footer slot="footer" />
 </Layout>
 
 <style>
-  .hero-mini {
-    background: linear-gradient(180deg, rgba(0, 212, 255, 0.05) 0%, transparent 100%);
-  }
-  
-  /* Papers Grid */
-  .papers-grid {
-    display: grid;
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-  
-  .paper-card {
-    background: rgba(10, 14, 39, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 2rem;
-    transition: all 0.3s ease;
-  }
-  
-  .paper-card.placeholder {
-    border-style: dashed;
-    opacity: 0.8;
-  }
-  
-  .paper-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(0, 212, 255, 0.3);
-  }
-  
-  .paper-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .paper-card h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #00D4FF;
-  }
-  
-  .paper-authors {
-    color: rgba(224, 224, 224, 0.7);
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .paper-status {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #A855F7;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-  
-  .paper-abstract {
-    color: rgba(224, 224, 224, 0.8);
-    font-size: 0.875rem;
-    line-height: 1.6;
-  }
-  
-  /* Verification Demo */
-  .verification-demo {
-    background: rgba(10, 14, 39, 0.8);
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 12px;
-    padding: 2rem;
-  }
-  
-  .code-blocks {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 2rem;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
 
-  .code-blocks-3 {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr;
-    gap: 1rem;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
+.res-hero {
+  padding: 6rem 0 4.5rem;
+  background: radial-gradient(ellipse 70% 50% at 50% -5%, rgba(99,102,241,.06) 0%, transparent 70%);
+}
+.res-hero h1 { max-width: 640px; }
+.res-hero-sub { max-width: 600px; margin-top: 1.25rem; font-size: 1.0625rem; color: #7b829e; line-height: 1.75; }
+.res-why { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; }
+@media (max-width: 767px) { .res-why { grid-template-columns: 1fr; gap: 2rem; } }
+.res-why-points { display: flex; flex-direction: column; gap: 2rem; }
+.res-point {}
+.res-areas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+@media (max-width: 640px) { .res-areas-grid { grid-template-columns: 1fr; } }
+.res-area-card {}
+.res-area-icon { font-size: .875rem; color: #6366f1; }
+.res-icon-blue { color: #60a5fa; }
+.res-icon-amber { color: #f59e0b; }
+.res-icon-purple { color: #a78bfa; }
+.boundary-box {
+  background: #111828; border: 1px solid #1a2235; border-radius: .75rem; padding: 1.75rem;
+}
+.boundary-list { list-style: none; display: flex; flex-direction: column; gap: .625rem; }
+.boundary-list li { font-size: .9375rem; color: #7b829e; padding-left: 1.25rem; position: relative; }
+.boundary-list li::before { content: "—"; position: absolute; left: 0; color: #4a5068; }
+.deepkore-stance { display: flex; flex-direction: column; gap: .875rem; margin-top: 1.5rem; }
+.stance-item { display: flex; align-items: center; gap: .875rem; }
+.stance-item span:last-child { font-size: .9375rem; color: #a0a8c0; }
+.stance-no { color: #f87171; font-size: 1rem; flex-shrink: 0; width: 1.25rem; text-align: center; }
+.stance-yes { color: #34d399; font-size: 1rem; flex-shrink: 0; width: 1.25rem; text-align: center; }
+.cta-block-alt {
+  background: #0d1120; border: 1px solid #1a2235; border-radius: 1rem;
+  padding: 3.5rem; text-align: center;
+}
+.cta-block-alt h2 { margin-bottom: 1rem; }
+.cta-block-alt p { max-width: 480px; margin: 0 auto 2rem; font-size: 1.0625rem; }
 
-  .code-header--green {
-    background: rgba(34, 197, 94, 0.12);
-    color: #22c55e;
-  }
-
-  .code-header--cyan {
-    background: rgba(0, 212, 255, 0.1);
-    color: #00D4FF;
-  }
-  
-  .code-block {
-    background: #0A0E27;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .code-header {
-    background: rgba(0, 212, 255, 0.1);
-    padding: 0.75rem 1rem;
-    font-weight: 600;
-    color: #00D4FF;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .code-block pre {
-    padding: 1rem;
-    margin: 0;
-    overflow-x: auto;
-  }
-  
-  .code-block code {
-    color: #E0E0E0;
-    font-size: 0.875rem;
-    line-height: 1.6;
-  }
-  
-  .arrow {
-    font-size: 2rem;
-    color: #00D4FF;
-    text-align: center;
-  }
-  
-  .verification-note {
-    text-align: center;
-    color: rgba(224, 224, 224, 0.8);
-    font-style: italic;
-  }
-  
-  /* Tools Grid */
-  .tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-  }
-  
-  .tool-card {
-    background: rgba(10, 14, 39, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .tool-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .tool-header h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-  }
-  
-  .coming-soon {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background: rgba(168, 85, 247, 0.1);
-    color: #A855F7;
-    border: 1px solid rgba(168, 85, 247, 0.3);
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-  
-  .tool-description {
-    color: rgba(224, 224, 224, 0.8);
-    margin-bottom: 1.5rem;
-    flex-grow: 1;
-  }
-  
-  .tool-features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .feature {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background: rgba(0, 212, 255, 0.1);
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 20px;
-    font-size: 0.75rem;
-    color: #00D4FF;
-  }
-  
-  /* Collaboration */
-  .collaboration-card {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .collaboration-areas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-  }
-  
-  .area {
-    text-align: center;
-  }
-  
-  .area h4 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #00D4FF;
-    margin-bottom: 0.5rem;
-  }
-  
-  .area p {
-    color: rgba(224, 224, 224, 0.7);
-    font-size: 0.875rem;
-  }
-  
-  /* Buttons */
-  .btn {
-    padding: 1rem 2.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: inline-block;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .btn-primary {
-    background: linear-gradient(135deg, #00D4FF 0%, #0099CC 100%);
-    color: #0A0E27;
-  }
-  
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
-  }
-  
-  .btn-outline {
-    background: transparent;
-    color: #00D4FF;
-    border: 2px solid #00D4FF;
-  }
-  
-  .btn-outline:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
-  .btn-large {
-    padding: 1.25rem 3rem;
-    font-size: 1.125rem;
-  }
-  
-  @media (max-width: 768px) {
-    .code-blocks {
-      grid-template-columns: 1fr;
-    }
-
-    .code-blocks-3 {
-      grid-template-columns: 1fr;
-    }
-
-    .arrow {
-      transform: rotate(90deg);
-    }
-    
-    .tools-grid {
-      grid-template-columns: 1fr;
-    }
-  }
 </style>
