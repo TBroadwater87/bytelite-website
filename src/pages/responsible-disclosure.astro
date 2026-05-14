@@ -1,101 +1,101 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout 
-  title="Responsible Disclosure - ByteLite"
-  description="ByteLite's responsible disclosure policy for security researchers and ethical hackers."
+<Layout
+  title="Responsible Disclosure | ByteLite LLC"
+  description="Responsible disclosure policy for ByteLite LLC. How to report security vulnerabilities in our website or services."
+  noindex={true}
 >
-  <section class="py-20">
-    <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
-      <h1 class="text-4xl font-bold mb-8">Responsible Disclosure Policy</h1>
-      
-      <div class="prose prose-lg prose-invert">
-        <p class="text-gray-300">
-          ByteLite values the security community and believes that responsible disclosure of security 
-          vulnerabilities helps us ensure the security and privacy of our users.
-        </p>
-        
-        <h2 class="text-2xl font-semibold mt-8 mb-4">Scope</h2>
-        <p class="text-gray-300">
-          This policy applies to any vulnerabilities discovered in:
-        </p>
-        <ul class="text-gray-300">
-          <li>ByteLite compression technology</li>
-          <li>Deep Kore systems and infrastructure</li>
-          <li>Our websites and web applications</li>
-          <li>Our APIs and backend services</li>
+  <Header slot="header" />
+
+  <section class="legal-hero">
+    <div class="container">
+      <p class="eyebrow">Security</p>
+      <h1>Responsible Disclosure</h1>
+      <p class="legal-sub">Last updated: May 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container legal-body">
+
+      <div class="legal-section">
+        <h2>Overview</h2>
+        <p>ByteLite LLC takes the security of its website and services seriously. If you believe you have found a security vulnerability, we encourage responsible disclosure.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Scope</h2>
+        <p>This policy applies to security vulnerabilities discovered in:</p>
+        <ul class="legal-list">
+          <li>The ByteLite LLC public website (thebytelite.com)</li>
+          <li>Any web applications operated by ByteLite LLC</li>
+          <li>Contact forms and public-facing services</li>
         </ul>
-        
-        <h2 class="text-2xl font-semibold mt-8 mb-4">How to Report</h2>
-        <p class="text-gray-300">
-          If you believe you've found a security vulnerability, please email us at:
-        </p>
-        <p class="text-center my-6">
-          <a href="mailto:security@thebytelite.com" class="text-cyan-400 hover:text-cyan-300 text-xl font-mono">
-            security@thebytelite.com
-          </a>
-        </p>
-        
-        <h2 class="text-2xl font-semibold mt-8 mb-4">What to Include</h2>
-        <ul class="text-gray-300">
+      </div>
+
+      <div class="legal-section">
+        <h2>How to Report</h2>
+        <p>If you have found a security vulnerability, please contact us through the <a href="/contact">contact page</a> or email:</p>
+        <p style="margin-top:1rem;"><a href="mailto:security@thebytelite.com" style="color:#818cf8;font-family:monospace;">security@thebytelite.com</a></p>
+      </div>
+
+      <div class="legal-section">
+        <h2>What to Include</h2>
+        <ul class="legal-list">
           <li>Description of the vulnerability</li>
           <li>Steps to reproduce the issue</li>
           <li>Potential impact</li>
-          <li>Any proof-of-concept code</li>
           <li>Your contact information</li>
         </ul>
-        
-        <h2 class="text-2xl font-semibold mt-8 mb-4">Our Commitment</h2>
-        <ul class="text-gray-300">
+      </div>
+
+      <div class="legal-section">
+        <h2>Our Commitment</h2>
+        <ul class="legal-list">
           <li>We will acknowledge receipt within 48 hours</li>
           <li>We will provide an initial assessment within 7 days</li>
-          <li>We will keep you informed about our progress</li>
+          <li>We will keep you informed of progress</li>
           <li>We will credit you (if desired) when the issue is resolved</li>
         </ul>
-        
-        <h2 class="text-2xl font-semibold mt-8 mb-4">Please Don't</h2>
-        <ul class="text-gray-300">
-          <li>Access or modify user data without permission</li>
-          <li>Perform actions that could harm our services or users</li>
-          <li>Publicly disclose the issue before we've addressed it</li>
-          <li>Demand compensation or rewards</li>
-        </ul>
-        
-        <h2 class="text-2xl font-semibold mt-8 mb-4">Recognition</h2>
-        <p class="text-gray-300">
-          We appreciate the security community's efforts in helping us maintain the highest security standards. 
-          With your permission, we'll acknowledge your contribution in our security hall of fame.
-        </p>
-        
-        <div class="bg-gray-900/50 border border-cyan-500/30 rounded-lg p-6 mt-8">
-          <h3 class="text-xl font-semibold mb-3 text-cyan-400">Legal Protection</h3>
-          <p class="text-gray-300">
-            We will not pursue legal action against security researchers who:
-          </p>
-          <ul class="text-gray-300 mt-2">
-            <li>Follow this responsible disclosure policy</li>
-            <li>Act in good faith</li>
-            <li>Do not cause harm to our systems or users</li>
-          </ul>
-        </div>
       </div>
+
+      <div class="legal-section">
+        <h2>Please Do Not</h2>
+        <ul class="legal-list">
+          <li>Access or modify data without permission</li>
+          <li>Perform actions that could harm our services or users</li>
+          <li>Publicly disclose the issue before we have addressed it</li>
+        </ul>
+      </div>
+
+      <div class="legal-section">
+        <h2>Legal Protection</h2>
+        <p>ByteLite LLC will not pursue legal action against researchers who follow this responsible disclosure policy, act in good faith, and do not cause harm.</p>
+      </div>
+
     </div>
   </section>
+
+  <Footer slot="footer" />
 </Layout>
 
 <style>
-  .prose h2 {
-    color: #E0E0E0;
-  }
-  
-  .prose ul {
-    list-style-type: disc;
-    padding-left: 1.5rem;
-    margin: 1rem 0;
-  }
-  
-  .prose li {
-    margin: 0.5rem 0;
-  }
+
+.legal-hero { padding: 5rem 0 3.5rem; }
+.legal-hero h1 { max-width: 480px; }
+.legal-sub { margin-top: .75rem; font-size: .9375rem; color: #555e7a; }
+.legal-body { max-width: 760px; }
+.legal-section { margin-bottom: 3rem; }
+.legal-section h2 { font-size: 1.375rem; color: #e4e7f2; margin-bottom: 1rem; padding-bottom: .75rem; border-bottom: 1px solid #1a2235; }
+.legal-section p { font-size: .9375rem; color: #7b829e; line-height: 1.75; margin-bottom: .875rem; }
+.legal-section a { color: #818cf8; }
+.legal-section a:hover { color: #a5b4fc; }
+.legal-list { list-style: none; display: flex; flex-direction: column; gap: .625rem; }
+.legal-list li { font-size: .9375rem; color: #7b829e; padding-left: 1.25rem; position: relative; line-height: 1.6; }
+.legal-list li::before { content: "—"; position: absolute; left: 0; color: #4a5068; }
+
 </style>

@@ -108,7 +108,7 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    // ByteLite compression simulation — results vary by data type and BME coverage
+    // Demo estimation — not a public API
     let compressed = 8; // minimum demo value
     if (file.size > 0) {
       const log2 = Math.floor(Math.log2(file.size));

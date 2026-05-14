@@ -1,161 +1,102 @@
 ---
-import HeaderLink from './HeaderLink.astro';
+const currentPath = Astro.url.pathname;
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
 ---
 
-<header class="bg-dark-navy/95 backdrop-blur-md border-b border-electric-cyan/20 sticky top-0 z-50">
-  <nav class="container mx-auto px-4 sm:px-6 py-4">
-    <div class="flex items-center justify-between">
-      
-      <!-- Logo -->
-      <div class="flex items-center">
-        <a href="/" class="flex items-center space-x-3 group">
-          <img 
-            src="/bytelite-logo.png" 
-            alt="ByteLite" 
-            width="120" 
-            height="40" 
-            class="h-8 sm:h-10 w-auto transition-transform group-hover:scale-110"
-            decoding="async"
-          />
-          <span class="text-lg sm:text-xl font-bold text-white group-hover:text-electric-cyan transition-colors">ByteLite</span>
-        </a>
-      </div>
+<header class="site-header">
+  <nav class="container nav-inner">
+    <a href="/" class="nav-logo" aria-label="ByteLite LLC home">
+      <img src="/bytelite-logo.png" alt="ByteLite LLC" width="32" height="32" />
+      <span class="nav-logo-text">ByteLite LLC</span>
+    </a>
 
-      <!-- Navigation Links -->
-      <div class="hidden lg:flex items-center space-x-6 xl:space-x-8">
-        <HeaderLink href="/">Home</HeaderLink>
-        <HeaderLink href="/heartstrings" class="text-pink-400 hover:text-pink-300">HeartStrings Play</HeaderLink>
-        <HeaderLink href="/heartstrings-app" class="text-rose-400 hover:text-rose-300">HeartStrings App</HeaderLink>
-        <HeaderLink href="/technology">ByteLite</HeaderLink>
-        <HeaderLink href="/deepkore" class="text-purple-400 hover:text-purple-300">Deep Kore</HeaderLink>
-        <HeaderLink href="/status">Status</HeaderLink>
-        <HeaderLink href="/about">About</HeaderLink>
-        <HeaderLink href="/contact">Contact</HeaderLink>
-      </div>
+    <div class="nav-links" id="navLinks">
+      <a href="/" class:list={["nav-link", { active: isActive('/') }]}>Home</a>
+      <a href="/heartstrings" class:list={["nav-link nav-link-pink", { active: isActive('/heartstrings') }]}>HeartStrings Play</a>
+      <a href="/heartstrings-app" class:list={["nav-link", { active: isActive('/heartstrings-app') }]}>HeartStrings App</a>
+      <a href="/research" class:list={["nav-link", { active: isActive('/research') }]}>Research</a>
+      <a href="/status" class:list={["nav-link", { active: isActive('/status') }]}>Status</a>
+      <a href="/about" class:list={["nav-link", { active: isActive('/about') }]}>About</a>
+      <a href="/contact" class:list={["nav-link nav-link-cta", { active: isActive('/contact') }]}>Contact</a>
+    </div>
 
-      <!-- Mobile Menu Button -->
-      <button 
-        class="lg:hidden text-white hover:text-electric-cyan transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
-        aria-label="Toggle menu"
-        id="mobileMenuToggle"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
-    </div>
-    
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="mobile-menu lg:hidden">
-      <div class="py-4 space-y-2">
-        <a href="/" class="mobile-menu-link">Home</a>
-        <a href="/heartstrings" class="mobile-menu-link text-pink-400">HeartStrings Play</a>
-        <a href="/heartstrings-app" class="mobile-menu-link text-rose-400">HeartStrings App</a>
-        <a href="/technology" class="mobile-menu-link">ByteLite</a>
-        <a href="/deepkore" class="mobile-menu-link text-purple-400">Deep Kore</a>
-        <a href="/status" class="mobile-menu-link">Status</a>
-        <a href="/about" class="mobile-menu-link">About</a>
-        <a href="/contact" class="mobile-menu-link">Contact</a>
-      </div>
-    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6" class="line-top" />
+        <line x1="3" y1="12" x2="21" y2="12" class="line-mid" />
+        <line x1="3" y1="18" x2="21" y2="18" class="line-bot" />
+      </svg>
+    </button>
   </nav>
 </header>
 
-<style>
-  .mobile-menu {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-  }
-  
-  .mobile-menu.active {
-    max-height: 500px;
-  }
-  
-  .mobile-menu-link {
-    display: block;
-    padding: 0.75rem 1rem;
-    color: rgba(224, 224, 224, 0.9);
-    text-decoration: none;
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
-    font-weight: 500;
-  }
-  
-  .mobile-menu-link:hover {
-    background: rgba(0, 212, 255, 0.1);
-    color: #00D4FF;
-  }
-  
-  .mobile-menu-link.text-purple-400:hover {
-    background: rgba(168, 85, 247, 0.1);
-    color: #A855F7;
-  }
-
-  .mobile-menu-link.text-pink-400:hover {
-    background: rgba(236, 72, 153, 0.1);
-    color: #EC4899;
-  }
-
-  .mobile-menu-link.text-rose-400:hover {
-    background: rgba(251, 113, 133, 0.1);
-    color: #FB7185;
-  }
-  
-  @media (min-width: 1024px) {
-    .mobile-menu {
-      display: none !important;
-    }
-  }
-</style>
-
 <script>
-  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const body = document.body;
-  
-  let isMenuOpen = false;
-  
-  mobileMenuToggle?.addEventListener('click', () => {
-    isMenuOpen = !isMenuOpen;
-    
-    if (isMenuOpen) {
-      mobileMenu?.classList.add('active');
-      body.style.overflow = 'hidden';
-      
-      // Add backdrop
-      const backdrop = document.createElement('div');
-      backdrop.className = 'mobile-menu-backdrop';
-      backdrop.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(4px);
-        z-index: 40;
-      `;
-      body.appendChild(backdrop);
-      
-      backdrop.addEventListener('click', closeMenu);
-    } else {
-      closeMenu();
-    }
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle?.addEventListener('click', () => {
+    const open = links?.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', String(!!open));
   });
-  
-  function closeMenu() {
-    isMenuOpen = false;
-    mobileMenu?.classList.remove('active');
-    body.style.overflow = '';
-    
-    const backdrop = document.querySelector('.mobile-menu-backdrop');
-    backdrop?.remove();
-  }
-  
-  // Close menu when clicking links
-  const menuLinks = mobileMenu?.querySelectorAll('a');
-  menuLinks?.forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
+  links?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('nav-open');
+    toggle?.setAttribute('aria-expanded', 'false');
+  }));
 </script>
+
+<style>
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(7,9,15,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #1a2235;
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 4rem; gap: 2rem;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: .625rem; flex-shrink: 0;
+}
+.nav-logo img { border-radius: .25rem; }
+.nav-logo-text {
+  font-size: .9375rem; font-weight: 600; color: #e4e7f2;
+  letter-spacing: -.01em;
+}
+.nav-logo:hover .nav-logo-text { color: #818cf8; }
+.nav-links {
+  display: flex; align-items: center; gap: .25rem;
+}
+.nav-link {
+  display: block; padding: .5rem .875rem;
+  font-size: .875rem; font-weight: 450; color: #7b829e;
+  border-radius: .375rem; transition: color .15s, background .15s;
+}
+.nav-link:hover { color: #e4e7f2; background: rgba(255,255,255,.04); }
+.nav-link.active { color: #e4e7f2; }
+.nav-link-pink { color: #c4739a; }
+.nav-link-pink:hover, .nav-link-pink.active { color: #f472b6; }
+.nav-link-cta {
+  background: rgba(99,102,241,.12); color: #818cf8;
+  border: 1px solid rgba(99,102,241,.2);
+}
+.nav-link-cta:hover { background: #6366f1; color: #fff; }
+.nav-link-cta.active { background: #6366f1; color: #fff; }
+.nav-toggle {
+  display: none; background: none; border: none;
+  color: #7b829e; padding: .375rem; border-radius: .375rem;
+}
+.nav-toggle:hover { color: #e4e7f2; background: rgba(255,255,255,.05); }
+@media (max-width: 900px) {
+  .nav-toggle { display: flex; align-items: center; justify-content: center; }
+  .nav-links {
+    display: none; position: absolute; top: 4rem; left: 0; right: 0;
+    background: #0d1120; border-bottom: 1px solid #1a2235;
+    flex-direction: column; align-items: stretch; gap: 0; padding: .75rem 1rem;
+  }
+  .nav-links.nav-open { display: flex; }
+  .nav-link { padding: .75rem 1rem; font-size: 1rem; border-radius: .5rem; }
+}
+</style>

@@ -1,515 +1,177 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout
-  title="HeartStrings App - Digital Companion to HeartStrings Play"
-  description="HeartStrings App is the digital companion to HeartStrings Play. Profiles, guided matching, and compatibility rationale. In development by ByteLite LLC."
-  keywords={["HeartStrings App", "HeartStrings companion", "matching app", "compatibility", "ByteLite LLC", "HeartStrings Play"]}
-  schemaType="SoftwareApplication"
+  title="HeartStrings App | Private-Test Digital Companion"
+  description="HeartStrings App is the private-test digital companion for the HeartStrings ecosystem. No public app store release is available yet."
+  keywords="HeartStrings App, private beta, digital companion, ByteLite LLC"
+  
 >
+  <Header slot="header" />
 
   <!-- Hero -->
   <section class="app-hero">
     <div class="container">
-      <span class="dev-pill">In Development</span>
-      <h1>HeartStrings App</h1>
-      <p class="hero-tagline">The digital companion to HeartStrings Play. Profiles, match rationale, and continuity from your game sessions — all in one place.</p>
-      <p class="hero-honest">The app is in active development. The UI design exists. The matching engine is being built. No live app is available yet.</p>
-      <div class="hero-cta">
-        <a href="/contact" class="btn btn-rose">Express Interest</a>
-        <a href="/heartstrings" class="btn btn-pink-outline">See HeartStrings Play</a>
-        <a href="/status" class="btn btn-outline">Current Status</a>
+      <p class="eyebrow">HeartStrings App</p>
+      <h1>The private-test digital companion<br/>for the HeartStrings ecosystem.</h1>
+      <p class="app-hero-sub">
+        HeartStrings App is in private Android testing and beta development.
+        It is not publicly available in any app store.
+      </p>
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1.75rem;">
+        <span class="badge badge-private">Private beta development</span>
+        <span style="font-size:.875rem;color:#555e7a;">No public app store listing</span>
+      </div>
+      <div style="display:flex;gap:.875rem;flex-wrap:wrap;margin-top:2rem;">
+        <a href="/contact" class="btn btn-primary">Beta Interest</a>
+        <a href="/status" class="btn btn-outline btn-sm" style="align-self:center;">View Status</a>
       </div>
     </div>
   </section>
 
-  <!-- What the App Will Do -->
-  <section class="app-what">
+  <!-- Current status -->
+  <section class="section section-alt">
+    <div class="container" style="max-width:760px;">
+      <div class="app-status-box">
+        <h3 style="color:#e4e7f2;margin-bottom:1rem;">Current Status</h3>
+        <div class="app-status-grid">
+          <div class="app-status-item">
+            <span class="badge badge-private">Private test builds</span>
+            <p>Used for internal development validation. Not for public distribution.</p>
+          </div>
+          <div class="app-status-item">
+            <span class="badge badge-none">No public app store listing</span>
+            <p>Not available on Google Play, Apple App Store, or any third-party marketplace.</p>
+          </div>
+          <div class="app-status-item">
+            <span class="badge badge-active">Active development</span>
+            <p>Profiles, onboarding, and companion features are actively under development.</p>
+          </div>
+          <div class="app-status-item">
+            <span class="badge badge-planned">Beta program planned</span>
+            <p>A limited private beta program is planned. Contact to express interest.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features in development -->
+  <section class="section">
     <div class="container">
-      <h2>What the App Is Being Built To Do</h2>
-      <p class="section-lead">HeartStrings App is the layer that extends what you start in HeartStrings Play. Play creates the shared language. The app records, extends, and deepens it.</p>
+      <p class="eyebrow">In Development</p>
+      <h2 style="margin-bottom:.75rem;">What is being built.</h2>
+      <p style="max-width:580px;margin-bottom:2.5rem;font-size:1.0625rem;">
+        These features are in active development. None are publicly available yet.
+        Status reflects private testing only.
+      </p>
       <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-label">Profiles</div>
-          <p>Build a structured profile that captures real dimensions of compatibility — not just interests lists.</p>
+        <div class="card feature-card">
+          <div class="feature-tag tag-dev">In Development</div>
+          <h4 style="color:#e4e7f2;margin:.5rem 0 .5rem;">Profiles &amp; Onboarding</h4>
+          <p class="feature-desc">Private profile creation and onboarding flow for HeartStrings ecosystem participants.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-label">Match Rationale</div>
-          <p>Compatibility scores with explicit reasoning. You see exactly why a match scores where it does. Matching engine is in development.</p>
+        <div class="card feature-card">
+          <div class="feature-tag tag-dev">In Development</div>
+          <h4 style="color:#e4e7f2;margin:.5rem 0 .5rem;">Companion Features</h4>
+          <p class="feature-desc">Digital companion layer for HeartStrings Play sessions and follow-on connection.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-label">Play Continuity</div>
-          <p>Sessions from HeartStrings Play can extend into the app. What you discovered in person becomes context for your digital interactions.</p>
+        <div class="card feature-card">
+          <div class="feature-tag tag-planned">Planned</div>
+          <h4 style="color:#e4e7f2;margin:.5rem 0 .5rem;">Matching &amp; Discovery</h4>
+          <p class="feature-desc">Private, consent-first discovery between compatible users. Planned for a later release phase.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-label">ByteLite Infrastructure</div>
-          <p>The app runs on ByteLite compression infrastructure, enabling efficient model deployment for smaller teams.</p>
+        <div class="card feature-card">
+          <div class="feature-tag tag-planned">Planned</div>
+          <h4 style="color:#e4e7f2;margin:.5rem 0 .5rem;">Date Safety Features</h4>
+          <p class="feature-desc">Location-aware safety tooling for in-person meeting. In design phase.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Honest Status -->
-  <section class="status-section">
-    <div class="container">
-      <h2>What Is Live and What Is Not</h2>
-      <div class="status-grid">
-        <div class="status-col live">
-          <div class="col-label live">Done</div>
-          <ul>
-            <li>App logo and brand identity</li>
-            <li>Sign in and onboarding UI (DS-1 design system)</li>
-            <li>Custom HeartStringsAI font (UPM 1000)</li>
-          </ul>
+        <div class="card feature-card">
+          <div class="feature-tag tag-planned">Planned</div>
+          <h4 style="color:#e4e7f2;margin:.5rem 0 .5rem;">Social Layer</h4>
+          <p class="feature-desc">Private social features for HeartStrings ecosystem participants. Post-beta scope.</p>
         </div>
-        <div class="status-col indev">
-          <div class="col-label indev">In Development</div>
-          <ul>
-            <li>Profile system architecture</li>
-            <li>Personality assessment system</li>
-            <li>Privacy-preserving matching layer</li>
-            <li>AI interaction layer (Deep Kore / AIya)</li>
-            <li>ByteLite encoder integration</li>
-            <li>AI onboarding flow</li>
-          </ul>
-        </div>
-        <div class="status-col planned">
-          <div class="col-label planned">Planned</div>
-          <ul>
-            <li>Closed beta with HeartStrings Play purchasers</li>
-            <li>App Store and Play Store launch</li>
-          </ul>
+        <div class="card feature-card">
+          <div class="feature-tag tag-research">Research</div>
+          <h4 style="color:#e4e7f2;margin:.5rem 0 .5rem;">Guided Interface (AIya)</h4>
+          <p class="feature-desc">AIya is a research concept for a deterministic guide interface. Not a production AI system.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- UI Preview -->
-  <section class="preview-section">
-    <div class="container">
-      <h2>App Design Preview</h2>
-      <p class="section-sub">The login and onboarding UI is designed. The matching engine is under active development.</p>
-      <div class="preview-row">
-        <div class="preview-card">
-          <img
-            src="/heartstrings/heartstrings-app-signup.png"
-            alt="HeartStrings App sign in screen"
-            width="280"
-            height="500"
-            loading="lazy"
-            decoding="async"
-            class="preview-img"
-          />
-          <div class="preview-label">Sign In — Design Complete</div>
+  <!-- Privacy -->
+  <section class="section section-alt">
+    <div class="container" style="max-width:760px;">
+      <p class="eyebrow">Privacy Stance</p>
+      <h2 style="margin-bottom:1.5rem;">Privacy-first by design.</h2>
+      <div class="privacy-list">
+        <div class="privacy-item">
+          <span class="privacy-icon">&#10003;</span>
+          <p>Private test builds are not connected to advertising networks.</p>
         </div>
-        <div class="preview-card preview-coming">
-          <div class="coming-box">
-            <div class="coming-text">Profile Setup</div>
-            <div class="coming-badge">In Development</div>
-          </div>
-          <div class="preview-label">Profile</div>
+        <div class="privacy-item">
+          <span class="privacy-icon">&#10003;</span>
+          <p>No personal data is sold or shared with third parties.</p>
         </div>
-        <div class="preview-card preview-coming">
-          <div class="coming-box">
-            <div class="coming-text">Match View</div>
-            <div class="coming-badge">In Development</div>
-          </div>
-          <div class="preview-label">Matching</div>
+        <div class="privacy-item">
+          <span class="privacy-icon">&#10003;</span>
+          <p>A full app-specific privacy policy will be published before any public launch or broader beta release.</p>
+        </div>
+        <div class="privacy-item">
+          <span class="privacy-icon">&#10003;</span>
+          <p>Beta participants will be informed of any data handling specific to their testing role.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="app-cta-section">
-    <div class="container">
-      <div class="cta-inner">
-        <h2>Follow the App</h2>
-        <p>The HeartStrings App will first be available to HeartStrings Play purchasers. Express interest or subscribe for updates.</p>
-        <div class="cta-buttons">
-          <a href="/contact" class="btn btn-rose">Express Interest</a>
-          <a href="/subscribe" class="btn btn-outline">Subscribe for Updates</a>
-          <a href="/heartstrings" class="btn btn-pink-outline">Explore HeartStrings Play</a>
-        </div>
-      </div>
+  <!-- Beta interest CTA -->
+  <section class="section">
+    <div class="container cta-block">
+      <h2>Interested in private beta?</h2>
+      <p>The beta program is not yet open. Express interest and you will be contacted when slots become available.</p>
+      <a href="/contact" class="btn btn-primary">Express Beta Interest</a>
     </div>
   </section>
 
+  <Footer slot="footer" />
 </Layout>
 
 <style>
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
 
-  /* Hero */
-  .app-hero {
-    padding: 4rem 0 3rem;
-    text-align: center;
-    background: linear-gradient(180deg, #0A0E27 0%, rgba(251, 113, 133, 0.04) 100%);
-    border-bottom: 1px solid rgba(251, 113, 133, 0.1);
-  }
+.app-hero {
+  padding: 6rem 0 4.5rem;
+  background: radial-gradient(ellipse 70% 50% at 50% -5%, rgba(99,102,241,.07) 0%, transparent 70%);
+}
+.app-hero h1 { max-width: 700px; }
+.app-hero-sub { max-width: 560px; margin-top: 1.25rem; font-size: 1.0625rem; color: #7b829e; line-height: 1.75; }
+.app-status-box { background: #111828; border: 1px solid #1a2235; border-radius: .875rem; padding: 2rem; }
+.app-status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.25rem; }
+@media (max-width: 640px) { .app-status-grid { grid-template-columns: 1fr; } }
+.app-status-item { display: flex; flex-direction: column; gap: .625rem; }
+.app-status-item p { font-size: .875rem; color: #7b829e; }
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+@media (max-width: 900px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .features-grid { grid-template-columns: 1fr; } }
+.feature-card {}
+.feature-desc { font-size: .875rem; color: #7b829e; }
+.feature-tag { font-size: .6875rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .25rem .625rem; border-radius: .25rem; display: inline-block; }
+.tag-dev     { background: rgba(99,102,241,.12);  color: #818cf8; }
+.tag-planned { background: rgba(245,158,11,.12);  color: #fbbf24; }
+.tag-research{ background: rgba(167,139,250,.12); color: #a78bfa; }
+.privacy-list { display: flex; flex-direction: column; gap: 1rem; }
+.privacy-item { display: flex; align-items: flex-start; gap: .875rem; }
+.privacy-icon { font-size: 1rem; color: #34d399; flex-shrink: 0; margin-top: .125rem; }
+.privacy-item p { font-size: 1rem; color: #a0a8c0; }
+.cta-block {
+  background: #0d1120; border: 1px solid #1a2235; border-radius: 1rem;
+  padding: 3.5rem; text-align: center;
+}
+.cta-block h2 { margin-bottom: 1rem; }
+.cta-block p { max-width: 480px; margin: 0 auto 2rem; font-size: 1.0625rem; }
 
-  .dev-pill {
-    display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 0.25rem 0.75rem;
-    border-radius: 100px;
-    background: rgba(168, 85, 247, 0.15);
-    color: #A855F7;
-    border: 1px solid rgba(168, 85, 247, 0.4);
-    margin-bottom: 1.25rem;
-    display: block;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .app-hero h1 {
-    font-size: clamp(2rem, 4.5vw, 3.25rem);
-    font-weight: 800;
-    margin: 0 0 1rem;
-    background: linear-gradient(135deg, #FB7185 0%, #EC4899 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-tagline {
-    font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
-    color: rgba(224, 224, 224, 0.85);
-    margin: 0 0 0.875rem;
-    line-height: 1.55;
-    max-width: 560px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-honest {
-    font-size: 0.875rem;
-    color: rgba(224, 224, 224, 0.45);
-    margin: 0 0 2rem;
-    font-style: italic;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 0.875rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  /* Buttons */
-  .btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.25s ease;
-    display: inline-block;
-    font-size: 0.9375rem;
-  }
-
-  .btn-rose {
-    background: linear-gradient(135deg, #FB7185 0%, #EC4899 100%);
-    color: white;
-  }
-  .btn-rose:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(251, 113, 133, 0.4); }
-
-  .btn-pink-outline {
-    background: transparent;
-    color: #EC4899;
-    border: 1px solid rgba(236, 72, 153, 0.35);
-  }
-  .btn-pink-outline:hover {
-    border-color: #EC4899;
-    background: rgba(236, 72, 153, 0.08);
-    transform: translateY(-2px);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: rgba(224, 224, 224, 0.8);
-    border: 1px solid rgba(224, 224, 224, 0.25);
-  }
-  .btn-outline:hover {
-    border-color: rgba(224, 224, 224, 0.5);
-    color: #E0E0E0;
-    transform: translateY(-2px);
-  }
-
-  /* What the App Does */
-  .app-what {
-    padding: 3.5rem 0;
-    background: #060813;
-  }
-
-  .app-what h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 800;
-    color: #FB7185;
-    margin: 0 0 1rem;
-    text-align: center;
-  }
-
-  .section-lead {
-    color: rgba(224, 224, 224, 0.7);
-    font-size: 1rem;
-    line-height: 1.65;
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    text-align: center;
-  }
-
-  .section-sub {
-    text-align: center;
-    color: rgba(224, 224, 224, 0.5);
-    font-size: 0.875rem;
-    margin: 0 0 2rem;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
-  }
-
-  .feature-card {
-    background: rgba(10, 14, 39, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    transition: transform 0.2s, border-color 0.2s;
-  }
-
-  .feature-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(251, 113, 133, 0.2);
-  }
-
-  .feature-label {
-    font-size: 0.65rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #FB7185;
-  }
-
-  .feature-card p {
-    font-size: 0.8125rem;
-    color: rgba(224, 224, 224, 0.65);
-    line-height: 1.55;
-    margin: 0;
-  }
-
-  /* Status */
-  .status-section {
-    padding: 3rem 0;
-    background: #060813;
-  }
-
-  .status-section h2 {
-    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    font-weight: 800;
-    color: #E0E0E0;
-    text-align: center;
-    margin: 0 0 2rem;
-  }
-
-  .status-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .status-col {
-    border-radius: 12px;
-    padding: 1.25rem;
-  }
-
-  .status-col.live { background: rgba(34, 197, 94, 0.05); border: 1px solid rgba(34, 197, 94, 0.2); }
-  .status-col.indev { background: rgba(168, 85, 247, 0.05); border: 1px solid rgba(168, 85, 247, 0.2); }
-  .status-col.planned { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.07); }
-
-  .col-label {
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.875rem;
-  }
-
-  .col-label.live { color: #22C55E; }
-  .col-label.indev { color: #A855F7; }
-  .col-label.planned { color: rgba(224, 224, 224, 0.35); }
-
-  .status-col ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .status-col ul li {
-    font-size: 0.8125rem;
-    color: rgba(224, 224, 224, 0.7);
-    line-height: 1.4;
-    padding-left: 0.875rem;
-    position: relative;
-  }
-
-  .status-col ul li::before {
-    content: '--';
-    position: absolute;
-    left: 0;
-    color: rgba(224, 224, 224, 0.2);
-    font-size: 0.7rem;
-  }
-
-  /* Preview */
-  .preview-section {
-    padding: 3rem 0;
-    background: linear-gradient(180deg, #060813 0%, rgba(168, 85, 247, 0.02) 100%);
-  }
-
-  .preview-section h2 {
-    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    font-weight: 800;
-    color: #E0E0E0;
-    text-align: center;
-    margin: 0 0 0.5rem;
-  }
-
-  .preview-row {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .preview-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .preview-img {
-    width: 200px;
-    height: auto;
-    border-radius: 16px;
-    box-shadow: 0 16px 40px rgba(251, 113, 133, 0.15);
-  }
-
-  .preview-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(224, 224, 224, 0.4);
-  }
-
-  .preview-coming { opacity: 0.6; }
-
-  .coming-box {
-    width: 200px;
-    aspect-ratio: 2/3.3;
-    background: rgba(10, 14, 39, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    padding: 1.5rem;
-  }
-
-  .coming-text {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: rgba(224, 224, 224, 0.4);
-    text-align: center;
-  }
-
-  .coming-badge {
-    font-size: 0.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0.18rem 0.5rem;
-    border-radius: 100px;
-    background: rgba(168, 85, 247, 0.1);
-    color: #A855F7;
-    border: 1px solid rgba(168, 85, 247, 0.25);
-  }
-
-  /* CTA */
-  .app-cta-section {
-    padding: 3rem 0;
-    background: linear-gradient(180deg, #060813 0%, rgba(251, 113, 133, 0.04) 100%);
-  }
-
-  .cta-inner {
-    max-width: 640px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 2.5rem;
-    background: rgba(251, 113, 133, 0.05);
-    border: 1px solid rgba(251, 113, 133, 0.2);
-    border-radius: 16px;
-  }
-
-  .cta-inner h2 {
-    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    font-weight: 800;
-    color: #FB7185;
-    margin: 0 0 1rem;
-  }
-
-  .cta-inner p {
-    color: rgba(224, 224, 224, 0.7);
-    font-size: 0.9375rem;
-    line-height: 1.65;
-    margin: 0 0 1.75rem;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 0.875rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  /* Responsive */
-  @media (max-width: 1024px) {
-    .features-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 768px) {
-    .status-grid { grid-template-columns: 1fr; }
-    .features-grid { grid-template-columns: 1fr; }
-    .preview-row { gap: 1.5rem; }
-  }
-
-  @media (max-width: 480px) {
-    .preview-row { flex-direction: column; align-items: center; }
-  }
 </style>

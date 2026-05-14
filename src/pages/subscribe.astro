@@ -1,91 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SubscribeForm from '../components/SubscribeForm.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
-
-<Layout
-  title="Subscribe - ByteLite LLC"
-  description="Get updates on ByteLite, Deep Kore / AIya, and HeartStrings. Notified when demos launch and milestones are reached."
->
-
-  <section class="sub-page">
-    <div class="sub-container">
-      <div class="sub-header">
-        <h1>Stay in the Loop</h1>
-        <p>Updates go out when milestones are reached. No spam.</p>
-      </div>
-      <SubscribeForm variant="compact" />
-
-      <div class="sub-links">
-        <p>Want the current picture now?</p>
-        <div class="link-row">
-          <a href="/status">View Status Board</a>
-          <a href="/demo">Try the Demos</a>
-          <a href="/ethics">Read the Genesis Manifesto</a>
-        </div>
+<Layout title="Stay Updated | ByteLite LLC" noindex={true}>
+  <Header slot="header" />
+  <section style="padding:6rem 0;text-align:center;">
+    <div style="max-width:560px;margin:0 auto;padding:0 1.5rem;">
+      <p style="font-size:.75rem;color:#4a5068;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem;">Archive</p>
+      <h1 style="font-size:1.75rem;color:#e4e7f2;margin-bottom:1rem;">Stay Updated</h1>
+      <p style="color:#7b829e;line-height:1.7;margin-bottom:2rem;">This page has been archived and is no longer part of the primary public site. For current information, visit the links below.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="/" style="background:#6366f1;color:#fff;padding:.75rem 1.5rem;border-radius:.5rem;font-size:.875rem;">Home</a>
+        <a href="/status" style="background:#0d1120;color:#818cf8;border:1px solid #1a2235;padding:.75rem 1.5rem;border-radius:.5rem;font-size:.875rem;">Status</a>
       </div>
     </div>
   </section>
-
+  <Footer slot="footer" />
 </Layout>
-
-<style>
-  .sub-page {
-    padding: 3rem 0 4rem;
-    background: var(--color-bg-darker);
-    min-height: 60vh;
-  }
-
-  .sub-container {
-    max-width: 560px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-
-  .sub-header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .sub-header h1 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 700;
-    color: var(--color-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .sub-header p {
-    color: rgba(224, 224, 224, 0.6);
-    font-size: 0.9rem;
-  }
-
-  .sub-links {
-    margin-top: 2.5rem;
-    text-align: center;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .sub-links p {
-    font-size: 0.85rem;
-    color: rgba(224, 224, 224, 0.45);
-    margin-bottom: 0.75rem;
-  }
-
-  .link-row {
-    display: flex;
-    gap: 1.25rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .link-row a {
-    font-size: 0.82rem;
-    color: #00D4FF;
-    text-decoration: none;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-  }
-
-  .link-row a:hover { opacity: 1; }
-</style>

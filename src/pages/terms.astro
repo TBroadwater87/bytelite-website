@@ -1,83 +1,83 @@
-﻿---
+---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Terms of Service - ByteLite" description="ByteLite terms of service for ByteLite compression, Deep Kore / AIya, and HeartStrings. Usage guidelines, licensing terms, and legal information.">
-  <section class="legal-page">
+<Layout
+  title="Terms of Use | ByteLite LLC"
+  description="Terms of use for the ByteLite LLC website."
+  keywords="ByteLite LLC terms of use"
+  
+>
+  <Header slot="header" />
+
+  <section class="legal-hero">
     <div class="container">
-      <div class="legal-content">
-        <h1>Terms of Service</h1>
-        <p class="last-updated">Last updated: April 18, 2026</p>
-
-        <h2>Acceptance of Terms</h2>
-        <p>By accessing and using ByteLite services, you agree to be bound by these Terms of Service and all applicable laws and regulations.</p>
-
-        <h2>Deep Kore Lab</h2>
-        <p>The Deep Kore Lab at /deepkore-lab is a public research environment. By submitting prompts to the Deep Kore Lab, you agree to the following:</p>
-        <ul>
-          <li><strong>Interactions may be stored and used for system improvement.</strong> Prompts submitted through the Deep Kore Lab are logged and may be included in nightly learning updates for the Deep Kore / AIya system.</li>
-          <li><strong>No expectation of identical responses across builds.</strong> The Deep Kore system updates nightly. The same prompt may produce a different response after a nightly build runs. This is by design.</li>
-          <li><strong>Research environment.</strong> The Deep Kore Lab is a research environment, not a production consumer service. Responses, when available, reflect the current deterministic build state.</li>
-          <li><strong>No sensitive information.</strong> Do not submit sensitive, confidential, personal, or identifying information through the Deep Kore Lab. ByteLite LLC is not responsible for information you choose to submit.</li>
-          <li><strong>Prohibited content.</strong> Do not submit content that is unlawful, harmful, threatening, abusive, harassing, defamatory, or otherwise objectionable. The system will refuse unsafe queries and log the refusal.</li>
-          <li><strong>No live AI responses currently.</strong> The Deep Kore runtime is not yet publicly deployed. Prompt submissions are queued. The lab does not generate real-time responses at this time.</li>
-          <li><strong>Reasonable use.</strong> Do not use automated tools to flood the submission queue. Rate limits apply.</li>
-        </ul>
-
-        <h2>License Terms</h2>
-        <p>ByteLite's compression technology is protected by pending patents. Use of our technology requires a valid license agreement.</p>
-
-        <h2>Restrictions</h2>
-        <p>You may not reverse engineer, decompile, or disassemble the ByteLite technology, except to the extent that such activity is expressly permitted by applicable law.</p>
-
-        <h2>Intellectual Property</h2>
-        <p>ByteLite and all related trademarks, service marks, and logos are the property of ByteLite LLC. Patent pending.</p>
-
-        <h2>Contact</h2>
-        <p>For questions about these Terms, please contact us at <a href="mailto:legal@thebytelite.com">legal@thebytelite.com</a>.</p>
-      </div>
+      <p class="eyebrow">Legal</p>
+      <h1>Terms of Use</h1>
+      <p class="legal-sub">Last updated: May 2026</p>
     </div>
   </section>
+
+  <section class="section">
+    <div class="container legal-body">
+
+      <div class="legal-section">
+        <h2>This is an informational website.</h2>
+        <p>The ByteLite LLC website provides information about the company, its products, and its research. It is not a store, a service portal, or an application. No products are currently for sale through this website.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Product status may change.</h2>
+        <p>Product and project statuses described on this website reflect the best available information at the time of writing. No representation is made that any status is permanent or binding. ByteLite LLC may update, delay, cancel, or modify any product or project without prior notice.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Research claims are not production claims.</h2>
+        <p>Research described on this website is private and ongoing. Research status does not constitute a claim of commercial readiness, public availability, or independent verification. No production infrastructure product is currently offered by ByteLite LLC.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Proprietary technology.</h2>
+        <p>ByteLite LLC's research methodology and technology systems are proprietary. Nothing on this website grants any license to use, copy, or build upon ByteLite LLC's systems. Use of any ByteLite technology requires a separate license agreement.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>No warranties.</h2>
+        <p>This website is provided as-is without warranty of any kind. ByteLite LLC makes no guarantee as to the accuracy, completeness, or timeliness of information provided. Use of this website is at your own risk.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Governing law.</h2>
+        <p>These terms are governed by the laws of the State of Montana, USA, without regard to conflict-of-law principles.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Contact.</h2>
+        <p>Legal inquiries may be directed through the <a href="/contact">contact page</a>.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer slot="footer" />
 </Layout>
 
 <style>
-  .legal-page {
-    padding: 2.5rem 0;
-    min-height: 60vh;
-  }
 
-  .legal-content {
-    max-width: 800px;
-    margin: 0 auto;
-  }
+.legal-hero { padding: 5rem 0 3.5rem; }
+.legal-hero h1 { max-width: 480px; }
+.legal-sub { margin-top: .75rem; font-size: .9375rem; color: #555e7a; }
+.legal-body { max-width: 760px; }
+.legal-section { margin-bottom: 3rem; }
+.legal-section h2 { font-size: 1.375rem; color: #e4e7f2; margin-bottom: 1rem; padding-bottom: .75rem; border-bottom: 1px solid #1a2235; }
+.legal-section h3 { font-size: 1.0625rem; color: #e4e7f2; margin: 1.5rem 0 .5rem; }
+.legal-section p { font-size: .9375rem; color: #7b829e; line-height: 1.75; margin-bottom: .875rem; }
+.legal-section a { color: #818cf8; }
+.legal-section a:hover { color: #a5b4fc; }
+.legal-list { list-style: none; display: flex; flex-direction: column; gap: .625rem; }
+.legal-list li { font-size: .9375rem; color: #7b829e; padding-left: 1.25rem; position: relative; line-height: 1.6; }
+.legal-list li::before { content: "—"; position: absolute; left: 0; color: #4a5068; }
 
-  .legal-content h1 {
-    margin-bottom: 1rem;
-  }
-
-  .legal-content h2 {
-    margin: 3rem 0 1rem;
-    color: var(--color-primary);
-  }
-
-  .legal-content p {
-    color: var(--color-text-muted);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
-
-  .legal-content a {
-    color: var(--color-primary);
-    text-decoration: none;
-  }
-
-  .legal-content a:hover {
-    text-decoration: underline;
-  }
-
-  .last-updated {
-    font-style: italic;
-    margin-bottom: 2rem;
-  }
 </style>
-
