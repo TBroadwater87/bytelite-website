@@ -130,6 +130,32 @@ import Footer from '../components/Footer.astro';
     </div>
   </section>
 
+  <!-- App companion -->
+  <section class="section section-alt">
+    <div class="container hs-app-companion">
+      <div class="hs-app-text">
+        <p class="eyebrow">Digital Companion</p>
+        <h2>A companion app is in development.</h2>
+        <p style="margin-top:1rem;font-size:1.0625rem;line-height:1.8;">
+          HeartStrings App is a private Android companion in active development alongside HeartStrings Play.
+          It is not available in any public app store. Screenshots show current private test UI.
+        </p>
+        <div style="margin-top:1.5rem;">
+          <span class="badge badge-private">Private beta development</span>
+        </div>
+        <a href="/heartstrings-app" class="btn btn-outline btn-sm" style="margin-top:1.5rem;display:inline-flex;">See App Details &rarr;</a>
+      </div>
+      <div class="hs-app-screens" aria-hidden="true">
+        <div class="hs-phone-mini">
+          <img src="/heartstrings/screenshots/29_discover_carousel.png" alt="HeartStrings App discover carousel — private development" loading="lazy" />
+        </div>
+        <div class="hs-phone-mini hs-phone-offset">
+          <img src="/heartstrings/screenshots/06_matches.png" alt="HeartStrings App matches screen — private development" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Status notice -->
   <section class="section">
     <div class="container" style="max-width:760px;">
@@ -184,6 +210,33 @@ import Footer from '../components/Footer.astro';
 .tier-desc { font-size: .9375rem; color: #7b829e; }
 .mech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 @media (max-width: 767px) { .mech-grid { grid-template-columns: 1fr; } }
+.hs-app-companion {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  align-items: center;
+}
+@media (max-width: 767px) {
+  .hs-app-companion { grid-template-columns: 1fr; }
+  .hs-app-screens { display: none; }
+}
+.hs-app-screens {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+.hs-phone-mini {
+  width: 140px;
+  flex-shrink: 0;
+  border-radius: 1.5rem;
+  border: 1px solid #24304a;
+  box-shadow: 0 8px 28px rgba(0,0,0,.45);
+  overflow: hidden;
+  background: #0d1120;
+}
+.hs-phone-mini img { width: 100%; height: auto; display: block; }
+.hs-phone-offset { margin-top: 2rem; }
 .hs-status-box {
   background: #0d1120; border: 1px solid #24304a;
   border-radius: .875rem; padding: 2rem;
