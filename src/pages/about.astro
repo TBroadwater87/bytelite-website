@@ -125,8 +125,43 @@ import Footer from '../components/Footer.astro';
     </div>
   </section>
 
-  <!-- Contact CTA -->
+  <!-- Partnership Constraints -->
   <section class="section section-alt">
+    <div class="container" style="max-width:760px;">
+      <p class="eyebrow">Partnerships</p>
+      <h2 style="margin-bottom:1.25rem;">Partnership Constraints</h2>
+      <p style="font-size:1.0625rem;color:#7b829e;line-height:1.8;margin-bottom:1.5rem;">
+        Core research is handled with strict IP control, private validation boundaries,
+        and proof-gated disclosure. ByteLite LLC is open to serious diligence conversations,
+        but does not expose private mechanisms publicly during validation.
+      </p>
+      <div class="about-inquiries">
+        <h4 style="color:#e4e7f2;margin-bottom:1rem;">For inquiries:</h4>
+        <div class="inquiry-list">
+          <div class="inquiry-item">
+            <span class="inquiry-dot" style="background:#f472b6;"></span>
+            <span>HeartStrings Play pre-launch interest</span>
+          </div>
+          <div class="inquiry-item">
+            <span class="inquiry-dot" style="background:#6366f1;"></span>
+            <span>Controlled research partnerships</span>
+          </div>
+          <div class="inquiry-item">
+            <span class="inquiry-dot" style="background:#34d399;"></span>
+            <span>Investor conversations</span>
+          </div>
+          <div class="inquiry-item">
+            <span class="inquiry-dot" style="background:#a78bfa;"></span>
+            <span>Private validation discussions</span>
+          </div>
+        </div>
+      </div>
+      <a href="/contact" class="btn btn-outline" style="margin-top:2rem;">Contact ByteLite LLC</a>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="section">
     <div class="container cta-block-simple">
       <h2>Get in touch.</h2>
       <p>Partnership inquiries, HeartStrings pre-launch interest, research conversations, and investor discussions are all welcome.</p>
@@ -157,5 +192,9 @@ import Footer from '../components/Footer.astro';
 .cta-block-simple { text-align: center; padding: 4rem 0; }
 .cta-block-simple h2 { margin-bottom: 1rem; }
 .cta-block-simple p { max-width: 480px; margin: 0 auto 2rem; font-size: 1.0625rem; }
+.about-inquiries { background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem; padding: 1.5rem 1.75rem; }
+.inquiry-list { display: flex; flex-direction: column; gap: .625rem; }
+.inquiry-item { display: flex; align-items: center; gap: .75rem; font-size: .9375rem; color: #a0a8c0; }
+.inquiry-dot { width: .5rem; height: .5rem; border-radius: 50%; flex-shrink: 0; }
 
 </style>
