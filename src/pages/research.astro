@@ -6,22 +6,39 @@ import Footer from '../components/Footer.astro';
 
 <Layout
   title="Research | ByteLite LLC"
-  description="ByteLite LLC conducts private deterministic systems research while keeping technical mechanisms intentionally non-public during validation."
+  description="Private deterministic digital information systems research. Current validation focuses on compression-related proof surfaces, exact lossless round-trip behavior, and deterministic structural transformation laws."
   keywords="ByteLite LLC research, deterministic systems, private research, Helena Montana"
-  
 >
   <Header slot="header" />
 
   <!-- Hero -->
   <section class="res-hero">
     <div class="container">
-      <p class="eyebrow">Research</p>
+      <p class="eyebrow">Deterministic Systems Research</p>
       <h1>Private systems research.</h1>
       <p class="res-hero-sub">
-        ByteLite LLC conducts private research into deterministic infrastructure,
-        verification-focused systems, media tooling, and reasoning interfaces.
+        ByteLite LLC conducts private research into deterministic digital information systems,
+        verification-focused infrastructure, and deterministic reasoning.
         Technical mechanisms are intentionally not public during validation.
       </p>
+    </div>
+  </section>
+
+  <!-- Proof boundary — required explicit statements -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="proof-boundary">
+        <div class="proof-boundary-icon">&#9632;</div>
+        <div class="proof-boundary-body">
+          <div class="proof-boundary-title">Explicit proof posture</div>
+          <p>
+            Production-scale real-file compression is not publicly claimed.
+            Internal mechanisms remain private during validation.
+            Research status does not constitute a claim of commercial readiness,
+            public availability, or independent verification.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -40,100 +57,42 @@ import Footer from '../components/Footer.astro';
     </div>
   </section>
 
-  <!-- Why it matters -->
+  <!-- ByteLite Research -->
   <section class="section section-alt">
-    <div class="container res-why">
-      <div>
-        <p class="eyebrow">Why It Matters</p>
-        <h2>The software stack needs better foundations.</h2>
-      </div>
-      <div class="res-why-points">
-        <div class="res-point">
-          <h4 style="color:#e4e7f2;margin-bottom:.5rem;">Data growth is accelerating.</h4>
-          <p>Storage, bandwidth, and infrastructure costs compound yearly. Systems built without deterministic foundations accumulate technical debt that compounds the same way.</p>
-        </div>
-        <div class="res-point">
-          <h4 style="color:#e4e7f2;margin-bottom:.5rem;">Opacity is a risk.</h4>
-          <p>Software systems that cannot be inspected cannot be trusted at scale. Deterministic, verifiable approaches reduce the inspection surface for critical infrastructure.</p>
-        </div>
-        <div class="res-point">
-          <h4 style="color:#e4e7f2;margin-bottom:.5rem;">Privacy requires architecture, not policy.</h4>
-          <p>Genuine privacy cannot be bolted onto systems built without it. It requires decisions at the architectural level from the start.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Research areas -->
-  <section class="section">
-    <div class="container">
-      <p class="eyebrow">Research Areas</p>
-      <h2 style="margin-bottom:2.5rem;">What ByteLite LLC researches.</h2>
-      <div class="res-areas-grid">
-        <div class="card res-area-card">
-          <div class="res-area-icon">&#9632;</div>
-          <h3 style="color:#e4e7f2;margin:.75rem 0 .625rem;">Data Infrastructure</h3>
-          <p>Deterministic data representation and verification. Private research into how data can be encoded, stored, and reconstructed with guaranteed properties. No public product available yet.</p>
-          <div style="margin-top:1rem;"><span class="badge badge-research">Private research</span></div>
-        </div>
-        <div class="card res-area-card">
-          <div class="res-area-icon res-icon-blue">&#9632;</div>
-          <h3 style="color:#e4e7f2;margin:.75rem 0 .625rem;">Verification Systems</h3>
-          <p>Research into verifiable, inspectable system behavior. The goal is software that can be independently confirmed to do what it claims, without requiring trust in opaque implementations.</p>
-          <div style="margin-top:1rem;"><span class="badge badge-research">Private research</span></div>
-        </div>
-        <div class="card res-area-card">
-          <div class="res-area-icon res-icon-amber">&#9632;</div>
-          <h3 style="color:#e4e7f2;margin:.75rem 0 .625rem;">Media Tooling</h3>
-          <p>Private research into consistent, controllable visual media workflows. No public product. Technical details not disclosed during active development.</p>
-          <div style="margin-top:1rem;"><span class="badge badge-planned">Early research</span></div>
-        </div>
-        <div class="card res-area-card">
-          <div class="res-area-icon res-icon-purple">&#9632;</div>
-          <h3 style="color:#e4e7f2;margin:.75rem 0 .625rem;">Reasoning Interfaces</h3>
-          <p>Research into more inspectable software reasoning. Connected to the Deep Kore research project. Not a public AI product. See below for public stance.</p>
-          <div style="margin-top:1rem;"><span class="badge badge-research">Private research</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Public boundary -->
-  <section class="section section-alt">
-    <div class="container" style="max-width:760px;">
-      <p class="eyebrow">Public Boundary</p>
-      <h2 style="margin-bottom:1.25rem;">What is intentionally not public.</h2>
-      <p style="font-size:1.0625rem;line-height:1.8;margin-bottom:1.5rem;">
-        Detailed technical mechanisms for all research areas are intentionally not public
-        while development and validation continue. This is not unusual for early-stage private research.
+    <div class="container" style="max-width:860px;">
+      <p class="eyebrow">ByteLite</p>
+      <h2 style="margin-bottom:1.25rem;">ByteLite Research</h2>
+      <p class="res-body-text">
+        Private deterministic digital information systems research.
+        Current validation focuses on compression-related proof surfaces,
+        exact lossless round-trip behavior, strict artifact accounting,
+        and deterministic structural transformation laws.
+        Production-scale real-file compression is not publicly claimed.
+        Internal mechanisms remain private during validation.
       </p>
-      <div class="boundary-box">
-        <h4 style="color:#e4e7f2;margin-bottom:1rem;">No public claim exists for:</h4>
-        <ul class="boundary-list">
-          <li>A public production data infrastructure product</li>
-          <li>A public API of any kind</li>
-          <li>Published independent benchmark results</li>
-          <li>A public media tooling product</li>
-          <li>A public AI or reasoning system</li>
-        </ul>
+      <div class="res-tags" style="margin-top:1.5rem;">
+        <span class="res-tag">Compression-related validation</span>
+        <span class="res-tag">Exact lossless round-trip</span>
+        <span class="res-tag">Strict artifact accounting</span>
+        <span class="res-tag">Deterministic structural laws</span>
+        <span class="res-tag">Proof-gated claims</span>
       </div>
-      <p style="font-size:.9375rem;color:#555e7a;margin-top:1.5rem;">
-        Research, partnership, and investor inquiries are welcome.
-        Technical details are shared selectively under appropriate agreements.
-      </p>
+      <div style="margin-top:1.5rem;"><span class="badge badge-research">Private research</span></div>
     </div>
   </section>
 
-  <!-- Deep Kore section -->
+  <!-- Deep Kore / AIya -->
   <section class="section" id="deep-kore">
-    <div class="container" style="max-width:760px;">
+    <div class="container" style="max-width:860px;">
       <p class="eyebrow">Deep Kore / AIya</p>
-      <h2 style="margin-bottom:1.25rem;">Private reasoning research.</h2>
-      <p style="font-size:1.0625rem;line-height:1.8;margin-bottom:1.5rem;">
-        Deep Kore is private reasoning research exploring more inspectable software behavior.
-        AIya is the human-facing guide concept connected to that work.
+      <h2 style="margin-bottom:1.25rem;">Private deterministic reasoning infrastructure.</h2>
+      <p class="res-body-text">
+        Private deterministic reasoning infrastructure focused on lawful structure,
+        relation edges, auditability, and controlled answer selection.
+        AIya is the human-facing interaction layer.
+        These are private research systems, not public AI products.
       </p>
-      <div class="deepkore-stance">
+      <div class="deepkore-stance" style="margin-top:1.5rem;">
         <div class="stance-item">
           <span class="stance-no">&#10005;</span>
           <span>Not a public AI product</span>
@@ -143,14 +102,86 @@ import Footer from '../components/Footer.astro';
           <span>No architecture details are public</span>
         </div>
         <div class="stance-item">
-          <span class="stance-yes">&#10003;</span>
-          <span>Safety-first principles govern all research</span>
+          <span class="stance-no">&#10005;</span>
+          <span>Not a public commercial product</span>
         </div>
         <div class="stance-item">
           <span class="stance-yes">&#10003;</span>
-          <span>Research prototype — not a commercial product</span>
+          <span>Safety-first and proof-gated principles govern all research</span>
+        </div>
+        <div class="stance-item">
+          <span class="stance-yes">&#10003;</span>
+          <span>Internal mechanisms remain private during validation</span>
         </div>
       </div>
+      <div style="margin-top:1.5rem;"><span class="badge badge-research">Private research</span></div>
+    </div>
+  </section>
+
+  <!-- Engineering Philosophy -->
+  <section class="section section-alt">
+    <div class="container" style="max-width:860px;">
+      <p class="eyebrow">Engineering Philosophy</p>
+      <h2 style="margin-bottom:1.25rem;">Engineering Philosophy</h2>
+      <p class="res-body-text">
+        ByteLite LLC prioritizes deterministic behavior, local validation, exact round-trip
+        correctness, privacy, and proof-gated claims. We avoid public mechanism disclosure
+        during validation and do not position private research as production capability
+        before proof closes.
+      </p>
+      <p class="res-body-text" style="margin-top:1rem;">
+        Designed for private validation and controlled deployment, without dependence on
+        black-box hosted mechanisms for core claims.
+      </p>
+      <div class="philosophy-grid" style="margin-top:2rem;">
+        <div class="card philosophy-card">
+          <div class="philosophy-icon" style="color:#6366f1;">&#9632;</div>
+          <h4 style="color:#e4e7f2;margin:.625rem 0 .5rem;">Deterministic behavior</h4>
+          <p style="font-size:.875rem;">System behavior is predictable, inspectable, and not probabilistic for core correctness claims.</p>
+        </div>
+        <div class="card philosophy-card">
+          <div class="philosophy-icon" style="color:#60a5fa;">&#9632;</div>
+          <h4 style="color:#e4e7f2;margin:.625rem 0 .5rem;">Exact round-trip correctness</h4>
+          <p style="font-size:.875rem;">Lossless reconstruction is a hard requirement, not an approximation target.</p>
+        </div>
+        <div class="card philosophy-card">
+          <div class="philosophy-icon" style="color:#34d399;">&#9632;</div>
+          <h4 style="color:#e4e7f2;margin:.625rem 0 .5rem;">Proof-gated claims</h4>
+          <p style="font-size:.875rem;">No public claim is made before the underlying proof closes. Research status is separated from production status.</p>
+        </div>
+        <div class="card philosophy-card">
+          <div class="philosophy-icon" style="color:#a78bfa;">&#9632;</div>
+          <h4 style="color:#e4e7f2;margin:.625rem 0 .5rem;">Private mechanism protection</h4>
+          <p style="font-size:.875rem;">Internal mechanisms remain private during validation. Technical details shared only under appropriate agreements.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Public boundary -->
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <p class="eyebrow">Public Boundary</p>
+      <h2 style="margin-bottom:1.25rem;">What is intentionally not public.</h2>
+      <p style="font-size:1.0625rem;line-height:1.8;margin-bottom:1.5rem;">
+        Detailed technical mechanisms for all research areas are intentionally not public
+        while development and validation continue.
+      </p>
+      <div class="boundary-box">
+        <h4 style="color:#e4e7f2;margin-bottom:1rem;">No public claim exists for:</h4>
+        <ul class="boundary-list">
+          <li>Production-scale real-file compression</li>
+          <li>A public production data infrastructure product</li>
+          <li>A public API of any kind</li>
+          <li>Published independent benchmark results</li>
+          <li>A public AI or reasoning system</li>
+          <li>Public mechanism or architecture disclosure</li>
+        </ul>
+      </div>
+      <p style="font-size:.9375rem;color:#555e7a;margin-top:1.5rem;">
+        Research, partnership, and investor inquiries are welcome.
+        Technical details are shared selectively under appropriate agreements.
+      </p>
     </div>
   </section>
 
@@ -174,32 +205,62 @@ import Footer from '../components/Footer.astro';
 }
 .res-hero h1 { max-width: 640px; }
 .res-hero-sub { max-width: 600px; margin-top: 1.25rem; font-size: 1.0625rem; color: #7b829e; line-height: 1.75; }
-.res-why { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; }
-@media (max-width: 767px) { .res-why { grid-template-columns: 1fr; gap: 2rem; } }
-.res-why-points { display: flex; flex-direction: column; gap: 2rem; }
-.res-point {}
-.res-areas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-@media (max-width: 640px) { .res-areas-grid { grid-template-columns: 1fr; } }
-.res-area-card {}
-.res-area-icon { font-size: .875rem; color: #6366f1; }
-.res-icon-blue { color: #60a5fa; }
-.res-icon-amber { color: #f59e0b; }
-.res-icon-purple { color: #a78bfa; }
+
+/* Proof boundary box */
+.proof-boundary {
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  background: linear-gradient(135deg, rgba(251,146,60,.06) 0%, rgba(99,102,241,.04) 100%);
+  border: 1px solid rgba(251,146,60,.25); border-radius: .75rem;
+  padding: 1.5rem 1.75rem;
+}
+.proof-boundary-icon { color: #fb923c; font-size: .625rem; flex-shrink: 0; margin-top: .35rem; }
+.proof-boundary-body {}
+.proof-boundary-title {
+  font-size: .6875rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: #fb923c; margin-bottom: .625rem;
+}
+.proof-boundary p { font-size: .9375rem; color: #a0a8c0; line-height: 1.75; margin: 0; }
+
+/* Architecture band */
+.res-arch-band {
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+  padding: 1.5rem 0;
+}
+
+/* Body text */
+.res-body-text { font-size: 1.0625rem; color: #a0a8c0; line-height: 1.8; margin: 0; }
+
+/* Tags */
+.res-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+.res-tag {
+  font-size: .75rem; font-family: monospace; color: #818cf8;
+  background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.15);
+  border-radius: .375rem; padding: .3rem .75rem;
+}
+
+/* Deep Kore stance */
+.deepkore-stance { display: flex; flex-direction: column; gap: .875rem; }
+.stance-item { display: flex; align-items: center; gap: .875rem; }
+.stance-item span:last-child { font-size: .9375rem; color: #a0a8c0; }
+.stance-no { color: #f87171; font-size: 1rem; flex-shrink: 0; width: 1.25rem; text-align: center; }
+.stance-yes { color: #34d399; font-size: 1rem; flex-shrink: 0; width: 1.25rem; text-align: center; }
+
+/* Philosophy */
+.philosophy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+@media (max-width: 640px) { .philosophy-grid { grid-template-columns: 1fr; } }
+.philosophy-card { display: flex; flex-direction: column; gap: .25rem; }
+.philosophy-icon { font-size: .625rem; }
+.philosophy-card p { font-size: .875rem; color: #7b829e; line-height: 1.65; margin: 0; }
+
+/* Boundary */
 .boundary-box {
   background: #111828; border: 1px solid #1a2235; border-radius: .75rem; padding: 1.75rem;
 }
 .boundary-list { list-style: none; display: flex; flex-direction: column; gap: .625rem; }
 .boundary-list li { font-size: .9375rem; color: #7b829e; padding-left: 1.25rem; position: relative; }
 .boundary-list li::before { content: "—"; position: absolute; left: 0; color: #4a5068; }
-.deepkore-stance { display: flex; flex-direction: column; gap: .875rem; margin-top: 1.5rem; }
-.stance-item { display: flex; align-items: center; gap: .875rem; }
-.stance-item span:last-child { font-size: .9375rem; color: #a0a8c0; }
-.stance-no { color: #f87171; font-size: 1rem; flex-shrink: 0; width: 1.25rem; text-align: center; }
-.stance-yes { color: #34d399; font-size: 1rem; flex-shrink: 0; width: 1.25rem; text-align: center; }
-.res-arch-band {
-  display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
-  padding: 1.5rem 0;
-}
+
+/* CTA */
 .cta-block-alt {
   background: #0d1120; border: 1px solid #1a2235; border-radius: 1rem;
   padding: 3.5rem; text-align: center;
