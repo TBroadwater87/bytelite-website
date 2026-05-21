@@ -15,6 +15,7 @@ function isActive(href: string) {
 
     <div class="nav-links" id="navLinks">
       <a href="/" class:list={["nav-link", { active: isActive('/') }]}>Home</a>
+      <a href="/architecture" class:list={["nav-link nav-link-arch", { active: isActive('/architecture') }]}>Architecture</a>
       <a href="/heartstrings" class:list={["nav-link nav-link-pink", { active: isActive('/heartstrings') }]}>HeartStrings Play</a>
       <a href="/heartstrings-app" class:list={["nav-link", { active: isActive('/heartstrings-app') }]}>HeartStrings App</a>
       <a href="/research" class:list={["nav-link", { active: isActive('/research') }]}>Research</a>
@@ -78,6 +79,8 @@ function isActive(href: string) {
 .nav-link.active { color: #e4e7f2; }
 .nav-link-pink { color: #c4739a; }
 .nav-link-pink:hover, .nav-link-pink.active { color: #f472b6; }
+.nav-link-arch { color: #818cf8; }
+.nav-link-arch:hover, .nav-link-arch.active { color: #a5b4fc; background: rgba(99,102,241,.08); }
 .nav-link-cta {
   background: rgba(99,102,241,.12); color: #818cf8;
   border: 1px solid rgba(99,102,241,.2);
