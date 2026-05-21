@@ -85,6 +85,54 @@ import Footer from '../components/Footer.astro';
     </div>
   </section>
 
+  <!-- Architecture band -->
+  <section class="section">
+    <div class="container arch-band">
+      <div class="arch-band-text">
+        <p class="eyebrow">Deterministic Structure</p>
+        <h2>A governed structure stack.</h2>
+        <p class="arch-band-desc">
+          ByteLite LLC is building a deterministic structure stack for digital information,
+          visual inspection, reasoning, interaction, movement, cost, and governed action.
+          HeartStrings Play is the first public-facing product. The broader research stack
+          remains private while validation, implementation hardening, and claim boundaries
+          are completed.
+        </p>
+        <a href="/architecture" class="btn btn-outline" style="margin-top:1.75rem;">Explore the Architecture</a>
+      </div>
+      <div class="arch-band-stack">
+        <div class="arch-mini-layer" style="border-left-color:#6366f1;">
+          <span class="arch-mini-name">ByteLite</span>
+          <span class="arch-mini-role">Digital structure</span>
+        </div>
+        <div class="arch-mini-layer" style="border-left-color:#60a5fa;">
+          <span class="arch-mini-name">ByteSight</span>
+          <span class="arch-mini-role">Visual inspection</span>
+        </div>
+        <div class="arch-mini-layer" style="border-left-color:#34d399;">
+          <span class="arch-mini-name">ByteFlow</span>
+          <span class="arch-mini-role">Movement &amp; routing</span>
+        </div>
+        <div class="arch-mini-layer" style="border-left-color:#fbbf24;">
+          <span class="arch-mini-name">ByteCost</span>
+          <span class="arch-mini-role">Burden accounting</span>
+        </div>
+        <div class="arch-mini-layer" style="border-left-color:#a78bfa;">
+          <span class="arch-mini-name">Deep Kore</span>
+          <span class="arch-mini-role">Reasoning substrate</span>
+        </div>
+        <div class="arch-mini-layer" style="border-left-color:#f472b6;">
+          <span class="arch-mini-name">AIya</span>
+          <span class="arch-mini-role">Interaction layer</span>
+        </div>
+        <div class="arch-mini-layer" style="border-left-color:#fb923c;">
+          <span class="arch-mini-name">Genesis Goalkeeper</span>
+          <span class="arch-mini-role">Governance</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Ecosystem cards -->
   <section class="section section-alt">
     <div class="container">
@@ -115,13 +163,13 @@ import Footer from '../components/Footer.astro';
           <p class="eco-desc">Private deterministic infrastructure research. Mechanisms intentionally not public during validation.</p>
           <span class="eco-arrow">See Research &rarr;</span>
         </a>
-        <a href="/research#deep-kore" class="card eco-card eco-deepkore">
+        <a href="/architecture" class="card eco-card eco-arch">
           <div class="eco-header">
-            <span class="badge badge-research">Private research</span>
+            <span class="badge badge-research">Informational</span>
           </div>
-          <h3 class="eco-title">Deep Kore / AIya</h3>
-          <p class="eco-desc">Private reasoning research and guide concept. Not a public AI product.</p>
-          <span class="eco-arrow">See Research &rarr;</span>
+          <h3 class="eco-title">The Architecture</h3>
+          <p class="eco-desc">Public overview of the deterministic structure stack, safety method, and proof-gated claim boundaries. No mechanism disclosure.</p>
+          <span class="eco-arrow">Explore &rarr;</span>
         </a>
       </div>
     </div>
@@ -221,6 +269,21 @@ import Footer from '../components/Footer.astro';
 .fb-tagline { font-size: .9375rem; color: #a0a8c0; line-height: 1.6; }
 .fb-detail { font-size: .8125rem; color: #4a5068; line-height: 1.6; }
 
+/* Architecture band */
+.arch-band {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+}
+@media (max-width: 900px) { .arch-band { grid-template-columns: 1fr; gap: 2.5rem; } }
+.arch-band-desc { font-size: 1.0625rem; color: #7b829e; line-height: 1.8; margin-top: 1rem; }
+.arch-band-stack { display: flex; flex-direction: column; gap: .5rem; }
+.arch-mini-layer {
+  display: flex; justify-content: space-between; align-items: center;
+  background: #0d1120; border: 1px solid #1a2235; border-left-width: 3px;
+  border-radius: .5rem; padding: .75rem 1rem;
+}
+.arch-mini-name { font-size: .875rem; font-weight: 600; color: #e4e7f2; }
+.arch-mini-role { font-size: .75rem; color: #555e7a; }
+
 /* Eco grid */
 .eco-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
 @media (max-width: 767px) { .eco-grid { grid-template-columns: 1fr; } }
@@ -231,6 +294,7 @@ import Footer from '../components/Footer.astro';
 .eco-play .eco-title, .eco-play .eco-arrow { color: #f472b6; }
 .eco-app .eco-title, .eco-app .eco-arrow { color: #818cf8; }
 .eco-research .eco-title, .eco-research .eco-arrow { color: #6366f1; }
+.eco-arch .eco-title, .eco-arch .eco-arrow { color: #818cf8; }
 .eco-deepkore .eco-title, .eco-deepkore .eco-arrow { color: #a78bfa; }
 .eco-arrow { font-size: .875rem; font-weight: 500; margin-top: auto; }
 
