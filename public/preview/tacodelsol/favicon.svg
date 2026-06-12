@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Taco Del Sol">
+  <defs>
+    <radialGradient id="s" cx="40%" cy="38%" r="65%">
+      <stop offset="0%" stop-color="#f7c14b"/>
+      <stop offset="60%" stop-color="#f2a818"/>
+      <stop offset="100%" stop-color="#c2382c"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#fdf6ec"/>
+  <circle cx="32" cy="30" r="18" fill="url(#s)"/>
+  <g stroke="#f2a818" stroke-width="3" stroke-linecap="round">
+    <line x1="32" y1="2" x2="32" y2="9"/>
+    <line x1="32" y1="51" x2="32" y2="58"/>
+    <line x1="2" y1="30" x2="9" y2="30"/>
+    <line x1="55" y1="30" x2="62" y2="30"/>
+  </g>
+  <path d="M16 46 q16 -12 32 0 q-16 6 -32 0z" fill="#4f8f4a"/>
+</svg>
