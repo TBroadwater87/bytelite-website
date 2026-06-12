@@ -1,0 +1,199 @@
+{
+  "generatedAt": "2026-06-11T21:42:23.6168655-06:00",
+  "imageMagick": false,
+  "maxWidth": 1600,
+  "quality": 82,
+  "optimizedCount": 0,
+  "copiedCount": 27,
+  "items": [
+    {
+      "original": "public/assets/original/_images_edge.png",
+      "optimized": "public/assets/optimized/edge.png",
+      "method": "copy",
+      "originalBytes": 4526,
+      "outputBytes": 4526
+    },
+    {
+      "original": "public/assets/original/_images_gallery_TacoDelSolBranding2019-16.jpg",
+      "optimized": "public/assets/optimized/TacoDelSolBranding2019-16.jpg",
+      "method": "copy",
+      "originalBytes": 197551,
+      "outputBytes": 197551
+    },
+    {
+      "original": "public/assets/original/_images_gallery_TacoDelSolBranding2019-20.jpg",
+      "optimized": "public/assets/optimized/TacoDelSolBranding2019-20.jpg",
+      "method": "copy",
+      "originalBytes": 209469,
+      "outputBytes": 209469
+    },
+    {
+      "original": "public/assets/original/_images_gallery_TacoDelSolBranding2019-25.jpg",
+      "optimized": "public/assets/optimized/TacoDelSolBranding2019-25.jpg",
+      "method": "copy",
+      "originalBytes": 171314,
+      "outputBytes": 171314
+    },
+    {
+      "original": "public/assets/original/_images_gallery_TacoDelSolBranding2019-26.jpg",
+      "optimized": "public/assets/optimized/TacoDelSolBranding2019-26.jpg",
+      "method": "copy",
+      "originalBytes": 155316,
+      "outputBytes": 155316
+    },
+    {
+      "original": "public/assets/original/_images_gallery_TacoDelSolBranding2019-27.jpg",
+      "optimized": "public/assets/optimized/TacoDelSolBranding2019-27.jpg",
+      "method": "copy",
+      "originalBytes": 146667,
+      "outputBytes": 146667
+    },
+    {
+      "original": "public/assets/original/_images_gallery_TacoDelSolBranding2019-37.jpg",
+      "optimized": "public/assets/optimized/TacoDelSolBranding2019-37.jpg",
+      "method": "copy",
+      "originalBytes": 126000,
+      "outputBytes": 126000
+    },
+    {
+      "original": "public/assets/original/_images_gallery_TacoDelSolBranding2019-43.jpg",
+      "optimized": "public/assets/optimized/TacoDelSolBranding2019-43.jpg",
+      "method": "copy",
+      "originalBytes": 138949,
+      "outputBytes": 138949
+    },
+    {
+      "original": "public/assets/original/_images_gallery_TacoDelSolBranding2019-6.jpg",
+      "optimized": "public/assets/optimized/TacoDelSolBranding2019-6.jpg",
+      "method": "copy",
+      "originalBytes": 221108,
+      "outputBytes": 221108
+    },
+    {
+      "original": "public/assets/original/_images_gallery_TacoDelSolBranding2019-8.jpg",
+      "optimized": "public/assets/optimized/TacoDelSolBranding2019-8.jpg",
+      "method": "copy",
+      "originalBytes": 207677,
+      "outputBytes": 207677
+    },
+    {
+      "original": "public/assets/original/_images_glutenfree.gif",
+      "optimized": "public/assets/optimized/glutenfree.gif",
+      "method": "copy",
+      "originalBytes": 4672,
+      "outputBytes": 4672
+    },
+    {
+      "original": "public/assets/original/_images_heading-about.gif",
+      "optimized": "public/assets/optimized/heading-about.gif",
+      "method": "copy",
+      "originalBytes": 24712,
+      "outputBytes": 24712
+    },
+    {
+      "original": "public/assets/original/_images_heading-events.gif",
+      "optimized": "public/assets/optimized/heading-events.gif",
+      "method": "copy",
+      "originalBytes": 27579,
+      "outputBytes": 27579
+    },
+    {
+      "original": "public/assets/original/_images_heading-jointheteam.gif",
+      "optimized": "public/assets/optimized/heading-jointheteam.gif",
+      "method": "copy",
+      "originalBytes": 10050,
+      "outputBytes": 10050
+    },
+    {
+      "original": "public/assets/original/_images_heading-menu.png",
+      "optimized": "public/assets/optimized/heading-menu.png",
+      "method": "copy",
+      "originalBytes": 40143,
+      "outputBytes": 40143
+    },
+    {
+      "original": "public/assets/original/_images_icon-facebook.png",
+      "optimized": "public/assets/optimized/icon-facebook.png",
+      "method": "copy",
+      "originalBytes": 1289,
+      "outputBytes": 1289
+    },
+    {
+      "original": "public/assets/original/_images_icon-twitter.png",
+      "optimized": "public/assets/optimized/icon-twitter.png",
+      "method": "copy",
+      "originalBytes": 1406,
+      "outputBytes": 1406
+    },
+    {
+      "original": "public/assets/original/_images_logo.png",
+      "optimized": "public/assets/optimized/logo.png",
+      "method": "copy",
+      "originalBytes": 33635,
+      "outputBytes": 33635
+    },
+    {
+      "original": "public/assets/original/_images_next.gif",
+      "optimized": "public/assets/optimized/next.gif",
+      "method": "copy",
+      "originalBytes": 1242,
+      "outputBytes": 1242
+    },
+    {
+      "original": "public/assets/original/_images_previous.gif",
+      "optimized": "public/assets/optimized/previous.gif",
+      "method": "copy",
+      "originalBytes": 1245,
+      "outputBytes": 1245
+    },
+    {
+      "original": "public/assets/original/_images_shade-down-arrow.png",
+      "optimized": "public/assets/optimized/shade-down-arrow.png",
+      "method": "copy",
+      "originalBytes": 4652,
+      "outputBytes": 4652
+    },
+    {
+      "original": "public/assets/original/_images_spacer.png",
+      "optimized": "public/assets/optimized/spacer.png",
+      "method": "copy",
+      "originalBytes": 1023,
+      "outputBytes": 1023
+    },
+    {
+      "original": "public/assets/original/_images_tacodelsol.jpg",
+      "optimized": "public/assets/optimized/tacodelsol.jpg",
+      "method": "copy",
+      "originalBytes": 61731,
+      "outputBytes": 61731
+    },
+    {
+      "original": "public/assets/original/_images_team.jpg",
+      "optimized": "public/assets/optimized/team.jpg",
+      "method": "copy",
+      "originalBytes": 117448,
+      "outputBytes": 117448
+    },
+    {
+      "original": "public/assets/original/_images_vegan.gif",
+      "optimized": "public/assets/optimized/vegan.gif",
+      "method": "copy",
+      "originalBytes": 4718,
+      "outputBytes": 4718
+    },
+    {
+      "original": "public/assets/original/_images_wifi.gif",
+      "optimized": "public/assets/optimized/wifi.gif",
+      "method": "copy",
+      "originalBytes": 3802,
+      "outputBytes": 3802
+    },
+    {
+      "original": "public/assets/original/favicon.ico",
+      "optimized": "public/assets/optimized/favicon.ico",
+      "method": "copy",
+      "originalBytes": 1150,
+      "outputBytes": 1150
+    }
+  ]
+}
