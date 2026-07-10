@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import RestaurantSignup from '../../components/RestaurantSignup.tsx';
+import '../../styles/portal.css';
+---
+
+<Layout
+  title="Start your pilot | HeartStrings Restaurant Program"
+  description="Create your restaurant account, build a templated profile and deal, and start the $20 HeartStrings pilot."
+  noindex={true}
+>
+  <Header slot="header" />
+
+  <section class="section">
+    <div class="container rs-container">
+      <p class="eyebrow">Restaurant pilot signup</p>
+      <h1>Set up your featured listing</h1>
+      <p class="rs-lede">
+        Build your profile and deal first — you only pay the $20 pilot at the end. A paid signup enters
+        review; going live is an approval we control.
+      </p>
+      <RestaurantSignup client:load />
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>

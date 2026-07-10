@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import RestaurantAdmin from '../../components/RestaurantAdmin.tsx';
+import '../../styles/portal.css';
+---
+
+<Layout
+  title="Restaurant review console"
+  description="Admin review of restaurant pilot signups."
+  noindex={true}
+>
+  <Header slot="header" />
+
+  <section class="section">
+    <div class="container rs-container">
+      <p class="eyebrow">Admin</p>
+      <h1>Restaurant review console</h1>
+      <p class="rs-lede">
+        Approve a paid restaurant to flip it into a live, featured venue in HeartStrings Blind Dates.
+        Reject or pause as needed. Nothing publishes without approval here.
+      </p>
+      <RestaurantAdmin client:load />
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
