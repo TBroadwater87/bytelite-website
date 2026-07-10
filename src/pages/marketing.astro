@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Restaurant Promotion Program | HeartStrings"
+  description="Become a featured date and meet-up location inside the HeartStrings app. Start with a $20 one-time pilot placement — less than $1/day."
+  keywords="HeartStrings restaurant promotion, featured date location, restaurant marketing pilot, thebytelite"
+>
+  <Header slot="header" />
+
+  <!-- Hero -->
+  <section class="mk-hero">
+    <div class="container">
+      <p class="eyebrow">HeartStrings for Restaurants</p>
+      <h1>Be the place their date happens.</h1>
+      <p class="mk-sub">
+        HeartStrings suggests real-world date and meet-up locations to people planning to meet.
+        Join the program and your restaurant can be featured as one of those suggestions —
+        with a deal you set, shown to people actively choosing where to go.
+      </p>
+      <div class="mk-cta-row">
+        <a href="/marketing/signup" class="btn btn-primary">Start the $20 pilot</a>
+        <a href="#how" class="btn btn-outline">How it works</a>
+      </div>
+      <p class="mk-fineprint">
+        Honest pilot pricing: <strong>$20 one-time</strong> — less than $1/day for the pilot window.
+        A paid signup enters review; it goes live only after we approve it.
+      </p>
+    </div>
+  </section>
+
+  <!-- What you get -->
+  <section class="section section-alt">
+    <div class="container">
+      <p class="eyebrow">The program</p>
+      <h2>A featured spot in the moment that matters</h2>
+      <div class="mk-grid">
+        <div class="card">
+          <h3>Featured, and labeled as such</h3>
+          <p>
+            When your restaurant genuinely fits what two people are looking for, HeartStrings can
+            surface it as a <em>Featured</em> suggestion. It is always labeled honestly as a paid
+            placement — never disguised as a neutral pick.
+          </p>
+        </div>
+        <div class="card">
+          <h3>You set the deal</h3>
+          <p>
+            Being featured requires a real offer for HeartStrings users — a discount or perk you
+            choose from a set of templated deal types. That offer becomes a redeemable code the app
+            can present.
+          </p>
+        </div>
+        <div class="card">
+          <h3>No app download, no waiting on an update</h3>
+          <p>
+            Everything happens here on the web. Once approved, your restaurant flows straight into the
+            app's suggestions — no app-store update required.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="section">
+    <div class="container">
+      <p class="eyebrow">How it works</p>
+      <h2>Five honest steps</h2>
+      <ol class="mk-steps">
+        <li><span>1</span><div><strong>Create an account</strong><p>An email and password — that is your restaurant portal login.</p></div></li>
+        <li><span>2</span><div><strong>Fill a templated profile</strong><p>Name, cuisine, price tier, area, hours, dietary options, vibe, contact — plus your logo and photos.</p></div></li>
+        <li><span>3</span><div><strong>Set your deal</strong><p>Choose a templated offer and the value you commit to. A discount is required to be featured.</p></div></li>
+        <li><span>4</span><div><strong>Pay the $20 pilot</strong><p>A one-time Stripe payment. Your restaurant then enters <em>pending review</em>.</p></div></li>
+        <li><span>5</span><div><strong>We review, then you go live</strong><p>An approval step we control flips your paid restaurant into a live, featured suggestion. Paid does not mean auto-published.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Pricing: pilot is the ONLY decided price. Everything else is an explicit placeholder. -->
+  <section class="section section-alt">
+    <div class="container">
+      <p class="eyebrow">Pricing</p>
+      <h2>One decided price. The rest is coming soon.</h2>
+      <div class="mk-price-grid">
+        <div class="card mk-price mk-price-live">
+          <span class="badge badge-active">Available now</span>
+          <h3>Pilot placement</h3>
+          <p class="mk-amount">$20<span>one-time</span></p>
+          <p class="mk-price-note">Less than $1/day for the pilot window. The only price we have set.</p>
+          <a href="/marketing/signup" class="btn btn-primary btn-sm">Start the pilot</a>
+        </div>
+        <div class="card mk-price mk-price-soon">
+          <span class="badge badge-planned">Coming soon</span>
+          <h3>Ongoing placement</h3>
+          <p class="mk-amount mk-amount-tbd">To be set</p>
+          <p class="mk-price-note">Monthly featured placement pricing is not decided yet. No number is implied here.</p>
+        </div>
+        <div class="card mk-price mk-price-soon">
+          <span class="badge badge-planned">Coming soon</span>
+          <h3>Premium / multi-location</h3>
+          <p class="mk-amount mk-amount-tbd">To be set</p>
+          <p class="mk-price-note">Premium tiers, ROI figures, and volume options are still being researched.</p>
+        </div>
+      </div>
+      <p class="mk-fineprint mk-center">
+        We do not invent prices or savings claims. Every value beyond the $20 pilot is marked
+        "to be set" until it is real.
+      </p>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section">
+    <div class="container mk-final">
+      <h2>Ready to be a featured date spot?</h2>
+      <p>Start the $20 pilot. You can build your profile and deal before you pay.</p>
+      <a href="/marketing/signup" class="btn btn-primary">Start the $20 pilot</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  .mk-hero { padding: 5rem 0 3rem; background: radial-gradient(1200px 500px at 50% -10%, rgba(236,72,153,.10), transparent 60%); }
+  .mk-sub { color: #a0a8c0; font-size: 1.125rem; line-height: 1.8; max-width: 720px; margin-top: 1rem; }
+  .mk-cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.75rem; }
+  .mk-fineprint { color: #7b829e; font-size: .9rem; margin-top: 1.25rem; max-width: 640px; }
+  .mk-fineprint strong { color: #f472b6; }
+  .mk-center { margin-left: auto; margin-right: auto; text-align: center; }
+
+  .mk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 1.75rem; }
+  .mk-grid h3 { margin-bottom: .5rem; color: #e4e7f2; }
+
+  .mk-steps { list-style: none; margin-top: 1.75rem; display: grid; gap: 1rem; max-width: 780px; }
+  .mk-steps li { display: flex; gap: 1rem; align-items: flex-start; }
+  .mk-steps li span {
+    flex: 0 0 auto; width: 2rem; height: 2rem; border-radius: 9999px;
+    background: rgba(99,102,241,.15); color: #818cf8; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .mk-steps li strong { color: #e4e7f2; }
+  .mk-steps li p { margin-top: .15rem; }
+
+  .mk-price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 1.75rem; }
+  .mk-price { display: flex; flex-direction: column; gap: .6rem; }
+  .mk-price h3 { color: #e4e7f2; }
+  .mk-price-live { border-color: rgba(236,72,153,.3); }
+  .mk-amount { font-size: 2.25rem; font-weight: 800; color: #e4e7f2; line-height: 1; }
+  .mk-amount span { font-size: .85rem; font-weight: 500; color: #7b829e; margin-left: .4rem; }
+  .mk-amount-tbd { font-size: 1.5rem; color: #7b829e; }
+  .mk-price-note { font-size: .9rem; }
+  .mk-price .btn { margin-top: auto; align-self: flex-start; }
+
+  .mk-final { text-align: center; }
+  .mk-final p { max-width: 560px; margin: .75rem auto 1.5rem; }
+</style>

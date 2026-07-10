@@ -10,8 +10,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
       "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; " +
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
       "font-src 'self' https://fonts.gstatic.com; " +
-      "img-src 'self' data: https://www.google-analytics.com; " +
-      "connect-src 'self' https://www.google-analytics.com; " +
+      "img-src 'self' data: https://www.google-analytics.com https://api.thebytelite.com; " +
+      "connect-src 'self' https://www.google-analytics.com https://api.thebytelite.com; " +
       "frame-ancestors 'none';"
   );
 

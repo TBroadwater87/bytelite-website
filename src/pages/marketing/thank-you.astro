@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout
+  title="Pilot payment received | HeartStrings Restaurant Program"
+  description="Your $20 HeartStrings pilot payment was received. Your restaurant is now pending review."
+  noindex={true}
+>
+  <Header slot="header" />
+
+  <section class="section">
+    <div class="container ty-container">
+      <span class="badge badge-planned">Pending review</span>
+      <h1>Payment received — you're in the review queue</h1>
+      <p class="ty-body">
+        Thanks for starting the pilot. Your restaurant is now <strong>pending review</strong>. We approve
+        each listing before it goes live in HeartStrings — a paid signup does not auto-publish. You will
+        be able to see your status any time from your signup page.
+      </p>
+      <p class="ty-note" id="ty-session">Confirming your payment…</p>
+      <div class="ty-cta">
+        <a href="/marketing/signup" class="btn btn-primary">View my status</a>
+        <a href="/marketing" class="btn btn-outline">Back to program</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<script is:inline>
+  // Payment state is confirmed server-side by a signature-verified Stripe webhook, not by this page.
+  // This only reflects that the redirect returned with a session id; it never marks anything paid.
+  const params = new URLSearchParams(window.location.search);
+  const el = document.getElementById('ty-session');
+  if (el) {
+    el.textContent = params.get('session_id')
+      ? 'Your payment is being confirmed by our system. Refresh your status page in a moment.'
+      : 'If you completed payment, your status will update shortly.';
+  }
+</script>
+
+<style>
+  .ty-container { max-width: 640px; }
+  .ty-container h1 { margin-top: 1rem; }
+  .ty-body { color: #a0a8c0; margin: 1rem 0; line-height: 1.8; }
+  .ty-body strong { color: #f472b6; }
+  .ty-note { color: #7b829e; font-size: .9rem; margin-bottom: 1.5rem; }
+  .ty-cta { display: flex; gap: .75rem; flex-wrap: wrap; }
+</style>
