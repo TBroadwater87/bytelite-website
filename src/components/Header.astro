@@ -15,11 +15,11 @@ function isActive(href: string) {
 
     <div class="nav-links" id="navLinks">
       <a href="/" class:list={["nav-link", { active: isActive('/') }]}>Home</a>
-      <a href="/heartstrings" class:list={["nav-link nav-link-pink", { active: isActive('/heartstrings') }]}>HeartStrings</a>
+      <a href="/heartstrings" class:list={["nav-link nav-link-pink", { active: currentPath === '/heartstrings' }]}>HeartStrings Play</a>
+      <a href="/heartstrings-app" class:list={["nav-link", { active: isActive('/heartstrings-app') }]}>App</a>
+      <a href="/marketing" class:list={["nav-link", { active: isActive('/marketing') }]}>Restaurants</a>
       <a href="/research" class:list={["nav-link", { active: isActive('/research') }]}>Research</a>
-      <a href="/architecture" class:list={["nav-link nav-link-arch", { active: isActive('/architecture') }]}>Architecture</a>
       <a href="/status" class:list={["nav-link", { active: isActive('/status') }]}>Status</a>
-      <a href="/about" class:list={["nav-link", { active: isActive('/about') }]}>About</a>
       <a href="/contact" class:list={["nav-link nav-link-cta", { active: isActive('/contact') }]}>Contact</a>
     </div>
 
