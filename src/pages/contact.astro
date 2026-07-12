@@ -66,13 +66,34 @@ import Footer from '../components/Footer.astro';
         <div class="card ct-info-card">
           <h4 style="color:#e4e7f2;margin-bottom:.875rem;">Inquiry Categories</h4>
           <div class="ct-categories">
-            <div class="ct-cat"><span class="ct-cat-dot" style="background:#f472b6;"></span>HeartStrings Play pre-launch interest</div>
-            <div class="ct-cat"><span class="ct-cat-dot" style="background:#818cf8;"></span>HeartStrings App beta access</div>
-            <div class="ct-cat"><span class="ct-cat-dot" style="background:#6366f1;"></span>Partnership discussions</div>
-            <div class="ct-cat"><span class="ct-cat-dot" style="background:#a78bfa;"></span>Research inquiries</div>
-            <div class="ct-cat"><span class="ct-cat-dot" style="background:#818cf8;"></span>Architecture / Research inquiry</div>
-            <div class="ct-cat"><span class="ct-cat-dot" style="background:#34d399;"></span>Investor conversations</div>
-            <div class="ct-cat"><span class="ct-cat-dot" style="background:#4a5068;"></span>General inquiries</div>
+            <div class="ct-cat">
+              <span class="ct-cat-dot" style="background:#f472b6;"></span>
+              <div class="ct-cat-text"><span class="ct-cat-label">HeartStrings Play pre-launch interest</span><span class="ct-cat-desc">Get notified when board-game pre-orders open.</span></div>
+            </div>
+            <div class="ct-cat">
+              <span class="ct-cat-dot" style="background:#818cf8;"></span>
+              <div class="ct-cat-text"><span class="ct-cat-label">HeartStrings App beta access</span><span class="ct-cat-desc">Ask to join the private Android beta when slots open.</span></div>
+            </div>
+            <div class="ct-cat">
+              <span class="ct-cat-dot" style="background:#6366f1;"></span>
+              <div class="ct-cat-text"><span class="ct-cat-label">Partnership discussions</span><span class="ct-cat-desc">Retail, manufacturing, distribution, or restaurant partnerships.</span></div>
+            </div>
+            <div class="ct-cat">
+              <span class="ct-cat-dot" style="background:#a78bfa;"></span>
+              <div class="ct-cat-text"><span class="ct-cat-label">Research inquiries</span><span class="ct-cat-desc">Questions about the private deterministic systems research.</span></div>
+            </div>
+            <div class="ct-cat">
+              <span class="ct-cat-dot" style="background:#818cf8;"></span>
+              <div class="ct-cat-text"><span class="ct-cat-label">Architecture / Research inquiry</span><span class="ct-cat-desc">Discuss the public architecture and its claim boundaries.</span></div>
+            </div>
+            <div class="ct-cat">
+              <span class="ct-cat-dot" style="background:#34d399;"></span>
+              <div class="ct-cat-text"><span class="ct-cat-label">Investor conversations</span><span class="ct-cat-desc">Founder-led funding and investment discussions.</span></div>
+            </div>
+            <div class="ct-cat">
+              <span class="ct-cat-dot" style="background:#4a5068;"></span>
+              <div class="ct-cat-text"><span class="ct-cat-label">General inquiries</span><span class="ct-cat-desc">Anything that does not fit the categories above.</span></div>
+            </div>
           </div>
         </div>
         <div class="card ct-info-card">
@@ -119,7 +140,10 @@ import Footer from '../components/Footer.astro';
 .ct-info-card { padding: 1.5rem; }
 .ct-info-card p { color: #7b829e; line-height: 1.6; }
 .ct-categories { display: flex; flex-direction: column; gap: .625rem; }
-.ct-cat { display: flex; align-items: center; gap: .75rem; font-size: .9375rem; color: #a0a8c0; }
-.ct-cat-dot { width: .625rem; height: .625rem; border-radius: 50%; flex-shrink: 0; }
+.ct-cat { display: flex; align-items: flex-start; gap: .75rem; font-size: .9375rem; color: #a0a8c0; }
+.ct-cat-dot { width: .625rem; height: .625rem; border-radius: 50%; flex-shrink: 0; margin-top: .3rem; }
+.ct-cat-text { display: flex; flex-direction: column; gap: .15rem; }
+.ct-cat-label { color: #e4e7f2; font-weight: 500; }
+.ct-cat-desc { font-size: .8125rem; color: #7b829e; line-height: 1.5; }
 
 </style>
