@@ -58,12 +58,12 @@ function Inner() {
     e.preventDefault();
     setBusy(true); setError(null);
     try {
-      const res = await fetch(`${API_BASE}/api/auth/login`, {
+      const res = await fetch(`${API_BASE}/api/auth/login-email`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
       const json = await res.json().catch(() => ({}));
-      const t = json?.data?.token || json?.data?.accessToken || json?.data?.access_token || json?.token;
+      const t = json?.data?.tokens?.accessToken || json?.data?.token || json?.data?.accessToken || json?.data?.access_token || json?.token;
       if (!t) throw new Error(json?.error || 'Login did not return a token — paste an admin token instead.');
       save(t);
     } catch (e: any) { setError(e.message); } finally { setBusy(false); }
