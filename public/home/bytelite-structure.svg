@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">ByteLite LLC</title>
+  <desc id="desc">Editable vector organizational infographic for ByteLite LLC with consumer products and private deterministic research branches.</desc>
+  <defs>
+    <style>
+      .title { font: 700 42px Arial, Helvetica, sans-serif; letter-spacing: 0.5px; }
+      .branch { font: 700 28px Arial, Helvetica, sans-serif; letter-spacing: 0.3px; }
+      .item { font: 600 23px Arial, Helvetica, sans-serif; }
+      .tag { font: 700 14px Arial, Helvetica, sans-serif; letter-spacing: 0.4px; }
+      .small { font: 600 16px Arial, Helvetica, sans-serif; }
+      .line { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <g id="parent-organization">
+    <rect x="575" y="35" width="450" height="90" rx="22" fill="#111318" stroke="#B99A55" stroke-width="4"/>
+    <line x1="603" y1="111" x2="997" y2="111" stroke="#B99A55" stroke-width="3"/>
+    <text x="800.0" y="93" text-anchor="middle" class="title" fill="#FFFFFF">ByteLite LLC</text>
+  </g>
+  <line x1="800" y1="125" x2="800" y2="940" stroke="#B99A55" stroke-width="5"/>
+  <circle cx="800" cy="235" r="10" fill="#B99A55"/>
+
+  <g id="consumer-branch-header">
+    <rect x="120" y="180" width="520" height="66" rx="18" fill="#FCE1EF" stroke="#EC2A88" stroke-width="3"/>
+    <text x="380.0" y="223" text-anchor="middle" class="branch" fill="#B91873">Consumer Products</text>
+  </g>
+  <g id="research-branch-header">
+    <rect x="960" y="180" width="520" height="66" rx="18" fill="#DCEAF5" stroke="#356B9A" stroke-width="3"/>
+    <text x="1220.0" y="223" text-anchor="middle" class="branch" fill="#10263F">Private Deterministic Research</text>
+  </g>
+    <g id="consumer-item-1">
+      <rect x="105" y="315" width="555" height="138" rx="16" fill="#FFF0F7" stroke="#B91873" stroke-width="2.5"/>
+      <text x="129" y="351" text-anchor="start" class="item" fill="#111318">HeartStrings Play</text>
+      <g class="status-tag">
+      <rect x="550" y="413" width="92" height="28" rx="14" fill="#FCE1EF" stroke="#B91873" stroke-width="1.5"/>
+      <text x="596.0" y="432" text-anchor="middle" class="tag" fill="#B91873">Pre-launch</text>
+    </g>
+    </g><path d="M660 384 H800" class="line" stroke="#B91873" stroke-width="3"/>
+    <g id="consumer-item-2">
+      <rect x="105" y="505" width="555" height="138" rx="16" fill="#FFF0F7" stroke="#B91873" stroke-width="2.5"/>
+      <text x="129" y="541" text-anchor="start" class="item" fill="#111318">HeartStrings Connect</text>
+      <g class="status-tag">
+      <rect x="546" y="603" width="96" height="28" rx="14" fill="#FCE1EF" stroke="#B91873" stroke-width="1.5"/>
+      <text x="594.0" y="622" text-anchor="middle" class="tag" fill="#B91873">Private beta</text>
+    </g>
+    </g><path d="M660 574 H800" class="line" stroke="#B91873" stroke-width="3"/>
+    <g id="consumer-item-3">
+      <rect x="105" y="695" width="555" height="138" rx="16" fill="#FFF0F7" stroke="#B91873" stroke-width="2.5"/>
+      <text x="129" y="731" text-anchor="start" class="item" fill="#111318">Restaurant Program</text>
+      <g class="status-tag">
+      <rect x="550" y="793" width="92" height="28" rx="14" fill="#FCE1EF" stroke="#B91873" stroke-width="1.5"/>
+      <text x="596.0" y="812" text-anchor="middle" class="tag" fill="#B91873">Live pilot</text>
+    </g>
+    </g><path d="M660 764 H800" class="line" stroke="#B91873" stroke-width="3"/>
+    <g id="research-item-1">
+      <rect x="940" y="295" width="555" height="72" rx="16" fill="#EEF5FA" stroke="#356B9A" stroke-width="2.5"/>
+      <text x="964" y="331" text-anchor="start" class="item" fill="#10263F">ByteLite Research</text>
+      <g class="status-tag">
+      <rect x="1345" y="327" width="132" height="28" rx="14" fill="#D7EFED" stroke="#2E8C89" stroke-width="1.5"/>
+      <text x="1411.0" y="346" text-anchor="middle" class="tag" fill="#10263F">Private research</text>
+    </g>
+    </g><path d="M800 331 H940" class="line" stroke="#356B9A" stroke-width="3"/>
+    <g id="research-item-2">
+      <rect x="940" y="387" width="555" height="72" rx="16" fill="#EEF5FA" stroke="#356B9A" stroke-width="2.5"/>
+      <text x="964" y="423" text-anchor="start" class="item" fill="#10263F">ByteSight</text>
+      <g class="status-tag">
+      <rect x="1345" y="419" width="132" height="28" rx="14" fill="#D7EFED" stroke="#2E8C89" stroke-width="1.5"/>
+      <text x="1411.0" y="438" text-anchor="middle" class="tag" fill="#10263F">Private research</text>
+    </g>
+    </g><path d="M800 423 H940" class="line" stroke="#356B9A" stroke-width="3"/>
+    <g id="research-item-3">
+      <rect x="940" y="479" width="555" height="72" rx="16" fill="#EEF5FA" stroke="#356B9A" stroke-width="2.5"/>
+      <text x="964" y="515" text-anchor="start" class="item" fill="#10263F">ByteFlow</text>
+      <g class="status-tag">
+      <rect x="1403" y="511" width="74" height="28" rx="14" fill="#D7EFED" stroke="#2E8C89" stroke-width="1.5"/>
+      <text x="1440.0" y="530" text-anchor="middle" class="tag" fill="#10263F">Planned</text>
+    </g>
+    </g><path d="M800 515 H940" class="line" stroke="#356B9A" stroke-width="3"/>
+    <g id="research-item-4">
+      <rect x="940" y="571" width="555" height="72" rx="16" fill="#EEF5FA" stroke="#356B9A" stroke-width="2.5"/>
+      <text x="964" y="607" text-anchor="start" class="item" fill="#10263F">ByteCost</text>
+      <g class="status-tag">
+      <rect x="1403" y="603" width="74" height="28" rx="14" fill="#D7EFED" stroke="#2E8C89" stroke-width="1.5"/>
+      <text x="1440.0" y="622" text-anchor="middle" class="tag" fill="#10263F">Planned</text>
+    </g>
+    </g><path d="M800 607 H940" class="line" stroke="#356B9A" stroke-width="3"/>
+    <g id="research-item-5">
+      <rect x="940" y="663" width="555" height="72" rx="16" fill="#EEF5FA" stroke="#356B9A" stroke-width="2.5"/>
+      <text x="964" y="699" text-anchor="start" class="item" fill="#10263F">Deep Kore</text>
+      <g class="status-tag">
+      <rect x="1345" y="695" width="132" height="28" rx="14" fill="#D7EFED" stroke="#2E8C89" stroke-width="1.5"/>
+      <text x="1411.0" y="714" text-anchor="middle" class="tag" fill="#10263F">Private research</text>
+    </g>
+    </g><path d="M800 699 H940" class="line" stroke="#356B9A" stroke-width="3"/>
+    <g id="research-item-6">
+      <rect x="940" y="755" width="555" height="72" rx="16" fill="#EEF5FA" stroke="#356B9A" stroke-width="2.5"/>
+      <text x="964" y="791" text-anchor="start" class="item" fill="#10263F">AIya</text>
+      <g class="status-tag">
+      <rect x="1345" y="787" width="132" height="28" rx="14" fill="#D7EFED" stroke="#2E8C89" stroke-width="1.5"/>
+      <text x="1411.0" y="806" text-anchor="middle" class="tag" fill="#10263F">Private research</text>
+    </g>
+    </g><path d="M800 791 H940" class="line" stroke="#356B9A" stroke-width="3"/>
+    <g id="research-item-7">
+      <rect x="940" y="847" width="555" height="72" rx="16" fill="#EEF5FA" stroke="#356B9A" stroke-width="2.5"/>
+      <text x="964" y="883" text-anchor="start" class="item" fill="#10263F">Governance Layer</text>
+      <g class="status-tag">
+      <rect x="1345" y="879" width="132" height="28" rx="14" fill="#D7EFED" stroke="#2E8C89" stroke-width="1.5"/>
+      <text x="1411.0" y="898" text-anchor="middle" class="tag" fill="#10263F">Private research</text>
+    </g>
+    </g><path d="M800 883 H940" class="line" stroke="#356B9A" stroke-width="3"/>
+</svg>
