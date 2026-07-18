@@ -166,13 +166,13 @@ import Footer from '../components/Footer.astro';
       </div>
 
       <!-- Component render placeholders (assets pending) -->
-      <div class="asset-ph-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:2rem;">
-        <img src="/heartstrings/board-20x20.jpg" alt="Board render — the 20x20 board layout" style="width:100%;display:block;height:auto;border-radius:12px;" loading="lazy" />
-        <img src="/heartstrings/board-20x40.jpg" alt="Board render — the 20x40 board layout" style="width:100%;display:block;height:auto;border-radius:12px;" loading="lazy" />
-        <img src="/heartstrings/board-ultimate.jpg" alt="Board render — the ultimate double-sided flip board" style="width:100%;display:block;height:auto;border-radius:12px;" loading="lazy" />
-        <img src="/heartstrings/tier-deck-backs.jpg" alt="Tier deck backs — the six escalation deck designs" style="width:100%;display:block;height:auto;border-radius:12px;" loading="lazy" />
-        <img src="/heartstrings/consent-cup.jpg" alt="The Consent Cup component" style="width:100%;display:block;height:auto;border-radius:12px;" loading="lazy" />
-        <img src="/heartstrings/token-cutaway.jpg" alt="Token cutaway — play pieces detail" style="width:100%;display:block;height:auto;border-radius:12px;" loading="lazy" />
+      <div class="component-gallery">
+        <img src="/heartstrings/board-20x20.jpg" alt="Board render — the 20x20 board layout" loading="lazy" />
+        <img src="/heartstrings/board-20x40.jpg" alt="Board render — the 20x40 board layout" loading="lazy" />
+        <img src="/heartstrings/board-ultimate.jpg" alt="Board render — the ultimate double-sided flip board" loading="lazy" />
+        <img src="/heartstrings/tier-deck-backs.jpg" alt="Tier deck backs — the six escalation deck designs" loading="lazy" />
+        <img src="/heartstrings/consent-cup.jpg" alt="The Consent Cup component" loading="lazy" />
+        <img src="/heartstrings/token-cutaway.jpg" alt="Token cutaway — play pieces detail" loading="lazy" />
       </div>
 
       <!-- PENDING COMPONENT FACTS - do not publish quantities until Tash confirms:
@@ -249,6 +249,30 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <style>
+
+/* Component render gallery — uniform equal-size cards (3 / 2 / 1 columns) */
+.component-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 2rem;
+}
+.component-gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  background: #0d1120;
+  border: 1px solid #1a2235;
+  border-radius: 12px;
+}
+@media (max-width: 900px) {
+  .component-gallery { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .component-gallery { grid-template-columns: 1fr; }
+}
 
 .hs-hero {
   padding: 6rem 0 4.5rem;
