@@ -37,8 +37,11 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'npm run dev',
+    // Production preview, not `astro dev` - the dev toolbar overlay intercepts pointer events
+    // and blocks real click interactions in tests (e.g. the cookie banner's Accept button).
+    command: 'npm run build && npm run preview',
     port: 4321,
     reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
   },
 });
