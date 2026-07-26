@@ -1,0 +1,58 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductSubNav from '../../components/ProductSubNav.astro';
+
+const SUBNAV = [
+  { label: 'All Eligible Products', href: '/preorder' },
+  { label: 'Founder Benefits', href: '/preorder/founder-benefits' },
+  { label: 'Preorder Terms', href: '/preorder/terms' },
+  { label: 'Order Status', href: '/preorder/status' },
+];
+---
+
+<Layout
+  title="Order Status | Preorder | ByteLite LLC"
+  description="How to check the status of a ByteLite LLC founder reservation."
+  keywords="ByteLite LLC preorder status"
+  noindex={true}
+>
+  <Header slot="header" />
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Preorder', href: '/preorder' }, { label: 'Order Status' }]} /></div></section>
+  <ProductSubNav items={SUBNAV} />
+
+  <section class="os-hero">
+    <div class="container" style="max-width:760px;">
+      <p class="eyebrow">Order Status</p>
+      <h1>No dedicated lookup system yet — here's what's true today.</h1>
+      <p class="os-p">
+        Founder reservations currently go through the <a href="/contact" style="color:#818cf8;">contact page</a>
+        rather than a self-serve status portal. There is no per-order secure token or account
+        system live for reservations yet, so this page does not claim one exists.
+      </p>
+      <div class="os-box">
+        <h3>What's planned</h3>
+        <p>Once a real paid preorder or reservation flow exists for a specific product, this page
+        will support a secure, server-generated lookup — either bound to an authenticated account
+        (if one exists by then) or a unique lookup token emailed at reservation time. It will never
+        expose another person's order through a predictable identifier.</p>
+      </div>
+      <p class="os-p" style="margin-top:1.5rem;">
+        For the restaurant partner program specifically, sign-up status is visible directly on the
+        <a href="/products/heartstrings-connect/date-planning/restaurants/partner-program" style="color:#818cf8;">signup page</a> after logging in — that system is separate and already live.
+      </p>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.os-hero { padding: 4.5rem 0 4rem; }
+.os-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
+.os-box { margin-top: 1.75rem; background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem; padding: 1.75rem; }
+.os-box h3 { color: #e4e7f2; margin-bottom: .75rem; }
+.os-box p { font-size: .9375rem; color: #7b829e; line-height: 1.7; }
+</style>

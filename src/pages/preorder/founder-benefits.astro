@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductSubNav from '../../components/ProductSubNav.astro';
+import { calculatePreorder, formatCents, formatDaysAsMonths, type PreorderProductConfig } from '../../lib/preorder';
+
+const SUBNAV = [
+  { label: 'All Eligible Products', href: '/preorder' },
+  { label: 'Founder Benefits', href: '/preorder/founder-benefits' },
+  { label: 'Preorder Terms', href: '/preorder/terms' },
+  { label: 'Order Status', href: '/preorder/status' },
+];
+
+// Illustrative example only — matches the canonical worked example. Not a real product's pricing.
+const exampleConfig: PreorderProductConfig = {
+  productId: 'example', productName: 'Example Subscription', productType: 'Digital subscription service',
+  standardLaunchPriceCents: 10000, currency: 'USD', baseEntitlementDays: 300, baseUsageUnits: null,
+  usageUnitLabel: null, reservationMode: 'full-payment', activationTrigger: 'Launch', shipmentTrigger: null,
+  expectedAvailabilityWindow: 'Launch window', refundEligibility: 'Standard', transferability: 'Not transferable',
+  classification: 'service', associatedRoute: '/preorder', checkoutAvailable: true,
+  legalDisclosureVersion: '2026-07-26', physicalBonusBenefit: null,
+};
+const example = calculatePreorder(exampleConfig);
+---
+
+<Layout
+  title="Founder Benefits | Preorder | ByteLite LLC"
+  description="How ByteLite LLC's founder preorder formula works: 10% below launch price, plus 10% additional entitlement, calculated one way everywhere."
+  keywords="ByteLite LLC founder benefits, preorder formula"
+>
+  <Header slot="header" />
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Preorder', href: '/preorder' }, { label: 'Founder Benefits' }]} /></div></section>
+  <ProductSubNav items={SUBNAV} />
+
+  <section class="fb-hero">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Founder Benefits</p>
+      <h1>Two benefits. One formula. Always disclosed together.</h1>
+      <p class="fb-p">
+        <strong>Save 10% on price</strong>, plus <strong>receive 10% additional entitlement</strong>
+        (service duration, usage, or an equivalent digital benefit for physical products). This is
+        not the same as a flat 20% discount — the two benefits are calculated and shown separately.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:760px;">
+      <h2 style="margin-bottom:1.5rem;">Worked example (illustrative — not a real product's price).</h2>
+      <div class="fb-example-grid">
+        <div class="fb-example-col">
+          <span class="fb-example-label">Standard public offer</span>
+          <span class="fb-example-value">{formatCents(example.standardPriceCents!)} <span class="fb-example-sub">for {formatDaysAsMonths(exampleConfig.baseEntitlementDays!)}</span></span>
+        </div>
+        <div class="fb-example-arrow">&rarr;</div>
+        <div class="fb-example-col">
+          <span class="fb-example-label">Founder preorder</span>
+          <span class="fb-example-value fb-example-highlight">{formatCents(example.preorderPriceCents!)} <span class="fb-example-sub">for {formatDaysAsMonths(example.totalEntitlementDays!)}</span></span>
+        </div>
+      </div>
+      <p class="fb-p" style="margin-top:1.75rem;">
+        10% lower price ({formatCents(example.standardPriceCents!)} &rarr; {formatCents(example.preorderPriceCents!)}),
+        plus 10% additional entitlement ({exampleConfig.baseEntitlementDays} days &rarr; {example.totalEntitlementDays} days).
+        The site never labels this combination as "20% off."
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:760px;text-align:center;">
+      <a href="/preorder" class="btn btn-outline">See Eligible Products</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.fb-hero { padding: 4.5rem 0 3.5rem; }
+.fb-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
+.fb-p strong { color: #e4e7f2; }
+.fb-example-grid { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+.fb-example-col { text-align: center; }
+.fb-example-label { display: block; font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #555e7a; margin-bottom: .625rem; }
+.fb-example-value { font-size: 1.5rem; font-weight: 700; color: #a0a8c0; }
+.fb-example-highlight { color: #34d399; }
+.fb-example-sub { display: block; font-size: .8125rem; font-weight: 400; color: #555e7a; margin-top: .25rem; }
+.fb-example-arrow { font-size: 1.5rem; color: #4a5068; }
+</style>

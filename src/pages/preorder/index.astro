@@ -1,0 +1,81 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductSubNav from '../../components/ProductSubNav.astro';
+import { ALL_PREORDER_PRODUCTS } from '../../data/preorderProducts';
+
+const SUBNAV = [
+  { label: 'All Eligible Products', href: '/preorder' },
+  { label: 'Founder Benefits', href: '/preorder/founder-benefits' },
+  { label: 'Preorder Terms', href: '/preorder/terms' },
+  { label: 'Order Status', href: '/preorder/status' },
+];
+---
+
+<Layout
+  title="Preorder | Founder Access | ByteLite LLC"
+  description="ByteLite LLC's founder preorder program: 10% below eventual launch price, plus 10% additional entitlement, for eligible products."
+  keywords="ByteLite LLC preorder, founder access, HeartStrings Play preorder"
+>
+  <Header slot="header" />
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Preorder' }]} /></div></section>
+  <ProductSubNav items={SUBNAV} />
+
+  <section class="po-hero">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Founder Access</p>
+      <h1>All Eligible Products</h1>
+      <p class="po-p">
+        Two distinct benefits, always disclosed together: 10% below the eventual public launch
+        price, plus 10% additional qualifying entitlement. Not a flat "20% off."
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="po-grid">
+        {ALL_PREORDER_PRODUCTS.map((p) => (
+          <div class="card po-card">
+            <h3>{p.productName}</h3>
+            <p class="po-type">{p.productType}</p>
+            <p>{p.reservationMode === 'reservation'
+              ? 'No launch price is set yet, so this is a no-charge founder reservation — it locks in the benefit formula, not a price.'
+              : 'Preorder available at the calculated founder price.'}
+            </p>
+            <ul class="po-facts">
+              <li><strong>Activation trigger:</strong> {p.activationTrigger}</li>
+              <li><strong>Expected availability:</strong> {p.expectedAvailabilityWindow}</li>
+              <li><strong>Refund/cancellation:</strong> {p.refundEligibility}</li>
+            </ul>
+            <a href={p.associatedRoute} class="btn btn-outline btn-sm">View product preorder details &rarr;</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:760px;text-align:center;">
+      <a href="/preorder/founder-benefits" class="btn btn-outline" style="margin-right:.75rem;">How the Formula Works</a>
+      <a href="/preorder/terms" class="btn btn-outline">Preorder Terms</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.po-hero { padding: 4.5rem 0 3.5rem; }
+.po-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
+.po-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media (max-width: 700px) { .po-grid { grid-template-columns: 1fr; } }
+.po-card h3 { color: #e4e7f2; margin-bottom: .25rem; }
+.po-type { font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #555e7a; margin-bottom: 1rem; }
+.po-card p { font-size: .9375rem; color: #a0a8c0; line-height: 1.7; }
+.po-facts { list-style: none; padding: 0; margin: 1.25rem 0; display: flex; flex-direction: column; gap: .5rem; }
+.po-facts li { font-size: .8125rem; color: #7b829e; }
+.po-facts strong { color: #a0a8c0; }
+</style>
