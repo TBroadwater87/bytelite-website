@@ -1,0 +1,71 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ProductSubNav from '../../../components/ProductSubNav.astro';
+
+const SUBNAV = [
+  { label: 'Overview', href: '/products/heartstrings-play' },
+  { label: 'How It Plays', href: '/products/heartstrings-play/how-it-plays' },
+  { label: 'Editions', href: '/products/heartstrings-play/editions' },
+  { label: 'Components', href: '/products/heartstrings-play/components' },
+  { label: 'Consent Architecture', href: '/products/heartstrings-play/consent-architecture' },
+  { label: 'Development Status', href: '/products/heartstrings-play/development-status' },
+  { label: 'Preorder', href: '/products/heartstrings-play/preorder' },
+];
+---
+
+<Layout
+  title="Consent Architecture | HeartStrings Play | ByteLite LLC"
+  description="How consent is built into HeartStrings Play's structure: Decree cards, the Consent Cup, and tier consent ceilings."
+  keywords="HeartStrings Play consent, Decree cards, Consent Cup"
+>
+  <Header slot="header" />
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'HeartStrings Play', href: '/products/heartstrings-play' }, { label: 'Consent Architecture' }]} /></div></section>
+  <ProductSubNav items={SUBNAV} />
+
+  <section class="ca-hero">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Consent Architecture</p>
+      <h1>Consent is a game structure, not a side conversation.</h1>
+      <p class="ca-p">
+        HeartStrings Play treats consent and pacing as mechanics built into the board and the
+        decks — not something the group has to negotiate outside the game.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container mech-grid">
+      <div class="card">
+        <h3 style="margin-bottom:.875rem;color:#e4e7f2;">Decree Cards</h3>
+        <p>Any player can play a Decree card at any time to skip a card or redraw. Maximum two Decree cards per hand. Built-in pressure relief without requiring a verbal request.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:.875rem;color:#e4e7f2;">The Consent Cup</h3>
+        <p>The Consent Cup is available at all times. Any player can use it to pause or end the session without explanation. It is not a game mechanic — it is a standing option.</p>
+        <img src="/heartstrings/consent-cup.jpg" alt="HeartStrings Play Consent Cup" loading="lazy" style="margin-top:1rem;border-radius:.5rem;" />
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:.875rem;color:#e4e7f2;">Tier Consent Ceilings</h3>
+        <p>A group only draws from the six escalation tiers everyone present has agreed to reach — pacing is set by the group, not forced by the game.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:760px;text-align:center;">
+      <a href="/products/heartstrings-play/how-it-plays" class="btn btn-outline">See the Six Escalation Tiers &rarr;</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.ca-hero { padding: 4.5rem 0 3.5rem; }
+.ca-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
+.mech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+@media (max-width: 767px) { .mech-grid { grid-template-columns: 1fr; } }
+</style>

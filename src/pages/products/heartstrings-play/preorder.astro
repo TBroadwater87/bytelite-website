@@ -1,0 +1,64 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ProductSubNav from '../../../components/ProductSubNav.astro';
+
+const SUBNAV = [
+  { label: 'Overview', href: '/products/heartstrings-play' },
+  { label: 'How It Plays', href: '/products/heartstrings-play/how-it-plays' },
+  { label: 'Editions', href: '/products/heartstrings-play/editions' },
+  { label: 'Components', href: '/products/heartstrings-play/components' },
+  { label: 'Consent Architecture', href: '/products/heartstrings-play/consent-architecture' },
+  { label: 'Development Status', href: '/products/heartstrings-play/development-status' },
+  { label: 'Preorder', href: '/products/heartstrings-play/preorder' },
+];
+---
+
+<Layout
+  title="Preorder | HeartStrings Play | ByteLite LLC"
+  description="HeartStrings Play founder reservation: no retail price is set yet, so this is a no-charge reservation that locks in the founder benefit formula ahead of launch pricing."
+  keywords="HeartStrings Play preorder, founder reservation"
+>
+  <Header slot="header" />
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'HeartStrings Play', href: '/products/heartstrings-play' }, { label: 'Preorder' }]} /></div></section>
+  <ProductSubNav items={SUBNAV} />
+
+  <section class="pr-hero">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Founder Reservation</p>
+      <h1>No retail price is set yet — so this is a reservation, not a charge.</h1>
+      <p class="pr-p">
+        HeartStrings Play has not announced a retail price or release date. Rather than collect
+        payment against an unknown launch price, ByteLite LLC offers a no-charge founder
+        reservation that locks in the founder benefit formula ahead of time.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:760px;">
+      <div class="pr-box">
+        <h3>What the reservation locks in</h3>
+        <p>10% below the eventual public launch price, plus 10% additional qualifying entitlement (a HeartStrings Connect service-day credit or equivalent digital benefit, disclosed at launch).</p>
+        <h3 style="margin-top:1.5rem;">What it does not do</h3>
+        <p>It does not charge your payment method. It does not guarantee a release date. It does not obligate you to purchase when pricing is announced.</p>
+      </div>
+      <div style="text-align:center;margin-top:2rem;">
+        <a href="/preorder" class="btn btn-pink">See All Eligible Products</a>
+        <a href="/preorder/terms" class="btn btn-outline" style="margin-left:.75rem;">Preorder Terms</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.pr-hero { padding: 4.5rem 0 3.5rem; }
+.pr-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
+.pr-box { background: #0d1120; border: 1px solid #1a2235; border-radius: .875rem; padding: 2rem; }
+.pr-box h3 { color: #e4e7f2; margin-bottom: .5rem; font-size: 1.0625rem; }
+.pr-box p { font-size: .9375rem; color: #a0a8c0; line-height: 1.7; }
+</style>
