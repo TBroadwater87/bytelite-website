@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 ---
 
 <Layout
@@ -11,6 +12,10 @@ import Footer from '../components/Footer.astro';
   ogImage="/bytelite-logo.png"
 >
   <Header slot="header" />
+
+  <section class="section-sm">
+    <div class="container"><Breadcrumbs items={[{ label: 'Architecture' }]} /></div>
+  </section>
 
   <!-- Hero -->
   <section class="arch-hero">
@@ -34,8 +39,14 @@ import Footer from '../components/Footer.astro';
         public claim boundaries without disclosing trade-secret mechanisms.
       </p>
       <div class="arch-hero-cta">
-        <a href="/status" class="btn btn-outline">View Status</a>
+        <a href="/progress" class="btn btn-outline">View Status</a>
         <a href="/contact" class="btn btn-ghost">Research Inquiry</a>
+      </div>
+      <div class="arch-subnav">
+        <a href="/architecture/deterministic-design-principles">Deterministic Design Principles</a>
+        <a href="/architecture/governance-and-intrinsic-halting">Governance &amp; Intrinsic Halting</a>
+        <a href="/architecture/proof-and-claim-posture">Proof &amp; Claim Posture</a>
+        <a href="/architecture/integration-map">Integration Map</a>
       </div>
     </div>
   </section>
@@ -571,8 +582,8 @@ import Footer from '../components/Footer.astro';
         </p>
       </div>
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:3rem;">
-        <a href="/research" class="btn btn-outline">See Research</a>
-        <a href="/status" class="btn btn-outline">View Status</a>
+        <a href="/technologies" class="btn btn-outline">See the Technologies</a>
+        <a href="/progress" class="btn btn-outline">View Status</a>
         <a href="/contact" class="btn btn-primary">Architecture Inquiry</a>
       </div>
     </div>
@@ -607,6 +618,9 @@ import Footer from '../components/Footer.astro';
   font-size: 1rem; color: #7b829e; margin-top: 1rem; line-height: 1.8; max-width: 680px;
 }
 .arch-hero-cta { display: flex; gap: .875rem; flex-wrap: wrap; margin-top: 2.25rem; }
+.arch-subnav { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #1a2235; }
+.arch-subnav a { font-size: .8125rem; font-weight: 500; color: #7b829e; }
+.arch-subnav a:hover { color: #818cf8; }
 
 /* ── Shared para ──────────────────────────────────────────────── */
 .arch-para { font-size: 1.0625rem; color: #a0a8c0; line-height: 1.8; }

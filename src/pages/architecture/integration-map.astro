@@ -1,0 +1,68 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { ALL_PROJECTS } from '../../data/projects';
+---
+
+<Layout
+  title="Integration Map | Architecture | ByteLite LLC"
+  description="How ByteLite LLC's technologies and products connect: what each layer receives, what it produces, and who consumes it."
+  keywords="ByteLite LLC integration map, system architecture"
+>
+  <Header slot="header" />
+
+  <section class="section-sm">
+    <div class="container"><Breadcrumbs items={[{ label: 'Architecture', href: '/architecture' }, { label: 'Integration Map' }]} /></div>
+  </section>
+
+  <section class="im-hero">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Architecture</p>
+      <h1>Integration Map</h1>
+      <p class="im-sub">What each layer receives, what it produces, and who consumes it — drawn directly from the canonical project records, so this map can't drift from the individual technology pages.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="im-list">
+        {ALL_PROJECTS.filter((p) => p.integrationReceives.length || p.integrationProduces.length || p.integrationConsumedBy.length).map((p) => (
+          <div class="im-row" style={`--accent:${p.accentColor}`}>
+            <div class="im-name"><a href={p.routes[0]}>{p.name}</a></div>
+            <div class="im-cols">
+              <div><h4>Receives</h4>{p.integrationReceives.length ? <ul>{p.integrationReceives.map((i) => <li>{i}</li>)}</ul> : <p class="im-none">None disclosed</p>}</div>
+              <div><h4>Produces</h4>{p.integrationProduces.length ? <ul>{p.integrationProduces.map((i) => <li>{i}</li>)}</ul> : <p class="im-none">None disclosed</p>}</div>
+              <div><h4>Consumed by</h4>{p.integrationConsumedBy.length ? <ul>{p.integrationConsumedBy.map((i) => <li>{i}</li>)}</ul> : <p class="im-none">None disclosed</p>}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:760px;text-align:center;">
+      <a href="/architecture" class="btn btn-outline">Back to the Complete Architecture</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.im-hero { padding: 4.5rem 0 3.5rem; }
+.im-sub { margin-top: .75rem; font-size: 1.0625rem; color: #7b829e; line-height: 1.75; max-width: 680px; }
+.im-list { display: flex; flex-direction: column; gap: 1.25rem; }
+.im-row { background: #07090f; border: 1px solid #1a2235; border-left: 3px solid var(--accent); border-radius: .75rem; padding: 1.5rem 1.75rem; }
+.im-name { font-size: 1.0625rem; font-weight: 700; margin-bottom: 1rem; }
+.im-name a { color: #e4e7f2; }
+.im-name a:hover { color: #818cf8; }
+.im-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+@media (max-width: 700px) { .im-cols { grid-template-columns: 1fr; } }
+.im-cols h4 { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #6366f1; margin-bottom: .5rem; }
+.im-cols ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .375rem; }
+.im-cols li { font-size: .8125rem; color: #a0a8c0; line-height: 1.5; }
+.im-none { font-size: .8125rem; color: #4a5068; font-style: italic; }
+</style>

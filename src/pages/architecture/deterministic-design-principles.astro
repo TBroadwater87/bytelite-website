@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+---
+
+<Layout
+  title="Deterministic Design Principles | Architecture | ByteLite LLC"
+  description="The design principles behind the ByteLite LLC architecture: preservation before prediction, a staged structure stack, and dependency closure before any final claim."
+  keywords="deterministic design principles, ByteLite LLC architecture"
+>
+  <Header slot="header" />
+
+  <section class="section-sm">
+    <div class="container"><Breadcrumbs items={[{ label: 'Architecture', href: '/architecture' }, { label: 'Deterministic Design Principles' }]} /></div>
+  </section>
+
+  <section class="dp-hero">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Architecture</p>
+      <h1>Deterministic Design Principles</h1>
+      <p class="dp-sub">The premises underneath every ByteLite LLC technology page.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:820px;">
+      <h2 style="margin-bottom:1.25rem;">Not one agent. A governed structure stack.</h2>
+      <p class="dp-p">
+        The safest path toward broader machine intelligence is not a monolithic autonomous agent.
+        It is a staged architecture where each capability earns authority only after lower layers
+        prove preservation, closure, permission, and auditability.
+      </p>
+      <div class="dp-premise">
+        <p>Reasoning is not permission. Communication is not truth. Efficiency is not goodness. Capability is not authorization.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:820px;">
+      <h2 style="margin-bottom:1.25rem;">Identity before meaning.</h2>
+      <p class="dp-p">
+        A system that cannot preserve identity exactly should not be trusted to preserve meaning.
+        At the lowest level, identity means exact digital reconstruction (ByteLite's proof surface).
+        At higher levels, identity means preserving entities, references, consent states, source
+        boundaries, uncertainty, authority, and consequence.
+      </p>
+      <p class="dp-p" style="margin-top:1rem;">
+        Compression is the first proof surface because it is measurable: either the original
+        reconstructs exactly, or it does not.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:820px;">
+      <h2 style="margin-bottom:1.25rem;">No dependency closure, no final claim.</h2>
+      <p class="dp-p">
+        A reasoning packet is closed when every load-bearing claim, entity, source, permission,
+        uncertainty, and consequence required for the decision is represented. Closure is
+        task-relative — a casual explanation needs less closure than a file proof, legal claim, or
+        financial action. If closure is missing, the system should ask, restrain, or halt rather
+        than pretend.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:760px;text-align:center;">
+      <a href="/architecture" class="btn btn-outline">Back to the Complete Architecture</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.dp-hero { padding: 4.5rem 0 3.5rem; }
+.dp-sub { margin-top: .75rem; font-size: 1.0625rem; color: #7b829e; }
+.dp-p { font-size: 1.0625rem; color: #a0a8c0; line-height: 1.8; }
+.dp-premise {
+  margin-top: 1.75rem; background: linear-gradient(135deg, rgba(99,102,241,.08) 0%, rgba(167,139,250,.05) 100%);
+  border: 1px solid rgba(99,102,241,.25); border-radius: .75rem; padding: 1.5rem 1.75rem;
+}
+.dp-premise p { font-size: 1.0625rem; font-style: italic; color: #c4c8f0; margin: 0; line-height: 1.7; }
+</style>
