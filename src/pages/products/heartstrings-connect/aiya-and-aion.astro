@@ -1,0 +1,73 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ProductSubNav from '../../../components/ProductSubNav.astro';
+
+const SUBNAV = [
+  { label: 'Overview', href: '/products/heartstrings-connect' },
+  { label: 'Compatibility & Matching', href: '/products/heartstrings-connect/compatibility-and-matching' },
+  { label: 'Privacy Architecture', href: '/products/heartstrings-connect/privacy-architecture' },
+  { label: 'Safety', href: '/products/heartstrings-connect/safety' },
+  { label: 'Cartoonized Profiles', href: '/products/heartstrings-connect/cartoonized-profiles' },
+  { label: 'AIya & Aion', href: '/products/heartstrings-connect/aiya-and-aion' },
+  { label: 'Games & Activities', href: '/products/heartstrings-connect/games-and-shared-activities' },
+  { label: 'ByteOracle Horoscopes', href: '/products/heartstrings-connect/byteoracle-horoscopes' },
+  { label: 'Date Planning', href: '/products/heartstrings-connect/date-planning' },
+];
+---
+
+<Layout
+  title="AIya & Aion | HeartStrings Connect | ByteLite LLC"
+  description="AIya and Aion are HeartStrings Connect's research-preview wingman characters, built on ByteLite LLC's Deep Kore reasoning substrate. Not a production AI system."
+  keywords="AIya, Aion, HeartStrings Connect wingman"
+>
+  <Header slot="header" />
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'HeartStrings Connect', href: '/products/heartstrings-connect' }, { label: 'AIya and Aion' }]} /></div></section>
+  <ProductSubNav items={SUBNAV} />
+
+  <section class="ay-hero">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">AIya &amp; Aion</p>
+      <span class="badge badge-research" style="margin-bottom:1rem;display:inline-block;">Research Preview &mdash; Not Production AI</span>
+      <h1>A friendly guide, not a real person pretending to be one.</h1>
+      <p class="ay-p">
+        AIya is HeartStrings Connect's research-preview wingman interface, built on
+        <a href="/technologies/deep-kore" style="color:#818cf8;">Deep Kore</a> and described in
+        full on the <a href="/technologies/deep-kore/aiya" style="color:#818cf8;">AIya technology page</a>.
+        It is designed to help and encourage you — never to trick you or pretend to be a real
+        person.
+      </p>
+      <p class="ay-p" style="margin-top:1rem;">
+        Aion appears alongside AIya as a companion character in HeartStrings Connect's visual
+        assets. A distinct functional role for Aion, separate from AIya's wingman interface, is
+        not yet documented — this page will be updated once that distinction is confirmed.
+      </p>
+      <p class="ay-p" style="margin-top:1rem;color:#555e7a;font-size:.9375rem;">
+        No live AI companion, automated matching system, or production guidance system is
+        deployed. This is in-development research only.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="ay-grid">
+        <figure><img src="/heartstrings/heartstrings-aiya-portrait.png" alt="AIya character portrait" loading="lazy" /><figcaption>AIya</figcaption></figure>
+        <figure><img src="/heartstrings/screenshots/11_wingman_aiya.png" alt="HeartStrings Connect AIya interface screen" loading="lazy" /><figcaption>AIya interface — research preview</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.ay-hero { padding: 4.5rem 0 3.5rem; }
+.ay-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
+.ay-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 640px; margin: 0 auto; }
+@media (max-width: 560px) { .ay-grid { grid-template-columns: 1fr; } }
+.ay-grid img { width: 100%; height: auto; border-radius: 1rem; border: 1px solid #1a2235; }
+.ay-grid figcaption { text-align: center; font-size: .8125rem; color: #7b829e; margin-top: .625rem; }
+</style>

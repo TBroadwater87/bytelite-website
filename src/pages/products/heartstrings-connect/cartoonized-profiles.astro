@@ -1,0 +1,66 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ProductSubNav from '../../../components/ProductSubNav.astro';
+
+const SUBNAV = [
+  { label: 'Overview', href: '/products/heartstrings-connect' },
+  { label: 'Compatibility & Matching', href: '/products/heartstrings-connect/compatibility-and-matching' },
+  { label: 'Privacy Architecture', href: '/products/heartstrings-connect/privacy-architecture' },
+  { label: 'Safety', href: '/products/heartstrings-connect/safety' },
+  { label: 'Cartoonized Profiles', href: '/products/heartstrings-connect/cartoonized-profiles' },
+  { label: 'AIya & Aion', href: '/products/heartstrings-connect/aiya-and-aion' },
+  { label: 'Games & Activities', href: '/products/heartstrings-connect/games-and-shared-activities' },
+  { label: 'ByteOracle Horoscopes', href: '/products/heartstrings-connect/byteoracle-horoscopes' },
+  { label: 'Date Planning', href: '/products/heartstrings-connect/date-planning' },
+];
+---
+
+<Layout
+  title="Cartoonized Profiles | HeartStrings Connect | ByteLite LLC"
+  description="HeartStrings Connect's in-development cartoonized-profile concept: a stylized photo transformation that preserves expression while reducing shallow instant rejection."
+  keywords="HeartStrings Connect cartoonized profiles, photo styles"
+>
+  <Header slot="header" />
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'HeartStrings Connect', href: '/products/heartstrings-connect' }, { label: 'Cartoonized Profiles' }]} /></div></section>
+  <ProductSubNav items={SUBNAV} />
+
+  <section class="cp-hero">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Cartoonized Profiles</p>
+      <span class="badge badge-planned" style="margin-bottom:1rem;display:inline-block;">In development</span>
+      <h1>A fantasy-distance photo model — in development.</h1>
+      <p class="cp-p">
+        The intended design: free or introductory profiles show a transformed image rather than a
+        raw photo. The transformation is meant to preserve visible human expression and emotional
+        identity while creating enough fantasy distance to reduce shallow, instant rejection. The
+        style may combine cartoon, anime, and watercolor qualities. Original photographs would be
+        reserved for eligible paid access or a later consent-based reveal, and the system must
+        never imply that a transformed profile is a different person from the real one.
+      </p>
+      <p class="cp-p" style="margin-top:1rem;color:#555e7a;font-size:.9375rem;">
+        This is a design target under active development, not a shipped feature. The current
+        private-test build has an early "Photo Styles" UI surface (screenshot below), but the free
+        vs. paid-reveal mechanic described above has not been finalized or launched.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="asset-ph-grid" style="grid-template-columns:1fr;max-width:340px;margin:0 auto;">
+        <img src="/heartstrings/screenshots/17_photo_styles.png" alt="HeartStrings Connect photo styles screen — in development" style="width:100%;border-radius:1.25rem;border:1px solid #1a2235;" loading="lazy" />
+        <p style="text-align:center;font-size:.75rem;color:#555e7a;margin-top:.75rem;">In development — current private-test UI, not the final cartoonized-profile system.</p>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.cp-hero { padding: 4.5rem 0 3.5rem; }
+.cp-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
+</style>

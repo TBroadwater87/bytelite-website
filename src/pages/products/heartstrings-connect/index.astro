@@ -1,0 +1,120 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ProductSubNav from '../../../components/ProductSubNav.astro';
+import StatusBadge from '../../../components/StatusBadge.astro';
+import { HEARTSTRINGS_CONNECT } from '../../../data/projects';
+
+const SUBNAV = [
+  { label: 'Overview', href: '/products/heartstrings-connect' },
+  { label: 'Compatibility & Matching', href: '/products/heartstrings-connect/compatibility-and-matching' },
+  { label: 'Privacy Architecture', href: '/products/heartstrings-connect/privacy-architecture' },
+  { label: 'Safety', href: '/products/heartstrings-connect/safety' },
+  { label: 'Cartoonized Profiles', href: '/products/heartstrings-connect/cartoonized-profiles' },
+  { label: 'AIya & Aion', href: '/products/heartstrings-connect/aiya-and-aion' },
+  { label: 'Games & Activities', href: '/products/heartstrings-connect/games-and-shared-activities' },
+  { label: 'ByteOracle Horoscopes', href: '/products/heartstrings-connect/byteoracle-horoscopes' },
+  { label: 'Date Planning', href: '/products/heartstrings-connect/date-planning' },
+];
+---
+
+<Layout
+  title="HeartStrings Connect | Privacy-First Compatibility and Connection | ByteLite LLC"
+  description="HeartStrings Connect is ByteLite LLC's private-test digital companion built around deep compatibility, cryptographically split privacy, and safety-first date planning."
+  keywords="HeartStrings Connect, private beta, compatibility, privacy-first dating, ByteLite LLC"
+>
+  <Header slot="header" />
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'HeartStrings Connect' }]} /></div></section>
+  <ProductSubNav items={SUBNAV} />
+
+  <section class="app-hero">
+    <div class="container app-hero-inner">
+      <div class="app-hero-text">
+        <p class="eyebrow">HeartStrings Connect</p>
+        <h1>The private-test digital companion for the HeartStrings ecosystem.</h1>
+        <p class="app-hero-sub">
+          HeartStrings Connect is ByteLite LLC's private companion layer — rooms, prompts, consent
+          flows, date planning, and future social features. Building on Android, not in any app
+          store; the screens below are current private-test UI.
+        </p>
+        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1.75rem;">
+          <StatusBadge status={HEARTSTRINGS_CONNECT.status} />
+          <span style="font-size:.875rem;color:#555e7a;">No public app store listing</span>
+        </div>
+        <div style="display:flex;gap:.875rem;flex-wrap:wrap;margin-top:2rem;">
+          <a href="/contact" class="btn btn-primary">Beta Interest</a>
+          <a href="/progress" class="btn btn-outline btn-sm" style="align-self:center;">View Status</a>
+        </div>
+      </div>
+      <div class="app-hero-visual">
+        <div class="phone-frame">
+          <img src="/heartstrings/screenshots/28_discover_with_match.png" alt="HeartStrings Connect — Discover screen showing a match card" class="phone-img" loading="eager" />
+        </div>
+        <p class="hero-img-label">Current screen — Discover</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <p class="eyebrow" style="text-align:center;">Explore HeartStrings Connect</p>
+      <div class="hc-explore-grid">
+        <a href="/products/heartstrings-connect/compatibility-and-matching" class="card hc-card"><h3>Compatibility &amp; Matching</h3><p>A questionnaire that goes deeper than a swipe.</p></a>
+        <a href="/products/heartstrings-connect/privacy-architecture" class="card hc-card"><h3>Privacy Architecture</h3><p>Two-party secret sharing for your sensitive answers.</p></a>
+        <a href="/products/heartstrings-connect/safety" class="card hc-card"><h3>Safety</h3><p>Live check-ins, emergency contacts, a safety phrase.</p></a>
+        <a href="/products/heartstrings-connect/cartoonized-profiles" class="card hc-card"><h3>Cartoonized Profiles</h3><p>A fantasy-distance photo model, in development.</p></a>
+        <a href="/products/heartstrings-connect/aiya-and-aion" class="card hc-card"><h3>AIya &amp; Aion</h3><p>Research-preview wingman characters.</p></a>
+        <a href="/products/heartstrings-connect/games-and-shared-activities" class="card hc-card"><h3>Games &amp; Shared Activities</h3><p>Play together instead of just messaging.</p></a>
+        <a href="/products/heartstrings-connect/byteoracle-horoscopes" class="card hc-card"><h3>ByteOracle Horoscopes</h3><p>Daily readings powered by ByteOracle.</p></a>
+        <a href="/products/heartstrings-connect/date-planning" class="card hc-card"><h3>Date Planning</h3><p>Blind Date Roulette and the restaurant program.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <div class="app-status-box">
+        <h3 style="color:#e4e7f2;margin-bottom:1rem;">Current Status</h3>
+        <div class="app-status-grid">
+          <div class="app-status-item"><span class="badge badge-private">Private test builds</span><p>Used for internal development validation. Not for public distribution.</p></div>
+          <div class="app-status-item"><span class="badge badge-none">No public app store listing</span><p>Not available on Google Play, Apple App Store, or any third-party marketplace.</p></div>
+          <div class="app-status-item"><span class="badge badge-active">Active development</span><p>UI surfaces, onboarding, and companion features are actively under development.</p></div>
+          <div class="app-status-item"><span class="badge badge-planned">Beta program planned</span><p>A limited private beta program is planned. Contact to express interest.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm section-alt">
+    <div class="container" style="max-width:760px;text-align:center;">
+      <p style="font-size:.875rem;color:#4a5068;">Part of the ByteLite LLC technology portfolio.</p>
+      <p style="font-size:.875rem;color:#4a5068;margin-top:.375rem;">AIya, ByteOracle, and ByteSight are described on <a href="/technologies" style="color:#555e7a;">the Technologies pages &rarr;</a>. Not a production AI system.</p>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.app-hero { padding: 4.5rem 0 4rem; background: radial-gradient(ellipse 70% 50% at 50% -5%, rgba(99,102,241,.07) 0%, transparent 70%); }
+.app-hero-inner { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: center; }
+@media (max-width: 767px) { .app-hero-inner { grid-template-columns: 1fr; } .app-hero-visual { display: flex; flex-direction: column; align-items: center; } }
+.app-hero-text h1 { max-width: 620px; }
+.app-hero-sub { max-width: 520px; margin-top: 1.25rem; font-size: 1.0625rem; color: #7b829e; line-height: 1.75; }
+.app-hero-visual { display: flex; flex-direction: column; align-items: center; gap: .75rem; }
+.phone-frame { max-width: 260px; width: 100%; border-radius: 2rem; border: 1px solid #24304a; box-shadow: 0 16px 48px rgba(0,0,0,.55); overflow: hidden; background: #0d1120; }
+.phone-img { width: 100%; height: auto; display: block; }
+.hero-img-label { font-size: .6875rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #4a5068; }
+.hc-explore-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+@media (max-width: 1000px) { .hc-explore-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .hc-explore-grid { grid-template-columns: 1fr; } }
+.hc-card h3 { color: #818cf8; margin-bottom: .5rem; font-size: 1rem; }
+.hc-card p { font-size: .8125rem; color: #7b829e; margin: 0; }
+.app-status-box { background: #111828; border: 1px solid #1a2235; border-radius: .875rem; padding: 2rem; }
+.app-status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.25rem; }
+@media (max-width: 640px) { .app-status-grid { grid-template-columns: 1fr; } }
+.app-status-item { display: flex; flex-direction: column; gap: .625rem; }
+.app-status-item p { font-size: .875rem; color: #7b829e; }
+</style>
