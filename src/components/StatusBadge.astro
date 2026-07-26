@@ -1,0 +1,26 @@
+---
+import type { ProjectStatus } from '../data/projects';
+
+export interface Props {
+  status: ProjectStatus;
+}
+
+const { status } = Astro.props;
+
+const CLASS_MAP: Record<ProjectStatus, string> = {
+  Concept: 'badge-none',
+  Prototype: 'badge-planned',
+  'Internal Validation': 'badge-research',
+  'Private Test': 'badge-private',
+  'Private Beta': 'badge-private',
+  'Public Beta': 'badge-beta',
+  Preorder: 'badge-prelaunch',
+  Production: 'badge-active',
+  Paused: 'badge-paused',
+  Completed: 'badge-active',
+};
+
+const cls = CLASS_MAP[status];
+---
+
+<span class:list={['badge', cls]}>{status}</span>
