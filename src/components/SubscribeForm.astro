@@ -237,12 +237,6 @@ const {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    const formData = new FormData(form);
-    const email = formData.get('email');
-    const notifyDemo = formData.get('notifyDemo');
-    const notifyDeepKore = formData.get('notifyDeepKore');
-    const notifyHeartStrings = formData.get('notifyHeartStrings');
-    
     // Show loading state
     messageDiv.textContent = 'Subscribing...';
     messageDiv.className = 'message';

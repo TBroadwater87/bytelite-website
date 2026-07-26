@@ -313,7 +313,7 @@ const { className = '' } = Astro.props;
 
 <script>
   const modal = document.getElementById('earlyAccessModal');
-  const form = document.getElementById('earlyAccessForm');
+  const form = document.getElementById('earlyAccessForm') as HTMLFormElement | null;
   const closeBtn = modal?.querySelector('.modal-close');
   const backdrop = modal?.querySelector('.modal-backdrop');
   
