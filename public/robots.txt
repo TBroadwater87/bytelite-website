@@ -3,4 +3,4 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 
-Sitemap: https://thebytelite.com/sitemap.xml
+Sitemap: https://www.thebytelite.com/sitemap-index.xml
