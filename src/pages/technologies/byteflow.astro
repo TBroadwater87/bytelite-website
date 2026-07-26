@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProjectPageHero from '../../components/ProjectPageHero.astro';
+import ProjectDetailSections from '../../components/ProjectDetailSections.astro';
+import { BYTEFLOW } from '../../data/projects';
+---
+
+<Layout
+  title="ByteFlow | Movement and Transmission Layer | ByteLite LLC"
+  description="ByteFlow is ByteLite LLC's planned movement and transmission layer for lawful routing and structural transfer. Planned, not implemented."
+  keywords="ByteFlow, ByteLite LLC architecture, planned layer"
+  ogImage="/bytelite-logo.png"
+>
+  <Header slot="header" />
+
+  <section class="section-sm">
+    <div class="container"><Breadcrumbs items={[{ label: 'Technologies', href: '/technologies' }, { label: 'ByteFlow' }]} /></div>
+  </section>
+
+  <ProjectPageHero project={BYTEFLOW} />
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Mission</p>
+      <h2 style="margin-bottom:1.25rem;">Moving structure without losing its guarantees.</h2>
+      <p style="font-size:1.0625rem;line-height:1.8;">{BYTEFLOW.mission}</p>
+    </div>
+  </section>
+
+  <ProjectDetailSections project={BYTEFLOW} />
+
+  <section class="section">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Related</p>
+      <div class="pd-related-row">
+        <a href="/architecture" class="btn btn-outline btn-sm">The Complete Architecture</a>
+        <a href="/technologies/bytecost" class="btn btn-outline btn-sm">ByteCost &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.pd-related-row { display: flex; gap: .75rem; flex-wrap: wrap; }
+</style>

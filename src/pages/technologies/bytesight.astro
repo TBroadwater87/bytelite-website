@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProjectPageHero from '../../components/ProjectPageHero.astro';
+import ProjectDetailSections from '../../components/ProjectDetailSections.astro';
+import { BYTESIGHT } from '../../data/projects';
+---
+
+<Layout
+  title="ByteSight | Deterministic Visual Evidence | ByteLite LLC"
+  description="ByteSight is ByteLite LLC's deterministic visual-structure and inspection layer for images, regions, boundaries, and provenance."
+  keywords="ByteSight, deterministic vision, visual structure, provenance, ByteLite LLC"
+>
+  <Header slot="header" />
+
+  <section class="section-sm">
+    <div class="container"><Breadcrumbs items={[{ label: 'Technologies', href: '/technologies' }, { label: 'ByteSight' }]} /></div>
+  </section>
+
+  <ProjectPageHero project={BYTESIGHT} />
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Mission</p>
+      <h2 style="margin-bottom:1.25rem;">Vision that can show its work.</h2>
+      <p style="font-size:1.0625rem;line-height:1.8;">{BYTESIGHT.mission}</p>
+      <p style="font-size:1.0625rem;line-height:1.8;margin-top:1rem;">
+        Where a typical classifier returns a confidence score with no explanation, ByteSight's
+        target design is to represent canonical regions, boundaries, and closure state explicitly —
+        so a downstream system (or a person) can inspect why a region was identified the way it was.
+      </p>
+    </div>
+  </section>
+
+  <ProjectDetailSections project={BYTESIGHT} />
+
+  <section class="section">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Related</p>
+      <div class="pd-related-row">
+        <a href="/architecture" class="btn btn-outline btn-sm">The Complete Architecture</a>
+        <a href="/technologies/bytelite" class="btn btn-outline btn-sm">ByteLite &rarr;</a>
+        <a href="/products/heartstrings-connect/cartoonized-profiles" class="btn btn-outline btn-sm">Cartoonized Profiles &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.pd-related-row { display: flex; gap: .75rem; flex-wrap: wrap; }
+</style>

@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProjectPageHero from '../../components/ProjectPageHero.astro';
+import ProjectDetailSections from '../../components/ProjectDetailSections.astro';
+import { BYTELITE } from '../../data/projects';
+---
+
+<Layout
+  title="ByteLite | Deterministic Digital Structure | ByteLite LLC"
+  description="ByteLite is ByteLite LLC's deterministic digital-structure foundation: exact lossless reconstruction as the first proof surface, ahead of any compression claim."
+  keywords="ByteLite, deterministic structure, exact reconstruction, ByteLite LLC"
+>
+  <Header slot="header" />
+
+  <section class="section-sm">
+    <div class="container"><Breadcrumbs items={[{ label: 'Technologies', href: '/technologies' }, { label: 'ByteLite' }]} /></div>
+  </section>
+
+  <ProjectPageHero project={BYTELITE} />
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Mission</p>
+      <h2 style="margin-bottom:1.25rem;">Identity first. Compression second.</h2>
+      <p style="font-size:1.0625rem;line-height:1.8;">{BYTELITE.mission}</p>
+      <p style="font-size:1.0625rem;line-height:1.8;margin-top:1rem;">
+        ByteLite is the foundation layer of the ByteLite LLC architecture — Deep Kore and ByteSight
+        are designed to build on the structural guarantees ByteLite is responsible for proving first.
+        Internal encoding rules, generator details, and carrier formats are trade secrets and are not
+        disclosed on this site.
+      </p>
+    </div>
+  </section>
+
+  <ProjectDetailSections project={BYTELITE} />
+
+  <section class="section">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Related</p>
+      <div class="pd-related-row">
+        <a href="/architecture" class="btn btn-outline btn-sm">The Complete Architecture</a>
+        <a href="/technologies/bytesight" class="btn btn-outline btn-sm">ByteSight &rarr;</a>
+        <a href="/technologies/deep-kore" class="btn btn-outline btn-sm">Deep Kore &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.pd-related-row { display: flex; gap: .75rem; flex-wrap: wrap; }
+</style>

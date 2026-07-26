@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProjectPageHero from '../../components/ProjectPageHero.astro';
+import ProjectDetailSections from '../../components/ProjectDetailSections.astro';
+import { BYTEORACLE } from '../../data/projects';
+---
+
+<Layout
+  title="ByteOracle | Deterministic Astronomical Interpretation | ByteLite LLC"
+  description="ByteOracle is ByteLite LLC's concept for deterministic astronomical interpretation — locally calculated, reproducible readings feeding HeartStrings Connect's horoscope features."
+  keywords="ByteOracle, deterministic astronomy, horoscope engine, HeartStrings Connect, ByteLite LLC"
+>
+  <Header slot="header" />
+
+  <section class="section-sm">
+    <div class="container"><Breadcrumbs items={[{ label: 'Technologies', href: '/technologies' }, { label: 'ByteOracle' }]} /></div>
+  </section>
+
+  <ProjectPageHero project={BYTEORACLE} />
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Mission</p>
+      <h2 style="margin-bottom:1.25rem;">Deterministic astronomy, not generic fortune-telling.</h2>
+      <p style="font-size:1.0625rem;line-height:1.8;">{BYTEORACLE.mission}</p>
+      <p style="font-size:1.0625rem;line-height:1.8;margin-top:1rem;">
+        ByteOracle is presented here as a concept and naming layer for work that already has one
+        seed feature live inside HeartStrings Connect (zodiac-sign derivation and a daily horoscope).
+        The fuller deterministic-interpretation design described in End-Game Functionality Goals below
+        has not been built yet and should be read as a target, not a shipped system.
+      </p>
+    </div>
+  </section>
+
+  <ProjectDetailSections project={BYTEORACLE} />
+
+  <section class="section">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Related</p>
+      <div class="pd-related-row">
+        <a href="/products/heartstrings-connect/byteoracle-horoscopes" class="btn btn-outline btn-sm">ByteOracle Horoscopes in HeartStrings Connect &rarr;</a>
+        <a href="/technologies/deep-kore" class="btn btn-outline btn-sm">Deep Kore &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.pd-related-row { display: flex; gap: .75rem; flex-wrap: wrap; }
+</style>

@@ -1,0 +1,85 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import { ALL_TECHNOLOGIES } from '../../data/projects';
+---
+
+<Layout
+  title="Technologies | ByteLite LLC"
+  description="The ByteLite LLC technology portfolio: ByteLite, ByteSight, Deep Kore, AIya, Genesis Goalkeeper, ByteOracle, ByteFlow, and ByteCost — a deterministic structure stack under proof-gated development."
+  keywords="ByteLite LLC technologies, ByteLite, ByteSight, Deep Kore, AIya, ByteOracle, ByteFlow, ByteCost"
+>
+  <Header slot="header" />
+
+  <section class="section-sm">
+    <div class="container"><Breadcrumbs items={[{ label: 'Technologies' }]} /></div>
+  </section>
+
+  <section class="th-hero">
+    <div class="container">
+      <p class="eyebrow">ByteLite LLC</p>
+      <h1>The Technology Portfolio</h1>
+      <p class="th-hero-sub">
+        Eight layers, one deterministic structure stack. Each technology below is shown with its
+        actual current status — active research is not dressed up as a shipped product, and planned
+        layers are labeled as planned.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="th-grid">
+        {ALL_TECHNOLOGIES.map((tech) => (
+          <a href={tech.routes[0]} class="th-card" style={`--accent:${tech.accentColor}`}>
+            <div class="th-card-head">
+              <h2>{tech.name}</h2>
+              <StatusBadge status={tech.status} />
+            </div>
+            <p class="th-card-cat">{tech.category}</p>
+            <p class="th-card-desc">{tech.shortDescription}</p>
+            <span class="th-card-link">View full page &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:760px;text-align:center;">
+      <p class="eyebrow">The Bigger Picture</p>
+      <h2 style="margin-bottom:1.25rem;">How these layers fit together.</h2>
+      <p style="font-size:1.0625rem;color:#7b829e;line-height:1.8;margin-bottom:2rem;">
+        The Architecture page explains how these eight technologies compose into one governed
+        structure stack, including the intrinsic-halting and governance rules that apply across
+        all of them.
+      </p>
+      <a href="/architecture" class="btn btn-outline">See the Complete Architecture</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.th-hero { padding: 4.5rem 0 3.5rem; }
+.th-hero h1 { max-width: 640px; }
+.th-hero-sub { max-width: 640px; margin-top: 1rem; font-size: 1.0625rem; color: #7b829e; line-height: 1.75; }
+.th-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+@media (max-width: 700px) { .th-grid { grid-template-columns: 1fr; } }
+.th-card {
+  display: flex; flex-direction: column; gap: .625rem;
+  background: #07090f; border: 1px solid #1a2235; border-left: 3px solid var(--accent);
+  border-radius: .75rem; padding: 1.75rem;
+  transition: border-color .2s, transform .2s;
+}
+.th-card:hover { transform: translateY(-2px); border-color: #2a3350; }
+.th-card-head { display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap; }
+.th-card-head h2 { font-size: 1.25rem; margin: 0; }
+.th-card-cat { font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #555e7a; margin: 0; }
+.th-card-desc { font-size: .9375rem; color: #7b829e; line-height: 1.65; margin: 0; flex: 1; }
+.th-card-link { font-size: .8125rem; font-weight: 500; color: var(--accent); }
+</style>

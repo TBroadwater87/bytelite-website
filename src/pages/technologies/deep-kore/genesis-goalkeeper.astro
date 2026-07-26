@@ -1,0 +1,57 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ProjectPageHero from '../../../components/ProjectPageHero.astro';
+import ProjectDetailSections from '../../../components/ProjectDetailSections.astro';
+import { GENESIS_GOALKEEPER } from '../../../data/projects';
+---
+
+<Layout
+  title="Genesis Goalkeeper | Governance and Intrinsic Halting | ByteLite LLC"
+  description="Genesis Goalkeeper is the ByteLite LLC governance layer that decides whether an output or action may cross from internal reasoning into the world."
+  keywords="Genesis Goalkeeper, AI governance, intrinsic halting, Deep Kore, ByteLite LLC"
+>
+  <Header slot="header" />
+
+  <section class="section-sm">
+    <div class="container"><Breadcrumbs items={[{ label: 'Technologies', href: '/technologies' }, { label: 'Deep Kore', href: '/technologies/deep-kore' }, { label: 'Genesis Goalkeeper' }]} /></div>
+  </section>
+
+  <ProjectPageHero project={GENESIS_GOALKEEPER} />
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Mission</p>
+      <h2 style="margin-bottom:1.25rem;">Reasoning is not permission.</h2>
+      <p style="font-size:1.0625rem;line-height:1.8;">{GENESIS_GOALKEEPER.mission}</p>
+      <div class="gg-halt-box">
+        <p>Genesis Goalkeeper is designed to halt intrinsically — not on an arbitrary cap, timeout, or "good enough" threshold — whenever consent, authority, identity, or harm accounting is unresolved. Stopping is treated as a safety feature, not a failure.</p>
+      </div>
+    </div>
+  </section>
+
+  <ProjectDetailSections project={GENESIS_GOALKEEPER} />
+
+  <section class="section">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Related</p>
+      <div class="pd-related-row">
+        <a href="/technologies/deep-kore" class="btn btn-outline btn-sm">Deep Kore &rarr;</a>
+        <a href="/architecture" class="btn btn-outline btn-sm">Governance and Intrinsic Halting (Architecture) &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.gg-halt-box {
+  background: rgba(251,146,60,.06); border: 1px solid rgba(251,146,60,.2);
+  border-radius: .75rem; padding: 1.5rem 1.75rem; margin-top: 1.75rem;
+}
+.gg-halt-box p { font-size: .9375rem; color: #c4c8f0; line-height: 1.75; margin: 0; }
+.pd-related-row { display: flex; gap: .75rem; flex-wrap: wrap; }
+</style>
