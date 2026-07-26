@@ -1,4 +1,6 @@
 ---
+import CookieBanner from '../components/CookieBanner.astro';
+
 export interface Props {
   title: string;
   description?: string;
@@ -80,6 +82,7 @@ const organizationJsonLd = {
     <slot />
   </main>
   <slot name="footer" />
+  <CookieBanner />
 </body>
 </html>
 
