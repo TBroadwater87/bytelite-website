@@ -1,0 +1,98 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import ProductSubNav from '../../components/ProductSubNav.astro';
+import { ALL_PROJECTS } from '../../data/projects';
+
+const SUBNAV = [
+  { label: 'Current Status', href: '/progress' },
+  { label: 'Validation Evidence', href: '/progress/validation-evidence' },
+  { label: 'Development Timeline', href: '/progress/development-timeline' },
+  { label: 'Changelog', href: '/progress/changelog' },
+];
+---
+
+<Layout
+  title="Progress | Current Status | ByteLite LLC"
+  description="Canonical, current status for every ByteLite LLC technology and product — rendered from one data source so it can't drift between pages."
+  keywords="ByteLite LLC status, HeartStrings status, product status"
+>
+  <Header slot="header" />
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Progress' }]} /></div></section>
+  <ProductSubNav items={SUBNAV} />
+
+  <section class="st-hero">
+    <div class="container">
+      <p class="eyebrow">ByteLite LLC</p>
+      <h1>Current Status</h1>
+      <p class="st-sub">Canonical status for every ByteLite LLC technology and product. Status is separated from claims.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="st-table">
+        <div class="st-row st-header"><span>Project</span><span>Status</span><span>Availability</span></div>
+        {ALL_PROJECTS.map((p) => (
+          <div class="st-row">
+            <span class="st-name"><a href={p.routes[0]}>{p.name}</a></span>
+            <span><StatusBadge status={p.status} /></span>
+            <span class="st-notes">{p.availability}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <h2 style="margin-bottom:1.5rem;">Not Yet Available</h2>
+      <p style="margin-bottom:1.75rem;font-size:1.0625rem;color:#a0a8c0;">The following do not exist as public products or services. They are explicitly not claimed.</p>
+      <div class="st-unavailable">
+        <div class="st-un-item">&#10005; Public retail purchase of HeartStrings Play</div>
+        <div class="st-un-item">&#10005; HeartStrings Connect on any public app store</div>
+        <div class="st-un-item">&#10005; A public API of any kind</div>
+        <div class="st-un-item">&#10005; Published independent verification of research results</div>
+        <div class="st-un-item">&#10005; A public Deep Kore / AIya AI product</div>
+        <div class="st-un-item">&#10005; A public ByteSight or ByteOracle product</div>
+        <div class="st-un-item">&#10005; Public mechanism disclosure for ByteLite</div>
+        <div class="st-un-item">&#10005; A production compression product</div>
+        <div class="st-un-item">&#10005; A finished AGI product</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:760px;">
+      <h2 style="margin-bottom:1.5rem;">Company Information</h2>
+      <div class="st-table">
+        <div class="st-row"><span class="st-name">Company</span><span colspan="2" style="color:#a0a8c0;">ByteLite LLC</span></div>
+        <div class="st-row"><span class="st-name">Location</span><span colspan="2" style="color:#a0a8c0;">Helena, Montana, USA</span></div>
+        <div class="st-row"><span class="st-name">Founded</span><span colspan="2" style="color:#a0a8c0;">2024</span></div>
+        <div class="st-row"><span class="st-name">Structure</span><span colspan="2" style="color:#a0a8c0;">Solo-founder LLC</span></div>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.st-hero { padding: 4.5rem 0 3.5rem; }
+.st-hero h1 { max-width: 480px; }
+.st-sub { max-width: 560px; margin-top: 1rem; font-size: 1.0625rem; color: #7b829e; line-height: 1.7; }
+.st-table { background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem; overflow: hidden; }
+.st-row { display: grid; grid-template-columns: 1.5fr 1fr 1.5fr; gap: 1.5rem; padding: 1.125rem 1.5rem; border-bottom: 1px solid #1a2235; align-items: center; }
+.st-row:last-child { border-bottom: none; }
+.st-header { background: #111828; font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #4a5068; }
+.st-name { font-size: .9375rem; font-weight: 500; color: #e4e7f2; }
+.st-name a { color: #818cf8; }
+.st-name a:hover { color: #a5b4fc; }
+.st-notes { font-size: .875rem; color: #7b829e; }
+.st-unavailable { background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem; padding: 1.75rem; display: flex; flex-direction: column; gap: .75rem; }
+.st-un-item { font-size: .9375rem; color: #555e7a; }
+@media (max-width: 700px) { .st-row { grid-template-columns: 1fr; gap: .625rem; } .st-header { display: none; } }
+</style>
