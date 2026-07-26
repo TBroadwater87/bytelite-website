@@ -7,6 +7,15 @@ import ProductSubNav from '../../../components/ProductSubNav.astro';
 import StatusBadge from '../../../components/StatusBadge.astro';
 import { HEARTSTRINGS_PLAY } from '../../../data/projects';
 
+const productJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'HeartStrings Play',
+  description: HEARTSTRINGS_PLAY.shortDescription,
+  category: 'Board Game',
+  brand: { '@type': 'Organization', name: 'ByteLite LLC' },
+};
+
 const SUBNAV = [
   { label: 'Overview', href: '/products/heartstrings-play' },
   { label: 'How It Plays', href: '/products/heartstrings-play/how-it-plays' },
@@ -24,6 +33,7 @@ const SUBNAV = [
   keywords="HeartStrings Play, adult social board game, consent-first, ByteLite LLC"
 >
   <Header slot="header" />
+  <script type="application/ld+json" set:html={JSON.stringify(productJsonLd)} />
 
   <section class="section-sm">
     <div class="container"><Breadcrumbs items={[{ label: 'HeartStrings Play' }]} /></div>

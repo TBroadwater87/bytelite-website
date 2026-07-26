@@ -1,0 +1,19 @@
+# Cloudflare Pages edge redirects (real HTTP 301s, not client-side JS or meta-refresh).
+# Keep /marketing/signup, /marketing/admin, /marketing/thank-you unredirected below -
+# they are wired to a live Stripe checkout flow on the api.thebytelite.com backend.
+
+/heartstrings              /products/heartstrings-play                                              301
+/heartstrings-app          /products/heartstrings-connect                                            301
+/about                     /company                                                                  301
+/status                    /progress                                                                 301
+/research                  /technologies                                                              301
+/technology                /technologies                                                              301
+/deepkore                  /technologies/deep-kore                                                    301
+/deepkore-lab              /technologies/deep-kore                                                    301
+/marketing                 /products/heartstrings-connect/date-planning/restaurants/partner-program   301
+/licensing                 /company/partnerships                                                      301
+/ethics                    /architecture/proof-and-claim-posture                                      301
+/ai-safety                 /architecture/governance-and-intrinsic-halting                              301
+/news                      /progress/changelog                                                        301
+/subscribe                 /preorder                                                                  301
+/demo                      /technologies/bytelite                                                     301

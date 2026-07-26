@@ -18,6 +18,21 @@ const {
 } = Astro.props;
 
 const canonicalURL = canonical || Astro.url.href;
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'ByteLite LLC',
+  url: 'https://www.thebytelite.com',
+  logo: 'https://www.thebytelite.com/bytelite-logo.png',
+  foundingDate: '2024',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Helena',
+    addressRegion: 'MT',
+    addressCountry: 'US',
+  },
+};
 ---
 
 <!DOCTYPE html>
@@ -56,6 +71,8 @@ const canonicalURL = canonical || Astro.url.href;
 
   <!-- Cloudflare Beacon -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": ""}' is:inline></script>
+
+  <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
 </head>
 <body>
   <slot name="header" />

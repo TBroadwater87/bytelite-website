@@ -3,6 +3,16 @@ import Layout from '../../../../../layouts/Layout.astro';
 import Header from '../../../../../components/Header.astro';
 import Footer from '../../../../../components/Footer.astro';
 import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
+
+const offerJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Offer',
+  name: 'HeartStrings Restaurant Partner Program - Pilot Placement',
+  price: '20.00',
+  priceCurrency: 'USD',
+  availability: 'https://schema.org/InStock',
+  url: 'https://www.thebytelite.com/products/heartstrings-connect/date-planning/restaurants/partner-program',
+};
 ---
 
 <Layout
@@ -11,6 +21,7 @@ import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
   keywords="HeartStrings restaurant promotion, featured date location, restaurant marketing pilot, thebytelite"
 >
   <Header slot="header" />
+  <script type="application/ld+json" set:html={JSON.stringify(offerJsonLd)} />
   <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'HeartStrings Connect', href: '/products/heartstrings-connect' }, { label: 'Date Planning', href: '/products/heartstrings-connect/date-planning' }, { label: 'Restaurants', href: '/products/heartstrings-connect/date-planning/restaurants' }, { label: 'Restaurant Partner Program' }]} /></div></section>
 
   <!-- Hero -->

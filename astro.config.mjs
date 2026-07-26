@@ -7,7 +7,9 @@ export default defineConfig({
   site: "https://www.thebytelite.com",
   integrations: [
     tailwind(),
-    sitemap(),
+    sitemap({
+      filter: (page) => !/\/(marketing\/admin|preorder\/status)\/?$/.test(page),
+    }),
     react()
   ],
   build: {

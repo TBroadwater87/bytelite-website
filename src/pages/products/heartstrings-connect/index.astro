@@ -7,6 +7,16 @@ import ProductSubNav from '../../../components/ProductSubNav.astro';
 import StatusBadge from '../../../components/StatusBadge.astro';
 import { HEARTSTRINGS_CONNECT } from '../../../data/projects';
 
+const softwareAppJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'HeartStrings Connect',
+  description: HEARTSTRINGS_CONNECT.shortDescription,
+  applicationCategory: 'LifestyleApplication',
+  operatingSystem: 'Android',
+  publisher: { '@type': 'Organization', name: 'ByteLite LLC' },
+};
+
 const SUBNAV = [
   { label: 'Overview', href: '/products/heartstrings-connect' },
   { label: 'Compatibility & Matching', href: '/products/heartstrings-connect/compatibility-and-matching' },
@@ -26,6 +36,7 @@ const SUBNAV = [
   keywords="HeartStrings Connect, private beta, compatibility, privacy-first dating, ByteLite LLC"
 >
   <Header slot="header" />
+  <script type="application/ld+json" set:html={JSON.stringify(softwareAppJsonLd)} />
   <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'HeartStrings Connect' }]} /></div></section>
   <ProductSubNav items={SUBNAV} />
 
