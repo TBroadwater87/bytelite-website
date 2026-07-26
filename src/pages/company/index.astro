@@ -1,0 +1,99 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductSubNav from '../../components/ProductSubNav.astro';
+
+const SUBNAV = [
+  { label: 'About', href: '/company' },
+  { label: 'Founder', href: '/company/founder' },
+  { label: 'Partnerships', href: '/company/partnerships' },
+  { label: 'Investors', href: '/company/investors' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'Legal', href: '/company/legal' },
+];
+---
+
+<Layout
+  title="About ByteLite LLC"
+  description="ByteLite LLC is a founder-led company from Helena, Montana building deterministic technology infrastructure and privacy-first public products."
+  keywords="About ByteLite LLC, Helena Montana, founder-led, Tash Broadwater"
+>
+  <Header slot="header" />
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Company' }]} /></div></section>
+  <ProductSubNav items={SUBNAV} />
+
+  <section class="about-hero">
+    <div class="container">
+      <p class="eyebrow">About</p>
+      <h1>ByteLite LLC</h1>
+      <p class="about-sub">A founder-led company building deterministic technology infrastructure and privacy-first public products from Helena, Montana.</p>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="asset-ph-grid" style="grid-template-columns:2fr 1fr;">
+        <div class="asset-ph" style="aspect-ratio:3/2;" role="img" aria-label="Founder at the workbench — Tash Broadwater working in Helena, Montana">
+          <span class="asset-ph-tag">Asset pending</span>
+          <span class="asset-ph-path">/about/founder-workbench.jpg</span>
+          <span class="asset-ph-alt">Founder at the workbench — Tash Broadwater working in Helena, Montana</span>
+        </div>
+        <img src="/about/montana-lineart.png" alt="Montana line-art illustration" style="width:100%;display:block;height:auto;align-self:center;border-radius:10px;" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container about-grid">
+      <div class="about-text">
+        <p class="eyebrow">The Company</p>
+        <h2>One founder. A layered technology stack. Clear status.</h2>
+        <p style="margin-top:1.25rem;font-size:1.0625rem;line-height:1.8;">
+          ByteLite LLC was founded in 2024 by Tash Broadwater in Helena, Montana, to build
+          deterministic technology infrastructure — structure, vision, reasoning, and governed
+          action — under one architecture.
+        </p>
+        <p style="margin-top:1rem;font-size:1.0625rem;line-height:1.8;">
+          HeartStrings Play and HeartStrings Connect are the company's flagship public-facing
+          products, built on top of that architecture. They give the underlying research a
+          concrete, human context: consent, compatibility, preference, and real-world safety.
+        </p>
+        <p style="margin-top:1rem;font-size:1.0625rem;line-height:1.8;">
+          ByteLite LLC is proof-gated: product claims are made only when they can be defended. See
+          <a href="/architecture" style="color:#818cf8;">the Architecture</a> for the system design
+          and claim boundaries, and <a href="/progress" style="color:#818cf8;">Progress</a> for
+          current status.
+        </p>
+      </div>
+      <div class="about-cards">
+        <div class="card about-info-card"><div class="about-info-label">Founded</div><div class="about-info-value">2024</div></div>
+        <div class="card about-info-card"><div class="about-info-label">Location</div><div class="about-info-value">Helena, Montana</div></div>
+        <div class="card about-info-card"><div class="about-info-label">Structure</div><div class="about-info-value">Solo-founder LLC</div></div>
+        <div class="card about-info-card"><div class="about-info-label">Flagship products</div><div class="about-info-value">HeartStrings Play &amp; Connect</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:760px;text-align:center;">
+      <a href="/technologies" class="btn btn-outline" style="margin-right:.75rem;">Explore the Technologies</a>
+      <a href="/company/founder" class="btn btn-outline">Meet the Founder</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.about-hero { padding: 4.5rem 0 4rem; }
+.about-hero h1 { max-width: 480px; }
+.about-sub { max-width: 560px; margin-top: 1rem; font-size: 1.0625rem; color: #7b829e; line-height: 1.75; }
+.about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 4rem; align-items: start; }
+@media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+.about-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.about-info-card { padding: 1.25rem; }
+.about-info-label { font-size: .75rem; color: #4a5068; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .375rem; }
+.about-info-value { font-size: 1rem; font-weight: 500; color: #e4e7f2; line-height: 1.4; }
+</style>

@@ -30,34 +30,40 @@ import Footer from '../components/Footer.astro';
       <!-- Form -->
       <div class="ct-form-area">
         <h2 style="margin-bottom:1.75rem;">Send a message.</h2>
-        <form class="ct-form" action="#" method="POST">
+        <form class="ct-form" id="ct-form" novalidate>
           <div class="ct-field">
             <label for="ct-name">Name</label>
-            <input type="text" id="ct-name" name="name" placeholder="Your name" required />
+            <input type="text" id="ct-name" name="name" placeholder="Your name" required maxlength="200" />
           </div>
           <div class="ct-field">
             <label for="ct-email">Email</label>
-            <input type="email" id="ct-email" name="email" placeholder="you@example.com" required />
+            <input type="email" id="ct-email" name="email" placeholder="you@example.com" required maxlength="200" />
           </div>
           <div class="ct-field">
             <label for="ct-subject">Inquiry type</label>
-            <select id="ct-subject" name="subject">
+            <select id="ct-subject" name="inquiryType" required>
               <option value="">Select an inquiry type</option>
+              <option value="general">General inquiry</option>
+              <option value="technology-partnership">Technology partnership</option>
+              <option value="licensing">Licensing</option>
+              <option value="validation-partnership">Validation partnership</option>
+              <option value="investor">Investor inquiry</option>
+              <option value="manufacturing">Manufacturing</option>
+              <option value="distribution">Distribution</option>
+              <option value="restaurant-partnership">Restaurant partnership</option>
               <option value="heartstrings-play">HeartStrings Play — pre-launch interest</option>
               <option value="heartstrings-connect">HeartStrings Connect — beta interest</option>
-              <option value="partnership">Partnership inquiry</option>
-              <option value="research">Research inquiry</option>
-              <option value="architecture">Architecture / Research inquiry</option>
-              <option value="investor">Investor inquiry</option>
-              <option value="general">General</option>
+              <option value="byteoracle">ByteOracle inquiry</option>
+              <option value="preorder-support">Preorder support</option>
+              <option value="privacy-request">Privacy request</option>
             </select>
           </div>
           <div class="ct-field">
             <label for="ct-message">Message</label>
-            <textarea id="ct-message" name="message" rows="5" placeholder="Your message..." required></textarea>
+            <textarea id="ct-message" name="message" rows="5" placeholder="Your message..." required maxlength="5000"></textarea>
           </div>
           <button type="submit" class="btn btn-primary ct-submit">Send Message</button>
-          <p class="ct-note">Your message is sent directly. No CRM. No automated tracking.</p>
+          <p class="ct-note" id="ct-status" role="status" aria-live="polite">Your message is sent directly. No CRM. No automated tracking.</p>
         </form>
       </div>
 
@@ -110,6 +116,42 @@ import Footer from '../components/Footer.astro';
 
   <Footer slot="footer" />
 </Layout>
+
+<script>
+  const form = document.getElementById('ct-form') as HTMLFormElement | null;
+  const status = document.getElementById('ct-status');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    const data = new FormData(form);
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+    if (submitBtn) submitBtn.disabled = true;
+    if (status) status.textContent = 'Sending…';
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.get('name'),
+          email: data.get('email'),
+          inquiryType: data.get('inquiryType'),
+          message: data.get('message'),
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json.error || 'Something went wrong. Please try again.');
+      if (status) status.textContent = 'Message received. We typically respond within 1-3 business days.';
+      form.reset();
+    } catch (err) {
+      if (status) status.textContent = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  });
+</script>
 
 <style>
 

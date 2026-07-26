@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductSubNav from '../../components/ProductSubNav.astro';
+
+const SUBNAV = [
+  { label: 'About', href: '/company' },
+  { label: 'Founder', href: '/company/founder' },
+  { label: 'Partnerships', href: '/company/partnerships' },
+  { label: 'Investors', href: '/company/investors' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'Legal', href: '/company/legal' },
+];
+---
+
+<Layout
+  title="Legal | ByteLite LLC"
+  description="Legal pages for ByteLite LLC: terms of use, privacy policy, preorder terms, and responsible disclosure."
+  keywords="ByteLite LLC legal, terms, privacy policy"
+>
+  <Header slot="header" />
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Company', href: '/company' }, { label: 'Legal' }]} /></div></section>
+  <ProductSubNav items={SUBNAV} />
+
+  <section class="lg-hero">
+    <div class="container" style="max-width:760px;">
+      <p class="eyebrow">Legal</p>
+      <h1>Legal Pages</h1>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:760px;">
+      <div class="lg-list">
+        <a href="/terms" class="card lg-item"><h3>Terms of Use</h3><p>Governs use of this website.</p></a>
+        <a href="/privacy" class="card lg-item"><h3>Privacy Policy</h3><p>What this website collects and what it never does.</p></a>
+        <a href="/preorder/terms" class="card lg-item"><h3>Preorder Terms</h3><p>Founder reservation and preorder terms.</p></a>
+        <a href="/responsible-disclosure" class="card lg-item"><h3>Responsible Disclosure</h3><p>How to report a security vulnerability.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.lg-hero { padding: 4.5rem 0 3.5rem; }
+.lg-list { display: flex; flex-direction: column; gap: 1rem; }
+.lg-item h3 { color: #818cf8; margin-bottom: .375rem; }
+.lg-item p { font-size: .875rem; color: #7b829e; margin: 0; }
+</style>

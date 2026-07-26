@@ -1,0 +1,62 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductSubNav from '../../components/ProductSubNav.astro';
+
+const SUBNAV = [
+  { label: 'About', href: '/company' },
+  { label: 'Founder', href: '/company/founder' },
+  { label: 'Partnerships', href: '/company/partnerships' },
+  { label: 'Investors', href: '/company/investors' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'Legal', href: '/company/legal' },
+];
+---
+
+<Layout
+  title="Partnerships | ByteLite LLC"
+  description="Technology, licensing, validation, manufacturing, distribution, and restaurant partnership inquiries for ByteLite LLC."
+  keywords="ByteLite LLC partnerships, licensing, manufacturing, distribution"
+>
+  <Header slot="header" />
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Company', href: '/company' }, { label: 'Partnerships' }]} /></div></section>
+  <ProductSubNav items={SUBNAV} />
+
+  <section class="pt-hero">
+    <div class="container" style="max-width:760px;">
+      <p class="eyebrow">Partnerships</p>
+      <h1>Partnership Constraints</h1>
+      <p class="pt-p">
+        Core research is handled with strict IP control, private validation boundaries, and
+        proof-gated disclosure. ByteLite LLC is open to serious diligence conversations, but does
+        not expose private mechanisms publicly during validation.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:760px;">
+      <h2 style="margin-bottom:1.5rem;">Inquiry categories</h2>
+      <div class="pt-list">
+        <div class="pt-item"><span class="pt-dot" style="background:#6366f1;"></span>Technology &amp; validation partnerships</div>
+        <div class="pt-item"><span class="pt-dot" style="background:#a78bfa;"></span>Licensing inquiries</div>
+        <div class="pt-item"><span class="pt-dot" style="background:#34d399;"></span>Manufacturing</div>
+        <div class="pt-item"><span class="pt-dot" style="background:#fbbf24;"></span>Distribution</div>
+        <div class="pt-item"><span class="pt-dot" style="background:#ec4899;"></span>Restaurant partnerships (<a href="/products/heartstrings-connect/date-planning/restaurants/partner-program" style="color:#818cf8;">see the pilot program</a>)</div>
+      </div>
+      <a href="/contact" class="btn btn-outline" style="margin-top:2rem;">Contact ByteLite LLC</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.pt-hero { padding: 4.5rem 0 3.5rem; }
+.pt-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
+.pt-list { display: flex; flex-direction: column; gap: .875rem; }
+.pt-item { display: flex; align-items: center; gap: .75rem; font-size: .9375rem; color: #a0a8c0; }
+.pt-dot { width: .5rem; height: .5rem; border-radius: 50%; flex-shrink: 0; }
+</style>

@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductSubNav from '../../components/ProductSubNav.astro';
+
+const SUBNAV = [
+  { label: 'About', href: '/company' },
+  { label: 'Founder', href: '/company/founder' },
+  { label: 'Partnerships', href: '/company/partnerships' },
+  { label: 'Investors', href: '/company/investors' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'Legal', href: '/company/legal' },
+];
+---
+
+<Layout
+  title="Investors | ByteLite LLC"
+  description="Investor conversations with ByteLite LLC, a founder-led company building deterministic technology infrastructure and the HeartStrings consumer products."
+  keywords="ByteLite LLC investors, investment inquiry"
+>
+  <Header slot="header" />
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Company', href: '/company' }, { label: 'Investors' }]} /></div></section>
+  <ProductSubNav items={SUBNAV} />
+
+  <section class="iv-hero">
+    <div class="container" style="max-width:760px;">
+      <p class="eyebrow">Investors</p>
+      <h1>Founder-led. No overclaiming for a raise.</h1>
+      <p class="iv-p">
+        ByteLite LLC is a solo-founder LLC. Investor conversations are welcome, but every claim
+        made in an investor conversation is held to the same proof-gated standard as this public
+        site — see <a href="/architecture/proof-and-claim-posture" style="color:#818cf8;">Proof and Claim Posture</a>
+        and <a href="/progress" style="color:#818cf8;">current status</a> before reaching out.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:760px;text-align:center;">
+      <a href="/contact" class="btn btn-primary">Start an Investor Conversation</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.iv-hero { padding: 4.5rem 0 3.5rem; }
+.iv-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
+</style>

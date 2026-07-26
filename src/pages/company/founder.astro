@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductSubNav from '../../components/ProductSubNav.astro';
+
+const SUBNAV = [
+  { label: 'About', href: '/company' },
+  { label: 'Founder', href: '/company/founder' },
+  { label: 'Partnerships', href: '/company/partnerships' },
+  { label: 'Investors', href: '/company/investors' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'Legal', href: '/company/legal' },
+];
+---
+
+<Layout
+  title="Founder | ByteLite LLC"
+  description="Tash Broadwater founded ByteLite LLC in Helena, Montana in 2024."
+  keywords="ByteLite LLC founder, Tash Broadwater"
+>
+  <Header slot="header" />
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Company', href: '/company' }, { label: 'Founder' }]} /></div></section>
+  <ProductSubNav items={SUBNAV} />
+
+  <section class="fo-hero">
+    <div class="container" style="max-width:760px;">
+      <p class="eyebrow">Founder</p>
+      <h1>Tash Broadwater</h1>
+      <p class="fo-p">
+        Tash Broadwater founded ByteLite LLC in 2024 in Helena, Montana, as a solo-founder LLC
+        building deterministic technology infrastructure alongside the HeartStrings consumer
+        products.
+      </p>
+      <p class="fo-p" style="margin-top:1rem;color:#555e7a;font-size:.9375rem;">
+        Additional founder biography details beyond what's stated here are not yet published on
+        this site.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:760px;text-align:center;">
+      <a href="/contact" class="btn btn-primary">Contact the Founder</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.fo-hero { padding: 4.5rem 0 3.5rem; }
+.fo-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
+</style>
