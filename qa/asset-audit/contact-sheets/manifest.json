@@ -1,0 +1,3517 @@
+{
+  "generatedAt": "2026-07-27T06:18:17.476Z",
+  "perSheet": 30,
+  "sheets": [
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-001.png",
+      "sheetIndex": 1,
+      "entries": [
+        {
+          "sequence": 1,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Board_Design\\Base_3.svg",
+          "originalFilename": "Base_3.svg",
+          "recordIndex": 0,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 2,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Board_Design\\board_40_spaces.svg",
+          "originalFilename": "board_40_spaces.svg",
+          "recordIndex": 1,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 3,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Board_Design\\board_50_spaces.svg",
+          "originalFilename": "board_50_spaces.svg",
+          "recordIndex": 2,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 4,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Board_Design\\board_with_centerline.svg",
+          "originalFilename": "board_with_centerline.svg",
+          "recordIndex": 3,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 5,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Board_Design\\HeartStrings_BG_40x20_Path.svg",
+          "originalFilename": "HeartStrings_BG_40x20_Path.svg",
+          "recordIndex": 5,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 6,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Board_Design\\HeartStrings_BG_40x40.svg",
+          "originalFilename": "HeartStrings_BG_40x40.svg",
+          "recordIndex": 6,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 7,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Board_Design\\HeartStrings_Board_path_outline_40x20.png",
+          "originalFilename": "HeartStrings_Board_path_outline_40x20.png",
+          "recordIndex": 8,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 8,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Board_Design\\Outer.svg",
+          "originalFilename": "Outer.svg",
+          "recordIndex": 9,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 9,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Board_Design\\rect31.svg",
+          "originalFilename": "rect31.svg",
+          "recordIndex": 10,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 10,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\001.jpg",
+          "originalFilename": "001.jpg",
+          "recordIndex": 11,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 11,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\004.jpg",
+          "originalFilename": "004.jpg",
+          "recordIndex": 12,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 12,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\005.jpg",
+          "originalFilename": "005.jpg",
+          "recordIndex": 13,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 13,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\006.jpg",
+          "originalFilename": "006.jpg",
+          "recordIndex": 14,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 14,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\007.jpg",
+          "originalFilename": "007.jpg",
+          "recordIndex": 15,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 15,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\009.jpg",
+          "originalFilename": "009.jpg",
+          "recordIndex": 16,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 16,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\010.jpg",
+          "originalFilename": "010.jpg",
+          "recordIndex": 17,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 17,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\011.jpg",
+          "originalFilename": "011.jpg",
+          "recordIndex": 18,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 18,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\013.jpg",
+          "originalFilename": "013.jpg",
+          "recordIndex": 19,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 19,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\014.jpg",
+          "originalFilename": "014.jpg",
+          "recordIndex": 20,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 20,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\015.jpg",
+          "originalFilename": "015.jpg",
+          "recordIndex": 21,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 21,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\016.jpg",
+          "originalFilename": "016.jpg",
+          "recordIndex": 22,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 22,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\ChatGPT Image Apr 7, 2026, 04_04_15 PM.png",
+          "originalFilename": "ChatGPT Image Apr 7, 2026, 04_04_15 PM.png",
+          "recordIndex": 23,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 23,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\ChatGPT Image Apr 7, 2026, 04_11_12 PM.png",
+          "originalFilename": "ChatGPT Image Apr 7, 2026, 04_11_12 PM.png",
+          "recordIndex": 24,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 24,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\ChatGPT Image Apr 7, 2026, 05_47_04 PM.png",
+          "originalFilename": "ChatGPT Image Apr 7, 2026, 05_47_04 PM.png",
+          "recordIndex": 25,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 25,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\ChatGPT Image Apr 7, 2026, 06_38_43 PM.png",
+          "originalFilename": "ChatGPT Image Apr 7, 2026, 06_38_43 PM.png",
+          "recordIndex": 26,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 26,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\ChatGPT Image Apr 7, 2026, 07_10_14 PM.png",
+          "originalFilename": "ChatGPT Image Apr 7, 2026, 07_10_14 PM.png",
+          "recordIndex": 27,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 27,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\ChatGPT Image Apr 7, 2026, 07_10_24 PM.png",
+          "originalFilename": "ChatGPT Image Apr 7, 2026, 07_10_24 PM.png",
+          "recordIndex": 28,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 28,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\ChatGPT Image Apr 8, 2026, 12_46_18 PM.png",
+          "originalFilename": "ChatGPT Image Apr 8, 2026, 12_46_18 PM.png",
+          "recordIndex": 29,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 29,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\Generated_Card_Art\\HeartStrings_CardBack_blank_red_template.png",
+          "originalFilename": "HeartStrings_CardBack_blank_red_template.png",
+          "recordIndex": 30,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 30,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\HeartStrings_Duo_Crimson_E3_Sorted\\05_PICK_Duo_Closeup_Lean.png",
+          "originalFilename": "05_PICK_Duo_Closeup_Lean.png",
+          "recordIndex": 35,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-002.png",
+      "sheetIndex": 2,
+      "entries": [
+        {
+          "sequence": 31,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\HeartStrings_Duo_Crimson_E3_Sorted\\Var_06_StraightPair_NoProp.png",
+          "originalFilename": "Var_06_StraightPair_NoProp.png",
+          "recordIndex": 36,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 32,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\HeartStrings_Duo_Crimson_E3_Sorted\\Var_07_ShoulderHand_Jewelry.png",
+          "originalFilename": "Var_07_ShoulderHand_Jewelry.png",
+          "recordIndex": 37,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 33,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\HeartStrings_Duo_Crimson_E3_Sorted\\Var_08_Tight_ShoulderLean.png",
+          "originalFilename": "Var_08_Tight_ShoulderLean.png",
+          "recordIndex": 38,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 34,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\HeartStrings_Duo_Crimson_E3_Sorted\\Var_09_Cozy_Chips.png",
+          "originalFilename": "Var_09_Cozy_Chips.png",
+          "recordIndex": 39,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 35,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Cards_Decks\\HeartStrings_Duo_Crimson_E3_Sorted\\Var_10_HandToEar_PaintingBG.png",
+          "originalFilename": "Var_10_HandToEar_PaintingBG.png",
+          "recordIndex": 40,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 36,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\ChatGPT Image Apr 15, 2026, 12_49_42 PM.png",
+          "originalFilename": "ChatGPT Image Apr 15, 2026, 12_49_42 PM.png",
+          "recordIndex": 41,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 37,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\ChatGPT Image Apr 15, 2026, 12_49_54 PM.png",
+          "originalFilename": "ChatGPT Image Apr 15, 2026, 12_49_54 PM.png",
+          "recordIndex": 42,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 38,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\ChatGPT Image Apr 15, 2026, 12_50_01 PM.png",
+          "originalFilename": "ChatGPT Image Apr 15, 2026, 12_50_01 PM.png",
+          "recordIndex": 43,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 39,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\ChatGPT Image Apr 15, 2026, 12_50_19 PM.png",
+          "originalFilename": "ChatGPT Image Apr 15, 2026, 12_50_19 PM.png",
+          "recordIndex": 44,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 40,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\ChatGPT Image Apr 15, 2026, 12_50_26 PM.png",
+          "originalFilename": "ChatGPT Image Apr 15, 2026, 12_50_26 PM.png",
+          "recordIndex": 45,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 41,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\ChatGPT Image Apr 15, 2026, 12_50_37 PM.png",
+          "originalFilename": "ChatGPT Image Apr 15, 2026, 12_50_37 PM.png",
+          "recordIndex": 46,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 42,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\ChatGPT Image Apr 26, 2026, 05_01_57 PM.png",
+          "originalFilename": "ChatGPT Image Apr 26, 2026, 05_01_57 PM.png",
+          "recordIndex": 47,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 43,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\HeartStrings_BG_Drink.png",
+          "originalFilename": "HeartStrings_BG_Drink.png",
+          "recordIndex": 51,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 44,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\HeartStrings_BG_Halo.png",
+          "originalFilename": "HeartStrings_BG_Halo.png",
+          "recordIndex": 52,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 45,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\HeartStrings_BG_Hands.png",
+          "originalFilename": "HeartStrings_BG_Hands.png",
+          "recordIndex": 53,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 46,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\HeartStrings_BG_Hearts.png",
+          "originalFilename": "HeartStrings_BG_Hearts.png",
+          "recordIndex": 54,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 47,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\HeartStrings_BG_Social.png",
+          "originalFilename": "HeartStrings_BG_Social.png",
+          "recordIndex": 55,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 48,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\HeartStrings_BG_Strip.png",
+          "originalFilename": "HeartStrings_BG_Strip.png",
+          "recordIndex": 56,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 49,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\HeartStrings_BG_Drink.png",
+          "originalFilename": "HeartStrings_BG_Drink.png",
+          "recordIndex": 57,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 50,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\HeartStrings_BG_Edge.png",
+          "originalFilename": "HeartStrings_BG_Edge.png",
+          "recordIndex": 58,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 51,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\HeartStrings_BG_Halo.png",
+          "originalFilename": "HeartStrings_BG_Halo.png",
+          "recordIndex": 59,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 52,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\HeartStrings_BG_Hands.png",
+          "originalFilename": "HeartStrings_BG_Hands.png",
+          "recordIndex": 60,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 53,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\HeartStrings_BG_Hearts.png",
+          "originalFilename": "HeartStrings_BG_Hearts.png",
+          "recordIndex": 61,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 54,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\HeartStrings_BG_Social.png",
+          "originalFilename": "HeartStrings_BG_Social.png",
+          "recordIndex": 62,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 55,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\HeartStrings_BG_Strip.png",
+          "originalFilename": "HeartStrings_BG_Strip.png",
+          "recordIndex": 63,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 56,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\HeartStrings_BG_Title.png",
+          "originalFilename": "HeartStrings_BG_Title.png",
+          "recordIndex": 64,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 57,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Mockups\\zip_extracted\\ChatGPT Image Apr 14, 2026, 12_13_21 PM.png",
+          "originalFilename": "ChatGPT Image Apr 14, 2026, 12_13_21 PM.png",
+          "recordIndex": 71,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 58,
+          "originalPath": "D:\\Download\\01_HeartStrings_Boardgame\\Mockups\\zip_extracted\\ChatGPT Image Apr 7, 2026, 07_10_24 PM.png",
+          "originalFilename": "ChatGPT Image Apr 7, 2026, 07_10_24 PM.png",
+          "recordIndex": 72,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 59,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\app_icons\\knot-heart-dark.png",
+          "originalFilename": "knot-heart-dark.png",
+          "recordIndex": 78,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 60,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\app_icons\\knot-heart-dark.svg",
+          "originalFilename": "knot-heart-dark.svg",
+          "recordIndex": 79,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-003.png",
+      "sheetIndex": 3,
+      "entries": [
+        {
+          "sequence": 61,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\app_icons\\knot-heart-light.png",
+          "originalFilename": "knot-heart-light.png",
+          "recordIndex": 80,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 62,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\app_icons\\knot-heart-light.svg",
+          "originalFilename": "knot-heart-light.svg",
+          "recordIndex": 81,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 63,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\app_icons\\protected-heart-dark.png",
+          "originalFilename": "protected-heart-dark.png",
+          "recordIndex": 82,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 64,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\app_icons\\protected-heart-dark.svg",
+          "originalFilename": "protected-heart-dark.svg",
+          "recordIndex": 83,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 65,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\app_icons\\protected-heart-light.png",
+          "originalFilename": "protected-heart-light.png",
+          "recordIndex": 84,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 66,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\app_icons\\protected-heart-light.svg",
+          "originalFilename": "protected-heart-light.svg",
+          "recordIndex": 85,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 67,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\app_icons\\tension-lines-dark.png",
+          "originalFilename": "tension-lines-dark.png",
+          "recordIndex": 86,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 68,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\app_icons\\tension-lines-dark.svg",
+          "originalFilename": "tension-lines-dark.svg",
+          "recordIndex": 87,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 69,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\app_icons\\tension-lines-light.png",
+          "originalFilename": "tension-lines-light.png",
+          "recordIndex": 88,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 70,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\app_icons\\tension-lines-light.svg",
+          "originalFilename": "tension-lines-light.svg",
+          "recordIndex": 89,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 71,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\previews\\icon-sheet-light.svg",
+          "originalFilename": "icon-sheet-light.svg",
+          "recordIndex": 91,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 72,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\connections-loop-heart.svg",
+          "originalFilename": "connections-loop-heart.svg",
+          "recordIndex": 95,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 73,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\heartstrings-mark.svg",
+          "originalFilename": "heartstrings-mark.svg",
+          "recordIndex": 98,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 74,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\messages-bubble-string.svg",
+          "originalFilename": "messages-bubble-string.svg",
+          "recordIndex": 100,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 75,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\profile-heart-ring.svg",
+          "originalFilename": "profile-heart-ring.svg",
+          "recordIndex": 103,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 76,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\relationship-intent-path-heart.svg",
+          "originalFilename": "relationship-intent-path-heart.svg",
+          "recordIndex": 104,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 77,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\values-home-heart.svg",
+          "originalFilename": "values-home-heart.svg",
+          "recordIndex": 108,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 78,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\age-verified-id-check.svg",
+          "originalFilename": "age-verified-id-check.svg",
+          "recordIndex": 110,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 79,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\block-person-slash.svg",
+          "originalFilename": "block-person-slash.svg",
+          "recordIndex": 111,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 80,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\compatibility-heart-checkgrid.svg",
+          "originalFilename": "compatibility-heart-checkgrid.svg",
+          "recordIndex": 112,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 81,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\connections-loop-heart.svg",
+          "originalFilename": "connections-loop-heart.svg",
+          "recordIndex": 113,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 82,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\consent-open-palm-heart.svg",
+          "originalFilename": "consent-open-palm-heart.svg",
+          "recordIndex": 114,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 83,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\discover-compass-heart.svg",
+          "originalFilename": "discover-compass-heart.svg",
+          "recordIndex": 115,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 84,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\heartstrings-mark.svg",
+          "originalFilename": "heartstrings-mark.svg",
+          "recordIndex": 116,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 85,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\location-verified-pin-check.svg",
+          "originalFilename": "location-verified-pin-check.svg",
+          "recordIndex": 117,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 86,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\messages-bubble-string.svg",
+          "originalFilename": "messages-bubble-string.svg",
+          "recordIndex": 118,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 87,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\photo-recency-camera-check.svg",
+          "originalFilename": "photo-recency-camera-check.svg",
+          "recordIndex": 119,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 88,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\privacy-lock-heart.svg",
+          "originalFilename": "privacy-lock-heart.svg",
+          "recordIndex": 120,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 89,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\profile-heart-ring.svg",
+          "originalFilename": "profile-heart-ring.svg",
+          "recordIndex": 121,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 90,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\relationship-intent-path-heart.svg",
+          "originalFilename": "relationship-intent-path-heart.svg",
+          "recordIndex": 122,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-004.png",
+      "sheetIndex": 4,
+      "entries": [
+        {
+          "sequence": 91,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\report-flag-alert.svg",
+          "originalFilename": "report-flag-alert.svg",
+          "recordIndex": 123,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 92,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\safety-center-shield-knot.svg",
+          "originalFilename": "safety-center-shield-knot.svg",
+          "recordIndex": 124,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 93,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\schedule-calendar-heart.svg",
+          "originalFilename": "schedule-calendar-heart.svg",
+          "recordIndex": 125,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 94,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\values-home-heart.svg",
+          "originalFilename": "values-home-heart.svg",
+          "recordIndex": 126,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 95,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\verified-shield-heart.svg",
+          "originalFilename": "verified-shield-heart.svg",
+          "recordIndex": 127,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 96,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\ChatGPT Image Feb 19, 2026, 08_36_46 PM.png",
+          "originalFilename": "ChatGPT Image Feb 19, 2026, 08_36_46 PM.png",
+          "recordIndex": 128,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 97,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\ChatGPT Image Feb 19, 2026, 08_46_35 PM.png",
+          "originalFilename": "ChatGPT Image Feb 19, 2026, 08_46_35 PM.png",
+          "recordIndex": 129,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 98,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\ChatGPT Image Feb 2, 2026, 08_56_31 AM.png",
+          "originalFilename": "ChatGPT Image Feb 2, 2026, 08_56_31 AM.png",
+          "recordIndex": 130,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 99,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\ChatGPT Image Feb 2, 2026, 08_56_37 AM.png",
+          "originalFilename": "ChatGPT Image Feb 2, 2026, 08_56_37 AM.png",
+          "recordIndex": 131,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 100,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\ChatGPT Image Feb 2, 2026, 08_56_47 AM.png",
+          "originalFilename": "ChatGPT Image Feb 2, 2026, 08_56_47 AM.png",
+          "recordIndex": 132,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 101,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\ChatGPT Image Feb 2, 2026, 08_56_55 AM.png",
+          "originalFilename": "ChatGPT Image Feb 2, 2026, 08_56_55 AM.png",
+          "recordIndex": 133,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 102,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\ChatGPT Image Feb 2, 2026, 08_57_00 AM.png",
+          "originalFilename": "ChatGPT Image Feb 2, 2026, 08_57_00 AM.png",
+          "recordIndex": 134,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 103,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\ChatGPT Image Feb 2, 2026, 08_57_11 AM.png",
+          "originalFilename": "ChatGPT Image Feb 2, 2026, 08_57_11 AM.png",
+          "recordIndex": 135,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 104,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\ChatGPT Image Feb 4, 2026, 01_22_59 PM.png",
+          "originalFilename": "ChatGPT Image Feb 4, 2026, 01_22_59 PM.png",
+          "recordIndex": 136,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 105,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\ChatGPT Image Feb 4, 2026, 01_36_28 PM.png",
+          "originalFilename": "ChatGPT Image Feb 4, 2026, 01_36_28 PM.png",
+          "recordIndex": 137,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 106,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\ChatGPT Image Feb 4, 2026, 01_37_14 PM.png",
+          "originalFilename": "ChatGPT Image Feb 4, 2026, 01_37_14 PM.png",
+          "recordIndex": 138,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 107,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\ChatGPT Image Feb 4, 2026, 12_43_18 AM.png",
+          "originalFilename": "ChatGPT Image Feb 4, 2026, 12_43_18 AM.png",
+          "recordIndex": 139,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 108,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\ChatGPT Image Feb 4, 2026, 12_43_25 AM.png",
+          "originalFilename": "ChatGPT Image Feb 4, 2026, 12_43_25 AM.png",
+          "recordIndex": 140,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 109,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\ChatGPT Image Feb 4, 2026, 12_43_47 AM.png",
+          "originalFilename": "ChatGPT Image Feb 4, 2026, 12_43_47 AM.png",
+          "recordIndex": 141,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 110,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\HeartStrings_App_AIon_keep_it_moving.png",
+          "originalFilename": "HeartStrings_App_AIon_keep_it_moving.png",
+          "recordIndex": 143,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 111,
+          "originalPath": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_UI_Screens\\HeartStrings_App_AIya_turn_sparks_match_v2.png",
+          "originalFilename": "HeartStrings_App_AIya_turn_sparks_match_v2.png",
+          "recordIndex": 153,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 112,
+          "originalPath": "D:\\Download\\04_AIya_AIon_Characters\\HeartStrings_AIya_Logo.png",
+          "originalFilename": "HeartStrings_AIya_Logo.png",
+          "recordIndex": 165,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 113,
+          "originalPath": "D:\\Download\\04_AIya_AIon_Characters\\Image_Normalization_Visual_Concept.png",
+          "originalFilename": "Image_Normalization_Visual_Concept.png",
+          "recordIndex": 167,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 114,
+          "originalPath": "D:\\Download\\04_AIya_AIon_Characters\\Silhouette_Processing\\Bootstrap_Tests\\Bootstrap_beachball_edge_mask.png",
+          "originalFilename": "Bootstrap_beachball_edge_mask.png",
+          "recordIndex": 168,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 115,
+          "originalPath": "D:\\Download\\04_AIya_AIon_Characters\\Silhouette_Processing\\Bootstrap_Tests\\Bootstrap_beachball_shadow_mask.png",
+          "originalFilename": "Bootstrap_beachball_shadow_mask.png",
+          "recordIndex": 169,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 116,
+          "originalPath": "D:\\Download\\04_AIya_AIon_Characters\\Silhouette_Processing\\Bootstrap_Tests\\Bootstrap_source_beachball.png",
+          "originalFilename": "Bootstrap_source_beachball.png",
+          "recordIndex": 170,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 117,
+          "originalPath": "D:\\Download\\04_AIya_AIon_Characters\\Silhouette_Processing\\Bootstrap_Tests\\Bootstrap_source_couple_embracing.png",
+          "originalFilename": "Bootstrap_source_couple_embracing.png",
+          "recordIndex": 171,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 118,
+          "originalPath": "D:\\Download\\04_AIya_AIon_Characters\\Silhouette_Processing\\Bootstrap_Tests\\Bootstrap_source_milk_crate.png",
+          "originalFilename": "Bootstrap_source_milk_crate.png",
+          "recordIndex": 172,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 119,
+          "originalPath": "D:\\Download\\04_AIya_AIon_Characters\\Silhouette_Processing\\Bootstrap_Tests\\Bootstrap_source_rubiks_cube.png",
+          "originalFilename": "Bootstrap_source_rubiks_cube.png",
+          "recordIndex": 173,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 120,
+          "originalPath": "D:\\Download\\04_AIya_AIon_Characters\\Silhouette_Processing\\edge_sil.png",
+          "originalFilename": "edge_sil.png",
+          "recordIndex": 174,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-005.png",
+      "sheetIndex": 5,
+      "entries": [
+        {
+          "sequence": 121,
+          "originalPath": "D:\\Download\\04_AIya_AIon_Characters\\Silhouette_Processing\\HeartStrings_Silhouette_couple_back2back_gold.png",
+          "originalFilename": "HeartStrings_Silhouette_couple_back2back_gold.png",
+          "recordIndex": 176,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 122,
+          "originalPath": "D:\\Download\\04_AIya_AIon_Characters\\Silhouette_Processing\\HeartStrings_Silhouette_couple_back2back_yellow.png",
+          "originalFilename": "HeartStrings_Silhouette_couple_back2back_yellow.png",
+          "recordIndex": 177,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 123,
+          "originalPath": "D:\\Download\\04_AIya_AIon_Characters\\Silhouette_Processing\\mask_det_allow.png",
+          "originalFilename": "mask_det_allow.png",
+          "recordIndex": 178,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 124,
+          "originalPath": "D:\\Download\\04_AIya_AIon_Characters\\Silhouette_Processing\\mask_fg.png",
+          "originalFilename": "mask_fg.png",
+          "recordIndex": 179,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 125,
+          "originalPath": "D:\\Download\\04_AIya_AIon_Characters\\Silhouette_Processing\\Silhouette.png",
+          "originalFilename": "Silhouette.png",
+          "recordIndex": 180,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 126,
+          "originalPath": "D:\\Download\\04_AIya_AIon_Characters\\Silhouette_Processing\\Silhouette_Trans_BG.png",
+          "originalFilename": "Silhouette_Trans_BG.png",
+          "recordIndex": 181,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 127,
+          "originalPath": "D:\\Download\\05_Kickstarter\\Graphics\\ChatGPT Image Apr 1, 2026, 12_48_02 PM.png",
+          "originalFilename": "ChatGPT Image Apr 1, 2026, 12_48_02 PM.png",
+          "recordIndex": 183,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 128,
+          "originalPath": "D:\\Download\\05_Kickstarter\\Graphics\\ChatGPT Image Mar 22, 2026, 10_16_46 AM.png",
+          "originalFilename": "ChatGPT Image Mar 22, 2026, 10_16_46 AM.png",
+          "recordIndex": 184,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 129,
+          "originalPath": "D:\\Download\\06_Website_and_Marketing\\Marketing_Images\\ChatGPT Image May 15, 2025, 03_48_35 PM.png",
+          "originalFilename": "ChatGPT Image May 15, 2025, 03_48_35 PM.png",
+          "recordIndex": 185,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 130,
+          "originalPath": "D:\\Download\\11_Archive_Superseded\\PersonalPhotos\\14237556_10208118245966552_1003311473077835116_n.jpg",
+          "originalFilename": "14237556_10208118245966552_1003311473077835116_n.jpg",
+          "recordIndex": 194,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 131,
+          "originalPath": "D:\\Download\\11_Archive_Superseded\\PersonalPhotos\\14237556_10208118245966552_1003311473077835116_n_layer0\\edge_sil.png",
+          "originalFilename": "edge_sil.png",
+          "recordIndex": 195,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 132,
+          "originalPath": "D:\\Download\\11_Archive_Superseded\\PersonalPhotos\\14237556_10208118245966552_1003311473077835116_n_layer0\\mask_det_allow.png",
+          "originalFilename": "mask_det_allow.png",
+          "recordIndex": 196,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 133,
+          "originalPath": "D:\\Download\\11_Archive_Superseded\\PersonalPhotos\\14237556_10208118245966552_1003311473077835116_n_layer0\\mask_fg.png",
+          "originalFilename": "mask_fg.png",
+          "recordIndex": 197,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 134,
+          "originalPath": "D:\\Download\\11_Archive_Superseded\\PersonalPhotos\\14333173_10208118311568192_237789229251391796_n.jpg",
+          "originalFilename": "14333173_10208118311568192_237789229251391796_n.jpg",
+          "recordIndex": 198,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 135,
+          "originalPath": "D:\\Download\\11_Archive_Superseded\\PersonalPhotos\\307855_3949351404866_321334659_n.jpg",
+          "originalFilename": "307855_3949351404866_321334659_n.jpg",
+          "recordIndex": 199,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 136,
+          "originalPath": "D:\\Download\\11_Archive_Superseded\\PersonalPhotos\\307855_3949351404866_321334659_n_layer0\\edge_sil.png",
+          "originalFilename": "edge_sil.png",
+          "recordIndex": 200,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 137,
+          "originalPath": "D:\\Download\\11_Archive_Superseded\\PersonalPhotos\\307855_3949351404866_321334659_n_layer0\\mask_det_allow.png",
+          "originalFilename": "mask_det_allow.png",
+          "recordIndex": 201,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 138,
+          "originalPath": "D:\\Download\\11_Archive_Superseded\\PersonalPhotos\\307855_3949351404866_321334659_n_layer0\\mask_fg.png",
+          "originalFilename": "mask_fg.png",
+          "recordIndex": 202,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 139,
+          "originalPath": "D:\\Download\\11_Archive_Superseded\\PersonalPhotos\\Man_Horse_Original.jpg",
+          "originalFilename": "Man_Horse_Original.jpg",
+          "recordIndex": 203,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 140,
+          "originalPath": "D:\\Download\\11_Archive_Superseded\\PersonalPhotos\\portrait_bearded_man_gray.png",
+          "originalFilename": "portrait_bearded_man_gray.png",
+          "recordIndex": 204,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 141,
+          "originalPath": "D:\\Download\\11_Archive_Superseded\\PersonalPhotos\\portrait_bearded_man_stylized.png",
+          "originalFilename": "portrait_bearded_man_stylized.png",
+          "recordIndex": 205,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 142,
+          "originalPath": "D:\\Download\\20x20_Board_No_Silhouette.png",
+          "originalFilename": "20x20_Board_No_Silhouette.png",
+          "recordIndex": 208,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 143,
+          "originalPath": "D:\\Download\\20x20_Path.png",
+          "originalFilename": "20x20_Path.png",
+          "recordIndex": 209,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 144,
+          "originalPath": "D:\\Download\\20x40_Board_No_Silhouette.png",
+          "originalFilename": "20x40_Board_No_Silhouette.png",
+          "recordIndex": 210,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 145,
+          "originalPath": "D:\\Download\\49_Pills_Path.svg",
+          "originalFilename": "49_Pills_Path.svg",
+          "recordIndex": 212,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 146,
+          "originalPath": "D:\\Download\\aL-GNE1cFqZWK8IUZkcNA.jpg",
+          "originalFilename": "aL-GNE1cFqZWK8IUZkcNA.jpg",
+          "recordIndex": 218,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 147,
+          "originalPath": "D:\\Download\\All_Layers.png",
+          "originalFilename": "All_Layers.png",
+          "recordIndex": 219,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 148,
+          "originalPath": "D:\\Download\\Assets\\HeartStrings_BG_Drink.png",
+          "originalFilename": "HeartStrings_BG_Drink.png",
+          "recordIndex": 220,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 149,
+          "originalPath": "D:\\Download\\Assets\\HeartStrings_BG_Halo.png",
+          "originalFilename": "HeartStrings_BG_Halo.png",
+          "recordIndex": 221,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 150,
+          "originalPath": "D:\\Download\\Assets\\HeartStrings_BG_Hands.png",
+          "originalFilename": "HeartStrings_BG_Hands.png",
+          "recordIndex": 222,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-006.png",
+      "sheetIndex": 6,
+      "entries": [
+        {
+          "sequence": 151,
+          "originalPath": "D:\\Download\\Assets\\HeartStrings_BG_Hearts.png",
+          "originalFilename": "HeartStrings_BG_Hearts.png",
+          "recordIndex": 223,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 152,
+          "originalPath": "D:\\Download\\Assets\\HeartStrings_BG_Social.png",
+          "originalFilename": "HeartStrings_BG_Social.png",
+          "recordIndex": 224,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 153,
+          "originalPath": "D:\\Download\\Assets\\HeartStrings_BG_Strip.png",
+          "originalFilename": "HeartStrings_BG_Strip.png",
+          "recordIndex": 225,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 154,
+          "originalPath": "D:\\Download\\assets_seasonal_duo_easter.png",
+          "originalFilename": "assets_seasonal_duo_easter.png",
+          "recordIndex": 229,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 155,
+          "originalPath": "D:\\Download\\assets_seasonal_duo_independence_day.png",
+          "originalFilename": "assets_seasonal_duo_independence_day.png",
+          "recordIndex": 231,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 156,
+          "originalPath": "D:\\Download\\assets_seasonal_duo_lunar_new_year.png",
+          "originalFilename": "assets_seasonal_duo_lunar_new_year.png",
+          "recordIndex": 232,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 157,
+          "originalPath": "D:\\Download\\assets_seasonal_duo_newyear_02.png",
+          "originalFilename": "assets_seasonal_duo_newyear_02.png",
+          "recordIndex": 233,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 158,
+          "originalPath": "D:\\Download\\assets_seasonal_duo_spring.png",
+          "originalFilename": "assets_seasonal_duo_spring.png",
+          "recordIndex": 234,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 159,
+          "originalPath": "D:\\Download\\assets_seasonal_duo_st_patricks.png",
+          "originalFilename": "assets_seasonal_duo_st_patricks.png",
+          "recordIndex": 235,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 160,
+          "originalPath": "D:\\Download\\assets_seasonal_duo_thanksgiving.png",
+          "originalFilename": "assets_seasonal_duo_thanksgiving.png",
+          "recordIndex": 236,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 161,
+          "originalPath": "D:\\Download\\assets_seasonal_duo_winter.png",
+          "originalFilename": "assets_seasonal_duo_winter.png",
+          "recordIndex": 238,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 162,
+          "originalPath": "D:\\Download\\b18b2ab8-3b70-4d53-9f58-3042e177219a.png",
+          "originalFilename": "b18b2ab8-3b70-4d53-9f58-3042e177219a.png",
+          "recordIndex": 240,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 163,
+          "originalPath": "D:\\Download\\Baby_Face_Layer.png",
+          "originalFilename": "Baby_Face_Layer.png",
+          "recordIndex": 241,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 164,
+          "originalPath": "D:\\Download\\Background_2_Layer.png",
+          "originalFilename": "Background_2_Layer.png",
+          "recordIndex": 242,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 165,
+          "originalPath": "D:\\Download\\Background_Layer.png",
+          "originalFilename": "Background_Layer.png",
+          "recordIndex": 243,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 166,
+          "originalPath": "D:\\Download\\Blanket.png",
+          "originalFilename": "Blanket.png",
+          "recordIndex": 244,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 167,
+          "originalPath": "D:\\Download\\Board_20_x_40.png",
+          "originalFilename": "Board_20_x_40.png",
+          "recordIndex": 248,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 168,
+          "originalPath": "D:\\Download\\Board_20_x_40_Final.png",
+          "originalFilename": "Board_20_x_40_Final.png",
+          "recordIndex": 249,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 169,
+          "originalPath": "D:\\Download\\Board_20_x_40_Silo.png",
+          "originalFilename": "Board_20_x_40_Silo.png",
+          "recordIndex": 251,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 170,
+          "originalPath": "D:\\Download\\Bottle.png",
+          "originalFilename": "Bottle.png",
+          "recordIndex": 252,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 171,
+          "originalPath": "D:\\Download\\bwuy9W2cRODLRnQkVoD7w.jpg",
+          "originalFilename": "bwuy9W2cRODLRnQkVoD7w.jpg",
+          "recordIndex": 253,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 172,
+          "originalPath": "D:\\Download\\BxCCEctTj-WftUYWZ9wfb.jpg",
+          "originalFilename": "BxCCEctTj-WftUYWZ9wfb.jpg",
+          "recordIndex": 254,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 173,
+          "originalPath": "D:\\Download\\bXLs9h5tunSODa2IOp1MG.jpg",
+          "originalFilename": "bXLs9h5tunSODa2IOp1MG.jpg",
+          "recordIndex": 255,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 174,
+          "originalPath": "D:\\Download\\ByteLite\\Branding\\Diagrams\\ByteLite_Stretch_Goals.png",
+          "originalFilename": "ByteLite_Stretch_Goals.png",
+          "recordIndex": 257,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 175,
+          "originalPath": "D:\\Download\\bytelite-structure.svg",
+          "originalFilename": "bytelite-structure.svg",
+          "recordIndex": 275,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 176,
+          "originalPath": "D:\\Download\\ByteLite_LLC_Editable_SVG_Samples\\01_symmetric_branch_tree.svg",
+          "originalFilename": "01_symmetric_branch_tree.svg",
+          "recordIndex": 288,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 177,
+          "originalPath": "D:\\Download\\ByteLite_LLC_Editable_SVG_Samples\\03_central_spine.svg",
+          "originalFilename": "03_central_spine.svg",
+          "recordIndex": 290,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 178,
+          "originalPath": "D:\\Download\\ByteLite_LLC_Editable_SVG_Samples\\04_nested_company_envelope.svg",
+          "originalFilename": "04_nested_company_envelope.svg",
+          "recordIndex": 291,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 179,
+          "originalPath": "D:\\Download\\ByteLite_LLC_Editable_SVG_Samples\\05_blueprint_rails.svg",
+          "originalFilename": "05_blueprint_rails.svg",
+          "recordIndex": 292,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 180,
+          "originalPath": "D:\\Download\\ByteLite_LLC_Editable_SVG_Samples\\07_minimal_brackets.svg",
+          "originalFilename": "07_minimal_brackets.svg",
+          "recordIndex": 294,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-007.png",
+      "sheetIndex": 7,
+      "entries": [
+        {
+          "sequence": 181,
+          "originalPath": "D:\\Download\\ByteLite_LLC_Editable_SVG_Samples\\08_layered_bands.svg",
+          "originalFilename": "08_layered_bands.svg",
+          "recordIndex": 295,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 182,
+          "originalPath": "D:\\Download\\ByteLite_LLC_Editable_SVG_Samples\\09_modular_grid.svg",
+          "originalFilename": "09_modular_grid.svg",
+          "recordIndex": 296,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 183,
+          "originalPath": "D:\\Download\\ByteLite_LLC_Editable_SVG_Samples\\10_precision_flowline.svg",
+          "originalFilename": "10_precision_flowline.svg",
+          "recordIndex": 297,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 184,
+          "originalPath": "D:\\Download\\ByteLite_LLC_Editable_SVG_Samples\\11_dual_pillars.svg",
+          "originalFilename": "11_dual_pillars.svg",
+          "recordIndex": 298,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 185,
+          "originalPath": "D:\\Download\\ByteLite_LLC_Editable_SVG_Samples\\12_contained_node_map.svg",
+          "originalFilename": "12_contained_node_map.svg",
+          "recordIndex": 299,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 186,
+          "originalPath": "D:\\Download\\ByteLite_LLC_Editable_SVG_Samples\\14_framed_section_headers.svg",
+          "originalFilename": "14_framed_section_headers.svg",
+          "recordIndex": 301,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 187,
+          "originalPath": "D:\\Download\\cb905fcd-0a4d-4998-9382-b6e4e49ec46c.png",
+          "originalFilename": "cb905fcd-0a4d-4998-9382-b6e4e49ec46c.png",
+          "recordIndex": 302,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 188,
+          "originalPath": "D:\\Download\\Chair_Layer.png",
+          "originalFilename": "Chair_Layer.png",
+          "recordIndex": 303,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 189,
+          "originalPath": "D:\\Download\\ChatGPT Image Apr 7, 2026, 07_10_14 PM.png",
+          "originalFilename": "ChatGPT Image Apr 7, 2026, 07_10_14 PM.png",
+          "recordIndex": 304,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 190,
+          "originalPath": "D:\\Download\\ChatGPT Image Apr 7, 2026, 07_13_26 PM.png",
+          "originalFilename": "ChatGPT Image Apr 7, 2026, 07_13_26 PM.png",
+          "recordIndex": 305,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 191,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 12, 2026, 01_57_29 PM.png",
+          "originalFilename": "ChatGPT Image Jul 12, 2026, 01_57_29 PM.png",
+          "recordIndex": 306,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 192,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 12, 2026, 02_46_24 PM.png",
+          "originalFilename": "ChatGPT Image Jul 12, 2026, 02_46_24 PM.png",
+          "recordIndex": 307,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 193,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 17, 2026, 03_53_06 PM.png",
+          "originalFilename": "ChatGPT Image Jul 17, 2026, 03_53_06 PM.png",
+          "recordIndex": 308,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 194,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 17, 2026, 04_00_42 PM.png",
+          "originalFilename": "ChatGPT Image Jul 17, 2026, 04_00_42 PM.png",
+          "recordIndex": 309,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 195,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 17, 2026, 04_37_41 AM (10).png",
+          "originalFilename": "ChatGPT Image Jul 17, 2026, 04_37_41 AM (10).png",
+          "recordIndex": 310,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 196,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 17, 2026, 04_37_41 AM (2).png",
+          "originalFilename": "ChatGPT Image Jul 17, 2026, 04_37_41 AM (2).png",
+          "recordIndex": 311,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 197,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 17, 2026, 04_37_41 AM (3).png",
+          "originalFilename": "ChatGPT Image Jul 17, 2026, 04_37_41 AM (3).png",
+          "recordIndex": 312,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 198,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 17, 2026, 04_37_41 AM (4).png",
+          "originalFilename": "ChatGPT Image Jul 17, 2026, 04_37_41 AM (4).png",
+          "recordIndex": 313,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 199,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 17, 2026, 04_37_41 AM (6).png",
+          "originalFilename": "ChatGPT Image Jul 17, 2026, 04_37_41 AM (6).png",
+          "recordIndex": 314,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 200,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 17, 2026, 04_37_41 AM (8).png",
+          "originalFilename": "ChatGPT Image Jul 17, 2026, 04_37_41 AM (8).png",
+          "recordIndex": 315,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 201,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 17, 2026, 08_08_11 AM (10).png",
+          "originalFilename": "ChatGPT Image Jul 17, 2026, 08_08_11 AM (10).png",
+          "recordIndex": 316,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 202,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 17, 2026, 11_35_27 AM (1).png",
+          "originalFilename": "ChatGPT Image Jul 17, 2026, 11_35_27 AM (1).png",
+          "recordIndex": 317,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 203,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 17, 2026, 11_35_27 AM (2).png",
+          "originalFilename": "ChatGPT Image Jul 17, 2026, 11_35_27 AM (2).png",
+          "recordIndex": 318,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 204,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 17, 2026, 11_35_27 AM (3).png",
+          "originalFilename": "ChatGPT Image Jul 17, 2026, 11_35_27 AM (3).png",
+          "recordIndex": 319,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 205,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 17, 2026, 11_35_27 AM (4).png",
+          "originalFilename": "ChatGPT Image Jul 17, 2026, 11_35_27 AM (4).png",
+          "recordIndex": 320,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 206,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 17, 2026, 11_35_27 AM (5).png",
+          "originalFilename": "ChatGPT Image Jul 17, 2026, 11_35_27 AM (5).png",
+          "recordIndex": 321,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 207,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 17, 2026, 11_35_27 AM (6).png",
+          "originalFilename": "ChatGPT Image Jul 17, 2026, 11_35_27 AM (6).png",
+          "recordIndex": 322,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 208,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_01 PM (1).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_01 PM (1).png",
+          "recordIndex": 323,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 209,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_01 PM (10).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_01 PM (10).png",
+          "recordIndex": 324,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 210,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_01 PM (2).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_01 PM (2).png",
+          "recordIndex": 325,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-008.png",
+      "sheetIndex": 8,
+      "entries": [
+        {
+          "sequence": 211,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_01 PM (3).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_01 PM (3).png",
+          "recordIndex": 326,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 212,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_01 PM (4).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_01 PM (4).png",
+          "recordIndex": 327,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 213,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_01 PM (5).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_01 PM (5).png",
+          "recordIndex": 328,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 214,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_01 PM (6).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_01 PM (6).png",
+          "recordIndex": 329,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 215,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_01 PM (7).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_01 PM (7).png",
+          "recordIndex": 330,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 216,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_01 PM (8).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_01 PM (8).png",
+          "recordIndex": 331,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 217,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_01 PM (9).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_01 PM (9).png",
+          "recordIndex": 332,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 218,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_13 PM (2).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_13 PM (2).png",
+          "recordIndex": 334,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 219,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_13 PM (3).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_13 PM (3).png",
+          "recordIndex": 335,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 220,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_13 PM (4).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_13 PM (4).png",
+          "recordIndex": 336,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 221,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_13 PM (5).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_13 PM (5).png",
+          "recordIndex": 337,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 222,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_13 PM (6).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_13 PM (6).png",
+          "recordIndex": 338,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 223,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_13 PM (7).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_13 PM (7).png",
+          "recordIndex": 339,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 224,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_13 PM (8).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_13 PM (8).png",
+          "recordIndex": 340,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 225,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_25 PM (1).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_25 PM (1).png",
+          "recordIndex": 341,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 226,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_26 PM (2).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_26 PM (2).png",
+          "recordIndex": 342,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 227,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_26 PM (3).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_26 PM (3).png",
+          "recordIndex": 343,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 228,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_26 PM (4).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_26 PM (4).png",
+          "recordIndex": 344,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 229,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_26 PM (5).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_26 PM (5).png",
+          "recordIndex": 345,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 230,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_26 PM (6).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_26 PM (6).png",
+          "recordIndex": 346,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 231,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_26 PM (7).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_26 PM (7).png",
+          "recordIndex": 347,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 232,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_28 PM (10).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_28 PM (10).png",
+          "recordIndex": 348,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 233,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_28 PM (8).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_28 PM (8).png",
+          "recordIndex": 349,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 234,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_28 PM (9).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_28 PM (9).png",
+          "recordIndex": 350,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 235,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_37 PM (1).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_37 PM (1).png",
+          "recordIndex": 351,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 236,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_38 PM (10).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_38 PM (10).png",
+          "recordIndex": 352,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 237,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_38 PM (2).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_38 PM (2).png",
+          "recordIndex": 353,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 238,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_38 PM (3).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_38 PM (3).png",
+          "recordIndex": 354,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 239,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_38 PM (4).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_38 PM (4).png",
+          "recordIndex": 355,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 240,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_38 PM (5).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_38 PM (5).png",
+          "recordIndex": 356,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-009.png",
+      "sheetIndex": 9,
+      "entries": [
+        {
+          "sequence": 241,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_38 PM (6).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_38 PM (6).png",
+          "recordIndex": 357,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 242,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_38 PM (7).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_38 PM (7).png",
+          "recordIndex": 358,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 243,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_38 PM (8).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_38 PM (8).png",
+          "recordIndex": 359,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 244,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_38 PM (9).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_38 PM (9).png",
+          "recordIndex": 360,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 245,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_50 PM (1).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_50 PM (1).png",
+          "recordIndex": 361,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 246,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_50 PM (2).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_50 PM (2).png",
+          "recordIndex": 362,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 247,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_51 PM (10).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_51 PM (10).png",
+          "recordIndex": 364,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 248,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_51 PM (4).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_51 PM (4).png",
+          "recordIndex": 365,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 249,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_51 PM (5).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_51 PM (5).png",
+          "recordIndex": 366,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 250,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_51 PM (6).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_51 PM (6).png",
+          "recordIndex": 367,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 251,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_51 PM (8).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_51 PM (8).png",
+          "recordIndex": 369,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 252,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_51 PM (9).png",
+          "originalFilename": "ChatGPT Image Jul 19, 2026, 01_47_51 PM (9).png",
+          "recordIndex": 370,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 253,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_10 AM (10).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_10 AM (10).png",
+          "recordIndex": 372,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 254,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_10 AM (3).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_10 AM (3).png",
+          "recordIndex": 374,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 255,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_10 AM (4).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_10 AM (4).png",
+          "recordIndex": 375,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 256,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_10 AM (5).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_10 AM (5).png",
+          "recordIndex": 376,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 257,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_10 AM (6).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_10 AM (6).png",
+          "recordIndex": 377,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 258,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_10 AM (7).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_10 AM (7).png",
+          "recordIndex": 378,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 259,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_10 AM (8).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_10 AM (8).png",
+          "recordIndex": 379,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 260,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_10 AM (9).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_10 AM (9).png",
+          "recordIndex": 380,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 261,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_19 AM (1).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_19 AM (1).png",
+          "recordIndex": 381,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 262,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_19 AM (2).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_19 AM (2).png",
+          "recordIndex": 382,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 263,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_20 AM (3).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_20 AM (3).png",
+          "recordIndex": 383,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 264,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_20 AM (4).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_20 AM (4).png",
+          "recordIndex": 384,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 265,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_21 AM (10).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_21 AM (10).png",
+          "recordIndex": 385,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 266,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_21 AM (5).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_21 AM (5).png",
+          "recordIndex": 386,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 267,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_21 AM (6).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_21 AM (6).png",
+          "recordIndex": 387,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 268,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_21 AM (7).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_21 AM (7).png",
+          "recordIndex": 388,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 269,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_21 AM (8).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_21 AM (8).png",
+          "recordIndex": 389,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 270,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_21 AM (9).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_21 AM (9).png",
+          "recordIndex": 390,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-010.png",
+      "sheetIndex": 10,
+      "entries": [
+        {
+          "sequence": 271,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_31 AM.png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_31 AM.png",
+          "recordIndex": 391,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 272,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_37 AM (1).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_37 AM (1).png",
+          "recordIndex": 392,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 273,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_38 AM (2).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_38 AM (2).png",
+          "recordIndex": 393,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 274,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_38 AM (3).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_38 AM (3).png",
+          "recordIndex": 394,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 275,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_39 AM (4).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_39 AM (4).png",
+          "recordIndex": 395,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 276,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_39 AM (5).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_39 AM (5).png",
+          "recordIndex": 396,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 277,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_39 AM (6).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_39 AM (6).png",
+          "recordIndex": 397,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 278,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_40 AM (10).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_40 AM (10).png",
+          "recordIndex": 398,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 279,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_40 AM (7).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_40 AM (7).png",
+          "recordIndex": 399,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 280,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_40 AM (8).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_40 AM (8).png",
+          "recordIndex": 400,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 281,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_40 AM (9).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_40 AM (9).png",
+          "recordIndex": 401,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 282,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_45 AM (1).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_45 AM (1).png",
+          "recordIndex": 402,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 283,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_45 AM (2).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_45 AM (2).png",
+          "recordIndex": 403,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 284,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_46 AM (3).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_46 AM (3).png",
+          "recordIndex": 404,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 285,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_46 AM (4).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_46 AM (4).png",
+          "recordIndex": 405,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 286,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_46 AM (5).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_46 AM (5).png",
+          "recordIndex": 406,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 287,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_46 AM (6).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_46 AM (6).png",
+          "recordIndex": 407,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 288,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_47 AM (10).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_47 AM (10).png",
+          "recordIndex": 408,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 289,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_47 AM (7).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_47 AM (7).png",
+          "recordIndex": 409,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 290,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_47 AM (8).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_47 AM (8).png",
+          "recordIndex": 410,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 291,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_47 AM (9).png",
+          "originalFilename": "ChatGPT Image Jul 20, 2026, 07_21_47 AM (9).png",
+          "recordIndex": 411,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 292,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 23, 2026, 09_38_05 PM.png",
+          "originalFilename": "ChatGPT Image Jul 23, 2026, 09_38_05 PM.png",
+          "recordIndex": 412,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 293,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 23, 2026, 10_29_45 AM (4).png",
+          "originalFilename": "ChatGPT Image Jul 23, 2026, 10_29_45 AM (4).png",
+          "recordIndex": 413,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 294,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 23, 2026, 10_29_45 AM (6).png",
+          "originalFilename": "ChatGPT Image Jul 23, 2026, 10_29_45 AM (6).png",
+          "recordIndex": 414,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 295,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 23, 2026, 10_29_47 AM (9).png",
+          "originalFilename": "ChatGPT Image Jul 23, 2026, 10_29_47 AM (9).png",
+          "recordIndex": 415,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 296,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 23, 2026, 11_08_43 AM.png",
+          "originalFilename": "ChatGPT Image Jul 23, 2026, 11_08_43 AM.png",
+          "recordIndex": 416,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 297,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 23, 2026, 11_22_41 AM.png",
+          "originalFilename": "ChatGPT Image Jul 23, 2026, 11_22_41 AM.png",
+          "recordIndex": 417,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 298,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 23, 2026, 12_01_50 PM (1).png",
+          "originalFilename": "ChatGPT Image Jul 23, 2026, 12_01_50 PM (1).png",
+          "recordIndex": 418,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 299,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 23, 2026, 12_01_50 PM (10).png",
+          "originalFilename": "ChatGPT Image Jul 23, 2026, 12_01_50 PM (10).png",
+          "recordIndex": 419,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 300,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 23, 2026, 12_01_50 PM (2).png",
+          "originalFilename": "ChatGPT Image Jul 23, 2026, 12_01_50 PM (2).png",
+          "recordIndex": 420,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-011.png",
+      "sheetIndex": 11,
+      "entries": [
+        {
+          "sequence": 301,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 23, 2026, 12_01_50 PM (3).png",
+          "originalFilename": "ChatGPT Image Jul 23, 2026, 12_01_50 PM (3).png",
+          "recordIndex": 421,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 302,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 23, 2026, 12_01_50 PM (6).png",
+          "originalFilename": "ChatGPT Image Jul 23, 2026, 12_01_50 PM (6).png",
+          "recordIndex": 422,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 303,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 23, 2026, 12_01_50 PM (7).png",
+          "originalFilename": "ChatGPT Image Jul 23, 2026, 12_01_50 PM (7).png",
+          "recordIndex": 423,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 304,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 23, 2026, 12_01_50 PM (8).png",
+          "originalFilename": "ChatGPT Image Jul 23, 2026, 12_01_50 PM (8).png",
+          "recordIndex": 424,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 305,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 23, 2026, 12_01_50 PM (9).png",
+          "originalFilename": "ChatGPT Image Jul 23, 2026, 12_01_50 PM (9).png",
+          "recordIndex": 425,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 306,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 24, 2026, 07_32_28 AM.png",
+          "originalFilename": "ChatGPT Image Jul 24, 2026, 07_32_28 AM.png",
+          "recordIndex": 426,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 307,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 25, 2026, 01_09_02 PM.png",
+          "originalFilename": "ChatGPT Image Jul 25, 2026, 01_09_02 PM.png",
+          "recordIndex": 427,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 308,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 25, 2026, 01_19_13 PM.png",
+          "originalFilename": "ChatGPT Image Jul 25, 2026, 01_19_13 PM.png",
+          "recordIndex": 428,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 309,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 25, 2026, 01_56_36 PM.png",
+          "originalFilename": "ChatGPT Image Jul 25, 2026, 01_56_36 PM.png",
+          "recordIndex": 430,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 310,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 25, 2026, 02_28_46 PM.png",
+          "originalFilename": "ChatGPT Image Jul 25, 2026, 02_28_46 PM.png",
+          "recordIndex": 432,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 311,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 25, 2026, 11_07_38 AM.png",
+          "originalFilename": "ChatGPT Image Jul 25, 2026, 11_07_38 AM.png",
+          "recordIndex": 433,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 312,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 26, 2026, 07_04_10 AM (1).png",
+          "originalFilename": "ChatGPT Image Jul 26, 2026, 07_04_10 AM (1).png",
+          "recordIndex": 434,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 313,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 26, 2026, 07_04_10 AM (2).png",
+          "originalFilename": "ChatGPT Image Jul 26, 2026, 07_04_10 AM (2).png",
+          "recordIndex": 435,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 314,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 26, 2026, 07_04_10 AM (3).png",
+          "originalFilename": "ChatGPT Image Jul 26, 2026, 07_04_10 AM (3).png",
+          "recordIndex": 436,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 315,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 26, 2026, 07_04_10 AM (4).png",
+          "originalFilename": "ChatGPT Image Jul 26, 2026, 07_04_10 AM (4).png",
+          "recordIndex": 437,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 316,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 26, 2026, 07_04_10 AM (5).png",
+          "originalFilename": "ChatGPT Image Jul 26, 2026, 07_04_10 AM (5).png",
+          "recordIndex": 438,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 317,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 26, 2026, 07_04_10 AM (6).png",
+          "originalFilename": "ChatGPT Image Jul 26, 2026, 07_04_10 AM (6).png",
+          "recordIndex": 439,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 318,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 26, 2026, 07_04_10 AM (7).png",
+          "originalFilename": "ChatGPT Image Jul 26, 2026, 07_04_10 AM (7).png",
+          "recordIndex": 440,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 319,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 26, 2026, 07_04_10 AM (8).png",
+          "originalFilename": "ChatGPT Image Jul 26, 2026, 07_04_10 AM (8).png",
+          "recordIndex": 441,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 320,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 26, 2026, 07_04_10 AM (9).png",
+          "originalFilename": "ChatGPT Image Jul 26, 2026, 07_04_10 AM (9).png",
+          "recordIndex": 442,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 321,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 26, 2026, 07_04_11 AM (10).png",
+          "originalFilename": "ChatGPT Image Jul 26, 2026, 07_04_11 AM (10).png",
+          "recordIndex": 443,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 322,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 01_01_40 PM (9).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 01_01_40 PM (9).png",
+          "recordIndex": 444,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 323,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_02_35 PM (1).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_02_35 PM (1).png",
+          "recordIndex": 445,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 324,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_02_35 PM (2).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_02_35 PM (2).png",
+          "recordIndex": 446,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 325,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_02_35 PM (3).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_02_35 PM (3).png",
+          "recordIndex": 447,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 326,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_02_35 PM (4).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_02_35 PM (4).png",
+          "recordIndex": 448,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 327,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_02_36 PM (5).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_02_36 PM (5).png",
+          "recordIndex": 449,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 328,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_02_36 PM (6).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_02_36 PM (6).png",
+          "recordIndex": 450,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 329,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_02_36 PM (7).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_02_36 PM (7).png",
+          "recordIndex": 451,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 330,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_02_36 PM (8).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_02_36 PM (8).png",
+          "recordIndex": 452,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-012.png",
+      "sheetIndex": 12,
+      "entries": [
+        {
+          "sequence": 331,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_04_37 PM (1).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_04_37 PM (1).png",
+          "recordIndex": 453,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 332,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_04_37 PM (2).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_04_37 PM (2).png",
+          "recordIndex": 454,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 333,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_04_37 PM (3).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_04_37 PM (3).png",
+          "recordIndex": 455,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 334,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_04_37 PM (4).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_04_37 PM (4).png",
+          "recordIndex": 456,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 335,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_12_48 PM (1).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_12_48 PM (1).png",
+          "recordIndex": 457,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 336,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_12_48 PM (2).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_12_48 PM (2).png",
+          "recordIndex": 458,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 337,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_12_48 PM (3).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_12_48 PM (3).png",
+          "recordIndex": 459,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 338,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_12_49 PM (4).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_12_49 PM (4).png",
+          "recordIndex": 460,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 339,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_12_49 PM (5).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_12_49 PM (5).png",
+          "recordIndex": 461,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 340,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_12_49 PM (6).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_12_49 PM (6).png",
+          "recordIndex": 462,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 341,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_13_39 PM (1).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_13_39 PM (1).png",
+          "recordIndex": 463,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 342,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_13_40 PM (2).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_13_40 PM (2).png",
+          "recordIndex": 464,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 343,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_13_40 PM (3).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_13_40 PM (3).png",
+          "recordIndex": 465,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 344,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_13_40 PM (4).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_13_40 PM (4).png",
+          "recordIndex": 466,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 345,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_13_40 PM (5).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_13_40 PM (5).png",
+          "recordIndex": 467,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 346,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_13_41 PM (6).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_13_41 PM (6).png",
+          "recordIndex": 468,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 347,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_13_41 PM (7).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_13_41 PM (7).png",
+          "recordIndex": 469,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 348,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_13_41 PM (8).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_13_41 PM (8).png",
+          "recordIndex": 470,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 349,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_13_41 PM (9).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_13_41 PM (9).png",
+          "recordIndex": 471,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 350,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 04_13_42 PM (10).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 04_13_42 PM (10).png",
+          "recordIndex": 472,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 351,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 10_15_03 PM (1).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 10_15_03 PM (1).png",
+          "recordIndex": 473,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 352,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 10_15_03 PM (2).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 10_15_03 PM (2).png",
+          "recordIndex": 474,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 353,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 10_15_03 PM (3).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 10_15_03 PM (3).png",
+          "recordIndex": 475,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 354,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 10_15_03 PM (4).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 10_15_03 PM (4).png",
+          "recordIndex": 476,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 355,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 10_15_03 PM (5).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 10_15_03 PM (5).png",
+          "recordIndex": 477,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 356,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 10_15_03 PM (6).png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 10_15_03 PM (6).png",
+          "recordIndex": 478,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 357,
+          "originalPath": "D:\\Download\\ChatGPT Image Jul 9, 2026, 10_33_23 PM.png",
+          "originalFilename": "ChatGPT Image Jul 9, 2026, 10_33_23 PM.png",
+          "recordIndex": 479,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 358,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 22, 2026, 12_48_41 PM.png",
+          "originalFilename": "ChatGPT Image Jun 22, 2026, 12_48_41 PM.png",
+          "recordIndex": 480,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 359,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 22, 2026, 12_48_57 PM.png",
+          "originalFilename": "ChatGPT Image Jun 22, 2026, 12_48_57 PM.png",
+          "recordIndex": 481,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 360,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 22, 2026, 12_52_24 PM.png",
+          "originalFilename": "ChatGPT Image Jun 22, 2026, 12_52_24 PM.png",
+          "recordIndex": 482,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-013.png",
+      "sheetIndex": 13,
+      "entries": [
+        {
+          "sequence": 361,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 28, 2026, 09_45_19 PM (2).png",
+          "originalFilename": "ChatGPT Image Jun 28, 2026, 09_45_19 PM (2).png",
+          "recordIndex": 483,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 362,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 28, 2026, 09_45_21 PM (4).png",
+          "originalFilename": "ChatGPT Image Jun 28, 2026, 09_45_21 PM (4).png",
+          "recordIndex": 484,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 363,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 28, 2026, 09_45_21 PM (5).png",
+          "originalFilename": "ChatGPT Image Jun 28, 2026, 09_45_21 PM (5).png",
+          "recordIndex": 485,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 364,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 28, 2026, 09_45_21 PM (6).png",
+          "originalFilename": "ChatGPT Image Jun 28, 2026, 09_45_21 PM (6).png",
+          "recordIndex": 486,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 365,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 28, 2026, 09_45_21 PM (7).png",
+          "originalFilename": "ChatGPT Image Jun 28, 2026, 09_45_21 PM (7).png",
+          "recordIndex": 487,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 366,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 28, 2026, 09_45_22 PM (8).png",
+          "originalFilename": "ChatGPT Image Jun 28, 2026, 09_45_22 PM (8).png",
+          "recordIndex": 488,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 367,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 28, 2026, 09_45_22 PM (9).png",
+          "originalFilename": "ChatGPT Image Jun 28, 2026, 09_45_22 PM (9).png",
+          "recordIndex": 489,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 368,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 28, 2026, 09_45_24 PM (10).png",
+          "originalFilename": "ChatGPT Image Jun 28, 2026, 09_45_24 PM (10).png",
+          "recordIndex": 490,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 369,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 28, 2026, 11_05_13 PM.png",
+          "originalFilename": "ChatGPT Image Jun 28, 2026, 11_05_13 PM.png",
+          "recordIndex": 491,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 370,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 28, 2026, 11_07_26 PM.png",
+          "originalFilename": "ChatGPT Image Jun 28, 2026, 11_07_26 PM.png",
+          "recordIndex": 492,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 371,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 29, 2026, 06_56_02 PM (1).png",
+          "originalFilename": "ChatGPT Image Jun 29, 2026, 06_56_02 PM (1).png",
+          "recordIndex": 493,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 372,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 29, 2026, 06_56_02 PM (2).png",
+          "originalFilename": "ChatGPT Image Jun 29, 2026, 06_56_02 PM (2).png",
+          "recordIndex": 494,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 373,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 29, 2026, 06_56_03 PM (3).png",
+          "originalFilename": "ChatGPT Image Jun 29, 2026, 06_56_03 PM (3).png",
+          "recordIndex": 495,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 374,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 29, 2026, 06_56_03 PM (5).png",
+          "originalFilename": "ChatGPT Image Jun 29, 2026, 06_56_03 PM (5).png",
+          "recordIndex": 496,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 375,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 29, 2026, 06_56_03 PM (6).png",
+          "originalFilename": "ChatGPT Image Jun 29, 2026, 06_56_03 PM (6).png",
+          "recordIndex": 497,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 376,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 29, 2026, 06_56_04 PM (10).png",
+          "originalFilename": "ChatGPT Image Jun 29, 2026, 06_56_04 PM (10).png",
+          "recordIndex": 498,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 377,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 29, 2026, 06_56_04 PM (8).png",
+          "originalFilename": "ChatGPT Image Jun 29, 2026, 06_56_04 PM (8).png",
+          "recordIndex": 499,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 378,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 29, 2026, 06_56_04 PM (9).png",
+          "originalFilename": "ChatGPT Image Jun 29, 2026, 06_56_04 PM (9).png",
+          "recordIndex": 500,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 379,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 30, 2026, 09_50_00 PM (2).png",
+          "originalFilename": "ChatGPT Image Jun 30, 2026, 09_50_00 PM (2).png",
+          "recordIndex": 501,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 380,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 30, 2026, 09_50_01 PM (5).png",
+          "originalFilename": "ChatGPT Image Jun 30, 2026, 09_50_01 PM (5).png",
+          "recordIndex": 502,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 381,
+          "originalPath": "D:\\Download\\ChatGPT Image Jun 30, 2026, 09_50_02 PM (9).png",
+          "originalFilename": "ChatGPT Image Jun 30, 2026, 09_50_02 PM (9).png",
+          "recordIndex": 503,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 382,
+          "originalPath": "D:\\Download\\Collision\\collision_map.png",
+          "originalFilename": "collision_map.png",
+          "recordIndex": 505,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 383,
+          "originalPath": "D:\\Download\\d20XYQx3q1YpTCbxWxIQg.jpg",
+          "originalFilename": "d20XYQx3q1YpTCbxWxIQg.jpg",
+          "recordIndex": 506,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 384,
+          "originalPath": "D:\\Download\\Dad_Skin.png",
+          "originalFilename": "Dad_Skin.png",
+          "recordIndex": 507,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 385,
+          "originalPath": "D:\\Download\\DCGtYaA0S9AikT3lvYlaB.jpg",
+          "originalFilename": "DCGtYaA0S9AikT3lvYlaB.jpg",
+          "recordIndex": 508,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 386,
+          "originalPath": "D:\\Download\\dgdqBLp29QCzbo-SU1Q3s.jpg",
+          "originalFilename": "dgdqBLp29QCzbo-SU1Q3s.jpg",
+          "recordIndex": 518,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 387,
+          "originalPath": "D:\\Download\\DRkuByj-itTg3E1G6MYHG.jpg",
+          "originalFilename": "DRkuByj-itTg3E1G6MYHG.jpg",
+          "recordIndex": 519,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 388,
+          "originalPath": "D:\\Download\\e47cf1fe-dfe9-424a-b854-637c719f803a.png",
+          "originalFilename": "e47cf1fe-dfe9-424a-b854-637c719f803a.png",
+          "recordIndex": 520,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 389,
+          "originalPath": "D:\\Download\\easter.png",
+          "originalFilename": "easter.png",
+          "recordIndex": 521,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 390,
+          "originalPath": "D:\\Download\\eCg-BNpl5wD87uCRmw6Q2-4016x6016 (1).jpg",
+          "originalFilename": "eCg-BNpl5wD87uCRmw6Q2-4016x6016 (1).jpg",
+          "recordIndex": 522,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-014.png",
+      "sheetIndex": 14,
+      "entries": [
+        {
+          "sequence": 391,
+          "originalPath": "D:\\Download\\Floor_Layer.png",
+          "originalFilename": "Floor_Layer.png",
+          "recordIndex": 523,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 392,
+          "originalPath": "D:\\Download\\fw3U4xJgIb4n57LICbALl.jpg",
+          "originalFilename": "fw3U4xJgIb4n57LICbALl.jpg",
+          "recordIndex": 524,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 393,
+          "originalPath": "D:\\Download\\HeartStrings_Board_Spaces.png",
+          "originalFilename": "HeartStrings_Board_Spaces.png",
+          "recordIndex": 526,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 394,
+          "originalPath": "D:\\Download\\HYyCM_3iqas2_1jfjhOSY.jpg",
+          "originalFilename": "HYyCM_3iqas2_1jfjhOSY.jpg",
+          "recordIndex": 531,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 395,
+          "originalPath": "D:\\Download\\I1GdaAXOzho3rya5veena.jpg",
+          "originalFilename": "I1GdaAXOzho3rya5veena.jpg",
+          "recordIndex": 532,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 396,
+          "originalPath": "D:\\Download\\independence_day.png",
+          "originalFilename": "independence_day.png",
+          "recordIndex": 533,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 397,
+          "originalPath": "D:\\Download\\j5XOSwZ9lGLZp9hlPB0jf.jpg",
+          "originalFilename": "j5XOSwZ9lGLZp9hlPB0jf.jpg",
+          "recordIndex": 534,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 398,
+          "originalPath": "D:\\Download\\KlZ_CecalfWCT_i2VQnB5.jpg",
+          "originalFilename": "KlZ_CecalfWCT_i2VQnB5.jpg",
+          "recordIndex": 535,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 399,
+          "originalPath": "D:\\Download\\K_HF7htJUu_2JlJ3sPocz.jpg",
+          "originalFilename": "K_HF7htJUu_2JlJ3sPocz.jpg",
+          "recordIndex": 536,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 400,
+          "originalPath": "D:\\Download\\lunar_new_year.png",
+          "originalFilename": "lunar_new_year.png",
+          "recordIndex": 537,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 401,
+          "originalPath": "D:\\Download\\newyear_02.png",
+          "originalFilename": "newyear_02.png",
+          "recordIndex": 539,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 402,
+          "originalPath": "D:\\Download\\oI8XECOdlsuIrt8XoXXRH.jpg",
+          "originalFilename": "oI8XECOdlsuIrt8XoXXRH.jpg",
+          "recordIndex": 540,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 403,
+          "originalPath": "D:\\Download\\osa1KjVzR7Ml0-mNnD0E5.jpg",
+          "originalFilename": "osa1KjVzR7Ml0-mNnD0E5.jpg",
+          "recordIndex": 541,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 404,
+          "originalPath": "D:\\Download\\Pajamas.png",
+          "originalFilename": "Pajamas.png",
+          "recordIndex": 542,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 405,
+          "originalPath": "D:\\Download\\pkUuvquW_iFitmIEnmtY6.jpg",
+          "originalFilename": "pkUuvquW_iFitmIEnmtY6.jpg",
+          "recordIndex": 543,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 406,
+          "originalPath": "D:\\Download\\PLuGorUZMXUhXW6VGFePZ.jpg",
+          "originalFilename": "PLuGorUZMXUhXW6VGFePZ.jpg",
+          "recordIndex": 544,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 407,
+          "originalPath": "D:\\Download\\qdHVsTiJ90FY_UH6qzuTX.jpg",
+          "originalFilename": "qdHVsTiJ90FY_UH6qzuTX.jpg",
+          "recordIndex": 545,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 408,
+          "originalPath": "D:\\Download\\s3zjp94JlnXXF8rLPx8D9.jpg",
+          "originalFilename": "s3zjp94JlnXXF8rLPx8D9.jpg",
+          "recordIndex": 546,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 409,
+          "originalPath": "D:\\Download\\sAWPcRWmFNI4HQWLfOjfr.jpg",
+          "originalFilename": "sAWPcRWmFNI4HQWLfOjfr.jpg",
+          "recordIndex": 547,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 410,
+          "originalPath": "D:\\Download\\scoped_action_envelope.svg",
+          "originalFilename": "scoped_action_envelope.svg",
+          "recordIndex": 548,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 411,
+          "originalPath": "D:\\Download\\spring.png",
+          "originalFilename": "spring.png",
+          "recordIndex": 550,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 412,
+          "originalPath": "D:\\Download\\StoneFloor_Layer.png",
+          "originalFilename": "StoneFloor_Layer.png",
+          "recordIndex": 551,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 413,
+          "originalPath": "D:\\Download\\st_patricks.png",
+          "originalFilename": "st_patricks.png",
+          "recordIndex": 552,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 414,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Logos_and_Banners\\TacoDelSol_badge_circular_tacos_limes.png",
+          "originalFilename": "TacoDelSol_badge_circular_tacos_limes.png",
+          "recordIndex": 553,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 415,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Logos_and_Banners\\TacoDelSol_badge_framed_burrito_nachos.png",
+          "originalFilename": "TacoDelSol_badge_framed_burrito_nachos.png",
+          "recordIndex": 554,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 416,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Logos_and_Banners\\TacoDelSol_banner_bold_flavor_brighter.png",
+          "originalFilename": "TacoDelSol_banner_bold_flavor_brighter.png",
+          "recordIndex": 555,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 417,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Logos_and_Banners\\TacoDelSol_banner_capitol_bridge.png",
+          "originalFilename": "TacoDelSol_banner_capitol_bridge.png",
+          "recordIndex": 556,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 418,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Logos_and_Banners\\TacoDelSol_banner_downtown_header.png",
+          "originalFilename": "TacoDelSol_banner_downtown_header.png",
+          "recordIndex": 557,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 419,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Logos_and_Banners\\TacoDelSol_banner_helena_marquee.png",
+          "originalFilename": "TacoDelSol_banner_helena_marquee.png",
+          "recordIndex": 558,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 420,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Logos_and_Banners\\TacoDelSol_banner_helena_streetscape.png",
+          "originalFilename": "TacoDelSol_banner_helena_streetscape.png",
+          "recordIndex": 559,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-015.png",
+      "sheetIndex": 15,
+      "entries": [
+        {
+          "sequence": 421,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Logos_and_Banners\\TacoDelSol_banner_storefront_daytime.png",
+          "originalFilename": "TacoDelSol_banner_storefront_daytime.png",
+          "recordIndex": 560,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 422,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Logos_and_Banners\\TacoDelSol_bison_mascot_sun.png",
+          "originalFilename": "TacoDelSol_bison_mascot_sun.png",
+          "recordIndex": 561,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 423,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Logos_and_Banners\\TacoDelSol_logo_bison_horizontal.png",
+          "originalFilename": "TacoDelSol_logo_bison_horizontal.png",
+          "recordIndex": 562,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 424,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Logos_and_Banners\\TacoDelSol_logo_circular_badge.png",
+          "originalFilename": "TacoDelSol_logo_circular_badge.png",
+          "recordIndex": 563,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 425,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Logos_and_Banners\\TacoDelSol_logo_helena_storefront.png",
+          "originalFilename": "TacoDelSol_logo_helena_storefront.png",
+          "recordIndex": 564,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 426,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Logos_and_Banners\\TacoDelSol_logo_map_pin.png",
+          "originalFilename": "TacoDelSol_logo_map_pin.png",
+          "recordIndex": 565,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 427,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Logos_and_Banners\\TacoDelSol_logo_map_pin_bison.png",
+          "originalFilename": "TacoDelSol_logo_map_pin_bison.png",
+          "recordIndex": 566,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 428,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Logos_and_Banners\\TacoDelSol_sign_downtown_helena.png",
+          "originalFilename": "TacoDelSol_sign_downtown_helena.png",
+          "recordIndex": 567,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 429,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Menu_and_Food\\TacoDelSol_food_burrito.png",
+          "originalFilename": "TacoDelSol_food_burrito.png",
+          "recordIndex": 568,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 430,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Menu_and_Food\\TacoDelSol_food_chips_guac_salsa.png",
+          "originalFilename": "TacoDelSol_food_chips_guac_salsa.png",
+          "recordIndex": 569,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 431,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Menu_and_Food\\TacoDelSol_food_drink_bottle.png",
+          "originalFilename": "TacoDelSol_food_drink_bottle.png",
+          "recordIndex": 570,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 432,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Menu_and_Food\\TacoDelSol_food_fish_taco.png",
+          "originalFilename": "TacoDelSol_food_fish_taco.png",
+          "recordIndex": 571,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 433,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Menu_and_Food\\TacoDelSol_food_spread_jarritos.png",
+          "originalFilename": "TacoDelSol_food_spread_jarritos.png",
+          "recordIndex": 572,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 434,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Menu_and_Food\\TacoDelSol_food_tacos_burrito_sunburst.png",
+          "originalFilename": "TacoDelSol_food_tacos_burrito_sunburst.png",
+          "recordIndex": 573,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 435,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Website_Markups\\TacoDelSol_edit_footer_markup.png",
+          "originalFilename": "TacoDelSol_edit_footer_markup.png",
+          "recordIndex": 574,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 436,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Website_Markups\\TacoDelSol_edit_home_markup.png",
+          "originalFilename": "TacoDelSol_edit_home_markup.png",
+          "recordIndex": 575,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 437,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Website_Markups\\TacoDelSol_edit_menu_markup.png",
+          "originalFilename": "TacoDelSol_edit_menu_markup.png",
+          "recordIndex": 576,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 438,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Web_UI\\TacoDelSol_ui_call_us_bubble.png",
+          "originalFilename": "TacoDelSol_ui_call_us_bubble.png",
+          "recordIndex": 577,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 439,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Web_UI\\TacoDelSol_ui_call_us_phone.png",
+          "originalFilename": "TacoDelSol_ui_call_us_phone.png",
+          "recordIndex": 578,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 440,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Web_UI\\TacoDelSol_ui_find_us_walking_mall.png",
+          "originalFilename": "TacoDelSol_ui_find_us_walking_mall.png",
+          "recordIndex": 579,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 441,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Web_UI\\TacoDelSol_ui_get_directions_button.png",
+          "originalFilename": "TacoDelSol_ui_get_directions_button.png",
+          "recordIndex": 580,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 442,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Web_UI\\TacoDelSol_ui_hours_11_8.png",
+          "originalFilename": "TacoDelSol_ui_hours_11_8.png",
+          "recordIndex": 581,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 443,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Web_UI\\TacoDelSol_ui_hours_badge.png",
+          "originalFilename": "TacoDelSol_ui_hours_badge.png",
+          "recordIndex": 582,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 444,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Web_UI\\TacoDelSol_ui_hours_sign_mon_sat.png",
+          "originalFilename": "TacoDelSol_ui_hours_sign_mon_sat.png",
+          "recordIndex": 583,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 445,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Web_UI\\TacoDelSol_ui_open_daily_hours.png",
+          "originalFilename": "TacoDelSol_ui_open_daily_hours.png",
+          "recordIndex": 584,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 446,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Web_UI\\TacoDelSol_ui_order_call_us.png",
+          "originalFilename": "TacoDelSol_ui_order_call_us.png",
+          "recordIndex": 585,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 447,
+          "originalPath": "D:\\Download\\TacoDelSol_Branding\\Web_UI\\TacoDelSol_ui_view_menu_button.png",
+          "originalFilename": "TacoDelSol_ui_view_menu_button.png",
+          "recordIndex": 586,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 448,
+          "originalPath": "D:\\Download\\thanksgiving.png",
+          "originalFilename": "thanksgiving.png",
+          "recordIndex": 587,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 449,
+          "originalPath": "D:\\Download\\Toy.png",
+          "originalFilename": "Toy.png",
+          "recordIndex": 588,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 450,
+          "originalPath": "D:\\Download\\T_Shirt.png",
+          "originalFilename": "T_Shirt.png",
+          "recordIndex": 589,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-016.png",
+      "sheetIndex": 16,
+      "entries": [
+        {
+          "sequence": 451,
+          "originalPath": "D:\\Download\\u7n7KYTIG-_1JGppq7IPZ.jpg",
+          "originalFilename": "u7n7KYTIG-_1JGppq7IPZ.jpg",
+          "recordIndex": 590,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 452,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\background.png",
+          "originalFilename": "background.png",
+          "recordIndex": 593,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 453,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\icons\\deepin.png",
+          "originalFilename": "deepin.png",
+          "recordIndex": 594,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 454,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\icons\\red-hat.png",
+          "originalFilename": "red-hat.png",
+          "recordIndex": 595,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 455,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\icons\\ubuntu.png",
+          "originalFilename": "ubuntu.png",
+          "recordIndex": 596,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 456,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\icons\\vtoyiso.png",
+          "originalFilename": "vtoyiso.png",
+          "recordIndex": 597,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 457,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\menu_c.png",
+          "originalFilename": "menu_c.png",
+          "recordIndex": 598,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 458,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\menu_e.png",
+          "originalFilename": "menu_e.png",
+          "recordIndex": 599,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 459,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\menu_n.png",
+          "originalFilename": "menu_n.png",
+          "recordIndex": 600,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 460,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\menu_ne.png",
+          "originalFilename": "menu_ne.png",
+          "recordIndex": 601,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 461,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\menu_nw.png",
+          "originalFilename": "menu_nw.png",
+          "recordIndex": 602,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 462,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\menu_s.png",
+          "originalFilename": "menu_s.png",
+          "recordIndex": 603,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 463,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\menu_se.png",
+          "originalFilename": "menu_se.png",
+          "recordIndex": 604,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 464,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\menu_sw.png",
+          "originalFilename": "menu_sw.png",
+          "recordIndex": 605,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 465,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\menu_w.png",
+          "originalFilename": "menu_w.png",
+          "recordIndex": 606,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 466,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\select_c.png",
+          "originalFilename": "select_c.png",
+          "recordIndex": 607,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 467,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\slider_c.png",
+          "originalFilename": "slider_c.png",
+          "recordIndex": 608,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 468,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\slider_n.png",
+          "originalFilename": "slider_n.png",
+          "recordIndex": 609,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 469,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\slider_s.png",
+          "originalFilename": "slider_s.png",
+          "recordIndex": 610,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 470,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\terminal_box_c.png",
+          "originalFilename": "terminal_box_c.png",
+          "recordIndex": 611,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 471,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\terminal_box_e.png",
+          "originalFilename": "terminal_box_e.png",
+          "recordIndex": 612,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 472,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\terminal_box_n.png",
+          "originalFilename": "terminal_box_n.png",
+          "recordIndex": 613,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 473,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\terminal_box_ne.png",
+          "originalFilename": "terminal_box_ne.png",
+          "recordIndex": 614,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 474,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\terminal_box_nw.png",
+          "originalFilename": "terminal_box_nw.png",
+          "recordIndex": 615,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 475,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\terminal_box_s.png",
+          "originalFilename": "terminal_box_s.png",
+          "recordIndex": 616,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 476,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\terminal_box_se.png",
+          "originalFilename": "terminal_box_se.png",
+          "recordIndex": 617,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 477,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\terminal_box_sw.png",
+          "originalFilename": "terminal_box_sw.png",
+          "recordIndex": 618,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 478,
+          "originalPath": "D:\\Download\\ventoy-1.1.12-windows\\ventoy-1.1.12\\plugin\\ventoy\\theme\\terminal_box_w.png",
+          "originalFilename": "terminal_box_w.png",
+          "recordIndex": 619,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 479,
+          "originalPath": "D:\\Download\\windows_czkawka_gui_gtk_412\\share\\themes\\WhiteSur-dark\\gtk-4.0\\thumbnail.png",
+          "originalFilename": "thumbnail.png",
+          "recordIndex": 620,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 480,
+          "originalPath": "D:\\Download\\winter.png",
+          "originalFilename": "winter.png",
+          "recordIndex": 621,
+          "thumbFailed": false
+        }
+      ]
+    },
+    {
+      "sheetFile": "qa\\asset-audit\\contact-sheets\\sheet-017.png",
+      "sheetIndex": 17,
+      "entries": [
+        {
+          "sequence": 481,
+          "originalPath": "D:\\Download\\wrk7HT7ZLurrjEDJCqZWP.jpg",
+          "originalFilename": "wrk7HT7ZLurrjEDJCqZWP.jpg",
+          "recordIndex": 622,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 482,
+          "originalPath": "D:\\Download\\X5FEIIFkffYSLZekhdGZQ.jpg",
+          "originalFilename": "X5FEIIFkffYSLZekhdGZQ.jpg",
+          "recordIndex": 623,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 483,
+          "originalPath": "D:\\Download\\Y8qRRuSmj4Jp9IS8QyG_W.jpg",
+          "originalFilename": "Y8qRRuSmj4Jp9IS8QyG_W.jpg",
+          "recordIndex": 624,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 484,
+          "originalPath": "D:\\Download\\Z8oo-XUiJKTDXnhrIQIlL.jpg",
+          "originalFilename": "Z8oo-XUiJKTDXnhrIQIlL.jpg",
+          "recordIndex": 625,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 485,
+          "originalPath": "D:\\Download\\ZXNQtCSLouZGefe894QXS.jpg",
+          "originalFilename": "ZXNQtCSLouZGefe894QXS.jpg",
+          "recordIndex": 626,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 486,
+          "originalPath": "D:\\Download\\_LkkC10yau4QTq2z7IADN.jpg",
+          "originalFilename": "_LkkC10yau4QTq2z7IADN.jpg",
+          "recordIndex": 627,
+          "thumbFailed": false
+        },
+        {
+          "sequence": 487,
+          "originalPath": "C:\\Users\\tbroa\\Downloads\\Board_20_x_40_Silo.png",
+          "originalFilename": "Board_20_x_40_Silo.png",
+          "recordIndex": 636,
+          "thumbFailed": false
+        }
+      ]
+    }
+  ]
+}
