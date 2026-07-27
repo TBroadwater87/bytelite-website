@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Cordel Migration - Redirect Validation (QA, local only)</title><meta name="robots" content="noindex, nofollow">
+<style>
+body{font-family:-apple-system,Segoe UI,sans-serif;background:#0d1120;color:#e4e7f2;margin:0;padding:2rem;line-height:1.6;}
+h1{font-size:1.25rem;margin-bottom:.25rem;}
+.subtitle{color:#7b829e;font-size:.8125rem;margin-bottom:1rem;}
+.warn{background:#241a0d;border:1px solid rgba(251,191,36,.35);color:#fbbf24;border-radius:.5rem;padding:1rem 1.25rem;font-size:.8125rem;margin-bottom:2rem;}
+table{width:100%;border-collapse:collapse;font-size:.8125rem;margin-bottom:2rem;}
+th,td{padding:.5rem .625rem;border-bottom:1px solid #1a2235;text-align:left;vertical-align:top;}
+th{color:#7b829e;font-weight:600;text-transform:uppercase;font-size:.6875rem;letter-spacing:.05em;}
+code{font-family:ui-monospace,'Courier New',monospace;color:#4ade80;}
+.status-ok{color:#4ade80;font-weight:600;}
+.splat-list{margin:0;padding-left:1.25rem;font-size:.75rem;color:#a0a8c0;}
+</style></head><body>
+<h1>Cordel Migration - Redirect Validation</h1>
+<p class="subtitle">Generated 2026-07-27. Local QA evidence only.</p>
+<div class="warn">
+  <strong>Limitation:</strong> public/_redirects is a Cloudflare Pages edge-routing file, processed by the Cloudflare Pages edge at deploy time - it is <em>not</em> interpreted by <code>astro preview</code> (a plain Node static file server). Actual HTTP 301 round-trips could not be exercised against localhost:4321 in this pass. What is verified below: (1) the redirects file syntax/structure, no loops, no unnecessary chains; (2) every redirect destination is a real Cordel route returning HTTP 200 in local preview. Full end-to-end 301 verification requires a Cloudflare Pages deploy preview or <code>wrangler pages dev</code> - neither was run (no push/deploy authorized).
+</div>
+<table>
+<thead><tr><th>Source</th><th>Destination</th><th>Status</th><th>Note</th><th>Destination reachable locally</th></tr></thead>
+<tbody>
+<tr><td><code>/heartstrings</code></td><td><code>/products/cordel-play</code></td><td>301</td><td>legacy inbound URL preserved; destination updated</td><td class="status-ok">200</td></tr>
+<tr><td><code>/heartstrings-app</code></td><td><code>/products/cordel-connect</code></td><td>301</td><td>legacy inbound URL preserved; destination updated</td><td class="status-ok">200</td></tr>
+<tr><td><code>/marketing</code></td><td><code>/products/cordel-connect/date-planning/restaurants/partner-program</code></td><td>301</td><td>destination path segment updated</td><td class="status-ok">200</td></tr>
+<tr><td><code>/products/heartstrings-play</code></td><td><code>/products/cordel-play</code></td><td>301</td><td>new - retired canonical route</td><td class="status-ok">200</td></tr>
+<tr><td><code>/products/heartstrings-play/*</code></td><td><code>/products/cordel-play/:splat</code></td><td>301</td><td>covers all 6 nested routes in one splat rule<ul class="splat-list"><li>how-it-plays</li><li>editions</li><li>components</li><li>consent-architecture</li><li>development-status</li><li>preorder</li></ul></td><td class="status-ok">200 (all 6 verified)</td></tr>
+<tr><td><code>/products/heartstrings-connect</code></td><td><code>/products/cordel-connect</code></td><td>301</td><td>new - retired canonical route</td><td class="status-ok">200</td></tr>
+<tr><td><code>/products/heartstrings-connect/*</code></td><td><code>/products/cordel-connect/:splat</code></td><td>301</td><td>covers all 11 nested routes in one splat rule<ul class="splat-list"><li>compatibility-and-matching</li><li>privacy-architecture</li><li>safety</li><li>cartoonized-profiles</li><li>aiya-and-aion</li><li>games-and-shared-activities</li><li>byteoracle-horoscopes</li><li>date-planning</li><li>date-planning/blind-date-roulette</li><li>date-planning/restaurants</li><li>date-planning/restaurants/partner-program</li></ul></td><td class="status-ok">200 (all 11 verified)</td></tr>
+</tbody>
+</table>
+<p style="color:#7b829e;font-size:.8125rem;">Static checks: syntax valid, no redirect loops, no redirect chains (every retired route redirects directly to its Cordel replacement in one hop).</p>
+</body></html>

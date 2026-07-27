@@ -66,6 +66,52 @@ test.describe('ByteLite LLC critical user paths', () => {
   });
 });
 
+test.describe('Cordel brand migration', () => {
+  test('homepage uses Cordel branding and never shows the retired HeartStrings name', async ({ page }) => {
+    await page.goto('/');
+    const body = page.locator('body');
+    await expect(body).toContainText('Cordel Play');
+    await expect(body).toContainText('Cordel Connect');
+    await expect(body).not.toContainText('HeartStrings');
+    await expect(body).not.toContainText('Heartstrings');
+  });
+
+  test('primary navigation uses Cordel Play and Cordel Connect', async ({ page }) => {
+    await page.goto('/');
+    const toggle = page.locator('#navToggle');
+    if (await toggle.isVisible()) {
+      await toggle.click();
+    }
+    const nav = page.getByRole('navigation', { name: 'Primary' });
+    await expect(nav.getByText('Cordel Play', { exact: true })).toBeVisible();
+    await expect(nav.getByText('Cordel Connect', { exact: true })).toBeVisible();
+  });
+
+  test('Cordel Play and Cordel Connect canonical routes resolve', async ({ request }) => {
+    const routes = [
+      '/products/cordel-play',
+      '/products/cordel-play/components',
+      '/products/cordel-play/consent-architecture',
+      '/products/cordel-play/preorder',
+      '/products/cordel-connect',
+      '/products/cordel-connect/safety',
+      '/products/cordel-connect/date-planning/restaurants/partner-program',
+    ];
+    for (const route of routes) {
+      const response = await request.get(route);
+      expect(response.status(), `${route} should resolve 200`).toBe(200);
+    }
+  });
+
+  test('no image alt text on the homepage references HeartStrings', async ({ page }) => {
+    await page.goto('/');
+    const altTexts = await page.locator('img').evaluateAll((imgs) => imgs.map((i) => i.getAttribute('alt') || ''));
+    for (const alt of altTexts) {
+      expect(alt.toLowerCase()).not.toContain('heartstrings');
+    }
+  });
+});
+
 test.describe('Performance-critical metrics', () => {
   test('homepage loads within a reasonable time budget', async ({ page }) => {
     const startTime = Date.now();

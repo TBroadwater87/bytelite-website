@@ -1,0 +1,73 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Cordel Migration - Pre-Migration Inventory (QA, local only)</title><meta name="robots" content="noindex, nofollow">
+<style>
+body{font-family:-apple-system,Segoe UI,sans-serif;background:#0d1120;color:#e4e7f2;margin:0;padding:2rem;line-height:1.6;}
+h1{font-size:1.25rem;margin-bottom:.25rem;}
+.subtitle{color:#7b829e;font-size:.8125rem;margin-bottom:2rem;}
+.stat-row{display:flex;flex-wrap:wrap;gap:1.5rem;margin-bottom:2rem;font-size:.875rem;}
+.stat-row b{color:#818cf8;font-size:1.25rem;display:block;}
+section{margin-bottom:2rem;border:1px solid #1a2235;border-radius:.75rem;padding:1.25rem 1.5rem;background:#10142280;}
+h2{font-size:1rem;margin:0 0 .5rem;color:#a5b4fc;}
+.desc{color:#a0a8c0;font-size:.875rem;margin-bottom:.5rem;}
+.disposition{display:inline-block;font-size:.6875rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.2rem .6rem;border-radius:9999px;background:#1a2235;color:#818cf8;}
+.count{color:#555e7a;font-size:.75rem;}
+code{font-family:ui-monospace,'Courier New',monospace;color:#4ade80;font-size:.8125rem;}
+</style></head><body>
+<h1>Cordel Migration - Pre-Migration Inventory</h1>
+<p class="subtitle">Generated 2026-07-27. Local QA evidence only, not part of the production site. See residual-allowlist.json for the post-migration classification of everything that intentionally remains.</p>
+<div class="stat-row">
+  <div><b>95</b>files with matches (pre-migration)</div>
+  <div><b>2488</b>text occurrences (pre-migration)</div>
+  <div><b>39</b>asset files renamed</div>
+  <div><b>4</b>directories renamed</div>
+</div>
+<section>
+  <h2>Active source - migrated <span class="disposition">migrated</span></h2>
+  <p class="desc">Live website source: src/pages, src/components, src/layouts, src/data, tests/unit, public/_redirects, public architecture SVGs. Fully migrated to Cordel text and renamed routes/files.</p>
+  <p class="count">57 files</p>
+</section>
+<section>
+  <h2>Active QA tooling - migrated <span class="disposition">migrated</span></h2>
+  <p class="desc">qa/qa-sweep.mjs, qa/generate-owner-review.mjs, qa/asset-audit/generate-inventory.mjs - updated so future regeneration produces Cordel-branded output.</p>
+  <p class="count">3 files</p>
+</section>
+<section>
+  <h2>Generated QA artifacts - regenerated <span class="disposition">regenerated</span></h2>
+  <p class="desc">qa/owner-review/index.html, manifest.json, qa/asset-audit/asset-inventory.html/.json - regenerated from the migrated generator scripts against the migrated live site rather than hand-edited.</p>
+  <p class="count">4 files</p>
+</section>
+<section>
+  <h2>Legacy redirect source paths - preserved <span class="disposition">preserved</span></h2>
+  <p class="desc"><code>/heartstrings</code> and <code>/heartstrings-app</code> kept as inbound redirect sources per spec; destinations repointed to Cordel routes. New 301s added for every retired canonical route.</p>
+  <p class="count">1 file (public/_redirects)</p>
+</section>
+<section>
+  <h2>Historical one-off scripts - preserved <span class="disposition">preserved</span></h2>
+  <p class="desc">qa/asset-audit/patch-*.mjs, fix-*.mjs (17 files) - already-executed one-time patch scripts from a prior asset-ingestion session. Document historical operations performed under the name in effect at the time.</p>
+  <p class="count">17 files</p>
+</section>
+<section>
+  <h2>Historical ingestion data - preserved <span class="disposition">preserved</span></h2>
+  <p class="desc">ingest-manifest.json, hash-groups.json, contact-sheets/manifest.json - literal original Downloads filenames/paths plus historical decisions. Not linked from the active owner-review index.</p>
+  <p class="count">3 files</p>
+</section>
+<section>
+  <h2>Historical narrative docs - preserved <span class="disposition">preserved</span></h2>
+  <p class="desc">ASSET_MANIFEST.md, SITE_FULL_PUBLIC_REDESIGN_AND_DEPLOY_REPORT.md, reports/SITE_ARCHITECTURE_UPDATE_PROOF.txt - accurate records of completed past work under the name in effect at the time.</p>
+  <p class="count">3 files</p>
+</section>
+<section>
+  <h2>Baked-in pixel branding - blocked <span class="disposition">blocked</span></h2>
+  <p class="desc">5 live-referenced raster images with "HeartStrings" wordmark baked into pixels (box front/back, guides banner, companion-screen hero, one AIya screenshot). No approved Cordel artwork exists anywhere in C:\Downloads, C:\Users\tbroa\Downloads, D:\Download, or D:\Downloads (all searched, zero results), and no editable source layers exist to correct them. Moved to qa/cordel-migration/blocked-legacy-assets/ (out of public/, unservable) and replaced on their pages with the site's existing typographic ".asset-ph" pending-asset placeholder.</p>
+  <p class="count">5 files</p>
+</section>
+<section>
+  <h2>Unused baked-in branding, not yet resolved <span class="disposition">flagged</span></h2>
+  <p class="desc">4 further confirmed-baked-in images (board-spec-diagram, app-signup, 2 onboarding screenshots) are not currently referenced by any page, so were left in place under public/cordel/ rather than moved. Flag before ever linking them.</p>
+  <p class="count">4 files</p>
+</section>
+<section>
+  <h2>Unsampled screenshot pool <span class="disposition">unused / unsampled</span></h2>
+  <p class="desc">~43 further real app screenshots in public/cordel/screenshots/ were not individually inspected (not referenced by any page, out of scope). Sampling showed onboarding/auth-named screens carry the baked-in wordmark; deep app screens do not. Apply the same visual gate before ever wiring one in.</p>
+  <p class="count">43 files</p>
+</section>
+</body></html>

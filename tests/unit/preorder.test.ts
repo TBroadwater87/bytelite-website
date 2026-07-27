@@ -71,7 +71,7 @@ describe('preorder calculation engine', () => {
       refundEligibility: 'Full refund at any time before charge',
       transferability: 'Not yet set',
       classification: 'physical',
-      associatedRoute: '/products/heartstrings-play/preorder',
+      associatedRoute: '/products/cordel-play/preorder',
       checkoutAvailable: false,
       legalDisclosureVersion: '2026-07-26',
       physicalBonusBenefit: null,

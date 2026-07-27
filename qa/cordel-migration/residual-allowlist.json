@@ -1,0 +1,69 @@
+{
+  "generatedAt": "2026-07-27",
+  "scanScope": "Full repository text scan, case-insensitive, excluding node_modules/.git/dist/playwright-report/test-results",
+  "totalResidualOccurrences": 1021,
+  "totalResidualFiles": 37,
+  "unclassifiedResidualOccurrences": 0,
+  "userVisibleResidualOccurrences": 0,
+  "canonicalHeartstringsRoutesRemaining": 0,
+  "heartstringsRedirectDestinationsRemaining": 0,
+  "heartstringsProductionAssetReferencesRemaining": 0,
+  "heartstringsMetadataOccurrencesRemaining": 0,
+  "heartstringsActiveQaScreenshotLabelsRemaining": 0,
+  "heartstringsFormProductValuesRemaining": 0,
+  "categories": [
+    {
+      "category": "legacy-redirect-source-path",
+      "reason": "public/_redirects retains the literal inbound paths '/heartstrings' and '/heartstrings-app' as 301 redirect SOURCES, per migration spec section 4 ('Preserve older historical redirects such as /heartstrings /heartstrings-app but update their destinations to Cordel routes'). Destinations are Cordel routes.",
+      "notUserVisible": true,
+      "wouldBreakIfRemoved": "External links/bookmarks pointing at the old /heartstrings and /heartstrings-app URLs would 404 instead of redirecting.",
+      "files": [
+        { "file": "public/_redirects", "matchedValues": ["/heartstrings", "/heartstrings-app", "heartstrings-play", "heartstrings-connect (in the retired-canonical-route redirect source rules)"], "occurrenceCount": 7 }
+      ]
+    },
+    {
+      "category": "historical-narrative-record",
+      "reason": "Documents completed past work sessions using the brand name that was actually in effect when that work happened. Rewriting would falsify the historical record of what was built and when.",
+      "notUserVisible": true,
+      "wouldBreakIfRemoved": "Loses an accurate account of prior site-build history.",
+      "files": [
+        { "file": "ASSET_MANIFEST.md", "occurrenceCount": 5 },
+        { "file": "SITE_FULL_PUBLIC_REDESIGN_AND_DEPLOY_REPORT.md", "occurrenceCount": 11 },
+        { "file": "reports/SITE_ARCHITECTURE_UPDATE_PROOF.txt", "occurrenceCount": 7 }
+      ]
+    },
+    {
+      "category": "immutable-external-source-filename-record",
+      "reason": "Records the literal original filenames/paths of files under D:/Download and C:/Users/tbroa/Downloads (e.g. '01_HeartStrings_Boardgame\\...HeartStrings_Play_20x20_Final.png'), which this task was explicitly instructed not to modify. The original external filenames are facts about immutable source files, not current site branding.",
+      "notUserVisible": true,
+      "wouldBreakIfRemoved": "Would misrepresent what the original external source files were actually named, breaking the audit trail's accuracy.",
+      "files": [
+        { "file": "qa/asset-audit/generate-inventory.mjs", "matchedValues": ["01_HeartStrings_Boardgame\\...", "Screenshot_20260725_082752_HeartStrings.jpg", "HeartStrings_Play_20x20_Final.png", "02_HeartStrings_App_and_Wingman\\..."], "occurrenceCount": 12, "note": "dest:/role: fields already migrated to cordel paths in this pass; only literal original Downloads filenames remain" },
+        { "file": "qa/asset-audit/asset-inventory.json", "occurrenceCount": 262, "note": "regenerated this pass from generate-inventory.mjs; remaining matches are originalPath/originalFilename records of D:/Download files" },
+        { "file": "qa/asset-audit/asset-inventory.html", "occurrenceCount": 198, "note": "regenerated this pass; same originalPath/originalFilename records rendered as table rows" },
+        { "file": "qa/asset-audit/contact-sheets/manifest.json", "occurrenceCount": 153, "note": "not linked from qa/owner-review/index.html (confirmed by reading qa/generate-owner-review.mjs) - standalone historical ingestion record" },
+        { "file": "qa/asset-audit/hash-groups.json", "occurrenceCount": 38 },
+        { "file": "qa/asset-audit/ingest-manifest.json", "occurrenceCount": 81 }
+      ]
+    },
+    {
+      "category": "historical-one-off-patch-script",
+      "reason": "Already-executed, one-time patch/fix scripts from a prior asset-ingestion session (e.g. patch-exhaustive-sheet01.mjs..17.mjs, fix-pdf-disposition.mjs, fix-title.mjs, patch-corrective-pass.mjs, patch-board-pdfs-and-sensitive-pdfs.mjs, patch-stock-cluster-final.mjs, patch-exhaustive-pdfs.mjs). They reference the original Downloads filenames and repo paths as they existed at the time they were run; re-running or rewriting them would not change current repo state and would misrepresent what was actually patched, when.",
+      "notUserVisible": true,
+      "wouldBreakIfRemoved": "Loses the record of exactly what corrective operations were performed during the prior ingestion pass.",
+      "fileCount": 17,
+      "totalOccurrenceCount": 178
+    },
+    {
+      "category": "migration-tooling-self-reference",
+      "reason": "This migration's own generated report files (this allowlist, pre-migration-inventory.json, redirect-validation.json) and the new regression test file necessarily name 'HeartStrings' as the FROM side of the rename, and as literal strings in negative test assertions ('does NOT contain HeartStrings'). These are migration/QA tooling describing or verifying the migration, not site branding.",
+      "notUserVisible": true,
+      "wouldBreakIfRemoved": "The migration record and regression tests would no longer be able to name what was migrated from or assert its absence.",
+      "files": [
+        { "file": "qa/cordel-migration/pre-migration-inventory.json", "occurrenceCount": 11 },
+        { "file": "qa/cordel-migration/redirect-validation.json", "occurrenceCount": 8 },
+        { "file": "tests/e2e/critical-paths.spec.ts", "occurrenceCount": 5, "note": "all 5 are the literal string 'HeartStrings'/'Heartstrings' inside .not.toContainText() assertions added this pass" }
+      ]
+    }
+  ]
+}

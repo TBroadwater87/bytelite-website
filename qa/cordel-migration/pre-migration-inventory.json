@@ -1,0 +1,72 @@
+{
+  "generatedAt": "2026-07-27",
+  "migration": "HeartStrings -> Cordel (HeartStrings Play -> Cordel Play, HeartStrings Connect -> Cordel Connect)",
+  "scanScope": "Full repository text scan, case-insensitive, excluding node_modules/.git/dist/playwright-report/test-results",
+  "preMigrationTotals": {
+    "filesWithMatches": 95,
+    "totalTextOccurrences": 2488,
+    "assetFilesWithHeartstringsInName": 39,
+    "assetDirectoriesNamed": ["public/heartstrings", "public/heartstrings-connect", "src/pages/products/heartstrings-play", "src/pages/products/heartstrings-connect"]
+  },
+  "classificationCategories": {
+    "active-source-migrated": {
+      "description": "Live website source: src/pages, src/components, src/layouts, src/data, tests/unit, public/_redirects, public architecture SVGs. Fully migrated to Cordel text and renamed routes/files.",
+      "fileCount": 57,
+      "disposition": "migrated"
+    },
+    "active-qa-tooling-migrated": {
+      "description": "Currently-used QA generator scripts re-run to produce ongoing QA output: qa/qa-sweep.mjs, qa/generate-owner-review.mjs, qa/asset-audit/generate-inventory.mjs (dest/role fields only - see residual-allowlist for preserved historical Downloads filenames within generate-inventory.mjs).",
+      "fileCount": 3,
+      "disposition": "migrated"
+    },
+    "generated-qa-artifacts-regenerated": {
+      "description": "qa/owner-review/index.html, qa/owner-review/manifest.json, qa/asset-audit/asset-inventory.html, qa/asset-audit/asset-inventory.json - outputs of the migrated generator scripts, regenerated against the migrated site rather than hand-edited.",
+      "fileCount": 4,
+      "disposition": "regenerated"
+    },
+    "legacy-redirect-source-paths": {
+      "description": "public/_redirects: '/heartstrings' and '/heartstrings-app' source paths preserved intentionally as historical inbound URLs; destinations repointed to Cordel routes. New 301s added for every retired canonical /products/heartstrings-play* and /products/heartstrings-connect* route.",
+      "fileCount": 1,
+      "disposition": "preserved-as-legacy-redirect-source"
+    },
+    "historical-one-off-scripts": {
+      "description": "qa/asset-audit/patch-*.mjs, fix-*.mjs, patch-corrective-pass.mjs (17 files) - already-executed one-time patch scripts from a prior asset-ingestion session. Document historical operations performed under the name in effect at the time; not re-run, not rewritten.",
+      "fileCount": 17,
+      "disposition": "preserved-as-historical-record"
+    },
+    "historical-ingestion-data": {
+      "description": "qa/asset-audit/ingest-manifest.json, hash-groups.json, contact-sheets/manifest.json - generated records from the same completed ingestion pass, containing literal original Downloads filenames/paths (immutable external files, out of scope to modify) plus historical decisions made under the name in effect at the time. Not linked from qa/owner-review/index.html (confirmed by reading the generator).",
+      "fileCount": 3,
+      "disposition": "preserved-as-historical-record"
+    },
+    "historical-narrative-docs": {
+      "description": "ASSET_MANIFEST.md, SITE_FULL_PUBLIC_REDESIGN_AND_DEPLOY_REPORT.md, reports/SITE_ARCHITECTURE_UPDATE_PROOF.txt - narrative records of completed past work sessions, correctly using the brand name in effect when that work was done. Rewriting would falsify history.",
+      "fileCount": 3,
+      "disposition": "preserved-as-historical-record"
+    },
+    "baked-in-pixel-branding": {
+      "description": "5 live-referenced raster images with 'HeartStrings' wordmark rendered directly into pixels (box front/back, guides banner, companion-screen hero, one AIya interface screenshot). No editable source layers or approved Cordel artwork exist (confirmed: C:\\Downloads, C:\\Users\\tbroa\\Downloads, D:\\Download, D:\\Downloads all searched for '*ordel*' - zero results). Cannot be corrected without fabricating a final Cordel product render, which is prohibited. Moved to qa/cordel-migration/blocked-legacy-assets/ (unservable, out of public/) and replaced on their pages with the site's existing '.asset-ph' typographic placeholder pattern.",
+      "fileCount": 5,
+      "disposition": "blocked-moved-to-holding-folder",
+      "files": [
+        "qa/cordel-migration/blocked-legacy-assets/heartstrings-guides-banner.png",
+        "qa/cordel-migration/blocked-legacy-assets/heartstrings-play-box-front.jpg",
+        "qa/cordel-migration/blocked-legacy-assets/heartstrings-play-box-back.jpg",
+        "qa/cordel-migration/blocked-legacy-assets/heartstrings-connect-app-companion-screen-evidence.webp",
+        "qa/cordel-migration/blocked-legacy-assets/heartstrings-connect-screenshot-11-wingman-aiya.png"
+      ]
+    },
+    "unused-baked-in-pixel-branding-not-yet-resolved": {
+      "description": "public/cordel/cordel-play-board-spec-diagram.webp, public/cordel/cordel-app-signup.png, public/cordel/screenshots/01_login.png, public/cordel/screenshots/02_signup.png - confirmed via direct visual inspection to have baked-in 'HeartStrings' wordmark, but NOT currently referenced from any src/ page (orphan static files, not part of the browsable site). Left in place under public/cordel/ since they are not presently displayed anywhere; flagged so they are not wired into a future page without being resolved first.",
+      "fileCount": 4,
+      "disposition": "flagged-unused-not-moved",
+      "recommendation": "Move to blocked-legacy-assets/ or delete before any future page links to them."
+    },
+    "unsampled-screenshot-pool": {
+      "description": "public/cordel/screenshots/ contains ~50 real captured app screenshots total; 7 are wired into live pages (all checked - 6 clean, 1 blocked, see baked-in-pixel-branding). The remaining ~43 were not individually inspected (out of scope - not referenced by any page). Sampling of auth/onboarding-named files (01_login, 02_signup) vs deep-app-screen files (06_matches, 12_game_room) showed a consistent pattern: onboarding/auth screens carry the baked-in wordmark, deep app screens do not.",
+      "fileCount": 43,
+      "disposition": "unused-unsampled",
+      "recommendation": "Apply the same visual-inspection gate as this pass before ever wiring an unsampled screenshot into a page."
+    }
+  }
+}
