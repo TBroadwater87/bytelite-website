@@ -1,0 +1,287 @@
+[
+  {
+    "source": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\HeartStrings_BG_Drink.png",
+    "destination": "public/heartstrings/tiers/heartstrings-play-mischief-icon-drink.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\HeartStrings_BG_Halo.png",
+    "destination": "public/heartstrings/tiers/heartstrings-play-mischief-icon-halo.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\HeartStrings_BG_Hands.png",
+    "destination": "public/heartstrings/tiers/heartstrings-play-mischief-icon-hands.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\HeartStrings_BG_Hearts.png",
+    "destination": "public/heartstrings/tiers/heartstrings-play-mischief-icon-hearts.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\HeartStrings_BG_Social.png",
+    "destination": "public/heartstrings/tiers/heartstrings-play-mischief-icon-social.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\01_HeartStrings_Boardgame\\Final_Candidates\\HeartStrings_BG_Strip.png",
+    "destination": "public/heartstrings/tiers/heartstrings-play-mischief-icon-strip.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\app_icons\\knot-heart-dark.png",
+    "destination": "public/heartstrings-connect/icons/knot-heart-consent-icon.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\app_icons\\protected-heart-dark.svg",
+    "destination": "public/heartstrings-connect/icons/protected-heart-shield.svg",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\app_icons\\tension-lines-dark.svg",
+    "destination": "public/heartstrings-connect/icons/compatibility-tension-lines.svg",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\age-verified-id-check.svg",
+    "destination": "public/heartstrings-connect/icons/age-verified-id-check.svg",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\block-person-slash.svg",
+    "destination": "public/heartstrings-connect/icons/block-person-slash.svg",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\compatibility-heart-checkgrid.svg",
+    "destination": "public/heartstrings-connect/icons/compatibility-heart-checkgrid.svg",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\consent-open-palm-heart.svg",
+    "destination": "public/heartstrings-connect/icons/consent-open-palm-heart.svg",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\discover-compass-heart.svg",
+    "destination": "public/heartstrings-connect/icons/discover-compass-heart.svg",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\location-verified-pin-check.svg",
+    "destination": "public/heartstrings-connect/icons/location-verified-pin-check.svg",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\photo-recency-camera-check.svg",
+    "destination": "public/heartstrings-connect/icons/photo-recency-camera-check.svg",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\privacy-lock-heart.svg",
+    "destination": "public/heartstrings-connect/icons/privacy-lock-heart.svg",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\report-flag-alert.svg",
+    "destination": "public/heartstrings-connect/icons/report-flag-alert.svg",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\safety-center-shield-knot.svg",
+    "destination": "public/heartstrings-connect/icons/safety-center-shield-knot.svg",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\schedule-calendar-heart.svg",
+    "destination": "public/heartstrings-connect/icons/schedule-calendar-heart.svg",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\values-home-heart.svg",
+    "destination": "public/heartstrings-connect/icons/values-home-heart.svg",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\filled\\verified-shield-heart.svg",
+    "destination": "public/heartstrings-connect/icons/verified-shield-heart.svg",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\connections-loop-heart.svg",
+    "destination": "public/heartstrings-connect/icons/connections-loop-heart.svg",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\heartstrings-mark.svg",
+    "destination": "public/heartstrings-connect/icons/heartstrings-mark.svg",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\messages-bubble-string.svg",
+    "destination": "public/heartstrings-connect/icons/messages-bubble-string.svg",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\profile-heart-ring.svg",
+    "destination": "public/heartstrings-connect/icons/profile-heart-ring.svg",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\02_HeartStrings_App_and_Wingman\\App_Icons\\heartstrings_ui_pack\\heartstrings_ui_pack\\svg\\outline\\relationship-intent-path-heart.svg",
+    "destination": "public/heartstrings-connect/icons/relationship-intent-path-heart.svg",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\20x20_Board_No_Silhouette.png",
+    "destination": "public/heartstrings/heartstrings-play-board-20-space-complete.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\20x40_Board_No_Silhouette.png",
+    "destination": "public/heartstrings/heartstrings-play-board-40-space-complete.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ByteLite\\Branding\\Logos\\ByteLite_Tash_voice_avatar.png",
+    "destination": "public/company/founder-tash-bytelite-badge.webp",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\ByteLite_LLC_Editable_SVG_Samples\\06_executive_architecture.svg",
+    "destination": "public/architecture/bytelite-llc-org-map.svg",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\ByteLite_LLC_Editable_SVG_Samples\\13_compact_homepage_hierarchy.svg",
+    "destination": "public/architecture/bytelite-home-architecture-hierarchy.svg",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 12, 2026, 01_57_29 PM.png",
+    "destination": "public/heartstrings-connect/heartstrings-connect-restaurant-date-scene.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 12, 2026, 02_46_24 PM.png",
+    "destination": "public/heartstrings-connect/restaurant-partner-signup-flow-diagram.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 17, 2026, 04_00_42 PM.png",
+    "destination": "public/heartstrings/heartstrings-play-box-back-full-contents.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 17, 2026, 04_37_41 AM (10).png",
+    "destination": "public/heartstrings/heartstrings-play-group-lifestyle-scene.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 17, 2026, 11_35_27 AM (1).png",
+    "destination": "public/heartstrings/tiers/heartstrings-play-tier-card-initiate-graphic.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 17, 2026, 11_35_27 AM (2).png",
+    "destination": "public/heartstrings/tiers/heartstrings-play-tier-card-connect-graphic.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 17, 2026, 11_35_27 AM (3).png",
+    "destination": "public/heartstrings/tiers/heartstrings-play-tier-card-seduce-graphic.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 17, 2026, 11_35_27 AM (4).png",
+    "destination": "public/heartstrings/tiers/heartstrings-play-tier-card-stimulate-graphic.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 17, 2026, 11_35_27 AM (5).png",
+    "destination": "public/heartstrings/tiers/heartstrings-play-tier-card-edge-graphic.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 17, 2026, 11_35_27 AM (6).png",
+    "destination": "public/heartstrings/tiers/heartstrings-play-tier-card-climax-graphic.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 19, 2026, 01_47_26 PM (2).png",
+    "destination": "public/heartstrings-connect/heartstrings-connect-aiya-aion-paired-portrait.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 20, 2026, 07_21_10 AM (1).png",
+    "destination": "public/heartstrings/heartstrings-aion-portrait.png",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 23, 2026, 09_38_05 PM.png",
+    "destination": "public/heartstrings/heartstrings-play-board-spec-diagram.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 23, 2026, 10_29_45 AM (4).png",
+    "destination": "public/heartstrings/heartstrings-play-figural-token-tops.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 23, 2026, 10_29_45 AM (6).png",
+    "destination": "public/heartstrings/heartstrings-play-ab-player-chips.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 23, 2026, 12_01_50 PM (1).png",
+    "destination": "public/heartstrings/heartstrings-play-consent-cup-affirm.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 23, 2026, 12_01_50 PM (10).png",
+    "destination": "public/heartstrings/heartstrings-play-consent-cup-chosen.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 23, 2026, 12_01_50 PM (2).png",
+    "destination": "public/heartstrings/heartstrings-play-consent-cup-yes.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 25, 2026, 01_09_02 PM.png",
+    "destination": "public/heartstrings/heartstrings-play-black-gold-dice-product.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 25, 2026, 01_19_13 PM.png",
+    "destination": "public/heartstrings/heartstrings-play-mischief-dice-product.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 25, 2026, 01_56_18 PM.png",
+    "destination": "public/heartstrings/heartstrings-play-mischief-handbook-product.webp",
+    "status": "already-exists"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jul 25, 2026, 01_56_36 PM.png",
+    "destination": "public/heartstrings/heartstrings-play-decree-card-product.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\ChatGPT Image Jun 30, 2026, 09_50_00 PM (2).png",
+    "destination": "public/heartstrings/heartstrings-play-tier-tracker-chart.webp",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\scoped_action_envelope.svg",
+    "destination": "public/technologies/genesis-goalkeeper-scoped-action-envelope-diagram.svg",
+    "status": "copied"
+  },
+  {
+    "source": "D:\\Download\\Screenshot_20260725_082752_HeartStrings.jpg",
+    "destination": "public/heartstrings-connect/heartstrings-connect-app-companion-screen-evidence.webp",
+    "status": "already-exists"
+  }
+]
