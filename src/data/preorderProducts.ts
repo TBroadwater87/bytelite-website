@@ -4,9 +4,9 @@ import type { PreorderProductConfig } from '../lib/preorder';
 // mode (CLAUDE.md section 20.5): a no-charge founder reservation that locks in the benefit
 // formula rather than collecting payment against an unknown price.
 
-export const HEARTSTRINGS_PLAY_PREORDER: PreorderProductConfig = {
-  productId: 'heartstrings-play',
-  productName: 'HeartStrings Play',
+export const CORDEL_PLAY_PREORDER: PreorderProductConfig = {
+  productId: 'cordel-play',
+  productName: 'Cordel Play',
   productType: 'Physical board game',
   standardLaunchPriceCents: null,
   currency: 'USD',
@@ -14,21 +14,21 @@ export const HEARTSTRINGS_PLAY_PREORDER: PreorderProductConfig = {
   baseUsageUnits: null,
   usageUnitLabel: null,
   reservationMode: 'reservation',
-  activationTrigger: 'Retail launch of HeartStrings Play (not yet scheduled)',
+  activationTrigger: 'Retail launch of Cordel Play (not yet scheduled)',
   shipmentTrigger: 'Manufacturing completion and retail release (not yet scheduled)',
   expectedAvailabilityWindow: 'Not yet announced',
   refundEligibility: 'Full refund/cancellation at any time before charge — reservations are not charged.',
   transferability: 'Reservation is tied to the founder’s contact record; transfer terms will be set at launch.',
   classification: 'physical',
-  associatedRoute: '/products/heartstrings-play/preorder',
+  associatedRoute: '/products/cordel-play/preorder',
   checkoutAvailable: false,
   legalDisclosureVersion: '2026-07-26',
-  physicalBonusBenefit: 'HeartStrings Connect service-day credit or equivalent digital benefit, to be configured at launch',
+  physicalBonusBenefit: 'Cordel Connect service-day credit or equivalent digital benefit, to be configured at launch',
 };
 
-export const HEARTSTRINGS_CONNECT_PREORDER: PreorderProductConfig = {
-  productId: 'heartstrings-connect',
-  productName: 'HeartStrings Connect',
+export const CORDEL_CONNECT_PREORDER: PreorderProductConfig = {
+  productId: 'cordel-connect',
+  productName: 'Cordel Connect',
   productType: 'Digital subscription service',
   standardLaunchPriceCents: null,
   currency: 'USD',
@@ -36,7 +36,7 @@ export const HEARTSTRINGS_CONNECT_PREORDER: PreorderProductConfig = {
   baseUsageUnits: null,
   usageUnitLabel: null,
   reservationMode: 'reservation',
-  activationTrigger: 'Public launch or broader beta release of HeartStrings Connect (not yet scheduled)',
+  activationTrigger: 'Public launch or broader beta release of Cordel Connect (not yet scheduled)',
   shipmentTrigger: null,
   expectedAvailabilityWindow: 'Not yet announced',
   refundEligibility: 'Full refund/cancellation at any time before charge — reservations are not charged.',
@@ -49,6 +49,6 @@ export const HEARTSTRINGS_CONNECT_PREORDER: PreorderProductConfig = {
 };
 
 export const ALL_PREORDER_PRODUCTS: PreorderProductConfig[] = [
-  HEARTSTRINGS_PLAY_PREORDER,
-  HEARTSTRINGS_CONNECT_PREORDER,
+  CORDEL_PLAY_PREORDER,
+  CORDEL_CONNECT_PREORDER,
 ];

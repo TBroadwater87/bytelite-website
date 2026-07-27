@@ -6,23 +6,23 @@ import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import ProductSubNav from '../../../components/ProductSubNav.astro';
 
 const SUBNAV = [
-  { label: 'Overview', href: '/products/heartstrings-play' },
-  { label: 'How It Plays', href: '/products/heartstrings-play/how-it-plays' },
-  { label: 'Editions', href: '/products/heartstrings-play/editions' },
-  { label: 'Components', href: '/products/heartstrings-play/components' },
-  { label: 'Consent Architecture', href: '/products/heartstrings-play/consent-architecture' },
-  { label: 'Development Status', href: '/products/heartstrings-play/development-status' },
-  { label: 'Preorder', href: '/products/heartstrings-play/preorder' },
+  { label: 'Overview', href: '/products/cordel-play' },
+  { label: 'How It Plays', href: '/products/cordel-play/how-it-plays' },
+  { label: 'Editions', href: '/products/cordel-play/editions' },
+  { label: 'Components', href: '/products/cordel-play/components' },
+  { label: 'Consent Architecture', href: '/products/cordel-play/consent-architecture' },
+  { label: 'Development Status', href: '/products/cordel-play/development-status' },
+  { label: 'Preorder', href: '/products/cordel-play/preorder' },
 ];
 ---
 
 <Layout
-  title="Editions | HeartStrings Play | ByteLite LLC"
-  description="The three HeartStrings Play board configurations: 20x20, 20x40, and the double-sided Ultimate board."
-  keywords="HeartStrings Play editions, board configurations"
+  title="Editions | Cordel Play | ByteLite LLC"
+  description="The three Cordel Play board configurations: 20x20, 20x40, and the double-sided Ultimate board."
+  keywords="Cordel Play editions, board configurations"
 >
   <Header slot="header" />
-  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'HeartStrings Play', href: '/products/heartstrings-play' }, { label: 'Editions' }]} /></div></section>
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Cordel Play', href: '/products/cordel-play' }, { label: 'Editions' }]} /></div></section>
   <ProductSubNav items={SUBNAV} />
 
   <section class="ed-hero">
@@ -30,7 +30,7 @@ const SUBNAV = [
       <p class="eyebrow">Editions</p>
       <h1>Three board configurations, one core game.</h1>
       <p class="ed-p">
-        HeartStrings Play currently ships as one core game with three interchangeable board
+        Cordel Play currently ships as one core game with three interchangeable board
         configurations, rather than separate intimate/party product editions. If distinct packaged
         editions are introduced later, this page will be updated to reflect that — nothing beyond
         the three board configurations below is currently confirmed.
@@ -42,17 +42,17 @@ const SUBNAV = [
     <div class="container">
       <div class="ed-grid">
         <div class="card ed-card">
-          <img src="/heartstrings/board-20x20.jpg" alt="HeartStrings Play 20x20 board" loading="lazy" />
+          <img src="/cordel/board-20x20.jpg" alt="Cordel Play 20x20 board" loading="lazy" />
           <h3>20x20 Board</h3>
           <p>The standard board configuration — a compact, focused session layout.</p>
         </div>
         <div class="card ed-card">
-          <img src="/heartstrings/board-20x40.jpg" alt="HeartStrings Play 20x40 board" loading="lazy" />
+          <img src="/cordel/board-20x40.jpg" alt="Cordel Play 20x40 board" loading="lazy" />
           <h3>20x40 Board</h3>
           <p>A larger layout for bigger groups or longer sessions.</p>
         </div>
         <div class="card ed-card">
-          <img src="/heartstrings/board-ultimate.jpg" alt="HeartStrings Play Ultimate double-sided board" loading="lazy" />
+          <img src="/cordel/board-ultimate.jpg" alt="Cordel Play Ultimate double-sided board" loading="lazy" />
           <h3>Ultimate Board</h3>
           <p>A double-sided board that unfolds and flips, with a different layout on each side to change how the game is played.</p>
         </div>

@@ -30,7 +30,7 @@
   </g>
     <g id="consumer-item-1">
       <rect x="105" y="315" width="555" height="138" rx="16" fill="#FFF0F7" stroke="#B91873" stroke-width="2.5"/>
-      <text x="129" y="351" text-anchor="start" class="item" fill="#111318">HeartStrings Play</text>
+      <text x="129" y="351" text-anchor="start" class="item" fill="#111318">Cordel Play</text>
       <g class="status-tag">
       <rect x="550" y="413" width="92" height="28" rx="14" fill="#FCE1EF" stroke="#B91873" stroke-width="1.5"/>
       <text x="596.0" y="432" text-anchor="middle" class="tag" fill="#B91873">Pre-launch</text>
@@ -38,7 +38,7 @@
     </g><path d="M660 384 H800" class="line" stroke="#B91873" stroke-width="3"/>
     <g id="consumer-item-2">
       <rect x="105" y="505" width="555" height="138" rx="16" fill="#FFF0F7" stroke="#B91873" stroke-width="2.5"/>
-      <text x="129" y="541" text-anchor="start" class="item" fill="#111318">HeartStrings Connect</text>
+      <text x="129" y="541" text-anchor="start" class="item" fill="#111318">Cordel Connect</text>
       <g class="status-tag">
       <rect x="546" y="603" width="96" height="28" rx="14" fill="#FCE1EF" stroke="#B91873" stroke-width="1.5"/>
       <text x="594.0" y="622" text-anchor="middle" class="tag" fill="#B91873">Private beta</text>

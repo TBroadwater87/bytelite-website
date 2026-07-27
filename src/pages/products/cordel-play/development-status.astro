@@ -6,41 +6,41 @@ import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import ProductSubNav from '../../../components/ProductSubNav.astro';
 import ProjectPageHero from '../../../components/ProjectPageHero.astro';
 import ProjectDetailSections from '../../../components/ProjectDetailSections.astro';
-import { HEARTSTRINGS_PLAY } from '../../../data/projects';
+import { CORDEL_PLAY } from '../../../data/projects';
 
 const SUBNAV = [
-  { label: 'Overview', href: '/products/heartstrings-play' },
-  { label: 'How It Plays', href: '/products/heartstrings-play/how-it-plays' },
-  { label: 'Editions', href: '/products/heartstrings-play/editions' },
-  { label: 'Components', href: '/products/heartstrings-play/components' },
-  { label: 'Consent Architecture', href: '/products/heartstrings-play/consent-architecture' },
-  { label: 'Development Status', href: '/products/heartstrings-play/development-status' },
-  { label: 'Preorder', href: '/products/heartstrings-play/preorder' },
+  { label: 'Overview', href: '/products/cordel-play' },
+  { label: 'How It Plays', href: '/products/cordel-play/how-it-plays' },
+  { label: 'Editions', href: '/products/cordel-play/editions' },
+  { label: 'Components', href: '/products/cordel-play/components' },
+  { label: 'Consent Architecture', href: '/products/cordel-play/consent-architecture' },
+  { label: 'Development Status', href: '/products/cordel-play/development-status' },
+  { label: 'Preorder', href: '/products/cordel-play/preorder' },
 ];
 ---
 
 <Layout
-  title="Development Status | HeartStrings Play | ByteLite LLC"
-  description="Current development status of HeartStrings Play: product design is complete, manufacturing is in preparation, no retail release date has been announced."
-  keywords="HeartStrings Play status, manufacturing, pre-launch"
+  title="Development Status | Cordel Play | ByteLite LLC"
+  description="Current development status of Cordel Play: product design is complete, manufacturing is in preparation, no retail release date has been announced."
+  keywords="Cordel Play status, manufacturing, pre-launch"
 >
   <Header slot="header" />
-  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'HeartStrings Play', href: '/products/heartstrings-play' }, { label: 'Development Status' }]} /></div></section>
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Cordel Play', href: '/products/cordel-play' }, { label: 'Development Status' }]} /></div></section>
   <ProductSubNav items={SUBNAV} />
 
-  <ProjectPageHero project={HEARTSTRINGS_PLAY} displayName="HeartStrings Play — Development Status" />
+  <ProjectPageHero project={CORDEL_PLAY} displayName="Cordel Play — Development Status" />
 
   <section class="section section-alt">
     <div class="container" style="max-width:760px;">
       <div class="hs-status-box">
-        <p>HeartStrings Play has not been released for retail sale. No purchase date has been
+        <p>Cordel Play has not been released for retail sale. No purchase date has been
         announced. Product design is complete. Manufacturing is in preparation.</p>
-        <a href="/products/heartstrings-play/preorder" class="btn btn-pink btn-sm" style="margin-top:1.25rem;">Founder Reservation</a>
+        <a href="/products/cordel-play/preorder" class="btn btn-pink btn-sm" style="margin-top:1.25rem;">Founder Reservation</a>
       </div>
     </div>
   </section>
 
-  <ProjectDetailSections project={HEARTSTRINGS_PLAY} />
+  <ProjectDetailSections project={CORDEL_PLAY} />
 
   <Footer slot="footer" />
 </Layout>

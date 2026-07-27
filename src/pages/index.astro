@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import StatusBadge from '../components/StatusBadge.astro';
-import { ALL_TECHNOLOGIES, HEARTSTRINGS_PLAY, HEARTSTRINGS_CONNECT } from '../data/projects';
+import { ALL_TECHNOLOGIES, CORDEL_PLAY, CORDEL_CONNECT } from '../data/projects';
 
 const TECH_MARKS: Record<string, string> = {
   bytelite: '/technologies/bytelite-technology-mark.webp',
@@ -15,8 +15,8 @@ const TECH_MARKS: Record<string, string> = {
 
 <Layout
   title="ByteLite LLC | Deterministic Structure for Digital Information, Vision, and Reasoning"
-  description="ByteLite LLC develops a layered deterministic architecture for digital information, visual evidence, relational reasoning, and human-facing interaction — powering public products including HeartStrings Play and HeartStrings Connect."
-  keywords="ByteLite LLC, deterministic systems, ByteLite, ByteSight, Deep Kore, AIya, ByteOracle, HeartStrings Play, HeartStrings Connect, Helena Montana"
+  description="ByteLite LLC develops a layered deterministic architecture for digital information, visual evidence, relational reasoning, and human-facing interaction — powering public products including Cordel Play and Cordel Connect."
+  keywords="ByteLite LLC, deterministic systems, ByteLite, ByteSight, Deep Kore, AIya, ByteOracle, Cordel Play, Cordel Connect, Helena Montana"
 >
   <Header slot="header" />
 
@@ -48,7 +48,7 @@ const TECH_MARKS: Record<string, string> = {
         auditability. Status and proof level are shown honestly — planned layers are labeled as planned.
       </p>
       <div class="arch-diagram">
-        <img src="/architecture/bytelite-home-architecture-hierarchy.svg" alt="Diagram of ByteLite LLC branching into two groups: Consumer Products (HeartStrings Play, HeartStrings Connect, Restaurant Partner Program) and Technologies (ByteLite, ByteSight, Deep Kore, AIya, Genesis Goalkeeper, ByteOracle, ByteFlow, ByteCost), each labeled with its current canonical status." width="1600" height="1000" loading="lazy" />
+        <img src="/architecture/bytelite-home-architecture-hierarchy.svg" alt="Diagram of ByteLite LLC branching into two groups: Consumer Products (Cordel Play, Cordel Connect, Restaurant Partner Program) and Technologies (ByteLite, ByteSight, Deep Kore, AIya, Genesis Goalkeeper, ByteOracle, ByteFlow, ByteCost), each labeled with its current canonical status." width="1600" height="1000" loading="lazy" />
       </div>
       <div class="tech-grid">
         {ALL_TECHNOLOGIES.map((tech) => (
@@ -96,26 +96,29 @@ const TECH_MARKS: Record<string, string> = {
       <p class="eyebrow" style="text-align:center;">Public Products</p>
       <h2 style="text-align:center;margin-bottom:.75rem;">Built by ByteLite LLC, for people.</h2>
       <p style="text-align:center;max-width:680px;margin:0 auto 3rem;color:#7b829e;">
-        HeartStrings Play and HeartStrings Connect are ByteLite LLC's public-facing products —
+        Cordel Play and Cordel Connect are ByteLite LLC's public-facing products —
         where the deterministic architecture above meets real consumer experiences.
       </p>
       <div class="product-grid">
-        <a href={HEARTSTRINGS_PLAY.routes[0]} class="product-card product-card-play">
-          <img src="/heartstrings/board-ultimate.jpg" alt="HeartStrings Play board, cards, and tier decks laid out for a private group session" class="product-card-img" width="960" height="540" loading="lazy" />
+        <a href={CORDEL_PLAY.routes[0]} class="product-card product-card-play">
+          <img src="/cordel/board-ultimate.jpg" alt="Cordel Play board, cards, and tier decks laid out for a private group session" class="product-card-img" width="960" height="540" loading="lazy" />
           <div class="product-card-inner">
-            <div class="product-eyebrow">HeartStrings Play</div>
-            <StatusBadge status={HEARTSTRINGS_PLAY.status} />
-            <p class="product-desc">{HEARTSTRINGS_PLAY.shortDescription}</p>
-            <span class="product-arrow">Explore HeartStrings Play &rarr;</span>
+            <div class="product-eyebrow">Cordel Play</div>
+            <StatusBadge status={CORDEL_PLAY.status} />
+            <p class="product-desc">{CORDEL_PLAY.shortDescription}</p>
+            <span class="product-arrow">Explore Cordel Play &rarr;</span>
           </div>
         </a>
-        <a href={HEARTSTRINGS_CONNECT.routes[0]} class="product-card product-card-connect">
-          <img src="/heartstrings/heartstrings-guides-banner.png" alt="AIya and Aion, the AIya-and-Aion wingman characters that guide HeartStrings Connect" class="product-card-img" width="960" height="540" loading="lazy" />
+        <a href={CORDEL_CONNECT.routes[0]} class="product-card product-card-connect">
+          <div class="product-card-img asset-ph" style="height:180px;">
+            <span class="asset-ph-tag">Pending</span>
+            <span class="asset-ph-alt">AIya and Aion, the Cordel Connect wingman characters — awaiting rebranded artwork</span>
+          </div>
           <div class="product-card-inner">
-            <div class="product-eyebrow product-eyebrow-connect">HeartStrings Connect</div>
-            <StatusBadge status={HEARTSTRINGS_CONNECT.status} />
-            <p class="product-desc">{HEARTSTRINGS_CONNECT.shortDescription}</p>
-            <span class="product-arrow product-arrow-connect">Explore HeartStrings Connect &rarr;</span>
+            <div class="product-eyebrow product-eyebrow-connect">Cordel Connect</div>
+            <StatusBadge status={CORDEL_CONNECT.status} />
+            <p class="product-desc">{CORDEL_CONNECT.shortDescription}</p>
+            <span class="product-arrow product-arrow-connect">Explore Cordel Connect &rarr;</span>
           </div>
         </a>
       </div>
@@ -145,7 +148,7 @@ const TECH_MARKS: Record<string, string> = {
         <a href="/company/partnerships" class="inquiry-card">Technology &amp; validation partnerships</a>
         <a href="/company/partnerships" class="inquiry-card">Licensing inquiries</a>
         <a href="/company/partnerships" class="inquiry-card">Manufacturing &amp; distribution</a>
-        <a href="/products/heartstrings-connect/date-planning/restaurants/partner-program" class="inquiry-card">Restaurant partnerships</a>
+        <a href="/products/cordel-connect/date-planning/restaurants/partner-program" class="inquiry-card">Restaurant partnerships</a>
         <a href="/company/investors" class="inquiry-card">Investor conversations</a>
         <a href="/contact" class="inquiry-card">General contact</a>
       </div>

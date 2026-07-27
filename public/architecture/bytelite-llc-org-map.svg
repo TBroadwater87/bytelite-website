@@ -27,11 +27,11 @@
     <text x="1200.0" y="263" text-anchor="middle" class="branch" fill="#10263F">Technologies</text>
   </g>
 
-  <rect x="105" y="325" width="590" height="138" rx="8" fill="#FFFFFF" stroke="#7B8794" stroke-width="1.5"/><rect x="105" y="325" width="12" height="138" fill="#EC2A88"/><text x="145" y="379" class="item" fill="#111318">HeartStrings Play</text>
+  <rect x="105" y="325" width="590" height="138" rx="8" fill="#FFFFFF" stroke="#7B8794" stroke-width="1.5"/><rect x="105" y="325" width="12" height="138" fill="#EC2A88"/><text x="145" y="379" class="item" fill="#111318">Cordel Play</text>
     <rect x="145" y="407" width="112" height="28" rx="14" fill="#FCE1EF" stroke="#B91873" stroke-width="1.5"/>
     <text x="201.0" y="426" text-anchor="middle" class="tag" fill="#B91873">Prototype</text>
 
-  <rect x="105" y="491" width="590" height="138" rx="8" fill="#FFFFFF" stroke="#7B8794" stroke-width="1.5"/><rect x="105" y="491" width="12" height="138" fill="#EC2A88"/><text x="145" y="545" class="item" fill="#111318">HeartStrings Connect</text>
+  <rect x="105" y="491" width="590" height="138" rx="8" fill="#FFFFFF" stroke="#7B8794" stroke-width="1.5"/><rect x="105" y="491" width="12" height="138" fill="#EC2A88"/><text x="145" y="545" class="item" fill="#111318">Cordel Connect</text>
     <rect x="145" y="573" width="130" height="28" rx="14" fill="#FCE1EF" stroke="#B91873" stroke-width="1.5"/>
     <text x="210.0" y="592" text-anchor="middle" class="tag" fill="#B91873">Private Test</text>
 

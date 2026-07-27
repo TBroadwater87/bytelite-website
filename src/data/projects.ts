@@ -125,7 +125,7 @@ export const BYTESIGHT: ProjectRecord = {
     'Full-resolution evidence representation with canonical regions and boundaries',
     'Layered semantic structure with closure validation',
     'Deterministic image transformation with preserved provenance',
-    'A production adapter feeding HeartStrings Connect photo features (e.g. cartoonized-profile transformation) and Deep Kore ingest',
+    'A production adapter feeding Cordel Connect photo features (e.g. cartoonized-profile transformation) and Deep Kore ingest',
   ],
   validation: [
     'No public demonstration or benchmark exists yet.',
@@ -133,7 +133,7 @@ export const BYTESIGHT: ProjectRecord = {
   ],
   integrationReceives: ['Raw images and visual media'],
   integrationProduces: ['Region/boundary structural output (planned)', 'Provenance-tagged transformation records (planned)'],
-  integrationConsumedBy: ['Deep Kore (planned ingest)', 'HeartStrings Connect (planned photo/cartoonizer adapter)'],
+  integrationConsumedBy: ['Deep Kore (planned ingest)', 'Cordel Connect (planned photo/cartoonizer adapter)'],
   availability: 'Internal research',
   routes: ['/technologies/bytesight'],
   claimRestrictions: [
@@ -228,7 +228,7 @@ export const DEEP_KORE: ProjectRecord = {
   ],
   integrationReceives: ['Structural input from ByteLite/ByteSight (planned)', 'User-facing prompts via AIya'],
   integrationProduces: ['Governed reasoning output routed through Genesis Goalkeeper before emission'],
-  integrationConsumedBy: ['AIya (human-facing interface)', 'HeartStrings Connect (AIya wingman feature)'],
+  integrationConsumedBy: ['AIya (human-facing interface)', 'Cordel Connect (AIya wingman feature)'],
   availability: 'Internal research',
   routes: ['/technologies/deep-kore'],
   claimRestrictions: [
@@ -237,8 +237,6 @@ export const DEEP_KORE: ProjectRecord = {
     'Not a public commercial product.',
   ],
   accentColor: '#a78bfa',
-  heroImage: '/heartstrings-connect/heartstrings-connect-app-companion-screen-evidence.webp',
-  heroImageAlt: 'A private-test-build screenshot of the AIya companion interface inside HeartStrings Connect, the current user-facing surface Deep Kore’s governed reasoning is exposed through',
 };
 
 export const AIYA: ProjectRecord = {
@@ -251,7 +249,7 @@ export const AIYA: ProjectRecord = {
   status: 'Prototype',
   lastValidated: UNDATED,
   currentCapabilities: [
-    { label: 'Research-preview onboarding and chat-style interface screens inside private HeartStrings Connect test builds', evidence: 'Implemented' },
+    { label: 'Research-preview onboarding and chat-style interface screens inside private Cordel Connect test builds', evidence: 'Implemented' },
   ],
   inDevelopment: [
     'Structured, goal-oriented conversation flows',
@@ -259,17 +257,17 @@ export const AIYA: ProjectRecord = {
     'Emotionally appropriate presentation within governed limits',
   ],
   endGame: [
-    'A full conversational interaction layer for HeartStrings Connect (the "wingman" role) that never pretends to be a real person',
+    'A full conversational interaction layer for Cordel Connect (the "wingman" role) that never pretends to be a real person',
     'Seasonal/holiday visual variants where product-relevant',
     'Progression toward more natural communication while remaining strictly bound by Genesis Goalkeeper governance',
   ],
   validation: [
-    'Explicitly labeled "Research Preview — Not Production AI" wherever it currently appears in HeartStrings Connect.',
+    'Explicitly labeled "Research Preview — Not Production AI" wherever it currently appears in Cordel Connect.',
     'No live AI companion, automated matching system, or production guidance system is deployed.',
   ],
   integrationReceives: ['Governed output from Deep Kore'],
   integrationProduces: ['User-facing conversation and guidance surfaces'],
-  integrationConsumedBy: ['HeartStrings Connect'],
+  integrationConsumedBy: ['Cordel Connect'],
   availability: 'Internal research',
   routes: ['/technologies/deep-kore/aiya'],
   claimRestrictions: [
@@ -278,7 +276,7 @@ export const AIYA: ProjectRecord = {
     'Not the entirety of Deep Kore — AIya is one interaction layer over it.',
   ],
   accentColor: '#f472b6',
-  heroImage: '/heartstrings/heartstrings-aiya-icon.png',
+  heroImage: '/cordel/cordel-aiya-icon.png',
   heroImageAlt: 'AIya, the human-facing interaction layer built over Deep Kore',
 };
 
@@ -320,14 +318,14 @@ export const BYTEORACLE: ProjectRecord = {
   slug: 'byteoracle',
   name: 'ByteOracle',
   category: 'Technology · Deterministic Astronomical Interpretation',
-  shortDescription: 'A deterministic astronomical-interpretation concept feeding HeartStrings Connect horoscope features.',
+  shortDescription: 'A deterministic astronomical-interpretation concept feeding Cordel Connect horoscope features.',
   mission:
     'ByteOracle is the name for ByteLite LLC’s deterministic approach to astrological content: calculate astronomical state locally and generate original, reproducible interpretations, rather than scraping third-party horoscope text or depending on a hosted language model at runtime.',
   status: 'Concept',
   lastValidated: UNDATED,
   currentCapabilities: [
-    { label: 'Zodiac sign derived from a user’s birthday inside HeartStrings Connect', evidence: 'Implemented' },
-    { label: 'A daily horoscope surface inside HeartStrings Connect private test builds', evidence: 'Implemented' },
+    { label: 'Zodiac sign derived from a user’s birthday inside Cordel Connect', evidence: 'Implemented' },
+    { label: 'A daily horoscope surface inside Cordel Connect private test builds', evidence: 'Implemented' },
   ],
   inDevelopment: [
     'Formalizing the local astronomical calculation approach under the ByteOracle name',
@@ -340,13 +338,13 @@ export const BYTEORACLE: ProjectRecord = {
     'Provenance-preserving, reproducible output suitable for future standalone or licensed use',
   ],
   validation: [
-    'The only currently evidenced capability is the existing HeartStrings Connect horoscope/zodiac feature described above.',
+    'The only currently evidenced capability is the existing Cordel Connect horoscope/zodiac feature described above.',
     'The 12/144/156-record target output described in End-Game Functionality Goals is a design target, not a shipped capability, and should not be read as a current claim.',
     'No runtime scraping or third-party LLM dependency is claimed to exist for this feature; this is an intended property of the end-game design, not an audited fact.',
   ],
   integrationReceives: ['User birthday (for sign derivation)', 'Calendar date (for daily reading generation)'],
   integrationProduces: ['Zodiac sign', 'Daily horoscope text', 'Planned: ordered compatibility readings'],
-  integrationConsumedBy: ['HeartStrings Connect ("ByteOracle Horoscopes")'],
+  integrationConsumedBy: ['Cordel Connect ("ByteOracle Horoscopes")'],
   availability: 'Not publicly available',
   routes: ['/technologies/byteoracle'],
   claimRestrictions: [
@@ -369,13 +367,13 @@ export const ALL_TECHNOLOGIES: ProjectRecord[] = [
   BYTECOST,
 ];
 
-export const HEARTSTRINGS_PLAY: ProjectRecord = {
-  slug: 'heartstrings-play',
-  name: 'HeartStrings Play',
+export const CORDEL_PLAY: ProjectRecord = {
+  slug: 'cordel-play',
+  name: 'Cordel Play',
   category: 'Product · Consent-Forward Adult Board Game',
   shortDescription: 'A premium consent-first adult social board game for private groups of 2 to 18 players.',
   mission:
-    'HeartStrings Play exists to make consent and pacing structural parts of the game itself — not something a group has to negotiate separately — through a six-tier escalation system, the standing Consent Cup, and Decree cards any player can use at any time.',
+    'Cordel Play exists to make consent and pacing structural parts of the game itself — not something a group has to negotiate separately — through a six-tier escalation system, the standing Consent Cup, and Decree cards any player can use at any time.',
   status: 'Prototype',
   lastValidated: UNDATED,
   currentCapabilities: [
@@ -385,7 +383,7 @@ export const HEARTSTRINGS_PLAY: ProjectRecord = {
   endGame: [
     'Retail-ready manufactured product across board, card, and component sets',
     'Founder preorder / reservation availability ahead of general retail release',
-    'Integration touchpoints with HeartStrings Connect',
+    'Integration touchpoints with Cordel Connect',
   ],
   validation: [
     'Product design is complete; manufacturing is in preparation.',
@@ -393,30 +391,30 @@ export const HEARTSTRINGS_PLAY: ProjectRecord = {
   ],
   integrationReceives: [],
   integrationProduces: [],
-  integrationConsumedBy: ['HeartStrings Connect (companion app touchpoints)'],
+  integrationConsumedBy: ['Cordel Connect (companion app touchpoints)'],
   availability: 'Not publicly available',
   routes: [
-    '/products/heartstrings-play',
-    '/products/heartstrings-play/how-it-plays',
-    '/products/heartstrings-play/editions',
-    '/products/heartstrings-play/components',
-    '/products/heartstrings-play/consent-architecture',
-    '/products/heartstrings-play/development-status',
-    '/products/heartstrings-play/preorder',
+    '/products/cordel-play',
+    '/products/cordel-play/how-it-plays',
+    '/products/cordel-play/editions',
+    '/products/cordel-play/components',
+    '/products/cordel-play/consent-architecture',
+    '/products/cordel-play/development-status',
+    '/products/cordel-play/preorder',
   ],
   claimRestrictions: ['Not currently for sale at retail.'],
   accentColor: '#f472b6',
-  heroImage: '/heartstrings/board-ultimate.jpg',
-  heroImageAlt: 'HeartStrings Play board, tier cards, and components laid out for a private group session',
+  heroImage: '/cordel/board-ultimate.jpg',
+  heroImageAlt: 'Cordel Play board, tier cards, and components laid out for a private group session',
 };
 
-export const HEARTSTRINGS_CONNECT: ProjectRecord = {
-  slug: 'heartstrings-connect',
-  name: 'HeartStrings Connect',
+export const CORDEL_CONNECT: ProjectRecord = {
+  slug: 'cordel-connect',
+  name: 'Cordel Connect',
   category: 'Product · Privacy-First Compatibility and Connection',
   shortDescription: 'A private-test digital companion built around deep compatibility, cryptographically split privacy, and safety-first date planning.',
   mission:
-    'HeartStrings Connect exists to fix three things most dating apps treat as afterthoughts: whether two people are actually compatible, whether your private answers stay private even from the platform itself, and whether you are safer meeting someone from the app in real life.',
+    'Cordel Connect exists to fix three things most dating apps treat as afterthoughts: whether two people are actually compatible, whether your private answers stay private even from the platform itself, and whether you are safer meeting someone from the app in real life.',
   status: 'Private Test',
   lastValidated: UNDATED,
   currentCapabilities: [
@@ -445,32 +443,30 @@ export const HEARTSTRINGS_CONNECT: ProjectRecord = {
   integrationConsumedBy: [],
   availability: 'Private test',
   routes: [
-    '/products/heartstrings-connect',
-    '/products/heartstrings-connect/compatibility-and-matching',
-    '/products/heartstrings-connect/privacy-architecture',
-    '/products/heartstrings-connect/safety',
-    '/products/heartstrings-connect/cartoonized-profiles',
-    '/products/heartstrings-connect/aiya-and-aion',
-    '/products/heartstrings-connect/games-and-shared-activities',
-    '/products/heartstrings-connect/byteoracle-horoscopes',
-    '/products/heartstrings-connect/date-planning',
-    '/products/heartstrings-connect/date-planning/blind-date-roulette',
-    '/products/heartstrings-connect/date-planning/restaurants',
-    '/products/heartstrings-connect/date-planning/restaurants/partner-program',
+    '/products/cordel-connect',
+    '/products/cordel-connect/compatibility-and-matching',
+    '/products/cordel-connect/privacy-architecture',
+    '/products/cordel-connect/safety',
+    '/products/cordel-connect/cartoonized-profiles',
+    '/products/cordel-connect/aiya-and-aion',
+    '/products/cordel-connect/games-and-shared-activities',
+    '/products/cordel-connect/byteoracle-horoscopes',
+    '/products/cordel-connect/date-planning',
+    '/products/cordel-connect/date-planning/blind-date-roulette',
+    '/products/cordel-connect/date-planning/restaurants',
+    '/products/cordel-connect/date-planning/restaurants/partner-program',
   ],
   claimRestrictions: ['Not on any public app store.', 'Not a finished/production AI product (AIya).'],
   accentColor: '#818cf8',
-  heroImage: '/heartstrings/heartstrings-guides-banner.png',
-  heroImageAlt: 'AIya and Aion, the paired wingman characters that guide HeartStrings Connect users',
 };
 
 export const RESTAURANT_PARTNER_PROGRAM: ProjectRecord = {
   slug: 'restaurant-partner-program',
-  name: 'HeartStrings Restaurant Partner Program',
-  category: 'Product · B2B Pilot (HeartStrings Connect / Date Planning)',
-  shortDescription: 'A self-serve pilot letting restaurants become featured HeartStrings Connect date suggestions.',
+  name: 'Cordel Restaurant Partner Program',
+  category: 'Product · B2B Pilot (Cordel Connect / Date Planning)',
+  shortDescription: 'A self-serve pilot letting restaurants become featured Cordel Connect date suggestions.',
   mission:
-    'The Restaurant Partner Program exists to give HeartStrings Connect real, honestly-labeled date suggestions, funded by restaurants who opt in — never disguised as a neutral pick.',
+    'The Restaurant Partner Program exists to give Cordel Connect real, honestly-labeled date suggestions, funded by restaurants who opt in — never disguised as a neutral pick.',
   status: 'Public Beta',
   lastValidated: UNDATED,
   currentCapabilities: [
@@ -480,16 +476,16 @@ export const RESTAURANT_PARTNER_PROGRAM: ProjectRecord = {
   ],
   inDevelopment: ['Ongoing (post-pilot) placement pricing', 'Premium / multi-location tiers', 'Self-serve editing after go-live'],
   endGame: ['Ongoing placement pricing tiers', 'Deeper integration with Blind Date Roulette'],
-  validation: ['Live pilot at /products/heartstrings-connect/date-planning/restaurants/partner-program. Stripe payments run in test mode during the pilot.'],
+  validation: ['Live pilot at /products/cordel-connect/date-planning/restaurants/partner-program. Stripe payments run in test mode during the pilot.'],
   integrationReceives: ['Restaurant profile and deal submissions'],
   integrationProduces: ['Featured, labeled restaurant suggestions'],
-  integrationConsumedBy: ['HeartStrings Connect (Date Planning / Restaurants)'],
+  integrationConsumedBy: ['Cordel Connect (Date Planning / Restaurants)'],
   availability: 'Public beta',
-  routes: ['/products/heartstrings-connect/date-planning/restaurants/partner-program'],
+  routes: ['/products/cordel-connect/date-planning/restaurants/partner-program'],
   claimRestrictions: ['Only the $20 pilot price is decided; all other pricing is explicitly "to be set."', 'Paid does not mean auto-published — every listing passes manual review.'],
   accentColor: '#ec4899',
 };
 
-export const ALL_PRODUCTS: ProjectRecord[] = [HEARTSTRINGS_PLAY, HEARTSTRINGS_CONNECT];
+export const ALL_PRODUCTS: ProjectRecord[] = [CORDEL_PLAY, CORDEL_CONNECT];
 
 export const ALL_PROJECTS: ProjectRecord[] = [...ALL_TECHNOLOGIES, ...ALL_PRODUCTS, RESTAURANT_PARTNER_PROGRAM];

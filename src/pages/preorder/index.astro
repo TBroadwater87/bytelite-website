@@ -17,7 +17,7 @@ const SUBNAV = [
 <Layout
   title="Preorder | Founder Access | ByteLite LLC"
   description="ByteLite LLC's founder preorder program: 10% below eventual launch price, plus 10% additional entitlement, for eligible products."
-  keywords="ByteLite LLC preorder, founder access, HeartStrings Play preorder"
+  keywords="ByteLite LLC preorder, founder access, Cordel Play preorder"
 >
   <Header slot="header" />
   <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Preorder' }]} /></div></section>
@@ -37,12 +37,23 @@ const SUBNAV = [
   <section class="section-sm">
     <div class="container">
       <div class="po-hero-strip">
-        <img src="/heartstrings/box-front.jpg" alt="HeartStrings Play box front" loading="lazy" width="200" height="200" />
-        <img src="/heartstrings/heartstrings-guides-banner.png" alt="AIya and Aion, the HeartStrings Connect wingman characters" loading="lazy" width="200" height="200" />
+        <div class="asset-ph po-hero-ph">
+          <span class="asset-ph-tag">Pending</span>
+          <span class="asset-ph-alt">Cordel Play box front — awaiting rebranded artwork</span>
+        </div>
+        <div class="asset-ph po-hero-ph">
+          <span class="asset-ph-tag">Pending</span>
+          <span class="asset-ph-alt">AIya and Aion, the Cordel Connect wingman characters — awaiting rebranded artwork</span>
+        </div>
       </div>
     </div>
   </section>
-  <style>.po-hero-strip { display: flex; gap: 1rem; flex-wrap: wrap; } .po-hero-strip img { width: 200px; height: 140px; object-fit: cover; border-radius: .75rem; border: 1px solid #1a2235; } @media (max-width: 500px) { .po-hero-strip img { width: 100%; } }</style>
+  <style>
+    .po-hero-strip { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .po-hero-strip img { width: 200px; height: 140px; object-fit: cover; border-radius: .75rem; border: 1px solid #1a2235; }
+    .po-hero-ph { width: 200px; height: 140px; padding: .75rem; }
+    @media (max-width: 500px) { .po-hero-strip img, .po-hero-ph { width: 100%; } }
+  </style>
 
   <section class="section section-alt">
     <div class="container">

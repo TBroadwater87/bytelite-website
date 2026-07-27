@@ -2,18 +2,26 @@
 # Keep /marketing/signup, /marketing/admin, /marketing/thank-you unredirected below -
 # they are wired to a live Stripe checkout flow on the api.thebytelite.com backend.
 
-/heartstrings              /products/heartstrings-play                                              301
-/heartstrings-app          /products/heartstrings-connect                                            301
+/heartstrings              /products/cordel-play                                                     301
+/heartstrings-app          /products/cordel-connect                                                   301
 /about                     /company                                                                  301
 /status                    /progress                                                                 301
 /research                  /technologies                                                              301
 /technology                /technologies                                                              301
 /deepkore                  /technologies/deep-kore                                                    301
 /deepkore-lab              /technologies/deep-kore                                                    301
-/marketing                 /products/heartstrings-connect/date-planning/restaurants/partner-program   301
+/marketing                 /products/cordel-connect/date-planning/restaurants/partner-program          301
 /licensing                 /company/partnerships                                                      301
 /ethics                    /architecture/proof-and-claim-posture                                      301
 /ai-safety                 /architecture/governance-and-intrinsic-halting                              301
 /news                      /progress/changelog                                                        301
 /subscribe                 /preorder                                                                  301
 /demo                      /technologies/bytelite                                                     301
+
+# Cordel brand migration - retired canonical HeartStrings product routes (2026-07-27).
+# Old canonical URLs redirect one-to-one to their Cordel replacement; :splat preserves
+# every nested subpath so no per-page redirect chain is needed.
+/products/heartstrings-play          /products/cordel-play                                            301
+/products/heartstrings-play/*        /products/cordel-play/:splat                                     301
+/products/heartstrings-connect       /products/cordel-connect                                         301
+/products/heartstrings-connect/*     /products/cordel-connect/:splat                                  301

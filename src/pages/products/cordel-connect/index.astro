@@ -5,53 +5,53 @@ import Footer from '../../../components/Footer.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import ProductSubNav from '../../../components/ProductSubNav.astro';
 import StatusBadge from '../../../components/StatusBadge.astro';
-import { HEARTSTRINGS_CONNECT } from '../../../data/projects';
+import { CORDEL_CONNECT } from '../../../data/projects';
 
 const softwareAppJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: 'HeartStrings Connect',
-  description: HEARTSTRINGS_CONNECT.shortDescription,
+  name: 'Cordel Connect',
+  description: CORDEL_CONNECT.shortDescription,
   applicationCategory: 'LifestyleApplication',
   operatingSystem: 'Android',
   publisher: { '@type': 'Organization', name: 'ByteLite LLC' },
 };
 
 const SUBNAV = [
-  { label: 'Overview', href: '/products/heartstrings-connect' },
-  { label: 'Compatibility & Matching', href: '/products/heartstrings-connect/compatibility-and-matching' },
-  { label: 'Privacy Architecture', href: '/products/heartstrings-connect/privacy-architecture' },
-  { label: 'Safety', href: '/products/heartstrings-connect/safety' },
-  { label: 'Cartoonized Profiles', href: '/products/heartstrings-connect/cartoonized-profiles' },
-  { label: 'AIya & Aion', href: '/products/heartstrings-connect/aiya-and-aion' },
-  { label: 'Games & Activities', href: '/products/heartstrings-connect/games-and-shared-activities' },
-  { label: 'ByteOracle Horoscopes', href: '/products/heartstrings-connect/byteoracle-horoscopes' },
-  { label: 'Date Planning', href: '/products/heartstrings-connect/date-planning' },
+  { label: 'Overview', href: '/products/cordel-connect' },
+  { label: 'Compatibility & Matching', href: '/products/cordel-connect/compatibility-and-matching' },
+  { label: 'Privacy Architecture', href: '/products/cordel-connect/privacy-architecture' },
+  { label: 'Safety', href: '/products/cordel-connect/safety' },
+  { label: 'Cartoonized Profiles', href: '/products/cordel-connect/cartoonized-profiles' },
+  { label: 'AIya & Aion', href: '/products/cordel-connect/aiya-and-aion' },
+  { label: 'Games & Activities', href: '/products/cordel-connect/games-and-shared-activities' },
+  { label: 'ByteOracle Horoscopes', href: '/products/cordel-connect/byteoracle-horoscopes' },
+  { label: 'Date Planning', href: '/products/cordel-connect/date-planning' },
 ];
 ---
 
 <Layout
-  title="HeartStrings Connect | Privacy-First Compatibility and Connection | ByteLite LLC"
-  description="HeartStrings Connect is ByteLite LLC's private-test digital companion built around deep compatibility, cryptographically split privacy, and safety-first date planning."
-  keywords="HeartStrings Connect, private beta, compatibility, privacy-first dating, ByteLite LLC"
+  title="Cordel Connect | Privacy-First Compatibility and Connection | ByteLite LLC"
+  description="Cordel Connect is ByteLite LLC's private-test digital companion built around deep compatibility, cryptographically split privacy, and safety-first date planning."
+  keywords="Cordel Connect, private beta, compatibility, privacy-first dating, ByteLite LLC"
 >
   <Header slot="header" />
   <script type="application/ld+json" set:html={JSON.stringify(softwareAppJsonLd)} />
-  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'HeartStrings Connect' }]} /></div></section>
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Cordel Connect' }]} /></div></section>
   <ProductSubNav items={SUBNAV} />
 
   <section class="app-hero">
     <div class="container app-hero-inner">
       <div class="app-hero-text">
-        <p class="eyebrow">HeartStrings Connect</p>
-        <h1>The private-test digital companion for the HeartStrings ecosystem.</h1>
+        <p class="eyebrow">Cordel Connect</p>
+        <h1>The private-test digital companion for the Cordel ecosystem.</h1>
         <p class="app-hero-sub">
-          HeartStrings Connect is ByteLite LLC's private companion layer — rooms, prompts, consent
+          Cordel Connect is ByteLite LLC's private companion layer — rooms, prompts, consent
           flows, date planning, and future social features. Building on Android, not in any app
           store; the screens below are current private-test UI.
         </p>
         <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1.75rem;">
-          <StatusBadge status={HEARTSTRINGS_CONNECT.status} />
+          <StatusBadge status={CORDEL_CONNECT.status} />
           <span style="font-size:.875rem;color:#555e7a;">No public app store listing</span>
         </div>
         <div style="display:flex;gap:.875rem;flex-wrap:wrap;margin-top:2rem;">
@@ -61,7 +61,7 @@ const SUBNAV = [
       </div>
       <div class="app-hero-visual">
         <div class="phone-frame">
-          <img src="/heartstrings/screenshots/28_discover_with_match.png" alt="HeartStrings Connect — Discover screen showing a match card" class="phone-img" loading="eager" />
+          <img src="/cordel/screenshots/28_discover_with_match.png" alt="Cordel Connect — Discover screen showing a match card" class="phone-img" loading="eager" />
         </div>
         <p class="hero-img-label">Current screen — Discover</p>
       </div>
@@ -70,16 +70,16 @@ const SUBNAV = [
 
   <section class="section section-alt">
     <div class="container">
-      <p class="eyebrow" style="text-align:center;">Explore HeartStrings Connect</p>
+      <p class="eyebrow" style="text-align:center;">Explore Cordel Connect</p>
       <div class="hc-explore-grid">
-        <a href="/products/heartstrings-connect/compatibility-and-matching" class="card hc-card"><h3>Compatibility &amp; Matching</h3><p>A questionnaire that goes deeper than a swipe.</p></a>
-        <a href="/products/heartstrings-connect/privacy-architecture" class="card hc-card"><h3>Privacy Architecture</h3><p>Two-party secret sharing for your sensitive answers.</p></a>
-        <a href="/products/heartstrings-connect/safety" class="card hc-card"><h3>Safety</h3><p>Live check-ins, emergency contacts, a safety phrase.</p></a>
-        <a href="/products/heartstrings-connect/cartoonized-profiles" class="card hc-card"><h3>Cartoonized Profiles</h3><p>A fantasy-distance photo model, in development.</p></a>
-        <a href="/products/heartstrings-connect/aiya-and-aion" class="card hc-card"><h3>AIya &amp; Aion</h3><p>Research-preview wingman characters.</p></a>
-        <a href="/products/heartstrings-connect/games-and-shared-activities" class="card hc-card"><h3>Games &amp; Shared Activities</h3><p>Play together instead of just messaging.</p></a>
-        <a href="/products/heartstrings-connect/byteoracle-horoscopes" class="card hc-card"><h3>ByteOracle Horoscopes</h3><p>Daily readings powered by ByteOracle.</p></a>
-        <a href="/products/heartstrings-connect/date-planning" class="card hc-card"><h3>Date Planning</h3><p>Blind Date Roulette and the restaurant program.</p></a>
+        <a href="/products/cordel-connect/compatibility-and-matching" class="card hc-card"><h3>Compatibility &amp; Matching</h3><p>A questionnaire that goes deeper than a swipe.</p></a>
+        <a href="/products/cordel-connect/privacy-architecture" class="card hc-card"><h3>Privacy Architecture</h3><p>Two-party secret sharing for your sensitive answers.</p></a>
+        <a href="/products/cordel-connect/safety" class="card hc-card"><h3>Safety</h3><p>Live check-ins, emergency contacts, a safety phrase.</p></a>
+        <a href="/products/cordel-connect/cartoonized-profiles" class="card hc-card"><h3>Cartoonized Profiles</h3><p>A fantasy-distance photo model, in development.</p></a>
+        <a href="/products/cordel-connect/aiya-and-aion" class="card hc-card"><h3>AIya &amp; Aion</h3><p>Research-preview wingman characters.</p></a>
+        <a href="/products/cordel-connect/games-and-shared-activities" class="card hc-card"><h3>Games &amp; Shared Activities</h3><p>Play together instead of just messaging.</p></a>
+        <a href="/products/cordel-connect/byteoracle-horoscopes" class="card hc-card"><h3>ByteOracle Horoscopes</h3><p>Daily readings powered by ByteOracle.</p></a>
+        <a href="/products/cordel-connect/date-planning" class="card hc-card"><h3>Date Planning</h3><p>Blind Date Roulette and the restaurant program.</p></a>
       </div>
     </div>
   </section>

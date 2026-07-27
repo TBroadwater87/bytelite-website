@@ -8,7 +8,7 @@ export interface Props {
 const {
   variant = 'default',
   title = 'Follow the ByteLite LLC Ecosystem',
-  description = 'Be the first to hear about HeartStrings Play availability, the HeartStrings Connect companion launch, ByteLite milestones, and Deep Kore research.'
+  description = 'Be the first to hear about Cordel Play availability, the Cordel Connect companion launch, ByteLite milestones, and Deep Kore research.'
 } = Astro.props;
 ---
 
@@ -35,11 +35,11 @@ const {
       <div class="form-options">
         <label class="checkbox-label">
           <input type="checkbox" name="notifyPlay" checked />
-          <span>HeartStrings Play: board game launch and availability</span>
+          <span>Cordel Play: board game launch and availability</span>
         </label>
         <label class="checkbox-label">
           <input type="checkbox" name="notifyConnect" checked />
-          <span>HeartStrings Connect: companion app development updates</span>
+          <span>Cordel Connect: companion app development updates</span>
         </label>
         <label class="checkbox-label">
           <input type="checkbox" name="notifyBytelite" checked />
@@ -247,7 +247,7 @@ const {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // Success message
-      messageDiv.textContent = 'You are on the list. We will be in touch about HeartStrings Play, HeartStrings Connect, ByteLite, and Deep Kore updates.';
+      messageDiv.textContent = 'You are on the list. We will be in touch about Cordel Play, Cordel Connect, ByteLite, and Deep Kore updates.';
       messageDiv.className = 'message success';
       
       // Reset form

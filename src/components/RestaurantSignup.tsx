@@ -372,7 +372,7 @@ function Inner() {
 function StatusPanel({ status, deal, onLogout }: { status: string; deal: any; onLogout: () => void }) {
   const map: Record<'pending_review' | 'approved' | 'rejected' | 'paused', { badge: string; title: string; body: string }> = {
     pending_review: { badge: 'badge-planned', title: 'Pending review', body: 'Payment received. Your restaurant is in our review queue. We approve each listing before it goes live in the app.' },
-    approved: { badge: 'badge-active', title: 'Live & featured', body: 'Your restaurant is approved and can now appear as a featured date suggestion in HeartStrings.' },
+    approved: { badge: 'badge-active', title: 'Live & featured', body: 'Your restaurant is approved and can now appear as a featured date suggestion in Cordel.' },
     rejected: { badge: 'badge-none', title: 'Not approved', body: 'This signup was not approved. Contact us if you believe this was a mistake.' },
     paused: { badge: 'badge-none', title: 'Paused', body: 'Your listing is temporarily paused and not currently shown in the app.' },
   };

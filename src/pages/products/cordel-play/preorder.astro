@@ -6,23 +6,23 @@ import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import ProductSubNav from '../../../components/ProductSubNav.astro';
 
 const SUBNAV = [
-  { label: 'Overview', href: '/products/heartstrings-play' },
-  { label: 'How It Plays', href: '/products/heartstrings-play/how-it-plays' },
-  { label: 'Editions', href: '/products/heartstrings-play/editions' },
-  { label: 'Components', href: '/products/heartstrings-play/components' },
-  { label: 'Consent Architecture', href: '/products/heartstrings-play/consent-architecture' },
-  { label: 'Development Status', href: '/products/heartstrings-play/development-status' },
-  { label: 'Preorder', href: '/products/heartstrings-play/preorder' },
+  { label: 'Overview', href: '/products/cordel-play' },
+  { label: 'How It Plays', href: '/products/cordel-play/how-it-plays' },
+  { label: 'Editions', href: '/products/cordel-play/editions' },
+  { label: 'Components', href: '/products/cordel-play/components' },
+  { label: 'Consent Architecture', href: '/products/cordel-play/consent-architecture' },
+  { label: 'Development Status', href: '/products/cordel-play/development-status' },
+  { label: 'Preorder', href: '/products/cordel-play/preorder' },
 ];
 ---
 
 <Layout
-  title="Preorder | HeartStrings Play | ByteLite LLC"
-  description="HeartStrings Play founder reservation: no retail price is set yet, so this is a no-charge reservation that locks in the founder benefit formula ahead of launch pricing."
-  keywords="HeartStrings Play preorder, founder reservation"
+  title="Preorder | Cordel Play | ByteLite LLC"
+  description="Cordel Play founder reservation: no retail price is set yet, so this is a no-charge reservation that locks in the founder benefit formula ahead of launch pricing."
+  keywords="Cordel Play preorder, founder reservation"
 >
   <Header slot="header" />
-  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'HeartStrings Play', href: '/products/heartstrings-play' }, { label: 'Preorder' }]} /></div></section>
+  <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Cordel Play', href: '/products/cordel-play' }, { label: 'Preorder' }]} /></div></section>
   <ProductSubNav items={SUBNAV} />
 
   <section class="pr-hero">
@@ -31,12 +31,15 @@ const SUBNAV = [
       <p class="eyebrow">Founder Reservation</p>
       <h1>No retail price is set yet — so this is a reservation, not a charge.</h1>
       <p class="pr-p">
-        HeartStrings Play has not announced a retail price or release date. Rather than collect
+        Cordel Play has not announced a retail price or release date. Rather than collect
         payment against an unknown launch price, ByteLite LLC offers a no-charge founder
         reservation that locks in the founder benefit formula ahead of time.
       </p>
     </div>
-    <img src="/heartstrings/box-front.jpg" alt="HeartStrings Play box front" class="pr-hero-img" width="220" height="220" loading="eager" />
+    <div class="asset-ph pr-hero-img" style="width:220px;height:220px;">
+      <span class="asset-ph-tag">Pending</span>
+      <span class="asset-ph-alt">Cordel Play box front — awaiting rebranded artwork</span>
+    </div>
     </div>
   </section>
 
@@ -44,7 +47,7 @@ const SUBNAV = [
     <div class="container" style="max-width:760px;">
       <div class="pr-box">
         <h3>What the reservation locks in</h3>
-        <p>10% below the eventual public launch price, plus 10% additional qualifying entitlement (a HeartStrings Connect service-day credit or equivalent digital benefit, disclosed at launch).</p>
+        <p>10% below the eventual public launch price, plus 10% additional qualifying entitlement (a Cordel Connect service-day credit or equivalent digital benefit, disclosed at launch).</p>
         <h3 style="margin-top:1.5rem;">What it does not do</h3>
         <p>It does not charge your payment method. It does not guarantee a release date. It does not obligate you to purchase when pricing is announced.</p>
       </div>

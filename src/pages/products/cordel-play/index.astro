@@ -5,38 +5,38 @@ import Footer from '../../../components/Footer.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import ProductSubNav from '../../../components/ProductSubNav.astro';
 import StatusBadge from '../../../components/StatusBadge.astro';
-import { HEARTSTRINGS_PLAY } from '../../../data/projects';
+import { CORDEL_PLAY } from '../../../data/projects';
 
 const productJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Product',
-  name: 'HeartStrings Play',
-  description: HEARTSTRINGS_PLAY.shortDescription,
+  name: 'Cordel Play',
+  description: CORDEL_PLAY.shortDescription,
   category: 'Board Game',
   brand: { '@type': 'Organization', name: 'ByteLite LLC' },
 };
 
 const SUBNAV = [
-  { label: 'Overview', href: '/products/heartstrings-play' },
-  { label: 'How It Plays', href: '/products/heartstrings-play/how-it-plays' },
-  { label: 'Editions', href: '/products/heartstrings-play/editions' },
-  { label: 'Components', href: '/products/heartstrings-play/components' },
-  { label: 'Consent Architecture', href: '/products/heartstrings-play/consent-architecture' },
-  { label: 'Development Status', href: '/products/heartstrings-play/development-status' },
-  { label: 'Preorder', href: '/products/heartstrings-play/preorder' },
+  { label: 'Overview', href: '/products/cordel-play' },
+  { label: 'How It Plays', href: '/products/cordel-play/how-it-plays' },
+  { label: 'Editions', href: '/products/cordel-play/editions' },
+  { label: 'Components', href: '/products/cordel-play/components' },
+  { label: 'Consent Architecture', href: '/products/cordel-play/consent-architecture' },
+  { label: 'Development Status', href: '/products/cordel-play/development-status' },
+  { label: 'Preorder', href: '/products/cordel-play/preorder' },
 ];
 ---
 
 <Layout
-  title="HeartStrings Play | Consent-Forward Adult Board Game | ByteLite LLC"
-  description="HeartStrings Play is ByteLite LLC's premium consent-first adult social board game for private groups of 2 to 18 players."
-  keywords="HeartStrings Play, adult social board game, consent-first, ByteLite LLC"
+  title="Cordel Play | Consent-Forward Adult Board Game | ByteLite LLC"
+  description="Cordel Play is ByteLite LLC's premium consent-first adult social board game for private groups of 2 to 18 players."
+  keywords="Cordel Play, adult social board game, consent-first, ByteLite LLC"
 >
   <Header slot="header" />
   <script type="application/ld+json" set:html={JSON.stringify(productJsonLd)} />
 
   <section class="section-sm">
-    <div class="container"><Breadcrumbs items={[{ label: 'HeartStrings Play' }]} /></div>
+    <div class="container"><Breadcrumbs items={[{ label: 'Cordel Play' }]} /></div>
   </section>
 
   <ProductSubNav items={SUBNAV} />
@@ -44,19 +44,19 @@ const SUBNAV = [
   <!-- Hero -->
   <section class="hs-hero">
     <div class="container">
-      <p class="eyebrow">HeartStrings Play</p>
+      <p class="eyebrow">Cordel Play</p>
       <h1>A consent-first social board game<br/>for private groups.</h1>
       <p class="hs-hero-sub">
         Premium adult social play built around intentional connection, shared agency, and
         escalating card-based experiences. For private groups of two to eighteen players.
       </p>
       <div class="hs-hero-badges">
-        <StatusBadge status={HEARTSTRINGS_PLAY.status} />
+        <StatusBadge status={CORDEL_PLAY.status} />
         <span class="hs-badge-detail">Manufacturing preparation underway</span>
       </div>
       <div style="display:flex;gap:.875rem;flex-wrap:wrap;margin-top:2rem;">
-        <a href="/products/heartstrings-play/preorder" class="btn btn-pink">Founder Reservation</a>
-        <a href="/products/heartstrings-play/how-it-plays" class="btn btn-outline btn-sm" style="align-self:center;">How It Plays</a>
+        <a href="/products/cordel-play/preorder" class="btn btn-pink">Founder Reservation</a>
+        <a href="/products/cordel-play/how-it-plays" class="btn btn-outline btn-sm" style="align-self:center;">How It Plays</a>
       </div>
     </div>
   </section>
@@ -80,7 +80,7 @@ const SUBNAV = [
       <p class="eyebrow">The Game</p>
       <h2 style="margin-bottom:1.25rem;">Designed for intentional play.</h2>
       <p style="font-size:1.0625rem;line-height:1.8;margin-bottom:1.5rem;">
-        HeartStrings Play is a premium adult social board game where players move across a board
+        Cordel Play is a premium adult social board game where players move across a board
         of action squares and draw from six escalating tier decks as the session builds. Each
         session is shaped by the players in it — not by a fixed script.
       </p>
@@ -88,7 +88,7 @@ const SUBNAV = [
         Decree cards allow any player to skip or redraw at any time. Consent is built into the
         game structure, not handled separately. The Consent Cup is available at any time for any
         player to end or pause play gracefully. See the full
-        <a href="/products/heartstrings-play/consent-architecture" style="color:#f472b6;">Consent Architecture</a> page.
+        <a href="/products/cordel-play/consent-architecture" style="color:#f472b6;">Consent Architecture</a> page.
       </p>
     </div>
   </section>
@@ -99,8 +99,14 @@ const SUBNAV = [
       <p class="eyebrow" style="text-align:center;">The Box</p>
       <h2 style="text-align:center;margin-bottom:2.5rem;">Box front and back.</h2>
       <div class="asset-ph-grid" style="grid-template-columns:repeat(2,minmax(0,1fr));max-width:820px;margin:0 auto;">
-        <img src="/heartstrings/box-front.jpg" alt="HeartStrings Play box — front cover art" style="width:100%;display:block;height:auto;border-radius:12px;" loading="lazy" />
-        <img src="/heartstrings/box-back.jpg" alt="HeartStrings Play box — back with contents and details" style="width:100%;display:block;height:auto;border-radius:12px;" loading="lazy" />
+        <div class="asset-ph" style="aspect-ratio:1/1;">
+          <span class="asset-ph-tag">Pending</span>
+          <span class="asset-ph-alt">Cordel Play box — front cover art, awaiting rebranded artwork</span>
+        </div>
+        <div class="asset-ph" style="aspect-ratio:1/1;">
+          <span class="asset-ph-tag">Pending</span>
+          <span class="asset-ph-alt">Cordel Play box — back with contents and details, awaiting rebranded artwork</span>
+        </div>
       </div>
     </div>
   </section>
@@ -108,24 +114,24 @@ const SUBNAV = [
   <!-- Section links -->
   <section class="section">
     <div class="container">
-      <p class="eyebrow" style="text-align:center;">Explore HeartStrings Play</p>
+      <p class="eyebrow" style="text-align:center;">Explore Cordel Play</p>
       <div class="hs-explore-grid">
-        <a href="/products/heartstrings-play/how-it-plays" class="card hs-explore-card">
+        <a href="/products/cordel-play/how-it-plays" class="card hs-explore-card">
           <h3>How It Plays</h3><p>Action squares, the six escalation tiers, and player scaling.</p>
         </a>
-        <a href="/products/heartstrings-play/editions" class="card hs-explore-card">
+        <a href="/products/cordel-play/editions" class="card hs-explore-card">
           <h3>Editions</h3><p>The three board configurations and how they change the game.</p>
         </a>
-        <a href="/products/heartstrings-play/components" class="card hs-explore-card">
+        <a href="/products/cordel-play/components" class="card hs-explore-card">
           <h3>Components</h3><p>What's confirmed to ship in the box today.</p>
         </a>
-        <a href="/products/heartstrings-play/consent-architecture" class="card hs-explore-card">
+        <a href="/products/cordel-play/consent-architecture" class="card hs-explore-card">
           <h3>Consent Architecture</h3><p>Decree cards, the Consent Cup, and tier-based pacing.</p>
         </a>
-        <a href="/products/heartstrings-play/development-status" class="card hs-explore-card">
+        <a href="/products/cordel-play/development-status" class="card hs-explore-card">
           <h3>Development Status</h3><p>What's finished, what's in progress, and what's next.</p>
         </a>
-        <a href="/products/heartstrings-play/preorder" class="card hs-explore-card">
+        <a href="/products/cordel-play/preorder" class="card hs-explore-card">
           <h3>Preorder</h3><p>Founder reservation terms ahead of retail release.</p>
         </a>
       </div>
@@ -137,19 +143,19 @@ const SUBNAV = [
     <div class="container hs-app-companion">
       <div class="hs-app-text">
         <p class="eyebrow">Digital Companion</p>
-        <h2>Built alongside HeartStrings Connect.</h2>
+        <h2>Built alongside Cordel Connect.</h2>
         <p style="margin-top:1rem;font-size:1.0625rem;line-height:1.8;">
-          HeartStrings Connect is ByteLite LLC's private companion app, in active Android test
-          development alongside HeartStrings Play.
+          Cordel Connect is ByteLite LLC's private companion app, in active Android test
+          development alongside Cordel Play.
         </p>
-        <a href="/products/heartstrings-connect" class="btn btn-outline btn-sm" style="margin-top:1.5rem;display:inline-flex;">See HeartStrings Connect &rarr;</a>
+        <a href="/products/cordel-connect" class="btn btn-outline btn-sm" style="margin-top:1.5rem;display:inline-flex;">See Cordel Connect &rarr;</a>
       </div>
       <div class="hs-app-screens" aria-hidden="true">
         <div class="hs-phone-mini">
-          <img src="/heartstrings/screenshots/29_discover_carousel.png" alt="HeartStrings Connect discover carousel — private development" loading="lazy" />
+          <img src="/cordel/screenshots/29_discover_carousel.png" alt="Cordel Connect discover carousel — private development" loading="lazy" />
         </div>
         <div class="hs-phone-mini hs-phone-offset">
-          <img src="/heartstrings/screenshots/06_matches.png" alt="HeartStrings Connect matches screen — private development" loading="lazy" />
+          <img src="/cordel/screenshots/06_matches.png" alt="Cordel Connect matches screen — private development" loading="lazy" />
         </div>
       </div>
     </div>
@@ -160,7 +166,7 @@ const SUBNAV = [
     <div class="container" style="max-width:760px;text-align:center;">
       <p style="font-size:.875rem;color:#4a5068;">Part of the ByteLite LLC technology portfolio.</p>
       <p style="font-size:.875rem;color:#4a5068;margin-top:.375rem;">
-        HeartStrings Play is a flagship public product built on ByteLite LLC's deterministic
+        Cordel Play is a flagship public product built on ByteLite LLC's deterministic
         architecture. <a href="/technologies" style="color:#555e7a;">See the Technologies &rarr;</a>
       </p>
     </div>
