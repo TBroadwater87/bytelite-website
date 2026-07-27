@@ -69,7 +69,9 @@ const BREAKPOINTS = [
   { width: 1920, height: 1080, label: 'wide' },
 ];
 
-const SCREENSHOT_WIDTHS = new Set([1280, 375]);
+// Release-candidate pass: capture all 6 breakpoints (not just 2) so the evidence set
+// matches the full matrix that's actually being checked for defects.
+const SCREENSHOT_WIDTHS = new Set(BREAKPOINTS.map((b) => b.width));
 
 const issues = [];
 

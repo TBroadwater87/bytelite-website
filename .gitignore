@@ -30,3 +30,8 @@ pnpm-debug.log*
 # Playwright test run artifacts
 /playwright-report/
 /test-results/
+
+# transient QA-sweep run artifacts (regenerated each run, not RC evidence)
+qa/preview-stdout.log
+qa/preview-stderr.log
+qa/qa-sweep-results.json
