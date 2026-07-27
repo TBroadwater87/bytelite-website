@@ -5,8 +5,15 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  ...(process.env.CI ? { workers: 1 } : {}),
-  reporter: 'html',
+  // Always 1 worker: with 5 browser-engine projects sharing one machine, concurrent
+  // cold starts compete for CPU and produce transient navigation timeouts (reproduced
+  // and diagnosed 2026-07-26 - isolated single-worker Firefox runs were consistently
+  // clean; the failures only appeared when all 5 engines launched at once). Sequential
+  // execution is slower but deterministic - not solved by retries or longer timeouts.
+  workers: 1,
+  // open: 'never' - an unattended/automated run must exit naturally after writing the report,
+  // not block indefinitely serving it over HTTP waiting for a human to press Ctrl+C.
+  reporter: [['html', { open: 'never' }]],
   use: {
     baseURL: 'http://localhost:4321',
     trace: 'on-first-retry',
