@@ -38,8 +38,34 @@ const SUBNAV = [
   </section>
 
   <section class="section section-alt">
-    <div class="container" style="max-width:760px;text-align:center;">
-      <a href="/contact" class="btn btn-primary">Start an Investor Conversation</a>
+    <div class="container" style="max-width:760px;">
+      <h2 style="margin-bottom:1.5rem;">Read the evidence first</h2>
+      <div class="iv-grid">
+        <a href="/architecture/proof-and-claim-posture" class="iv-card">
+          <span class="iv-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+          </span>
+          <h3>Proof and Claim Posture</h3>
+          <p>How claims are tied to evidence before they're stated publicly.</p>
+        </a>
+        <a href="/progress" class="iv-card">
+          <span class="iv-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16M7 19V9M12 19V5M17 19v-7"/></svg>
+          </span>
+          <h3>Current Status</h3>
+          <p>Canonical status for every technology and product, updated in one place.</p>
+        </a>
+        <a href="/technologies" class="iv-card">
+          <span class="iv-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>
+          </span>
+          <h3>The Technologies</h3>
+          <p>Mission, current capabilities, and end-game goals for each layer.</p>
+        </a>
+      </div>
+      <div style="text-align:center;margin-top:2.5rem;">
+        <a href="/contact" class="btn btn-primary">Start an Investor Conversation</a>
+      </div>
     </div>
   </section>
 
@@ -49,4 +75,11 @@ const SUBNAV = [
 <style>
 .iv-hero { padding: 4.5rem 0 3.5rem; }
 .iv-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
+.iv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.iv-card { display: block; padding: 1.25rem; border: 1px solid #1a2235; border-radius: .75rem; }
+.iv-card:hover { border-color: #6366f1; }
+.iv-icon { display: flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border-radius: .625rem; background: rgba(99,102,241,.12); color: #818cf8; margin-bottom: .875rem; }
+.iv-card h3 { font-size: .9375rem; margin-bottom: .375rem; color: #e4e7f2; }
+.iv-card p { font-size: .8125rem; color: #7b829e; margin: 0; line-height: 1.6; }
+@media (max-width: 700px) { .iv-grid { grid-template-columns: 1fr; } }
 </style>

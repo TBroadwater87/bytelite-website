@@ -34,10 +34,22 @@ const SUBNAV = [
   <section class="section section-alt">
     <div class="container" style="max-width:760px;">
       <div class="lg-list">
-        <a href="/terms" class="card lg-item"><h3>Terms of Use</h3><p>Governs use of this website.</p></a>
-        <a href="/privacy" class="card lg-item"><h3>Privacy Policy</h3><p>What this website collects and what it never does.</p></a>
-        <a href="/preorder/terms" class="card lg-item"><h3>Preorder Terms</h3><p>Founder reservation and preorder terms.</p></a>
-        <a href="/responsible-disclosure" class="card lg-item"><h3>Responsible Disclosure</h3><p>How to report a security vulnerability.</p></a>
+        <a href="/terms" class="card lg-item">
+          <span class="lg-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5M9 13h6M9 17h6"/></svg></span>
+          <span><h3>Terms of Use</h3><p>Governs use of this website.</p></span>
+        </a>
+        <a href="/privacy" class="card lg-item">
+          <span class="lg-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></span>
+          <span><h3>Privacy Policy</h3><p>What this website collects and what it never does.</p></span>
+        </a>
+        <a href="/preorder/terms" class="card lg-item">
+          <span class="lg-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg></span>
+          <span><h3>Preorder Terms</h3><p>Founder reservation and preorder terms.</p></span>
+        </a>
+        <a href="/responsible-disclosure" class="card lg-item">
+          <span class="lg-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M12 8v5M12 16h.01"/></svg></span>
+          <span><h3>Responsible Disclosure</h3><p>How to report a security vulnerability.</p></span>
+        </a>
       </div>
     </div>
   </section>
@@ -48,6 +60,8 @@ const SUBNAV = [
 <style>
 .lg-hero { padding: 4.5rem 0 3.5rem; }
 .lg-list { display: flex; flex-direction: column; gap: 1rem; }
+.lg-item { display: flex; align-items: flex-start; gap: 1rem; }
+.lg-icon { display: flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border-radius: .625rem; background: rgba(129,140,248,.12); color: #818cf8; flex-shrink: 0; }
 .lg-item h3 { color: #818cf8; margin-bottom: .375rem; }
 .lg-item p { font-size: .875rem; color: #7b829e; margin: 0; }
 </style>

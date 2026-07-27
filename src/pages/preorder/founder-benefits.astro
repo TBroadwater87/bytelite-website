@@ -60,6 +60,16 @@ const example = calculatePreorder(exampleConfig);
           <span class="fb-example-value fb-example-highlight">{formatCents(example.preorderPriceCents!)} <span class="fb-example-sub">for {formatDaysAsMonths(example.totalEntitlementDays!)}</span></span>
         </div>
       </div>
+      <div class="fb-badges">
+        <div class="fb-badge">
+          <span class="fb-badge-icon" style="background:rgba(52,211,153,.12);color:#34d399;" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 5L5 19M8 6a2 2 0 11-4 0 2 2 0 014 0zM20 18a2 2 0 11-4 0 2 2 0 014 0z"/></svg></span>
+          <div><h3>10% lower price</h3><p>Calculated the same way, everywhere it's shown.</p></div>
+        </div>
+        <div class="fb-badge">
+          <span class="fb-badge-icon" style="background:rgba(129,140,248,.12);color:#818cf8;" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3M12 3a9 9 0 100 18 9 9 0 000-18z"/></svg></span>
+          <div><h3>10% more entitlement</h3><p>Extra service days, usage, or an equivalent digital benefit.</p></div>
+        </div>
+      </div>
       <p class="fb-p" style="margin-top:1.75rem;">
         10% lower price ({formatCents(example.standardPriceCents!)} &rarr; {formatCents(example.preorderPriceCents!)}),
         plus 10% additional entitlement ({exampleConfig.baseEntitlementDays} days &rarr; {example.totalEntitlementDays} days).
@@ -88,4 +98,10 @@ const example = calculatePreorder(exampleConfig);
 .fb-example-highlight { color: #34d399; }
 .fb-example-sub { display: block; font-size: .8125rem; font-weight: 400; color: #555e7a; margin-top: .25rem; }
 .fb-example-arrow { font-size: 1.5rem; color: #4a5068; }
+.fb-badges { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
+.fb-badge { display: flex; align-items: flex-start; gap: .875rem; padding: 1.125rem; border: 1px solid #1a2235; border-radius: .75rem; }
+.fb-badge-icon { display: flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border-radius: .625rem; flex-shrink: 0; }
+.fb-badge h3 { font-size: .875rem; color: #e4e7f2; margin-bottom: .25rem; }
+.fb-badge p { font-size: .8125rem; color: #7b829e; margin: 0; line-height: 1.5; }
+@media (max-width: 600px) { .fb-badges { grid-template-columns: 1fr; } }
 </style>

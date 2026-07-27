@@ -33,11 +33,11 @@ const SUBNAV = [
   <section class="section section-alt">
     <div class="container" style="max-width:820px;">
       <div class="tl-list">
-        <div class="tl-item"><span class="tl-date">2024</span><p>ByteLite LLC founded by Tash Broadwater in Helena, Montana.</p></div>
-        <div class="tl-item"><span class="tl-date">2026-04</span><p>HeartStrings Play established as the first public-facing product direction; HeartStrings Connect development begins alongside it.</p></div>
-        <div class="tl-item"><span class="tl-date">2026-05</span><p>Public site content audit: overclaiming language (patent-status framing, specific compression ratios, AGI-adjacent claims) removed in favor of proof-gated status reporting.</p></div>
-        <div class="tl-item"><span class="tl-date">2026-07</span><p>HeartStrings Restaurant Partner Program pilot launched (self-serve signup, Stripe test-mode payment, manual review gate). "HeartStrings App" formally renamed to HeartStrings Connect.</p></div>
-        <div class="tl-item"><span class="tl-date">2026-07</span><p>Site rearchitected around the ByteLite LLC technology portfolio (Technologies, Architecture, Products, Progress, Preorder, Company), with HeartStrings Play and HeartStrings Connect presented as flagship products within that portfolio.</p></div>
+        <div class="tl-item tl-icon-found"><span class="tl-date">2024</span><p>ByteLite LLC founded by Tash Broadwater in Helena, Montana.</p></div>
+        <div class="tl-item tl-icon-product"><span class="tl-date">2026-04</span><p>HeartStrings Play established as the first public-facing product direction; HeartStrings Connect development begins alongside it.</p></div>
+        <div class="tl-item tl-icon-audit"><span class="tl-date">2026-05</span><p>Public site content audit: overclaiming language (patent-status framing, specific compression ratios, AGI-adjacent claims) removed in favor of proof-gated status reporting.</p></div>
+        <div class="tl-item tl-icon-launch"><span class="tl-date">2026-07</span><p>HeartStrings Restaurant Partner Program pilot launched (self-serve signup, Stripe test-mode payment, manual review gate). "HeartStrings App" formally renamed to HeartStrings Connect.</p></div>
+        <div class="tl-item tl-icon-arch"><span class="tl-date">2026-07</span><p>Site rearchitected around the ByteLite LLC technology portfolio (Technologies, Architecture, Products, Progress, Preorder, Company), with HeartStrings Play and HeartStrings Connect presented as flagship products within that portfolio.</p></div>
       </div>
     </div>
   </section>
@@ -51,7 +51,12 @@ const SUBNAV = [
 .tl-list { display: flex; flex-direction: column; gap: 0; border-left: 2px solid #1a2235; padding-left: 1.75rem; }
 .tl-item { position: relative; padding-bottom: 1.75rem; }
 .tl-item:last-child { padding-bottom: 0; }
-.tl-item::before { content: ""; position: absolute; left: -2.15rem; top: .3rem; width: .625rem; height: .625rem; border-radius: 50%; background: #6366f1; }
+.tl-item::before { content: ""; position: absolute; left: -2.3rem; top: .1rem; width: 1.125rem; height: 1.125rem; border-radius: 50%; background: #171b2e; border: 2px solid #6366f1; background-position: center; background-repeat: no-repeat; background-size: 10px; }
+.tl-icon-found::before { border-color: #fbbf24; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fbbf24' stroke-width='3'%3E%3Cpath d='M5 21V3l14 9-14 9z'/%3E%3C/svg%3E"); }
+.tl-icon-product::before { border-color: #ec4899; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ec4899' stroke-width='3'%3E%3Cpath d='M12 21s-7-4.4-9.5-8.8C.7 8.6 2.4 5 6 5c2 0 3.3 1 4 2 1-1 2-2 4-2 3.6 0 5.3 3.6 3.5 7.2C19 16.6 12 21 12 21z'/%3E%3C/svg%3E"); }
+.tl-icon-audit::before { border-color: #34d399; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2334d399' stroke-width='3'%3E%3Cpath d='M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z'/%3E%3C/svg%3E"); }
+.tl-icon-launch::before { border-color: #818cf8; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23818cf8' stroke-width='3'%3E%3Cpath d='M4 21V9l8-6 8 6v12'/%3E%3C/svg%3E"); }
+.tl-icon-arch::before { border-color: #a78bfa; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a78bfa' stroke-width='3'%3E%3Crect x='4' y='4' width='7' height='7'/%3E%3Crect x='13' y='4' width='7' height='7'/%3E%3Crect x='4' y='13' width='7' height='7'/%3E%3Crect x='13' y='13' width='7' height='7'/%3E%3C/svg%3E"); }
 .tl-date { display: block; font-size: .8125rem; font-weight: 700; color: #818cf8; font-family: monospace; margin-bottom: .375rem; }
 .tl-item p { font-size: .9375rem; color: #a0a8c0; line-height: 1.7; margin: 0; }
 </style>
