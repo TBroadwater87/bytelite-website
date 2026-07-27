@@ -257,7 +257,7 @@ const {
       const checkboxes = form.querySelectorAll('input[type="checkbox"]');
       checkboxes.forEach(cb => (cb as HTMLInputElement).checked = true);
       
-    } catch (error) {
+    } catch {
       messageDiv.textContent = 'An error occurred. Please try again later.';
       messageDiv.className = 'message error';
     }
