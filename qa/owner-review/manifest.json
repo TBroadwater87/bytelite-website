@@ -1,0 +1,3676 @@
+{
+  "sectionOrder": [
+    "Homepage",
+    "Technologies",
+    "Architecture",
+    "ByteLite",
+    "ByteSight",
+    "Deep Kore",
+    "AIya",
+    "Genesis Goalkeeper",
+    "ByteOracle",
+    "ByteFlow",
+    "ByteCost",
+    "HeartStrings Play",
+    "HeartStrings Connect",
+    "Cartoonized Profiles",
+    "AIya and Aion",
+    "ByteOracle Horoscopes",
+    "Blind Date Roulette",
+    "Restaurants",
+    "Restaurant Partner Program",
+    "Progress and Status",
+    "Preorder",
+    "Company",
+    "Legal",
+    "Contact",
+    "Remaining canonical routes"
+  ],
+  "breakpoints": [
+    {
+      "width": 375,
+      "height": 812,
+      "label": "mobile-sm"
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "label": "mobile-lg"
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "label": "tablet"
+    },
+    {
+      "width": 1280,
+      "height": 900,
+      "label": "laptop"
+    },
+    {
+      "width": 1536,
+      "height": 960,
+      "label": "desktop"
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "label": "wide"
+    }
+  ],
+  "routes": [
+    {
+      "route": "/",
+      "slug": "home",
+      "pageName": "Homepage",
+      "section": "Homepage",
+      "routeType": "public",
+      "canonicalStatus": null,
+      "pageTitle": "ByteLite LLC | Deterministic Structure for Digital Information, Vision, and Reasoning",
+      "previewUrl": "http://localhost:4321/",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "home-375.png",
+          "relPath": "../screenshots/home-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "home-430.png",
+          "relPath": "../screenshots/home-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "home-768.png",
+          "relPath": "../screenshots/home-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "home-1280.png",
+          "relPath": "../screenshots/home-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "home-1536.png",
+          "relPath": "../screenshots/home-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "home-1920.png",
+          "relPath": "../screenshots/home-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/technologies",
+      "slug": "technologies",
+      "pageName": "Technologies Overview",
+      "section": "Technologies",
+      "routeType": "public",
+      "canonicalStatus": null,
+      "pageTitle": "Technologies | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/technologies",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "technologies-375.png",
+          "relPath": "../screenshots/technologies-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "technologies-430.png",
+          "relPath": "../screenshots/technologies-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "technologies-768.png",
+          "relPath": "../screenshots/technologies-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "technologies-1280.png",
+          "relPath": "../screenshots/technologies-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "technologies-1536.png",
+          "relPath": "../screenshots/technologies-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "technologies-1920.png",
+          "relPath": "../screenshots/technologies-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/architecture",
+      "slug": "architecture",
+      "pageName": "Complete Architecture",
+      "section": "Architecture",
+      "routeType": "public",
+      "canonicalStatus": null,
+      "pageTitle": "The Architecture | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/architecture",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "architecture-375.png",
+          "relPath": "../screenshots/architecture-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "architecture-430.png",
+          "relPath": "../screenshots/architecture-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "architecture-768.png",
+          "relPath": "../screenshots/architecture-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "architecture-1280.png",
+          "relPath": "../screenshots/architecture-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "architecture-1536.png",
+          "relPath": "../screenshots/architecture-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "architecture-1920.png",
+          "relPath": "../screenshots/architecture-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/architecture/deterministic-design-principles",
+      "slug": "arch-principles",
+      "pageName": "Deterministic Design Principles",
+      "section": "Architecture",
+      "routeType": "nested",
+      "canonicalStatus": null,
+      "pageTitle": "Deterministic Design Principles | Architecture | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/architecture/deterministic-design-principles",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "arch-principles-375.png",
+          "relPath": "../screenshots/arch-principles-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "arch-principles-430.png",
+          "relPath": "../screenshots/arch-principles-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "arch-principles-768.png",
+          "relPath": "../screenshots/arch-principles-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "arch-principles-1280.png",
+          "relPath": "../screenshots/arch-principles-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "arch-principles-1536.png",
+          "relPath": "../screenshots/arch-principles-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "arch-principles-1920.png",
+          "relPath": "../screenshots/arch-principles-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/architecture/governance-and-intrinsic-halting",
+      "slug": "arch-governance",
+      "pageName": "Governance and Intrinsic Halting",
+      "section": "Architecture",
+      "routeType": "nested",
+      "canonicalStatus": null,
+      "pageTitle": "Governance and Intrinsic Halting | Architecture | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/architecture/governance-and-intrinsic-halting",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "arch-governance-375.png",
+          "relPath": "../screenshots/arch-governance-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "arch-governance-430.png",
+          "relPath": "../screenshots/arch-governance-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "arch-governance-768.png",
+          "relPath": "../screenshots/arch-governance-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "arch-governance-1280.png",
+          "relPath": "../screenshots/arch-governance-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "arch-governance-1536.png",
+          "relPath": "../screenshots/arch-governance-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "arch-governance-1920.png",
+          "relPath": "../screenshots/arch-governance-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/architecture/proof-and-claim-posture",
+      "slug": "arch-proof-posture",
+      "pageName": "Proof and Claim Posture",
+      "section": "Architecture",
+      "routeType": "nested",
+      "canonicalStatus": null,
+      "pageTitle": "Proof and Claim Posture | Architecture | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/architecture/proof-and-claim-posture",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "arch-proof-posture-375.png",
+          "relPath": "../screenshots/arch-proof-posture-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "arch-proof-posture-430.png",
+          "relPath": "../screenshots/arch-proof-posture-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "arch-proof-posture-768.png",
+          "relPath": "../screenshots/arch-proof-posture-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "arch-proof-posture-1280.png",
+          "relPath": "../screenshots/arch-proof-posture-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "arch-proof-posture-1536.png",
+          "relPath": "../screenshots/arch-proof-posture-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "arch-proof-posture-1920.png",
+          "relPath": "../screenshots/arch-proof-posture-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/architecture/integration-map",
+      "slug": "arch-integration-map",
+      "pageName": "Integration Map",
+      "section": "Architecture",
+      "routeType": "nested",
+      "canonicalStatus": null,
+      "pageTitle": "Integration Map | Architecture | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/architecture/integration-map",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "arch-integration-map-375.png",
+          "relPath": "../screenshots/arch-integration-map-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "arch-integration-map-430.png",
+          "relPath": "../screenshots/arch-integration-map-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "arch-integration-map-768.png",
+          "relPath": "../screenshots/arch-integration-map-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "arch-integration-map-1280.png",
+          "relPath": "../screenshots/arch-integration-map-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "arch-integration-map-1536.png",
+          "relPath": "../screenshots/arch-integration-map-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "arch-integration-map-1920.png",
+          "relPath": "../screenshots/arch-integration-map-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/technologies/bytelite",
+      "slug": "tech-bytelite",
+      "pageName": "ByteLite",
+      "section": "ByteLite",
+      "routeType": "nested",
+      "canonicalStatus": "Internal Validation",
+      "pageTitle": "ByteLite | Deterministic Digital Structure | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/technologies/bytelite",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "tech-bytelite-375.png",
+          "relPath": "../screenshots/tech-bytelite-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "tech-bytelite-430.png",
+          "relPath": "../screenshots/tech-bytelite-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "tech-bytelite-768.png",
+          "relPath": "../screenshots/tech-bytelite-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "tech-bytelite-1280.png",
+          "relPath": "../screenshots/tech-bytelite-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "tech-bytelite-1536.png",
+          "relPath": "../screenshots/tech-bytelite-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "tech-bytelite-1920.png",
+          "relPath": "../screenshots/tech-bytelite-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/technologies/bytesight",
+      "slug": "tech-bytesight",
+      "pageName": "ByteSight",
+      "section": "ByteSight",
+      "routeType": "nested",
+      "canonicalStatus": "Concept",
+      "pageTitle": "ByteSight | Deterministic Visual Evidence | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/technologies/bytesight",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "tech-bytesight-375.png",
+          "relPath": "../screenshots/tech-bytesight-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "tech-bytesight-430.png",
+          "relPath": "../screenshots/tech-bytesight-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "tech-bytesight-768.png",
+          "relPath": "../screenshots/tech-bytesight-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "tech-bytesight-1280.png",
+          "relPath": "../screenshots/tech-bytesight-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "tech-bytesight-1536.png",
+          "relPath": "../screenshots/tech-bytesight-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "tech-bytesight-1920.png",
+          "relPath": "../screenshots/tech-bytesight-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/technologies/deep-kore",
+      "slug": "tech-deep-kore",
+      "pageName": "Deep Kore",
+      "section": "Deep Kore",
+      "routeType": "nested",
+      "canonicalStatus": "Internal Validation",
+      "pageTitle": "Deep Kore | Recursive Relational Intelligence | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/technologies/deep-kore",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "tech-deep-kore-375.png",
+          "relPath": "../screenshots/tech-deep-kore-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "tech-deep-kore-430.png",
+          "relPath": "../screenshots/tech-deep-kore-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "tech-deep-kore-768.png",
+          "relPath": "../screenshots/tech-deep-kore-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "tech-deep-kore-1280.png",
+          "relPath": "../screenshots/tech-deep-kore-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "tech-deep-kore-1536.png",
+          "relPath": "../screenshots/tech-deep-kore-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "tech-deep-kore-1920.png",
+          "relPath": "../screenshots/tech-deep-kore-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/technologies/deep-kore/aiya",
+      "slug": "tech-aiya",
+      "pageName": "AIya",
+      "section": "AIya",
+      "routeType": "nested",
+      "canonicalStatus": "Prototype",
+      "pageTitle": "AIya | Human-Facing Structured Intelligence | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/technologies/deep-kore/aiya",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "tech-aiya-375.png",
+          "relPath": "../screenshots/tech-aiya-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "tech-aiya-430.png",
+          "relPath": "../screenshots/tech-aiya-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "tech-aiya-768.png",
+          "relPath": "../screenshots/tech-aiya-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "tech-aiya-1280.png",
+          "relPath": "../screenshots/tech-aiya-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "tech-aiya-1536.png",
+          "relPath": "../screenshots/tech-aiya-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "tech-aiya-1920.png",
+          "relPath": "../screenshots/tech-aiya-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/technologies/deep-kore/genesis-goalkeeper",
+      "slug": "tech-genesis-goalkeeper",
+      "pageName": "Genesis Goalkeeper",
+      "section": "Genesis Goalkeeper",
+      "routeType": "nested",
+      "canonicalStatus": "Concept",
+      "pageTitle": "Genesis Goalkeeper | Governance and Intrinsic Halting | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/technologies/deep-kore/genesis-goalkeeper",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "tech-genesis-goalkeeper-375.png",
+          "relPath": "../screenshots/tech-genesis-goalkeeper-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "tech-genesis-goalkeeper-430.png",
+          "relPath": "../screenshots/tech-genesis-goalkeeper-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "tech-genesis-goalkeeper-768.png",
+          "relPath": "../screenshots/tech-genesis-goalkeeper-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "tech-genesis-goalkeeper-1280.png",
+          "relPath": "../screenshots/tech-genesis-goalkeeper-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "tech-genesis-goalkeeper-1536.png",
+          "relPath": "../screenshots/tech-genesis-goalkeeper-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "tech-genesis-goalkeeper-1920.png",
+          "relPath": "../screenshots/tech-genesis-goalkeeper-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/technologies/byteoracle",
+      "slug": "tech-byteoracle",
+      "pageName": "ByteOracle",
+      "section": "ByteOracle",
+      "routeType": "nested",
+      "canonicalStatus": "Concept",
+      "pageTitle": "ByteOracle | Deterministic Astronomical Interpretation | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/technologies/byteoracle",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "tech-byteoracle-375.png",
+          "relPath": "../screenshots/tech-byteoracle-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "tech-byteoracle-430.png",
+          "relPath": "../screenshots/tech-byteoracle-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "tech-byteoracle-768.png",
+          "relPath": "../screenshots/tech-byteoracle-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "tech-byteoracle-1280.png",
+          "relPath": "../screenshots/tech-byteoracle-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "tech-byteoracle-1536.png",
+          "relPath": "../screenshots/tech-byteoracle-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "tech-byteoracle-1920.png",
+          "relPath": "../screenshots/tech-byteoracle-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/technologies/byteflow",
+      "slug": "tech-byteflow",
+      "pageName": "ByteFlow",
+      "section": "ByteFlow",
+      "routeType": "nested",
+      "canonicalStatus": "Concept",
+      "pageTitle": "ByteFlow | Movement and Transmission Layer | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/technologies/byteflow",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "tech-byteflow-375.png",
+          "relPath": "../screenshots/tech-byteflow-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "tech-byteflow-430.png",
+          "relPath": "../screenshots/tech-byteflow-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "tech-byteflow-768.png",
+          "relPath": "../screenshots/tech-byteflow-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "tech-byteflow-1280.png",
+          "relPath": "../screenshots/tech-byteflow-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "tech-byteflow-1536.png",
+          "relPath": "../screenshots/tech-byteflow-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "tech-byteflow-1920.png",
+          "relPath": "../screenshots/tech-byteflow-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/technologies/bytecost",
+      "slug": "tech-bytecost",
+      "pageName": "ByteCost",
+      "section": "ByteCost",
+      "routeType": "nested",
+      "canonicalStatus": "Concept",
+      "pageTitle": "ByteCost | Burden and Value Layer | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/technologies/bytecost",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "tech-bytecost-375.png",
+          "relPath": "../screenshots/tech-bytecost-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "tech-bytecost-430.png",
+          "relPath": "../screenshots/tech-bytecost-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "tech-bytecost-768.png",
+          "relPath": "../screenshots/tech-bytecost-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "tech-bytecost-1280.png",
+          "relPath": "../screenshots/tech-bytecost-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "tech-bytecost-1536.png",
+          "relPath": "../screenshots/tech-bytecost-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "tech-bytecost-1920.png",
+          "relPath": "../screenshots/tech-bytecost-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-play",
+      "slug": "hsp-overview",
+      "pageName": "HeartStrings Play Overview",
+      "section": "HeartStrings Play",
+      "routeType": "public",
+      "canonicalStatus": "Prototype",
+      "pageTitle": "HeartStrings Play | Consent-Forward Adult Board Game | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-play",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsp-overview-375.png",
+          "relPath": "../screenshots/hsp-overview-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsp-overview-430.png",
+          "relPath": "../screenshots/hsp-overview-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsp-overview-768.png",
+          "relPath": "../screenshots/hsp-overview-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsp-overview-1280.png",
+          "relPath": "../screenshots/hsp-overview-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsp-overview-1536.png",
+          "relPath": "../screenshots/hsp-overview-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsp-overview-1920.png",
+          "relPath": "../screenshots/hsp-overview-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-play/how-it-plays",
+      "slug": "hsp-how-it-plays",
+      "pageName": "How It Plays",
+      "section": "HeartStrings Play",
+      "routeType": "nested",
+      "canonicalStatus": "Prototype",
+      "pageTitle": "How It Plays | HeartStrings Play | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-play/how-it-plays",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsp-how-it-plays-375.png",
+          "relPath": "../screenshots/hsp-how-it-plays-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsp-how-it-plays-430.png",
+          "relPath": "../screenshots/hsp-how-it-plays-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsp-how-it-plays-768.png",
+          "relPath": "../screenshots/hsp-how-it-plays-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsp-how-it-plays-1280.png",
+          "relPath": "../screenshots/hsp-how-it-plays-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsp-how-it-plays-1536.png",
+          "relPath": "../screenshots/hsp-how-it-plays-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsp-how-it-plays-1920.png",
+          "relPath": "../screenshots/hsp-how-it-plays-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-play/editions",
+      "slug": "hsp-editions",
+      "pageName": "Editions",
+      "section": "HeartStrings Play",
+      "routeType": "nested",
+      "canonicalStatus": "Prototype",
+      "pageTitle": "Editions | HeartStrings Play | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-play/editions",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsp-editions-375.png",
+          "relPath": "../screenshots/hsp-editions-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsp-editions-430.png",
+          "relPath": "../screenshots/hsp-editions-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsp-editions-768.png",
+          "relPath": "../screenshots/hsp-editions-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsp-editions-1280.png",
+          "relPath": "../screenshots/hsp-editions-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsp-editions-1536.png",
+          "relPath": "../screenshots/hsp-editions-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsp-editions-1920.png",
+          "relPath": "../screenshots/hsp-editions-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-play/components",
+      "slug": "hsp-components",
+      "pageName": "Components",
+      "section": "HeartStrings Play",
+      "routeType": "nested",
+      "canonicalStatus": "Prototype",
+      "pageTitle": "Components | HeartStrings Play | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-play/components",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsp-components-375.png",
+          "relPath": "../screenshots/hsp-components-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsp-components-430.png",
+          "relPath": "../screenshots/hsp-components-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsp-components-768.png",
+          "relPath": "../screenshots/hsp-components-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsp-components-1280.png",
+          "relPath": "../screenshots/hsp-components-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsp-components-1536.png",
+          "relPath": "../screenshots/hsp-components-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsp-components-1920.png",
+          "relPath": "../screenshots/hsp-components-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-play/consent-architecture",
+      "slug": "hsp-consent",
+      "pageName": "Consent Architecture",
+      "section": "HeartStrings Play",
+      "routeType": "nested",
+      "canonicalStatus": "Prototype",
+      "pageTitle": "Consent Architecture | HeartStrings Play | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-play/consent-architecture",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsp-consent-375.png",
+          "relPath": "../screenshots/hsp-consent-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsp-consent-430.png",
+          "relPath": "../screenshots/hsp-consent-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsp-consent-768.png",
+          "relPath": "../screenshots/hsp-consent-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsp-consent-1280.png",
+          "relPath": "../screenshots/hsp-consent-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsp-consent-1536.png",
+          "relPath": "../screenshots/hsp-consent-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsp-consent-1920.png",
+          "relPath": "../screenshots/hsp-consent-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-play/development-status",
+      "slug": "hsp-dev-status",
+      "pageName": "Development Status",
+      "section": "HeartStrings Play",
+      "routeType": "nested",
+      "canonicalStatus": "Prototype",
+      "pageTitle": "Development Status | HeartStrings Play | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-play/development-status",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsp-dev-status-375.png",
+          "relPath": "../screenshots/hsp-dev-status-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsp-dev-status-430.png",
+          "relPath": "../screenshots/hsp-dev-status-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsp-dev-status-768.png",
+          "relPath": "../screenshots/hsp-dev-status-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsp-dev-status-1280.png",
+          "relPath": "../screenshots/hsp-dev-status-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsp-dev-status-1536.png",
+          "relPath": "../screenshots/hsp-dev-status-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsp-dev-status-1920.png",
+          "relPath": "../screenshots/hsp-dev-status-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-play/preorder",
+      "slug": "hsp-preorder",
+      "pageName": "HeartStrings Play Preorder",
+      "section": "HeartStrings Play",
+      "routeType": "preorder",
+      "canonicalStatus": "Prototype",
+      "pageTitle": "Preorder | HeartStrings Play | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-play/preorder",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsp-preorder-375.png",
+          "relPath": "../screenshots/hsp-preorder-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsp-preorder-430.png",
+          "relPath": "../screenshots/hsp-preorder-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsp-preorder-768.png",
+          "relPath": "../screenshots/hsp-preorder-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsp-preorder-1280.png",
+          "relPath": "../screenshots/hsp-preorder-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsp-preorder-1536.png",
+          "relPath": "../screenshots/hsp-preorder-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsp-preorder-1920.png",
+          "relPath": "../screenshots/hsp-preorder-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-connect",
+      "slug": "hsc-overview",
+      "pageName": "HeartStrings Connect Overview",
+      "section": "HeartStrings Connect",
+      "routeType": "public",
+      "canonicalStatus": "Private Test",
+      "pageTitle": "HeartStrings Connect | Privacy-First Compatibility and Connection | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-connect",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsc-overview-375.png",
+          "relPath": "../screenshots/hsc-overview-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsc-overview-430.png",
+          "relPath": "../screenshots/hsc-overview-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsc-overview-768.png",
+          "relPath": "../screenshots/hsc-overview-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsc-overview-1280.png",
+          "relPath": "../screenshots/hsc-overview-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsc-overview-1536.png",
+          "relPath": "../screenshots/hsc-overview-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsc-overview-1920.png",
+          "relPath": "../screenshots/hsc-overview-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-connect/compatibility-and-matching",
+      "slug": "hsc-compatibility",
+      "pageName": "Compatibility and Matching",
+      "section": "HeartStrings Connect",
+      "routeType": "nested",
+      "canonicalStatus": "Private Test",
+      "pageTitle": "Compatibility &amp; Matching | HeartStrings Connect | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-connect/compatibility-and-matching",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsc-compatibility-375.png",
+          "relPath": "../screenshots/hsc-compatibility-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsc-compatibility-430.png",
+          "relPath": "../screenshots/hsc-compatibility-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsc-compatibility-768.png",
+          "relPath": "../screenshots/hsc-compatibility-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsc-compatibility-1280.png",
+          "relPath": "../screenshots/hsc-compatibility-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsc-compatibility-1536.png",
+          "relPath": "../screenshots/hsc-compatibility-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsc-compatibility-1920.png",
+          "relPath": "../screenshots/hsc-compatibility-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-connect/privacy-architecture",
+      "slug": "hsc-privacy",
+      "pageName": "Privacy Architecture",
+      "section": "HeartStrings Connect",
+      "routeType": "nested",
+      "canonicalStatus": "Private Test",
+      "pageTitle": "Privacy Architecture | HeartStrings Connect | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-connect/privacy-architecture",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsc-privacy-375.png",
+          "relPath": "../screenshots/hsc-privacy-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsc-privacy-430.png",
+          "relPath": "../screenshots/hsc-privacy-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsc-privacy-768.png",
+          "relPath": "../screenshots/hsc-privacy-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsc-privacy-1280.png",
+          "relPath": "../screenshots/hsc-privacy-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsc-privacy-1536.png",
+          "relPath": "../screenshots/hsc-privacy-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsc-privacy-1920.png",
+          "relPath": "../screenshots/hsc-privacy-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-connect/safety",
+      "slug": "hsc-safety",
+      "pageName": "Safety",
+      "section": "HeartStrings Connect",
+      "routeType": "nested",
+      "canonicalStatus": "Private Test",
+      "pageTitle": "Safety | HeartStrings Connect | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-connect/safety",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsc-safety-375.png",
+          "relPath": "../screenshots/hsc-safety-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsc-safety-430.png",
+          "relPath": "../screenshots/hsc-safety-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsc-safety-768.png",
+          "relPath": "../screenshots/hsc-safety-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsc-safety-1280.png",
+          "relPath": "../screenshots/hsc-safety-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsc-safety-1536.png",
+          "relPath": "../screenshots/hsc-safety-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsc-safety-1920.png",
+          "relPath": "../screenshots/hsc-safety-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-connect/games-and-shared-activities",
+      "slug": "hsc-games",
+      "pageName": "Games and Shared Activities",
+      "section": "HeartStrings Connect",
+      "routeType": "nested",
+      "canonicalStatus": "Private Test",
+      "pageTitle": "Games &amp; Shared Activities | HeartStrings Connect | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-connect/games-and-shared-activities",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsc-games-375.png",
+          "relPath": "../screenshots/hsc-games-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsc-games-430.png",
+          "relPath": "../screenshots/hsc-games-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsc-games-768.png",
+          "relPath": "../screenshots/hsc-games-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsc-games-1280.png",
+          "relPath": "../screenshots/hsc-games-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsc-games-1536.png",
+          "relPath": "../screenshots/hsc-games-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsc-games-1920.png",
+          "relPath": "../screenshots/hsc-games-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-connect/date-planning",
+      "slug": "hsc-date-planning",
+      "pageName": "Date Planning",
+      "section": "HeartStrings Connect",
+      "routeType": "nested",
+      "canonicalStatus": "Private Test",
+      "pageTitle": "Date Planning | HeartStrings Connect | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-connect/date-planning",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsc-date-planning-375.png",
+          "relPath": "../screenshots/hsc-date-planning-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsc-date-planning-430.png",
+          "relPath": "../screenshots/hsc-date-planning-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsc-date-planning-768.png",
+          "relPath": "../screenshots/hsc-date-planning-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsc-date-planning-1280.png",
+          "relPath": "../screenshots/hsc-date-planning-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsc-date-planning-1536.png",
+          "relPath": "../screenshots/hsc-date-planning-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsc-date-planning-1920.png",
+          "relPath": "../screenshots/hsc-date-planning-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-connect/cartoonized-profiles",
+      "slug": "hsc-cartoonized",
+      "pageName": "Cartoonized Profiles",
+      "section": "Cartoonized Profiles",
+      "routeType": "nested",
+      "canonicalStatus": "Private Test",
+      "pageTitle": "Cartoonized Profiles | HeartStrings Connect | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-connect/cartoonized-profiles",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsc-cartoonized-375.png",
+          "relPath": "../screenshots/hsc-cartoonized-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsc-cartoonized-430.png",
+          "relPath": "../screenshots/hsc-cartoonized-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsc-cartoonized-768.png",
+          "relPath": "../screenshots/hsc-cartoonized-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsc-cartoonized-1280.png",
+          "relPath": "../screenshots/hsc-cartoonized-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsc-cartoonized-1536.png",
+          "relPath": "../screenshots/hsc-cartoonized-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsc-cartoonized-1920.png",
+          "relPath": "../screenshots/hsc-cartoonized-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-connect/aiya-and-aion",
+      "slug": "hsc-aiya-aion",
+      "pageName": "AIya and Aion",
+      "section": "AIya and Aion",
+      "routeType": "nested",
+      "canonicalStatus": "Private Test",
+      "pageTitle": "AIya &amp; Aion | HeartStrings Connect | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-connect/aiya-and-aion",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsc-aiya-aion-375.png",
+          "relPath": "../screenshots/hsc-aiya-aion-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsc-aiya-aion-430.png",
+          "relPath": "../screenshots/hsc-aiya-aion-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsc-aiya-aion-768.png",
+          "relPath": "../screenshots/hsc-aiya-aion-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsc-aiya-aion-1280.png",
+          "relPath": "../screenshots/hsc-aiya-aion-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsc-aiya-aion-1536.png",
+          "relPath": "../screenshots/hsc-aiya-aion-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsc-aiya-aion-1920.png",
+          "relPath": "../screenshots/hsc-aiya-aion-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-connect/byteoracle-horoscopes",
+      "slug": "hsc-byteoracle",
+      "pageName": "ByteOracle Horoscopes",
+      "section": "ByteOracle Horoscopes",
+      "routeType": "nested",
+      "canonicalStatus": "Private Test",
+      "pageTitle": "ByteOracle Horoscopes | HeartStrings Connect | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-connect/byteoracle-horoscopes",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsc-byteoracle-375.png",
+          "relPath": "../screenshots/hsc-byteoracle-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsc-byteoracle-430.png",
+          "relPath": "../screenshots/hsc-byteoracle-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsc-byteoracle-768.png",
+          "relPath": "../screenshots/hsc-byteoracle-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsc-byteoracle-1280.png",
+          "relPath": "../screenshots/hsc-byteoracle-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsc-byteoracle-1536.png",
+          "relPath": "../screenshots/hsc-byteoracle-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsc-byteoracle-1920.png",
+          "relPath": "../screenshots/hsc-byteoracle-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-connect/date-planning/blind-date-roulette",
+      "slug": "hsc-blind-date",
+      "pageName": "Blind Date Roulette",
+      "section": "Blind Date Roulette",
+      "routeType": "nested",
+      "canonicalStatus": "Private Test",
+      "pageTitle": "Blind Date Roulette | HeartStrings Connect | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-connect/date-planning/blind-date-roulette",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsc-blind-date-375.png",
+          "relPath": "../screenshots/hsc-blind-date-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsc-blind-date-430.png",
+          "relPath": "../screenshots/hsc-blind-date-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsc-blind-date-768.png",
+          "relPath": "../screenshots/hsc-blind-date-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsc-blind-date-1280.png",
+          "relPath": "../screenshots/hsc-blind-date-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsc-blind-date-1536.png",
+          "relPath": "../screenshots/hsc-blind-date-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsc-blind-date-1920.png",
+          "relPath": "../screenshots/hsc-blind-date-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-connect/date-planning/restaurants",
+      "slug": "hsc-restaurants",
+      "pageName": "Restaurants",
+      "section": "Restaurants",
+      "routeType": "nested",
+      "canonicalStatus": "Private Test",
+      "pageTitle": "Restaurants | HeartStrings Connect | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-connect/date-planning/restaurants",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsc-restaurants-375.png",
+          "relPath": "../screenshots/hsc-restaurants-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsc-restaurants-430.png",
+          "relPath": "../screenshots/hsc-restaurants-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsc-restaurants-768.png",
+          "relPath": "../screenshots/hsc-restaurants-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsc-restaurants-1280.png",
+          "relPath": "../screenshots/hsc-restaurants-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsc-restaurants-1536.png",
+          "relPath": "../screenshots/hsc-restaurants-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsc-restaurants-1920.png",
+          "relPath": "../screenshots/hsc-restaurants-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/products/heartstrings-connect/date-planning/restaurants/partner-program",
+      "slug": "hsc-partner-program",
+      "pageName": "Restaurant Partner Program",
+      "section": "Restaurant Partner Program",
+      "routeType": "partner",
+      "canonicalStatus": "Public Beta",
+      "pageTitle": "Restaurant Partner Program | HeartStrings Connect | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/products/heartstrings-connect/date-planning/restaurants/partner-program",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "hsc-partner-program-375.png",
+          "relPath": "../screenshots/hsc-partner-program-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "hsc-partner-program-430.png",
+          "relPath": "../screenshots/hsc-partner-program-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "hsc-partner-program-768.png",
+          "relPath": "../screenshots/hsc-partner-program-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "hsc-partner-program-1280.png",
+          "relPath": "../screenshots/hsc-partner-program-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "hsc-partner-program-1536.png",
+          "relPath": "../screenshots/hsc-partner-program-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "hsc-partner-program-1920.png",
+          "relPath": "../screenshots/hsc-partner-program-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/progress",
+      "slug": "progress",
+      "pageName": "Progress & Status",
+      "section": "Progress and Status",
+      "routeType": "public",
+      "canonicalStatus": null,
+      "pageTitle": "Progress | Current Status | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/progress",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "progress-375.png",
+          "relPath": "../screenshots/progress-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "progress-430.png",
+          "relPath": "../screenshots/progress-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "progress-768.png",
+          "relPath": "../screenshots/progress-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "progress-1280.png",
+          "relPath": "../screenshots/progress-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "progress-1536.png",
+          "relPath": "../screenshots/progress-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "progress-1920.png",
+          "relPath": "../screenshots/progress-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/progress/validation-evidence",
+      "slug": "progress-validation",
+      "pageName": "Validation Evidence",
+      "section": "Progress and Status",
+      "routeType": "nested",
+      "canonicalStatus": null,
+      "pageTitle": "Validation Evidence | Progress | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/progress/validation-evidence",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "progress-validation-375.png",
+          "relPath": "../screenshots/progress-validation-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "progress-validation-430.png",
+          "relPath": "../screenshots/progress-validation-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "progress-validation-768.png",
+          "relPath": "../screenshots/progress-validation-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "progress-validation-1280.png",
+          "relPath": "../screenshots/progress-validation-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "progress-validation-1536.png",
+          "relPath": "../screenshots/progress-validation-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "progress-validation-1920.png",
+          "relPath": "../screenshots/progress-validation-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/progress/development-timeline",
+      "slug": "progress-timeline",
+      "pageName": "Development Timeline",
+      "section": "Progress and Status",
+      "routeType": "nested",
+      "canonicalStatus": null,
+      "pageTitle": "Development Timeline | Progress | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/progress/development-timeline",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "progress-timeline-375.png",
+          "relPath": "../screenshots/progress-timeline-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "progress-timeline-430.png",
+          "relPath": "../screenshots/progress-timeline-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "progress-timeline-768.png",
+          "relPath": "../screenshots/progress-timeline-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "progress-timeline-1280.png",
+          "relPath": "../screenshots/progress-timeline-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "progress-timeline-1536.png",
+          "relPath": "../screenshots/progress-timeline-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "progress-timeline-1920.png",
+          "relPath": "../screenshots/progress-timeline-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/progress/changelog",
+      "slug": "progress-changelog",
+      "pageName": "Changelog",
+      "section": "Progress and Status",
+      "routeType": "nested",
+      "canonicalStatus": null,
+      "pageTitle": "Changelog | Progress | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/progress/changelog",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "progress-changelog-375.png",
+          "relPath": "../screenshots/progress-changelog-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "progress-changelog-430.png",
+          "relPath": "../screenshots/progress-changelog-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "progress-changelog-768.png",
+          "relPath": "../screenshots/progress-changelog-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "progress-changelog-1280.png",
+          "relPath": "../screenshots/progress-changelog-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "progress-changelog-1536.png",
+          "relPath": "../screenshots/progress-changelog-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "progress-changelog-1920.png",
+          "relPath": "../screenshots/progress-changelog-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/preorder",
+      "slug": "preorder",
+      "pageName": "Preorder",
+      "section": "Preorder",
+      "routeType": "preorder",
+      "canonicalStatus": null,
+      "pageTitle": "Preorder | Founder Access | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/preorder",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "preorder-375.png",
+          "relPath": "../screenshots/preorder-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "preorder-430.png",
+          "relPath": "../screenshots/preorder-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "preorder-768.png",
+          "relPath": "../screenshots/preorder-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "preorder-1280.png",
+          "relPath": "../screenshots/preorder-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "preorder-1536.png",
+          "relPath": "../screenshots/preorder-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "preorder-1920.png",
+          "relPath": "../screenshots/preorder-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/preorder/founder-benefits",
+      "slug": "preorder-founder-benefits",
+      "pageName": "Founder Benefits",
+      "section": "Preorder",
+      "routeType": "preorder",
+      "canonicalStatus": null,
+      "pageTitle": "Founder Benefits | Preorder | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/preorder/founder-benefits",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "preorder-founder-benefits-375.png",
+          "relPath": "../screenshots/preorder-founder-benefits-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "preorder-founder-benefits-430.png",
+          "relPath": "../screenshots/preorder-founder-benefits-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "preorder-founder-benefits-768.png",
+          "relPath": "../screenshots/preorder-founder-benefits-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "preorder-founder-benefits-1280.png",
+          "relPath": "../screenshots/preorder-founder-benefits-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "preorder-founder-benefits-1536.png",
+          "relPath": "../screenshots/preorder-founder-benefits-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "preorder-founder-benefits-1920.png",
+          "relPath": "../screenshots/preorder-founder-benefits-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/preorder/status",
+      "slug": "preorder-status",
+      "pageName": "Preorder / Order Status",
+      "section": "Preorder",
+      "routeType": "preorder",
+      "canonicalStatus": null,
+      "pageTitle": "Order Status | Preorder | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/preorder/status",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "preorder-status-375.png",
+          "relPath": "../screenshots/preorder-status-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "preorder-status-430.png",
+          "relPath": "../screenshots/preorder-status-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "preorder-status-768.png",
+          "relPath": "../screenshots/preorder-status-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "preorder-status-1280.png",
+          "relPath": "../screenshots/preorder-status-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "preorder-status-1536.png",
+          "relPath": "../screenshots/preorder-status-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "preorder-status-1920.png",
+          "relPath": "../screenshots/preorder-status-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/company",
+      "slug": "company",
+      "pageName": "About ByteLite LLC",
+      "section": "Company",
+      "routeType": "public",
+      "canonicalStatus": null,
+      "pageTitle": "About ByteLite LLC",
+      "previewUrl": "http://localhost:4321/company",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "company-375.png",
+          "relPath": "../screenshots/company-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "company-430.png",
+          "relPath": "../screenshots/company-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "company-768.png",
+          "relPath": "../screenshots/company-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "company-1280.png",
+          "relPath": "../screenshots/company-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "company-1536.png",
+          "relPath": "../screenshots/company-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "company-1920.png",
+          "relPath": "../screenshots/company-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/company/founder",
+      "slug": "company-founder",
+      "pageName": "Founder",
+      "section": "Company",
+      "routeType": "nested",
+      "canonicalStatus": null,
+      "pageTitle": "Founder | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/company/founder",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "company-founder-375.png",
+          "relPath": "../screenshots/company-founder-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "company-founder-430.png",
+          "relPath": "../screenshots/company-founder-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "company-founder-768.png",
+          "relPath": "../screenshots/company-founder-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "company-founder-1280.png",
+          "relPath": "../screenshots/company-founder-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "company-founder-1536.png",
+          "relPath": "../screenshots/company-founder-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "company-founder-1920.png",
+          "relPath": "../screenshots/company-founder-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/company/partnerships",
+      "slug": "company-partnerships",
+      "pageName": "Partnerships",
+      "section": "Company",
+      "routeType": "nested",
+      "canonicalStatus": null,
+      "pageTitle": "Partnerships | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/company/partnerships",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "company-partnerships-375.png",
+          "relPath": "../screenshots/company-partnerships-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "company-partnerships-430.png",
+          "relPath": "../screenshots/company-partnerships-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "company-partnerships-768.png",
+          "relPath": "../screenshots/company-partnerships-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "company-partnerships-1280.png",
+          "relPath": "../screenshots/company-partnerships-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "company-partnerships-1536.png",
+          "relPath": "../screenshots/company-partnerships-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "company-partnerships-1920.png",
+          "relPath": "../screenshots/company-partnerships-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/company/investors",
+      "slug": "company-investors",
+      "pageName": "Investors",
+      "section": "Company",
+      "routeType": "nested",
+      "canonicalStatus": null,
+      "pageTitle": "Investors | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/company/investors",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "company-investors-375.png",
+          "relPath": "../screenshots/company-investors-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "company-investors-430.png",
+          "relPath": "../screenshots/company-investors-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "company-investors-768.png",
+          "relPath": "../screenshots/company-investors-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "company-investors-1280.png",
+          "relPath": "../screenshots/company-investors-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "company-investors-1536.png",
+          "relPath": "../screenshots/company-investors-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "company-investors-1920.png",
+          "relPath": "../screenshots/company-investors-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/contact",
+      "slug": "contact",
+      "pageName": "Contact",
+      "section": "Contact",
+      "routeType": "public",
+      "canonicalStatus": null,
+      "pageTitle": "Contact | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/contact",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "contact-375.png",
+          "relPath": "../screenshots/contact-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "contact-430.png",
+          "relPath": "../screenshots/contact-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "contact-768.png",
+          "relPath": "../screenshots/contact-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "contact-1280.png",
+          "relPath": "../screenshots/contact-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "contact-1536.png",
+          "relPath": "../screenshots/contact-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "contact-1920.png",
+          "relPath": "../screenshots/contact-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/company/legal",
+      "slug": "company-legal",
+      "pageName": "Legal Index",
+      "section": "Legal",
+      "routeType": "legal",
+      "canonicalStatus": null,
+      "pageTitle": "Legal | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/company/legal",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "company-legal-375.png",
+          "relPath": "../screenshots/company-legal-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "company-legal-430.png",
+          "relPath": "../screenshots/company-legal-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "company-legal-768.png",
+          "relPath": "../screenshots/company-legal-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "company-legal-1280.png",
+          "relPath": "../screenshots/company-legal-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "company-legal-1536.png",
+          "relPath": "../screenshots/company-legal-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "company-legal-1920.png",
+          "relPath": "../screenshots/company-legal-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/preorder/terms",
+      "slug": "preorder-terms",
+      "pageName": "Preorder Terms",
+      "section": "Legal",
+      "routeType": "legal",
+      "canonicalStatus": null,
+      "pageTitle": "Preorder Terms | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/preorder/terms",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "preorder-terms-375.png",
+          "relPath": "../screenshots/preorder-terms-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "preorder-terms-430.png",
+          "relPath": "../screenshots/preorder-terms-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "preorder-terms-768.png",
+          "relPath": "../screenshots/preorder-terms-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "preorder-terms-1280.png",
+          "relPath": "../screenshots/preorder-terms-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "preorder-terms-1536.png",
+          "relPath": "../screenshots/preorder-terms-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "preorder-terms-1920.png",
+          "relPath": "../screenshots/preorder-terms-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/terms",
+      "slug": "terms",
+      "pageName": "Terms of Use",
+      "section": "Legal",
+      "routeType": "legal",
+      "canonicalStatus": null,
+      "pageTitle": "Terms of Use | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/terms",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "terms-375.png",
+          "relPath": "../screenshots/terms-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "terms-430.png",
+          "relPath": "../screenshots/terms-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "terms-768.png",
+          "relPath": "../screenshots/terms-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "terms-1280.png",
+          "relPath": "../screenshots/terms-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "terms-1536.png",
+          "relPath": "../screenshots/terms-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "terms-1920.png",
+          "relPath": "../screenshots/terms-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "route": "/privacy",
+      "slug": "privacy",
+      "pageName": "Privacy Policy",
+      "section": "Legal",
+      "routeType": "legal",
+      "canonicalStatus": null,
+      "pageTitle": "Privacy Policy | ByteLite LLC",
+      "previewUrl": "http://localhost:4321/privacy",
+      "screenshots": [
+        {
+          "viewport": "mobile-sm",
+          "width": 375,
+          "height": 812,
+          "file": "privacy-375.png",
+          "relPath": "../screenshots/privacy-375.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "mobile-lg",
+          "width": 430,
+          "height": 932,
+          "file": "privacy-430.png",
+          "relPath": "../screenshots/privacy-430.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "height": 1024,
+          "file": "privacy-768.png",
+          "relPath": "../screenshots/privacy-768.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "laptop",
+          "width": 1280,
+          "height": 900,
+          "file": "privacy-1280.png",
+          "relPath": "../screenshots/privacy-1280.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "desktop",
+          "width": 1536,
+          "height": 960,
+          "file": "privacy-1536.png",
+          "relPath": "../screenshots/privacy-1536.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        },
+        {
+          "viewport": "wide",
+          "width": 1920,
+          "height": 1080,
+          "file": "privacy-1920.png",
+          "relPath": "../screenshots/privacy-1920.png",
+          "exists": true,
+          "status": "pass",
+          "note": ""
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "totalRoutes": 50,
+    "totalScreenshotsExpected": 300,
+    "totalScreenshotsFound": 300,
+    "passed": 300,
+    "failed": 0,
+    "missing": 0,
+    "duplicateScreenshotCount": 0,
+    "orphanScreenshotCount": 0,
+    "orphanScreenshots": [],
+    "routesWithoutScreenshots": [],
+    "generatedAt": "2026-07-27T02:52:59.285Z"
+  }
+}
