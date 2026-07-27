@@ -57,13 +57,13 @@ const SUBNAV = [
     <div class="container">
       <p class="eyebrow">Six Escalation Tiers</p>
       <h2 style="margin-bottom:2.5rem;">Progress at your pace.</h2>
-      <div class="tiers-list">
-        <div class="tier-row"><span class="tier-num">1</span><span class="tier-name">Initiate</span><span class="tier-desc">Entry. Low stakes. Setting the tone.</span></div>
-        <div class="tier-row"><span class="tier-num">2</span><span class="tier-name">Connect</span><span class="tier-desc">Building rapport. Shared presence.</span></div>
-        <div class="tier-row"><span class="tier-num">3</span><span class="tier-name">Seduce</span><span class="tier-desc">Intentional flirtation. Energy shifts.</span></div>
-        <div class="tier-row"><span class="tier-num">4</span><span class="tier-name">Stimulate</span><span class="tier-desc">Heightened engagement. Closer attention.</span></div>
-        <div class="tier-row"><span class="tier-num">5</span><span class="tier-name">Edge</span><span class="tier-desc">Near the limit. High intention required.</span></div>
-        <div class="tier-row"><span class="tier-num">6</span><span class="tier-name">Climax</span><span class="tier-desc">Full escalation. For groups who have agreed.</span></div>
+      <div class="tiers-grid">
+        <div class="tier-card"><img src="/heartstrings/tiers/heartstrings-play-tier-card-initiate-product.webp" alt="Initiate tier card, pale pink with a gold infinity-heart mark" width="300" height="420" loading="lazy" /><span class="tier-num">1</span><span class="tier-name">Initiate</span><span class="tier-desc">Entry. Low stakes. Setting the tone.</span></div>
+        <div class="tier-card"><img src="/heartstrings/tiers/heartstrings-play-tier-card-connect-product.webp" alt="Connect tier card, rose pink with a gold infinity-heart mark" width="300" height="420" loading="lazy" /><span class="tier-num">2</span><span class="tier-name">Connect</span><span class="tier-desc">Building rapport. Shared presence.</span></div>
+        <div class="tier-card"><img src="/heartstrings/tiers/heartstrings-play-tier-card-seduce-product.webp" alt="Seduce tier card, magenta with a gold infinity-heart mark" width="300" height="420" loading="lazy" /><span class="tier-num">3</span><span class="tier-name">Seduce</span><span class="tier-desc">Intentional flirtation. Energy shifts.</span></div>
+        <div class="tier-card"><img src="/heartstrings/tiers/heartstrings-play-tier-card-stimulate-product.webp" alt="Stimulate tier card, amber orange with a gold infinity-heart mark" width="300" height="420" loading="lazy" /><span class="tier-num">4</span><span class="tier-name">Stimulate</span><span class="tier-desc">Heightened engagement. Closer attention.</span></div>
+        <div class="tier-card"><img src="/heartstrings/tiers/heartstrings-play-tier-card-edge-product.webp" alt="Edge tier card, deep red with a gold infinity-heart mark" width="300" height="420" loading="lazy" /><span class="tier-num">5</span><span class="tier-name">Edge</span><span class="tier-desc">Near the limit. High intention required.</span></div>
+        <div class="tier-card"><img src="/heartstrings/tiers/heartstrings-play-tier-card-climax-product.webp" alt="Climax tier card, dark crimson with a gold infinity-heart mark" width="300" height="420" loading="lazy" /><span class="tier-num">6</span><span class="tier-name">Climax</span><span class="tier-desc">Full escalation. For groups who have agreed.</span></div>
       </div>
       <p class="hp-p" style="margin-top:1.5rem;">
         Tier selection carries a consent ceiling: a group only draws from tiers everyone present
@@ -89,9 +89,12 @@ const SUBNAV = [
 <style>
 .hp-hero { padding: 4.5rem 0 3.5rem; }
 .hp-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
-.tiers-list { display: flex; flex-direction: column; gap: .75rem; max-width: 640px; }
-.tier-row { display: flex; align-items: center; gap: 1.25rem; background: #0d1120; border: 1px solid #1a2235; border-radius: .625rem; padding: 1rem 1.25rem; }
-.tier-num { font-size: .8125rem; font-weight: 600; color: #4a5068; width: 1.25rem; flex-shrink: 0; }
-.tier-name { font-size: 1rem; font-weight: 600; color: #e4e7f2; min-width: 90px; }
-.tier-desc { font-size: .9375rem; color: #7b829e; }
+.tiers-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; }
+@media (max-width: 900px) { .tiers-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 480px) { .tiers-grid { grid-template-columns: repeat(2, 1fr); } }
+.tier-card { display: flex; flex-direction: column; gap: .375rem; }
+.tier-card img { width: 100%; height: auto; border-radius: .5rem; border: 1px solid #1a2235; }
+.tier-num { font-size: .75rem; font-weight: 600; color: #4a5068; }
+.tier-name { font-size: .9375rem; font-weight: 600; color: #e4e7f2; }
+.tier-desc { font-size: .8125rem; color: #7b829e; line-height: 1.4; }
 </style>

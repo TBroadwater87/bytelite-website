@@ -26,7 +26,8 @@ const SUBNAV = [
   <ProductSubNav items={SUBNAV} />
 
   <section class="pr-hero">
-    <div class="container" style="max-width:820px;">
+    <div class="container pr-hero-layout">
+    <div style="max-width:760px;">
       <p class="eyebrow">Founder Reservation</p>
       <h1>No retail price is set yet — so this is a reservation, not a charge.</h1>
       <p class="pr-p">
@@ -34,6 +35,8 @@ const SUBNAV = [
         payment against an unknown launch price, ByteLite LLC offers a no-charge founder
         reservation that locks in the founder benefit formula ahead of time.
       </p>
+    </div>
+    <img src="/heartstrings/box-front.jpg" alt="HeartStrings Play box front" class="pr-hero-img" width="220" height="220" loading="eager" />
     </div>
   </section>
 
@@ -57,6 +60,9 @@ const SUBNAV = [
 
 <style>
 .pr-hero { padding: 4.5rem 0 3.5rem; }
+.pr-hero-layout { display: flex; align-items: center; gap: 2.5rem; justify-content: space-between; }
+.pr-hero-img { flex-shrink: 0; border-radius: .75rem; border: 1px solid #1a2235; object-fit: cover; }
+@media (max-width: 800px) { .pr-hero-layout { flex-direction: column-reverse; } }
 .pr-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
 .pr-box { background: #0d1120; border: 1px solid #1a2235; border-radius: .875rem; padding: 2rem; }
 .pr-box h3 { color: #e4e7f2; margin-bottom: .5rem; font-size: 1.0625rem; }

@@ -57,6 +57,8 @@ export interface ProjectRecord {
   routes: string[];
   claimRestrictions: string[];
   accentColor: string;
+  heroImage?: string;
+  heroImageAlt?: string;
 }
 
 const UNDATED = 'Not independently dated (site-wide status reviewed July 2026)';
@@ -235,6 +237,8 @@ export const DEEP_KORE: ProjectRecord = {
     'Not a public commercial product.',
   ],
   accentColor: '#a78bfa',
+  heroImage: '/heartstrings-connect/heartstrings-connect-app-companion-screen-evidence.webp',
+  heroImageAlt: 'A private-test-build screenshot of the AIya companion interface inside HeartStrings Connect, the current user-facing surface Deep Kore’s governed reasoning is exposed through',
 };
 
 export const AIYA: ProjectRecord = {
@@ -274,6 +278,8 @@ export const AIYA: ProjectRecord = {
     'Not the entirety of Deep Kore — AIya is one interaction layer over it.',
   ],
   accentColor: '#f472b6',
+  heroImage: '/heartstrings/heartstrings-aiya-icon.png',
+  heroImageAlt: 'AIya, the human-facing interaction layer built over Deep Kore',
 };
 
 export const GENESIS_GOALKEEPER: ProjectRecord = {
@@ -306,6 +312,8 @@ export const GENESIS_GOALKEEPER: ProjectRecord = {
   routes: ['/technologies/deep-kore/genesis-goalkeeper'],
   claimRestrictions: ['Not an implemented moderation system. Architectural concept only.'],
   accentColor: '#fb923c',
+  heroImage: '/technologies/genesis-goalkeeper-gate-diagram.svg',
+  heroImageAlt: 'Diagram of a candidate output or action passing through Genesis Goalkeeper checks for consent, authority, identity, and harm accounting before being allowed, restrained, or halted',
 };
 
 export const BYTEORACLE: ProjectRecord = {
@@ -346,6 +354,8 @@ export const BYTEORACLE: ProjectRecord = {
     'Not generic fortune-teller content — positioned as a deterministic, reproducible interpretation system.',
   ],
   accentColor: '#a78bfa',
+  heroImage: '/technologies/byteoracle-deterministic-orbit-diagram.svg',
+  heroImageAlt: 'Geometric diagram of calculated celestial positions on concentric rings, representing local deterministic astronomical calculation',
 };
 
 export const ALL_TECHNOLOGIES: ProjectRecord[] = [
@@ -396,6 +406,8 @@ export const HEARTSTRINGS_PLAY: ProjectRecord = {
   ],
   claimRestrictions: ['Not currently for sale at retail.'],
   accentColor: '#f472b6',
+  heroImage: '/heartstrings/board-ultimate.jpg',
+  heroImageAlt: 'HeartStrings Play board, tier cards, and components laid out for a private group session',
 };
 
 export const HEARTSTRINGS_CONNECT: ProjectRecord = {
@@ -448,6 +460,8 @@ export const HEARTSTRINGS_CONNECT: ProjectRecord = {
   ],
   claimRestrictions: ['Not on any public app store.', 'Not a finished/production AI product (AIya).'],
   accentColor: '#818cf8',
+  heroImage: '/heartstrings/heartstrings-guides-banner.png',
+  heroImageAlt: 'AIya and Aion, the paired wingman characters that guide HeartStrings Connect users',
 };
 
 export const RESTAURANT_PARTNER_PROGRAM: ProjectRecord = {

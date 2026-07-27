@@ -4,6 +4,13 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import StatusBadge from '../components/StatusBadge.astro';
 import { ALL_TECHNOLOGIES, HEARTSTRINGS_PLAY, HEARTSTRINGS_CONNECT } from '../data/projects';
+
+const TECH_MARKS: Record<string, string> = {
+  bytelite: '/technologies/bytelite-technology-mark.webp',
+  bytesight: '/technologies/bytesight-technology-mark.webp',
+  byteflow: '/technologies/byteflow-technology-mark.webp',
+  bytecost: '/technologies/bytecost-technology-mark.webp',
+};
 ---
 
 <Layout
@@ -40,10 +47,14 @@ import { ALL_TECHNOLOGIES, HEARTSTRINGS_PLAY, HEARTSTRINGS_CONNECT } from '../da
         Each layer earns scope only after lower layers prove preservation, closure, permission, and
         auditability. Status and proof level are shown honestly — planned layers are labeled as planned.
       </p>
+      <div class="arch-diagram">
+        <img src="/architecture/bytelite-home-architecture-hierarchy.svg" alt="Diagram of ByteLite LLC branching into two groups: Consumer Products (HeartStrings Play, HeartStrings Connect, Restaurant Partner Program) and Technologies (ByteLite, ByteSight, Deep Kore, AIya, Genesis Goalkeeper, ByteOracle, ByteFlow, ByteCost), each labeled with its current canonical status." width="1600" height="1000" loading="lazy" />
+      </div>
       <div class="tech-grid">
         {ALL_TECHNOLOGIES.map((tech) => (
           <a href={tech.routes[0]} class="tech-card" style={`--accent:${tech.accentColor}`}>
             <div class="tech-card-head">
+              {TECH_MARKS[tech.slug] && <img src={TECH_MARKS[tech.slug]} alt="" width="28" height="28" class="tech-card-mark" loading="lazy" />}
               <span class="tech-card-name">{tech.name}</span>
               <StatusBadge status={tech.status} />
             </div>
@@ -90,6 +101,7 @@ import { ALL_TECHNOLOGIES, HEARTSTRINGS_PLAY, HEARTSTRINGS_CONNECT } from '../da
       </p>
       <div class="product-grid">
         <a href={HEARTSTRINGS_PLAY.routes[0]} class="product-card product-card-play">
+          <img src="/heartstrings/board-ultimate.jpg" alt="HeartStrings Play board, cards, and tier decks laid out for a private group session" class="product-card-img" width="960" height="540" loading="lazy" />
           <div class="product-card-inner">
             <div class="product-eyebrow">HeartStrings Play</div>
             <StatusBadge status={HEARTSTRINGS_PLAY.status} />
@@ -98,6 +110,7 @@ import { ALL_TECHNOLOGIES, HEARTSTRINGS_PLAY, HEARTSTRINGS_CONNECT } from '../da
           </div>
         </a>
         <a href={HEARTSTRINGS_CONNECT.routes[0]} class="product-card product-card-connect">
+          <img src="/heartstrings/heartstrings-guides-banner.png" alt="AIya and Aion, the AIya-and-Aion wingman characters that guide HeartStrings Connect" class="product-card-img" width="960" height="540" loading="lazy" />
           <div class="product-card-inner">
             <div class="product-eyebrow product-eyebrow-connect">HeartStrings Connect</div>
             <StatusBadge status={HEARTSTRINGS_CONNECT.status} />
@@ -160,6 +173,14 @@ import { ALL_TECHNOLOGIES, HEARTSTRINGS_PLAY, HEARTSTRINGS_CONNECT } from '../da
 .hero-cta-row { display: flex; gap: .875rem; flex-wrap: wrap; margin-top: 2.25rem; }
 @media (max-width: 540px) { .hero { padding: 4.5rem 0 3.5rem; } }
 
+/* Architecture diagram */
+.arch-diagram {
+  max-width: 1100px; margin: 0 auto 3rem; border-radius: 1rem; overflow: hidden;
+  border: 1px solid #1a2235; background: #111318;
+}
+.arch-diagram img { display: block; width: 100%; height: auto; }
+.tech-card-mark { border-radius: .25rem; flex-shrink: 0; }
+
 /* Technology grid */
 .tech-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
@@ -204,6 +225,7 @@ import { ALL_TECHNOLOGIES, HEARTSTRINGS_PLAY, HEARTSTRINGS_CONNECT } from '../da
   background: linear-gradient(135deg, #090d14 0%, #0b0f1c 100%);
   border: 1px solid rgba(99,102,241,.2);
 }
+.product-card-img { width: 100%; height: 180px; object-fit: cover; display: block; }
 .product-card-inner { padding: 2rem; display: flex; flex-direction: column; gap: .875rem; align-items: flex-start; height: 100%; }
 .product-eyebrow { font-size: 1.0625rem; font-weight: 700; color: #f472b6; }
 .product-eyebrow-connect { color: #818cf8; }

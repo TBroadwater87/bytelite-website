@@ -28,18 +28,21 @@ const SUBNAV = [
   <ProductSubNav items={SUBNAV} />
 
   <section class="pa-hero">
-    <div class="container" style="max-width:820px;">
-      <p class="eyebrow">Privacy Architecture</p>
-      <h1>Private answers protected by real cryptography.</h1>
-      <p class="pa-p">
-        When you finish the survey, your answers are mathematically split into two scrambled
-        halves that are sent to two separate places — and neither half means anything on its own.
-        Even HeartStrings' own servers can't read what you actually answered, so your most
-        personal information never sits anywhere readable.
-      </p>
-      <p class="pa-p" style="margin-top:1rem;color:#555e7a;font-size:.9375rem;">
-        Most apps say "we protect your data." This one is built so it literally can't see it.
-      </p>
+    <div class="container pa-hero-layout">
+      <div class="pa-hero-text">
+        <p class="eyebrow">Privacy Architecture</p>
+        <h1>Private answers protected by real cryptography.</h1>
+        <p class="pa-p">
+          When you finish the survey, your answers are mathematically split into two scrambled
+          halves that are sent to two separate places — and neither half means anything on its own.
+          Even HeartStrings' own servers can't read what you actually answered, so your most
+          personal information never sits anywhere readable.
+        </p>
+        <p class="pa-p" style="margin-top:1rem;color:#555e7a;font-size:.9375rem;">
+          Most apps say "we protect your data." This one is built so it literally can't see it.
+        </p>
+      </div>
+      <img src="/heartstrings-connect/icons/privacy-lock-heart.svg" alt="" class="pa-hero-icon" width="120" height="120" loading="eager" />
     </div>
   </section>
 
@@ -62,6 +65,10 @@ const SUBNAV = [
 
 <style>
 .pa-hero { padding: 4.5rem 0 3.5rem; }
+.pa-hero-layout { display: flex; align-items: center; gap: 2.5rem; justify-content: space-between; }
+.pa-hero-text { flex: 1; min-width: 280px; }
+.pa-hero-icon { flex-shrink: 0; opacity: .9; }
+@media (max-width: 800px) { .pa-hero-layout { flex-direction: column-reverse; } }
 .pa-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
 .pa-list { display: flex; flex-direction: column; gap: 1rem; }
 .pa-item { display: flex; align-items: flex-start; gap: .875rem; font-size: 1rem; color: #a0a8c0; }
