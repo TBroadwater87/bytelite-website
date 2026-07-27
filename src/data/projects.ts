@@ -312,8 +312,8 @@ export const GENESIS_GOALKEEPER: ProjectRecord = {
   routes: ['/technologies/deep-kore/genesis-goalkeeper'],
   claimRestrictions: ['Not an implemented moderation system. Architectural concept only.'],
   accentColor: '#fb923c',
-  heroImage: '/technologies/genesis-goalkeeper-gate-diagram.svg',
-  heroImageAlt: 'Diagram of a candidate output or action passing through Genesis Goalkeeper checks for consent, authority, identity, and harm accounting before being allowed, restrained, or halted',
+  heroImage: '/technologies/genesis-goalkeeper-scoped-action-envelope-diagram.svg',
+  heroImageAlt: 'Scoped Action Envelope diagram: a proposed external action contained by ten required fields (what is requested, who is affected, what authority allows it, and more) and a Governance Gate that authorizes, requests clarification, or restrains/halts the action',
 };
 
 export const BYTEORACLE: ProjectRecord = {
