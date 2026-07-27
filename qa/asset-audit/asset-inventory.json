@@ -8,19 +8,31 @@
   "summary": {
     "totalDiscovered": 637,
     "totalVisuallyInspected": 76,
-    "totalSelected": 20,
+    "totalSelected": 29,
     "totalRejected": 2,
-    "totalDuplicates": 1,
-    "totalLegalDoNotPublish": 45,
-    "totalUnused": 562,
-    "totalAlreadyInRepo": 2,
-    "totalInspectedNotUsed": 5,
+    "totalDuplicates": 3,
+    "totalLegalDoNotPublish": 57,
+    "totalUnused": 525,
+    "totalAlreadyInRepo": 8,
+    "totalInspectedNotUsed": 13,
     "bySourceRoot": {
       "D:/Download": 636,
       "C:/Users/tbroa/Downloads": 1
     },
     "generatedAt": "2026-07-27T04:27:20.201Z",
-    "correctivePassNote": "Corrective pass (2026-07-27): +41 files individually re-classified with real findings, +6 stock-photo cluster files confirmed by direct sample. Total genuinely visually inspected across both passes: 76 of 637 discovered files. The remainder still carries batch/folder-level triage reasoning, now more specific where a cluster was characterized by representative sampling (see individual rejectionReason text) rather than the original generic placeholder."
+    "correctivePassNote": "Corrective pass (2026-07-27): +41 files individually re-classified with real findings, +6 stock-photo cluster files confirmed by direct sample. Total genuinely visually inspected across both passes: 76 of 637 discovered files. The remainder still carries batch/folder-level triage reasoning, now more specific where a cluster was characterized by representative sampling (see individual rejectionReason text) rather than the original generic placeholder.",
+    "byDecision": {
+      "unused": 525,
+      "inspected-not-newly-used": 4,
+      "inspected-not-used-directly": 9,
+      "already-in-repo": 8,
+      "rejected": 2,
+      "duplicate": 3,
+      "selected": 28,
+      "legal-do-not-publish": 57,
+      "selected-corrected": 1
+    },
+    "regeneratedNote": "Summary totals recomputed directly from the records array on 2026-07-27T05:32:04.076Z after the corrective pass left per-decision summary counts stale relative to the updated records."
   },
   "records": [
     {
