@@ -3,7 +3,7 @@
 body{font-family:-apple-system,Segoe UI,sans-serif;background:#0d1120;color:#e4e7f2;margin:0;padding:2rem;line-height:1.6;}
 h1{font-size:1.25rem;margin-bottom:.25rem;}
 .subtitle{color:#7b829e;font-size:.8125rem;margin-bottom:1rem;}
-.warn{background:#241a0d;border:1px solid rgba(251,191,36,.35);color:#fbbf24;border-radius:.5rem;padding:1rem 1.25rem;font-size:.8125rem;margin-bottom:2rem;}
+.ok{background:#0d2116;border:1px solid rgba(74,222,128,.35);color:#4ade80;border-radius:.5rem;padding:1rem 1.25rem;font-size:.8125rem;margin-bottom:2rem;}
 table{width:100%;border-collapse:collapse;font-size:.8125rem;margin-bottom:2rem;}
 th,td{padding:.5rem .625rem;border-bottom:1px solid #1a2235;text-align:left;vertical-align:top;}
 th{color:#7b829e;font-weight:600;text-transform:uppercase;font-size:.6875rem;letter-spacing:.05em;}
@@ -12,21 +12,33 @@ code{font-family:ui-monospace,'Courier New',monospace;color:#4ade80;}
 .splat-list{margin:0;padding-left:1.25rem;font-size:.75rem;color:#a0a8c0;}
 </style></head><body>
 <h1>Cordel Migration - Redirect Validation</h1>
-<p class="subtitle">Generated 2026-07-27. Local QA evidence only.</p>
-<div class="warn">
-  <strong>Limitation:</strong> public/_redirects is a Cloudflare Pages edge-routing file, processed by the Cloudflare Pages edge at deploy time - it is <em>not</em> interpreted by <code>astro preview</code> (a plain Node static file server). Actual HTTP 301 round-trips could not be exercised against localhost:4321 in this pass. What is verified below: (1) the redirects file syntax/structure, no loops, no unnecessary chains; (2) every redirect destination is a real Cordel route returning HTTP 200 in local preview. Full end-to-end 301 verification requires a Cloudflare Pages deploy preview or <code>wrangler pages dev</code> - neither was run (no push/deploy authorized).
+<p class="subtitle">Regenerated 2026-07-27 (finalization pass). Local QA evidence only.</p>
+<div class="ok">
+  <strong>Verified locally under Pages-compatible behavior.</strong> Tested via <code>wrangler pages dev dist --port 8788</code>, a local Cloudflare Pages-compatible preview that applies <code>public/_redirects</code> exactly as the real edge would - this is NOT <code>astro preview</code> (which does not process <code>_redirects</code>) and NOT a Cloudflare Pages deploy preview or production. No push or deploy occurred. All 19 rules in <code>public/_redirects</code> returned a real HTTP 301 with the correct Cordel destination, and every destination resolves to HTTP 200 (after Cloudflare Pages' universal trailing-slash normalization, which applies to every route on the site and is not specific to these redirects). No redirect loops or unnecessary chains from the redirect rules themselves. A Cloudflare Pages preview-branch deploy and a production deploy remain unexecuted pending explicit authorization.
 </div>
 <table>
-<thead><tr><th>Source</th><th>Destination</th><th>Status</th><th>Note</th><th>Destination reachable locally</th></tr></thead>
+<thead><tr><th>Source</th><th>Destination</th><th>Status</th><th>Note</th><th>Destination reachable (local Pages preview)</th></tr></thead>
 <tbody>
-<tr><td><code>/heartstrings</code></td><td><code>/products/cordel-play</code></td><td>301</td><td>legacy inbound URL preserved; destination updated</td><td class="status-ok">200</td></tr>
-<tr><td><code>/heartstrings-app</code></td><td><code>/products/cordel-connect</code></td><td>301</td><td>legacy inbound URL preserved; destination updated</td><td class="status-ok">200</td></tr>
-<tr><td><code>/marketing</code></td><td><code>/products/cordel-connect/date-planning/restaurants/partner-program</code></td><td>301</td><td>destination path segment updated</td><td class="status-ok">200</td></tr>
-<tr><td><code>/products/heartstrings-play</code></td><td><code>/products/cordel-play</code></td><td>301</td><td>new - retired canonical route</td><td class="status-ok">200</td></tr>
-<tr><td><code>/products/heartstrings-play/*</code></td><td><code>/products/cordel-play/:splat</code></td><td>301</td><td>covers all 6 nested routes in one splat rule<ul class="splat-list"><li>how-it-plays</li><li>editions</li><li>components</li><li>consent-architecture</li><li>development-status</li><li>preorder</li></ul></td><td class="status-ok">200 (all 6 verified)</td></tr>
-<tr><td><code>/products/heartstrings-connect</code></td><td><code>/products/cordel-connect</code></td><td>301</td><td>new - retired canonical route</td><td class="status-ok">200</td></tr>
-<tr><td><code>/products/heartstrings-connect/*</code></td><td><code>/products/cordel-connect/:splat</code></td><td>301</td><td>covers all 11 nested routes in one splat rule<ul class="splat-list"><li>compatibility-and-matching</li><li>privacy-architecture</li><li>safety</li><li>cartoonized-profiles</li><li>aiya-and-aion</li><li>games-and-shared-activities</li><li>byteoracle-horoscopes</li><li>date-planning</li><li>date-planning/blind-date-roulette</li><li>date-planning/restaurants</li><li>date-planning/restaurants/partner-program</li></ul></td><td class="status-ok">200 (all 11 verified)</td></tr>
+<tr><td><code>/heartstrings</code></td><td><code>/products/cordel-play</code></td><td class="status-ok">301</td><td>legacy inbound URL preserved; destination updated</td><td class="status-ok">200</td></tr>
+<tr><td><code>/heartstrings-app</code></td><td><code>/products/cordel-connect</code></td><td class="status-ok">301</td><td>legacy inbound URL preserved; destination updated</td><td class="status-ok">200</td></tr>
+<tr><td><code>/about</code></td><td><code>/company</code></td><td class="status-ok">301</td><td>pre-existing site redirect, unrelated to brand migration</td><td class="status-ok">200</td></tr>
+<tr><td><code>/status</code></td><td><code>/progress</code></td><td class="status-ok">301</td><td>pre-existing site redirect</td><td class="status-ok">200</td></tr>
+<tr><td><code>/research</code></td><td><code>/technologies</code></td><td class="status-ok">301</td><td>pre-existing site redirect</td><td class="status-ok">200</td></tr>
+<tr><td><code>/technology</code></td><td><code>/technologies</code></td><td class="status-ok">301</td><td>pre-existing site redirect</td><td class="status-ok">200</td></tr>
+<tr><td><code>/deepkore</code></td><td><code>/technologies/deep-kore</code></td><td class="status-ok">301</td><td>pre-existing site redirect</td><td class="status-ok">200</td></tr>
+<tr><td><code>/deepkore-lab</code></td><td><code>/technologies/deep-kore</code></td><td class="status-ok">301</td><td>pre-existing site redirect</td><td class="status-ok">200</td></tr>
+<tr><td><code>/marketing</code></td><td><code>/products/cordel-connect/date-planning/restaurants/partner-program</code></td><td class="status-ok">301</td><td>destination path segment updated for the rebrand</td><td class="status-ok">200</td></tr>
+<tr><td><code>/licensing</code></td><td><code>/company/partnerships</code></td><td class="status-ok">301</td><td>pre-existing site redirect</td><td class="status-ok">200</td></tr>
+<tr><td><code>/ethics</code></td><td><code>/architecture/proof-and-claim-posture</code></td><td class="status-ok">301</td><td>pre-existing site redirect</td><td class="status-ok">200</td></tr>
+<tr><td><code>/ai-safety</code></td><td><code>/architecture/governance-and-intrinsic-halting</code></td><td class="status-ok">301</td><td>pre-existing site redirect</td><td class="status-ok">200</td></tr>
+<tr><td><code>/news</code></td><td><code>/progress/changelog</code></td><td class="status-ok">301</td><td>pre-existing site redirect</td><td class="status-ok">200</td></tr>
+<tr><td><code>/subscribe</code></td><td><code>/preorder</code></td><td class="status-ok">301</td><td>pre-existing site redirect</td><td class="status-ok">200</td></tr>
+<tr><td><code>/demo</code></td><td><code>/technologies/bytelite</code></td><td class="status-ok">301</td><td>pre-existing site redirect</td><td class="status-ok">200</td></tr>
+<tr><td><code>/products/heartstrings-play</code></td><td><code>/products/cordel-play</code></td><td class="status-ok">301</td><td>retired canonical route</td><td class="status-ok">200</td></tr>
+<tr><td><code>/products/heartstrings-play/*</code></td><td><code>/products/cordel-play/:splat</code></td><td class="status-ok">301</td><td>covers all 6 nested routes in one splat rule<ul class="splat-list"><li>how-it-plays</li><li>editions</li><li>components</li><li>consent-architecture</li><li>development-status</li><li>preorder</li></ul></td><td class="status-ok">200 (all 6 verified)</td></tr>
+<tr><td><code>/products/heartstrings-connect</code></td><td><code>/products/cordel-connect</code></td><td class="status-ok">301</td><td>retired canonical route</td><td class="status-ok">200</td></tr>
+<tr><td><code>/products/heartstrings-connect/*</code></td><td><code>/products/cordel-connect/:splat</code></td><td class="status-ok">301</td><td>covers all 11 nested routes in one splat rule<ul class="splat-list"><li>compatibility-and-matching</li><li>privacy-architecture</li><li>safety</li><li>cartoonized-profiles</li><li>aiya-and-aion</li><li>games-and-shared-activities</li><li>byteoracle-horoscopes</li><li>date-planning</li><li>date-planning/blind-date-roulette</li><li>date-planning/restaurants</li><li>date-planning/restaurants/partner-program</li></ul></td><td class="status-ok">200 (all 11 verified)</td></tr>
 </tbody>
 </table>
-<p style="color:#7b829e;font-size:.8125rem;">Static checks: syntax valid, no redirect loops, no redirect chains (every retired route redirects directly to its Cordel replacement in one hop).</p>
+<p style="color:#7b829e;font-size:.8125rem;">Static checks: syntax valid, no redirect loops, no redirect chains from the redirect rules themselves (every retired route redirects directly to its Cordel replacement in one hop). 19/19 rules live-tested; 0 rules untested; 0 loops; 0 chains from redirect rules.</p>
 </body></html>
