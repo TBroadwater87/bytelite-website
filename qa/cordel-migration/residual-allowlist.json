@@ -1,8 +1,16 @@
 {
   "generatedAt": "2026-07-27",
   "scanScope": "Full repository text scan, case-insensitive, excluding node_modules/.git/dist/playwright-report/test-results",
-  "totalResidualOccurrences": 1021,
-  "totalResidualFiles": 37,
+  "priorPassTotalResidualOccurrences": 1021,
+  "priorPassTotalResidualFiles": 37,
+  "priorPassNote": "The 1021/37 figure from the initial migration pass predates this finalization pass and did not include this allowlist file itself or the redirect-validation/pre-migration-inventory report files (which self-reference the rename). A fresh full-repo scan taken at the start of this finalization pass measured 1042 occurrences across 40 files (the 3-file/21-occurrence delta from 1021/37 is exactly those self-referential report files).",
+  "startOfPassTotalResidualOccurrences": 1042,
+  "startOfPassTotalResidualFiles": 40,
+  "totalResidualOccurrences": 824,
+  "totalResidualFiles": 17,
+  "totalsNote": "This total includes this allowlist file's own occurrences of the word 'heartstrings' (in category descriptions and the removed-files list below), which is an unavoidable self-reference in any document that documents the residual scan. Re-scanning after any edit to this file shifts the self-count by a few; the figure here was taken as the final measurement after this pass's edits settled.",
+  "occurrencesRemovedThisPass": 218,
+  "filesRemovedThisPass": 24,
   "unclassifiedResidualOccurrences": 0,
   "userVisibleResidualOccurrences": 0,
   "canonicalHeartstringsRoutesRemaining": 0,
@@ -11,59 +19,84 @@
   "heartstringsMetadataOccurrencesRemaining": 0,
   "heartstringsActiveQaScreenshotLabelsRemaining": 0,
   "heartstringsFormProductValuesRemaining": 0,
+  "heartstringsFilenamesInActiveSourceOrPublicAssets": 0,
+  "actionsTakenThisPass": [
+    "Deleted 24 completed one-off patch/fix scripts from qa/asset-audit/ (patch-exhaustive-sheet01..17.mjs, patch-exhaustive-sheet02-fix.mjs, patch-corrective-pass.mjs, patch-board-pdfs-and-sensitive-pdfs.mjs, patch-stock-cluster-final.mjs, patch-exhaustive-pdfs.mjs, fix-pdf-disposition.mjs, fix-title.mjs) after confirming zero references from package.json scripts, other source files, tests, or docs beyond this migration's own bookkeeping JSON. Their implementations remain in git history (commits db59b49 and earlier).",
+    "Added a one-line historical-record clarification note (naming the legacy-brand-to-Cordel rename and pointing to qa/cordel-migration/) to the top of ASSET_MANIFEST.md, SITE_FULL_PUBLIC_REDESIGN_AND_DEPLOY_REPORT.md, and reports/SITE_ARCHITECTURE_UPDATE_PROOF.txt. Literal historical file paths, route names, and nav labels inside those documents were left verbatim: they describe filesystem/route state that genuinely existed under those exact names at the time (e.g. src/pages/heartstrings.astro, route /heartstrings-app), and rewriting them to 'Cordel' would misrepresent what those historical builds actually contained. This is the 'historical-narrative-record' category, now explicitly framed as legacy-brand narration per the finalization spec.",
+    "Confirmed (via grep of qa/generate-owner-review.mjs and qa/owner-review/index.html, and a public/ filename search) that none of qa/asset-audit/asset-inventory.{json,html}, qa/asset-audit/contact-sheets/manifest.json, qa/asset-audit/hash-groups.json, or qa/asset-audit/ingest-manifest.json are linked from the active owner-review package or present anywhere under public/ build output. They are standalone historical provenance records of literal original Downloads filenames only.",
+    "Confirmed tests/e2e/critical-paths.spec.ts already uses a neutral describe block ('Cordel brand migration') with the 5 remaining literal 'HeartStrings'/'Heartstrings' occurrences confined to .not.toContainText()/.not.toContain() negative assertions -- the minimal compatibility fixture the spec requires. No rename needed.",
+    "Confirmed public/_redirects' 7 occurrences are lawful redirect SOURCE paths ('/heartstrings', '/heartstrings-app') with Cordel destinations -- unchanged, still required for external link/bookmark compatibility."
+  ],
   "categories": [
     {
       "category": "legacy-redirect-source-path",
-      "reason": "public/_redirects retains the literal inbound paths '/heartstrings' and '/heartstrings-app' as 301 redirect SOURCES, per migration spec section 4 ('Preserve older historical redirects such as /heartstrings /heartstrings-app but update their destinations to Cordel routes'). Destinations are Cordel routes.",
+      "reason": "public/_redirects retains the literal inbound paths '/heartstrings' and '/heartstrings-app' as 301 redirect SOURCES. Destinations are Cordel routes.",
       "notUserVisible": true,
       "wouldBreakIfRemoved": "External links/bookmarks pointing at the old /heartstrings and /heartstrings-app URLs would 404 instead of redirecting.",
       "files": [
-        { "file": "public/_redirects", "matchedValues": ["/heartstrings", "/heartstrings-app", "heartstrings-play", "heartstrings-connect (in the retired-canonical-route redirect source rules)"], "occurrenceCount": 7 }
+        { "file": "public/_redirects", "occurrenceCount": 7 }
       ]
     },
     {
       "category": "historical-narrative-record",
-      "reason": "Documents completed past work sessions using the brand name that was actually in effect when that work happened. Rewriting would falsify the historical record of what was built and when.",
+      "reason": "Documents completed past work sessions using the brand name that was actually in effect when that work happened. Now explicitly labeled as a legacy-brand historical record at the top of each file per this pass's finalization spec. Literal file paths and route names inside are preserved verbatim as technical evidence of what those historical builds actually contained.",
       "notUserVisible": true,
-      "wouldBreakIfRemoved": "Loses an accurate account of prior site-build history.",
+      "wouldBreakIfRemoved": "Loses an accurate account of prior site-build history; rewriting literal historical paths/routes to 'Cordel' would make the record factually false.",
       "files": [
-        { "file": "ASSET_MANIFEST.md", "occurrenceCount": 5 },
-        { "file": "SITE_FULL_PUBLIC_REDESIGN_AND_DEPLOY_REPORT.md", "occurrenceCount": 11 },
-        { "file": "reports/SITE_ARCHITECTURE_UPDATE_PROOF.txt", "occurrenceCount": 7 }
+        { "file": "ASSET_MANIFEST.md", "occurrenceCount": 6 },
+        { "file": "SITE_FULL_PUBLIC_REDESIGN_AND_DEPLOY_REPORT.md", "occurrenceCount": 12 },
+        { "file": "reports/SITE_ARCHITECTURE_UPDATE_PROOF.txt", "occurrenceCount": 8 }
       ]
     },
     {
       "category": "immutable-external-source-filename-record",
-      "reason": "Records the literal original filenames/paths of files under D:/Download and C:/Users/tbroa/Downloads (e.g. '01_HeartStrings_Boardgame\\...HeartStrings_Play_20x20_Final.png'), which this task was explicitly instructed not to modify. The original external filenames are facts about immutable source files, not current site branding.",
+      "reason": "Records the literal original filenames/paths of files under D:/Download and C:/Users/tbroa/Downloads (e.g. 'HeartStrings_Play_20x20_Final.png'), which this task was explicitly instructed not to modify. Confirmed this pass: none of these files are linked from qa/owner-review/index.html or qa/generate-owner-review.mjs, and none exist anywhere under public/ (production build output).",
       "notUserVisible": true,
       "wouldBreakIfRemoved": "Would misrepresent what the original external source files were actually named, breaking the audit trail's accuracy.",
       "files": [
-        { "file": "qa/asset-audit/generate-inventory.mjs", "matchedValues": ["01_HeartStrings_Boardgame\\...", "Screenshot_20260725_082752_HeartStrings.jpg", "HeartStrings_Play_20x20_Final.png", "02_HeartStrings_App_and_Wingman\\..."], "occurrenceCount": 12, "note": "dest:/role: fields already migrated to cordel paths in this pass; only literal original Downloads filenames remain" },
-        { "file": "qa/asset-audit/asset-inventory.json", "occurrenceCount": 262, "note": "regenerated this pass from generate-inventory.mjs; remaining matches are originalPath/originalFilename records of D:/Download files" },
-        { "file": "qa/asset-audit/asset-inventory.html", "occurrenceCount": 198, "note": "regenerated this pass; same originalPath/originalFilename records rendered as table rows" },
-        { "file": "qa/asset-audit/contact-sheets/manifest.json", "occurrenceCount": 153, "note": "not linked from qa/owner-review/index.html (confirmed by reading qa/generate-owner-review.mjs) - standalone historical ingestion record" },
-        { "file": "qa/asset-audit/hash-groups.json", "occurrenceCount": 38 },
-        { "file": "qa/asset-audit/ingest-manifest.json", "occurrenceCount": 81 }
+        { "file": "qa/asset-audit/generate-inventory.mjs", "occurrenceCount": 12, "note": "dest:/role: fields already migrated to cordel paths; only literal original Downloads filenames remain" },
+        { "file": "qa/asset-audit/asset-inventory.json", "occurrenceCount": 262, "note": "not linked from owner-review; not in public/" },
+        { "file": "qa/asset-audit/asset-inventory.html", "occurrenceCount": 198, "note": "not linked from owner-review; not in public/" },
+        { "file": "qa/asset-audit/contact-sheets/manifest.json", "occurrenceCount": 153, "note": "not linked from owner-review; not in public/" },
+        { "file": "qa/asset-audit/hash-groups.json", "occurrenceCount": 38, "note": "not linked from owner-review; not in public/" },
+        { "file": "qa/asset-audit/ingest-manifest.json", "occurrenceCount": 81, "note": "not linked from owner-review; not in public/" }
       ]
-    },
-    {
-      "category": "historical-one-off-patch-script",
-      "reason": "Already-executed, one-time patch/fix scripts from a prior asset-ingestion session (e.g. patch-exhaustive-sheet01.mjs..17.mjs, fix-pdf-disposition.mjs, fix-title.mjs, patch-corrective-pass.mjs, patch-board-pdfs-and-sensitive-pdfs.mjs, patch-stock-cluster-final.mjs, patch-exhaustive-pdfs.mjs). They reference the original Downloads filenames and repo paths as they existed at the time they were run; re-running or rewriting them would not change current repo state and would misrepresent what was actually patched, when.",
-      "notUserVisible": true,
-      "wouldBreakIfRemoved": "Loses the record of exactly what corrective operations were performed during the prior ingestion pass.",
-      "fileCount": 17,
-      "totalOccurrenceCount": 178
     },
     {
       "category": "migration-tooling-self-reference",
-      "reason": "This migration's own generated report files (this allowlist, pre-migration-inventory.json, redirect-validation.json) and the new regression test file necessarily name 'HeartStrings' as the FROM side of the rename, and as literal strings in negative test assertions ('does NOT contain HeartStrings'). These are migration/QA tooling describing or verifying the migration, not site branding.",
+      "reason": "This migration's own generated report files (this allowlist, pre-migration-inventory.json/html, redirect-validation.json/html) and the regression test file necessarily name 'HeartStrings' as the FROM side of the rename, and as literal strings in negative test assertions. These are migration/QA tooling describing or verifying the migration, not site branding. Filenames already use neutral/target-brand naming (no old-brand token in any filename).",
       "notUserVisible": true,
       "wouldBreakIfRemoved": "The migration record and regression tests would no longer be able to name what was migrated from or assert its absence.",
       "files": [
+        { "file": "qa/cordel-migration/residual-allowlist.json", "occurrenceCount": 16 },
         { "file": "qa/cordel-migration/pre-migration-inventory.json", "occurrenceCount": 11 },
-        { "file": "qa/cordel-migration/redirect-validation.json", "occurrenceCount": 8 },
-        { "file": "tests/e2e/critical-paths.spec.ts", "occurrenceCount": 5, "note": "all 5 are the literal string 'HeartStrings'/'Heartstrings' inside .not.toContainText() assertions added this pass" }
+        { "file": "qa/cordel-migration/pre-migration-inventory.html", "occurrenceCount": 2 },
+        { "file": "qa/cordel-migration/redirect-validation.json", "occurrenceCount": 6 },
+        { "file": "qa/cordel-migration/redirect-validation.html", "occurrenceCount": 6 },
+        { "file": "qa/cordel-migration/asset-provenance-correction.json", "occurrenceCount": 1, "note": "records an integrity correction made this pass (an unverifiable sub-agent asset-provenance claim); necessarily names the legacy brand once while describing baked-in-wordmark findings on now-blocked legacy files" },
+        { "file": "tests/e2e/critical-paths.spec.ts", "occurrenceCount": 5, "note": "all 5 are the literal string 'HeartStrings'/'Heartstrings' inside .not.toContainText()/.not.toContain() negative assertions" }
       ]
     }
-  ]
+  ],
+  "removedThisPass": {
+    "historicalOneOffPatchScripts": {
+      "reason": "Confirmed no longer called by package.json scripts, QA scripts, builds, tests, or documentation (grepped repo-wide for each filename). Git history (commits up to and including db59b49) already preserves their implementation.",
+      "fileCount": 24,
+      "totalOccurrenceCountRemoved": 220,
+      "files": [
+        "qa/asset-audit/patch-exhaustive-sheet01.mjs", "qa/asset-audit/patch-exhaustive-sheet02.mjs",
+        "qa/asset-audit/patch-exhaustive-sheet02-fix.mjs", "qa/asset-audit/patch-exhaustive-sheet03.mjs",
+        "qa/asset-audit/patch-exhaustive-sheet04.mjs", "qa/asset-audit/patch-exhaustive-sheet05.mjs",
+        "qa/asset-audit/patch-exhaustive-sheet06.mjs", "qa/asset-audit/patch-exhaustive-sheet07.mjs",
+        "qa/asset-audit/patch-exhaustive-sheet08.mjs", "qa/asset-audit/patch-exhaustive-sheet09.mjs",
+        "qa/asset-audit/patch-exhaustive-sheet10.mjs", "qa/asset-audit/patch-exhaustive-sheet11.mjs",
+        "qa/asset-audit/patch-exhaustive-sheet12.mjs", "qa/asset-audit/patch-exhaustive-sheet13.mjs",
+        "qa/asset-audit/patch-exhaustive-sheet14.mjs", "qa/asset-audit/patch-exhaustive-sheet15.mjs",
+        "qa/asset-audit/patch-exhaustive-sheet16.mjs", "qa/asset-audit/patch-exhaustive-sheet17.mjs",
+        "qa/asset-audit/patch-corrective-pass.mjs", "qa/asset-audit/patch-board-pdfs-and-sensitive-pdfs.mjs",
+        "qa/asset-audit/patch-stock-cluster-final.mjs", "qa/asset-audit/patch-exhaustive-pdfs.mjs",
+        "qa/asset-audit/fix-pdf-disposition.mjs", "qa/asset-audit/fix-title.mjs"
+      ]
+    }
+  }
 }

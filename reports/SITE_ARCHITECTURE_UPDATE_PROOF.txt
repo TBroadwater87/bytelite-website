@@ -2,6 +2,10 @@ SITE ARCHITECTURE UPDATE PROOF
 Generated: 2026-05-21
 Author: Claude Code (claude-sonnet-4-6)
 
+Historical record: "HeartStrings" below is the legacy brand name in effect on 2026-05-21. The
+product line was renamed to Cordel on 2026-07-27; see qa/cordel-migration/. File and route names
+preserved verbatim for audit accuracy.
+
 =======================================================================
 FILES CHANGED
 =======================================================================

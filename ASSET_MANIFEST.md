@@ -1,5 +1,7 @@
 # Asset Manifest — ByteLite LLC Technology Rebuild (2026-07-26)
 
+> Historical record: "HeartStrings" below is the legacy brand name in effect on 2026-07-26. The product line was renamed to Cordel (Cordel Play / Cordel Connect) on 2026-07-27; see `qa/cordel-migration/`. Folder and file names are preserved verbatim as they existed at the time for audit accuracy.
+
 Non-destructive asset pass: originals in `D:\Download` were **copied and transformed**, never
 moved or deleted. Only project-facing folders were inspected (`01_HeartStrings_Boardgame`,
 `02_HeartStrings_App_and_Wingman`, `03_HeartStrings_Branding`, `04_AIya_AIon_Characters`,

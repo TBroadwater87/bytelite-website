@@ -1,5 +1,7 @@
 # SITE_FULL_PUBLIC_REDESIGN_AND_DEPLOY_REPORT
 
+> Historical record: "heartstrings" / "HeartStrings" routes and file names below are the legacy brand identifiers in effect on 2026-05-13. The product line was renamed to Cordel on 2026-07-27; see `qa/cordel-migration/`. Preserved verbatim for audit accuracy.
+
 ```
 status=PASS
 repo=D:\bytelite-website
