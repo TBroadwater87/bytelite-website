@@ -7,19 +7,19 @@
   ],
   "summary": {
     "totalDiscovered": 638,
-    "totalVisuallyInspected": 30,
-    "totalSelected": 20,
+    "totalVisuallyInspected": 31,
+    "totalSelected": 21,
     "totalRejected": 2,
     "totalDuplicates": 1,
     "totalLegalDoNotPublish": 45,
-    "totalUnused": 563,
+    "totalUnused": 562,
     "totalAlreadyInRepo": 2,
     "totalInspectedNotUsed": 5,
     "bySourceRoot": {
       "D:/Download": 636,
       "C:/Users/tbroa/Downloads": 2
     },
-    "generatedAt": "2026-07-27T22:50:16.369Z"
+    "generatedAt": "2026-07-28T01:32:38.428Z"
   },
   "records": [
     {
@@ -9578,18 +9578,18 @@
       "duplicateGroup": null
     },
     {
-      "originalPath": "C:\\Users\\tbroa\\Downloads\\ChatGPT Image Jul 27, 2026, 04_14_13 PM.png",
-      "originalFilename": "ChatGPT Image Jul 27, 2026, 04_14_13 PM.png",
+      "originalPath": "C:\\Users\\tbroa\\Downloads\\Cordel_Logo.png",
+      "originalFilename": "Cordel_Logo.png",
       "fileType": "png",
       "fileSizeBytes": 2079684,
       "sourceRoot": "C:/Users/tbroa/Downloads",
-      "visuallyInspected": false,
-      "subject": null,
-      "publicationDecision": "unused",
-      "rejectionReason": "High-volume unlabeled batch (600+ candidate files across the source archive) - not individually visually inspected this pass due to volume. Folder/date-cluster level triage only. Recommend a dedicated future review pass if additional imagery is needed beyond the curated selection already made.",
+      "visuallyInspected": true,
+      "subject": "Glowing pink/rainbow infinity-heart mark with script \"Cordel\" wordmark on black",
+      "publicationDecision": "selected",
+      "rejectionReason": null,
       "selectionNote": null,
-      "intendedRole": null,
-      "canonicalDestination": null,
+      "intendedRole": "Cordel logo mark - fallback image for 4 product-page slots pending real product photography (20x20 board, Ultimate board, Consent Cup, gameflow diagram)",
+      "canonicalDestination": "public/cordel/cordel-logo-mark.png",
       "duplicateGroup": null
     }
   ]
