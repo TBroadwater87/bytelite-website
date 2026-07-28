@@ -1,0 +1,108 @@
+{
+  "generatedAt": "2026-07-28",
+  "scanMethod": "ToolSearch across connected MCP servers this session, plus a PowerShell filesystem scan of D:\\bytelite-website\\public and \\src for existing editable/vector source material. No Photoshop, Canva, Figma, or other desktop/browser design-app integration is connected to this session.",
+  "discoveredTools": [
+    {
+      "tool": "mcp__claude_ai_Hugging_Face__gr1_z_image_turbo_generate",
+      "invocationMethod": "Direct MCP tool call, one call per image",
+      "capabilities": ["text-to-image raster generation"],
+      "supportedInputFormats": ["text prompt only"],
+      "supportedOutputFormats": ["PNG (returned as an image result)"],
+      "sourceImageConditioning": false,
+      "imageEditing": false,
+      "vectorOutput": false,
+      "transparentOutput": false,
+      "autonomousUse": true,
+      "credentialsOrOwnerActionRequired": "None beyond the existing authenticated Hugging Face MCP connection (user TBroadwater85)",
+      "notes": "Fast (8-step) diffusion model, 1:1 to 21:9 presets up to ~2048px. Good for photographic/product-style compositions; text rendering inside the image is unreliable at small sizes."
+    },
+    {
+      "tool": "mcp__claude_ai_Hugging_Face__dynamic_space (mcp-tools/Qwen-Image-Fast, mcp-tools/Qwen-Image)",
+      "invocationMethod": "dynamic_space operation=invoke, space_name=mcp-tools/Qwen-Image-Fast or mcp-tools/Qwen-Image",
+      "capabilities": ["text-to-image raster generation, explicitly stronger at in-image text placement"],
+      "supportedInputFormats": ["text prompt (quoted text for in-image copy), aspect ratio enum"],
+      "supportedOutputFormats": ["PNG"],
+      "sourceImageConditioning": false,
+      "imageEditing": false,
+      "vectorOutput": false,
+      "transparentOutput": false,
+      "autonomousUse": true,
+      "credentialsOrOwnerActionRequired": "None beyond existing HF connection",
+      "notes": "Best available option for assets where legible in-image copy matters (wordmark, packaging, cards, infographics), though generated logotype text still requires manual spelling verification and is not a substitute for true vector type."
+    },
+    {
+      "tool": "mcp__claude_ai_Hugging_Face__dynamic_space (mcp-tools/FLUX.1-Krea-dev, evalstate/flux1_schnell)",
+      "invocationMethod": "dynamic_space operation=invoke",
+      "capabilities": ["text-to-image raster generation, photorealistic/natural-looking output"],
+      "sourceImageConditioning": false,
+      "imageEditing": false,
+      "vectorOutput": false,
+      "transparentOutput": false,
+      "autonomousUse": true,
+      "notes": "Best option for photoreal product/lifestyle compositions where no in-image text is needed."
+    },
+    {
+      "tool": "mcp__claude_ai_Hugging_Face__dynamic_space (mcp-tools/FLUX.1-Kontext-Dev, prithivMLmods/Qwen-Image-Edit-2509-LoRAs-Fast)",
+      "invocationMethod": "dynamic_space operation=invoke",
+      "capabilities": ["prompt-guided image editing/transformation of a supplied source image", "Qwen-Image-Edit-2509-LoRAs-Fast explicitly offers an Anime LoRA plus multi-angle/relight LoRAs"],
+      "sourceImageConditioning": true,
+      "imageEditing": true,
+      "vectorOutput": false,
+      "transparentOutput": false,
+      "autonomousUse": true,
+      "notes": "Directly applicable to Section 10 (Cartoonized Profile Comparisons - clean/anime/watercolor transformations of one consistent synthetic identity) and to Section 16 mobile recomposition/re-angling needs."
+    },
+    {
+      "tool": "mcp__claude_ai_Hugging_Face__dynamic_space (not-lain/background-removal)",
+      "invocationMethod": "dynamic_space operation=invoke",
+      "capabilities": ["background removal -> transparent PNG"],
+      "transparentOutput": true,
+      "autonomousUse": true,
+      "notes": "Path to transparent-background logo/icon derivatives from an opaque generated raster (post-processing step, not a substitute for true vector output)."
+    },
+    {
+      "tool": "mcp__claude_ai_Hugging_Face__dynamic_space (fffiloni/diffusers-image-outpaint, fffiloni/InstantIR, prithivMLmods/Photo-Mate-i2i)",
+      "invocationMethod": "dynamic_space operation=invoke",
+      "capabilities": ["outpainting for aspect-ratio recomposition", "upscaling/restoration", "watermark/object removal"],
+      "autonomousUse": true,
+      "notes": "Useful for producing intentional desktop-wide vs mobile-portrait recompositions of one master composition (Section 16) rather than stretching/cropping one raster."
+    },
+    {
+      "tool": "Local repository Sharp dependency (package.json devDependency chain via Astro image tooling) + Node scripting",
+      "invocationMethod": "Node/Sharp script invoked via PowerShell",
+      "capabilities": ["deterministic raster resize/format-convert/crop for responsive derivatives"],
+      "vectorOutput": false,
+      "transparentOutput": "pass-through of source alpha",
+      "autonomousUse": true,
+      "notes": "Used for Section 16 desktop/mobile/social derivative generation from each selected master, per instruction (\"zero derivatives\" is not acceptable when a pipeline exists)."
+    },
+    {
+      "tool": "mcp__heartstrings-cartoonizer__* (local MCP server, ~90 tools: render_cartoon, render_style, render_band, analyze_palette/materials/regions/edges, quality-gate, corpus harness, etc.)",
+      "invocationMethod": "Direct MCP tool calls against a locally running cartoonizer engine",
+      "capabilities": ["deterministic (non-diffusion) photo-to-cartoon stylization pipeline with quality metrics, face-fidelity scoring, and a formal review-queue/promotion workflow"],
+      "sourceImageConditioning": true,
+      "imageEditing": true,
+      "vectorOutput": false,
+      "transparentOutput": "layer extraction supported (cartoonizer_extract_layers)",
+      "autonomousUse": true,
+      "notes": "Purpose-built, already-approved-workflow tool for exactly the Section 10 cartoonized-profile-comparison requirement (clean cartoon transform with numeric face-fidelity/quality-gate verification) - preferred over a generic diffusion edit for that specific slot family since it has a built-in accept/reject quality gate."
+    }
+  ],
+  "existingApprovedSourceMaterial": [
+    {
+      "path": "public/cordel-connect/icons/cordel-mark.svg",
+      "description": "Existing hand-authored vector line-icon: a single continuous stroke forming a heart/infinity silhouette with a small checkmark accent, currentColor, 24x24 viewBox.",
+      "assessment": "A genuine existing Cordel vector mark - closely matches the required master-mark brief (one continuous cord, heart silhouette, infinity-inspired upper loop, minimal geometry). Currently scoped as one small UI icon among 22 feature icons, not promoted to a full master-brand asset family. Recommended as the true vector basis for the symbol-only mark / monochrome mark / favicon slots, refined and exported at proper weights, rather than replaced with an AI raster."
+    },
+    {
+      "path": "C:\\Users\\tbroa\\Downloads\\Cordel_Logo.png",
+      "description": "AI-generated (unknown prior tool) glowing pink/rainbow infinity-heart mark with a script 'Cordel' wordmark on black, 1254x1254, independently verified by direct visual inspection in the prior finalization pass.",
+      "assessment": "Real, already in the repo as public/cordel/cordel-logo-mark.png. Script/decorative wordmark style; usable as a supplementary hero/OG treatment but its ornate glow style does not match this brief's 'clean, restrained, premium' direction as the primary system mark - the cordel-mark.svg line icon is the better primary-mark basis."
+    }
+  ],
+  "editableLegacyHeartStringsSourcesForFullReconstruction": {
+    "found": false,
+    "note": "No PSD/AI/Figma layered source files were found under public/ or src/ for any HeartStrings-era asset. The prior finalization pass's Downloads scan (qa/asset-audit/asset-inventory.json) likewise found no layered/editable master files, only flattened PNG/JPG renders with baked-in branding, which are not reconstructible into Cordel-branded assets by editing - they require fresh generation, consistent with this task's own prohibition on 'placing text over an empty background' / 'cropping a legacy image'."
+  },
+  "conclusion": "Real, autonomous, non-credential-gated image generation AND image-editing capability is available (multiple Hugging Face-hosted models via the dynamic_space and Z-Image-Turbo MCP tools), plus a purpose-built local cartoonization engine for the profile-comparison requirement, plus Sharp for deterministic derivative generation. This satisfies Section 2's 'if an actual generation or design tool exists, use it' condition. Proceeding to Sections 3 onward rather than issuing BLOCKED."
+}

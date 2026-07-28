@@ -1,0 +1,114 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Cordel Asset Generation - Capability Report</title><meta name="robots" content="noindex, nofollow">
+<style>
+body{font-family:-apple-system,Segoe UI,sans-serif;background:#0d1120;color:#e4e7f2;margin:0;padding:2rem;line-height:1.6;}
+h1{font-size:1.25rem;margin-bottom:.25rem;}
+h2{font-size:1rem;color:#a5b4fc;margin-top:2rem;}
+.subtitle{color:#7b829e;font-size:.8125rem;margin-bottom:1rem;}
+table{width:100%;border-collapse:collapse;font-size:.75rem;margin-bottom:1.5rem;}
+th,td{padding:.5rem .625rem;border-bottom:1px solid #1a2235;text-align:left;vertical-align:top;}
+th{color:#7b829e;font-weight:600;text-transform:uppercase;font-size:.625rem;letter-spacing:.05em;}
+code{font-family:ui-monospace,'Courier New',monospace;color:#4ade80;}
+.note{max-width:320px;color:#7b829e;}
+.conclusion{background:#0d2116;border:1px solid rgba(74,222,128,.35);color:#4ade80;border-radius:.5rem;padding:1rem 1.25rem;font-size:.8125rem;margin-top:2rem;}
+</style></head><body>
+<h1>Cordel Asset Generation - Capability Report</h1>
+<p class="subtitle">Generated 2026-07-28. Local QA evidence only.</p>
+<p style="color:#7b829e;font-size:.8125rem;">ToolSearch across connected MCP servers this session, plus a PowerShell filesystem scan of D:\bytelite-website\public and \src for existing editable/vector source material. No Photoshop, Canva, Figma, or other desktop/browser design-app integration is connected to this session.</p>
+<h2>Discovered tools</h2>
+<table><thead><tr><th>Tool</th><th>Invocation</th><th>Capabilities</th><th>Source conditioning</th><th>Editing</th><th>Vector output</th><th>Transparent output</th><th>Autonomous</th><th>Notes</th></tr></thead><tbody>
+<tr>
+  <td><code>mcp__claude_ai_Hugging_Face__gr1_z_image_turbo_generate</code></td>
+  <td>Direct MCP tool call, one call per image</td>
+  <td>text-to-image raster generation</td>
+  <td>no</td>
+  <td>no</td>
+  <td>no</td>
+  <td>no</td>
+  <td>yes</td>
+  <td class="note">Fast (8-step) diffusion model, 1:1 to 21:9 presets up to ~2048px. Good for photographic/product-style compositions; text rendering inside the image is unreliable at small sizes.</td>
+</tr>
+<tr>
+  <td><code>mcp__claude_ai_Hugging_Face__dynamic_space (mcp-tools/Qwen-Image-Fast, mcp-tools/Qwen-Image)</code></td>
+  <td>dynamic_space operation=invoke, space_name=mcp-tools/Qwen-Image-Fast or mcp-tools/Qwen-Image</td>
+  <td>text-to-image raster generation, explicitly stronger at in-image text placement</td>
+  <td>no</td>
+  <td>no</td>
+  <td>no</td>
+  <td>no</td>
+  <td>yes</td>
+  <td class="note">Best available option for assets where legible in-image copy matters (wordmark, packaging, cards, infographics), though generated logotype text still requires manual spelling verification and is not a substitute for true vector type.</td>
+</tr>
+<tr>
+  <td><code>mcp__claude_ai_Hugging_Face__dynamic_space (mcp-tools/FLUX.1-Krea-dev, evalstate/flux1_schnell)</code></td>
+  <td>dynamic_space operation=invoke</td>
+  <td>text-to-image raster generation, photorealistic/natural-looking output</td>
+  <td>no</td>
+  <td>no</td>
+  <td>no</td>
+  <td>no</td>
+  <td>yes</td>
+  <td class="note">Best option for photoreal product/lifestyle compositions where no in-image text is needed.</td>
+</tr>
+<tr>
+  <td><code>mcp__claude_ai_Hugging_Face__dynamic_space (mcp-tools/FLUX.1-Kontext-Dev, prithivMLmods/Qwen-Image-Edit-2509-LoRAs-Fast)</code></td>
+  <td>dynamic_space operation=invoke</td>
+  <td>prompt-guided image editing/transformation of a supplied source image<br>Qwen-Image-Edit-2509-LoRAs-Fast explicitly offers an Anime LoRA plus multi-angle/relight LoRAs</td>
+  <td>yes</td>
+  <td>yes</td>
+  <td>no</td>
+  <td>no</td>
+  <td>yes</td>
+  <td class="note">Directly applicable to Section 10 (Cartoonized Profile Comparisons - clean/anime/watercolor transformations of one consistent synthetic identity) and to Section 16 mobile recomposition/re-angling needs.</td>
+</tr>
+<tr>
+  <td><code>mcp__claude_ai_Hugging_Face__dynamic_space (not-lain/background-removal)</code></td>
+  <td>dynamic_space operation=invoke</td>
+  <td>background removal -&gt; transparent PNG</td>
+  <td>no</td>
+  <td>no</td>
+  <td>no</td>
+  <td>yes</td>
+  <td>yes</td>
+  <td class="note">Path to transparent-background logo/icon derivatives from an opaque generated raster (post-processing step, not a substitute for true vector output).</td>
+</tr>
+<tr>
+  <td><code>mcp__claude_ai_Hugging_Face__dynamic_space (fffiloni/diffusers-image-outpaint, fffiloni/InstantIR, prithivMLmods/Photo-Mate-i2i)</code></td>
+  <td>dynamic_space operation=invoke</td>
+  <td>outpainting for aspect-ratio recomposition<br>upscaling/restoration<br>watermark/object removal</td>
+  <td>no</td>
+  <td>no</td>
+  <td>no</td>
+  <td>no</td>
+  <td>yes</td>
+  <td class="note">Useful for producing intentional desktop-wide vs mobile-portrait recompositions of one master composition (Section 16) rather than stretching/cropping one raster.</td>
+</tr>
+<tr>
+  <td><code>Local repository Sharp dependency (package.json devDependency chain via Astro image tooling) + Node scripting</code></td>
+  <td>Node/Sharp script invoked via PowerShell</td>
+  <td>deterministic raster resize/format-convert/crop for responsive derivatives</td>
+  <td>no</td>
+  <td>no</td>
+  <td>no</td>
+  <td>pass-through of source alpha</td>
+  <td>yes</td>
+  <td class="note">Used for Section 16 desktop/mobile/social derivative generation from each selected master, per instruction (&quot;zero derivatives&quot; is not acceptable when a pipeline exists).</td>
+</tr>
+<tr>
+  <td><code>mcp__heartstrings-cartoonizer__* (local MCP server, ~90 tools: render_cartoon, render_style, render_band, analyze_palette/materials/regions/edges, quality-gate, corpus harness, etc.)</code></td>
+  <td>Direct MCP tool calls against a locally running cartoonizer engine</td>
+  <td>deterministic (non-diffusion) photo-to-cartoon stylization pipeline with quality metrics, face-fidelity scoring, and a formal review-queue/promotion workflow</td>
+  <td>yes</td>
+  <td>yes</td>
+  <td>no</td>
+  <td>layer extraction supported (cartoonizer_extract_layers)</td>
+  <td>yes</td>
+  <td class="note">Purpose-built, already-approved-workflow tool for exactly the Section 10 cartoonized-profile-comparison requirement (clean cartoon transform with numeric face-fidelity/quality-gate verification) - preferred over a generic diffusion edit for that specific slot family since it has a built-in accept/reject quality gate.</td>
+</tr></tbody></table>
+<h2>Existing approved source material</h2>
+<table><thead><tr><th>Path</th><th>Description</th><th>Assessment</th></tr></thead><tbody>
+<tr><td><code>public/cordel-connect/icons/cordel-mark.svg</code></td><td>Existing hand-authored vector line-icon: a single continuous stroke forming a heart/infinity silhouette with a small checkmark accent, currentColor, 24x24 viewBox.</td><td class="note">A genuine existing Cordel vector mark - closely matches the required master-mark brief (one continuous cord, heart silhouette, infinity-inspired upper loop, minimal geometry). Currently scoped as one small UI icon among 22 feature icons, not promoted to a full master-brand asset family. Recommended as the true vector basis for the symbol-only mark / monochrome mark / favicon slots, refined and exported at proper weights, rather than replaced with an AI raster.</td></tr>
+<tr><td><code>C:\Users\tbroa\Downloads\Cordel_Logo.png</code></td><td>AI-generated (unknown prior tool) glowing pink/rainbow infinity-heart mark with a script &#39;Cordel&#39; wordmark on black, 1254x1254, independently verified by direct visual inspection in the prior finalization pass.</td><td class="note">Real, already in the repo as public/cordel/cordel-logo-mark.png. Script/decorative wordmark style; usable as a supplementary hero/OG treatment but its ornate glow style does not match this brief&#39;s &#39;clean, restrained, premium&#39; direction as the primary system mark - the cordel-mark.svg line icon is the better primary-mark basis.</td></tr></tbody></table>
+<h2>Editable legacy HeartStrings sources</h2>
+<p style="font-size:.8125rem;color:#7b829e;">Found: no. No PSD/AI/Figma layered source files were found under public/ or src/ for any HeartStrings-era asset. The prior finalization pass&#39;s Downloads scan (qa/asset-audit/asset-inventory.json) likewise found no layered/editable master files, only flattened PNG/JPG renders with baked-in branding, which are not reconstructible into Cordel-branded assets by editing - they require fresh generation, consistent with this task&#39;s own prohibition on &#39;placing text over an empty background&#39; / &#39;cropping a legacy image&#39;.</p>
+<div class="conclusion">Real, autonomous, non-credential-gated image generation AND image-editing capability is available (multiple Hugging Face-hosted models via the dynamic_space and Z-Image-Turbo MCP tools), plus a purpose-built local cartoonization engine for the profile-comparison requirement, plus Sharp for deterministic derivative generation. This satisfies Section 2&#39;s &#39;if an actual generation or design tool exists, use it&#39; condition. Proceeding to Sections 3 onward rather than issuing BLOCKED.</div>
+</body></html>
