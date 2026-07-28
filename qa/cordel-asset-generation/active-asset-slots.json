@@ -10,7 +10,10 @@
       "Batch 4 - Cordel Connect core application": 7,
       "Batch 3 - Cordel Play components": 4
     },
-    "logoFallbackSlots": 4
+    "logoFallbackSlots": 4,
+    "resolvedThisPass": 4,
+    "remainingUnresolved": 51,
+    "note": "Remaining unresolved slots are NOT logo-fallbacks (those are all resolved) - they are existing real screenshots/photography/character-art slots that this task additionally wants rebuilt/regenerated for full ecosystem coverage. That work is blocked by Hugging Face ZeroGPU daily quota exhaustion, documented in generation-provenance.json blockedByExternalQuota."
   },
   "slots": [
     {
@@ -319,7 +322,7 @@
       "priority": "high",
       "qualityAssessment": "not acceptable per this task spec - logo used as a product-image substitute",
       "canonicalFinalFilename": "assigned at generation time (Section 17 filename law)",
-      "completionStatus": "not started"
+      "completionStatus": "resolved - replaced with generated production asset (see generation-provenance.json)"
     },
     {
       "slotId": "slot-015",
@@ -363,7 +366,7 @@
       "priority": "high",
       "qualityAssessment": "not acceptable per this task spec - logo used as a product-image substitute",
       "canonicalFinalFilename": "assigned at generation time (Section 17 filename law)",
-      "completionStatus": "not started"
+      "completionStatus": "resolved - replaced with generated production asset (see generation-provenance.json)"
     },
     {
       "slotId": "slot-017",
@@ -671,7 +674,7 @@
       "priority": "high",
       "qualityAssessment": "not acceptable per this task spec - logo used as a product-image substitute",
       "canonicalFinalFilename": "assigned at generation time (Section 17 filename law)",
-      "completionStatus": "not started"
+      "completionStatus": "resolved - replaced with generated production asset (see generation-provenance.json)"
     },
     {
       "slotId": "slot-031",
@@ -693,7 +696,7 @@
       "priority": "high",
       "qualityAssessment": "not acceptable per this task spec - logo used as a product-image substitute",
       "canonicalFinalFilename": "assigned at generation time (Section 17 filename law)",
-      "completionStatus": "not started"
+      "completionStatus": "resolved - replaced with generated production asset (see generation-provenance.json)"
     },
     {
       "slotId": "slot-032",

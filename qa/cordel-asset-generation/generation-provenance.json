@@ -111,5 +111,77 @@
       }
     ],
     "batch1Status": "complete - all 14 listed master-brand deliverables have an accepted asset (symbol/monochrome/gold marks, favicon, app icon, horizontal+stacked wordmarks x2 backgrounds, footer lockup, homepage hero, ecosystem/paired composition, OG image, generic section visual). Header/Footer live swap intentionally deferred as a separate site-wide decision."
+  },
+  "batch2_3CordelPlayPackaging": {
+    "status": "partial - 4 new accepted assets covering box front, board/component spread, six dice, and Consent Cup; box-back, open-box, folded-board, individual token/sphere renders, Mischief dice, Decree deck close-up, and Intimate/Party/Ultimate/Founder edition presentations were NOT reached before the image-generation quota was exhausted (see blockedByExternalQuota below)",
+    "assets": [
+      {
+        "assetId": "cordel-play-box-front-concept-01",
+        "targetSlot": "Premium box-front render",
+        "method": "Newly generated raster (Z-Image-Turbo) with deterministic 'Cordel Play' wordmark and tagline composited afterward via Sharp/SVG (no diffusion-generated typography trusted)",
+        "exactPrompt": "Premium board game box, front three-quarter view product photography, deep wine burgundy and black textured box with subtle gold foil edge trim, elegant minimal cover design with a small gold heart-infinity ribbon emblem centered near the top, large empty clean space in the lower two-thirds for text overlay, soft studio lighting, dark charcoal background, luxury tabletop game packaging aesthetic, no readable text, no words, no letters",
+        "seed": 20824,
+        "resolution": "1280x1280 (1:1)",
+        "rejectedOutputs": [],
+        "manualInspection": "First attempt accepted - correct proportions, on-palette, clean empty space for text as requested, no artifacts",
+        "textCompositingVerified": "\"Cordel Play\" and \"A CONSENT-FIRST GAME FOR GROWN-UPS\" rendered via SVG <text> at exact spelling, visually confirmed after compositing",
+        "classification": "accepted",
+        "finalRepositoryPath": "public/cordel/cordel-play-box-front-concept-01.webp",
+        "productionPageUsage": "src/pages/products/cordel-play/editions.astro (component thumbnail), src/pages/products/cordel-play/components.astro (gameflow figure), src/pages/preorder/index.astro, src/pages/products/cordel-play/preorder.astro"
+      },
+      {
+        "assetId": "cordel-play-board-open-component-spread-concept-01",
+        "targetSlot": "Full unfolded board + complete component spread",
+        "method": "Newly generated raster via Z-Image-Turbo",
+        "exactPrompt": "Overhead flat-lay product photography of a premium board game fully unfolded on a dark charcoal table, elegant wine and gold circular gameboard path with minimal geometric tile icons, six matching card decks fanned neatly beside the board, small gold dice, warm studio lighting, luxury tabletop aesthetic, no readable text, no words, no letters, no people",
+        "seed": 778230,
+        "resolution": "1536x1024 (3:2)",
+        "rejectedOutputs": [],
+        "manualInspection": "First attempt accepted - coherent cross-shaped board layout, icon-only tiles (no gibberish text), matching card decks, on-palette",
+        "classification": "accepted",
+        "finalRepositoryPath": "public/cordel/cordel-play-board-open-component-spread-concept-01.webp",
+        "productionPageUsage": "src/pages/products/cordel-play/editions.astro (20x20 Board slot)"
+      },
+      {
+        "assetId": "cordel-play-black-gold-dice-six-concept-01",
+        "targetSlot": "Six black dice with gold pips",
+        "method": "Newly generated raster via Z-Image-Turbo",
+        "exactPrompt": "Product photography of exactly six identical matte black dice with engraved gold pips, arranged in a single neat straight row of six cubes side by side on dark charcoal velvet, soft studio rim lighting, premium tabletop game component, no readable text, no people",
+        "seed": 303783,
+        "resolution": "1536x864 (16:9)",
+        "rejectedOutputs": [
+          {
+            "seed": 806456,
+            "resolution": "1536x864 (16:9)",
+            "rejectionReason": "Showed only 5 dice, one with a merged/duplicated-face rendering artifact - incorrect component count and broken geometry, both explicit rejection criteria"
+          }
+        ],
+        "manualInspection": "Regenerated with explicit 'exactly six' emphasis; second attempt showed 6 clean dice with correct gold pips, no artifacts",
+        "classification": "accepted (2nd attempt)",
+        "finalRepositoryPath": "public/cordel/cordel-play-black-gold-dice-six-concept-01.webp",
+        "productionPageUsage": "src/pages/products/cordel-play/components.astro (gameflow figure was reassigned to the box-front image instead once the duplicate-with-existing-dice-photo issue on that same page was noticed; this asset is registered as an approved reusable source asset, not yet wired into a page)"
+      },
+      {
+        "assetId": "cordel-play-consent-cup-detail-concept-01",
+        "targetSlot": "Consent Cup close-up",
+        "method": "Newly generated raster via Z-Image-Turbo",
+        "exactPrompt": "Close-up luxury product photography of a small ornate ritual chalice cup, brushed gold metal with deep wine red enamel inlay in a heart motif, sitting on dark charcoal velvet surface, dramatic soft studio lighting, shallow depth of field, premium tabletop game component, no readable text, no words, no people",
+        "seed": 257194,
+        "resolution": "1280x1280 (1:1)",
+        "rejectedOutputs": [],
+        "manualInspection": "First attempt accepted - clean gold chalice, correct heart motif, no text, no people, matches brief",
+        "classification": "accepted",
+        "finalRepositoryPath": "public/cordel/cordel-play-consent-cup-detail-concept-01.webp",
+        "productionPageUsage": "src/pages/products/cordel-play/consent-architecture.astro (Consent Cup slot, replacing the logo-mark fallback)"
+      }
+    ]
+  },
+  "blockedByExternalQuota": {
+    "status": "HARD BLOCKER - confirmed, evidenced, not a capability or effort gap",
+    "description": "After 9 successful Z-Image-Turbo generations, every further call to mcp__claude_ai_Hugging_Face__gr1_z_image_turbo_generate and to mcp__claude_ai_Hugging_Face__dynamic_space (tested against mcp-tools/Qwen-Image-Fast) returned the same account-wide error, confirming the free daily ZeroGPU compute quota (shared across all Hugging Face-hosted models available this session) was exhausted, not a per-model or per-tool limit.",
+    "exactErrorEvidence": "ZeroGPU quota exceeded: You have exceeded your free ZeroGPU quota (60s requested vs. 0s left). Try again in 0:00:00. Subscribe to Hugging Face PRO to get 25 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU (Z-Image-Turbo); ZeroGPU quota exceeded: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day (Qwen-Image-Fast)",
+    "whatThisBlocks": "All remaining Batch 2/3 Cordel Play items (box-back, open-box, folded-board, individual tokens/spheres, Mischief dice, Decree deck, edition presentations), and the entirety of Batches 4-9 (Cordel Connect application screens, AIya/Aion refresh, ByteOracle, Cartoonized Profiles synthetic-identity source photo, Restaurants/Blind Date Roulette, Preorder/Founder Benefits) to the extent any of those require newly generated raster content and no suitable existing real asset already covers the slot.",
+    "notWorkedAround": "Did not substitute a logo, placeholder, or lower-quality asset to force a 'complete' status. Did not fabricate a claim of generation. Existing already-in-repo real assets (e.g. AIya/Aion character portraits, restaurant/date-planning photography from prior passes) were left as-is per 'preserve approved existing assets' rather than replaced without a genuine alternative available to compare against.",
+    "resolutionOptions": "(1) Wait for the Hugging Face free ZeroGPU daily quota to reset and resume in a later session; (2) the account owner subscribes to Hugging Face PRO for a larger daily quota - a paid decision requiring explicit authorization, not made here; (3) continue with the local mcp__heartstrings-cartoonizer__* tool for the Cartoonized Profiles batch specifically once a synthetic source photo is available (that tool itself was confirmed alive and unaffected by the HF quota, but has no synthetic photo to operate on yet)."
   }
 }
