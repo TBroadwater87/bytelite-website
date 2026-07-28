@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 160" width="620" height="160">
+<g transform="translate(10,10) scale(0.5)"><path d="M120 100
+    C 120 55, 70 40, 45 65
+    C 20 90, 30 130, 60 145
+    C 85 158, 110 150, 120 195
+    C 130 150, 155 158, 180 145
+    C 210 130, 220 90, 195 65
+    C 170 40, 120 55, 120 100 Z" fill="none" stroke="#6b1530" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="150" y="105" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-size="76" font-weight="600" fill="#1c1418" letter-spacing="1">Cordel</text>
+</svg>
