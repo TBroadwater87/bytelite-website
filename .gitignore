@@ -35,3 +35,6 @@ pnpm-debug.log*
 qa/preview-stdout.log
 qa/preview-stderr.log
 qa/qa-sweep-results.json
+
+# local Cloudflare Pages/Workers dev tooling state (wrangler pages dev, etc.)
+.wrangler/
