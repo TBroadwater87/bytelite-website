@@ -276,7 +276,7 @@ export const AIYA: ProjectRecord = {
     'Not the entirety of Deep Kore — AIya is one interaction layer over it.',
   ],
   accentColor: '#f472b6',
-  heroImage: '/cordel/cordel-aiya-icon.png',
+  heroImage: '/cordel/cordel-aiya-portrait.png',
   heroImageAlt: 'AIya, the human-facing interaction layer built over Deep Kore',
 };
 
@@ -404,8 +404,8 @@ export const CORDEL_PLAY: ProjectRecord = {
   ],
   claimRestrictions: ['Not currently for sale at retail.'],
   accentColor: '#f472b6',
-  heroImage: '/cordel/board-ultimate.jpg',
-  heroImageAlt: 'Cordel Play board, tier cards, and components laid out for a private group session',
+  heroImage: '/cordel/cordel-play-group-lifestyle-scene.webp',
+  heroImageAlt: 'Friends gathered around a table for a private Cordel Play session',
 };
 
 export const CORDEL_CONNECT: ProjectRecord = {
