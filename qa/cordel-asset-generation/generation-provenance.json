@@ -82,10 +82,34 @@
       }
     ],
     "remainingBatch1Assets": [
-      "Cordel ecosystem overview composition",
-      "Cordel Play and Cordel Connect paired product composition",
-      "Cordel generic branded section visual",
       "Header/Footer live integration of the new wordmark lockups (deferred - site-wide blast radius, needs explicit review before swapping text-only nav branding)"
-    ]
+    ],
+    "additionalAcceptedAssets": [
+      {
+        "assetId": "cordel-home-ecosystem-play-connect-paired-01",
+        "targetSlot": "Cordel Play and Cordel Connect paired product composition (also serves ecosystem-overview role)",
+        "method": "Newly generated raster artwork via Z-Image-Turbo",
+        "exactPrompt": "Elegant flat-lay editorial composition on deep charcoal surface, one warm gold heart-infinity ribbon symbol and one softly glowing smartphone silhouette placed side by side, connected by a thin trailing gold thread, burgundy and wine color accents, soft rim lighting, premium minimal product photography style, no readable text, no logos, no people",
+        "seed": 308020,
+        "resolution": "1536x1024 (3:2)",
+        "manualInspection": "No text, no people, correctly represents both products symbolically (ribbon=Play's physical object, phone=Connect's digital app), on-palette",
+        "classification": "accepted (first attempt)",
+        "finalRepositoryPath": "public/cordel/brand/cordel-home-ecosystem-play-connect-paired-01.webp",
+        "productionPageUsage": "src/pages/index.astro, Public Products section, above the product-grid"
+      },
+      {
+        "assetId": "cordel-generic-section-texture-01",
+        "targetSlot": "Cordel generic branded section visual",
+        "method": "Newly generated raster artwork via Z-Image-Turbo",
+        "exactPrompt": "Abstract premium texture background, deep wine and burgundy silk fabric folds with subtle charcoal shadow and faint warm gold particle light, elegant minimal, soft focus, no text, no people, no logos, suitable as a website section background",
+        "seed": 562591,
+        "resolution": "1536x864 (16:9)",
+        "manualInspection": "Clean, on-palette, no artifacts, no text",
+        "classification": "accepted (first attempt)",
+        "finalRepositoryPath": "public/cordel/brand/cordel-generic-section-texture-01.webp",
+        "productionPageUsage": "not yet wired into a specific page - reserved for a future section background"
+      }
+    ],
+    "batch1Status": "complete - all 14 listed master-brand deliverables have an accepted asset (symbol/monochrome/gold marks, favicon, app icon, horizontal+stacked wordmarks x2 backgrounds, footer lockup, homepage hero, ecosystem/paired composition, OG image, generic section visual). Header/Footer live swap intentionally deferred as a separate site-wide decision."
   }
 }
