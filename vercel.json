@@ -1,0 +1,23 @@
+{
+  "redirects": [
+    { "source": "/heartstrings", "destination": "/products/cordel-play", "statusCode": 301 },
+    { "source": "/heartstrings-app", "destination": "/products/cordel-connect", "statusCode": 301 },
+    { "source": "/about", "destination": "/company", "statusCode": 301 },
+    { "source": "/status", "destination": "/progress", "statusCode": 301 },
+    { "source": "/research", "destination": "/technologies", "statusCode": 301 },
+    { "source": "/technology", "destination": "/technologies", "statusCode": 301 },
+    { "source": "/deepkore", "destination": "/technologies/deep-kore", "statusCode": 301 },
+    { "source": "/deepkore-lab", "destination": "/technologies/deep-kore", "statusCode": 301 },
+    { "source": "/marketing", "destination": "/products/cordel-connect/date-planning/restaurants/partner-program", "statusCode": 301 },
+    { "source": "/licensing", "destination": "/company/partnerships", "statusCode": 301 },
+    { "source": "/ethics", "destination": "/architecture/proof-and-claim-posture", "statusCode": 301 },
+    { "source": "/ai-safety", "destination": "/architecture/governance-and-intrinsic-halting", "statusCode": 301 },
+    { "source": "/news", "destination": "/progress/changelog", "statusCode": 301 },
+    { "source": "/subscribe", "destination": "/preorder", "statusCode": 301 },
+    { "source": "/demo", "destination": "/technologies/bytelite", "statusCode": 301 },
+    { "source": "/products/heartstrings-play", "destination": "/products/cordel-play", "statusCode": 301 },
+    { "source": "/products/heartstrings-play/:path*", "destination": "/products/cordel-play/:path*", "statusCode": 301 },
+    { "source": "/products/heartstrings-connect", "destination": "/products/cordel-connect", "statusCode": 301 },
+    { "source": "/products/heartstrings-connect/:path*", "destination": "/products/cordel-connect/:path*", "statusCode": 301 }
+  ]
+}
