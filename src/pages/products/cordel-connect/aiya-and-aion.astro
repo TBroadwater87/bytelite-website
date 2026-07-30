@@ -4,6 +4,7 @@ import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import ProductSubNav from '../../../components/ProductSubNav.astro';
+import SeasonalBanner from '../../../components/SeasonalBanner.astro';
 
 const SUBNAV = [
   { label: 'Overview', href: '/products/cordel-connect' },
@@ -54,9 +55,9 @@ const SUBNAV = [
   <section class="section section-alt">
     <div class="container">
       <div class="ay-grid">
-        <figure><img src="/cordel/cordel-aiya-portrait.webp" alt="AIya character portrait" loading="lazy" /><figcaption>AIya</figcaption></figure>
-        <figure><img src="/cordel/cordel-aion-portrait.webp" alt="Aion character portrait" loading="lazy" /><figcaption>Aion</figcaption></figure>
-        <figure><img src="/cordel-connect/cordel-connect-aiya-aion-paired-portrait.webp" alt="AIya and Aion together" loading="lazy" /><figcaption>AIya and Aion, together</figcaption></figure>
+        <figure><SeasonalBanner type="aiya" style="width:100%;border-radius:.75rem;" loading="eager" /><figcaption>AIya</figcaption></figure>
+        <figure><SeasonalBanner type="aion" style="width:100%;border-radius:.75rem;" loading="eager" /><figcaption>Aion</figcaption></figure>
+        <figure><SeasonalBanner type="duo" style="width:100%;border-radius:.75rem;" loading="eager" /><figcaption>AIya and Aion, together</figcaption></figure>
         <figure><img src="/cordel/screenshots/09_settings.png" alt="A settings screen from the current private-test Cordel Connect app interface" style="aspect-ratio:9/16;width:100%;object-fit:cover;border-radius:.75rem;" loading="lazy" /><figcaption>Private-test app interface — a clean, AIya-free screen has not yet been captured without personal account data</figcaption></figure>
       </div>
     </div>
