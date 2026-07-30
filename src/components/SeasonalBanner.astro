@@ -1,0 +1,38 @@
+---
+// Renders the current holiday/season Cordel Connect banner, computed at build time as the
+// initial (no-JS-safe) image, then re-verified client-side against the visitor's own local
+// date on mount - so a banner built weeks ago still shows the right holiday today, and a
+// visitor in a different timezone near a window boundary still sees the correct one.
+import { getActiveBanner } from '../data/seasonal';
+
+interface Props {
+  class?: string;
+  style?: string;
+  loading?: 'eager' | 'lazy';
+}
+
+const { class: className, style, loading = 'lazy' } = Astro.props;
+const initial = getActiveBanner();
+---
+
+<img
+  src={initial.imagePath}
+  alt={initial.alt}
+  data-seasonal-banner
+  class={className}
+  style={style}
+  loading={loading}
+/>
+
+<script>
+  import { getActiveBanner } from '../data/seasonal';
+
+  document.querySelectorAll<HTMLImageElement>('[data-seasonal-banner]').forEach((img) => {
+    const active = getActiveBanner();
+    const resolved = new URL(active.imagePath, window.location.origin).pathname;
+    if (!img.src.endsWith(resolved)) {
+      img.src = active.imagePath;
+      img.alt = active.alt;
+    }
+  });
+</script>

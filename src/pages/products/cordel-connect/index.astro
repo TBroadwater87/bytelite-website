@@ -5,6 +5,7 @@ import Footer from '../../../components/Footer.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import ProductSubNav from '../../../components/ProductSubNav.astro';
 import StatusBadge from '../../../components/StatusBadge.astro';
+import SeasonalBanner from '../../../components/SeasonalBanner.astro';
 import { CORDEL_CONNECT } from '../../../data/projects';
 
 const softwareAppJsonLd = {
@@ -66,6 +67,12 @@ const SUBNAV = [
         </div>
         <p class="hero-img-label">Current screen — Discover</p>
       </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <SeasonalBanner style="width:100%;border-radius:1rem;object-fit:cover;aspect-ratio:16/9;" loading="eager" />
     </div>
   </section>
 
