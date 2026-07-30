@@ -276,7 +276,7 @@ export const AIYA: ProjectRecord = {
     'Not the entirety of Deep Kore — AIya is one interaction layer over it.',
   ],
   accentColor: '#f472b6',
-  heroImage: '/cordel/cordel-aiya-portrait.png',
+  heroImage: '/cordel/cordel-aiya-portrait.webp',
   heroImageAlt: 'AIya, the human-facing interaction layer built over Deep Kore',
 };
 
