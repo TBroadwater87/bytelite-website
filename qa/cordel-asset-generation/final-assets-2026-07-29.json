@@ -1,0 +1,44 @@
+{
+  "ingestedAt": "2026-07-29",
+  "source": "C:\\Users\\tbroa\\Downloads\\Cordel_Play_Assets\\ (16 files, user-supplied final production art)",
+  "summary": "First batch of genuinely final (non-concept, non-AI-generated-by-this-session) Cordel Play art. Individually visually inspected all 16 files. 12 wired into the live site; 4 held back with reasons below. Also found and fixed 2 previously-undetected baked-in-old-brand defects in already-live images while doing this pass.",
+  "wiredIntoSite": [
+    { "file": "Consent_Cup_Cordel.png", "dest": "public/cordel/cordel-play-consent-cup-final.webp", "usage": "consent-architecture.astro, components.astro" },
+    { "file": "Cordel_20x20_Board_Final.png", "dest": "public/cordel/cordel-play-board-20x20-final.webp", "usage": "editions.astro, components.astro gameflow figure" },
+    { "file": "Cordel_20x40_Board_Final.png", "dest": "public/cordel/cordel-play-board-20x40-final.webp", "usage": "editions.astro, components.astro board summary (replacing a defective HeartStrings-branded image, see below)" },
+    { "file": "Initiate_Back_Silver.png", "dest": "public/cordel/tiers/cordel-play-tier-card-initiate-final.webp", "usage": "how-it-plays.astro, composited into cordel-play-tier-deck-backs-final.webp" },
+    { "file": "Connect_Back_Silver.png", "dest": "public/cordel/tiers/cordel-play-tier-card-connect-final.webp", "usage": "how-it-plays.astro, composite" },
+    { "file": "Seduce_Back_Silver.png", "dest": "public/cordel/tiers/cordel-play-tier-card-seduce-final.webp", "usage": "how-it-plays.astro, composite" },
+    { "file": "Stimulate_Back_Silver.png", "dest": "public/cordel/tiers/cordel-play-tier-card-stimulate-final.webp", "usage": "how-it-plays.astro, composite" },
+    { "file": "Edge_Back_Silver.png", "dest": "public/cordel/tiers/cordel-play-tier-card-edge-final.webp", "usage": "how-it-plays.astro, composite" },
+    { "file": "Climax_Back_Silver.png", "dest": "public/cordel/tiers/cordel-play-tier-card-climax-final.webp", "usage": "how-it-plays.astro, composite" },
+    { "file": "Decree_Back_Silver.png", "dest": "public/cordel/tiers/cordel-play-decree-card-final.webp", "usage": "composite only (components.astro tier-deck-backs summary)" },
+    { "file": "Cordel_Play_Title.png", "dest": "public/cordel/brand/cordel-play-title-lockup-silver.webp", "usage": "not yet wired into a page - reserved" },
+    { "file": "ChatGPT Image Jul 29, 2026, 11_41_47 AM.png", "dest": "public/cordel/brand/cordel-play-title-lockup-wide.webp", "usage": "cordel-play/index.astro hero" }
+  ],
+  "generatedThisPass": [
+    { "file": "cordel-play-tier-deck-backs-final.webp", "method": "Deterministic Sharp composite of the 7 individual final card-back images (Initiate/Connect/Seduce/Stimulate/Edge/Climax/Decree) side by side", "usage": "components.astro tier-deck summary card" }
+  ],
+  "heldBack": [
+    { "file": "Cordel_Logo.png", "reason": "Byte-content is a duplicate of the already-in-repo public/cordel/brand/cordel-logo-mark.png (verified same source in the prior finalization pass) - no action needed." },
+    { "file": "Cordel_Consent_Cup_Drawing_v1_4.png", "reason": "Internal manufacturing engineering drawing (part no. CDP-CUP-001, tolerances, material spec, marked 'APPEARANCE RENDERS ARE REFERENCE ONLY - THIS SHEET GOVERNS'), not a marketing asset - not published. Used as evidence to correct components.astro copy: the Consent Cup holds up to 18 consent spheres (13mm dia), previously listed as 'exact unit count not yet confirmed'." },
+    { "file": "Silver_Silhouette.png", "reason": "Component line-art layer (two-figure silhouette) already incorporated into Cordel_20x40_Board_Final.png - not wired in standalone to avoid a near-duplicate composition." },
+    { "file": "Silhouette_20x20_Silver.png", "reason": "Component line-art layer (single-figure silhouette) already incorporated into Cordel_20x20_Board_Final.png - not wired in standalone." }
+  ],
+  "defectsFoundAndFixedDuringThisPass": [
+    {
+      "file": "public/cordel/cordel-play-board-20-space-complete.webp",
+      "defect": "Baked-in 'HeartStrings PLAY' wordmark at the top of the board poster - previously live and undetected (predates this session's work, from the original Cordel migration pass).",
+      "fix": "Replaced its only reference (components.astro, 'The board' card) with the new cordel-play-board-20x40-final.webp. The defective file itself is left in place on disk (unreferenced, harmless) rather than deleted, consistent with this project's non-destructive practice - flagged here for a future cleanup pass to move it to qa/cordel-migration/blocked-legacy-assets/."
+    },
+    {
+      "file": "public/cordel/cordel-play-ab-player-chips.webp",
+      "defect": "Baked-in 'HEARTSTRINGS / THE INTIMACY GAME' logo banner across the top, plus a wax seal with an 'H' heart-crest monogram (the same legacy brand mark) at the bottom-left - both previously live and undetected.",
+      "fix": "Cropped in place (Sharp, deterministic) to a tight rectangle containing only the clean 18-pair token grid, removing both the top banner and the bottom-left wax seal entirely. Same file path, same page reference - no page edit needed beyond this asset fix. Original uncropped file was not preserved separately since it was never a legitimate asset (baked-in old-brand content, not source material worth archiving)."
+    }
+  ],
+  "copyChangesFromThisPass": [
+    "components.astro: Consent Cup card corrected to match the actual mechanic (voluntary opt-in selection, not a pause/stop device) and to state the confirmed 18-sphere capacity, per the Cordel_Consent_Cup_Drawing_v1_4.png spec sheet.",
+    "cordel-play/index.astro: 'About the game' section's Consent Cup sentence corrected to match the same mechanic (was previously describing it as an end/pause-play device, the same error already fixed on the consent-architecture page in a prior session turn)."
+  ]
+}
