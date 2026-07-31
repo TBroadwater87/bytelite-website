@@ -373,7 +373,7 @@ export const CORDEL_PLAY: ProjectRecord = {
   category: 'Product · Consent-Forward Adult Board Game',
   shortDescription: 'A premium consent-first adult social board game for private groups of 2 to 18 players.',
   mission:
-    'Cordel Play exists to make consent and pacing structural parts of the game itself — not something a group has to negotiate separately — through a six-tier escalation system, the standing Consent Cup, and Decree cards any player can use at any time.',
+    'Cordel Play exists to make consent and pacing structural parts of the game itself — not something a group has to negotiate separately — through a six-tier escalation system, the standing Consent Cup, and a Decree deck where escape is a real, spendable resource rather than a free pass.',
   status: 'Prototype',
   lastValidated: UNDATED,
   currentCapabilities: [
@@ -421,10 +421,12 @@ export const CORDEL_CONNECT: ProjectRecord = {
     { label: 'Private Android test builds with login, discover, matches, messages, profile, and settings surfaces', evidence: 'Implemented' },
     { label: 'Compatibility questionnaire (~75 starter questions, extensible to hundreds)', evidence: 'Implemented' },
     { label: 'Two-party secret-sharing privacy model for sensitive answers', evidence: 'Implemented' },
-    { label: 'Live-location check-ins, emergency contacts, and a spoken safety phrase', evidence: 'Implemented' },
+    { label: 'Check-in pins on a map and emergency contact management inside the safety hub', evidence: 'Implemented' },
   ],
   inDevelopment: [
-    'Safety hub, game room, date hub, and friendship features',
+    'Live-location sharing with trusted contacts (location is captured today but not yet delivered anywhere a contact can see it)',
+    'An active spoken safety phrase (a phrase can be saved today, but saying it does not yet trigger an alert)',
+    'Game room, date hub, and friendship features',
     'Cartoonized profile photo transformation',
     'AIya wingman conversational interface',
     'ByteOracle horoscope integration',

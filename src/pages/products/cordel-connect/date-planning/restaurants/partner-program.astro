@@ -35,12 +35,18 @@ const offerJsonLd = {
         with a deal you set, shown to people actively choosing where to go.
       </p>
       <div class="mk-cta-row">
-        <a href="/marketing/signup" class="btn btn-primary">Start the $20 pilot</a>
+        <a href="/marketing/signup" class="btn btn-primary">Try the pilot signup</a>
         <a href="#how" class="btn btn-outline">How it works</a>
       </div>
       <p class="mk-fineprint">
         Honest pilot pricing: <strong>$20 one-time</strong> — less than $1/day for the pilot window.
         A paid signup enters review; it goes live only after we approve it.
+      </p>
+      <p class="mk-fineprint">
+        <strong>Private pilot, currently on Stripe test-mode checkout:</strong> signup runs through
+        a real Stripe Checkout flow, but Stripe is in test mode — no real payment is processed and
+        no real listing is created yet. This is a working demonstration of the pilot, not a public
+        commercial launch.
       </p>
     </div>
   </section>
@@ -89,7 +95,7 @@ const offerJsonLd = {
         <li><span>1</span><div><strong>Create an account</strong><p>An email and password — that is your restaurant portal login.</p></div></li>
         <li><span>2</span><div><strong>Fill a templated profile</strong><p>Name, cuisine, price tier, area, hours, dietary options, vibe, contact — plus your logo and photos.</p></div></li>
         <li><span>3</span><div><strong>Set your deal</strong><p>Choose a templated offer and the value you commit to. A discount is required to be featured.</p></div></li>
-        <li><span>4</span><div><strong>Pay the $20 pilot</strong><p>A one-time Stripe payment. Your restaurant then enters <em>pending review</em>.</p></div></li>
+        <li><span>4</span><div><strong>Pay the $20 pilot</strong><p>A one-time Stripe Checkout flow, currently running in test mode — no live charge yet. Your restaurant then enters <em>pending review</em>.</p></div></li>
         <li><span>5</span><div><strong>We review, then you go live</strong><p>An approval step we control flips your paid restaurant into a live, featured suggestion. Paid does not mean auto-published.</p></div></li>
       </ol>
       <img src="/marketing/approval-flow.png" alt="Signup-to-live approval flow" width="1672" height="941" loading="lazy" style="width:100%;max-width:1000px;height:auto;margin:2rem auto 0;border-radius:.75rem;border:1px solid #1a2235;display:block;" />
@@ -102,11 +108,11 @@ const offerJsonLd = {
       <h2>One decided price. The rest is coming soon.</h2>
       <div class="mk-price-grid">
         <div class="card mk-price mk-price-live">
-          <span class="badge badge-active">Available now</span>
+          <span class="badge badge-planned">Private pilot &middot; test checkout</span>
           <h3>Pilot placement</h3>
           <p class="mk-amount">$20<span>one-time</span></p>
-          <p class="mk-price-note">Less than $1/day for the pilot window. The only price we have set.</p>
-          <a href="/marketing/signup" class="btn btn-primary btn-sm">Start the pilot</a>
+          <p class="mk-price-note">Less than $1/day for the pilot window. Signup currently runs on a Stripe test-mode checkout — no real charge is made yet. The only price we have set.</p>
+          <a href="/marketing/signup" class="btn btn-primary btn-sm">Try the pilot signup</a>
         </div>
         <div class="card mk-price mk-price-soon">
           <span class="badge badge-planned">Coming soon</span>
@@ -148,8 +154,8 @@ const offerJsonLd = {
   <section class="section">
     <div class="container mk-final">
       <h2>Ready to be a featured date spot?</h2>
-      <p>Start the $20 pilot. You can build your profile and deal before you pay.</p>
-      <a href="/marketing/signup" class="btn btn-primary">Start the $20 pilot</a>
+      <p>Try the pilot signup. You can build your profile and deal before you pay — checkout is currently Stripe test-mode, so no live charge is made.</p>
+      <a href="/marketing/signup" class="btn btn-primary">Try the pilot signup</a>
     </div>
   </section>
 
