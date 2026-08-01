@@ -10,7 +10,7 @@ import { BYTEORACLE } from '../../data/projects';
 
 <Layout
   title="ByteOracle | Deterministic Astronomical Interpretation | ByteLite LLC"
-  description="ByteOracle is ByteLite LLC's concept for deterministic astronomical interpretation — locally calculated, reproducible readings feeding Cordel Connect's horoscope features."
+  description="ByteOracle is ByteLite LLC's deterministic astronomical-calculation engine — internally validated, locally calculated, reproducible readings feeding Cordel Connect's horoscope features."
   keywords="ByteOracle, deterministic astronomy, horoscope engine, Cordel Connect, ByteLite LLC"
 >
   <Header slot="header" />
@@ -27,10 +27,13 @@ import { BYTEORACLE } from '../../data/projects';
       <h2 style="margin-bottom:1.25rem;">Deterministic astronomy, not generic fortune-telling.</h2>
       <p style="font-size:1.0625rem;line-height:1.8;">{BYTEORACLE.mission}</p>
       <p style="font-size:1.0625rem;line-height:1.8;margin-top:1rem;">
-        ByteOracle is presented here as a concept and naming layer for work that already has one
-        seed feature live inside Cordel Connect (zodiac-sign derivation and a daily horoscope).
-        The fuller deterministic-interpretation design described in End-Game Functionality Goals below
-        has not been built yet and should be read as a target, not a shipped system.
+        The underlying astronomical calculation is a 9-stage deterministic pipeline, internally
+        cross-checked against independent reference libraries across a 200-year date range, and it
+        generates 156 records per calendar date — 12 individual sign readings plus 144 ordered
+        compatibility pairs. That engine and its Cordel Connect integration exist as tested code
+        today. ByteOracle does not yet have its own dedicated repository, and the app integration
+        currently lives on a different branch than the one the app is deployed from — see Current
+        Capabilities and Validation and Evidence below for the exact, current picture.
       </p>
     </div>
   </section>
