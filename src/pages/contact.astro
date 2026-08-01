@@ -224,28 +224,57 @@ import Footer from '../components/Footer.astro';
   const select = document.getElementById('ct-subject') as HTMLSelectElement | null;
   const heading = document.getElementById('ct-heading');
   const sub = document.getElementById('ct-subheading');
-  const fieldOrg = document.getElementById('ct-field-organization');
-  const fieldQty = document.getElementById('ct-field-quantity');
-  const fieldPlatform = document.getElementById('ct-field-platform');
   const orgLabel = document.getElementById('ct-organization-label');
+  const DEFAULT_ORG_LABEL = 'Organization';
+
+  // None of the three conditional fields are contractually required by any current workflow -
+  // this map exists so a future type that DOES require one only has to flip a value here, and
+  // applyType()'s enable/disable/required syncing stays correct without touching markup.
+  const REQUIRED_WHEN_ACTIVE: Record<'organization' | 'quantity' | 'platform', boolean> = {
+    organization: false,
+    quantity: false,
+    platform: false,
+  };
+
+  const EXTRA_FIELDS: Record<'organization' | 'quantity' | 'platform', { container: HTMLElement | null; input: HTMLInputElement | HTMLSelectElement | null }> = {
+    organization: { container: document.getElementById('ct-field-organization'), input: document.getElementById('ct-organization') as HTMLInputElement | null },
+    quantity: { container: document.getElementById('ct-field-quantity'), input: document.getElementById('ct-quantity') as HTMLSelectElement | null },
+    platform: { container: document.getElementById('ct-field-platform'), input: document.getElementById('ct-platform') as HTMLSelectElement | null },
+  };
 
   function applyType(type: string) {
     const cfg = TYPE_CONFIG[type];
     if (heading) heading.textContent = cfg ? cfg.heading : 'Get in touch.';
     if (sub) sub.textContent = (cfg ?? TYPE_CONFIG.general)!.sub;
     const extra = cfg?.extra ?? 'none';
-    if (fieldOrg) fieldOrg.hidden = extra !== 'organization';
-    if (fieldQty) fieldQty.hidden = extra !== 'quantity';
-    if (fieldPlatform) fieldPlatform.hidden = extra !== 'platform';
-    if (orgLabel && cfg?.orgLabel) orgLabel.textContent = cfg.orgLabel;
+
+    (Object.keys(EXTRA_FIELDS) as Array<keyof typeof EXTRA_FIELDS>).forEach((key) => {
+      const { container, input } = EXTRA_FIELDS[key];
+      const isActive = key === extra;
+      // hidden -> removed from layout AND the accessibility tree (enforced visually by the
+      // .ct-field[hidden] CSS rule); disabled -> removed from both FormData on submit and the
+      // Tab order, independent of the hidden state, so a hidden-but-somehow-still-shown field
+      // can never contribute a value or receive keyboard focus.
+      if (container) container.hidden = !isActive;
+      if (input) {
+        input.disabled = !isActive;
+        input.required = isActive && REQUIRED_WHEN_ACTIVE[key];
+        if (!isActive) input.value = '';
+      }
+    });
+
+    if (orgLabel) orgLabel.textContent = cfg?.orgLabel ?? DEFAULT_ORG_LABEL;
   }
 
   const params = new URLSearchParams(window.location.search);
   const presetType = params.get('type');
   if (presetType && select && TYPE_CONFIG[presetType]) {
     select.value = presetType;
-    applyType(presetType);
   }
+  // Always run once on load (not only when a valid ?type= is present) so an unsupported/blank
+  // inquiry type is driven through the same code path and ends up with every conditional field
+  // hidden, disabled, and required=false - never "whatever the static markup happened to be".
+  applyType(select?.value ?? '');
   select?.addEventListener('change', () => applyType(select.value));
 
   const form = document.getElementById('ct-form') as HTMLFormElement | null;
@@ -296,6 +325,7 @@ import Footer from '../components/Footer.astro';
 @media (max-width: 900px) { .ct-grid { grid-template-columns: 1fr; gap: 3rem; } }
 .ct-form { display: flex; flex-direction: column; gap: 1.25rem; }
 .ct-field { display: flex; flex-direction: column; gap: .4rem; }
+.ct-field[hidden] { display: none; }
 .ct-field label { font-size: .875rem; font-weight: 500; color: #a0a8c0; }
 .ct-req { color: #f472b6; }
 .ct-field input, .ct-field select, .ct-field textarea {

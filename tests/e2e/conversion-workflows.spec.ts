@@ -119,11 +119,147 @@ test.describe('Specialized workflows no longer silently substitute general conta
     });
   }
 
-  test('/contact preselects and relabels the form when a type is specified', async ({ page }) => {
-    await page.goto('/contact?type=investor');
-    await expect(page.locator('#ct-subject')).toHaveValue('investor');
-    await expect(page.locator('#ct-heading')).toContainText('Investor inquiry');
-    await expect(page.locator('#ct-field-organization')).toBeVisible();
+});
+
+// ---------------------------------------------------------------------------------------------
+// Conditional contact-field exclusivity (2026-08-01 hotfix)
+//
+// Derived from the current TYPE_CONFIG in src/pages/contact.astro and the INQUIRY_TYPES set in
+// src/pages/api/contact.ts - do not hand-edit this table without re-deriving it from source.
+// activeField is null for types that show no conditional field at all.
+// ---------------------------------------------------------------------------------------------
+type ExtraField = 'organization' | 'quantity' | 'platform' | null;
+const INQUIRY_TYPE_MATRIX: Array<{ type: string; heading: string; activeField: ExtraField }> = [
+  { type: 'cordel-play', heading: 'Cordel Play — founder reservation interest.', activeField: 'quantity' },
+  { type: 'cordel-connect', heading: 'Cordel Connect — private-test interest.', activeField: 'platform' },
+  { type: 'validation-partnership', heading: 'Technical validation inquiry.', activeField: 'organization' },
+  { type: 'licensing', heading: 'Licensing inquiry.', activeField: 'organization' },
+  { type: 'manufacturing', heading: 'Manufacturing inquiry.', activeField: 'organization' },
+  { type: 'distribution', heading: 'Distribution inquiry.', activeField: 'organization' },
+  { type: 'investor', heading: 'Investor inquiry.', activeField: 'organization' },
+  { type: 'restaurant-partnership', heading: 'Restaurant partnership inquiry.', activeField: 'organization' },
+  { type: 'technology-partnership', heading: 'Technology partnership inquiry.', activeField: 'organization' },
+  { type: 'byteoracle', heading: 'ByteOracle inquiry.', activeField: null },
+  { type: 'preorder-support', heading: 'Preorder support.', activeField: null },
+  { type: 'privacy-request', heading: 'Privacy request.', activeField: null },
+  { type: 'general', heading: 'Get in touch.', activeField: null },
+];
+
+const FIELD_KEYS = ['organization', 'quantity', 'platform'] as const;
+const CONTAINER_SELECTOR: Record<(typeof FIELD_KEYS)[number], string> = {
+  organization: '#ct-field-organization',
+  quantity: '#ct-field-quantity',
+  platform: '#ct-field-platform',
+};
+const INPUT_SELECTOR: Record<(typeof FIELD_KEYS)[number], string> = {
+  organization: '#ct-organization',
+  quantity: '#ct-quantity',
+  platform: '#ct-platform',
+};
+
+test.describe('Conditional contact fields are mutually exclusive per inquiry type', () => {
+  for (const { type, heading, activeField } of INQUIRY_TYPE_MATRIX) {
+    test(`/contact?type=${type} shows exactly the ${activeField ?? 'no'} conditional field`, async ({ page }) => {
+      await page.goto(`/contact?type=${type}`);
+
+      await expect(page.locator('#ct-heading')).toContainText(heading);
+      await expect(page.locator('#ct-subject')).toHaveValue(type);
+
+      let visibleCount = 0;
+      let enabledCount = 0;
+      for (const key of FIELD_KEYS) {
+        const container = page.locator(CONTAINER_SELECTOR[key]);
+        const input = page.locator(INPUT_SELECTOR[key]);
+        const isActive = key === activeField;
+
+        if (isActive) {
+          await expect(container, `${key} container should be visible for type=${type}`).toBeVisible();
+          await expect(input, `${key} input should be enabled for type=${type}`).toBeEnabled();
+          visibleCount++;
+          enabledCount++;
+        } else {
+          await expect(container, `${key} container should be hidden for type=${type}`).toBeHidden();
+          await expect(input, `${key} input should be disabled for type=${type}`).toBeDisabled();
+        }
+        // No current workflow requires a conditional field - required must never be set on any
+        // of them, active or not.
+        await expect(input).not.toHaveAttribute('required', '');
+      }
+
+      // Mutual exclusivity: never more than one conditional field visible or enabled at once.
+      expect(visibleCount, `type=${type} should show at most one conditional field`).toBeLessThanOrEqual(1);
+      expect(enabledCount, `type=${type} should enable at most one conditional field`).toBeLessThanOrEqual(1);
+
+      // Hidden inputs must be genuinely excluded from the accessibility tree, not merely styled away.
+      const inactiveKeys = FIELD_KEYS.filter((k) => k !== activeField);
+      for (const key of inactiveKeys) {
+        const role = await page.locator(INPUT_SELECTOR[key]).evaluate((el) => el.closest('[hidden]') !== null);
+        expect(role, `${key} input should sit inside a [hidden] ancestor for type=${type}`).toBe(true);
+      }
+    });
+  }
+
+  test('an unsupported/blank inquiry type shows no conditional field at all', async ({ page }) => {
+    await page.goto('/contact?type=not-a-real-type');
+    for (const key of FIELD_KEYS) {
+      await expect(page.locator(CONTAINER_SELECTOR[key])).toBeHidden();
+      await expect(page.locator(INPUT_SELECTOR[key])).toBeDisabled();
+    }
+    // Falls back to the general heading since the unsupported preset is never applied to the select.
+    await expect(page.locator('#ct-heading')).toContainText('Get in touch.');
+  });
+
+  test('plain /contact with no query string shows no conditional field at all', async ({ page }) => {
+    await page.goto('/contact');
+    for (const key of FIELD_KEYS) {
+      await expect(page.locator(CONTAINER_SELECTOR[key])).toBeHidden();
+      await expect(page.locator(INPUT_SELECTOR[key])).toBeDisabled();
+    }
+  });
+
+  test('hidden conditional fields cannot contribute a value to the submitted FormData', async ({ page }) => {
+    await page.goto('/contact?type=licensing');
+    // Only the active field (organization) is fillable through the real UI.
+    await page.locator(INPUT_SELECTOR.organization).fill('Acme Licensing Co');
+
+    const formEntries = await page.evaluate(() => {
+      const form = document.getElementById('ct-form') as HTMLFormElement;
+      return Object.fromEntries(new FormData(form).entries());
+    });
+
+    expect(formEntries.organization).toBe('Acme Licensing Co');
+    // quantityInterest/platform inputs are disabled -> FormData omits them entirely.
+    expect(formEntries.quantityInterest).toBeUndefined();
+    expect(formEntries.platform).toBeUndefined();
+  });
+
+  test('switching inquiry type via the dropdown (no reload) clears the old field and activates the new one', async ({ page }) => {
+    await page.goto('/contact?type=cordel-play');
+    await expect(page.locator(CONTAINER_SELECTOR.quantity)).toBeVisible();
+
+    // Populate the currently active field.
+    await page.locator(INPUT_SELECTOR.quantity).selectOption('4+');
+
+    // Switch to a type with a different active field, via the dropdown, no navigation.
+    await page.locator('#ct-subject').selectOption('cordel-connect');
+
+    // Old field: hidden, disabled, value cleared.
+    await expect(page.locator(CONTAINER_SELECTOR.quantity)).toBeHidden();
+    await expect(page.locator(INPUT_SELECTOR.quantity)).toBeDisabled();
+    await expect(page.locator(INPUT_SELECTOR.quantity)).toHaveValue('');
+
+    // New field: visible, enabled.
+    await expect(page.locator(CONTAINER_SELECTOR.platform)).toBeVisible();
+    await expect(page.locator(INPUT_SELECTOR.platform)).toBeEnabled();
+
+    await page.locator(INPUT_SELECTOR.platform).selectOption('android');
+
+    const formEntries = await page.evaluate(() => {
+      const form = document.getElementById('ct-form') as HTMLFormElement;
+      return Object.fromEntries(new FormData(form).entries());
+    });
+    expect(formEntries.platform).toBe('android');
+    expect(formEntries.quantityInterest).toBeUndefined();
   });
 });
 
@@ -146,6 +282,25 @@ test.describe('Contact form is fully keyboard-operable', () => {
     await expect(page.locator('#ct-consent')).toBeFocused();
     await page.keyboard.press('Space');
     await expect(page.locator('#ct-consent')).toBeChecked();
+  });
+
+  test('Tab from the inquiry-type dropdown never focuses a hidden conditional input', async ({ page }) => {
+    // cordel-connect's active field is "platform" - organization and quantity must be unreachable.
+    await page.goto('/contact?type=cordel-connect');
+    await page.locator('#ct-subject').focus();
+    await page.keyboard.press('Tab');
+    const focusedId = await page.evaluate(() => document.activeElement?.id);
+    expect(focusedId).toBe('ct-platform');
+    expect(focusedId).not.toBe('ct-organization');
+    expect(focusedId).not.toBe('ct-quantity');
+  });
+
+  test('Tab from the inquiry-type dropdown skips straight to the message field when no conditional field is active', async ({ page }) => {
+    await page.goto('/contact?type=general');
+    await page.locator('#ct-subject').focus();
+    await page.keyboard.press('Tab');
+    const focusedId = await page.evaluate(() => document.activeElement?.id);
+    expect(focusedId).toBe('ct-message');
   });
 });
 
