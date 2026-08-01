@@ -2,18 +2,26 @@
 // Single source of truth: every page renders status/claims from here rather than
 // restating them inline, so status can never drift between pages (see CLAUDE.md
 // "Canonical Project Status System").
+//
+// Canonical public model last reviewed: August 1, 2026.
+// Nine public entries: Cordel Play, Cordel Connect, Restaurant Partner Program,
+// ByteLite, Deep Kore, ByteSight, AIya, Genesis Goalkeeper, Revelation Vanguard.
+// ByteFlow, ByteCost, and ByteOracle are intentionally excluded from all public
+// surfaces (see ALL_TECHNOLOGIES below). Their records remain here only so their
+// existing routes continue to build; they are not linked from any public nav,
+// sitemap, or index.
 
 export type ProjectStatus =
   | 'Concept'
-  | 'Prototype'
+  | 'Functional Prototype'
+  | 'Advanced Prototype'
+  | 'Integrated Prototype'
   | 'Internal Validation'
-  | 'Private Test'
-  | 'Private Beta'
+  | 'Private Alpha'
+  | 'Pilot Preparation'
+  | 'Private Pilot'
   | 'Public Beta'
-  | 'Preorder'
-  | 'Production'
-  | 'Paused'
-  | 'Completed';
+  | 'Production';
 
 export type Availability =
   | 'Internal research'
@@ -45,6 +53,8 @@ export interface ProjectRecord {
   shortDescription: string;
   mission: string;
   status: ProjectStatus;
+  validationFocus: string;
+  nextMilestone: string;
   lastValidated: string;
   currentCapabilities: CapabilityClaim[];
   inDevelopment: string[];
@@ -67,10 +77,12 @@ export const BYTELITE: ProjectRecord = {
   slug: 'bytelite',
   name: 'ByteLite',
   category: 'Technology · Digital Structure Foundation',
-  shortDescription: 'Deterministic structural representation and compression-related infrastructure research.',
+  shortDescription: 'Deterministic dynamic algorithmic compression research system undergoing internal validation.',
   mission:
-    'ByteLite exists to test a strict premise before any higher-level claim is made: a system that cannot preserve identity exactly should not be trusted to preserve meaning. ByteLite is the first proof surface for that premise, because exact reconstruction is measurable — either the original decodes back exactly, or it does not.',
+    'Deterministic dynamic algorithmic compression research system undergoing lossless round-trip, structural transformation, memory-efficiency, workbench, and corpus validation.',
   status: 'Internal Validation',
+  validationFocus: 'Perfect lossless round-trip and memory-efficient structural convergence',
+  nextMilestone: 'Repeatable corpus validation through the canonical workbench',
   lastValidated: UNDATED,
   currentCapabilities: [
     { label: 'Exact lossless round-trip validation on internal test artifacts', evidence: 'Internally Validated' },
@@ -111,10 +123,12 @@ export const BYTESIGHT: ProjectRecord = {
   slug: 'bytesight',
   name: 'ByteSight',
   category: 'Technology · Visual Structure & Inspection Layer',
-  shortDescription: 'A deterministic visual-structure and inspection engine for images, regions, and provenance, with an active desktop workbench.',
+  shortDescription: 'Deterministic visual-structure engine with an operational segmentation and teaching workbench.',
   mission:
-    'ByteSight exists to give the architecture a deterministic way to represent what an image actually contains — regions, boundaries, provenance, and transformation history — instead of a black-box classifier score. Vision claims should be inspectable the same way file claims are.',
-  status: 'Internal Validation',
+    'Deterministic visual-structure engine with an operational segmentation and teaching workbench, editable regions, structural labeling, saved-work integrity, and canonical partition export. Fine facial segmentation and production workflow refinement remain.',
+  status: 'Functional Prototype',
+  validationFocus: 'Precise editable visual-region detection and correction',
+  nextMilestone: 'Complete facial-feature workflow and Cordel image proof',
   lastValidated: '2026-07-31 (internal; commit 654de66)',
   currentCapabilities: [
     { label: 'Deterministic image partitioning into discrete regions connected by an explicit adjacency and parent/child graph, with hash-verified reproducibility across runs and sessions — including one real non-determinism bug that was found and fixed during testing', evidence: 'Internally Validated' },
@@ -166,6 +180,8 @@ export const BYTEFLOW: ProjectRecord = {
   mission:
     'ByteFlow is the architecture’s planned answer to a simple question: once structure exists (ByteLite) and can be inspected (ByteSight), how does it move between systems without losing the guarantees it started with? ByteFlow is the layer responsible for lawful routing, synchronization, and efficient structural transfer.',
   status: 'Concept',
+  validationFocus: 'Not applicable — excluded from the public technology portfolio',
+  nextMilestone: 'Not applicable — excluded from the public technology portfolio',
   lastValidated: UNDATED,
   currentCapabilities: [],
   inDevelopment: [],
@@ -176,13 +192,14 @@ export const BYTEFLOW: ProjectRecord = {
   ],
   validation: [
     'ByteFlow is a planned architectural layer with no implementation yet. It is described here as a target, not a current capability.',
+    'This project is excluded from all public website surfaces as of the August 1, 2026 canonical model. Its source repository is unaffected; this record exists only so its route continues to build.',
   ],
   integrationReceives: ['Structural artifacts from ByteLite and ByteSight (planned)'],
   integrationProduces: ['Routed/synchronized structural transfers (planned)'],
   integrationConsumedBy: ['Cross-system movement within the ByteLite LLC architecture (planned)'],
   availability: 'Not publicly available',
   routes: ['/technologies/byteflow'],
-  claimRestrictions: ['Not an implemented system. Planned architectural layer only.'],
+  claimRestrictions: ['Not an implemented system. Planned architectural layer only.', 'Not listed on any public navigation, sitemap, or index as of August 1, 2026.'],
   accentColor: '#34d399',
 };
 
@@ -194,6 +211,8 @@ export const BYTECOST: ProjectRecord = {
   mission:
     'A savings claim is only meaningful if the cost it removed did not simply move somewhere else. ByteCost is the architecture’s planned layer for accounting burden, value, and consequence, so that "savings" and "efficiency" claims across ByteLite LLC systems stay tied to verified accounting rather than marketing arithmetic.',
   status: 'Concept',
+  validationFocus: 'Not applicable — excluded from the public technology portfolio',
+  nextMilestone: 'Not applicable — excluded from the public technology portfolio',
   lastValidated: UNDATED,
   currentCapabilities: [],
   inDevelopment: [],
@@ -204,13 +223,14 @@ export const BYTECOST: ProjectRecord = {
   ],
   validation: [
     'ByteCost is a planned architectural layer with no implementation yet. It is described here as a target, not a current capability.',
+    'This project is excluded from all public website surfaces as of the August 1, 2026 canonical model. Its source repository is unaffected; this record exists only so its route continues to build.',
   ],
   integrationReceives: ['Transformation and transfer events from ByteLite, ByteSight, ByteFlow (planned)'],
   integrationProduces: ['Verified burden/value accounting records (planned)'],
   integrationConsumedBy: ['Genesis Goalkeeper (planned, for consequence-aware governance)'],
   availability: 'Not publicly available',
   routes: ['/technologies/bytecost'],
-  claimRestrictions: ['Not an implemented system. Planned architectural layer only.'],
+  claimRestrictions: ['Not an implemented system. Planned architectural layer only.', 'Not listed on any public navigation, sitemap, or index as of August 1, 2026.'],
   accentColor: '#fbbf24',
 };
 
@@ -218,10 +238,12 @@ export const DEEP_KORE: ProjectRecord = {
   slug: 'deep-kore',
   name: 'Deep Kore',
   category: 'Technology · Deterministic Reasoning Substrate',
-  shortDescription: 'A private deterministic reasoning substrate for lawful structure, relation edges, and auditability.',
+  shortDescription: 'Deterministic recursive intelligence framework with governed operators and provenance controls.',
   mission:
-    'Deep Kore exists to keep reasoning inspectable. Instead of a black-box model that sounds confident, Deep Kore is designed to preserve source, uncertainty, relation, dependency, and contradiction state before anything is said or done. AIya is the human-facing layer built on top of it.',
+    'Deterministic recursive intelligence framework with governed operators, structured responses, provenance controls, generational state processing, application contracts, and internal integration validation.',
   status: 'Internal Validation',
+  validationFocus: 'Deterministic reasoning contracts, provenance, and cross-domain integration',
+  nextMilestone: 'Consolidated canonical repository and complete capability audit',
   lastValidated: '2026-07-31 (internal; commit 00e9c6a)',
   currentCapabilities: [
     { label: 'Deterministic, rule-based classification of conversational claims into structural types (e.g. direct fact, reported claim, belief, conditional claim, negated fact) — not statistical or predictive classification', evidence: 'Internally Validated' },
@@ -230,11 +252,13 @@ export const DEEP_KORE: ProjectRecord = {
     { label: 'A versioned context-envelope contract for what data crosses the Deep Kore/Cordel boundary, including a stateless mode verified by an automated test to store nothing beyond a single request', evidence: 'Internally Validated' },
     { label: 'Hash-based provenance records attached to processing history, and deterministic replay verified by the full automated test suite', evidence: 'Internally Validated' },
     { label: 'Design conventions that avoid storing personally identifying information in internal structures, verified for the specific conversational path used by Cordel Connect', evidence: 'Implemented' },
+    { label: 'Revelation Vanguard: a deterministic outbound delivery-calibration layer that maps content to a signed temperature axis and applies a bounded, deterministic correction without altering the underlying governed response text, verified by three dedicated invariant test suites', evidence: 'Internally Validated' },
   ],
   inDevelopment: [
     'Routing the remaining 13 of 32 recognized inquiry types (e.g. condition, consequence, hypothetical, procedure, recommendation) to live answers — currently typed and contract-validated only',
     'Reconciling the Cordel Connect integration: the app repository\'s two active branches currently disagree — one has the corrected canonical build path and a passing migration test, the other still points at a retired build location',
     'Relation-preservation and contradiction-detection features beyond their current typed/structural representation',
+    'Wiring Revelation Vanguard into the full AIya conversational path (currently validated at the engine level, not yet confirmed end-to-end through AIya in production)',
   ],
   endGame: [
     'All 32 inquiry types routed to live, governed answers',
@@ -245,13 +269,14 @@ export const DEEP_KORE: ProjectRecord = {
   validation: [
     'Internal validation, 2026-07-31 (commit 00e9c6a, local Windows/CMake build): the full registered automated test suite (195 tests) passed with zero failures against the current build, independently confirmed from the current on-disk test log.',
     'A claimed second, byte-identical reproduction of that same run ("reproduced twice") appears only in documentation from the same rebuild session; it is not independently re-confirmable from artifacts that currently exist on disk.',
+    'Revelation Vanguard specifically: three dedicated test executables (invariants, stage-B, inbound) were run directly against the canonical build and independently confirmed to pass — 2,964 of 2,964 assertions, zero failures, exit code 0 on all three. These are not part of the main 195-test registered suite.',
     'Private research only. No architecture, algorithm, or resolver internals are disclosed publicly.',
     'Not a claim of human-equivalent reasoning, consciousness, sentience, or finished AGI — this is a deterministic, rule-based structural-processing system, not a learned general model. No such claim exists anywhere in the current codebase or documentation.',
     'Not a claim that Cordel Connect\'s Deep Kore integration is presently consistent everywhere — the app repository\'s two active branches currently target different build locations.',
     'Not independently verified by a party outside ByteLite LLC.',
   ],
   integrationReceives: ['Structural input from ByteLite/ByteSight (planned)', 'User-facing prompts via AIya'],
-  integrationProduces: ['Governed reasoning output routed through Genesis Goalkeeper before emission'],
+  integrationProduces: ['Governed reasoning output routed through Genesis Goalkeeper before emission', 'Temperature-calibrated delivery wrap via Revelation Vanguard'],
   integrationConsumedBy: ['AIya (human-facing interface)', 'Cordel Connect (AIya wingman feature)'],
   availability: 'Internal research',
   routes: ['/technologies/deep-kore'],
@@ -268,10 +293,12 @@ export const AIYA: ProjectRecord = {
   slug: 'aiya',
   name: 'AIya',
   category: 'Technology · Human-Facing Interaction Layer (Deep Kore)',
-  shortDescription: 'The human-facing interaction layer built over Deep Kore. "The mouth does not rewrite the bones."',
+  shortDescription: 'Governed conversational interface powered by Deep Kore and integrated with Cordel application contracts.',
   mission:
-    'AIya exists so that Deep Kore’s governed reasoning has a way to communicate with people directly — asking, explaining, and acting only through governed system boundaries, never improvising past what the underlying reasoning has actually closed.',
-  status: 'Prototype',
+    'Governed conversational interface powered by Deep Kore and integrated with Cordel application contracts.',
+  status: 'Integrated Prototype',
+  validationFocus: 'Governed Deep Kore responses inside Cordel',
+  nextMilestone: 'Stable end-to-end private-alpha interaction testing',
   lastValidated: '2026-07-31 (internal; commit 16147d8)',
   currentCapabilities: [
     { label: 'Research-preview onboarding and chat-style interface screens inside private Cordel Connect test builds', evidence: 'Implemented' },
@@ -314,10 +341,12 @@ export const GENESIS_GOALKEEPER: ProjectRecord = {
   slug: 'genesis-goalkeeper',
   name: 'Genesis Goalkeeper',
   category: 'Technology · Governance Layer (Deep Kore)',
-  shortDescription: 'The meaning and action-law layer that decides whether an output or action may cross into the world.',
+  shortDescription: 'Deep Kore governance and structural-boundary layer enforcing truth, identity, consent, and authority.',
   mission:
-    'Genesis Goalkeeper exists because reasoning is not permission. It is the layer that evaluates truth, consent, harm, authority, identity, and uncertainty before anything Deep Kore or AIya produces is allowed to reach a person or trigger an action — and it is designed to halt intrinsically rather than proceed on a guess.',
+    'Deep Kore governance and structural-boundary layer enforcing truth, identity, consent, permission, uncertainty, harm, and authority.',
   status: 'Internal Validation',
+  validationFocus: 'Governance invariants, boundary coverage, no-bypass proof',
+  nextMilestone: 'Canonical end-to-end governed-emission proof',
   lastValidated: '2026-07-31 (internal; commit 00e9c6a)',
   currentCapabilities: [
     { label: 'A mandatory two-stage governance gate (semantic validation, then emission validation) that every Deep-Kore-routed response must pass before it can reach a user, implemented and covered by the automated test suite', evidence: 'Internally Validated' },
@@ -353,6 +382,50 @@ export const GENESIS_GOALKEEPER: ProjectRecord = {
   heroImageAlt: 'Scoped Action Envelope diagram: a proposed external action contained by ten required fields (what is requested, who is affected, what authority allows it, and more) and a Governance Gate that authorizes, requests clarification, or restrains/halts the action',
 };
 
+export const REVELATION_VANGUARD: ProjectRecord = {
+  slug: 'revelation-vanguard',
+  name: 'Revelation Vanguard',
+  category: 'Technology · Delivery Calibration Layer (Deep Kore)',
+  shortDescription: 'Deterministic outbound delivery-calibration layer applying a signed emotional-temperature axis without altering governed response content.',
+  mission:
+    'Deterministic outbound delivery-calibration layer applying a signed emotional-temperature axis without altering governed response content.',
+  status: 'Internal Validation',
+  validationFocus: 'Factual invariance, provenance, and delivery calibration',
+  nextMilestone: 'Full AIya-path integration with unchanged governed payload',
+  lastValidated: '2026-08-01 (internal; verified directly against the canonical Deep Kore build)',
+  currentCapabilities: [
+    { label: 'A deterministic, integer-only mapping from content to a signed temperature axis, with a bounded correction toward center applied before delivery', evidence: 'Internally Validated' },
+    { label: 'Pure-wrap guarantee: the underlying governed response text, source reference, tier, answerability, governance stamp, and audit fields are left byte-identical — only a wrap is added around them', evidence: 'Internally Validated' },
+    { label: 'A true-off mode verified to produce no wrap and no change to the raw sourced answer', evidence: 'Internally Validated' },
+    { label: 'Determinism verified by byte-identical output across repeated runs', evidence: 'Internally Validated' },
+  ],
+  inDevelopment: [
+    'Full end-to-end integration through the AIya conversational path in production, beyond the current engine-level validation',
+  ],
+  endGame: [
+    'Full AIya-path integration with the governed payload proven unchanged end-to-end',
+    'Extension of delivery calibration to additional Cordel-facing surfaces where appropriate',
+  ],
+  validation: [
+    'Internal validation, 2026-08-01: three dedicated test executables (test_vanguard_invariants, test_vanguard_stageb, test_vanguard_inbound) were run directly against the canonical Deep Kore build (D:\\LLC_Projects\\DeepKore) and independently confirmed to pass — 2,964 of 2,964 assertions, zero failures, exit code 0 on all three.',
+    'These three test executables are not currently part of the main 195-test registered CTest suite; they were verified by direct execution.',
+    'Private research only. No internal mapping tables, correction formulas, or band structures are disclosed publicly.',
+    'Not a claim that response content is altered, generated, or fabricated — the layer is verified to wrap, not rewrite, the underlying governed text.',
+    'Not independently verified by a party outside ByteLite LLC.',
+  ],
+  integrationReceives: ['Governed response text from Deep Kore, prior to emission'],
+  integrationProduces: ['A temperature-calibrated delivery wrap around the unchanged governed response'],
+  integrationConsumedBy: ['AIya (planned full-path integration)'],
+  availability: 'Internal research',
+  routes: ['/technologies/deep-kore/revelation-vanguard'],
+  claimRestrictions: [
+    'Not a public product of any kind.',
+    'Not a claim that governed response content is ever altered — verified as a pure wrap.',
+    'Not a claim of full end-to-end AIya-path integration — validated at the engine level, not yet confirmed through the full production conversational path.',
+  ],
+  accentColor: '#2dd4bf',
+};
+
 export const BYTEORACLE: ProjectRecord = {
   slug: 'byteoracle',
   name: 'ByteOracle',
@@ -361,6 +434,8 @@ export const BYTEORACLE: ProjectRecord = {
   mission:
     'ByteOracle calculates astronomical state locally and composes original, reproducible astrological readings from that state, rather than scraping third-party horoscope text or depending on a hosted language model at runtime.',
   status: 'Internal Validation',
+  validationFocus: 'Not applicable — excluded from the public technology portfolio; an internal rename is pending',
+  nextMilestone: 'Not applicable — excluded from the public technology portfolio; an internal rename is pending',
   lastValidated: '2026-07-31 (internal)',
   currentCapabilities: [
     { label: 'A 9-stage deterministic astronomical calculation pipeline (geometric state through event epochs) for the Sun, Moon, and eight planets, internally cross-checked layer-by-layer against the independent CSPICE (NASA/NAIF) and SOFA (IAU) reference libraries across the full 1900-2099 date grid', evidence: 'Internally Validated' },
@@ -372,10 +447,11 @@ export const BYTEORACLE: ProjectRecord = {
     'Reconciling backend integration onto the branch the app is actually deployed from — the tested integration above currently exists on a different branch than the one currently checked out for deployment',
     'A committed, published historical archive (only an untracked local development archive exists today)',
     'Consent-gated personalization using birth time/location, beyond the current per-sign generic records',
-    'Consolidating ByteOracle into its own canonical repository — it does not have one yet; its engine currently lives inside a Deep Kore development checkout and its app integration inside the Cordel Connect app repository',
+    'Consolidating this engine into its own canonical repository — it does not have one yet; the engine currently lives inside a Deep Kore development checkout and its app integration inside the Cordel Connect app repository',
+    'An internal rename is pending. No new internal name may appear publicly until it is finalized.',
   ],
   endGame: [
-    'A dedicated canonical ByteOracle repository, separated from Deep Kore and the app repository',
+    'A dedicated canonical repository, separated from Deep Kore and the app repository',
     'The tested backend integration live on whichever branch actually serves users',
     'A published, versioned historical archive with a stated coverage range',
     'Consent-gated personalized readings using birth time and location',
@@ -386,10 +462,11 @@ export const BYTEORACLE: ProjectRecord = {
     'Not currently confirmed live for end users — implemented and tested on a development branch, not confirmed present on the branch the app is deployed from.',
     'Not a claim of scientific, medical, financial, or relationship prediction — this is deterministic content generation from calculated astronomical state.',
     'Not independently verified by a party outside ByteLite LLC.',
+    'This project is excluded from all public website surfaces as of the August 1, 2026 canonical model, pending an internal rename. Its source repository is unaffected; this record exists only so its route continues to build. Cordel Connect describes the resulting horoscope capability generically, without naming this or any replacement engine.',
   ],
   integrationReceives: ['User birthday (for sign derivation)', 'Calendar date (for daily reading generation)'],
   integrationProduces: ['Zodiac sign', '156 daily records (12 individual + 144 ordered compatibility pairs)'],
-  integrationConsumedBy: ['Cordel Connect ("ByteOracle Horoscopes"), on the branch where this integration has been merged'],
+  integrationConsumedBy: ['Cordel Connect (horoscope feature), on the branch where this integration has been merged'],
   availability: 'Not publicly available',
   routes: ['/technologies/byteoracle'],
   claimRestrictions: [
@@ -397,31 +474,42 @@ export const BYTEORACLE: ProjectRecord = {
     'Not currently confirmed live for end users — see Validation and Evidence for the branch caveat.',
     'Not personalized beyond zodiac sign today — no birth-time/location-based personalization exists yet.',
     'Does not call any external AI/language model at generation time.',
+    'Not listed on any public navigation, sitemap, or index as of August 1, 2026 — an internal rename is pending.',
   ],
   accentColor: '#a78bfa',
   heroImage: '/technologies/byteoracle-deterministic-orbit-diagram.svg',
   heroImageAlt: 'Geometric diagram of calculated celestial positions on concentric rings, representing local deterministic astronomical calculation',
 };
 
+// Public technology portfolio: exactly the six core/systems technologies in the
+// August 1, 2026 canonical model (ByteLite, Deep Kore, ByteSight under Core
+// Technologies; AIya, Genesis Goalkeeper, Revelation Vanguard under Deep Kore
+// Systems). ByteFlow, ByteCost, and ByteOracle are intentionally excluded from
+// this public aggregate — their ProjectRecords above still exist (so their
+// individual routes continue to build) but they are not linked from any public
+// nav, sitemap, or index.
 export const ALL_TECHNOLOGIES: ProjectRecord[] = [
   BYTELITE,
-  BYTESIGHT,
   DEEP_KORE,
+  BYTESIGHT,
   AIYA,
   GENESIS_GOALKEEPER,
-  BYTEORACLE,
-  BYTEFLOW,
-  BYTECOST,
+  REVELATION_VANGUARD,
 ];
+
+// Retained but unlisted: excluded from ALL_TECHNOLOGIES and all public surfaces.
+export const EXCLUDED_TECHNOLOGIES: ProjectRecord[] = [BYTEFLOW, BYTECOST, BYTEORACLE];
 
 export const CORDEL_PLAY: ProjectRecord = {
   slug: 'cordel-play',
   name: 'Cordel Play',
   category: 'Product · Consent-Forward Adult Board Game',
-  shortDescription: 'A premium consent-first adult social board game for private groups of 2 to 18 players.',
+  shortDescription: 'Consent-first adult board game with established gameplay architecture and manufacturing specifications.',
   mission:
-    'Cordel Play exists to make consent and pacing structural parts of the game itself — not something a group has to negotiate separately — through a six-tier escalation system, the standing Consent Cup, and a Decree deck where escape is a real, spendable resource rather than a free pass.',
-  status: 'Prototype',
+    'Consent-first adult board game with established gameplay architecture, component specifications, board formats, tier system, card structure, Consent Cup design, packaging concepts, and manufacturing specifications. Final comprehensive playtesting, production engineering, and manufacturing validation remain.',
+  status: 'Advanced Prototype',
+  validationFocus: 'Complete rules coherence and physical product validation',
+  nextMilestone: 'Controlled full-session playtesting',
   lastValidated: UNDATED,
   currentCapabilities: [
     { label: 'Complete product design: six escalation tiers, three board configurations, Decree deck, Consent Cup', evidence: 'Implemented' },
@@ -459,10 +547,12 @@ export const CORDEL_CONNECT: ProjectRecord = {
   slug: 'cordel-connect',
   name: 'Cordel Connect',
   category: 'Product · Privacy-First Compatibility and Connection',
-  shortDescription: 'A private-test digital companion built around deep compatibility, cryptographically split privacy, and safety-first date planning.',
+  shortDescription: 'Privacy-focused compatibility application with core survey, identity controls, and deterministic intelligence integration substantially implemented.',
   mission:
-    'Cordel Connect exists to fix three things most dating apps treat as afterthoughts: whether two people are actually compatible, whether your private answers stay private even from the platform itself, and whether you are safer meeting someone from the app in real life.',
-  status: 'Private Test',
+    'Privacy-focused compatibility application with the core compatibility survey, identity controls, private-data handling, two-device validation, and deterministic intelligence integration substantially implemented. Stability validation, production deployment, complete Cordel migration verification, and release preparation remain.',
+  status: 'Private Alpha',
+  validationFocus: 'Application stability and complete production integration',
+  nextMilestone: 'Stable private-alpha build across supported devices',
   lastValidated: UNDATED,
   currentCapabilities: [
     { label: 'Private Android test builds with login, discover, matches, messages, profile, and settings surfaces', evidence: 'Implemented' },
@@ -476,7 +566,7 @@ export const CORDEL_CONNECT: ProjectRecord = {
     'Game room, date hub, and friendship features',
     'Cartoonized profile photo transformation',
     'AIya wingman conversational interface',
-    'ByteOracle horoscope integration',
+    'Daily horoscope integration',
   ],
   endGame: [
     'Public beta and eventual public app-store release',
@@ -487,7 +577,7 @@ export const CORDEL_CONNECT: ProjectRecord = {
     'Private Android test builds only. No public app store listing.',
     'A full app-specific privacy policy will be published before any public launch or broader beta release.',
   ],
-  integrationReceives: ['AIya (wingman)', 'ByteOracle (horoscopes)', 'ByteSight (planned photo adapter)'],
+  integrationReceives: ['AIya (wingman)', 'Deterministic horoscope engine (name pending; see the Horoscopes feature)', 'ByteSight (planned photo adapter)'],
   integrationProduces: ['Match/compatibility results', 'Date-planning flows'],
   integrationConsumedBy: [],
   availability: 'Private test',
@@ -505,33 +595,38 @@ export const CORDEL_CONNECT: ProjectRecord = {
     '/products/cordel-connect/date-planning/restaurants',
     '/products/cordel-connect/date-planning/restaurants/partner-program',
   ],
-  claimRestrictions: ['Not on any public app store.', 'Not a finished/production AI product (AIya).'],
+  claimRestrictions: ['Not on any public app store.', 'Not a finished/production AI product (AIya).', 'The horoscope feature is deterministic and locally generated; no underlying engine name is published while an internal rename is pending.'],
   accentColor: '#818cf8',
 };
 
 export const RESTAURANT_PARTNER_PROGRAM: ProjectRecord = {
   slug: 'restaurant-partner-program',
-  name: 'Cordel Restaurant Partner Program',
+  name: 'Restaurant Partner Program',
   category: 'Product · B2B Pilot (Cordel Connect / Date Planning)',
-  shortDescription: 'A self-serve pilot letting restaurants become featured Cordel Connect date suggestions.',
+  shortDescription: 'Restaurant partnership program for Cordel experiences and participating venues, preparing for its first verified pilot.',
   mission:
-    'The Restaurant Partner Program exists to give Cordel Connect real, honestly-labeled date suggestions, funded by restaurants who opt in — never disguised as a neutral pick.',
-  status: 'Public Beta',
+    'Restaurant partnership program for Cordel experiences and participating venues. Signup and approval workflow exists. External pilot participation must be verified before this status can become Private Pilot or Public Beta.',
+  status: 'Pilot Preparation',
+  validationFocus: 'Pilot requirements and partner workflow definition',
+  nextMilestone: 'First verified restaurant pilot',
   lastValidated: UNDATED,
   currentCapabilities: [
     { label: 'Self-serve signup, templated profile builder, and deal configuration', evidence: 'Implemented' },
     { label: '$20 one-time pilot payment via Stripe (test mode during pilot)', evidence: 'Implemented' },
     { label: 'Manual review gate before any paid listing goes live', evidence: 'Implemented' },
   ],
-  inDevelopment: ['Ongoing (post-pilot) placement pricing', 'Premium / multi-location tiers', 'Self-serve editing after go-live'],
+  inDevelopment: ['First verified external restaurant pilot', 'Ongoing (post-pilot) placement pricing', 'Premium / multi-location tiers', 'Self-serve editing after go-live'],
   endGame: ['Ongoing placement pricing tiers', 'Deeper integration with Blind Date Roulette'],
-  validation: ['Live pilot at /products/cordel-connect/date-planning/restaurants/partner-program. Stripe payments run in test mode during the pilot.'],
+  validation: [
+    'Self-serve signup and Stripe test-mode checkout exist and are live at /products/cordel-connect/date-planning/restaurants/partner-program.',
+    'No external restaurant has been verified as a completed pilot participant yet. Status will move to Private Pilot or Public Beta once that is confirmed.',
+  ],
   integrationReceives: ['Restaurant profile and deal submissions'],
   integrationProduces: ['Featured, labeled restaurant suggestions'],
   integrationConsumedBy: ['Cordel Connect (Date Planning / Restaurants)'],
-  availability: 'Public beta',
+  availability: 'Not publicly available',
   routes: ['/products/cordel-connect/date-planning/restaurants/partner-program'],
-  claimRestrictions: ['Only the $20 pilot price is decided; all other pricing is explicitly "to be set."', 'Paid does not mean auto-published — every listing passes manual review.'],
+  claimRestrictions: ['Only the $20 pilot price is decided; all other pricing is explicitly "to be set."', 'Paid does not mean auto-published — every listing passes manual review.', 'Not yet a verified Private Pilot or Public Beta — no external restaurant participation has been confirmed.'],
   accentColor: '#ec4899',
 };
 

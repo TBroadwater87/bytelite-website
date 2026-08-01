@@ -8,7 +8,9 @@ export default defineConfig({
   integrations: [
     tailwind(),
     sitemap({
-      filter: (page) => !/\/(marketing\/admin|preorder\/status)\/?$/.test(page),
+      // byteflow/bytecost/byteoracle: excluded from all public surfaces per the
+      // August 1, 2026 canonical model (their routes still build, just unlisted).
+      filter: (page) => !/\/(marketing\/admin|preorder\/status|technologies\/byteflow|technologies\/bytecost|technologies\/byteoracle)\/?$/.test(page),
     }),
     react()
   ],

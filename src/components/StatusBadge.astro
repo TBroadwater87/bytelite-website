@@ -7,17 +7,21 @@ export interface Props {
 
 const { status } = Astro.props;
 
+// Canonical status vocabulary (August 1, 2026). "Preorder", "Paused", and
+// "Completed" were dropped from ProjectStatus: unused by any current
+// ProjectRecord, retained nowhere else in the codebase. Concept always renders
+// muted gray (badge-none) regardless of category, per the canonical model.
 const CLASS_MAP: Record<ProjectStatus, string> = {
   Concept: 'badge-none',
-  Prototype: 'badge-planned',
+  'Functional Prototype': 'badge-planned',
+  'Advanced Prototype': 'badge-planned',
+  'Integrated Prototype': 'badge-planned',
   'Internal Validation': 'badge-research',
-  'Private Test': 'badge-private',
-  'Private Beta': 'badge-private',
+  'Private Alpha': 'badge-private',
+  'Pilot Preparation': 'badge-prelaunch',
+  'Private Pilot': 'badge-private',
   'Public Beta': 'badge-beta',
-  Preorder: 'badge-prelaunch',
   Production: 'badge-active',
-  Paused: 'badge-paused',
-  Completed: 'badge-active',
 };
 
 const cls = CLASS_MAP[status];

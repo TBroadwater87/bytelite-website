@@ -20,6 +20,10 @@ const { project, displayName } = Astro.props;
         <StatusBadge status={project.status} />
         <span class="pph-hero-avail">{project.availability}</span>
       </div>
+      <div class="pph-hero-meta">
+        <div class="pph-hero-meta-item"><span class="pph-hero-meta-label">Validation focus</span><span>{project.validationFocus}</span></div>
+        <div class="pph-hero-meta-item"><span class="pph-hero-meta-label">Next milestone</span><span>{project.nextMilestone}</span></div>
+      </div>
     </div>
     {project.heroImage && (
       <div class="pph-hero-media">
@@ -37,6 +41,9 @@ const { project, displayName } = Astro.props;
 .pph-hero-sub { max-width: 640px; margin-top: 1rem; font-size: 1.0625rem; color: #a0a8c0; line-height: 1.75; }
 .pph-hero-badges { display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
 .pph-hero-avail { font-size: .8125rem; color: #555e7a; }
+.pph-hero-meta { display: flex; flex-direction: column; gap: .5rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid #1a2235; max-width: 560px; }
+.pph-hero-meta-item { display: flex; flex-wrap: wrap; gap: .5rem; font-size: .875rem; color: #a0a8c0; line-height: 1.6; }
+.pph-hero-meta-label { flex-shrink: 0; font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #555e7a; min-width: 8.5rem; }
 .pph-hero-media { flex-shrink: 0; width: 280px; }
 .pph-hero-media img {
   width: 100%; height: auto; max-height: 280px; object-fit: contain;
