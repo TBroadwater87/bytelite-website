@@ -1,117 +1,152 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
-  <title id="title">ByteLite LLC architecture hierarchy</title>
-  <desc id="desc">ByteLite LLC branching into consumer products and private deterministic technology research, with each item's canonical status.</desc>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1600"
+     height="980"
+     viewBox="0 0 1600 980"
+     role="img"
+     aria-labelledby="title desc">
+  <title id="title">ByteLite LLC Project and Technology Progress</title>
+  <desc id="desc">
+    ByteLite LLC hierarchy showing three consumer products, four core technologies,
+    and two Deep Kore systems. ByteFlow and ByteCost are intentionally excluded.
+  </desc>
+
   <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.32"/>
+    </filter>
+
     <style>
-      .title { font: 700 42px Arial, Helvetica, sans-serif; letter-spacing: 0.5px; }
-      .branch { font: 700 28px Arial, Helvetica, sans-serif; letter-spacing: 0.3px; }
-      .item { font: 600 23px Arial, Helvetica, sans-serif; }
-      .tag { font: 700 14px Arial, Helvetica, sans-serif; letter-spacing: 0.4px; }
-      .line { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .page-bg { fill: #0b0e14; }
+      .panel { fill: #11151d; stroke: #252b36; stroke-width: 2; }
+      .root-box { fill: #151a22; stroke: #caa451; stroke-width: 4; }
+      .root-text { fill: #ffffff; font: 700 31px "Segoe UI", Arial, sans-serif; }
+
+      .connector { fill: none; stroke: #caa451; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+
+      .consumer-header { fill: #f8ddec; stroke: #f3248e; stroke-width: 3; }
+      .consumer-card { fill: #fff1f8; stroke: #f3248e; stroke-width: 3; }
+      .consumer-title { fill: #c71870; font: 700 24px "Segoe UI", Arial, sans-serif; }
+
+      .technology-header { fill: #d8e9f7; stroke: #62aee5; stroke-width: 3; }
+      .technology-card { fill: #edf7ff; stroke: #62aee5; stroke-width: 3; }
+      .technology-title { fill: #0b3154; font: 700 24px "Segoe UI", Arial, sans-serif; }
+
+      .system-header { fill: #d9f1ef; stroke: #42a79d; stroke-width: 3; }
+      .system-card { fill: #eefaf8; stroke: #42a79d; stroke-width: 3; }
+      .system-title { fill: #145c56; font: 700 23px "Segoe UI", Arial, sans-serif; }
+
+      .card-name { fill: #0a0d12; font: 700 21px "Segoe UI", Arial, sans-serif; }
+      .group-label { fill: #aeb8c7; font: 600 16px "Segoe UI", Arial, sans-serif; letter-spacing: 1.2px; }
+
+      .pill-text { fill: #0b2334; font: 700 13px "Segoe UI", Arial, sans-serif; }
+      .pill-consumer { fill: #ffe3f1; stroke: #e92987; stroke-width: 1.6; }
+      .pill-tech { fill: #dff5f4; stroke: #258d87; stroke-width: 1.6; }
+      .pill-system { fill: #daf3ee; stroke: #258d87; stroke-width: 1.6; }
+
+      .note { fill: #8e99a8; font: 500 14px "Segoe UI", Arial, sans-serif; }
     </style>
   </defs>
 
-  <g id="parent-organization">
-    <rect x="575" y="28" width="450" height="82" rx="22" fill="#111318" stroke="#B99A55" stroke-width="4"/>
-    <line x1="603" y1="96" x2="997" y2="96" stroke="#B99A55" stroke-width="3"/>
-    <text x="800.0" y="86" text-anchor="middle" class="title" fill="#FFFFFF">ByteLite LLC</text>
-  </g>
-  <path d="M800 110 V160 H390 V205 M800 160 H1210 V205" class="line" stroke="#B99A55" stroke-width="4"/>
+  <rect class="page-bg" x="0" y="0" width="1600" height="980"/>
+  <rect class="panel" x="40" y="35" width="1520" height="900" rx="24"/>
 
-  <g id="consumer-branch-header">
-    <rect x="80" y="205" width="620" height="66" rx="18" fill="#FCE1EF" stroke="#EC2A88" stroke-width="3"/>
-    <text x="390.0" y="248" text-anchor="middle" class="branch" fill="#B91873">Consumer Products</text>
+  <!-- Root -->
+  <g filter="url(#shadow)">
+    <rect class="root-box" x="605" y="62" width="390" height="76" rx="18"/>
+    <text class="root-text" x="800" y="111" text-anchor="middle">ByteLite LLC</text>
+    <line x1="635" y1="128" x2="965" y2="128" stroke="#caa451" stroke-width="2"/>
   </g>
-  <g id="research-branch-header">
-    <rect x="900" y="205" width="620" height="66" rx="18" fill="#DCEAF5" stroke="#356B9A" stroke-width="3"/>
-    <text x="1210.0" y="248" text-anchor="middle" class="branch" fill="#10263F">Technologies</text>
+
+  <!-- Primary connectors -->
+  <path class="connector" d="M800 138 V180"/>
+  <path class="connector" d="M400 180 H1200"/>
+  <path class="connector" d="M400 180 V212"/>
+  <path class="connector" d="M1200 180 V212"/>
+
+  <!-- Consumer Products -->
+  <g filter="url(#shadow)">
+    <rect class="consumer-header" x="105" y="212" width="590" height="68" rx="15"/>
+    <text class="consumer-title" x="400" y="255" text-anchor="middle">Consumer Products</text>
   </g>
-    <g id="consumer-item-1">
-      <rect x="95" y="330" width="590" height="125" rx="16" fill="#FFF0F7" stroke="#B91873" stroke-width="2.5"/>
-      <text x="119" y="366" text-anchor="start" class="item" fill="#111318">Cordel Play</text>
-      <g class="status-tag">
-      <rect x="575" y="415" width="92" height="28" rx="14" fill="#FCE1EF" stroke="#B91873" stroke-width="1.5"/>
-      <text x="621.0" y="434" text-anchor="middle" class="tag" fill="#B91873">Prototype</text>
-    </g>
-    </g>
-    <g id="consumer-item-2">
-      <rect x="95" y="510" width="590" height="125" rx="16" fill="#FFF0F7" stroke="#B91873" stroke-width="2.5"/>
-      <text x="119" y="546" text-anchor="start" class="item" fill="#111318">Cordel Connect</text>
-      <g class="status-tag">
-      <rect x="559" y="595" width="108" height="28" rx="14" fill="#FCE1EF" stroke="#B91873" stroke-width="1.5"/>
-      <text x="613.0" y="614" text-anchor="middle" class="tag" fill="#B91873">Private Test</text>
-    </g>
-    </g>
-    <g id="consumer-item-3">
-      <rect x="95" y="690" width="590" height="125" rx="16" fill="#FFF0F7" stroke="#B91873" stroke-width="2.5"/>
-      <text x="119" y="726" text-anchor="start" class="item" fill="#111318">Restaurant Partner Program</text>
-      <g class="status-tag">
-      <rect x="583" y="775" width="94" height="28" rx="14" fill="#FCE1EF" stroke="#B91873" stroke-width="1.5"/>
-      <text x="630.0" y="794" text-anchor="middle" class="tag" fill="#B91873">Public Beta</text>
-    </g>
-    </g>
-    <g id="research-item-1">
-      <rect x="915" y="315" width="590" height="66" rx="16" fill="#EEF5FA" stroke="#356B9A" stroke-width="2.5"/>
-      <text x="939" y="351" text-anchor="start" class="item" fill="#10263F">ByteLite</text>
-      <g class="status-tag">
-      <rect x="1327" y="341" width="160" height="28" rx="14" fill="#D7EFED" stroke="#2E8C89" stroke-width="1.5"/>
-      <text x="1407.0" y="360" text-anchor="middle" class="tag" fill="#10263F">Internal Validation</text>
-    </g>
-    </g>
-    <g id="research-item-2">
-      <rect x="915" y="397" width="590" height="66" rx="16" fill="#EEF5FA" stroke="#356B9A" stroke-width="2.5"/>
-      <text x="939" y="433" text-anchor="start" class="item" fill="#10263F">ByteSight</text>
-      <g class="status-tag">
-      <rect x="1421" y="423" width="66" height="28" rx="14" fill="#D7EFED" stroke="#2E8C89" stroke-width="1.5"/>
-      <text x="1454.0" y="442" text-anchor="middle" class="tag" fill="#10263F">Concept</text>
-    </g>
-    </g>
-    <g id="research-item-3">
-      <rect x="915" y="479" width="590" height="66" rx="16" fill="#EEF5FA" stroke="#356B9A" stroke-width="2.5"/>
-      <text x="939" y="515" text-anchor="start" class="item" fill="#10263F">Deep Kore</text>
-      <g class="status-tag">
-      <rect x="1327" y="505" width="160" height="28" rx="14" fill="#D7EFED" stroke="#2E8C89" stroke-width="1.5"/>
-      <text x="1407.0" y="524" text-anchor="middle" class="tag" fill="#10263F">Internal Validation</text>
-    </g>
-    </g>
-    <g id="research-item-4">
-      <rect x="915" y="561" width="590" height="66" rx="16" fill="#EEF5FA" stroke="#356B9A" stroke-width="2.5"/>
-      <text x="939" y="597" text-anchor="start" class="item" fill="#10263F">AIya</text>
-      <g class="status-tag">
-      <rect x="1421" y="587" width="66" height="28" rx="14" fill="#D7EFED" stroke="#2E8C89" stroke-width="1.5"/>
-      <text x="1454.0" y="606" text-anchor="middle" class="tag" fill="#10263F">Prototype</text>
-    </g>
-    </g>
-    <g id="research-item-5">
-      <rect x="915" y="643" width="590" height="66" rx="16" fill="#EEF5FA" stroke="#356B9A" stroke-width="2.5"/>
-      <text x="939" y="679" text-anchor="start" class="item" fill="#10263F">Genesis Goalkeeper</text>
-      <g class="status-tag">
-      <rect x="1421" y="669" width="66" height="28" rx="14" fill="#D7EFED" stroke="#2E8C89" stroke-width="1.5"/>
-      <text x="1454.0" y="688" text-anchor="middle" class="tag" fill="#10263F">Concept</text>
-    </g>
-    </g>
-    <g id="research-item-6">
-      <rect x="915" y="725" width="590" height="66" rx="16" fill="#EEF5FA" stroke="#356B9A" stroke-width="2.5"/>
-      <text x="939" y="761" text-anchor="start" class="item" fill="#10263F">ByteOracle</text>
-      <g class="status-tag">
-      <rect x="1421" y="751" width="66" height="28" rx="14" fill="#D7EFED" stroke="#2E8C89" stroke-width="1.5"/>
-      <text x="1454.0" y="770" text-anchor="middle" class="tag" fill="#10263F">Concept</text>
-    </g>
-    </g>
-    <g id="research-item-7">
-      <rect x="915" y="807" width="590" height="66" rx="16" fill="#EEF5FA" stroke="#356B9A" stroke-width="2.5"/>
-      <text x="939" y="843" text-anchor="start" class="item" fill="#10263F">ByteFlow</text>
-      <g class="status-tag">
-      <rect x="1421" y="833" width="66" height="28" rx="14" fill="#D7EFED" stroke="#2E8C89" stroke-width="1.5"/>
-      <text x="1454.0" y="852" text-anchor="middle" class="tag" fill="#10263F">Concept</text>
-    </g>
-    </g>
-    <g id="research-item-8">
-      <rect x="915" y="889" width="590" height="66" rx="16" fill="#EEF5FA" stroke="#356B9A" stroke-width="2.5"/>
-      <text x="939" y="925" text-anchor="start" class="item" fill="#10263F">ByteCost</text>
-      <g class="status-tag">
-      <rect x="1421" y="915" width="66" height="28" rx="14" fill="#D7EFED" stroke="#2E8C89" stroke-width="1.5"/>
-      <text x="1454.0" y="934" text-anchor="middle" class="tag" fill="#10263F">Concept</text>
-    </g>
-    </g>
+
+  <!-- Consumer cards -->
+  <g filter="url(#shadow)">
+    <rect class="consumer-card" x="120" y="318" width="560" height="104" rx="14"/>
+    <text class="card-name" x="145" y="358">Cordel Play</text>
+    <rect class="pill-consumer" x="480" y="377" width="175" height="28" rx="14"/>
+    <text class="pill-text" x="567.5" y="396" text-anchor="middle">Advanced Prototype</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect class="consumer-card" x="120" y="455" width="560" height="104" rx="14"/>
+    <text class="card-name" x="145" y="495">Cordel Connect</text>
+    <rect class="pill-consumer" x="518" y="514" width="137" height="28" rx="14"/>
+    <text class="pill-text" x="586.5" y="533" text-anchor="middle">Private Alpha</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect class="consumer-card" x="120" y="592" width="560" height="104" rx="14"/>
+    <text class="card-name" x="145" y="632">Restaurant Partner Program</text>
+    <rect class="pill-consumer" x="500" y="651" width="155" height="28" rx="14"/>
+    <text class="pill-text" x="577.5" y="670" text-anchor="middle">Pilot Preparation</text>
+  </g>
+
+  <!-- Technology Portfolio -->
+  <g filter="url(#shadow)">
+    <rect class="technology-header" x="850" y="212" width="645" height="68" rx="15"/>
+    <text class="technology-title" x="1172.5" y="255" text-anchor="middle">Technology Portfolio</text>
+  </g>
+
+  <text class="group-label" x="870" y="318">CORE TECHNOLOGIES</text>
+
+  <!-- Core technology cards -->
+  <g filter="url(#shadow)">
+    <rect class="technology-card" x="870" y="337" width="605" height="72" rx="13"/>
+    <text class="card-name" x="895" y="381">ByteLite</text>
+    <rect class="pill-tech" x="1275" y="359" width="175" height="28" rx="14"/>
+    <text class="pill-text" x="1362.5" y="378" text-anchor="middle">Internal Validation</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect class="technology-card" x="870" y="424" width="605" height="72" rx="13"/>
+    <text class="card-name" x="895" y="468">Deep Kore</text>
+    <rect class="pill-tech" x="1275" y="446" width="175" height="28" rx="14"/>
+    <text class="pill-text" x="1362.5" y="465" text-anchor="middle">Internal Validation</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect class="technology-card" x="870" y="511" width="605" height="72" rx="13"/>
+    <text class="card-name" x="895" y="555">ByteSight</text>
+    <rect class="pill-tech" x="1253" y="533" width="197" height="28" rx="14"/>
+    <text class="pill-text" x="1351.5" y="552" text-anchor="middle">Functional Prototype</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect class="technology-card" x="870" y="598" width="605" height="72" rx="13"/>
+    <text class="card-name" x="895" y="642">ByteOracle</text>
+    <rect class="pill-tech" x="1275" y="620" width="175" height="28" rx="14"/>
+    <text class="pill-text" x="1362.5" y="639" text-anchor="middle">Internal Validation</text>
+  </g>
+
+  <text class="group-label" x="870" y="716">DEEP KORE SYSTEMS</text>
+
+  <!-- Deep Kore systems -->
+  <g filter="url(#shadow)">
+    <rect class="system-card" x="870" y="735" width="605" height="72" rx="13"/>
+    <text class="card-name" x="895" y="779">AIya</text>
+    <rect class="pill-system" x="1250" y="757" width="200" height="28" rx="14"/>
+    <text class="pill-text" x="1350" y="776" text-anchor="middle">Integrated Prototype</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect class="system-card" x="870" y="822" width="605" height="72" rx="13"/>
+    <text class="card-name" x="895" y="866">Genesis Goalkeeper</text>
+    <rect class="pill-system" x="1332" y="844" width="118" height="28" rx="14"/>
+    <text class="pill-text" x="1391" y="863" text-anchor="middle">Concept</text>
+  </g>
+
+  <text class="note" x="800" y="925" text-anchor="middle">
+    Status last reviewed: August 1, 2026
+  </text>
 </svg>
