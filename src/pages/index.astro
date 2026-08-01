@@ -25,16 +25,55 @@ const TECH_MARKS: Record<string, string> = {
   <section class="hero">
     <div class="container">
       <p class="eyebrow">ByteLite LLC</p>
-      <h1>Deterministic structure for digital information, vision, reasoning, and human interaction.</h1>
+      <h1>Deterministic systems that preserve what matters.</h1>
       <p class="hero-sub">
-        ByteLite LLC develops a layered deterministic architecture designed to preserve identity,
-        reconstruct information exactly, represent structured evidence, govern system action, and
-        support privacy-first public products — from Helena, Montana.
+        ByteLite LLC develops exact digital-structure technology, inspectable visual and
+        reasoning systems, and the Cordel consumer ecosystem.
       </p>
       <div class="hero-cta-row">
-        <a href="/technologies" class="btn btn-primary">Explore the Technologies</a>
-        <a href="/progress" class="btn btn-outline">View Current Proof Status</a>
-        <a href="#products" class="btn btn-ghost">Explore Public Products</a>
+        <a href="/technologies" class="btn btn-primary">Explore the Technology</a>
+        <a href="#products" class="btn btn-outline">Explore Cordel</a>
+        <a href="/progress/validation-evidence" class="btn btn-ghost">Review Validation Evidence</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Audience paths -->
+  <section class="section audience-section" id="audience-paths">
+    <div class="container">
+      <p class="eyebrow" style="text-align:center;">Where to start</p>
+      <h2 style="text-align:center;margin-bottom:2.5rem;">Three ways into ByteLite LLC.</h2>
+      <div class="audience-grid">
+        <div class="audience-col">
+          <h3 class="audience-heading">For People</h3>
+          <p class="audience-sub">The consumer products, available to try or reserve today.</p>
+          <ul class="audience-list">
+            <li><a href="/products/cordel-play">Cordel Play</a><span>Consent-forward adult board game — founder reservation open, no charge.</span></li>
+            <li><a href="/products/cordel-connect">Cordel Connect</a><span>Privacy-first compatibility app — private Android test builds.</span></li>
+          </ul>
+        </div>
+        <div class="audience-col">
+          <h3 class="audience-heading">For Organizations</h3>
+          <p class="audience-sub">Partnership, licensing, and investment inquiries, routed directly.</p>
+          <ul class="audience-list">
+            <li><a href="/contact?type=validation-partnership">Technical validation</a><span>Submits a validation-specific inquiry.</span></li>
+            <li><a href="/contact?type=licensing">Licensing</a><span>Submits a licensing-specific inquiry.</span></li>
+            <li><a href="/contact?type=manufacturing">Manufacturing</a><span>Submits a manufacturing-specific inquiry.</span></li>
+            <li><a href="/contact?type=distribution">Distribution</a><span>Submits a distribution-specific inquiry.</span></li>
+            <li><a href="/products/cordel-connect/date-planning/restaurants/partner-program">Restaurant partnerships</a><span>Goes to the live $20 pilot signup (Stripe test mode).</span></li>
+            <li><a href="/company/investors">Investment</a><span>Evidence first, then a routed investor inquiry.</span></li>
+          </ul>
+        </div>
+        <div class="audience-col">
+          <h3 class="audience-heading">For Technical Reviewers</h3>
+          <p class="audience-sub">The architecture and the evidence behind every status claim.</p>
+          <ul class="audience-list">
+            <li><a href="/architecture">Architecture</a><span>The seven-layer deterministic structure stack.</span></li>
+            <li><a href="/progress">Current status</a><span>Canonical status for every technology and product.</span></li>
+            <li><a href="/progress/validation-evidence">Validation evidence</a><span>What has and has not been validated, per project.</span></li>
+            <li><a href="/progress/development-timeline">Development timeline</a><span>What has already happened, with no future dates promised.</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -144,15 +183,15 @@ const TECH_MARKS: Record<string, string> = {
       <p class="eyebrow" style="text-align:center;">Company</p>
       <h2 style="text-align:center;margin-bottom:2.5rem;">Get in touch.</h2>
       <div class="inquiry-grid">
-        <a href="/company/partnerships" class="inquiry-card">Technology &amp; validation partnerships</a>
-        <a href="/company/partnerships" class="inquiry-card">Licensing inquiries</a>
-        <a href="/company/partnerships" class="inquiry-card">Manufacturing &amp; distribution</a>
+        <a href="/contact?type=validation-partnership" class="inquiry-card">Technical validation partnerships</a>
+        <a href="/contact?type=licensing" class="inquiry-card">Licensing inquiries</a>
+        <a href="/contact?type=manufacturing" class="inquiry-card">Manufacturing inquiries</a>
+        <a href="/contact?type=distribution" class="inquiry-card">Distribution inquiries</a>
         <a href="/products/cordel-connect/date-planning/restaurants/partner-program" class="inquiry-card">Restaurant partnerships</a>
         <a href="/company/investors" class="inquiry-card">Investor conversations</a>
-        <a href="/contact" class="inquiry-card">General contact</a>
       </div>
       <div style="text-align:center;margin-top:2.5rem;">
-        <a href="/contact" class="btn btn-primary">Contact ByteLite LLC</a>
+        <a href="/contact" class="btn btn-primary">General Contact</a>
       </div>
     </div>
   </section>
@@ -174,6 +213,20 @@ const TECH_MARKS: Record<string, string> = {
 }
 .hero-cta-row { display: flex; gap: .875rem; flex-wrap: wrap; margin-top: 2.25rem; }
 @media (max-width: 540px) { .hero { padding: 4.5rem 0 3.5rem; } }
+
+/* Audience paths */
+.audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; max-width: 1100px; margin: 0 auto; }
+@media (max-width: 900px) { .audience-grid { grid-template-columns: 1fr; } }
+.audience-col { background: #07090f; border: 1px solid #1a2235; border-radius: .875rem; padding: 1.75rem; }
+.audience-heading { font-size: 1.0625rem; color: #e4e7f2; margin-bottom: .5rem; }
+.audience-sub { font-size: .8125rem; color: #7b829e; margin: 0 0 1.25rem; line-height: 1.6; }
+.audience-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem; }
+.audience-list li { display: flex; flex-direction: column; gap: .2rem; padding-top: 1rem; border-top: 1px solid #1a2235; }
+.audience-list li:first-child { padding-top: 0; border-top: none; }
+.audience-list a { font-size: .9375rem; font-weight: 500; color: #818cf8; }
+.audience-list a:hover, .audience-list a:focus-visible { color: #a5b4fc; }
+.audience-list a:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }
+.audience-list span { font-size: .8125rem; color: #7b829e; line-height: 1.5; }
 
 /* Architecture diagram */
 .arch-diagram {

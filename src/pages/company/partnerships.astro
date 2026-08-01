@@ -40,38 +40,44 @@ const SUBNAV = [
     <div class="container" style="max-width:760px;">
       <h2 style="margin-bottom:1.5rem;">Inquiry categories</h2>
       <div class="pt-grid">
-        <div class="pt-card">
+        <a href="/contact?type=technology-partnership" class="pt-card pt-card-link">
           <span class="pt-icon" style="background:rgba(99,102,241,.12);color:#6366f1;" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v4M15 3v4M4 8h16l-1 12H5L4 8z"/><path d="M9 12h6"/></svg>
           </span>
-          <span>Technology &amp; validation partnerships</span>
-        </div>
-        <div class="pt-card">
+          <span class="pt-card-text"><span class="pt-card-label">Technology partnerships</span><span class="pt-card-cta">Submit a technology partnership inquiry &rarr;</span></span>
+        </a>
+        <a href="/contact?type=validation-partnership" class="pt-card pt-card-link">
+          <span class="pt-icon" style="background:rgba(99,102,241,.12);color:#6366f1;" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/></svg>
+          </span>
+          <span class="pt-card-text"><span class="pt-card-label">Technical validation partnerships</span><span class="pt-card-cta">Submit a technical validation inquiry &rarr;</span></span>
+        </a>
+        <a href="/contact?type=licensing" class="pt-card pt-card-link">
           <span class="pt-icon" style="background:rgba(167,139,250,.12);color:#a78bfa;" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M8 15h4"/></svg>
           </span>
-          <span>Licensing inquiries</span>
-        </div>
-        <div class="pt-card">
+          <span class="pt-card-text"><span class="pt-card-label">Licensing inquiries</span><span class="pt-card-cta">Submit a licensing inquiry &rarr;</span></span>
+        </a>
+        <a href="/contact?type=manufacturing" class="pt-card pt-card-link">
           <span class="pt-icon" style="background:rgba(52,211,153,.12);color:#34d399;" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-6h6v6"/></svg>
           </span>
-          <span>Manufacturing</span>
-        </div>
-        <div class="pt-card">
+          <span class="pt-card-text"><span class="pt-card-label">Manufacturing</span><span class="pt-card-cta">Submit a manufacturing inquiry &rarr;</span></span>
+        </a>
+        <a href="/contact?type=distribution" class="pt-card pt-card-link">
           <span class="pt-icon" style="background:rgba(251,191,36,.12);color:#fbbf24;" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg>
           </span>
-          <span>Distribution</span>
-        </div>
-        <div class="pt-card">
+          <span class="pt-card-text"><span class="pt-card-label">Distribution</span><span class="pt-card-cta">Submit a distribution inquiry &rarr;</span></span>
+        </a>
+        <a href="/products/cordel-connect/date-planning/restaurants/partner-program" class="pt-card pt-card-link">
           <span class="pt-icon" style="background:rgba(236,72,153,.12);color:#ec4899;" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.5-8.8C.7 8.6 2.4 5 6 5c2 0 3.3 1 4 2 1-1 2-2 4-2 3.6 0 5.3 3.6 3.5 7.2C19 16.6 12 21 12 21z"/></svg>
           </span>
-          <span>Restaurant partnerships (<a href="/products/cordel-connect/date-planning/restaurants/partner-program" style="color:#818cf8;">see the pilot program</a>)</span>
-        </div>
+          <span class="pt-card-text"><span class="pt-card-label">Restaurant partnerships</span><span class="pt-card-cta">Go to the live pilot signup &rarr;</span></span>
+        </a>
       </div>
-      <a href="/contact" class="btn btn-outline" style="margin-top:2rem;">Contact ByteLite LLC</a>
+      <p style="margin-top:1.75rem;font-size:.875rem;color:#555e7a;">Something else? <a href="/contact" style="color:#818cf8;">Send a general inquiry</a>.</p>
     </div>
   </section>
 
@@ -83,5 +89,11 @@ const SUBNAV = [
 .pt-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
 .pt-grid { display: grid; gap: .875rem; }
 .pt-card { display: flex; align-items: center; gap: 1rem; font-size: .9375rem; color: #a0a8c0; padding: .875rem 1rem; border: 1px solid #1a2235; border-radius: .625rem; }
+.pt-card-link { transition: border-color .2s, background-color .2s; }
+.pt-card-link:hover, .pt-card-link:focus-visible { border-color: #6366f1; background: rgba(99,102,241,.05); }
+.pt-card-link:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }
+.pt-card-text { display: flex; flex-direction: column; gap: .2rem; }
+.pt-card-label { color: #e4e7f2; font-weight: 500; }
+.pt-card-cta { font-size: .8125rem; color: #818cf8; }
 .pt-icon { display: flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border-radius: .625rem; flex-shrink: 0; }
 </style>

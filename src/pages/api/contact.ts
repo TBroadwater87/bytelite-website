@@ -56,9 +56,19 @@ interface ContactPayload {
   email?: unknown;
   inquiryType?: unknown;
   message?: unknown;
+  organization?: unknown;
+  workflowDetail?: unknown;
 }
 
-async function deliver(record: { name: string; email: string; inquiryType: string; message: string; ip: string }) {
+async function deliver(record: {
+  name: string;
+  email: string;
+  inquiryType: string;
+  message: string;
+  organization: string;
+  workflowDetail: string;
+  ip: string;
+}) {
   // No email provider configured. Log server-side so the submission is not silently lost.
   console.log('[contact] submission received', { ...record, message: record.message.slice(0, 120) });
 }
@@ -87,6 +97,10 @@ export const POST: APIRoute = async ({ request }) => {
   const email = typeof body.email === 'string' ? stripControlChars(body.email) : '';
   const inquiryType = typeof body.inquiryType === 'string' ? body.inquiryType : '';
   const message = typeof body.message === 'string' ? stripControlChars(body.message) : '';
+  // Both optional: a workflow-specific detail (e.g. quantity interest, platform, license target)
+  // and an organization name, surfaced by the focused inquiry entry points on /contact?type=...
+  const organization = typeof body.organization === 'string' ? stripControlChars(body.organization).slice(0, MAX_FIELD_LEN) : '';
+  const workflowDetail = typeof body.workflowDetail === 'string' ? stripControlChars(body.workflowDetail).slice(0, MAX_FIELD_LEN) : '';
 
   if (!name || name.length > MAX_FIELD_LEN) {
     return new Response(JSON.stringify({ error: 'Name is required.' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
@@ -101,7 +115,7 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ error: 'A message between 1 and 5000 characters is required.' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
   }
 
-  await deliver({ name, email, inquiryType, message, ip });
+  await deliver({ name, email, inquiryType, message, organization, workflowDetail, ip });
 
   return new Response(JSON.stringify({ status: 'received' }), {
     status: 202,

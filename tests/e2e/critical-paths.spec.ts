@@ -7,8 +7,8 @@ test.describe('ByteLite LLC critical user paths', () => {
 
   test('homepage loads with the ByteLite LLC technology-first identity', async ({ page }) => {
     await expect(page).toHaveTitle(/ByteLite LLC/);
-    await expect(page.locator('h1')).toContainText('Deterministic structure');
-    await expect(page.getByRole('link', { name: 'Explore the Technologies' })).toBeVisible();
+    await expect(page.locator('h1')).toContainText('Deterministic systems that preserve what matters');
+    await expect(page.getByRole('link', { name: 'Explore the Technology', exact: true })).toBeVisible();
   });
 
   test('homepage never shows retired overclaiming language', async ({ page }) => {

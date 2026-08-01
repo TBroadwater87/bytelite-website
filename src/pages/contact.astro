@@ -8,7 +8,7 @@ import Footer from '../components/Footer.astro';
   title="Contact | ByteLite LLC"
   description="Contact ByteLite LLC about Cordel Play, private beta interest, partnerships, research inquiries, or investor conversations."
   keywords="Contact ByteLite LLC, Cordel inquiry, partnership, research inquiry"
-  
+
 >
   <Header slot="header" />
 
@@ -16,8 +16,8 @@ import Footer from '../components/Footer.astro';
   <section class="ct-hero">
     <div class="container">
       <p class="eyebrow">Contact</p>
-      <h1>Get in touch.</h1>
-      <p class="ct-sub">
+      <h1 id="ct-heading">Get in touch.</h1>
+      <p class="ct-sub" id="ct-subheading">
         Cordel pre-launch interest, app beta requests, research partnerships,
         and investor conversations are all welcome. Direct, no-middleman contact.
       </p>
@@ -32,36 +32,77 @@ import Footer from '../components/Footer.astro';
         <h2 style="margin-bottom:1.75rem;">Send a message.</h2>
         <form class="ct-form" id="ct-form" novalidate>
           <div class="ct-field">
-            <label for="ct-name">Name</label>
-            <input type="text" id="ct-name" name="name" placeholder="Your name" required maxlength="200" />
+            <label for="ct-name">Name <span class="ct-req" aria-hidden="true">*</span></label>
+            <input type="text" id="ct-name" name="name" placeholder="Your name" required maxlength="200" autocomplete="name" />
           </div>
           <div class="ct-field">
-            <label for="ct-email">Email</label>
-            <input type="email" id="ct-email" name="email" placeholder="you@example.com" required maxlength="200" />
+            <label for="ct-email">Email <span class="ct-req" aria-hidden="true">*</span></label>
+            <input type="email" id="ct-email" name="email" placeholder="you@example.com" required maxlength="200" autocomplete="email" />
           </div>
           <div class="ct-field">
-            <label for="ct-subject">Inquiry type</label>
+            <label for="ct-subject">Inquiry type <span class="ct-req" aria-hidden="true">*</span></label>
             <select id="ct-subject" name="inquiryType" required>
               <option value="">Select an inquiry type</option>
               <option value="general">General inquiry</option>
+              <option value="cordel-play">Cordel Play — founder reservation interest</option>
+              <option value="cordel-connect">Cordel Connect — private-test interest</option>
               <option value="technology-partnership">Technology partnership</option>
-              <option value="licensing">Licensing</option>
-              <option value="validation-partnership">Validation partnership</option>
-              <option value="investor">Investor inquiry</option>
-              <option value="manufacturing">Manufacturing</option>
-              <option value="distribution">Distribution</option>
+              <option value="licensing">Licensing inquiry</option>
+              <option value="validation-partnership">Technical validation inquiry</option>
+              <option value="manufacturing">Manufacturing inquiry</option>
+              <option value="distribution">Distribution inquiry</option>
               <option value="restaurant-partnership">Restaurant partnership</option>
-              <option value="cordel-play">Cordel Play — pre-launch interest</option>
-              <option value="cordel-connect">Cordel Connect — beta interest</option>
+              <option value="investor">Investor inquiry</option>
               <option value="byteoracle">ByteOracle inquiry</option>
               <option value="preorder-support">Preorder support</option>
               <option value="privacy-request">Privacy request</option>
             </select>
           </div>
+
+          <div class="ct-field ct-extra" id="ct-field-organization" hidden>
+            <label for="ct-organization" id="ct-organization-label">Organization</label>
+            <input type="text" id="ct-organization" name="organization" placeholder="Company, institution, or fund name" maxlength="200" />
+          </div>
+
+          <div class="ct-field ct-extra" id="ct-field-quantity" hidden>
+            <label for="ct-quantity">Quantity interest</label>
+            <select id="ct-quantity" name="quantityInterest">
+              <option value="">Prefer not to say</option>
+              <option value="1">1</option>
+              <option value="2-3">2-3</option>
+              <option value="4+">4+</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
+            <p class="ct-hint">This records interest only — it is not an order and does not reserve a specific quantity.</p>
+          </div>
+
+          <div class="ct-field ct-extra" id="ct-field-platform" hidden>
+            <label for="ct-platform">Device platform</label>
+            <select id="ct-platform" name="platform">
+              <option value="">Prefer not to say</option>
+              <option value="android">Android</option>
+              <option value="ios">iOS</option>
+              <option value="either">Either</option>
+            </select>
+          </div>
+
           <div class="ct-field">
-            <label for="ct-message">Message</label>
+            <label for="ct-message">Message <span class="ct-req" aria-hidden="true">*</span></label>
             <textarea id="ct-message" name="message" rows="5" placeholder="Your message..." required maxlength="5000"></textarea>
           </div>
+
+          <div class="ct-field ct-consent">
+            <label class="ct-checkbox-label">
+              <input type="checkbox" id="ct-consent" name="consent" required />
+              <span>I consent to ByteLite LLC contacting me by email in response to this message. <span class="ct-req" aria-hidden="true">*</span></span>
+            </label>
+          </div>
+
+          <p class="ct-disclaimer">
+            Submitting this form records your inquiry — it does not guarantee acceptance, availability,
+            partnership, investment access, shipment, or beta admission. No payment is collected here.
+          </p>
+
           <button type="submit" class="btn btn-primary ct-submit">Send Message</button>
           <p class="ct-note" id="ct-status" role="status" aria-live="polite">Your message is sent directly. No CRM. No automated tracking.</p>
         </form>
@@ -74,27 +115,27 @@ import Footer from '../components/Footer.astro';
           <div class="ct-categories">
             <div class="ct-cat">
               <span class="ct-cat-dot" style="background:#f472b6;"></span>
-              <div class="ct-cat-text"><span class="ct-cat-label">Cordel Play pre-launch interest</span><span class="ct-cat-desc">Get notified when board-game pre-orders open.</span></div>
+              <div class="ct-cat-text"><span class="ct-cat-label">Cordel Play founder reservation interest</span><span class="ct-cat-desc">A no-charge, nonbinding reservation of interest — see the <a href="/products/cordel-play/preorder" style="color:#818cf8;">founder reservation page</a>.</span></div>
             </div>
             <div class="ct-cat">
               <span class="ct-cat-dot" style="background:#818cf8;"></span>
-              <div class="ct-cat-text"><span class="ct-cat-label">Cordel Connect beta access</span><span class="ct-cat-desc">Ask to join the private Android beta when slots open.</span></div>
+              <div class="ct-cat-text"><span class="ct-cat-label">Cordel Connect private-test interest</span><span class="ct-cat-desc">Ask to join private Android test builds when slots open.</span></div>
             </div>
             <div class="ct-cat">
               <span class="ct-cat-dot" style="background:#6366f1;"></span>
-              <div class="ct-cat-text"><span class="ct-cat-label">Partnership discussions</span><span class="ct-cat-desc">Retail, manufacturing, distribution, or restaurant partnerships.</span></div>
+              <div class="ct-cat-text"><span class="ct-cat-label">Partnership discussions</span><span class="ct-cat-desc">Technical validation, licensing, manufacturing, or distribution.</span></div>
             </div>
             <div class="ct-cat">
-              <span class="ct-cat-dot" style="background:#a78bfa;"></span>
-              <div class="ct-cat-text"><span class="ct-cat-label">Research inquiries</span><span class="ct-cat-desc">Questions about the private deterministic systems research.</span></div>
-            </div>
-            <div class="ct-cat">
-              <span class="ct-cat-dot" style="background:#818cf8;"></span>
-              <div class="ct-cat-text"><span class="ct-cat-label">Architecture / Research inquiry</span><span class="ct-cat-desc">Discuss the public architecture and its claim boundaries.</span></div>
+              <span class="ct-cat-dot" style="background:#ec4899;"></span>
+              <div class="ct-cat-text"><span class="ct-cat-label">Restaurant partnerships</span><span class="ct-cat-desc">For the live pilot signup, use the <a href="/products/cordel-connect/date-planning/restaurants/partner-program" style="color:#818cf8;">Restaurant Partner Program</a> directly — this form is for other restaurant questions.</span></div>
             </div>
             <div class="ct-cat">
               <span class="ct-cat-dot" style="background:#34d399;"></span>
               <div class="ct-cat-text"><span class="ct-cat-label">Investor conversations</span><span class="ct-cat-desc">Founder-led funding and investment discussions.</span></div>
+            </div>
+            <div class="ct-cat">
+              <span class="ct-cat-dot" style="background:#a78bfa;"></span>
+              <div class="ct-cat-text"><span class="ct-cat-label">Research inquiries</span><span class="ct-cat-desc">Questions about the private deterministic systems research or ByteOracle.</span></div>
             </div>
             <div class="ct-cat">
               <span class="ct-cat-dot" style="background:#4a5068;"></span>
@@ -118,6 +159,95 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <script>
+  // Per-type configuration: dynamic heading/subheading and which extra field (if any) to reveal.
+  // Keeping this as a lookup table (rather than separate page templates) means every entry point
+  // below reuses the same validated, rate-limited /api/contact backend - no new backend surface.
+  const TYPE_CONFIG: Record<string, { heading: string; sub: string; extra: 'organization' | 'quantity' | 'platform' | 'none'; orgLabel?: string }> = {
+    'cordel-play': {
+      heading: 'Cordel Play — founder reservation interest.',
+      sub: 'A no-charge, nonbinding reservation of interest in Cordel Play. No price, release date, or entitlement is promised by submitting this.',
+      extra: 'quantity',
+    },
+    'cordel-connect': {
+      heading: 'Cordel Connect — private-test interest.',
+      sub: 'Ask to be considered for private Android test builds. This does not guarantee beta admission.',
+      extra: 'platform',
+    },
+    'validation-partnership': {
+      heading: 'Technical validation inquiry.',
+      sub: 'Tell us about your organization and what you would like to validate.',
+      extra: 'organization',
+      orgLabel: 'Organization / Institution',
+    },
+    licensing: {
+      heading: 'Licensing inquiry.',
+      sub: 'Tell us about your organization and which technology you are interested in licensing.',
+      extra: 'organization',
+      orgLabel: 'Organization / Company',
+    },
+    manufacturing: {
+      heading: 'Manufacturing inquiry.',
+      sub: 'Tell us about your organization and manufacturing capacity or interest.',
+      extra: 'organization',
+      orgLabel: 'Organization / Company',
+    },
+    distribution: {
+      heading: 'Distribution inquiry.',
+      sub: 'Tell us about your organization and distribution channel or region.',
+      extra: 'organization',
+      orgLabel: 'Organization / Company',
+    },
+    investor: {
+      heading: 'Investor inquiry.',
+      sub: 'Founder-led conversations - every claim discussed is held to the same proof-gated standard as the public site.',
+      extra: 'organization',
+      orgLabel: 'Fund / Organization (optional)',
+    },
+    'restaurant-partnership': {
+      heading: 'Restaurant partnership inquiry.',
+      sub: 'For the live $20 pilot signup, use the Restaurant Partner Program page directly. Use this form only for other restaurant questions.',
+      extra: 'organization',
+      orgLabel: 'Restaurant name',
+    },
+    'technology-partnership': {
+      heading: 'Technology partnership inquiry.',
+      sub: 'Tell us about your organization and the technology partnership you have in mind.',
+      extra: 'organization',
+      orgLabel: 'Organization / Company',
+    },
+    byteoracle: { heading: 'ByteOracle inquiry.', sub: 'Questions about the ByteOracle astronomical-calculation engine.', extra: 'none' },
+    'preorder-support': { heading: 'Preorder support.', sub: 'Questions about an existing founder reservation.', extra: 'none' },
+    'privacy-request': { heading: 'Privacy request.', sub: 'Data access, correction, or deletion requests.', extra: 'none' },
+    general: { heading: 'Get in touch.', sub: 'Cordel pre-launch interest, app beta requests, research partnerships, and investor conversations are all welcome. Direct, no-middleman contact.', extra: 'none' },
+  };
+
+  const select = document.getElementById('ct-subject') as HTMLSelectElement | null;
+  const heading = document.getElementById('ct-heading');
+  const sub = document.getElementById('ct-subheading');
+  const fieldOrg = document.getElementById('ct-field-organization');
+  const fieldQty = document.getElementById('ct-field-quantity');
+  const fieldPlatform = document.getElementById('ct-field-platform');
+  const orgLabel = document.getElementById('ct-organization-label');
+
+  function applyType(type: string) {
+    const cfg = TYPE_CONFIG[type];
+    if (heading) heading.textContent = cfg ? cfg.heading : 'Get in touch.';
+    if (sub) sub.textContent = (cfg ?? TYPE_CONFIG.general)!.sub;
+    const extra = cfg?.extra ?? 'none';
+    if (fieldOrg) fieldOrg.hidden = extra !== 'organization';
+    if (fieldQty) fieldQty.hidden = extra !== 'quantity';
+    if (fieldPlatform) fieldPlatform.hidden = extra !== 'platform';
+    if (orgLabel && cfg?.orgLabel) orgLabel.textContent = cfg.orgLabel;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const presetType = params.get('type');
+  if (presetType && select && TYPE_CONFIG[presetType]) {
+    select.value = presetType;
+    applyType(presetType);
+  }
+  select?.addEventListener('change', () => applyType(select.value));
+
   const form = document.getElementById('ct-form') as HTMLFormElement | null;
   const status = document.getElementById('ct-status');
   form?.addEventListener('submit', async (e) => {
@@ -130,6 +260,7 @@ import Footer from '../components/Footer.astro';
     const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
     if (submitBtn) submitBtn.disabled = true;
     if (status) status.textContent = 'Sending…';
+    const workflowDetail = (data.get('quantityInterest') as string) || (data.get('platform') as string) || '';
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -139,12 +270,15 @@ import Footer from '../components/Footer.astro';
           email: data.get('email'),
           inquiryType: data.get('inquiryType'),
           message: data.get('message'),
+          organization: data.get('organization') || '',
+          workflowDetail,
         }),
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(json.error || 'Something went wrong. Please try again.');
-      if (status) status.textContent = 'Message received. We typically respond within 1-3 business days.';
+      if (status) status.textContent = 'Message received. We typically respond within 1-3 business days. This confirms receipt only, not acceptance.';
       form.reset();
+      if (select) applyType(select.value);
     } catch (err) {
       if (status) status.textContent = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
     } finally {
@@ -163,6 +297,7 @@ import Footer from '../components/Footer.astro';
 .ct-form { display: flex; flex-direction: column; gap: 1.25rem; }
 .ct-field { display: flex; flex-direction: column; gap: .4rem; }
 .ct-field label { font-size: .875rem; font-weight: 500; color: #a0a8c0; }
+.ct-req { color: #f472b6; }
 .ct-field input, .ct-field select, .ct-field textarea {
   background: #0d1120; border: 1px solid #1a2235;
   border-radius: .5rem; padding: .75rem 1rem;
@@ -172,11 +307,18 @@ import Footer from '../components/Footer.astro';
 }
 .ct-field input::placeholder, .ct-field textarea::placeholder { color: #4a5068; }
 .ct-field input:focus, .ct-field select:focus, .ct-field textarea:focus {
-  outline: none; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,.12);
+  outline: 2px solid #6366f1; outline-offset: 1px; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,.12);
 }
 .ct-field select option { background: #0d1120; }
 .ct-field textarea { resize: vertical; min-height: 120px; }
+.ct-hint { font-size: .8125rem; color: #555e7a; margin: 0; }
+.ct-consent { flex-direction: row; }
+.ct-checkbox-label { display: flex; align-items: flex-start; gap: .625rem; font-size: .875rem; color: #a0a8c0; cursor: pointer; }
+.ct-checkbox-label input[type="checkbox"] { width: 1.125rem; height: 1.125rem; margin-top: .125rem; flex-shrink: 0; accent-color: #6366f1; }
+.ct-checkbox-label input[type="checkbox"]:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }
+.ct-disclaimer { font-size: .8125rem; color: #555e7a; line-height: 1.6; margin: 0; }
 .ct-submit { width: 100%; justify-content: center; padding: .875rem; }
+.ct-submit:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }
 .ct-note { font-size: .8125rem; color: #4a5068; text-align: center; }
 .ct-info { display: flex; flex-direction: column; gap: 1.25rem; }
 .ct-info-card { padding: 1.5rem; }
