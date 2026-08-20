@@ -31,11 +31,12 @@ import Footer from '../components/Footer.astro';
       <div class="legal-section">
         <h2>What this website collects</h2>
         <h3>Contact form submissions</h3>
-        <p>If you submit the contact form, your name, email address, and message are collected. This data is used solely to respond to your inquiry. It is not sold, shared with third parties, or used for marketing without your consent.</p>
+        <p>If you submit the contact form, your name, email address, inquiry type, message, and optionally an organization name and one workflow detail (quantity interest or device platform) are submitted to an endpoint on this site. Your IP address is used to enforce a submission rate limit. This data is used solely to respond to your inquiry. It is not sold, shared with third parties, or used for marketing.</p>
+        <p>No third-party email or CRM provider is currently configured for this form. Submissions are validated and recorded server-side so that an inquiry is not silently lost.</p>
         <h3>Analytics</h3>
-        <p>This website may use privacy-respecting analytics to understand aggregate traffic patterns. If used, analytics are configured to anonymize IP addresses and not track individuals across sites. No advertising profiles are created.</p>
-        <h3>Cookies</h3>
-        <p>A minimal cookie consent preference may be stored locally to remember your choice. No advertising cookies are set by this website.</p>
+        <p><strong>No analytics provider is currently loaded on this website.</strong> No Google Analytics tag, no other analytics script, and no advertising or tracking script is served by any page. If privacy-respecting analytics are added in future, they will run only where you have recorded consent through the cookie preferences described below, and this policy will be updated before that happens.</p>
+        <h3>Cookies and local storage</h3>
+        <p>This website does not set advertising cookies. The only value it stores in your browser is your cookie-consent choice, kept in your browser's local storage so the consent banner does not reappear on every page. Clearing your browser storage for this site removes it.</p>
       </div>
 
       <div class="legal-section">
@@ -45,6 +46,7 @@ import Footer from '../components/Footer.astro';
           <li>Create advertising profiles</li>
           <li>Track individuals across other websites</li>
           <li>Use behavioral targeting advertising</li>
+          <li>Load any analytics or tracking script</li>
           <li>Retain contact form data beyond the purpose of responding</li>
         </ul>
       </div>
@@ -60,13 +62,14 @@ import Footer from '../components/Footer.astro';
       </div>
 
       <div class="legal-section">
-        <h2>Restaurant promotion pilot</h2>
-        <p>The Cordel restaurant promotion pilot collects restaurant account details, business profile information, and the promotional deal a participating restaurant chooses to offer. Payments for the pilot are handled by Stripe as the payment processor; ByteLite LLC does not receive or store card data.</p>
+        <h2>Restaurant Partner Program</h2>
+        <p>The Cordel Restaurant Partner Program signup collects restaurant account details, business profile information, uploaded logo and photos, and the promotional deal a participating restaurant chooses to offer. That data is held by the program's own backend service rather than by this website.</p>
+        <p>Stripe is the checkout processor for the program. Stripe is currently operating in <strong>test mode</strong>: completing checkout does not process a real card charge and does not create a real restaurant listing. Card details are entered on Stripe's own hosted checkout; ByteLite LLC does not receive or store card data in either test or live mode. This policy will be updated before live charging is enabled.</p>
       </div>
 
       <div class="legal-section">
         <h2>Third-party services</h2>
-        <p>This website may use third-party services for hosting, form handling, or analytics. Such services are selected for their privacy posture. ByteLite LLC does not use advertising networks on this website.</p>
+        <p>This website is served by a third-party hosting provider, which necessarily processes request data such as IP addresses in the ordinary course of serving pages. Web fonts are loaded from Google Fonts. Stripe is used as the checkout processor for the Restaurant Partner Program, as described above. ByteLite LLC does not use advertising networks on this website, and no advertising or tracking script is served by any page.</p>
       </div>
 
       <div class="legal-section">

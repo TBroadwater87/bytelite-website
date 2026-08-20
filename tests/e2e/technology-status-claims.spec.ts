@@ -101,7 +101,7 @@ test.describe('No HeartStrings-branded content on synchronized pages', () => {
     '/technologies/bytesight',
     '/technologies/deep-kore/aiya',
     '/technologies/deep-kore/genesis-goalkeeper',
-    '/products/cordel-connect/byteoracle-horoscopes',
+    '/products/cordel-connect/horoscopes',
     '/progress',
     '/progress/validation-evidence',
     '/progress/development-timeline',

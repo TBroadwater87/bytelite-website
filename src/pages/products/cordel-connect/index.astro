@@ -26,7 +26,7 @@ const SUBNAV = [
   { label: 'Cartoonized Profiles', href: '/products/cordel-connect/cartoonized-profiles' },
   { label: 'AIya & Aion', href: '/products/cordel-connect/aiya-and-aion' },
   { label: 'Games & Activities', href: '/products/cordel-connect/games-and-shared-activities' },
-  { label: 'Horoscopes', href: '/products/cordel-connect/byteoracle-horoscopes' },
+  { label: 'Horoscopes', href: '/products/cordel-connect/horoscopes' },
   { label: 'Date Planning', href: '/products/cordel-connect/date-planning' },
 ];
 ---
@@ -80,14 +80,14 @@ const SUBNAV = [
     <div class="container">
       <p class="eyebrow" style="text-align:center;">Explore Cordel Connect</p>
       <div class="hc-explore-grid">
-        <a href="/products/cordel-connect/compatibility-and-matching" class="card hc-card"><h3>Compatibility &amp; Matching</h3><p>A questionnaire that goes deeper than a swipe.</p></a>
-        <a href="/products/cordel-connect/privacy-architecture" class="card hc-card"><h3>Privacy Architecture</h3><p>Two-party secret sharing for your sensitive answers.</p></a>
-        <a href="/products/cordel-connect/safety" class="card hc-card"><h3>Safety</h3><p>Check-in pins and emergency contacts today; live location and a spoken safety phrase are still in development.</p></a>
-        <a href="/products/cordel-connect/cartoonized-profiles" class="card hc-card"><h3>Cartoonized Profiles</h3><p>A fantasy-distance photo model, in development.</p></a>
-        <a href="/products/cordel-connect/aiya-and-aion" class="card hc-card"><h3>AIya &amp; Aion</h3><p>Research-preview wingman characters.</p></a>
-        <a href="/products/cordel-connect/games-and-shared-activities" class="card hc-card"><h3>Games &amp; Shared Activities</h3><p>Play together instead of just messaging.</p></a>
-        <a href="/products/cordel-connect/byteoracle-horoscopes" class="card hc-card"><h3>Horoscopes</h3><p>Original daily readings, calculated and generated locally.</p></a>
-        <a href="/products/cordel-connect/date-planning" class="card hc-card"><h3>Date Planning</h3><p>Blind Date Roulette and the restaurant program.</p></a>
+        <a href="/products/cordel-connect/compatibility-and-matching" class="card hc-card"><h2>Compatibility &amp; Matching</h2><p>A questionnaire that goes deeper than a swipe.</p></a>
+        <a href="/products/cordel-connect/privacy-architecture" class="card hc-card"><h2>Privacy Architecture</h2><p>Two-party secret sharing for your sensitive answers.</p></a>
+        <a href="/products/cordel-connect/safety" class="card hc-card"><h2>Safety</h2><p>Check-in pins and emergency contacts today; live location and a spoken safety phrase are still in development.</p></a>
+        <a href="/products/cordel-connect/cartoonized-profiles" class="card hc-card"><h2>Cartoonized Profiles</h2><p>A fantasy-distance photo model, in development.</p></a>
+        <a href="/products/cordel-connect/aiya-and-aion" class="card hc-card"><h2>AIya &amp; Aion</h2><p>Research-preview wingman characters.</p></a>
+        <a href="/products/cordel-connect/games-and-shared-activities" class="card hc-card"><h2>Games &amp; Shared Activities</h2><p>Play together instead of just messaging.</p></a>
+        <a href="/products/cordel-connect/horoscopes" class="card hc-card"><h2>Horoscopes</h2><p>Original daily readings, calculated and generated locally.</p></a>
+        <a href="/products/cordel-connect/date-planning" class="card hc-card"><h2>Date Planning</h2><p>Blind Date Roulette and the restaurant program.</p></a>
       </div>
     </div>
   </section>
@@ -95,7 +95,7 @@ const SUBNAV = [
   <section class="section">
     <div class="container" style="max-width:760px;">
       <div class="app-status-box">
-        <h3 style="color:#e4e7f2;margin-bottom:1rem;">Current Status</h3>
+        <h2 class="app-status-heading">Current Status</h2>
         <div class="app-status-grid">
           <div class="app-status-item"><span class="badge badge-private">Private test builds</span><p>Used for internal development validation. Not for public distribution.</p></div>
           <div class="app-status-item"><span class="badge badge-none">No public app store listing</span><p>Not available on Google Play, Apple App Store, or any third-party marketplace.</p></div>
@@ -129,7 +129,8 @@ const SUBNAV = [
 .hc-explore-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
 @media (max-width: 1000px) { .hc-explore-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .hc-explore-grid { grid-template-columns: 1fr; } }
-.hc-card h3 { color: #818cf8; margin-bottom: .5rem; font-size: 1rem; }
+.hc-card h2 { color: #818cf8; margin-bottom: .5rem; font-size: 1rem; font-weight: 600; }
+.app-status-heading { font-size: clamp(1.1rem, 2.2vw, 1.5rem); font-weight: 600; color: #e4e7f2; margin-bottom: 1rem; }
 .hc-card p { font-size: .8125rem; color: #7b829e; margin: 0; }
 .app-status-box { background: #111828; border: 1px solid #1a2235; border-radius: .875rem; padding: 2rem; }
 .app-status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.25rem; }

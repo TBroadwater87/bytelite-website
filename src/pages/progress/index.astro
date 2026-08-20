@@ -5,7 +5,14 @@ import Footer from '../../components/Footer.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import StatusBadge from '../../components/StatusBadge.astro';
 import ProductSubNav from '../../components/ProductSubNav.astro';
-import { ALL_PROJECTS } from '../../data/projects';
+import { ALL_PROJECTS, PUBLIC_PROJECT_COUNT_WORD } from '../../data/projects';
+import {
+  COMPANY_NAME,
+  COMPANY_LOCATION,
+  COMPANY_STRUCTURE,
+  RESEARCH_BEGAN_YEAR,
+  LEGAL_FORMATION_YEAR,
+} from '../../data/company';
 
 // Literal string constant, not derived from the system clock - a deliberate human
 // project audit. Edit this one line when the canonical model is next reviewed.
@@ -74,7 +81,7 @@ const SUBNAV = [
   <section class="section">
     <div class="container" style="max-width:760px;">
       <h2 style="margin-bottom:1.5rem;">Status Legend</h2>
-      <p style="margin-bottom:1.75rem;font-size:1.0625rem;color:#a0a8c0;">Covers only the statuses currently in active use across the nine canonical projects above.</p>
+      <p style="margin-bottom:1.75rem;font-size:1.0625rem;color:#a0a8c0;">Covers only the statuses currently in active use across the {PUBLIC_PROJECT_COUNT_WORD} canonical projects above.</p>
       <div class="st-legend">
         {STATUS_LEGEND.map((item) => (
           <div class="st-legend-item">
@@ -108,10 +115,11 @@ const SUBNAV = [
     <div class="container" style="max-width:760px;">
       <h2 style="margin-bottom:1.5rem;">Company Information</h2>
       <div class="st-table">
-        <div class="st-row"><span class="st-name">Company</span><span style="grid-column:span 2;color:#a0a8c0;">ByteLite LLC</span></div>
-        <div class="st-row"><span class="st-name">Location</span><span style="grid-column:span 2;color:#a0a8c0;">Helena, Montana, USA</span></div>
-        <div class="st-row"><span class="st-name">Founded</span><span style="grid-column:span 2;color:#a0a8c0;">2024</span></div>
-        <div class="st-row"><span class="st-name">Structure</span><span style="grid-column:span 2;color:#a0a8c0;">Solo-founder LLC</span></div>
+        <div class="st-row"><span class="st-name">Company</span><span style="grid-column:span 2;color:#a0a8c0;">{COMPANY_NAME}</span></div>
+        <div class="st-row"><span class="st-name">Location</span><span style="grid-column:span 2;color:#a0a8c0;">{COMPANY_LOCATION}</span></div>
+        <div class="st-row"><span class="st-name">Research began</span><span style="grid-column:span 2;color:#a0a8c0;">{RESEARCH_BEGAN_YEAR}</span></div>
+        <div class="st-row"><span class="st-name">LLC formed</span><span style="grid-column:span 2;color:#a0a8c0;">{LEGAL_FORMATION_YEAR}</span></div>
+        <div class="st-row"><span class="st-name">Structure</span><span style="grid-column:span 2;color:#a0a8c0;">{COMPANY_STRUCTURE}</span></div>
       </div>
     </div>
   </section>

@@ -3,6 +3,11 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { TECHNOLOGY_COUNT_WORD } from '../data/projects';
+import { RESEARCH_ROUTES } from '../data/research';
+
+const technologyCountWord = TECHNOLOGY_COUNT_WORD;
+const technologyCountWordCapitalized = technologyCountWord.charAt(0).toUpperCase() + technologyCountWord.slice(1);
 ---
 
 <Layout
@@ -43,6 +48,7 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
         <a href="/progress/validation-evidence" class="btn btn-ghost">Review Validation Evidence</a>
       </div>
       <div class="arch-subnav">
+        <a href={RESEARCH_ROUTES.thesis}>Research Thesis</a>
         <a href="/architecture/deterministic-design-principles">Deterministic Design Principles</a>
         <a href="/architecture/governance-and-intrinsic-halting">Governance &amp; Intrinsic Halting</a>
         <a href="/architecture/proof-and-claim-posture">Proof &amp; Claim Posture</a>
@@ -100,6 +106,18 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
           <span class="arch-punchline-main">Capability is not authorization.</span>
         </div>
       </div>
+
+      <div class="arch-research-note">
+        <p>
+          For the broader research argument connecting reversible structure, invariant learning,
+          prediction, and simulation, read <em>Deterministic Structural Cognition</em> &mdash; the
+          public research thesis these {technologyCountWord} technologies are implementation layers of.
+        </p>
+        <div class="arch-research-cta">
+          <a href={RESEARCH_ROUTES.thesis} class="btn btn-outline btn-sm">Read the Research Thesis &rarr;</a>
+          <a href={RESEARCH_ROUTES.plainEnglish} class="btn btn-ghost btn-sm">Plain-English Explanation</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -137,7 +155,7 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
   <section class="section section-alt">
     <div class="container">
       <p class="eyebrow" style="text-align:center;">The Stack</p>
-      <h2 style="text-align:center;margin-bottom:.75rem;">Six technologies. Narrow roles. No layer gets unlimited authority.</h2>
+      <h2 style="text-align:center;margin-bottom:.75rem;">{technologyCountWordCapitalized} technologies. Narrow roles. No layer gets unlimited authority.</h2>
       <p style="text-align:center;max-width:640px;margin:0 auto 3rem;color:#7b829e;">
         Each layer has a specific function. Each earns scope only after lower layers close.
         The governance rail runs alongside the entire stack.
@@ -623,6 +641,16 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 .arch-subnav { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #1a2235; }
 .arch-subnav a { font-size: .8125rem; font-weight: 500; color: #7b829e; }
 .arch-subnav a:hover { color: #818cf8; }
+
+/* ── Research thesis pointer ─────────────────────────────────── */
+.arch-research-note {
+  margin-top: 2rem;
+  background: #0d1120; border: 1px solid #1a2235; border-left: 3px solid #a78bfa;
+  border-radius: .75rem; padding: 1.5rem 1.75rem;
+}
+.arch-research-note p { font-size: .9375rem; color: #a0a8c0; line-height: 1.75; margin: 0; }
+.arch-research-note em { color: #c4c8f0; font-style: italic; }
+.arch-research-cta { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.125rem; }
 
 /* ── Shared para ──────────────────────────────────────────────── */
 .arch-para { font-size: 1.0625rem; color: #a0a8c0; line-height: 1.8; }

@@ -46,6 +46,24 @@ export interface CapabilityClaim {
   evidence: EvidenceLevel;
 }
 
+// A validation statement is either evidence about what held, or a limitation about what is not
+// established. Marking the two explicitly (rather than inferring it from the wording downstream)
+// is what lets the public evidence ledger separate them without ever being able to silently drop
+// a negative finding. Order within `validation` is preserved and is the reading order on the
+// project page; the ledger regroups the same statements without adding or removing any.
+export type ValidationKind = 'evidence' | 'limitation';
+
+export interface ValidationStatement {
+  kind: ValidationKind;
+  text: string;
+}
+
+/** A statement about what was tested and what held. */
+const evidence = (text: string): ValidationStatement => ({ kind: 'evidence', text });
+
+/** A statement about what is NOT established, claimed, or verified. Never omitted publicly. */
+const limitation = (text: string): ValidationStatement => ({ kind: 'limitation', text });
+
 export interface ProjectRecord {
   slug: string;
   name: string;
@@ -59,7 +77,7 @@ export interface ProjectRecord {
   currentCapabilities: CapabilityClaim[];
   inDevelopment: string[];
   endGame: string[];
-  validation: string[];
+  validation: ValidationStatement[];
   integrationReceives: string[];
   integrationProduces: string[];
   integrationConsumedBy: string[];
@@ -77,9 +95,9 @@ export const BYTELITE: ProjectRecord = {
   slug: 'bytelite',
   name: 'ByteLite',
   category: 'Technology · Digital Structure Foundation',
-  shortDescription: 'Deterministic dynamic algorithmic compression research system undergoing internal validation.',
+  shortDescription: 'Deterministic digital-structure research system: exact reconstruction first, reduction second.',
   mission:
-    'Deterministic dynamic algorithmic compression research system undergoing lossless round-trip, structural transformation, memory-efficiency, workbench, and corpus validation.',
+    "ByteLite is ByteLite LLC's deterministic digital-structure research system, investigating reversible structural representation and recursive reduction. It is undergoing lossless round-trip, structural transformation, memory-efficiency, workbench, and corpus validation.",
   status: 'Internal Validation',
   validationFocus: 'Perfect lossless round-trip and memory-efficient structural convergence',
   nextMilestone: 'Repeatable corpus validation through the canonical workbench',
@@ -97,14 +115,15 @@ export const BYTELITE: ProjectRecord = {
   endGame: [
     'Deterministic transformation and structural representation usable as a foundation layer for other ByteLite LLC systems',
     'Recursive structural processing across broader file classes',
-    'Foundation-based structural matching for related-content detection',
+    'Structural matching for related-content detection',
     'Publicly defensible, claim-safe production release once proof gates close',
   ],
   validation: [
-    'Internal proof posture: exact round-trip (hash(original) == hash(reconstructed)) verified on internal test artifacts, not independently audited.',
-    'No production-scale real-file compression is publicly claimed.',
-    'No independent third-party benchmark of ByteLite exists publicly.',
-    'Internal mechanisms (encoding rules, generator details, carrier formats) remain private trade secrets during validation and are not disclosed on this site.',
+    evidence('Internal proof posture: exact round-trip (hash(original) == hash(reconstructed)) verified on internal test artifacts.'),
+    limitation('That round-trip evidence has not been independently audited.'),
+    limitation('No production-scale real-file compression is publicly claimed.'),
+    limitation('No independent third-party benchmark of ByteLite exists publicly.'),
+    limitation('Internal mechanisms (encoding rules, generator details, carrier formats) remain private trade secrets during validation and are not disclosed on this site.'),
   ],
   integrationReceives: ['Raw digital artifacts submitted for deterministic structural transformation'],
   integrationProduces: ['Exact-reconstruction structural representations', 'Counted artifact size for verified claims'],
@@ -152,11 +171,11 @@ export const BYTESIGHT: ProjectRecord = {
     'A production adapter feeding Cordel Connect\'s cartoonized-profile feature and Deep Kore ingest',
   ],
   validation: [
-    'Internal validation, 2026-07-31 (commit 654de66, local C++/CMake build): deterministic partitioning, boundary closure, canonical export, saved-work round-trip, and manual facial-region authoring are covered by the automated test suite and dedicated proof artifacts, including one documented case of a real non-determinism bug found and fixed.',
-    'No biometric face-matching, identity-recognition, or machine-learning training exists anywhere in this system — confirmed by an explicit in-code architectural disclaimer and by direct inspection; facial regions are always human-marked, never automatically detected.',
-    'A real test on a close-up portrait photo recorded a known failure (zero facial features detected) — this is a documented current limitation, not a resolved capability.',
-    'Not independently verified by a party outside ByteLite LLC.',
-    'Not a claim of complete Cordel Connect photo-transformation readiness — the output-composition layer for profile-photo delivery is not yet built.',
+    evidence('Internal validation, 2026-07-31 (commit 654de66): deterministic partitioning, boundary closure, canonical export, saved-work round-trip, and manual facial-region authoring are covered by the automated test suite and dedicated proof artifacts, including one documented case of a real non-determinism bug found and fixed.'),
+    evidence('No biometric face-matching, identity-recognition, or machine-learning training exists anywhere in this system — confirmed by an explicit in-code architectural disclaimer and by direct inspection; facial regions are always human-marked, never automatically detected.'),
+    limitation('A real test on a close-up portrait photo recorded a known failure (zero facial features detected) — this is a documented current limitation, not a resolved capability.'),
+    limitation('Not independently verified by a party outside ByteLite LLC.'),
+    limitation('Not a claim of complete Cordel Connect photo-transformation readiness — the output-composition layer for profile-photo delivery is not yet built.'),
   ],
   integrationReceives: ['Raw images and visual media'],
   integrationProduces: ['Region/boundary structural output and canonical partition exports', 'Provenance-tagged, audit-trailed correction records'],
@@ -191,8 +210,8 @@ export const BYTEFLOW: ProjectRecord = {
     'Efficient structural transfer without re-deriving structure at each hop',
   ],
   validation: [
-    'ByteFlow is a planned architectural layer with no implementation yet. It is described here as a target, not a current capability.',
-    'This project is excluded from all public website surfaces as of the August 1, 2026 canonical model. Its source repository is unaffected; this record exists only so its route continues to build.',
+    limitation('ByteFlow is a planned architectural layer with no implementation yet. It is described here as a target, not a current capability.'),
+    limitation('This project is excluded from all public website surfaces as of the August 1, 2026 canonical model. This record exists only so its route continues to build.'),
   ],
   integrationReceives: ['Structural artifacts from ByteLite and ByteSight (planned)'],
   integrationProduces: ['Routed/synchronized structural transfers (planned)'],
@@ -222,8 +241,8 @@ export const BYTECOST: ProjectRecord = {
     'Feeds structured cost data into governed action decisions (Genesis Goalkeeper)',
   ],
   validation: [
-    'ByteCost is a planned architectural layer with no implementation yet. It is described here as a target, not a current capability.',
-    'This project is excluded from all public website surfaces as of the August 1, 2026 canonical model. Its source repository is unaffected; this record exists only so its route continues to build.',
+    limitation('ByteCost is a planned architectural layer with no implementation yet. It is described here as a target, not a current capability.'),
+    limitation('This project is excluded from all public website surfaces as of the August 1, 2026 canonical model. This record exists only so its route continues to build.'),
   ],
   integrationReceives: ['Transformation and transfer events from ByteLite, ByteSight, ByteFlow (planned)'],
   integrationProduces: ['Verified burden/value accounting records (planned)'],
@@ -256,7 +275,7 @@ export const DEEP_KORE: ProjectRecord = {
   ],
   inDevelopment: [
     'Routing the remaining 13 of 32 recognized inquiry types (e.g. condition, consequence, hypothetical, procedure, recommendation) to live answers — currently typed and contract-validated only',
-    'Reconciling the Cordel Connect integration: the app repository\'s two active branches currently disagree — one has the corrected canonical build path and a passing migration test, the other still points at a retired build location',
+    'Qualifying integration parity for the Cordel Connect path: the configuration covered by the passing migration test and the configuration the app currently deploys have not yet been shown to be the same',
     'Relation-preservation and contradiction-detection features beyond their current typed/structural representation',
     'Wiring Revelation Vanguard into the full AIya conversational path (currently validated at the engine level, not yet confirmed end-to-end through AIya in production)',
   ],
@@ -264,16 +283,16 @@ export const DEEP_KORE: ProjectRecord = {
     'All 32 inquiry types routed to live, governed answers',
     'Goal processing and controlled composition governed by Genesis Goalkeeper',
     'A memory architecture that separates temporary state, durable memory, canon, and superseded records so learning cannot corrupt root law',
-    'One reconciled, single source of truth for Cordel Connect\'s Deep Kore integration across all branches',
+    'One qualified, single source of truth for the Cordel Connect / Deep Kore integration path',
   ],
   validation: [
-    'Internal validation, 2026-07-31 (commit 00e9c6a, local Windows/CMake build): the full registered automated test suite (195 tests) passed with zero failures against the current build, independently confirmed from the current on-disk test log.',
-    'A claimed second, byte-identical reproduction of that same run ("reproduced twice") appears only in documentation from the same rebuild session; it is not independently re-confirmable from artifacts that currently exist on disk.',
-    'Revelation Vanguard specifically: three dedicated test executables (invariants, stage-B, inbound) were run directly against the canonical build and independently confirmed to pass — 2,964 of 2,964 assertions, zero failures, exit code 0 on all three. These are not part of the main 195-test registered suite.',
-    'Private research only. No architecture, algorithm, or resolver internals are disclosed publicly.',
-    'Not a claim of human-equivalent reasoning, consciousness, sentience, or finished AGI — this is a deterministic, rule-based structural-processing system, not a learned general model. No such claim exists anywhere in the current codebase or documentation.',
-    'Not a claim that Cordel Connect\'s Deep Kore integration is presently consistent everywhere — the app repository\'s two active branches currently target different build locations.',
-    'Not independently verified by a party outside ByteLite LLC.',
+    evidence('Internal validation, 2026-07-31 (commit 00e9c6a): the full registered automated test suite (195 tests) passed with zero failures against the current build, confirmed from the test log for that run.'),
+    evidence('Revelation Vanguard specifically: three dedicated test executables (invariants, stage-B, inbound) were run directly against the canonical build and confirmed to pass — 2,964 of 2,964 assertions, zero failures, exit code 0 on all three. These are not part of the main 195-test registered suite.'),
+    limitation('A claimed second, byte-identical reproduction of that same run ("reproduced twice") appears only in documentation from the same rebuild session; it is not re-confirmable from the artifacts that remain.'),
+    limitation('Private research only. No proprietary reasoning mechanisms, internal mapping systems, resolver internals, or implementation-specific algorithms are disclosed publicly.'),
+    limitation('Not a claim of human-equivalent reasoning, consciousness, sentience, or finished AGI — this is a deterministic, rule-based structural-processing system, not a learned general model. No such claim exists anywhere in the current codebase or documentation.'),
+    limitation('Not a claim that the Cordel Connect / Deep Kore integration is presently consistent everywhere — integration parity between the tested configuration and the deployed one has not yet been qualified.'),
+    limitation('Not independently verified by a party outside ByteLite LLC.'),
   ],
   integrationReceives: ['Structural input from ByteLite/ByteSight (planned)', 'User-facing prompts via AIya'],
   integrationProduces: ['Governed reasoning output routed through Genesis Goalkeeper before emission', 'Temperature-calibrated delivery wrap via Revelation Vanguard'],
@@ -284,7 +303,7 @@ export const DEEP_KORE: ProjectRecord = {
     'Not a public AI product.',
     'Not a claim that finished AGI exists.',
     'Not a public commercial product.',
-    'Not a claim of one fully reconciled Cordel Connect integration — two active branches of the app repository currently disagree on this.',
+    'Not a claim of one fully qualified Cordel Connect integration — integration parity has not yet been established across the tested and deployed configurations.',
   ],
   accentColor: '#a78bfa',
 };
@@ -302,14 +321,14 @@ export const AIYA: ProjectRecord = {
   lastValidated: '2026-07-31 (internal; commit 16147d8)',
   currentCapabilities: [
     { label: 'Research-preview onboarding and chat-style interface screens inside private Cordel Connect test builds', evidence: 'Implemented' },
-    { label: 'A backend bridge that invokes Deep Kore\'s governed conversational engine as a local subprocess, tested with real (non-mocked) process execution, on the branch the app is currently deployed from', evidence: 'Internally Validated' },
+    { label: 'A backend bridge that invokes Deep Kore\'s governed conversational engine as a local subprocess, tested with real (non-mocked) process execution, on the configuration the app is currently deployed from', evidence: 'Internally Validated' },
     { label: 'Ephemeral-by-default conversation handling for this bridge — verified by an automated test confirming no session file is written to disk for a governed turn', evidence: 'Internally Validated' },
   ],
   inDevelopment: [
     'Structured, goal-oriented conversation flows',
     'Context-envelope handling shared with Deep Kore',
     'Emotionally appropriate presentation within governed limits',
-    'Reconciling this bridge with the app repository\'s other active branch, which still points at a retired Deep Kore build location',
+    'Qualifying integration parity so every active development path targets the same canonical Deep Kore build',
   ],
   endGame: [
     'A full conversational interaction layer for Cordel Connect (the "wingman" role) that never pretends to be a real person',
@@ -317,10 +336,10 @@ export const AIYA: ProjectRecord = {
     'Progression toward more natural communication while remaining strictly bound by Genesis Goalkeeper governance',
   ],
   validation: [
-    'Internal validation, 2026-07-31 (commit 16147d8): the AIya-to-Deep-Kore backend bridge was updated to the canonical Deep Kore build and covered by a passing automated test using real process execution (not mocked), on the branch the app is currently deployed from.',
-    'Explicitly labeled "Research Preview — Not Production AI" wherever it currently appears in Cordel Connect.',
-    'No live AI companion, automated matching system, or production guidance system is deployed.',
-    'Not independently verified by a party outside ByteLite LLC.',
+    evidence('Internal validation, 2026-07-31 (commit 16147d8): the AIya-to-Deep-Kore backend bridge was updated to the canonical Deep Kore build and covered by a passing automated test using real process execution (not mocked), on the configuration the app is currently deployed from.'),
+    evidence('Explicitly labeled "Research Preview — Not Production AI" wherever it currently appears in Cordel Connect.'),
+    limitation('No live AI companion, automated matching system, or production guidance system is deployed.'),
+    limitation('Not independently verified by a party outside ByteLite LLC.'),
   ],
   integrationReceives: ['Governed output from Deep Kore'],
   integrationProduces: ['User-facing conversation and guidance surfaces'],
@@ -363,10 +382,10 @@ export const GENESIS_GOALKEEPER: ProjectRecord = {
     'Full audit trail preservation for every governed decision',
   ],
   validation: [
-    'Internal validation, 2026-07-31 (commit 00e9c6a): a two-stage governance gate and a single-owner emission invariant are implemented and covered by the automated test suite (part of the 195-test suite passing with zero failures).',
-    'Not a decorative ethics wrapper or a generic moderation/retry/monitoring layer bolted onto an otherwise unrestricted system — it is the governance rail described in the ByteLite LLC architecture.',
-    'Not a claim that the full intrinsic-halting design (halting specifically on unresolved consent, authority, identity, or harm accounting) is proven end-to-end — the tested evidence covers the governance gate and emission-stamping mechanism, not every halting condition described in the architecture.',
-    'Not independently verified by a party outside ByteLite LLC.',
+    evidence('Internal validation, 2026-07-31 (commit 00e9c6a): a two-stage governance gate and a single-owner emission invariant are implemented and covered by the automated test suite (part of the 195-test suite passing with zero failures).'),
+    evidence('Not a decorative ethics wrapper or a generic moderation/retry/monitoring layer bolted onto an otherwise unrestricted system — it is the governance rail described in the ByteLite LLC architecture.'),
+    limitation('Not a claim that the full intrinsic-halting design (halting specifically on unresolved consent, authority, identity, or harm accounting) is proven end-to-end — the tested evidence covers the governance gate and emission-stamping mechanism, not every halting condition described in the architecture.'),
+    limitation('Not independently verified by a party outside ByteLite LLC.'),
   ],
   integrationReceives: ['Candidate outputs from Deep Kore\'s conversational pipeline, gated before emission'],
   integrationProduces: ['Allow/halt decisions with a verifiable stamp attached to each governed response'],
@@ -407,11 +426,11 @@ export const REVELATION_VANGUARD: ProjectRecord = {
     'Extension of delivery calibration to additional Cordel-facing surfaces where appropriate',
   ],
   validation: [
-    'Internal validation, 2026-08-01: three dedicated test executables (test_vanguard_invariants, test_vanguard_stageb, test_vanguard_inbound) were run directly against the canonical Deep Kore build (D:\\LLC_Projects\\DeepKore) and independently confirmed to pass — 2,964 of 2,964 assertions, zero failures, exit code 0 on all three.',
-    'These three test executables are not currently part of the main 195-test registered CTest suite; they were verified by direct execution.',
-    'Private research only. No internal mapping tables, correction formulas, or band structures are disclosed publicly.',
-    'Not a claim that response content is altered, generated, or fabricated — the layer is verified to wrap, not rewrite, the underlying governed text.',
-    'Not independently verified by a party outside ByteLite LLC.',
+    evidence('Internal validation, 2026-08-01: three dedicated test executables (test_vanguard_invariants, test_vanguard_stageb, test_vanguard_inbound) were run directly against the canonical Deep Kore build and confirmed to pass — 2,964 of 2,964 assertions, zero failures, exit code 0 on all three.'),
+    evidence('Not a claim that response content is altered, generated, or fabricated — the layer is verified to wrap, not rewrite, the underlying governed text.'),
+    limitation('These three test executables are not currently part of the main 195-test registered CTest suite; they were verified by direct execution.'),
+    limitation('Private research only. No internal mapping tables, correction formulas, or band structures are disclosed publicly.'),
+    limitation('Not independently verified by a party outside ByteLite LLC.'),
   ],
   integrationReceives: ['Governed response text from Deep Kore, prior to emission'],
   integrationProduces: ['A temperature-calibrated delivery wrap around the unchanged governed response'],
@@ -441,43 +460,43 @@ export const BYTEORACLE: ProjectRecord = {
     { label: 'A 9-stage deterministic astronomical calculation pipeline (geometric state through event epochs) for the Sun, Moon, and eight planets, internally cross-checked layer-by-layer against the independent CSPICE (NASA/NAIF) and SOFA (IAU) reference libraries across the full 1900-2099 date grid', evidence: 'Internally Validated' },
     { label: '156 records generated per calendar date — 12 individual sign readings plus 144 ordered compatibility pairs — confirmed directional (a reading from sign A to B differs from B to A) and free of duplicate rows', evidence: 'Internally Validated' },
     { label: 'Deterministic regeneration: rerunning generation for the same date is tested to produce byte-identical text and hashes', evidence: 'Internally Validated' },
-    { label: 'Backend integration code (database schema, API routes, and a subprocess bridge into the calculation engine) implemented and tested on the app repository\'s git-canonical branch', evidence: 'Implemented' },
+    { label: 'Backend integration code (database schema, API routes, and a subprocess bridge into the calculation engine) implemented and covered by passing tests', evidence: 'Implemented' },
   ],
   inDevelopment: [
-    'Reconciling backend integration onto the branch the app is actually deployed from — the tested integration above currently exists on a different branch than the one currently checked out for deployment',
-    'A committed, published historical archive (only an untracked local development archive exists today)',
+    'Qualifying integration parity — the tested backend integration and the configuration the app currently deploys have not yet been shown to be the same',
+    'A published, versioned historical archive; none exists publicly today',
     'Consent-gated personalization using birth time/location, beyond the current per-sign generic records',
-    'Consolidating this engine into its own canonical repository — it does not have one yet; the engine currently lives inside a Deep Kore development checkout and its app integration inside the Cordel Connect app repository',
+    'Consolidating this engine into its own canonical repository, which it does not yet have',
     'An internal rename is pending. No new internal name may appear publicly until it is finalized.',
   ],
   endGame: [
-    'A dedicated canonical repository, separated from Deep Kore and the app repository',
-    'The tested backend integration live on whichever branch actually serves users',
+    'A dedicated canonical repository for the engine',
+    'The tested backend integration confirmed live on the configuration that actually serves users',
     'A published, versioned historical archive with a stated coverage range',
     'Consent-gated personalized readings using birth time and location',
   ],
   validation: [
-    'Internal validation, 2026-07-25/26 (ORACLE_VALIDATION_REPORT.md): the 9-stage calculation pipeline was cross-checked layer-by-layer against CSPICE and SOFA over the full 1900-2099 civil-date grid; all reported comparisons passed. This is internal cross-checking against independent reference libraries, not third-party or external certification.',
-    'Internal validation, 2026-07-30 (app-repository test suite, commit abf4641): 156-record generation, directional compatibility text, duplicate-safe writes, and deterministic regeneration are covered by passing automated tests.',
-    'Not currently confirmed live for end users — implemented and tested on a development branch, not confirmed present on the branch the app is deployed from.',
-    'Not a claim of scientific, medical, financial, or relationship prediction — this is deterministic content generation from calculated astronomical state.',
-    'Not independently verified by a party outside ByteLite LLC.',
-    'This project is excluded from all public website surfaces as of the August 1, 2026 canonical model, pending an internal rename. Its source repository is unaffected; this record exists only so its route continues to build. Cordel Connect describes the resulting horoscope capability generically, without naming this or any replacement engine.',
+    evidence('Internal validation, 2026-07-25/26: the 9-stage calculation pipeline was cross-checked layer-by-layer against the CSPICE and SOFA reference libraries over the full 1900-2099 civil-date grid; all reported comparisons passed. This is internal cross-checking against independent reference libraries, not third-party or external certification.'),
+    evidence('Internal validation, 2026-07-30 (commit abf4641): 156-record generation, directional compatibility text, duplicate-safe writes, and deterministic regeneration are covered by passing automated tests.'),
+    limitation('Not currently confirmed live for end users — the integration is implemented and tested, but integration parity with the configuration the app deploys has not yet been qualified.'),
+    limitation('Not a claim of scientific, medical, financial, or relationship prediction — this is deterministic content generation from calculated astronomical state.'),
+    limitation('Not independently verified by a party outside ByteLite LLC.'),
+    limitation('This project is excluded from all public website surfaces as of the August 1, 2026 canonical model, pending an internal rename. This record exists only so its route continues to build. Cordel Connect describes the resulting horoscope capability generically, without naming this or any replacement engine.'),
   ],
   integrationReceives: ['User birthday (for sign derivation)', 'Calendar date (for daily reading generation)'],
   integrationProduces: ['Zodiac sign', '156 daily records (12 individual + 144 ordered compatibility pairs)'],
-  integrationConsumedBy: ['Cordel Connect (horoscope feature), on the branch where this integration has been merged'],
+  integrationConsumedBy: ['Cordel Connect (horoscope feature), where this integration has been merged'],
   availability: 'Not publicly available',
   routes: ['/technologies/byteoracle'],
   claimRestrictions: [
     'Not scientifically validated astronomy or astrology — internal cross-checking against reference calculation libraries, not external certification.',
-    'Not currently confirmed live for end users — see Validation and Evidence for the branch caveat.',
+    'Not currently confirmed live for end users — see Validation and Evidence for the integration-parity caveat.',
     'Not personalized beyond zodiac sign today — no birth-time/location-based personalization exists yet.',
     'Does not call any external AI/language model at generation time.',
     'Not listed on any public navigation, sitemap, or index as of August 1, 2026 — an internal rename is pending.',
   ],
   accentColor: '#a78bfa',
-  heroImage: '/technologies/byteoracle-deterministic-orbit-diagram.svg',
+  heroImage: '/technologies/deterministic-orbit-diagram.svg',
   heroImageAlt: 'Geometric diagram of calculated celestial positions on concentric rings, representing local deterministic astronomical calculation',
 };
 
@@ -521,8 +540,8 @@ export const CORDEL_PLAY: ProjectRecord = {
     'Integration touchpoints with Cordel Connect',
   ],
   validation: [
-    'Product design is complete; manufacturing is in preparation.',
-    'No retail release date has been announced. No public purchase is currently available.',
+    evidence('Product design is complete; manufacturing is in preparation.'),
+    limitation('No retail release date has been announced. No public purchase is currently available.'),
   ],
   integrationReceives: [],
   integrationProduces: [],
@@ -574,8 +593,8 @@ export const CORDEL_CONNECT: ProjectRecord = {
     'Complete cartoonized-profile system with paid/consent-based original-photo reveal',
   ],
   validation: [
-    'Private Android test builds only. No public app store listing.',
-    'A full app-specific privacy policy will be published before any public launch or broader beta release.',
+    evidence('A full app-specific privacy policy will be published before any public launch or broader beta release.'),
+    limitation('Private Android test builds only. No public app store listing.'),
   ],
   integrationReceives: ['AIya (wingman)', 'Deterministic horoscope engine (name pending; see the Horoscopes feature)', 'ByteSight (planned photo adapter)'],
   integrationProduces: ['Match/compatibility results', 'Date-planning flows'],
@@ -589,7 +608,7 @@ export const CORDEL_CONNECT: ProjectRecord = {
     '/products/cordel-connect/cartoonized-profiles',
     '/products/cordel-connect/aiya-and-aion',
     '/products/cordel-connect/games-and-shared-activities',
-    '/products/cordel-connect/byteoracle-horoscopes',
+    '/products/cordel-connect/horoscopes',
     '/products/cordel-connect/date-planning',
     '/products/cordel-connect/date-planning/blind-date-roulette',
     '/products/cordel-connect/date-planning/restaurants',
@@ -618,8 +637,9 @@ export const RESTAURANT_PARTNER_PROGRAM: ProjectRecord = {
   inDevelopment: ['First verified external restaurant pilot', 'Ongoing (post-pilot) placement pricing', 'Premium / multi-location tiers', 'Self-serve editing after go-live'],
   endGame: ['Ongoing placement pricing tiers', 'Deeper integration with Blind Date Roulette'],
   validation: [
-    'Self-serve signup and Stripe test-mode checkout exist and are live at /products/cordel-connect/date-planning/restaurants/partner-program.',
-    'No external restaurant has been verified as a completed pilot participant yet. Status will move to Private Pilot or Public Beta once that is confirmed.',
+    evidence('Self-serve signup and a working Stripe test-mode checkout demonstration exist at /products/cordel-connect/date-planning/restaurants/partner-program.'),
+    limitation('Stripe is in test mode: the signup workflow processes no real charge and creates no real restaurant listing.'),
+    limitation('No external restaurant has been verified as a completed pilot participant yet. Status will move to Private Pilot or Public Beta once that is confirmed.'),
   ],
   integrationReceives: ['Restaurant profile and deal submissions'],
   integrationProduces: ['Featured, labeled restaurant suggestions'],
@@ -633,3 +653,28 @@ export const RESTAURANT_PARTNER_PROGRAM: ProjectRecord = {
 export const ALL_PRODUCTS: ProjectRecord[] = [CORDEL_PLAY, CORDEL_CONNECT];
 
 export const ALL_PROJECTS: ProjectRecord[] = [...ALL_TECHNOLOGIES, ...ALL_PRODUCTS, RESTAURANT_PARTNER_PROGRAM];
+
+// ---------------------------------------------------------------------------------------------
+// Derived canonical counts.
+//
+// Prose across the site used to hardcode how many technologies and projects exist, which is how
+// the homepage came to advertise a "seven-layer" stack while the Architecture page described six.
+// Every page that states a count now spells it from these exports, so the count can only ever
+// change by editing ALL_TECHNOLOGIES / ALL_PROJECTS above.
+// ---------------------------------------------------------------------------------------------
+const CARDINAL_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+
+/** Lowercase English word for a small count, for use inside running prose. */
+export function spellCount(count: number): string {
+  return CARDINAL_WORDS[count] ?? String(count);
+}
+
+/** Number of technologies in the public portfolio. */
+export const TECHNOLOGY_COUNT = ALL_TECHNOLOGIES.length;
+/** Same count as an English word, e.g. "six". */
+export const TECHNOLOGY_COUNT_WORD = spellCount(TECHNOLOGY_COUNT);
+
+/** Number of canonical public projects (technologies + products + the partner program). */
+export const PUBLIC_PROJECT_COUNT = ALL_PROJECTS.length;
+/** Same count as an English word, e.g. "nine". */
+export const PUBLIC_PROJECT_COUNT_WORD = spellCount(PUBLIC_PROJECT_COUNT);

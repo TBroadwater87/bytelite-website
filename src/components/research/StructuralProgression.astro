@@ -1,0 +1,121 @@
+---
+// The one canonical conceptual figure for the research program:
+// Observation -> Relationship -> Structure -> Invariant -> Law -> Model -> Prediction ->
+// Simulation -> Decision.
+//
+// Two variants of the SAME figure rather than two different diagrams: `chain` is the compact
+// strip used where the progression is being introduced, `full` adds the per-stage description
+// and is used once inside the thesis. Both render as an ordered list so the sequence is carried
+// by markup rather than by the decorative arrows, and both wrap instead of scrolling sideways.
+import { STRUCTURAL_PROGRESSION, PROGRESSION_TEXT_EQUIVALENT } from '../../data/research';
+
+export interface Props {
+  variant?: 'chain' | 'full';
+  caption?: string;
+}
+
+const { variant = 'chain', caption } = Astro.props;
+const figureCaption = caption ?? PROGRESSION_TEXT_EQUIVALENT;
+---
+
+<figure class:list={['sp-figure', `sp-${variant}`]}>
+  <ol class="sp-stages">
+    {STRUCTURAL_PROGRESSION.map((stage, index) => (
+      <li class="sp-stage">
+        <span class="sp-stage-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+        <span class="sp-stage-label">{stage.label}</span>
+        {variant === 'full' && <span class="sp-stage-desc">{stage.description}</span>}
+      </li>
+    ))}
+  </ol>
+  <figcaption class="sp-caption">{figureCaption}</figcaption>
+</figure>
+
+<style>
+.sp-figure {
+  margin: 0;
+  background: #0d1120;
+  border: 1px solid #1a2235;
+  border-radius: .875rem;
+  padding: 1.75rem;
+}
+.sp-stages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: .625rem;
+}
+.sp-stage {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: .625rem;
+  background: #07090f;
+  border: 1px solid #1a2235;
+  border-left: 3px solid #6366f1;
+  border-radius: .5rem;
+  padding: .75rem .875rem;
+}
+.sp-stage-index {
+  font-family: ui-monospace, 'Courier New', monospace;
+  font-size: .6875rem;
+  font-weight: 700;
+  color: #4a5068;
+  flex-shrink: 0;
+}
+.sp-stage-label {
+  font-size: .9375rem;
+  font-weight: 600;
+  color: #e4e7f2;
+  overflow-wrap: anywhere;
+}
+.sp-stage-desc {
+  font-size: .8125rem;
+  color: #7b829e;
+  line-height: 1.6;
+}
+.sp-caption {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #1a2235;
+  font-size: .8125rem;
+  color: #555e7a;
+  line-height: 1.6;
+}
+
+/* Compact chain: a wrapping strip of labeled pills. Auto-fill rather than a single row, so the
+   nine stages reflow at every width instead of overflowing between the breakpoints. */
+.sp-chain .sp-stages {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: .5rem;
+}
+@media (max-width: 520px) {
+  .sp-chain .sp-stages { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 340px) {
+  .sp-chain .sp-stages { grid-template-columns: 1fr; }
+}
+.sp-chain .sp-stage { padding: .625rem .75rem; }
+.sp-chain .sp-stage-label { font-size: .8125rem; }
+
+/* Full figure: two readable columns on wide screens, one on narrow. */
+.sp-full .sp-stages {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 720px) {
+  .sp-full .sp-stages { grid-template-columns: 1fr; }
+}
+.sp-full .sp-stage {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .25rem;
+}
+
+@media print {
+  .sp-figure { background: none; border: 1px solid #999; break-inside: avoid; }
+  .sp-stage { background: none; border-color: #ccc; }
+  .sp-stage-label { color: #000; }
+  .sp-stage-desc, .sp-caption { color: #333; }
+}
+</style>

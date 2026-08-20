@@ -6,6 +6,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ProjectPageHero from '../../components/ProjectPageHero.astro';
 import ProjectDetailSections from '../../components/ProjectDetailSections.astro';
 import { BYTELITE } from '../../data/projects';
+import { RESEARCH_ROUTES } from '../../data/research';
 ---
 
 <Layout
@@ -38,6 +39,35 @@ import { BYTELITE } from '../../data/projects';
 
   <ProjectDetailSections project={BYTELITE} />
 
+  <section class="section section-alt">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Research Context</p>
+      <h2 style="margin-bottom:1.25rem;">Why structure matters beyond compression.</h2>
+      <p class="bl-research">
+        ByteLite's research role is to produce deterministic structural evidence that downstream
+        systems can inspect. Compression is the first measurable proof surface because both halves
+        of it can be tested exactly: either the artifact reconstructs byte for byte, or it does
+        not, and either the counted output is smaller, or it is not.
+      </p>
+      <p class="bl-research">
+        That is the whole reason this layer carries the earliest evidence load. A reduction shows
+        that some repeated information has been represented through a reusable structure. It does
+        not show that the structure means anything, and this site does not treat compression as
+        evidence of understanding.
+      </p>
+      <p class="bl-research">
+        The broader research question is what happens next: whether canonical structural artifacts
+        can eventually serve as teaching evidence for more direct deterministic interpretation, so
+        that a reasoning system reads structure it would otherwise have had to re-derive. That is a
+        hypothesis with no supporting evidence today, and it is recorded as one.
+      </p>
+      <div class="pd-related-row" style="margin-top:1.75rem;">
+        <a href={RESEARCH_ROUTES.thesis} class="btn btn-outline btn-sm">Read the Research Thesis &rarr;</a>
+        <a href={RESEARCH_ROUTES.plainEnglish} class="btn btn-ghost btn-sm">Plain-English Explanation</a>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container" style="max-width:820px;">
       <p class="eyebrow">Related</p>
@@ -55,4 +85,5 @@ import { BYTELITE } from '../../data/projects';
 <style>
 .pd-related-row { display: flex; gap: .75rem; flex-wrap: wrap; }
 .pd-related-row .btn { white-space: normal; text-align: center; }
+.bl-research { font-size: 1.0625rem; line-height: 1.85; color: #a0a8c0; margin-bottom: 1rem; }
 </style>

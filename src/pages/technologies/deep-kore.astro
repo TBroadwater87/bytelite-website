@@ -6,6 +6,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ProjectPageHero from '../../components/ProjectPageHero.astro';
 import ProjectDetailSections from '../../components/ProjectDetailSections.astro';
 import { DEEP_KORE } from '../../data/projects';
+import { RESEARCH_ROUTES } from '../../data/research';
 ---
 
 <Layout
@@ -28,15 +29,45 @@ import { DEEP_KORE } from '../../data/projects';
       <p style="font-size:1.0625rem;line-height:1.8;">{DEEP_KORE.mission}</p>
       <div class="dk-stance">
         <div class="dk-stance-item"><span class="dk-no">&#10005;</span>Not a public AI product</div>
-        <div class="dk-stance-item"><span class="dk-no">&#10005;</span>No architecture details are public</div>
+        <div class="dk-stance-item"><span class="dk-no">&#10005;</span>No proprietary reasoning mechanisms, internal mapping systems, resolver internals, or implementation-specific algorithms are publicly disclosed</div>
         <div class="dk-stance-item"><span class="dk-no">&#10005;</span>Not a public commercial product</div>
         <div class="dk-stance-item"><span class="dk-yes">&#10003;</span>Safety-first and proof-gated principles govern all research</div>
-        <div class="dk-stance-item"><span class="dk-yes">&#10003;</span>Internal mechanisms remain private during validation</div>
+        <div class="dk-stance-item"><span class="dk-yes">&#10003;</span>The public architecture, governance model, and claim boundaries are documented on <a href="/architecture">the Architecture page</a></div>
       </div>
     </div>
   </section>
 
   <ProjectDetailSections project={DEEP_KORE} />
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Research Direction</p>
+      <h2 style="margin-bottom:.75rem;">Verified Invariant Reduction</h2>
+      <p class="dk-flag"><span class="badge badge-research">Research hypothesis / active architectural direction</span></p>
+      <p class="dk-research">
+        Deep Kore's longer-term role in the research program is to investigate whether a
+        deterministic reference procedure can teach a simpler explicit invariant that reproduces
+        the same governed result &mdash; the way repeated addition can be replaced by
+        multiplication without changing a single answer.
+      </p>
+      <p class="dk-research">
+        The constraint is what makes it interesting. A candidate may only replace a reference
+        procedure once the equivalence standard its domain demands has been satisfied, and
+        different domains do not share a standard. Empirical support over a tested range is
+        recorded as support, never as proof.
+      </p>
+      <p class="dk-research">
+        This is a stated direction, not an achieved capability. Nothing in the current build
+        performs general invariant discovery, and no such claim appears in
+        <a href="/progress/validation-evidence">Validation Evidence</a>. Discovery and operational
+        promotion are kept as separate authorities by design.
+      </p>
+      <div class="pd-related-row" style="margin-top:1.75rem;">
+        <a href={RESEARCH_ROUTES.thesis} class="btn btn-outline btn-sm">Read the Research Thesis &rarr;</a>
+        <a href="/progress" class="btn btn-ghost btn-sm">Current status for Deep Kore</a>
+      </div>
+    </div>
+  </section>
 
   <section class="section">
     <div class="container" style="max-width:820px;">
@@ -54,7 +85,14 @@ import { DEEP_KORE } from '../../data/projects';
 
 <style>
 .dk-stance { display: flex; flex-direction: column; gap: .875rem; margin-top: 1.75rem; }
-.dk-stance-item { display: flex; align-items: center; gap: .875rem; font-size: .9375rem; color: #a0a8c0; }
+.dk-stance-item { display: flex; align-items: flex-start; gap: .875rem; font-size: .9375rem; color: #a0a8c0; line-height: 1.6; }
+.dk-stance-item a { color: #818cf8; }
+.dk-stance-item a:hover, .dk-stance-item a:focus-visible { color: #a5b4fc; }
+.dk-flag { margin-bottom: 1.25rem; }
+.dk-flag .badge { white-space: normal; }
+.dk-research { font-size: 1.0625rem; line-height: 1.85; color: #a0a8c0; margin-bottom: 1rem; }
+.dk-research a { color: #818cf8; }
+.dk-research a:hover, .dk-research a:focus-visible { color: #a5b4fc; }
 .dk-no { color: #f87171; font-size: 1rem; flex-shrink: 0; width: 1.25rem; text-align: center; }
 .dk-yes { color: #34d399; font-size: 1rem; flex-shrink: 0; width: 1.25rem; text-align: center; }
 .pd-related-row { display: flex; gap: .75rem; flex-wrap: wrap; }

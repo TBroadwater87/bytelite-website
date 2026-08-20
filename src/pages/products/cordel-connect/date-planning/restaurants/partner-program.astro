@@ -4,24 +4,17 @@ import Header from '../../../../../components/Header.astro';
 import Footer from '../../../../../components/Footer.astro';
 import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
 
-const offerJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Offer',
-  name: 'Cordel Restaurant Partner Program - Pilot Placement',
-  price: '20.00',
-  priceCurrency: 'USD',
-  availability: 'https://schema.org/InStock',
-  url: 'https://www.thebytelite.com/products/cordel-connect/date-planning/restaurants/partner-program',
-};
+// No Offer/InStock structured data while Stripe checkout runs in test mode: the workflow does
+// not process a real charge or create a real listing, so marking it as purchasable would be
+// false to a crawler even though the $20 pilot price itself is decided.
 ---
 
 <Layout
   title="Restaurant Partner Program | Cordel Connect | ByteLite LLC"
-  description="Become a featured date and meet-up location inside Cordel Connect. Start with a $20 one-time pilot placement — less than $1/day."
+  description="Become a featured date and meet-up location inside Cordel Connect. Pilot preparation with a working test-mode signup: the $20 one-time pilot price is set, but Stripe checkout is in test mode and no real charge is processed yet."
   keywords="Cordel restaurant promotion, featured date location, restaurant marketing pilot, thebytelite"
 >
   <Header slot="header" />
-  <script type="application/ld+json" set:html={JSON.stringify(offerJsonLd)} />
   <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Cordel Connect', href: '/products/cordel-connect' }, { label: 'Date Planning', href: '/products/cordel-connect/date-planning' }, { label: 'Restaurants', href: '/products/cordel-connect/date-planning/restaurants' }, { label: 'Restaurant Partner Program' }]} /></div></section>
 
   <!-- Hero -->
@@ -40,13 +33,14 @@ const offerJsonLd = {
       </div>
       <p class="mk-fineprint">
         Honest pilot pricing: <strong>$20 one-time</strong> — less than $1/day for the pilot window.
-        A paid signup enters review; it goes live only after we approve it.
+        That is the planned pilot price, and it is the only price we have set.
       </p>
       <p class="mk-fineprint">
-        <strong>Private pilot, currently on Stripe test-mode checkout:</strong> signup runs through
-        a real Stripe Checkout flow, but Stripe is in test mode — no real payment is processed and
-        no real listing is created yet. This is a working demonstration of the pilot, not a public
-        commercial launch.
+        <strong>Pilot preparation, currently on Stripe test-mode checkout:</strong> signup runs
+        through a real Stripe Checkout flow, but Stripe is in test mode — no real payment is
+        processed and no real listing is created yet. This is a working demonstration of the pilot
+        signup, not a public commercial launch, and no external restaurant has yet been verified as
+        a completed pilot participant.
       </p>
     </div>
   </section>
@@ -95,7 +89,7 @@ const offerJsonLd = {
         <li><span>1</span><div><strong>Create an account</strong><p>An email and password — that is your restaurant portal login.</p></div></li>
         <li><span>2</span><div><strong>Fill a templated profile</strong><p>Name, cuisine, price tier, area, hours, dietary options, vibe, contact — plus your logo and photos.</p></div></li>
         <li><span>3</span><div><strong>Set your deal</strong><p>Choose a templated offer and the value you commit to. A discount is required to be featured.</p></div></li>
-        <li><span>4</span><div><strong>Pay the $20 pilot</strong><p>A one-time Stripe Checkout flow, currently running in test mode — no live charge yet. Your restaurant then enters <em>pending review</em>.</p></div></li>
+        <li><span>4</span><div><strong>Go through the $20 pilot checkout</strong><p>A one-time Stripe Checkout flow, currently running in test mode — no live charge is made. Your restaurant then enters <em>pending review</em>.</p></div></li>
         <li><span>5</span><div><strong>We review, then you go live</strong><p>An approval step we control flips your paid restaurant into a live, featured suggestion. Paid does not mean auto-published.</p></div></li>
       </ol>
       <img src="/marketing/approval-flow.png" alt="Signup-to-live approval flow" width="1672" height="941" loading="lazy" style="width:100%;max-width:1000px;height:auto;margin:2rem auto 0;border-radius:.75rem;border:1px solid #1a2235;display:block;" />
@@ -108,7 +102,7 @@ const offerJsonLd = {
       <h2>One decided price. The rest is coming soon.</h2>
       <div class="mk-price-grid">
         <div class="card mk-price mk-price-live">
-          <span class="badge badge-planned">Private pilot &middot; test checkout</span>
+          <span class="badge badge-prelaunch">Pilot preparation &middot; test checkout</span>
           <h3>Pilot placement</h3>
           <p class="mk-amount">$20<span>one-time</span></p>
           <p class="mk-price-note">Less than $1/day for the pilot window. Signup currently runs on a Stripe test-mode checkout — no real charge is made yet. The only price we have set.</p>
@@ -136,16 +130,17 @@ const offerJsonLd = {
       <p class="eyebrow">The pilot, plainly</p>
       <h2>What the $20 pilot includes</h2>
       <p class="mk-sub">
-        One-time $20, not a subscription. It covers a pilot featured-placement window for one
-        restaurant: your templated profile, one committed deal, and — after you pass our manual
-        review — a labeled <em>Featured</em> suggestion inside Cordel Connect. It is the
-        only price we have set; ongoing placement pricing is still "to be set."
+        One-time $20, not a subscription. It is intended to cover a pilot featured-placement window
+        for one restaurant: your templated profile, one committed deal, and — after you pass our
+        manual review — a labeled <em>Featured</em> suggestion inside Cordel Connect. It is the
+        only price we have set; ongoing placement pricing is still "to be set." Checkout is in
+        Stripe test mode today, so the current signup demonstrates that flow rather than selling it.
       </p>
       <div class="mk-faq">
         <div class="mk-faq-item"><h3>Do I need the app?</h3><p>No. Everything happens here on the web. You never download Cordel Connect to sign up, set your deal, or go live.</p></div>
         <div class="mk-faq-item"><h3>Can I edit my deal?</h3><p>Before you pay, you can change your profile and deal freely. Once your listing is live, contact us and we will update it for you — self-serve editing after go-live is not open yet.</p></div>
-        <div class="mk-faq-item"><h3>When do I go live?</h3><p>After payment your restaurant enters <em>pending review</em>. It appears in the app only once we manually approve it. Paying does not auto-publish your listing.</p></div>
-        <div class="mk-faq-item"><h3>Can I cancel?</h3><p>The pilot is a single $20 charge, so there is nothing recurring to cancel. If you want your listing paused or removed, contact us and we will take it down.</p></div>
+        <div class="mk-faq-item"><h3>When do I go live?</h3><p>After checkout your restaurant enters <em>pending review</em>. It appears in the app only once we manually approve it. Completing checkout does not auto-publish your listing. While Stripe is in test mode, no real listing is created at all.</p></div>
+        <div class="mk-faq-item"><h3>Can I cancel?</h3><p>The pilot is designed as a single $20 charge, so there is nothing recurring to cancel — and while checkout is in test mode, no charge is made in the first place. If you want your listing paused or removed once the pilot is real, contact us and we will take it down.</p></div>
         <div class="mk-faq-item"><h3>What photos do I need?</h3><p>Your logo and at least one photo of your space or food. You add them during signup. Paid placement is always shown as a labeled <em>Featured</em> suggestion — never disguised as a neutral pick.</p></div>
       </div>
     </div>
@@ -154,7 +149,7 @@ const offerJsonLd = {
   <section class="section">
     <div class="container mk-final">
       <h2>Ready to be a featured date spot?</h2>
-      <p>Try the pilot signup. You can build your profile and deal before you pay — checkout is currently Stripe test-mode, so no live charge is made.</p>
+      <p>Try the pilot signup demonstration. You can build your profile and deal all the way through &mdash; checkout is currently Stripe test-mode, so no live charge is made and no real listing is created.</p>
       <a href="/marketing/signup" class="btn btn-primary">Try the pilot signup</a>
     </div>
   </section>

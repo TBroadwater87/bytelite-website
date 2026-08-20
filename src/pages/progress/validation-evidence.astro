@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ProductSubNav from '../../components/ProductSubNav.astro';
 import { ALL_PROJECTS } from '../../data/projects';
+import { RESEARCH_ROUTES } from '../../data/research';
 
 const SUBNAV = [
   { label: 'Current Status', href: '/progress' },
@@ -12,22 +13,48 @@ const SUBNAV = [
   { label: 'Development Timeline', href: '/progress/development-timeline' },
   { label: 'Changelog', href: '/progress/changelog' },
 ];
+
+// The public ledger fields. Independent verification is rendered from a single constant because
+// it is currently the same answer for every project on this site, and stating it once per project
+// is the honest way to present that rather than mentioning it only where it is convenient.
+const INDEPENDENT_VERIFICATION = 'None. No result on this site has been verified by a party outside ByteLite LLC.';
+
+// Regrouped, never filtered: every statement in a project's canonical record appears in exactly
+// one of the two columns below, so a negative finding cannot be dropped by this page.
+const LEDGER = ALL_PROJECTS.map((project) => ({
+  project,
+  evidence: project.validation.filter((statement) => statement.kind === 'evidence'),
+  limitations: project.validation.filter((statement) => statement.kind === 'limitation'),
+}));
+
+const TOTAL_EVIDENCE_STATEMENTS = LEDGER.reduce((total, row) => total + row.evidence.length, 0);
+const TOTAL_LIMITATIONS = LEDGER.reduce((total, row) => total + row.limitations.length, 0);
 ---
 
 <Layout
   title="Validation Evidence | Progress | ByteLite LLC"
-  description="What has and has not been validated across every ByteLite LLC technology and product, aggregated from the canonical project records."
-  keywords="ByteLite LLC validation, proof evidence"
+  description="A public evidence ledger for every ByteLite LLC technology and product: what has been tested, what failed, what remains a known limitation, and where independent verification is absent."
+  keywords="ByteLite LLC validation, evidence ledger, proof evidence, known limitations"
 >
   <Header slot="header" />
   <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Progress', href: '/progress' }, { label: 'Validation Evidence' }]} /></div></section>
   <ProductSubNav items={SUBNAV} />
 
   <section class="ve-hero">
-    <div class="container" style="max-width:820px;">
+    <div class="container ve-body">
       <p class="eyebrow">Validation Evidence</p>
       <h1>What's actually been validated.</h1>
-      <p class="ve-p">Pulled directly from each project's own record, so this page can't say something a technology page doesn't already say.</p>
+      <p class="ve-p">
+        A public evidence ledger, rendered directly from each project's own canonical record so
+        this page cannot say something a technology page does not already say. Negative findings
+        and known failures are listed alongside the positive ones on purpose.
+      </p>
+      <p class="ve-p ve-scope">
+        This page reports evidence about capabilities. It deliberately omits development-environment
+        detail &mdash; local build paths, machine-specific locations, and internal repository
+        plumbing &mdash; because none of that is evidence for or against a public claim. Commit
+        identifiers are kept, because they anchor a specific result to a specific state of the work.
+      </p>
     </div>
   </section>
 
@@ -35,9 +62,9 @@ const SUBNAV = [
     <div class="container">
       <div class="ve-stats">
         <div class="ve-stat"><span class="ve-stat-num">{ALL_PROJECTS.length}</span><span class="ve-stat-label">Projects tracked</span></div>
-        <div class="ve-stat"><span class="ve-stat-num">{ALL_PROJECTS.filter((p) => p.status === 'Internal Validation').length}</span><span class="ve-stat-label">Internal Validation</span></div>
-        <div class="ve-stat"><span class="ve-stat-num">{ALL_PROJECTS.reduce((n, p) => n + p.currentCapabilities.length, 0)}</span><span class="ve-stat-label">Evidenced capabilities</span></div>
-        <div class="ve-stat"><span class="ve-stat-num">{ALL_PROJECTS.reduce((n, p) => n + p.validation.length, 0)}</span><span class="ve-stat-label">Validation statements</span></div>
+        <div class="ve-stat"><span class="ve-stat-num">{TOTAL_EVIDENCE_STATEMENTS}</span><span class="ve-stat-label">Evidence statements</span></div>
+        <div class="ve-stat ve-stat-warn"><span class="ve-stat-num">{TOTAL_LIMITATIONS}</span><span class="ve-stat-label">Known limitations</span></div>
+        <div class="ve-stat ve-stat-warn"><span class="ve-stat-num">0</span><span class="ve-stat-label">Independently verified</span></div>
       </div>
     </div>
   </section>
@@ -45,18 +72,56 @@ const SUBNAV = [
   <section class="section section-alt">
     <div class="container">
       <div class="ve-list">
-        {ALL_PROJECTS.map((p) => (
-          <div class="ve-row" style={`--accent:${p.accentColor}`}>
-            <h3>
-              <span class="ve-icon" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
-              </span>
-              <a href={p.routes[0]}>{p.name}</a>
-            </h3>
-            <ul>{p.validation.map((v) => <li>{v}</li>)}</ul>
-          </div>
+        {LEDGER.map(({ project, evidence, limitations }) => (
+          <article class="ve-row" style={`--accent:${project.accentColor}`}>
+            <header class="ve-row-head">
+              <h2><a href={project.routes[0]}>{project.name}</a></h2>
+              <span class="ve-anchor">Evidence anchor: {project.lastValidated}</span>
+            </header>
+
+            <div class="ve-field">
+              <h3 class="ve-field-label ve-label-evidence">Evidence and result</h3>
+              {evidence.length > 0 ? (
+                <ul>{evidence.map((statement) => <li>{statement.text}</li>)}</ul>
+              ) : (
+                <p class="ve-empty">No positive evidence statement is currently published for this project.</p>
+              )}
+            </div>
+
+            <div class="ve-field">
+              <h3 class="ve-field-label ve-label-limitation">Known limitations</h3>
+              {limitations.length > 0 ? (
+                <ul>{limitations.map((statement) => <li>{statement.text}</li>)}</ul>
+              ) : (
+                <p class="ve-empty">No limitation is currently recorded beyond those on the project page.</p>
+              )}
+            </div>
+
+            <div class="ve-field">
+              <h3 class="ve-field-label ve-label-verification">Independent verification status</h3>
+              <p class="ve-verification">{INDEPENDENT_VERIFICATION}</p>
+            </div>
+          </article>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container ve-body">
+      <p class="eyebrow">Reading This Page</p>
+      <h2 style="margin-bottom:1.25rem;">Evidence is not readiness, and support is not proof.</h2>
+      <p class="ve-p">
+        A passing internal test establishes that a specific behavior held on a specific build. It
+        does not establish production readiness, generalization beyond what was tested, or
+        correctness in any case nobody ran. Where the underlying record says a result is supported
+        rather than proven, this page keeps that distinction.
+      </p>
+      <p class="ve-p">
+        For what the research is trying to establish and what would count as falsifying it, see the
+        <a href={RESEARCH_ROUTES.thesis}>public research thesis</a>. Research hypotheses are kept
+        strictly separate from the implementation evidence above.
+      </p>
     </div>
   </section>
 
@@ -65,18 +130,46 @@ const SUBNAV = [
 
 <style>
 .ve-hero { padding: 4.5rem 0 3.5rem; }
-.ve-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
-.ve-list { display: flex; flex-direction: column; gap: 1.5rem; }
-.ve-row { background: #07090f; border: 1px solid #1a2235; border-left: 3px solid var(--accent); border-radius: .75rem; padding: 1.5rem 1.75rem; }
-.ve-row h3 { margin-bottom: .875rem; display: flex; align-items: center; gap: .625rem; }
-.ve-row h3 a { color: #e4e7f2; }
-.ve-row h3 a:hover { color: #818cf8; }
-.ve-icon { display: flex; align-items: center; justify-content: center; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: rgba(52,211,153,.12); color: #34d399; flex-shrink: 0; }
-.ve-row ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .5rem; }
-.ve-row li { font-size: .9375rem; color: #7b829e; line-height: 1.65; }
+.ve-body { max-width: 820px; }
+.ve-p { font-size: 1.0625rem; line-height: 1.85; color: #a0a8c0; margin-bottom: 1.125rem; }
+.ve-p:last-child { margin-bottom: 0; }
+.ve-p a { color: #818cf8; }
+.ve-p a:hover, .ve-p a:focus-visible { color: #a5b4fc; }
+.ve-scope { font-size: .9375rem; color: #7b829e; }
+
 .ve-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-.ve-stat { text-align: center; padding: 1.5rem 1rem; border: 1px solid #1a2235; border-radius: .75rem; }
-.ve-stat-num { display: block; font-size: 2rem; font-weight: 700; color: #34d399; font-family: monospace; }
-.ve-stat-label { display: block; font-size: .75rem; color: #7b829e; margin-top: .375rem; text-transform: uppercase; letter-spacing: .06em; }
 @media (max-width: 700px) { .ve-stats { grid-template-columns: repeat(2, 1fr); } }
+.ve-stat { text-align: center; padding: 1.5rem 1rem; border: 1px solid #1a2235; border-radius: .75rem; }
+.ve-stat-num { display: block; font-size: 2rem; font-weight: 700; color: #34d399; font-family: ui-monospace, 'Courier New', monospace; }
+.ve-stat-warn .ve-stat-num { color: #fbbf24; }
+.ve-stat-label { display: block; font-size: .75rem; color: #7b829e; margin-top: .375rem; text-transform: uppercase; letter-spacing: .06em; }
+
+.ve-list { display: flex; flex-direction: column; gap: 1.5rem; }
+.ve-row {
+  background: #07090f; border: 1px solid #1a2235; border-left: 3px solid var(--accent);
+  border-radius: .75rem; padding: 1.75rem;
+}
+.ve-row-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  flex-wrap: wrap; margin-bottom: 1.25rem; padding-bottom: .875rem;
+  border-bottom: 1px solid #1a2235;
+}
+.ve-row-head h2 { font-size: 1.125rem; margin: 0; }
+.ve-row-head h2 a { color: #e4e7f2; }
+.ve-row-head h2 a:hover, .ve-row-head h2 a:focus-visible { color: #818cf8; }
+.ve-anchor { font-size: .75rem; font-family: ui-monospace, 'Courier New', monospace; color: #555e7a; }
+
+.ve-field + .ve-field { margin-top: 1.25rem; }
+.ve-field-label {
+  font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: .625rem;
+}
+.ve-label-evidence { color: #34d399; }
+.ve-label-limitation { color: #fbbf24; }
+.ve-label-verification { color: #7b829e; }
+
+.ve-field ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .625rem; }
+.ve-field li { position: relative; padding-left: 1.25rem; font-size: .9375rem; color: #7b829e; line-height: 1.7; }
+.ve-field li::before { content: ""; position: absolute; left: .25rem; top: .75em; width: .3rem; height: .3rem; border-radius: 50%; background: #2a3350; }
+.ve-empty, .ve-verification { font-size: .9375rem; color: #555e7a; line-height: 1.7; margin: 0; }
 </style>

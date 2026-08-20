@@ -4,6 +4,14 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ProductSubNav from '../../components/ProductSubNav.astro';
+import {
+  COMPANY_NAME,
+  COMPANY_LOCATION,
+  FOUNDER_NAME,
+  RESEARCH_BEGAN_YEAR,
+  LEGAL_FORMATION_YEAR,
+} from '../../data/company';
+import { RESEARCH_PUBLICATION } from '../../data/research';
 
 const SUBNAV = [
   { label: 'Current Status', href: '/progress' },
@@ -33,12 +41,14 @@ const SUBNAV = [
   <section class="section section-alt">
     <div class="container" style="max-width:820px;">
       <div class="tl-list">
-        <div class="tl-item tl-icon-found"><span class="tl-date">2024</span><p>ByteLite LLC founded by Tash Broadwater in Helena, Montana.</p></div>
+        <div class="tl-item tl-icon-found"><span class="tl-date">{RESEARCH_BEGAN_YEAR}</span><p>Research and project work begins, ahead of any legal entity.</p></div>
+        <div class="tl-item tl-icon-found"><span class="tl-date">{LEGAL_FORMATION_YEAR}</span><p>{COMPANY_NAME} formed by {FOUNDER_NAME} in {COMPANY_LOCATION}.</p></div>
         <div class="tl-item tl-icon-product"><span class="tl-date">2026-04</span><p>Cordel Play established as the first public-facing product direction; Cordel Connect development begins alongside it.</p></div>
         <div class="tl-item tl-icon-audit"><span class="tl-date">2026-05</span><p>Public site content audit: overclaiming language (patent-status framing, specific compression ratios, AGI-adjacent claims) removed in favor of proof-gated status reporting.</p></div>
-        <div class="tl-item tl-icon-launch"><span class="tl-date">2026-07</span><p>Cordel Restaurant Partner Program pilot launched (self-serve signup, Stripe test-mode payment, manual review gate). "Cordel App" formally renamed to Cordel Connect.</p></div>
+        <div class="tl-item tl-icon-launch"><span class="tl-date">2026-07</span><p>Cordel Restaurant Partner Program test-mode signup workflow launched (self-serve signup, Stripe checkout in test mode, manual review gate). No real charge is processed and no real listing is created by that workflow. "Cordel App" formally renamed to Cordel Connect.</p></div>
         <div class="tl-item tl-icon-arch"><span class="tl-date">2026-07</span><p>Site rearchitected around the ByteLite LLC technology portfolio (Technologies, Architecture, Products, Progress, Preorder, Company), with Cordel Play and Cordel Connect presented as flagship products within that portfolio.</p></div>
-        <div class="tl-item tl-icon-audit"><span class="tl-date">2026-07-31</span><p>Technology status synchronization: ByteOracle, Deep Kore, and ByteSight public pages updated to match current source-repository evidence (test results, validation reports, and canonical-repository status), replacing prior "concept"/"no capability" language that had fallen behind actual internal progress.</p></div>
+        <div class="tl-item tl-icon-audit"><span class="tl-date">2026-07-31</span><p>Technology status synchronization: the Deep Kore, ByteSight, and deterministic horoscope-engine public pages updated to match current source evidence (test results and validation reports), replacing prior "concept"/"no capability" language that had fallen behind actual internal progress.</p></div>
+        <div class="tl-item tl-icon-arch"><span class="tl-date">{RESEARCH_PUBLICATION.publicationDate}</span><p>Research section published: <em>{RESEARCH_PUBLICATION.title}</em> (version {RESEARCH_PUBLICATION.version}) and a plain-English explanation added at /research. Site-wide architecture-count, restaurant test-mode, and company-formation-date wording reconciled against canonical data. No underlying research mechanism changed.</p></div>
       </div>
     </div>
   </section>

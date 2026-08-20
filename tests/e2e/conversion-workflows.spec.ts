@@ -55,6 +55,41 @@ test.describe('Restaurant program test-mode wording remains intact', () => {
     await expect(body).toContainText('Stripe test-mode checkout');
     await expect(body).toContainText('no real payment is processed and no real listing is created yet');
   });
+
+  // The program's canonical status is Pilot Preparation with no verified external participant,
+  // so no public surface may present it as a live or already-available paid product.
+  const restaurantSurfaces = [
+    '/',
+    '/contact',
+    '/terms',
+    '/preorder/terms',
+    '/privacy',
+    '/company/partnerships',
+    '/products/cordel-connect/date-planning/restaurants',
+    '/products/cordel-connect/date-planning/restaurants/partner-program',
+    '/progress/changelog',
+    '/progress/development-timeline',
+  ];
+
+  for (const path of restaurantSurfaces) {
+    test(`${path} never calls the restaurant pilot live or already available`, async ({ page }) => {
+      await page.goto(path);
+      const text = ((await page.locator('body').textContent()) ?? '').toLowerCase();
+      expect(text).not.toContain('live pilot');
+      expect(text).not.toContain('live $20');
+      expect(text).not.toContain('pilot launched');
+      // "not an already-available paid product" is the approved negation, so only flag the
+      // affirmative form.
+      expect(text).not.toContain('is a live, already-available paid');
+    });
+  }
+
+  test('the restaurants index states pilot preparation and test-mode reality', async ({ page }) => {
+    await page.goto('/products/cordel-connect/date-planning/restaurants');
+    const body = page.locator('body');
+    await expect(body).toContainText('Pilot preparation');
+    await expect(body).toContainText('no real charge is processed');
+  });
 });
 
 test.describe('Cordel Play mechanics remain unchanged', () => {
@@ -139,7 +174,9 @@ const INQUIRY_TYPE_MATRIX: Array<{ type: string; heading: string; activeField: E
   { type: 'investor', heading: 'Investor inquiry.', activeField: 'organization' },
   { type: 'restaurant-partnership', heading: 'Restaurant partnership inquiry.', activeField: 'organization' },
   { type: 'technology-partnership', heading: 'Technology partnership inquiry.', activeField: 'organization' },
-  { type: 'byteoracle', heading: 'ByteOracle inquiry.', activeField: null },
+  // NOTE: the API's INQUIRY_TYPES set also accepts 'byteoracle', but /contact has never offered
+  // it as an option and TYPE_CONFIG has no entry for it, so there is no UI behavior to assert.
+  // It is covered by the unsupported-type test below instead.
   { type: 'preorder-support', heading: 'Preorder support.', activeField: null },
   { type: 'privacy-request', heading: 'Privacy request.', activeField: null },
   { type: 'general', heading: 'Get in touch.', activeField: null },

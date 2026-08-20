@@ -5,8 +5,8 @@ import Footer from '../../components/Footer.astro';
 ---
 
 <Layout
-  title="Pilot payment received | Cordel Restaurant Program"
-  description="Your $20 Cordel pilot payment was received. Your restaurant is now pending review."
+  title="Pilot checkout complete | Cordel Restaurant Program"
+  description="Your $20 Cordel pilot checkout completed and your restaurant is now pending review. Stripe is in test mode - no real charge was processed."
   noindex={true}
 >
   <Header slot="header" />
@@ -14,11 +14,15 @@ import Footer from '../../components/Footer.astro';
   <section class="section">
     <div class="container ty-container">
       <span class="badge badge-planned">Pending review</span>
-      <h1>Payment received — you're in the review queue</h1>
+      <h1>Checkout complete — you're in the review queue</h1>
       <p class="ty-body">
-        Thanks for starting the pilot. Your restaurant is now <strong>pending review</strong>. We approve
-        each listing before it goes live in Cordel — a paid signup does not auto-publish. You will
-        be able to see your status any time from your signup page.
+        Thanks for walking the pilot signup. Your restaurant is now <strong>pending review</strong>.
+        We approve each listing before it goes live in Cordel — completing checkout does not
+        auto-publish. You will be able to see your status any time from your signup page.
+      </p>
+      <p class="ty-testmode">
+        Stripe is currently in test mode, so no real charge was processed and no real listing is
+        created yet. This is a working demonstration of the pilot workflow.
       </p>
       <p class="ty-note" id="ty-session">Confirming your payment…</p>
       <div class="ty-cta">
@@ -49,5 +53,10 @@ import Footer from '../../components/Footer.astro';
   .ty-body { color: #a0a8c0; margin: 1rem 0; line-height: 1.8; }
   .ty-body strong { color: #f472b6; }
   .ty-note { color: #7b829e; font-size: .9rem; margin-bottom: 1.5rem; }
+  .ty-testmode {
+    color: #a0a8c0; font-size: .9rem; line-height: 1.7; margin-bottom: 1rem;
+    padding: .875rem 1.125rem;
+    background: rgba(251,146,60,.06); border: 1px solid rgba(251,146,60,.22); border-radius: .5rem;
+  }
   .ty-cta { display: flex; gap: .75rem; flex-wrap: wrap; }
 </style>

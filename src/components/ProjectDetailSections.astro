@@ -62,12 +62,12 @@ const { project } = Astro.props;
     <h2 style="margin-bottom:1.5rem;">Proof posture.</h2>
     <div class="pd-validation-box">
       <ul class="pd-list">
-        {project.validation.map((item) => <li>{item}</li>)}
+        {project.validation.map((statement) => <li>{statement.text}</li>)}
       </ul>
     </div>
     {project.claimRestrictions.length > 0 && (
       <div class="pd-not-grid">
-        <h4 style="color:#e4e7f2;margin-bottom:.875rem;">What this is not.</h4>
+        <h3 class="pd-not-heading">What this is not.</h3>
         {project.claimRestrictions.map((item) => (
           <div class="pd-not-item"><span class="pd-not-x">&#10005;</span>{item}</div>
         ))}
@@ -84,19 +84,19 @@ const { project } = Astro.props;
       <h2 style="margin-bottom:1.5rem;">How it connects.</h2>
       <div class="pd-integration-grid">
         <div class="pd-integration-col">
-          <h4>Receives</h4>
+          <h3>Receives</h3>
           {project.integrationReceives.length > 0 ? (
             <ul class="pd-list-sm">{project.integrationReceives.map((i) => <li>{i}</li>)}</ul>
           ) : <p class="pd-empty-sm">None disclosed.</p>}
         </div>
         <div class="pd-integration-col">
-          <h4>Produces</h4>
+          <h3>Produces</h3>
           {project.integrationProduces.length > 0 ? (
             <ul class="pd-list-sm">{project.integrationProduces.map((i) => <li>{i}</li>)}</ul>
           ) : <p class="pd-empty-sm">None disclosed.</p>}
         </div>
         <div class="pd-integration-col">
-          <h4>Consumed by</h4>
+          <h3>Consumed by</h3>
           {project.integrationConsumedBy.length > 0 ? (
             <ul class="pd-list-sm">{project.integrationConsumedBy.map((i) => <li>{i}</li>)}</ul>
           ) : <p class="pd-empty-sm">None disclosed.</p>}
@@ -120,7 +120,9 @@ const { project } = Astro.props;
 <style>
 .pd-capability-list { display: flex; flex-direction: column; gap: 1rem; }
 .pd-capability { display: flex; gap: 1rem; align-items: baseline; flex-wrap: wrap; }
-.pd-capability p { font-size: 1rem; color: #c4c8f0; margin: 0; flex: 1; min-width: 200px; }
+/* overflow-wrap: some capability text contains long unbreakable runs (e.g. a slash-separated
+   lifecycle list) that otherwise force horizontal scroll at narrow widths. */
+.pd-capability p { font-size: 1rem; color: #c4c8f0; margin: 0; flex: 1; min-width: 200px; overflow-wrap: anywhere; }
 .pd-evidence-tag {
   font-size: .6875rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
   padding: .25rem .625rem; border-radius: .375rem; flex-shrink: 0;
@@ -129,18 +131,19 @@ const { project } = Astro.props;
 .pd-empty, .pd-empty-sm { color: #555e7a; font-size: .9375rem; font-style: italic; }
 .pd-empty-sm { font-size: .8125rem; }
 .pd-list { display: flex; flex-direction: column; gap: .75rem; list-style: none; padding: 0; margin: 0; }
-.pd-list li { position: relative; padding-left: 1.5rem; font-size: 1rem; color: #a0a8c0; line-height: 1.7; }
+.pd-list li { position: relative; padding-left: 1.5rem; font-size: 1rem; color: #a0a8c0; line-height: 1.7; overflow-wrap: anywhere; }
 .pd-list li::before { content: "\2192"; position: absolute; left: 0; color: #6366f1; }
 .pd-list-sm { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .5rem; }
 .pd-list-sm li { font-size: .875rem; color: #a0a8c0; line-height: 1.6; }
 .pd-validation-box { background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem; padding: 1.75rem; margin-bottom: 1.75rem; }
 .pd-not-grid { display: flex; flex-direction: column; gap: .625rem; }
+.pd-not-heading { font-size: 1.125rem; color: #e4e7f2; margin-bottom: .875rem; }
 .pd-not-item { display: flex; gap: .75rem; align-items: flex-start; font-size: .9375rem; color: #7b829e; line-height: 1.6; }
 .pd-not-x { color: #f87171; flex-shrink: 0; margin-top: .05rem; }
 .pd-integration-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 @media (max-width: 700px) { .pd-integration-grid { grid-template-columns: 1fr; } }
 .pd-integration-col { background: #07090f; border: 1px solid #1a2235; border-radius: .625rem; padding: 1.25rem; }
-.pd-integration-col h4 { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #6366f1; margin-bottom: .75rem; }
+.pd-integration-col h3 { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #6366f1; margin-bottom: .75rem; }
 .pd-availability-box {
   display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem;
   background: linear-gradient(135deg, rgba(99,102,241,.08) 0%, rgba(167,139,250,.05) 100%);

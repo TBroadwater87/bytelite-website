@@ -41,9 +41,9 @@ import { ALL_PROJECTS } from '../../data/projects';
           <div class="im-row" style={`--accent:${p.accentColor}`}>
             <div class="im-name"><a href={p.routes[0]}>{p.name}</a></div>
             <div class="im-cols">
-              <div><h4>Receives</h4>{p.integrationReceives.length ? <ul>{p.integrationReceives.map((i) => <li>{i}</li>)}</ul> : <p class="im-none">None disclosed</p>}</div>
-              <div><h4>Produces</h4>{p.integrationProduces.length ? <ul>{p.integrationProduces.map((i) => <li>{i}</li>)}</ul> : <p class="im-none">None disclosed</p>}</div>
-              <div><h4>Consumed by</h4>{p.integrationConsumedBy.length ? <ul>{p.integrationConsumedBy.map((i) => <li>{i}</li>)}</ul> : <p class="im-none">None disclosed</p>}</div>
+              <div><h2>Receives</h2>{p.integrationReceives.length ? <ul>{p.integrationReceives.map((i) => <li>{i}</li>)}</ul> : <p class="im-none">None disclosed</p>}</div>
+              <div><h2>Produces</h2>{p.integrationProduces.length ? <ul>{p.integrationProduces.map((i) => <li>{i}</li>)}</ul> : <p class="im-none">None disclosed</p>}</div>
+              <div><h2>Consumed by</h2>{p.integrationConsumedBy.length ? <ul>{p.integrationConsumedBy.map((i) => <li>{i}</li>)}</ul> : <p class="im-none">None disclosed</p>}</div>
             </div>
           </div>
         ))}
@@ -70,7 +70,7 @@ import { ALL_PROJECTS } from '../../data/projects';
 .im-name a:hover { color: #818cf8; }
 .im-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 @media (max-width: 700px) { .im-cols { grid-template-columns: 1fr; } }
-.im-cols h4 { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #6366f1; margin-bottom: .5rem; }
+.im-cols h2 { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #6366f1; margin-bottom: .5rem; }
 .im-cols ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .375rem; }
 .im-cols li { font-size: .8125rem; color: #a0a8c0; line-height: 1.5; }
 .im-none { font-size: .8125rem; color: #4a5068; font-style: italic; }

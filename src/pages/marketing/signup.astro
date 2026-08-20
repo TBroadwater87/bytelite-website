@@ -8,7 +8,7 @@ import '../../styles/portal.css';
 
 <Layout
   title="Start your pilot | Cordel Restaurant Program"
-  description="Create your restaurant account, build a templated profile and deal, and start the $20 Cordel pilot."
+  description="Create your restaurant account, build a templated profile and deal, and walk the $20 Cordel pilot checkout. Stripe is in test mode - no real charge is processed."
   noindex={true}
 >
   <Header slot="header" />
@@ -18,8 +18,12 @@ import '../../styles/portal.css';
       <p class="eyebrow">Restaurant pilot signup</p>
       <h1>Set up your featured listing</h1>
       <p class="rs-lede">
-        Build your profile and deal first — you only pay the $20 pilot at the end. A paid signup enters
-        review; going live is an approval we control.
+        Build your profile and deal first — the $20 pilot checkout comes at the end. Completing
+        checkout enters review; going live is an approval we control.
+      </p>
+      <p class="rs-lede rs-testmode">
+        <strong>Stripe is currently in test mode.</strong> No real payment is processed and no real
+        listing is created yet. This signup is a working demonstration of the pilot workflow.
       </p>
       <RestaurantSignup client:load />
     </div>
@@ -27,3 +31,13 @@ import '../../styles/portal.css';
 
   <Footer slot="footer" />
 </Layout>
+
+<style>
+.rs-testmode {
+  padding: .875rem 1.125rem;
+  background: rgba(251,146,60,.06);
+  border: 1px solid rgba(251,146,60,.22);
+  border-radius: .5rem;
+}
+.rs-testmode strong { color: #fbbf24; }
+</style>

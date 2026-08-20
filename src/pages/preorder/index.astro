@@ -54,7 +54,7 @@ const SUBNAV = [
       <div class="po-grid">
         {ALL_PREORDER_PRODUCTS.map((p) => (
           <div class="card po-card">
-            <h3>{p.productName}</h3>
+            <h2>{p.productName}</h2>
             <p class="po-type">{p.productType}</p>
             <p>{p.reservationMode === 'reservation'
               ? 'No launch price is set yet, so this is a no-charge founder reservation — it locks in the benefit formula, not a price.'
@@ -86,8 +86,8 @@ const SUBNAV = [
 .po-hero { padding: 4.5rem 0 3.5rem; }
 .po-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
 .po-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-@media (max-width: 700px) { .po-grid { grid-template-columns: 1fr; } }
-.po-card h3 { color: #e4e7f2; margin-bottom: .25rem; }
+@media (max-width: 700px) { .po-grid { grid-template-columns: minmax(0, 1fr); } }
+.po-card h2 { font-size: clamp(1.1rem, 2.2vw, 1.5rem); font-weight: 600; color: #e4e7f2; margin-bottom: .25rem; }
 .po-type { font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #555e7a; margin-bottom: 1rem; }
 .po-card p { font-size: .9375rem; color: #a0a8c0; line-height: 1.7; }
 .po-facts { list-style: none; padding: 0; margin: 1.25rem 0; display: flex; flex-direction: column; gap: .5rem; }

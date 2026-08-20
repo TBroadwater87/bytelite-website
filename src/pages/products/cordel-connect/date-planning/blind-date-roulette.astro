@@ -25,9 +25,9 @@ import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
         date, with a simple role selection for who's paying:
       </p>
       <div class="br-roles">
-        <div class="br-role"><h4>Treater</h4><p>You're covering the meal for your date.</p></div>
-        <div class="br-role"><h4>Treatie</h4><p>Your date is covering the meal for you.</p></div>
-        <div class="br-role"><h4>Dutch</h4><p>You split the bill.</p></div>
+        <div class="br-role"><h2>Treater</h2><p>You're covering the meal for your date.</p></div>
+        <div class="br-role"><h2>Treatie</h2><p>Your date is covering the meal for you.</p></div>
+        <div class="br-role"><h2>Dutch</h2><p>You split the bill.</p></div>
       </div>
       <p class="br-p" style="margin-top:1.5rem;color:#555e7a;font-size:.9375rem;">
         Role selection is designed to set expectations before the date, not to pressure either
@@ -54,6 +54,6 @@ import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 .br-roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.75rem; }
 @media (max-width: 640px) { .br-roles { grid-template-columns: 1fr; } }
 .br-role { background: #0d1120; border: 1px solid #1a2235; border-radius: .625rem; padding: 1.25rem; }
-.br-role h4 { color: #e4e7f2; margin-bottom: .5rem; }
+.br-role h2 { font-size: 1.125rem; font-weight: 600; color: #e4e7f2; margin-bottom: .5rem; }
 .br-role p { font-size: .875rem; color: #7b829e; margin: 0; }
 </style>

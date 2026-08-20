@@ -1,0 +1,64 @@
+---
+// The public disclosure boundary callout, shared by every research page so the landing page,
+// the thesis, and the plain-English explanation cannot drift apart or away from the Terms.
+import {
+  DISCLOSURE_BOUNDARY_SHORT,
+  DISCLOSURE_BOUNDARY_FULL,
+  HYPOTHESIS_DISCLAIMER,
+  NO_LICENSE_STATEMENT,
+} from '../../data/research';
+
+export interface Props {
+  /** `short` states the boundary; `full` adds the hypothesis and no-license statements. */
+  variant?: 'short' | 'full';
+}
+
+const { variant = 'short' } = Astro.props;
+---
+
+<aside class="db-box" aria-labelledby="disclosure-boundary-heading">
+  <h2 id="disclosure-boundary-heading" class="db-heading">Public disclosure boundary</h2>
+  <p>{variant === 'full' ? DISCLOSURE_BOUNDARY_FULL : DISCLOSURE_BOUNDARY_SHORT}</p>
+  {variant === 'full' && (
+    <>
+      <p>{HYPOTHESIS_DISCLAIMER}</p>
+      <p>
+        {NO_LICENSE_STATEMENT} See <a href="/terms">Terms of Use</a> for the governing language.
+      </p>
+    </>
+  )}
+</aside>
+
+<style>
+.db-box {
+  background: linear-gradient(135deg, rgba(99,102,241,.08) 0%, rgba(167,139,250,.05) 100%);
+  border: 1px solid rgba(99,102,241,.25);
+  border-radius: .875rem;
+  padding: 1.75rem 2rem;
+}
+.db-heading {
+  font-size: .6875rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #818cf8;
+  margin-bottom: .875rem;
+  line-height: 1.4;
+}
+.db-box p {
+  font-size: .9375rem;
+  color: #a0a8c0;
+  line-height: 1.75;
+}
+.db-box p + p { margin-top: .875rem; }
+.db-box a { color: #818cf8; }
+.db-box a:hover, .db-box a:focus-visible { color: #a5b4fc; }
+
+@media (max-width: 600px) { .db-box { padding: 1.5rem 1.25rem; } }
+
+@media print {
+  .db-box { background: none; border: 1px solid #999; break-inside: avoid; }
+  .db-box p { color: #000; }
+  .db-heading { color: #000; }
+}
+</style>

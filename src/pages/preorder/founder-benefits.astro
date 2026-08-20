@@ -23,6 +23,16 @@ const exampleConfig: PreorderProductConfig = {
   legalDisclosureVersion: '2026-07-26', physicalBonusBenefit: null,
 };
 const example = calculatePreorder(exampleConfig);
+
+// Second illustrative case: a usage-unit product rather than a duration-based one, so the
+// "10% more entitlement" half of the formula is shown on the other kind of entitlement it can
+// apply to. Still hypothetical - no product has an announced launch price.
+const usageExampleConfig: PreorderProductConfig = {
+  ...exampleConfig,
+  productId: 'example-usage', productName: 'Example Usage-Based Service',
+  baseEntitlementDays: null, baseUsageUnits: 100, usageUnitLabel: 'usage units',
+};
+const usageExample = calculatePreorder(usageExampleConfig);
 ---
 
 <Layout
@@ -75,6 +85,23 @@ const example = calculatePreorder(exampleConfig);
         plus 10% additional entitlement ({exampleConfig.baseEntitlementDays} days &rarr; {example.totalEntitlementDays} days).
         The site never labels this combination as "20% off."
       </p>
+
+      <div class="fb-units">
+        <p class="fb-units-label">Illustrative example only &mdash; not a current product price.</p>
+        <p class="fb-p">
+          For a product measured in usage units rather than service days, the same formula applies
+          to both halves. If a future public price were
+          {' '}{formatCents(usageExampleConfig.standardLaunchPriceCents!)} with
+          {' '}{usageExampleConfig.baseUsageUnits} standard usage units, the founder formula would
+          produce a {formatCents(usageExample.preorderPriceCents!)} price and
+          {' '}{usageExample.totalUsageUnits} usage units.
+        </p>
+        <p class="fb-p" style="font-size:.9375rem;color:#555e7a;">
+          Entitlement units are not universally applicable across every product, which is why this
+          second example appears here rather than on individual product pages. No product currently
+          has an announced launch price.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -104,4 +131,14 @@ const example = calculatePreorder(exampleConfig);
 .fb-badge h3 { font-size: .875rem; color: #e4e7f2; margin-bottom: .25rem; }
 .fb-badge p { font-size: .8125rem; color: #7b829e; margin: 0; line-height: 1.5; }
 @media (max-width: 600px) { .fb-badges { grid-template-columns: 1fr; } }
+.fb-units {
+  margin-top: 1.75rem; padding: 1.5rem 1.75rem;
+  background: #0d1120; border: 1px solid #1a2235; border-left: 3px solid #818cf8;
+  border-radius: .75rem;
+}
+.fb-units-label {
+  font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: #fbbf24; margin-bottom: .875rem;
+}
+.fb-units .fb-p:last-child { margin-bottom: 0; }
 </style>

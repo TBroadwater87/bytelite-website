@@ -1,5 +1,12 @@
 ---
 import CookieBanner from '../components/CookieBanner.astro';
+import {
+  COMPANY_NAME,
+  COMPANY_LOCALITY,
+  COMPANY_REGION,
+  COMPANY_COUNTRY,
+  LEGAL_FORMATION_YEAR,
+} from '../data/company';
 
 export interface Props {
   title: string;
@@ -21,18 +28,20 @@ const {
 
 const canonicalURL = canonical || Astro.url.href;
 
+// foundingDate is the LEGAL FORMATION year of the entity, not the year the research began.
+// Both come from src/data/company.ts so the two can never be conflated here.
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'ByteLite LLC',
+  name: COMPANY_NAME,
   url: 'https://www.thebytelite.com',
   logo: 'https://www.thebytelite.com/bytelite-logo.png',
-  foundingDate: '2024',
+  foundingDate: LEGAL_FORMATION_YEAR,
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Helena',
-    addressRegion: 'MT',
-    addressCountry: 'US',
+    addressLocality: COMPANY_LOCALITY,
+    addressRegion: COMPANY_REGION,
+    addressCountry: COMPANY_COUNTRY,
   },
 };
 ---
@@ -139,6 +148,9 @@ p  { color: #a0a8c0; line-height: 1.7; }
 .btn-ghost    { background: transparent; color: #7b829e; border: 1px solid #1a2235; }
 .btn-ghost:hover    { color: #e4e7f2; border-color: #24304a; }
 .btn-sm { padding: .5rem 1.25rem; font-size: .875rem; }
+/* Buttons stay on one line at normal widths, but a long label must be allowed to wrap on very
+   narrow screens rather than push the whole document into horizontal scroll. */
+@media (max-width: 380px) { .btn { white-space: normal; text-align: center; } }
 
 /* Status badges */
 .badge {

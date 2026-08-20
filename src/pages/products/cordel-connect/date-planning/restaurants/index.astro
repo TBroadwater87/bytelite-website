@@ -16,7 +16,7 @@ import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
   <section class="rs-hero">
     <div class="container" style="max-width:820px;">
       <p class="eyebrow">Restaurants</p>
-      <span class="badge badge-active" style="margin-bottom:1rem;display:inline-block;">Live · pilot</span>
+      <span class="badge badge-prelaunch" style="margin-bottom:1rem;display:inline-block;">Pilot preparation · test-mode checkout</span>
       <h1>Real suggestions for where to actually go.</h1>
       <p class="rs-p">
         Cordel Connect suggests real-world date and meet-up locations to people planning to
@@ -24,6 +24,11 @@ import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
         When a restaurant genuinely fits what two people are looking for, Cordel Connect can
         surface it as a <em>Featured</em> suggestion with a discount or perk the restaurant chose
         to offer — always labeled honestly as a paid placement, never disguised as a neutral pick.
+      </p>
+      <p class="rs-p" style="margin-top:1rem;font-size:.9375rem;color:#7b829e;">
+        The Restaurant Partner Program is in pilot preparation. Its signup workflow exists and runs
+        a real Stripe Checkout flow in test mode, so no real charge is processed and no real listing
+        is created yet. No external restaurant has been verified as a completed pilot participant.
       </p>
     </div>
   </section>
@@ -50,4 +55,6 @@ import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
 <style>
 .rs-hero { padding: 4.5rem 0 3.5rem; }
 .rs-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
+.rs-hero .badge { white-space: normal; }
+.btn { white-space: normal; text-align: center; }
 </style>

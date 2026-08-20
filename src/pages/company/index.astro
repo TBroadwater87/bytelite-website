@@ -4,6 +4,15 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ProductSubNav from '../../components/ProductSubNav.astro';
+import { RESEARCH_ROUTES } from '../../data/research';
+import {
+  COMPANY_NAME,
+  COMPANY_LOCATION,
+  COMPANY_STRUCTURE,
+  FOUNDER_NAME,
+  RESEARCH_BEGAN_YEAR,
+  LEGAL_FORMATION_YEAR,
+} from '../../data/company';
 
 const SUBNAV = [
   { label: 'About', href: '/company' },
@@ -17,8 +26,8 @@ const SUBNAV = [
 
 <Layout
   title="About ByteLite LLC"
-  description="ByteLite LLC is a founder-led company from Helena, Montana building deterministic technology infrastructure and privacy-first public products."
-  keywords="About ByteLite LLC, Helena Montana, founder-led, Tash Broadwater"
+  description="ByteLite LLC is a founder-led research and product company in Helena, Montana investigating deterministic structure. The research began in 2024; the LLC was formed in 2025."
+  keywords="About ByteLite LLC, Helena Montana, founder-led, Tash Broadwater, deterministic structure research"
 >
   <Header slot="header" />
   <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Company' }]} /></div></section>
@@ -44,35 +53,44 @@ const SUBNAV = [
         <p class="eyebrow">The Company</p>
         <h2>One founder. A layered technology stack. Clear status.</h2>
         <p style="margin-top:1.25rem;font-size:1.0625rem;line-height:1.8;">
-          ByteLite LLC was founded in 2024 by Tash Broadwater in Helena, Montana, to build
-          deterministic technology infrastructure — structure, vision, reasoning, and governed
-          action — under one architecture.
+          {COMPANY_NAME} is a founder-led research and product company investigating deterministic
+          structure across digital information, visual evidence, reasoning, governance, and human
+          interaction. The research work began in {RESEARCH_BEGAN_YEAR}; {COMPANY_NAME} itself was
+          formed in {LEGAL_FORMATION_YEAR} by {FOUNDER_NAME} in {COMPANY_LOCATION}.
         </p>
         <p style="margin-top:1rem;font-size:1.0625rem;line-height:1.8;">
-          Cordel Play and Cordel Connect are the company's flagship public-facing
-          products, built on top of that architecture. They give the underlying research a
-          concrete, human context: consent, compatibility, preference, and real-world safety.
+          Cordel Play and Cordel Connect are the company's public-facing products, and they are
+          part of the research rather than a detour from it. Human context forces consent,
+          compatibility, refusal, preference, and real-world safety into concrete product surfaces
+          that a governance model has to actually survive.
         </p>
         <p style="margin-top:1rem;font-size:1.0625rem;line-height:1.8;">
-          ByteLite LLC is proof-gated: product claims are made only when they can be defended. See
-          <a href="/architecture" style="color:#818cf8;">the Architecture</a> for the system design
-          and claim boundaries, and <a href="/progress" style="color:#818cf8;">Progress</a> for
-          current status.
+          {COMPANY_NAME} is proof-gated: product claims are made only when they can be defended.
+          The <a href={RESEARCH_ROUTES.landing} style="color:#818cf8;">Research</a> pages explain
+          the larger thesis, <a href="/architecture" style="color:#818cf8;">the Architecture</a>
+          explains the system design and claim boundaries, and
+          <a href="/progress" style="color:#818cf8;">Progress</a> carries the canonical current
+          status.
         </p>
       </div>
       <div class="about-cards">
-        <div class="card about-info-card"><div class="about-info-label">Founded</div><div class="about-info-value">2024</div></div>
-        <div class="card about-info-card"><div class="about-info-label">Location</div><div class="about-info-value">Helena, Montana</div></div>
-        <div class="card about-info-card"><div class="about-info-label">Structure</div><div class="about-info-value">Solo-founder LLC</div></div>
-        <div class="card about-info-card"><div class="about-info-label">Flagship products</div><div class="about-info-value">Cordel Play &amp; Connect</div></div>
+        <div class="card about-info-card"><div class="about-info-label">Research began</div><div class="about-info-value">{RESEARCH_BEGAN_YEAR}</div></div>
+        <div class="card about-info-card"><div class="about-info-label">LLC formed</div><div class="about-info-value">{LEGAL_FORMATION_YEAR}</div></div>
+        <div class="card about-info-card"><div class="about-info-label">Location</div><div class="about-info-value">{COMPANY_LOCATION}</div></div>
+        <div class="card about-info-card"><div class="about-info-label">Structure</div><div class="about-info-value">{COMPANY_STRUCTURE}</div></div>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container" style="max-width:760px;text-align:center;">
-      <a href="/technologies" class="btn btn-outline" style="margin-right:.75rem;">Explore the Technologies</a>
-      <a href="/company/founder" class="btn btn-outline">Meet the Founder</a>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;">
+        <a href={RESEARCH_ROUTES.landing} class="btn btn-outline">Read the Research</a>
+        <a href="/technologies" class="btn btn-outline">Explore the Technologies</a>
+        <a href="/architecture" class="btn btn-outline">The Architecture</a>
+        <a href="/company/founder" class="btn btn-outline">Meet the Founder</a>
+        <a href="/progress" class="btn btn-outline">Current Status</a>
+      </div>
     </div>
   </section>
 

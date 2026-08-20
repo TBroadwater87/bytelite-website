@@ -1,0 +1,1017 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PaperHeading from '../../components/research/PaperHeading.astro';
+import StructuralProgression from '../../components/research/StructuralProgression.astro';
+import MaturityTable from '../../components/research/MaturityTable.astro';
+import DisclosureBoundary from '../../components/research/DisclosureBoundary.astro';
+import {
+  RESEARCH_PUBLICATION,
+  RESEARCH_ROUTES,
+  EVIDENCE_STATUSES,
+  FALSIFICATION_CASES,
+  LIMITATIONS,
+  REFERENCES,
+  RELATED_RESEARCH_AREAS,
+} from '../../data/research';
+import { COMPANY_NAME, FOUNDER_NAME } from '../../data/company';
+
+// One source for section identity: the table of contents, the anchors, and the numbered headings
+// are all rendered from this map, so a renamed or reordered section cannot leave a dead anchor.
+const SECTION = {
+  abstract: { id: 'abstract', number: 1, title: 'Abstract' },
+  question: { id: 'research-question', number: 2, title: 'Research Question' },
+  bottomUp: { id: 'bottom-up-structural-cognition', number: 3, title: 'Bottom-Up Structural Cognition' },
+  relationships: { id: 'deterministic-relationships', number: 4, title: 'Deterministic Relationships' },
+  reversible: { id: 'reversible-structural-representation', number: 5, title: 'Reversible Structural Representation' },
+  reduction: { id: 'structural-reduction', number: 6, title: 'Structural Reduction' },
+  artifacts: { id: 'canonical-structural-artifacts', number: 7, title: 'Canonical Structural Artifacts' },
+  invariants: { id: 'verified-invariant-learning', number: 8, title: 'Verified Invariant Learning' },
+  selfOptimization: { id: 'verified-reduction-and-self-optimization', number: 9, title: 'Verified Structural Reduction and Self-Optimization' },
+  algorithmic: { id: 'algorithmic-information-context', number: 10, title: 'Algorithmic Information Context' },
+  vision: { id: 'deterministic-structural-vision', number: 11, title: 'Deterministic Structural Vision' },
+  crossDomain: { id: 'cross-domain-relational-abstraction', number: 12, title: 'Cross-Domain Relational Abstraction' },
+  temporal: { id: 'temporal-structure', number: 13, title: 'Temporal Structure' },
+  prediction: { id: 'prediction-and-simulation', number: 14, title: 'Prediction and Simulation' },
+  sufficient: { id: 'task-sufficient-structural-state', number: 15, title: 'Task-Sufficient Structural State' },
+  governance: { id: 'auditability-unknowns-and-governance', number: 16, title: 'Auditability, Unknowns, and Governance' },
+  maturity: { id: 'implementation-versus-hypothesis', number: 17, title: 'Current Implementation vs Research Hypothesis' },
+  falsifiability: { id: 'experimental-program-and-falsifiability', number: 18, title: 'Experimental Program and Falsifiability' },
+  limitations: { id: 'limitations', number: 19, title: 'Limitations' },
+  roadmap: { id: 'research-roadmap', number: 20, title: 'Research Roadmap' },
+  conclusion: { id: 'conclusion', number: 21, title: 'Conclusion' },
+  references: { id: 'references', number: 22, title: 'References' },
+} as const;
+
+const TABLE_OF_CONTENTS = Object.values(SECTION);
+
+const PUBLICATION_FIELDS = [
+  { label: 'Organization', value: RESEARCH_PUBLICATION.organization },
+  { label: 'Publication type', value: RESEARCH_PUBLICATION.publicationType },
+  { label: 'Version', value: RESEARCH_PUBLICATION.version },
+  { label: 'Publication date', value: RESEARCH_PUBLICATION.publicationDateDisplay },
+  { label: 'Research status', value: RESEARCH_PUBLICATION.researchStatus },
+  { label: 'Peer review', value: RESEARCH_PUBLICATION.peerReview },
+  { label: 'Independent verification', value: RESEARCH_PUBLICATION.independentVerification },
+  { label: 'Disclosure', value: RESEARCH_PUBLICATION.disclosure },
+];
+
+const RELATION_CONCEPTS = [
+  'same', 'different', 'contains', 'part of', 'precedes', 'follows',
+  'persists', 'changes', 'approaches', 'intersects', 'transforms',
+];
+
+const ROADMAP = [
+  {
+    horizon: 'Near-term',
+    focus: 'Widen the proof surface, not the claim.',
+    items: [
+      'Extend exact-reconstruction validation beyond the current internal artifact set.',
+      'Promote relationally positioned visual evidence out of active development and into the stable proof corpus.',
+      'Bring the recognized-but-not-yet-routed inquiry types onto governed answer paths.',
+      'Qualify integration parity so that one evidence anchor covers the tested configuration and the deployed one alike.',
+    ],
+  },
+  {
+    horizon: 'Middle-term',
+    focus: 'Test whether reduction actually composes.',
+    items: [
+      'Run candidate-versus-reference equivalence experiments with the evidence status recorded explicitly rather than assumed.',
+      'Compare independently derived visual relationship structure against governed masks, in that order.',
+      'Establish whether a small relational vocabulary stays coherent when carried between domains.',
+    ],
+  },
+  {
+    horizon: 'Long-term',
+    focus: 'Open research, stated as such.',
+    items: [
+      'Whether temporal structural state supports a governed transition law worth predicting with.',
+      'Whether bounded simulation over reduced models preserves what the governed objective requires.',
+      'Whether promotion of discovered invariants can be gated by the same governance rail that gates emission.',
+    ],
+  },
+];
+
+const paperJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ScholarlyArticle',
+  headline: RESEARCH_PUBLICATION.title,
+  alternativeHeadline: RESEARCH_PUBLICATION.subtitle,
+  author: { '@type': 'Person', name: FOUNDER_NAME },
+  publisher: { '@type': 'Organization', name: COMPANY_NAME },
+  datePublished: RESEARCH_PUBLICATION.publicationDate,
+  dateModified: RESEARCH_PUBLICATION.publicationDate,
+  version: RESEARCH_PUBLICATION.version,
+  inLanguage: 'en',
+  isAccessibleForFree: true,
+  url: `https://www.thebytelite.com${RESEARCH_ROUTES.thesis}`,
+};
+---
+
+<Layout
+  title="Deterministic Structural Cognition | ByteLite LLC"
+  description="ByteLite LLC's public research thesis on reversible structural representation, verified invariant learning, deterministic cognition, and computational world models."
+  keywords="deterministic structural cognition, reversible structure, verified invariant learning, structural reduction, computational world models, ByteLite LLC research"
+  canonical={`https://www.thebytelite.com${RESEARCH_ROUTES.thesis}`}
+>
+  <Header slot="header" />
+  <script type="application/ld+json" set:html={JSON.stringify(paperJsonLd)} />
+
+  <section class="section-sm no-print">
+    <div class="container">
+      <Breadcrumbs items={[{ label: 'Research', href: RESEARCH_ROUTES.landing }, { label: 'Deterministic Structural Cognition' }]} />
+    </div>
+  </section>
+
+  <!-- Publication header -->
+  <header class="pp-masthead">
+    <div class="container pp-container">
+      <p class="eyebrow">{RESEARCH_PUBLICATION.publicationType}</p>
+      <h1 class="pp-title">{RESEARCH_PUBLICATION.title}</h1>
+      <p class="pp-subtitle">{RESEARCH_PUBLICATION.subtitle}</p>
+
+      <dl class="pp-meta">
+        {PUBLICATION_FIELDS.map((field) => (
+          <div class="pp-meta-row">
+            <dt>{field.label}</dt>
+            <dd>{field.value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <p class="pp-masthead-links">
+        Read alongside:
+        <a href="/progress">Current Status</a>
+        <a href="/progress/validation-evidence">Validation Evidence</a>
+        <a href="/architecture">Architecture</a>
+        <a href={RESEARCH_ROUTES.plainEnglish}>Plain-English Explanation</a>
+      </p>
+
+      <p class="pp-masthead-note">
+        Publication is not validation. Nothing in this document has been peer reviewed or verified
+        by a party outside {COMPANY_NAME}, and making it public does not make any hypothesis in it
+        more likely to be true.
+      </p>
+    </div>
+  </header>
+
+  <div class="pp-body">
+    <div class="container pp-layout">
+      <!-- Table of contents -->
+      <nav class="pp-toc no-print" aria-label="Paper contents">
+        <p class="pp-toc-title">Contents</p>
+        <ol>
+          {TABLE_OF_CONTENTS.map((section) => (
+            <li><a href={`#${section.id}`}>{section.title}</a></li>
+          ))}
+        </ol>
+      </nav>
+
+      <article class="pp-article">
+        <!-- 1. Abstract -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.abstract} />
+          <p>
+            {COMPANY_NAME} is investigating a bottom-up architecture in which exact relationships
+            between observations are represented explicitly, recurring structure is reduced into
+            reusable forms, and candidate invariant transformations are promoted only after the
+            evidence or proof standard their domain requires has been satisfied.
+          </p>
+          <p>
+            The research connects reversible digital representation, structural vision,
+            deterministic cognition, provenance, governance, prediction, and simulation. It treats
+            these not as separate products that happen to share an owner, but as the same question
+            asked in five places: whether an explicit deterministic description can be made smaller
+            while remaining sufficient for the task that needed it.
+          </p>
+          <p>
+            The work does <strong>not</strong> claim true Kolmogorov complexity, universal minimum
+            descriptions, universal compression, solved artificial general intelligence, solved
+            computer vision, autonomous-driving readiness, or complete physical simulation. It
+            seeks smaller <em>currently known</em> deterministic descriptions that remain sufficient
+            for a governed objective, and it treats every such description as an upper bound that a
+            later result may improve.
+          </p>
+        </section>
+
+        <!-- 2. Research Question -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.question} />
+          <p>The thesis rests on three statements. Each is a hypothesis, not a result.</p>
+          <ol class="pp-thesis-list">
+            <li>
+              Complex information and computation may become more computationally useful when
+              represented through explicit deterministic relationships rather than only as
+              independent observations.
+            </li>
+            <li>
+              Repeated deterministic transformations may sometimes be replaced by smaller explicit
+              invariants when equivalence can be established within a governed domain.
+            </li>
+            <li>
+              If such verified structural reduction composes across representation, cognition,
+              visual structure, and temporal state, increasingly economical world models may
+              support prediction and simulation while preserving provenance and explicit
+              uncertainty.
+            </li>
+          </ol>
+          <p>
+            The three are ordered by how much has been tested. The first is the one this company
+            has spent the most evidence on. The third is the one that would matter most and has the
+            least support. Section {SECTION.falsifiability.number} states what would falsify each of
+            them; Section {SECTION.maturity.number} states which parts exist today.
+          </p>
+          <figure class="pp-callout">
+            <blockquote>
+              The question is not whether a system can produce a shorter answer. It is whether a
+              shorter answer can be shown to be the same answer.
+            </blockquote>
+          </figure>
+
+          <p class="pp-figure-lead">
+            <strong>Figure 1.</strong> The progression the rest of this paper follows. Each stage
+            is a separate question with its own evidence standard, and nothing advances to the next
+            stage because the previous one looked promising. The sections below take the stages in
+            order.
+          </p>
+          <StructuralProgression variant="full" />
+        </section>
+
+        <!-- 3. Bottom-Up Structural Cognition -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.bottomUp} />
+          <p>
+            Many modern learned systems optimize large parameterized models over observations, and
+            they do so with results that this research does not dispute and does not attempt to
+            reproduce. Their strength is generalization from data whose structure nobody had to
+            state in advance.
+          </p>
+          <p>
+            This research investigates a complementary architecture in which explicit relationships
+            and governed transformations are the primary objects rather than a property that
+            emerges from fitted parameters. The difference is in what the system stores. A fitted
+            model stores parameters from which behavior is recovered; a structural representation
+            stores relationships from which the source, and the reasoning over it, can be recovered
+            and inspected.
+          </p>
+          <p>
+            Different architectures solve different problems. A structural representation is a poor
+            substitute for a large learned model where the task is open-ended generalization over
+            data nobody has characterized. A large learned model is a poor substitute for a
+            structural representation where the task requires exact reconstruction, explicit
+            provenance, or a decision chain that a person can audit line by line. The two may well
+            be complementary, and this thesis makes no argument that one should displace the other.
+          </p>
+        </section>
+
+        <!-- 4. Deterministic Relationships -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.relationships} />
+          <p>
+            A deterministic relationship, for the purposes of this research, is one that resolves
+            the same way every time it is evaluated against the same inputs inside the same
+            governed domain. Determinism here is a property of the representation and of the
+            procedure that builds it. It is not a claim that the world is deterministic, and it is
+            not a claim that a deterministic description of a phenomenon is a correct one.
+          </p>
+          <p>What determinism is being used for is narrower and more testable:</p>
+          <ul class="pp-list">
+            <li><strong>Reproducibility.</strong> The same input and the same build produce byte-identical output. This is checkable, and it has been checked; it is also how at least one genuine non-determinism defect in this stack was found and fixed.</li>
+            <li><strong>Provenance.</strong> If a result is reproducible, the path that produced it can be recorded and re-walked rather than asserted.</li>
+            <li><strong>Differencing.</strong> When two runs disagree, the disagreement is a defect with a location, not statistical noise to be averaged away.</li>
+            <li><strong>Falsifiability.</strong> A deterministic claim can be broken by a single counterexample, which makes it worth stating publicly.</li>
+          </ul>
+        </section>
+
+        <!-- 5. Reversible Structural Representation -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.reversible} />
+          <p>The public law of this layer is one line:</p>
+          <figure class="pp-law">
+            <p>Source &rarr; deterministic structural representation &rarr; exact reconstruction</p>
+            <figcaption>Where exact reconstruction is what the governed domain requires.</figcaption>
+          </figure>
+          <p>
+            Exact reconstruction matters because it creates a measurable proof surface. Either the
+            reconstructed artifact is identical to the original or it is not; the test is binary,
+            cheap, and impossible to argue with. Very little else in this field admits a check that
+            clean, which is why this layer carries the earliest and heaviest evidence load in the
+            program.
+          </p>
+          <p>
+            The internal mechanism that produces the representation is not described here, and no
+            part of this paper should be read as a description of it.
+          </p>
+          <p>
+            One consequence deserves emphasis, because it is routinely overstated elsewhere:
+            <strong>compression is not treated as evidence of understanding.</strong> A reduction
+            demonstrates that some repeated information has been represented through a reusable
+            structure. It does not demonstrate that the structure means anything, that it
+            corresponds to anything in the world, or that the system knows what it has done. It is
+            a measurement, and it is being used as one.
+          </p>
+        </section>
+
+        <!-- 6. Structural Reduction -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.reduction} />
+          <p>
+            Structural reduction is the replacement of a longer explicit description by a shorter
+            one that regenerates it exactly under a stated interpreter. The interpreter has to be
+            stated, because a description is only short relative to something that can read it.
+          </p>
+          <p>
+            The discipline that makes this measurable rather than rhetorical is complete
+            accounting: everything required to reconstruct the source counts toward the size of the
+            representation. A reduction that becomes small by moving cost somewhere that is not
+            counted has not reduced anything; it has relocated the problem and reported the move as
+            a result. This research treats such a move as a defect in the measurement, not as a
+            finding.
+          </p>
+        </section>
+
+        <!-- 7. Canonical Structural Artifacts -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.artifacts} />
+          <p>
+            The public term for the output of the representation layer is a
+            <strong>canonical structural artifact</strong>. {COMPANY_NAME} currently researches
+            <code>.root</code> artifacts in this role: self-contained structural artifacts intended
+            to carry enough information for governed reconstruction on their own.
+          </p>
+          <p>Only two things are stated publicly about them.</p>
+          <ul class="pp-list">
+            <li>The artifact is intended to preserve information sufficient for governed reconstruction.</li>
+            <li>
+              The long-term research question is whether structural cognition can come to interpret
+              increasing portions of such an artifact <em>more directly</em> than the discovery
+              procedure that produced it originally required.
+            </li>
+          </ul>
+          <p>
+            The artifact's internal format, serialization, metadata, mappings, and decoding grammar
+            are not described here and will not be. That second bullet is a hypothesis with no
+            supporting evidence today, and Section {SECTION.maturity.number} records it as such.
+          </p>
+        </section>
+
+        <!-- 8. Verified Invariant Learning -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.invariants} />
+          <p>
+            The cognition hypothesis can be stated generically without touching any implementation
+            detail. Suppose a reference procedure reaches a result through a chain of deterministic
+            steps:
+          </p>
+          <figure class="pp-law">
+            <p>A &rarr; B &rarr; C &rarr; D &rarr; Result</p>
+          </figure>
+          <p>and suppose a candidate proposes to reach the same result more directly:</p>
+          <figure class="pp-law">
+            <p>Invariant X &rarr; Result</p>
+          </figure>
+          <p>
+            The candidate may replace the reference procedure only when the equivalence standard
+            required by the relevant domain has been satisfied. What that standard is depends
+            entirely on the domain: a rendering preference and a safety-relevant decision do not
+            get the same bar, and neither should inherit the other's.
+          </p>
+          <p>
+            This makes the evidence status of a candidate a first-class property, and the statuses
+            below are deliberately kept distinct. In particular, <em>supported</em> and
+            <em>formally verified</em> are not the same claim and are never allowed to collapse
+            into one another. Empirical testing over a stated range is not mathematical proof, and
+            this research does not present it as proof.
+          </p>
+          <dl class="pp-status-list">
+            {EVIDENCE_STATUSES.map((status) => (
+              <div class="pp-status-row">
+                <dt>{status.label}</dt>
+                <dd>{status.meaning}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <!-- 9. Verified Structural Reduction and Self-Optimization -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.selfOptimization} />
+          <p>
+            The technical term for the operation in Section {SECTION.invariants.number} is
+            <strong>verified structural reduction</strong>. Self-optimization is a consequence of
+            it, and only in a bounded sense: a longer qualified representation or computation may
+            be replaced by a cheaper qualified equivalent.
+          </p>
+          <p>
+            That bound is the whole point, so it is worth stating negatively as well. This is not a
+            system that rewrites itself without governance. It is not live, uncontrolled
+            self-modification. Nothing described here permits a system to change its own behavior
+            because it found a change convenient.
+          </p>
+          <p>
+            For any safety-relevant use, discovery and operational promotion remain separate
+            authorities. Finding a candidate is one act; deciding that the candidate may be used is
+            another, and the second is a governance decision rather than a search result. The
+            architecture keeps those two apart by design rather than by policy.
+          </p>
+        </section>
+
+        <!-- 10. Algorithmic Information Context -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.algorithmic} />
+          <p>
+            This research sits near, but does not claim to resolve, a body of established work on
+            the size of descriptions: Kolmogorov complexity, algorithmic information theory, and
+            Minimum Description Length.
+          </p>
+          <p>
+            The most important thing to say plainly is a negative one.
+            <strong>True Kolmogorov complexity is uncomputable in general, and this research does
+            not claim to compute it.</strong> There is no procedure here, and there is no procedure
+            anywhere, that returns the shortest description of an arbitrary object.
+          </p>
+          <p>
+            What an exact discovered representation does provide is an <em>upper bound</em> on
+            description complexity under a specified interpreter. A smaller verified representation
+            improves that known upper bound and says nothing about the unknown true value. That is
+            a modest claim, and it is the only claim of this kind being made.
+          </p>
+          <p>
+            Terminology follows from that. There is no such thing here as a
+            &ldquo;Kolmogorov complexity engine&rdquo; and the phrase is not used as a name for
+            anything in this stack.
+          </p>
+        </section>
+
+        <!-- 11. Deterministic Structural Vision -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.vision} />
+          <p>
+            Current public evidence for the visual layer is recorded per project rather than
+            restated here, so that this paper cannot become a second, softer version of the status
+            page. What has been validated, and the known failure on close-up portrait photographs
+            that has not been resolved, are on
+            <a href="/technologies/bytesight">the ByteSight page</a> and in
+            <a href="/progress/validation-evidence">Validation Evidence</a>.
+          </p>
+          <p>
+            The research hypothesis is separate from all of that: that visual observations may be
+            translated into deterministic spatial relationships <em>before</em> semantic
+            interpretation, rather than as a by-product of it.
+          </p>
+          <p>
+            If that translation is possible, governed masks and other visual evidence can then be
+            used to ask a real question: whether the exact relationship structures derived from an
+            image correspond usefully to physical regions, boundaries, parts, material transitions,
+            or other governed visual distinctions.
+          </p>
+          <figure class="pp-callout">
+            <blockquote>Observation first. Ground-truth comparison second.</blockquote>
+            <figcaption>
+              The representation must never use the answer to manufacture the input. A structure
+              derived with knowledge of the mask it will be compared against proves nothing.
+            </figcaption>
+          </figure>
+          <p>
+            This is not a claim of solved object detection, and it is not a claim that direct
+            visual interpretation of canonical structural artifacts exists today. Neither is
+            currently supported by evidence in this repository or anywhere else.
+          </p>
+        </section>
+
+        <!-- 12. Cross-Domain Relational Abstraction -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.crossDomain} />
+          <p>
+            A common relational abstraction across domains does not mean those domains share
+            semantics. A relation inside digital structure and a relation between physical objects
+            are not the same event, and treating them as the same event is a category error that
+            this research is explicitly trying to avoid.
+          </p>
+          <p>What might be shared is narrower:</p>
+          <figure class="pp-law">
+            <p>a deterministic relationship inside a governed, domain-specific coordinate system</p>
+          </figure>
+          <p>
+            High-level relational concepts that plausibly survive that translation include the
+            following. This list is conceptual, and no internal enumeration or engine behavior is
+            implied by it.
+          </p>
+          <ul class="pp-chips">
+            {RELATION_CONCEPTS.map((concept) => <li>{concept}</li>)}
+          </ul>
+          <p>
+            Whether these operators remain coherent when carried between domains is an open
+            question, and Section {SECTION.falsifiability.number} states what it would look like if
+            they do not.
+          </p>
+        </section>
+
+        <!-- 13. Temporal Structure -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.temporal} />
+          <p>
+            A structural state observed at one moment describes an arrangement. The same structural
+            state observed across time exposes higher-order relationships that a single observation
+            cannot: what persisted, what changed, in what order, and at what rate.
+          </p>
+          <p>
+            Those higher-order relationships are the raw material for a governed transition law:
+            a rule that says how a state at one moment relates to a state at the next, inside a
+            stated domain and under stated assumptions. Whether such a law can be derived rather
+            than assumed is the question; deriving one for a bounded domain is not the same as
+            deriving one for the world.
+          </p>
+        </section>
+
+        <!-- 14. Prediction and Simulation -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.prediction} />
+          <p>
+            A governed transition law applied forward is a prediction. The same law applied
+            repeatedly, with each output feeding the next input, is a simulation. Nothing more
+            exotic than that is meant by either word in this document.
+          </p>
+          <p>
+            This is not a claim of deterministic prediction of uncontrolled physical reality, and
+            it never can be. A prediction is only as good as the state it was computed from, and
+            real observation is incomplete. Anything carried forward must therefore carry its gaps
+            with it:
+          </p>
+          <ul class="pp-list">
+            <li>unknown variables, marked as unknown rather than defaulted;</li>
+            <li>unobserved state, distinguished from state observed to be absent;</li>
+            <li>ambiguity that the observation did not resolve;</li>
+            <li>sensor limitations, including what the instrument cannot see at all;</li>
+            <li>the boundary of the domain in which the law was qualified.</li>
+          </ul>
+          <p>
+            A simulation that quietly discards any of these is not cheaper. It is wrong in a way
+            that is harder to notice.
+          </p>
+        </section>
+
+        <!-- 15. Task-Sufficient Structural State -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.sufficient} />
+          <figure class="pp-definition">
+            <p>
+              A <strong>task-sufficient structural state</strong> is the smallest currently known
+              and sufficiently validated representation that preserves the relationships a
+              specified task requires.
+            </p>
+          </figure>
+          <p>
+            The load-bearing words are <em>currently known</em>. This is not a minimal
+            representation in any absolute sense, and no claim of global minimality is made
+            anywhere in this research. It is the smallest one found so far that has passed the bar
+            the task sets, and a better one may exist and may be found tomorrow.
+          </p>
+          <p>
+            The reason to care is economic rather than aesthetic. If a task-sufficient state is
+            smaller, the model built on it costs less to carry and less to reason over, which means
+            a fixed budget reaches further before it runs out. Improved invariants would therefore
+            extend the feasible reasoning or simulation horizon rather than merely tidying the
+            representation.
+          </p>
+          <p>That is a hypothesis, and it is one this program intends to test rather than assert.</p>
+        </section>
+
+        <!-- 16. Auditability, Unknowns, and Governance -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.governance} />
+          <p>
+            None of the above is safe on its own, and the governing principle is stated on the
+            <a href="/architecture">Architecture page</a> rather than duplicated here:
+          </p>
+          <figure class="pp-callout">
+            <blockquote>Reasoning is not permission.</blockquote>
+          </figure>
+          <p>
+            A system that has derived a conclusion has not thereby earned the right to act on it,
+            state it, or treat it as settled. A decision chain should preserve each link
+            separately, so that a reviewer can find the point at which a decision stopped being
+            supported:
+          </p>
+          <figure class="pp-law">
+            <p>Observation &rarr; Derived Relationship &rarr; Prediction &rarr; Applicable Governance &rarr; Decision</p>
+          </figure>
+          <p>
+            Nothing in that chain implies perfect observation. Information that was never observed
+            must stay marked as unknown all the way through, rather than being filled in with a
+            default that later reads as a fact.
+          </p>
+          <p>
+            The full governance specification, including intrinsic halting and scoped action
+            envelopes, lives on the
+            <a href="/architecture/governance-and-intrinsic-halting">Governance and Intrinsic Halting</a>
+            page.
+          </p>
+        </section>
+
+        <!-- 17. Current Implementation vs Research Hypothesis -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.maturity} />
+          <p>
+            The separation below is the most important table on this site. Reading down the first
+            column gives what exists; reading down the third gives what this paper is asking about
+            and nothing more.
+          </p>
+          <MaturityTable />
+        </section>
+
+        <!-- 18. Experimental Program and Falsifiability -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.falsifiability} />
+          <p>
+            A research program that cannot fail is not a research program. Each part of this
+            architecture has a specific way of breaking, and those are stated here so that a
+            reviewer can go looking for them.
+          </p>
+          <dl class="pp-falsify">
+            {FALSIFICATION_CASES.map((entry) => (
+              <div class="pp-falsify-row">
+                <dt>{entry.claim}</dt>
+                <dd><span class="pp-falsify-label">Fails if</span>{entry.failsIf}</dd>
+              </div>
+            ))}
+          </dl>
+          <p>
+            Experiments are structured so that the negative result is publishable internally: a
+            candidate that is contradicted is recorded as contradicted rather than retried until it
+            passes, and a superseded candidate keeps its record instead of being deleted. The
+            evidence statuses in Section {SECTION.invariants.number} exist precisely so a failure
+            has somewhere to be written down.
+          </p>
+        </section>
+
+        <!-- 19. Limitations -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.limitations} />
+          <p>This research does not currently demonstrate any of the following.</p>
+          <ul class="pp-limitations">
+            {LIMITATIONS.map((limitation) => <li>{limitation}</li>)}
+          </ul>
+          <p>
+            Two further limitations are structural rather than a matter of progress. A
+            deterministic system can produce a confidently incorrect model of reality if its
+            observations, its axioms, or its implementation are wrong; determinism guarantees that
+            it will be wrong the same way every time, which is useful for debugging and worthless
+            as a defense.
+          </p>
+          <p>
+            And auditability is not omniscience. A complete audit trail records what the system
+            did and why it believed it was permitted to. It does not record what the system failed
+            to observe.
+          </p>
+        </section>
+
+        <!-- 20. Research Roadmap -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.roadmap} />
+          <p>
+            No dates are given, because none are known. The horizons below are an ordering of
+            dependency, not a schedule.
+          </p>
+          <div class="pp-roadmap">
+            {ROADMAP.map((phase) => (
+              <div class="pp-roadmap-phase">
+                <h3>{phase.horizon}</h3>
+                <p class="pp-roadmap-focus">{phase.focus}</p>
+                <ul class="pp-list">
+                  {phase.items.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- 21. Conclusion -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.conclusion} />
+          <p>
+            The claim of this paper is small and the program behind it is not. The claim is that
+            explicit deterministic relationships can sometimes be reduced to smaller verified
+            structures, and that when they can, the reduction is measurable rather than asserted.
+            The program is the bet that this same operation is what is happening when a file is
+            represented exactly, when an image is partitioned reproducibly, when a reasoning
+            procedure is replaced by a qualified shorter one, and when a state is carried forward
+            through time.
+          </p>
+          <p>
+            If that bet is right, the useful consequence is not that machines get bigger. It is
+            that a fixed budget of computation reaches further, and that what it did on the way
+            remains inspectable.
+          </p>
+          <p>
+            If it is wrong, it should be possible to show that from the outside, and Section
+            {SECTION.falsifiability.number} is written to make that easier rather than harder.
+            {COMPANY_NAME} would rather publish the boundary than defend a claim it cannot support.
+          </p>
+          <div class="pp-conclusion-cta no-print">
+            <a href={RESEARCH_ROUTES.plainEnglish} class="btn btn-outline btn-sm">Plain-English Explanation</a>
+            <a href="/progress/validation-evidence" class="btn btn-outline btn-sm">Validation Evidence</a>
+            <a href="/contact?type=validation-partnership" class="btn btn-outline btn-sm">Technical Validation Inquiry</a>
+          </div>
+        </section>
+
+        <!-- 22. References -->
+        <section class="pp-section">
+          <PaperHeading section={SECTION.references} />
+          <ol class="pp-references">
+            {REFERENCES.map((reference) => (
+              <li>
+                <span class="pp-ref-authors">{reference.authors}</span>.
+                <cite>{reference.title}</cite>.
+                <span class="pp-ref-pub">{reference.publication}</span>.
+                {reference.note && <span class="pp-ref-note">{reference.note}</span>}
+              </li>
+            ))}
+          </ol>
+          <h3 class="pp-h3">Related research areas</h3>
+          <p>
+            This thesis is situated near the following fields without claiming equivalence to, or
+            standing within, any of them: {RELATED_RESEARCH_AREAS.join(', ')}. Readers familiar with
+            any of these will recognize ideas that are older and better developed than anything
+            claimed here; the contribution proposed is the composition, not the components.
+          </p>
+        </section>
+
+        <!-- End disclosure -->
+        <section class="pp-section">
+          <DisclosureBoundary variant="full" />
+        </section>
+      </article>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+/* ── Publication masthead ─────────────────────────────────────── */
+.pp-masthead {
+  padding: 2rem 0 3rem;
+  border-bottom: 1px solid #1a2235;
+}
+.pp-container { max-width: 820px; }
+.pp-title {
+  font-size: clamp(1.875rem, 4vw, 2.75rem);
+  line-height: 1.12;
+  margin-bottom: .75rem;
+}
+.pp-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #a0a8c0;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+.pp-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem 2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid #1a2235;
+  border-bottom: 1px solid #1a2235;
+}
+@media (max-width: 640px) { .pp-meta { grid-template-columns: 1fr; } }
+.pp-meta-row { display: flex; flex-direction: column; gap: .1rem; }
+.pp-meta dt {
+  font-size: .6875rem; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: #555e7a;
+}
+.pp-meta dd { font-size: .875rem; color: #c4c8f0; line-height: 1.5; margin: 0; }
+.pp-masthead-links { margin-top: 1.5rem; font-size: .875rem; color: #7b829e; }
+.pp-masthead-links a { color: #818cf8; margin-left: .875rem; }
+.pp-masthead-links a:hover, .pp-masthead-links a:focus-visible { color: #a5b4fc; }
+.pp-masthead-note {
+  margin-top: 1rem; font-size: .8125rem; color: #555e7a; line-height: 1.7; max-width: 640px;
+}
+
+/* ── Body layout: article plus sticky contents ────────────────── */
+.pp-body { padding: 3rem 0 4rem; }
+.pp-layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 3.5rem;
+  align-items: start;
+}
+@media (max-width: 1024px) {
+  .pp-layout { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+}
+
+.pp-toc {
+  position: sticky;
+  top: 5rem;
+  max-height: calc(100vh - 7rem);
+  overflow-y: auto;
+  border-left: 1px solid #1a2235;
+  padding-left: 1.25rem;
+}
+@media (max-width: 1024px) {
+  .pp-toc {
+    position: static; max-height: none; overflow: visible;
+    border-left: none; padding-left: 0;
+    background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem; padding: 1.5rem;
+  }
+}
+.pp-toc-title {
+  font-size: .6875rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: #4a5068; margin-bottom: .875rem;
+}
+.pp-toc ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+  margin: 0;
+  display: flex; flex-direction: column; gap: .4rem;
+}
+.pp-toc li { font-size: .8125rem; color: #4a5068; }
+.pp-toc a { color: #7b829e; line-height: 1.45; }
+.pp-toc a:hover, .pp-toc a:focus-visible { color: #818cf8; }
+@media (max-width: 1024px) {
+  .pp-toc ol { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .5rem 1.5rem; }
+}
+
+/* ── Article typography ───────────────────────────────────────── */
+.pp-article { max-width: 68ch; }
+.pp-section { margin-bottom: 3.25rem; }
+.pp-section:last-child { margin-bottom: 0; }
+.pp-article p {
+  font-size: 1.0625rem;
+  color: #a0a8c0;
+  line-height: 1.85;
+  margin-bottom: 1.125rem;
+}
+.pp-article p:last-child { margin-bottom: 0; }
+.pp-article strong { color: #e4e7f2; font-weight: 600; }
+.pp-article em { color: #c4c8f0; }
+.pp-article a { color: #818cf8; }
+.pp-article a:hover, .pp-article a:focus-visible { color: #a5b4fc; }
+.pp-article code {
+  font-family: ui-monospace, 'Courier New', monospace;
+  font-size: .9em;
+  color: #c4c8f0;
+  background: rgba(99,102,241,.1);
+  border-radius: .25rem;
+  padding: .1rem .35rem;
+}
+.pp-h3 {
+  font-size: 1.0625rem; font-weight: 600; color: #e4e7f2;
+  margin: 2rem 0 .875rem;
+}
+.pp-article p.pp-figure-lead { margin-top: 1.75rem; font-size: .9375rem; color: #7b829e; }
+
+.pp-list { list-style: none; padding: 0; margin: 0 0 1.125rem; display: flex; flex-direction: column; gap: .625rem; }
+.pp-list li { position: relative; padding-left: 1.5rem; font-size: 1rem; color: #a0a8c0; line-height: 1.75; }
+.pp-list li::before { content: ""; position: absolute; left: .25rem; top: .7em; width: .35rem; height: .35rem; border-radius: 50%; background: #6366f1; }
+
+.pp-thesis-list {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin: 0 0 1.25rem;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.pp-thesis-list li { font-size: 1.0625rem; color: #c4c8f0; line-height: 1.8; }
+.pp-thesis-list li::marker { color: #6366f1; font-weight: 700; }
+
+.pp-limitations { list-style: none; padding: 0; margin: 0 0 1.25rem; display: flex; flex-direction: column; gap: .625rem; }
+.pp-limitations li {
+  position: relative; padding-left: 1.75rem;
+  font-size: 1rem; color: #7b829e; line-height: 1.7;
+}
+.pp-limitations li::before {
+  content: "\00D7"; position: absolute; left: .25rem; top: 0;
+  color: #f87171; font-weight: 700;
+}
+
+.pp-chips { list-style: none; padding: 0; margin: 0 0 1.25rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+.pp-chips li {
+  font-size: .8125rem; font-family: ui-monospace, 'Courier New', monospace; color: #a0a8c0;
+  background: #0d1120; border: 1px solid #1a2235; border-radius: .375rem; padding: .3rem .75rem;
+}
+
+/* ── Restrained callouts ──────────────────────────────────────── */
+.pp-callout {
+  margin: 1.75rem 0;
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid #6366f1;
+  background: rgba(99,102,241,.05);
+  border-radius: 0 .5rem .5rem 0;
+}
+.pp-callout blockquote {
+  margin: 0; font-size: 1.0625rem; font-style: italic;
+  color: #c4c8f0; line-height: 1.7;
+}
+.pp-callout figcaption { margin-top: .75rem; font-size: .875rem; color: #7b829e; line-height: 1.65; }
+
+.pp-law {
+  margin: 1.5rem 0;
+  padding: 1.125rem 1.5rem;
+  background: #0d1120;
+  border: 1px solid #1a2235;
+  border-radius: .5rem;
+  text-align: center;
+}
+.pp-law p {
+  font-family: ui-monospace, 'Courier New', monospace;
+  font-size: .9375rem;
+  color: #c4c8f0;
+  line-height: 1.7;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.pp-law figcaption { margin-top: .625rem; font-size: .8125rem; color: #555e7a; }
+
+.pp-definition {
+  margin: 1.5rem 0;
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(135deg, rgba(99,102,241,.08) 0%, rgba(167,139,250,.05) 100%);
+  border: 1px solid rgba(99,102,241,.25);
+  border-radius: .75rem;
+}
+.pp-definition p { margin: 0; color: #c4c8f0; }
+
+/* ── Definition-style lists ───────────────────────────────────── */
+.pp-status-list, .pp-falsify {
+  margin: 1.5rem 0 0;
+  background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem;
+  overflow: hidden;
+}
+.pp-status-row, .pp-falsify-row {
+  display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 1.25rem;
+  padding: 1rem 1.5rem; border-bottom: 1px solid #1a2235;
+}
+.pp-status-row:last-child, .pp-falsify-row:last-child { border-bottom: none; }
+@media (max-width: 640px) {
+  .pp-status-row, .pp-falsify-row { grid-template-columns: 1fr; gap: .375rem; }
+}
+.pp-status-list dt, .pp-falsify dt {
+  font-size: .875rem; font-weight: 600; color: #e4e7f2; line-height: 1.5;
+}
+.pp-status-list dd, .pp-falsify dd {
+  font-size: .875rem; color: #7b829e; line-height: 1.65; margin: 0;
+}
+.pp-falsify-label {
+  display: inline-block; margin-right: .5rem;
+  font-size: .6875rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: #f87171;
+}
+
+/* ── Roadmap ──────────────────────────────────────────────────── */
+.pp-roadmap { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem; }
+.pp-roadmap-phase {
+  background: #0d1120; border: 1px solid #1a2235; border-left: 3px solid #a78bfa;
+  border-radius: .75rem; padding: 1.5rem;
+}
+.pp-roadmap-phase h3 { font-size: 1rem; color: #e4e7f2; margin-bottom: .25rem; }
+.pp-roadmap-phase p.pp-roadmap-focus { font-size: .875rem; color: #a78bfa; margin-bottom: 1rem; }
+
+/* ── References ───────────────────────────────────────────────── */
+.pp-references {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin: 0;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.pp-references li { font-size: .9375rem; color: #7b829e; line-height: 1.7; }
+.pp-references li::marker { color: #4a5068; }
+.pp-ref-authors { color: #c4c8f0; }
+.pp-references cite { color: #e4e7f2; font-style: italic; margin-left: .25rem; }
+.pp-ref-pub { margin-left: .25rem; }
+.pp-ref-note { display: block; margin-top: .25rem; font-size: .8125rem; color: #555e7a; }
+
+.pp-conclusion-cta { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.75rem; }
+
+/* ── Print ────────────────────────────────────────────────────── */
+@media print {
+  .no-print { display: none !important; }
+  .pp-body { padding: 0; }
+  .pp-layout { display: block; }
+  .pp-article { max-width: none; }
+  .pp-masthead { border-bottom: 2px solid #000; padding: 0 0 1rem; }
+  .pp-title, .pp-h3 { color: #000; }
+  .pp-subtitle, .pp-article p, .pp-list li, .pp-thesis-list li, .pp-references li { color: #111; }
+  .pp-meta dd { color: #000; }
+  .pp-section { break-inside: auto; margin-bottom: 1.5rem; }
+  .pp-callout, .pp-law, .pp-definition, .pp-roadmap-phase, .pp-status-row, .pp-falsify-row {
+    background: none; break-inside: avoid;
+  }
+  .pp-callout blockquote, .pp-law p, .pp-definition p { color: #000; }
+  .pp-article a { color: #000; text-decoration: underline; }
+}
+</style>
+
+<!-- Print rules for chrome owned by other components. Scoped CSS cannot reach the shared header,
+     footer, breadcrumb, or cookie surfaces, and this stylesheet only ships with this page. -->
+<style is:global>
+@media print {
+  body { background: #fff; color: #000; }
+  .site-header,
+  .site-footer,
+  .cookie-banner,
+  .breadcrumbs { display: none !important; }
+  @page { margin: 18mm; }
+}
+</style>

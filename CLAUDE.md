@@ -150,6 +150,37 @@ TypeScript strict mode is enabled with additional strictness settings:
 - Run `npm run test:all` before committing
 - Aim for >80% code coverage
 
+## Canonical Data Law
+
+Three modules under `src/data/` are the single source of truth for anything the site asserts.
+Never restate one of these facts inline in a page — import it, so it cannot drift between pages.
+
+| Module | Owns | Never hardcode in a page |
+|---|---|---|
+| `src/data/projects.ts` | Every project's status, capabilities, validation statements, availability, routes | Technology/project counts (`TECHNOLOGY_COUNT_WORD`, `PUBLIC_PROJECT_COUNT_WORD`), status labels, validation prose |
+| `src/data/company.ts` | Company identity and dates | "Founded" years — `RESEARCH_BEGAN_YEAR` (2024, when the work began) and `LEGAL_FORMATION_YEAR` (2025, the LLC) are **not interchangeable** and must never collapse into one "founded" year |
+| `src/data/research.ts` | Research publication metadata, the canonical progression figure, the maturity table, evidence vocabulary, bibliography, disclosure language | Research route paths (`RESEARCH_ROUTES`), disclosure-boundary wording, publication date/version |
+
+`ProjectRecord.validation` is a list of `ValidationStatement`s, each tagged `evidence` or
+`limitation` via the `evidence()` / `limitation()` helpers. `/progress/validation-evidence`
+regroups them into a public ledger — it never filters, so a negative finding cannot be dropped by
+adding a statement in the wrong place.
+
+**Public evidence rule**: commit ids stay (they anchor a result to a state of the work); local
+paths, drive letters, build locations, and branch plumbing do not. Translate a branch discrepancy
+into its evidentiary meaning ("integration parity has not been qualified") rather than describing
+the repository layout.
+
+## Research Section
+
+`/research`, `/research/deterministic-structural-cognition` (the public thesis), and
+`/research/plain-english`. Shared components live in `src/components/research/`. The thesis's
+section ids, numbers, titles, and table of contents all render from one `SECTION` map in the page,
+so a renamed section cannot leave a dead anchor.
+
+Research pages state hypotheses; they must never state capability. Anything that exists belongs in
+`projects.ts` and is surfaced through Current Status and Validation Evidence.
+
 ## Important Context
 
 **Multi-Version System**: NOT IMPLEMENTED. Ignore any legacy documentation mentioning "Commercial/Lighthouse/Strategic" versions. The project is a single unified website.

@@ -6,7 +6,6 @@
 /heartstrings-app          /products/cordel-connect                                                   301
 /about                     /company                                                                  301
 /status                    /progress                                                                 301
-/research                  /technologies                                                              301
 /technology                /technologies                                                              301
 /deepkore                  /technologies/deep-kore                                                    301
 /deepkore-lab              /technologies/deep-kore                                                    301
@@ -25,3 +24,11 @@
 /products/heartstrings-play/*        /products/cordel-play/:splat                                     301
 /products/heartstrings-connect       /products/cordel-connect                                         301
 /products/heartstrings-connect/*     /products/cordel-connect/:splat                                  301
+
+# Horoscope route neutralization (2026-08-20). The feature page no longer carries the retired
+# ByteOracle name in its URL; the old canonical URL is kept only as a permanent redirect so
+# existing bookmarks and search-engine results still resolve.
+/products/cordel-connect/byteoracle-horoscopes   /products/cordel-connect/horoscopes                  301
+
+# /research is now a real top-level Research section (2026-08-20), not a redirect to
+# /technologies. Deliberately no rule here - adding one would shadow the live page.

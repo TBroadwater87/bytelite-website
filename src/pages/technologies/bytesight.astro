@@ -6,6 +6,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ProjectPageHero from '../../components/ProjectPageHero.astro';
 import ProjectDetailSections from '../../components/ProjectDetailSections.astro';
 import { BYTESIGHT } from '../../data/projects';
+import { RESEARCH_ROUTES } from '../../data/research';
 ---
 
 <Layout
@@ -40,6 +41,37 @@ import { BYTESIGHT } from '../../data/projects';
 
   <ProjectDetailSections project={BYTESIGHT} />
 
+  <section class="section section-alt">
+    <div class="container" style="max-width:820px;">
+      <p class="eyebrow">Research Direction</p>
+      <h2 style="margin-bottom:.75rem;">Visual Structure as a Shared Relational Substrate</h2>
+      <p class="bs-flag"><span class="badge badge-research">Research hypothesis &mdash; not current capability</span></p>
+      <p class="bs-research">
+        Everything above this section is what exists and what has been tested, including the
+        limitations. This section is not. It describes a question the research is asking.
+      </p>
+      <p class="bs-research">
+        The longer-term question is whether visual relationships derived independently of any
+        answer key can be expressed in a structural form that can then be compared against governed
+        masks, and later consumed by deterministic cognition alongside structure derived from other
+        kinds of input.
+      </p>
+      <p class="bs-research">
+        The order matters more than the result. A representation that is built with knowledge of
+        the mask it will be scored against proves nothing about the representation.
+        <strong>Observation first. Ground-truth comparison second.</strong>
+      </p>
+      <p class="bs-research">
+        This is not a claim of solved object detection, and it is not a claim that end-to-end
+        visual encoding into canonical structural artifacts exists. Neither does.
+      </p>
+      <div class="pd-related-row" style="margin-top:1.75rem;">
+        <a href={RESEARCH_ROUTES.thesis} class="btn btn-outline btn-sm">Read the Research Thesis &rarr;</a>
+        <a href="/progress/validation-evidence" class="btn btn-ghost btn-sm">What has actually been validated</a>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container" style="max-width:820px;">
       <p class="eyebrow">Related</p>
@@ -57,4 +89,8 @@ import { BYTESIGHT } from '../../data/projects';
 <style>
 .pd-related-row { display: flex; gap: .75rem; flex-wrap: wrap; }
 .pd-related-row .btn { white-space: normal; text-align: center; }
+.bs-flag { margin-bottom: 1.25rem; }
+.bs-flag .badge { white-space: normal; }
+.bs-research { font-size: 1.0625rem; line-height: 1.85; color: #a0a8c0; margin-bottom: 1rem; }
+.bs-research strong { color: #c4c8f0; }
 </style>

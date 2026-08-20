@@ -4,13 +4,19 @@ function isActive(href: string) {
   if (href === '/') return currentPath === '/';
   return currentPath === href || currentPath.startsWith(href + '/');
 }
-function sectionActive(hrefs: string[]) {
-  return hrefs.some(isActive);
+// A dropdown highlights as the current section for its own href and its own children only.
+// Children marked `crossSection` are convenience links into a different top-level section (the
+// Research menu points at Architecture and Progress, for example) and must not light up two
+// top-level items at once.
+function sectionActive(item: NavItem) {
+  const ownHrefs = [item.href, ...(item.children ?? []).filter((child) => !child.crossSection).map((child) => child.href)];
+  return ownHrefs.some(isActive);
 }
 
 interface NavChild {
   label: string;
   href: string;
+  crossSection?: boolean;
 }
 interface NavItem {
   label: string;
@@ -37,6 +43,18 @@ const NAV: NavItem[] = [
     href: '/architecture',
   },
   {
+    label: 'Research',
+    href: '/research',
+    children: [
+      { label: 'Research Overview', href: '/research' },
+      { label: 'Deterministic Structural Cognition', href: '/research/deterministic-structural-cognition' },
+      { label: 'Plain-English Explanation', href: '/research/plain-english' },
+      { label: 'Architecture & Governance', href: '/architecture', crossSection: true },
+      { label: 'Current Status', href: '/progress', crossSection: true },
+      { label: 'Validation Evidence', href: '/progress/validation-evidence', crossSection: true },
+    ],
+  },
+  {
     label: 'Cordel Play',
     href: '/products/cordel-play',
     children: [
@@ -60,7 +78,7 @@ const NAV: NavItem[] = [
       { label: 'Cartoonized Profiles', href: '/products/cordel-connect/cartoonized-profiles' },
       { label: 'AIya & Aion', href: '/products/cordel-connect/aiya-and-aion' },
       { label: 'Games & Shared Activities', href: '/products/cordel-connect/games-and-shared-activities' },
-      { label: 'Horoscopes', href: '/products/cordel-connect/byteoracle-horoscopes' },
+      { label: 'Horoscopes', href: '/products/cordel-connect/horoscopes' },
       { label: 'Date Planning', href: '/products/cordel-connect/date-planning' },
     ],
   },
@@ -111,7 +129,7 @@ const NAV: NavItem[] = [
         item.children ? (
           <details class="nav-dropdown" data-nav-dropdown>
             <summary
-              class:list={['nav-link', 'nav-summary', { active: sectionActive(item.children.map(c => c.href).concat(item.href)) }]}
+              class:list={['nav-link', 'nav-summary', { active: sectionActive(item) }]}
               aria-haspopup="true"
             >
               {item.label}
@@ -250,7 +268,9 @@ details[open] > .nav-summary .nav-caret { transform: rotate(180deg); }
 }
 .nav-toggle:hover { color: #e4e7f2; background: rgba(255,255,255,.05); }
 
-@media (max-width: 1100px) {
+/* Collapse to the mobile menu at 1250px rather than 1100px: eight top-level items plus the
+   contact CTA no longer fit the desktop row without shrinking type or overflowing. */
+@media (max-width: 1250px) {
   .nav-links { display: none; }
   .nav-toggle { display: flex; align-items: center; justify-content: center; }
   .nav-links.nav-open {

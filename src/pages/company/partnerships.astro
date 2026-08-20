@@ -4,6 +4,8 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ProductSubNav from '../../components/ProductSubNav.astro';
+import { RESEARCH_ROUTES } from '../../data/research';
+import { RESTAURANT_PARTNER_PROGRAM } from '../../data/projects';
 
 const SUBNAV = [
   { label: 'About', href: '/company' },
@@ -13,71 +15,153 @@ const SUBNAV = [
   { label: 'Contact', href: '/contact' },
   { label: 'Legal', href: '/company/legal' },
 ];
+
+interface PartnershipCategory {
+  id: string;
+  title: string;
+  href: string;
+  ctaLabel: string;
+  accent: string;
+  summary: string;
+  lookingFor: string;
+  stage: string;
+}
+
+// Every category states both what ByteLite LLC is looking for and what stage that work is
+// actually in, so no category can read as an open invitation to something that does not exist.
+const CATEGORIES: PartnershipCategory[] = [
+  {
+    id: 'technical-validation',
+    title: 'Technical Validation',
+    href: '/contact?type=validation-partnership',
+    ctaLabel: 'Submit a technical validation inquiry',
+    accent: '#6366f1',
+    summary:
+      'Independent reproduction, review methodology, or controlled verification of one specified public claim on this site.',
+    lookingFor:
+      'A reviewer or institution willing to take a single named claim - exact reconstruction, deterministic reproducibility, or governance-gate enforcement - and try to break it under an agreed protocol.',
+    stage:
+      'Actively wanted and not yet happening. Nothing on this site has been verified by a party outside ByteLite LLC, and that gap is stated on every technology page.',
+  },
+  {
+    id: 'research-collaboration',
+    title: 'Research Collaboration',
+    href: '/contact?type=technology-partnership',
+    ctaLabel: 'Submit a research collaboration inquiry',
+    accent: '#a78bfa',
+    summary:
+      'Work on a bounded research question, without public disclosure of proprietary mechanisms on either side.',
+    lookingFor:
+      'A well-defined question with a stated success and failure condition - for example whether a relational vocabulary stays coherent across domains, or whether a candidate reduction can be shown equivalent to its reference procedure.',
+    stage:
+      'Open to conversation. Scope, boundary, and publication terms would be agreed before any work begins.',
+  },
+  {
+    id: 'licensing',
+    title: 'Licensing',
+    href: '/contact?type=licensing',
+    ctaLabel: 'Submit a licensing inquiry',
+    accent: '#818cf8',
+    summary:
+      'Discussion of future commercial access to qualified technologies, subject to actual readiness and a separate agreement.',
+    lookingFor:
+      'Organizations with a concrete application in mind, who are willing to work against real readiness rather than a roadmap.',
+    stage:
+      'Exploratory only. No technology on this site is available for license today, and none has closed the proof gates that would make a license responsible to sign. Inquiries are recorded, not fulfilled.',
+  },
+  {
+    id: 'manufacturing',
+    title: 'Manufacturing',
+    href: '/contact?type=manufacturing',
+    ctaLabel: 'Submit a manufacturing inquiry',
+    accent: '#34d399',
+    summary:
+      'Production and component manufacturing for Cordel Play - board, card, and physical component sets.',
+    lookingFor:
+      'Manufacturers able to quote on a complete tabletop product: board configurations, card decks, and custom components, at first-run volumes.',
+    stage:
+      'Manufacturing preparation. Product design is complete; component sourcing, packaging, and production engineering are the open work.',
+  },
+  {
+    id: 'distribution',
+    title: 'Distribution',
+    href: '/contact?type=distribution',
+    ctaLabel: 'Submit a distribution inquiry',
+    accent: '#fbbf24',
+    summary: 'Retail and channel distribution for Cordel products.',
+    lookingFor:
+      'Distributors and channels comfortable with an adult-audience consent-forward product, in specified regions.',
+    stage:
+      'Early. No retail release date has been announced and no public purchase exists, so any conversation is about future channels rather than current inventory.',
+  },
+  {
+    id: 'restaurant',
+    title: 'Restaurant Partnerships',
+    href: '/products/cordel-connect/date-planning/restaurants/partner-program',
+    ctaLabel: 'See the Restaurant Partner Program',
+    accent: '#ec4899',
+    summary:
+      'Featured, honestly labeled restaurant placement inside Cordel Connect date planning, with a deal the restaurant sets.',
+    lookingFor:
+      'Restaurants willing to be the first verified pilot participants and to commit a real offer for Cordel users.',
+    stage: `${RESTAURANT_PARTNER_PROGRAM.status}. The signup workflow exists and runs a real Stripe Checkout flow in test mode, so no real charge is processed and no real listing is created yet. No external restaurant has been verified as a completed pilot participant.`,
+  },
+];
 ---
 
 <Layout
   title="Partnerships | ByteLite LLC"
-  description="Technology, licensing, validation, manufacturing, distribution, and restaurant partnership inquiries for ByteLite LLC."
-  keywords="ByteLite LLC partnerships, licensing, manufacturing, distribution"
+  description="Technical validation, research collaboration, licensing, manufacturing, distribution, and restaurant partnership categories for ByteLite LLC - each with what is wanted and what stage it is actually in."
+  keywords="ByteLite LLC partnerships, technical validation, research collaboration, licensing, manufacturing, distribution"
 >
   <Header slot="header" />
   <section class="section-sm"><div class="container"><Breadcrumbs items={[{ label: 'Company', href: '/company' }, { label: 'Partnerships' }]} /></div></section>
   <ProductSubNav items={SUBNAV} />
 
   <section class="pt-hero">
-    <div class="container" style="max-width:760px;">
+    <div class="container pt-body">
       <p class="eyebrow">Partnerships</p>
-      <h1>Partnership Constraints</h1>
+      <h1>Partnership Categories</h1>
       <p class="pt-p">
         Core research is handled with strict IP control, private validation boundaries, and
         proof-gated disclosure. ByteLite LLC is open to serious diligence conversations, but does
         not expose private mechanisms publicly during validation.
       </p>
+      <p class="pt-p">
+        Each category below states what is actually wanted and what stage that work is in.
+        Submitting an inquiry records it; it does not create a partnership, and acceptance is never
+        promised in advance.
+      </p>
+      <p class="pt-p pt-research-note">
+        For context on what the technologies are for and what the research is testing, start with
+        <a href={RESEARCH_ROUTES.thesis}>Deterministic Structural Cognition</a> and
+        <a href="/progress/validation-evidence">Validation Evidence</a>.
+      </p>
     </div>
   </section>
 
   <section class="section section-alt">
-    <div class="container" style="max-width:760px;">
-      <h2 style="margin-bottom:1.5rem;">Inquiry categories</h2>
+    <div class="container pt-body">
       <div class="pt-grid">
-        <a href="/contact?type=technology-partnership" class="pt-card pt-card-link">
-          <span class="pt-icon" style="background:rgba(99,102,241,.12);color:#6366f1;" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v4M15 3v4M4 8h16l-1 12H5L4 8z"/><path d="M9 12h6"/></svg>
-          </span>
-          <span class="pt-card-text"><span class="pt-card-label">Technology partnerships</span><span class="pt-card-cta">Submit a technology partnership inquiry &rarr;</span></span>
-        </a>
-        <a href="/contact?type=validation-partnership" class="pt-card pt-card-link">
-          <span class="pt-icon" style="background:rgba(99,102,241,.12);color:#6366f1;" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/></svg>
-          </span>
-          <span class="pt-card-text"><span class="pt-card-label">Technical validation partnerships</span><span class="pt-card-cta">Submit a technical validation inquiry &rarr;</span></span>
-        </a>
-        <a href="/contact?type=licensing" class="pt-card pt-card-link">
-          <span class="pt-icon" style="background:rgba(167,139,250,.12);color:#a78bfa;" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M8 15h4"/></svg>
-          </span>
-          <span class="pt-card-text"><span class="pt-card-label">Licensing inquiries</span><span class="pt-card-cta">Submit a licensing inquiry &rarr;</span></span>
-        </a>
-        <a href="/contact?type=manufacturing" class="pt-card pt-card-link">
-          <span class="pt-icon" style="background:rgba(52,211,153,.12);color:#34d399;" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-6h6v6"/></svg>
-          </span>
-          <span class="pt-card-text"><span class="pt-card-label">Manufacturing</span><span class="pt-card-cta">Submit a manufacturing inquiry &rarr;</span></span>
-        </a>
-        <a href="/contact?type=distribution" class="pt-card pt-card-link">
-          <span class="pt-icon" style="background:rgba(251,191,36,.12);color:#fbbf24;" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg>
-          </span>
-          <span class="pt-card-text"><span class="pt-card-label">Distribution</span><span class="pt-card-cta">Submit a distribution inquiry &rarr;</span></span>
-        </a>
-        <a href="/products/cordel-connect/date-planning/restaurants/partner-program" class="pt-card pt-card-link">
-          <span class="pt-icon" style="background:rgba(236,72,153,.12);color:#ec4899;" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.5-8.8C.7 8.6 2.4 5 6 5c2 0 3.3 1 4 2 1-1 2-2 4-2 3.6 0 5.3 3.6 3.5 7.2C19 16.6 12 21 12 21z"/></svg>
-          </span>
-          <span class="pt-card-text"><span class="pt-card-label">Restaurant partnerships</span><span class="pt-card-cta">Go to the live pilot signup &rarr;</span></span>
-        </a>
+        {CATEGORIES.map((category) => (
+          <article class="pt-card" style={`--accent:${category.accent}`}>
+            <h2 class="pt-card-title">{category.title}</h2>
+            <p class="pt-card-summary">{category.summary}</p>
+            <div class="pt-card-detail">
+              <h3>What ByteLite LLC is looking for</h3>
+              <p>{category.lookingFor}</p>
+            </div>
+            <div class="pt-card-detail">
+              <h3>What stage the work is currently in</h3>
+              <p>{category.stage}</p>
+            </div>
+            <a href={category.href} class="pt-card-cta">{category.ctaLabel} &rarr;</a>
+          </article>
+        ))}
       </div>
-      <p style="margin-top:1.75rem;font-size:.875rem;color:#555e7a;">Something else? <a href="/contact" style="color:#818cf8;">Send a general inquiry</a>.</p>
+      <p class="pt-footer-note">
+        Something else? <a href="/contact">Send a general inquiry</a>.
+      </p>
     </div>
   </section>
 
@@ -86,14 +170,37 @@ const SUBNAV = [
 
 <style>
 .pt-hero { padding: 4.5rem 0 3.5rem; }
-.pt-p { font-size: 1.0625rem; line-height: 1.8; color: #a0a8c0; }
-.pt-grid { display: grid; gap: .875rem; }
-.pt-card { display: flex; align-items: center; gap: 1rem; font-size: .9375rem; color: #a0a8c0; padding: .875rem 1rem; border: 1px solid #1a2235; border-radius: .625rem; }
-.pt-card-link { transition: border-color .2s, background-color .2s; }
-.pt-card-link:hover, .pt-card-link:focus-visible { border-color: #6366f1; background: rgba(99,102,241,.05); }
-.pt-card-link:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }
-.pt-card-text { display: flex; flex-direction: column; gap: .2rem; }
-.pt-card-label { color: #e4e7f2; font-weight: 500; }
-.pt-card-cta { font-size: .8125rem; color: #818cf8; }
-.pt-icon { display: flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border-radius: .625rem; flex-shrink: 0; }
+.pt-body { max-width: 860px; }
+.pt-p { font-size: 1.0625rem; line-height: 1.85; color: #a0a8c0; margin-bottom: 1.125rem; }
+.pt-p:last-child { margin-bottom: 0; }
+.pt-research-note { font-size: .9375rem; color: #7b829e; }
+.pt-p a { color: #818cf8; }
+.pt-p a:hover, .pt-p a:focus-visible { color: #a5b4fc; }
+
+.pt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+@media (max-width: 800px) { .pt-grid { grid-template-columns: 1fr; } }
+
+.pt-card {
+  display: flex; flex-direction: column; gap: .875rem;
+  background: #0d1120; border: 1px solid #1a2235; border-left: 3px solid var(--accent);
+  border-radius: .75rem; padding: 1.75rem;
+}
+.pt-card-title { font-size: 1.125rem; color: #e4e7f2; margin: 0; }
+.pt-card-summary { font-size: .9375rem; color: #a0a8c0; line-height: 1.7; margin: 0; }
+.pt-card-detail { border-top: 1px solid #1a2235; padding-top: .875rem; }
+.pt-card-detail h3 {
+  font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: .375rem;
+}
+.pt-card-detail p { font-size: .875rem; color: #7b829e; line-height: 1.7; margin: 0; }
+.pt-card-cta {
+  margin-top: auto; padding-top: .5rem;
+  font-size: .875rem; font-weight: 500; color: #818cf8;
+}
+.pt-card-cta:hover, .pt-card-cta:focus-visible { color: #a5b4fc; }
+.pt-card-cta:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; border-radius: .25rem; }
+
+.pt-footer-note { margin-top: 1.75rem; font-size: .875rem; color: #555e7a; }
+.pt-footer-note a { color: #818cf8; }
+.pt-footer-note a:hover, .pt-footer-note a:focus-visible { color: #a5b4fc; }
 </style>

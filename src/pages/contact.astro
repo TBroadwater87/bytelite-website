@@ -110,7 +110,7 @@ import Footer from '../components/Footer.astro';
       <!-- Info -->
       <div class="ct-info">
         <div class="card ct-info-card">
-          <h4 style="color:#e4e7f2;margin-bottom:.875rem;">Inquiry Categories</h4>
+          <h3 class="ct-info-heading">Inquiry Categories</h3>
           <div class="ct-categories">
             <div class="ct-cat">
               <span class="ct-cat-dot" style="background:#f472b6;"></span>
@@ -126,7 +126,7 @@ import Footer from '../components/Footer.astro';
             </div>
             <div class="ct-cat">
               <span class="ct-cat-dot" style="background:#ec4899;"></span>
-              <div class="ct-cat-text"><span class="ct-cat-label">Restaurant partnerships</span><span class="ct-cat-desc">For the live pilot signup, use the <a href="/products/cordel-connect/date-planning/restaurants/partner-program" style="color:#818cf8;">Restaurant Partner Program</a> directly — this form is for other restaurant questions.</span></div>
+              <div class="ct-cat-text"><span class="ct-cat-label">Restaurant partnerships</span><span class="ct-cat-desc">For the pilot signup demonstration (Stripe test mode &mdash; no real charge), use the <a href="/products/cordel-connect/date-planning/restaurants/partner-program" style="color:#818cf8;">Restaurant Partner Program</a> directly — this form is for other restaurant questions.</span></div>
             </div>
             <div class="ct-cat">
               <span class="ct-cat-dot" style="background:#34d399;"></span>
@@ -143,11 +143,11 @@ import Footer from '../components/Footer.astro';
           </div>
         </div>
         <div class="card ct-info-card">
-          <h4 style="color:#e4e7f2;margin-bottom:.875rem;">Location</h4>
+          <h3 class="ct-info-heading">Location</h3>
           <p style="font-size:.9375rem;">ByteLite LLC<br/>Helena, Montana, USA</p>
         </div>
         <div class="card ct-info-card">
-          <h4 style="color:#e4e7f2;margin-bottom:.875rem;">Response time</h4>
+          <h3 class="ct-info-heading">Response time</h3>
           <p style="font-size:.9375rem;color:#7b829e;">Direct messages are responded to personally. Typical response within 1–3 business days.</p>
         </div>
       </div>
@@ -204,7 +204,7 @@ import Footer from '../components/Footer.astro';
     },
     'restaurant-partnership': {
       heading: 'Restaurant partnership inquiry.',
-      sub: 'For the live $20 pilot signup, use the Restaurant Partner Program page directly. Use this form only for other restaurant questions.',
+      sub: 'For the $20 pilot signup demonstration (Stripe test mode - no real charge is processed), use the Restaurant Partner Program page directly. Use this form only for other restaurant questions.',
       extra: 'organization',
       orgLabel: 'Restaurant name',
     },
@@ -320,7 +320,7 @@ import Footer from '../components/Footer.astro';
 .ct-hero h1 { max-width: 480px; }
 .ct-sub { max-width: 560px; margin-top: 1rem; font-size: 1.0625rem; color: #7b829e; line-height: 1.75; }
 .ct-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4rem; align-items: start; }
-@media (max-width: 900px) { .ct-grid { grid-template-columns: 1fr; gap: 3rem; } }
+@media (max-width: 900px) { .ct-grid { grid-template-columns: minmax(0, 1fr); gap: 3rem; } }
 .ct-form { display: flex; flex-direction: column; gap: 1.25rem; }
 .ct-field { display: flex; flex-direction: column; gap: .4rem; }
 .ct-field[hidden] { display: none; }
@@ -350,6 +350,7 @@ import Footer from '../components/Footer.astro';
 .ct-note { font-size: .8125rem; color: #4a5068; text-align: center; }
 .ct-info { display: flex; flex-direction: column; gap: 1.25rem; }
 .ct-info-card { padding: 1.5rem; }
+.ct-info-heading { font-size: 1.125rem; color: #e4e7f2; margin-bottom: .875rem; }
 .ct-info-card p { color: #7b829e; line-height: 1.6; }
 .ct-categories { display: flex; flex-direction: column; gap: .625rem; }
 .ct-cat { display: flex; align-items: flex-start; gap: .75rem; font-size: .9375rem; color: #a0a8c0; }

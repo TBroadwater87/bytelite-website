@@ -13,7 +13,7 @@ const SUBNAV = [
   { label: 'Cartoonized Profiles', href: '/products/cordel-connect/cartoonized-profiles' },
   { label: 'AIya & Aion', href: '/products/cordel-connect/aiya-and-aion' },
   { label: 'Games & Activities', href: '/products/cordel-connect/games-and-shared-activities' },
-  { label: 'Horoscopes', href: '/products/cordel-connect/byteoracle-horoscopes' },
+  { label: 'Horoscopes', href: '/products/cordel-connect/horoscopes' },
   { label: 'Date Planning', href: '/products/cordel-connect/date-planning' },
 ];
 ---
@@ -44,12 +44,12 @@ const SUBNAV = [
       <div class="dp-grid">
         <a href="/products/cordel-connect/date-planning/blind-date-roulette" class="card dp-card">
           <img src="/cordel-connect/icons/schedule-calendar-heart.svg" alt="" class="dp-card-icon" width="48" height="48" loading="lazy" />
-          <h3>Blind Date Roulette</h3>
+          <h2>Blind Date Roulette</h2>
           <p>Jump into a pool and get spontaneously paired with someone, with Treater / Treatie / Dutch role selection for the meal.</p>
         </a>
         <a href="/products/cordel-connect/date-planning/restaurants" class="card dp-card">
           <img src="/cordel-connect/icons/discover-compass-heart.svg" alt="" class="dp-card-icon" width="48" height="48" loading="lazy" />
-          <h3>Restaurants</h3>
+          <h2>Restaurants</h2>
           <p>Real-world date and meet-up location suggestions, honestly labeled when featured.</p>
         </a>
       </div>
@@ -65,6 +65,6 @@ const SUBNAV = [
 .dp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
 @media (max-width: 700px) { .dp-grid { grid-template-columns: 1fr; } }
 .dp-card-icon { margin-bottom: .875rem; }
-.dp-card h3 { color: #818cf8; margin-bottom: .625rem; font-size: 1.125rem; }
+.dp-card h2 { font-weight: 600; color: #818cf8; margin-bottom: .625rem; font-size: 1.125rem; }
 .dp-card p { font-size: .9375rem; color: #7b829e; margin: 0; }
 </style>
