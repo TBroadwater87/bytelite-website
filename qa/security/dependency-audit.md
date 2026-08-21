@@ -68,14 +68,18 @@ Established from repository and production evidence, not assumption:
 
 Evidence:
 
-- `sharp` is a **devDependency** (`^0.34.5`), used only as Astro's build-time image service
+- `sharp` is **not a direct dependency**. It is present only as `astro`'s
+  `optionalDependencies.sharp: "^0.34.0"`, and is used only as Astro's build-time image service
   (`image.service.entrypoint: 'astro/assets/services/sharp'`).
 - **It does not execute during this build at all.** No file in `src/` imports `astro:assets`,
   `<Image>`, `<Picture>`, or `getImage`, and no file imports anything from `src/assets/`. A
   production build emits **0 processed images** into `dist/_astro`. Every image on the site is a
   static file in `public/` referenced by a plain `<img src>`, which Astro copies verbatim.
-- `src/components/OptimizedImage.astro` exists but is referenced by **no page**; it is dead code
-  and does not use `astro:assets` in any case.
+- `src/components/OptimizedImage.astro` was dead code and was **deleted on 2026-08-21**. It never
+  used `astro:assets` or `sharp` in any case; it hand-wrote `<picture>` markup pointing at
+  `.avif`/`.webp` files the build never generates. The redundant direct `sharp` devDependency was
+  removed in the same pass; `sharp` remains in the tree solely as Astro's optional dependency, so
+  the audit counts are unchanged by that removal.
 - Vercel does not execute the library after build: there is no runtime, and `/_image` is 404.
 - Any residual exposure is therefore limited to build time, over image files committed to this
   repository by its author — a trusted input set.
