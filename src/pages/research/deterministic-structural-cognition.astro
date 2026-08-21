@@ -223,6 +223,21 @@ const paperJsonLd = {
             least support. Section {SECTION.falsifiability.number} states what would falsify each of
             them; Section {SECTION.maturity.number} states which parts exist today.
           </p>
+          <figure class="pp-contribution">
+            <p class="pp-contribution-label">Proposed contribution</p>
+            <p>
+              A deterministic architecture in which reversible representation, explicit invariant
+              learning, structural perception, governance, and temporal modeling are investigated
+              as composable applications of verified structural reduction, while preserving
+              provenance and a declared sufficiency boundary.
+            </p>
+            <figcaption>
+              The bet is the composition, not any single component. Each of those areas has older
+              and better-developed work behind it; what is proposed here is that they are the same
+              operation applied in five places.
+            </figcaption>
+          </figure>
+
           <figure class="pp-callout">
             <blockquote>
               The question is not whether a system can produce a shorter answer. It is whether a
@@ -477,7 +492,7 @@ const paperJsonLd = {
           <p>
             This is not a claim of solved object detection, and it is not a claim that direct
             visual interpretation of canonical structural artifacts exists today. Neither is
-            currently supported by evidence in this repository or anywhere else.
+            supported by {COMPANY_NAME}&rsquo;s current evidence.
           </p>
         </section>
 
@@ -932,6 +947,23 @@ const paperJsonLd = {
   border-radius: .75rem;
 }
 .pp-definition p { margin: 0; color: #c4c8f0; }
+
+.pp-contribution {
+  margin: 1.75rem 0;
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(135deg, rgba(52,211,153,.07) 0%, rgba(99,102,241,.05) 100%);
+  border: 1px solid rgba(52,211,153,.28);
+  border-radius: .75rem;
+}
+.pp-contribution p.pp-contribution-label {
+  font-size: .6875rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: #34d399; margin-bottom: .75rem;
+}
+.pp-contribution p { margin: 0; color: #c4c8f0; }
+.pp-contribution figcaption {
+  margin-top: .875rem; padding-top: .875rem; border-top: 1px solid rgba(52,211,153,.18);
+  font-size: .875rem; color: #7b829e; line-height: 1.7;
+}
 
 /* ── Definition-style lists ───────────────────────────────────── */
 .pp-status-list, .pp-falsify {
