@@ -95,11 +95,18 @@ npm run format:check     # Check code formatting
 - E2E tests in `tests/e2e/` (Playwright, 5 browser configs)
 - Vitest setup file: `tests/setup.ts`
 
-### Current Status (9/9 tests passing ✓)
+### Current Status
 - Security headers middleware operational
-- API rate limiting functional (use Redis in production)
 - TypeScript strict mode enforced
-- Zero npm audit vulnerabilities
+- Tests: 5/5 unit (Vitest), 795/795 E2E (Playwright, 5 browser engines)
+- Dependency security status: see latest verified audit record in
+  `qa/security/dependency-audit.md`
+
+**API routes are not deployed.** The build has no adapter and no `output` setting, so Astro
+emits a fully static site. `src/pages/api/compress.ts` and `src/pages/api/contact.ts` are
+POST-only and emit nothing; both return 404 in production. Their in-memory rate limiting and
+validation therefore protect nothing today and must not be cited as a deployed control. Only
+`/api/deepkore-submit` exists, and only as a prerendered static JSON file.
 
 ## Known Technical Debt
 
