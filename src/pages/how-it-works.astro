@@ -6,13 +6,9 @@ import ExactRoundtrip from '../components/bytelite/ExactRoundtrip.astro';
 import CurrentVsFinal from '../components/bytelite/CurrentVsFinal.astro';
 import ByteAccounting from '../components/bytelite/ByteAccounting.astro';
 import ReductionGate from '../components/bytelite/ReductionGate.astro';
+import WhatItIsNot from '../components/bytelite/WhatItIsNot.astro';
 import InfrastructureImpact from '../components/bytelite/InfrastructureImpact.astro';
-import {
-  DETERMINISM_STATEMENT,
-  ENTROPY_STATEMENT,
-  TARGET_STATEMENT,
-  DEVELOPMENT_STATEMENT,
-} from '../data/bytelite';
+import { DETERMINISM_STATEMENT, TARGET_STATEMENT, DEVELOPMENT_STATEMENT } from '../data/bytelite';
 ---
 
 <Layout
@@ -41,7 +37,6 @@ import {
       <h2>Determinism</h2>
       <p class="lede">The same input and build produce the same output, every time.</p>
       <p class="body">{DETERMINISM_STATEMENT}</p>
-      <p class="body">{ENTROPY_STATEMENT}</p>
     </div>
   </section>
 
@@ -112,8 +107,21 @@ import {
     </div>
   </section>
 
-  <!-- TECHNICAL DETAIL, optional and collapsed -->
+  <!-- 6. THE BOUNDARY -->
   <section class="section section-alt">
+    <div class="container narrow">
+      <p class="step-num">06</p>
+      <h2>What ByteLite is not</h2>
+      <p class="lede">
+        The boundary, stated as refusals. None of these cards says what is used instead &mdash;
+        that is the part that stays private.
+      </p>
+      <WhatItIsNot />
+    </div>
+  </section>
+
+  <!-- TECHNICAL DETAIL, optional and collapsed -->
+  <section class="section">
     <div class="container narrow">
       <h2>Technical details</h2>
       <details class="drawer">
@@ -154,7 +162,7 @@ import {
   </section>
 
   <!-- WHY IT COULD MATTER -->
-  <section class="section">
+  <section class="section section-alt">
     <div class="container narrow">
       <p class="eyebrow">If it works</p>
       <h2>Why a smaller representation can matter.</h2>

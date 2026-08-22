@@ -9,12 +9,20 @@ import {
   NOT_PROVEN,
   BYTELITE_STATUS,
   CURRENT_ROADMAP_STAGE,
+  ROADMAP,
+  VALIDATION_DASHBOARD,
+  ENWIK9_ROW,
+  DASHBOARD_STATE_LABEL,
   TARGET_STATEMENT,
   PROOF_STATEMENT,
 } from '../data/bytelite';
 import { BYTELITE } from '../data/projects';
 
 const NEXT_GATE = BYTELITE.nextMilestone;
+
+// The evidence drawer must cover exactly what the dashboard above renders, enwik9 included -
+// derived from the same arrays so a new category cannot appear without its evidence.
+const DASHBOARD_ROWS = [...VALIDATION_DASHBOARD, ENWIK9_ROW];
 ---
 
 <Layout
@@ -33,6 +41,21 @@ const NEXT_GATE = BYTELITE.nextMilestone;
         Canonical project status: <strong>{BYTELITE_STATUS}</strong>. Everything below is internal
         to ByteLite LLC. None of it has been independently verified.
       </p>
+
+      {CURRENT_ROADMAP_STAGE && (
+        <aside class="here" aria-label="Current development position">
+          <span class="here-tag">You are here</span>
+          <p class="here-stage">
+            Gate {ROADMAP.findIndex((s) => s.state === 'current') + 1} of {ROADMAP.length}:
+            <strong>{CURRENT_ROADMAP_STAGE.label}</strong>
+          </p>
+          <p class="here-note">
+            The three gates before it are closed on internal evidence. Nothing after it has been
+            reached.
+          </p>
+        </aside>
+      )}
+
       <div class="claims">
         <p class="claim claim-target"><span class="claim-tag">Target</span>{TARGET_STATEMENT}</p>
         <p class="claim claim-proof"><span class="claim-tag">Proof</span>{PROOF_STATEMENT}</p>
@@ -40,33 +63,27 @@ const NEXT_GATE = BYTELITE.nextMilestone;
     </div>
   </section>
 
-  <!-- DASHBOARD -->
+  <!-- ROADMAP: the ladder comes before the category detail, so position reads first -->
   <section class="section-sm">
     <div class="container narrow">
+      <DevelopmentRoadmap />
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section class="section section-alt">
+    <div class="container narrow">
+      <h2>Category by category.</h2>
+      <p class="lede">
+        The same picture broken out by what is actually being validated. Supporting evidence for
+        every row is in one place at the foot of this page.
+      </p>
       <ValidationDashboard variant="full" includeEnwik9={true} />
     </div>
   </section>
 
-  <!-- ROADMAP -->
-  <section class="section section-alt">
-    <div class="container narrow">
-      <h2>The development roadmap.</h2>
-      <p class="lede">
-        The gates from architecture to production qualification, in order, with ByteLite's current
-        position marked.
-      </p>
-      <DevelopmentRoadmap />
-      {CURRENT_ROADMAP_STAGE && (
-        <p class="position">
-          Current position: <strong>{CURRENT_ROADMAP_STAGE.label}</strong>. Nothing beyond it has
-          been reached.
-        </p>
-      )}
-    </div>
-  </section>
-
   <!-- PROVEN / NOT PROVEN -->
-  <section class="section">
+  <section class="section section-alt2">
     <div class="container narrow">
       <h2>Stated plainly.</h2>
       <div class="split">
@@ -83,12 +100,24 @@ const NEXT_GATE = BYTELITE.nextMilestone;
   </section>
 
   <!-- NEXT GATE + DETAIL -->
-  <section class="section section-alt">
+  <section class="section">
     <div class="container narrow">
       <h2>Next required gate.</h2>
       <p class="gate">{NEXT_GATE}</p>
 
       <h3 class="detail-h">Detailed evidence</h3>
+      <details class="drawer">
+        <summary>Evidence behind every dashboard category</summary>
+        <ul class="drawer-list">
+          {DASHBOARD_ROWS.map((row) => (
+            <li>
+              <span class="drawer-cat">{row.label}</span>
+              <span class="drawer-state">{DASHBOARD_STATE_LABEL[row.state]}</span>
+              <span class="drawer-ev">{row.evidence}</span>
+            </li>
+          ))}
+        </ul>
+      </details>
       <details class="drawer">
         <summary>Capabilities currently claimed, and their evidence level</summary>
         <ul class="drawer-list">
@@ -143,8 +172,33 @@ h2 { margin-bottom: .75rem; }
 .claim-proof { border-left: 3px solid #fbbf24; }
 .claim-proof .claim-tag { color: #fbbf24; }
 
-.position { margin-top: 1.25rem; font-size: .9375rem; color: #7b829e; line-height: 1.7; }
-.position strong { color: #fbbf24; }
+/* "You are here" - the first thing after the headline, because the single most useful fact on
+   this page is which gate ByteLite is actually at. */
+.here {
+  margin-top: 1.75rem;
+  background: rgba(251,191,36,.06); border: 1px solid rgba(251,191,36,.32);
+  border-left: 3px solid #fbbf24; border-radius: .625rem; padding: 1.125rem 1.25rem;
+}
+.here-tag {
+  display: inline-block; margin-bottom: .5rem;
+  font-size: .625rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: #fbbf24;
+}
+.here-stage { font-size: 1.0625rem; color: #c4c8f0; line-height: 1.5; margin: 0; }
+.here-stage strong { color: #e4e7f2; }
+.here-note { font-size: .875rem; color: #7b829e; line-height: 1.65; margin: .5rem 0 0; }
+
+.section-alt2 { background: #090c15; }
+
+.drawer-list li { display: flex; flex-direction: column; gap: .2rem; }
+.drawer-cat { font-size: .9375rem; color: #e4e7f2; font-weight: 500; }
+.drawer-state {
+  align-self: flex-start;
+  font-size: .5625rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: #7b829e; background: rgba(123,130,158,.1); border: 1px solid rgba(123,130,158,.22);
+  border-radius: .25rem; padding: .1rem .4rem;
+}
+.drawer-ev { font-size: .8125rem; color: #7b829e; line-height: 1.65; }
 
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.5rem; }
 @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }

@@ -12,13 +12,19 @@ import {
 } from '../../data/bytelite';
 
 interface Props {
-  /** 'compact' shows label + state only; 'full' adds the meaning and the evidence line. */
+  /** 'compact' shows label + state only; 'full' adds the one-sentence meaning. */
   variant?: 'compact' | 'full';
+  /**
+   * Render the evidence line under every row. Off by default even in 'full': eleven rows of
+   * meaning + evidence stacked reads as a wall of text, which defeats the point of a dashboard.
+   * /validation keeps the evidence available in a single drawer instead.
+   */
+  showEvidence?: boolean;
   /** enwik9 is a benchmark question, not an architecture gate - opt in where it belongs. */
   includeEnwik9?: boolean;
 }
 
-const { variant = 'compact', includeEnwik9 = false } = Astro.props;
+const { variant = 'compact', showEvidence = false, includeEnwik9 = false } = Astro.props;
 const rows: DashboardRow[] = includeEnwik9
   ? [...VALIDATION_DASHBOARD, ENWIK9_ROW]
   : VALIDATION_DASHBOARD;
@@ -34,7 +40,7 @@ const rows: DashboardRow[] = includeEnwik9
       {variant === 'full' && (
         <div class="vd-detail">
           <p class="vd-meaning">{row.meaning}</p>
-          <p class="vd-evidence">{row.evidence}</p>
+          {showEvidence && <p class="vd-evidence">{row.evidence}</p>}
         </div>
       )}
     </div>

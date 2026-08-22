@@ -226,6 +226,116 @@ test.describe('Current development state is stated honestly', () => {
   });
 });
 
+// Per-page acceptance checklist. Each block is one line of the owner's page-by-page brief, so a
+// later edit cannot quietly drop a required element or bury it below the fold.
+test.describe('Page acceptance checklist', () => {
+  test('HOME: hero, first diagram, current status and 50/50 economics are all present', async ({ page }) => {
+    await page.goto('/');
+    // Hero comprehension: the law, what it is, and the target - all above the diagram.
+    const hero = page.locator('section.hero');
+    await expect(hero.locator('h1')).toContainText('Exact reconstruction.');
+    await expect(hero).toContainText('deterministic lossless representation architecture');
+    await expect(hero).toContainText('for every eligible source file');
+    await expect(hero.locator('a.btn')).toHaveCount(3);
+    // The first diagram on the page is the ByteLite target flow, and it precedes the status box.
+    const order = await page.evaluate(() => {
+      const flow = document.querySelector('.bf');
+      const status = document.querySelector('.cs');
+      const savings = document.querySelector('.ss');
+      if (!flow || !status || !savings) return null;
+      return {
+        flowBeforeStatus: !!(flow.compareDocumentPosition(status) & Node.DOCUMENT_POSITION_FOLLOWING),
+        statusBeforeSavings: !!(status.compareDocumentPosition(savings) & Node.DOCUMENT_POSITION_FOLLOWING),
+      };
+    });
+    expect(order, 'homepage must carry the flow, status and savings figures').not.toBeNull();
+    expect(order?.flowBeforeStatus, 'the target diagram must come before the status box').toBe(true);
+    expect(order?.statusBeforeSavings, 'the status box must come before the economics').toBe(true);
+  });
+
+  test('HOW IT WORKS: exactness, current-vs-final, accounting and the boundary all appear', async ({ page }) => {
+    await page.goto('/how-it-works');
+    for (const selector of ['.rt', '.cf', '.ba', '.isnot']) {
+      await expect(page.locator(selector).first(), `${selector} must be on /how-it-works`).toBeVisible();
+    }
+    // In that order: exact reconstruction -> current vs final -> accounting -> what it is not.
+    const inOrder = await page.evaluate(() => {
+      const sel = ['.rt', '.cf', '.ba', '.isnot'].map((s) => document.querySelector(s));
+      if (sel.some((e) => !e)) return false;
+      for (let i = 0; i < sel.length - 1; i++) {
+        const a = sel[i] as Element;
+        const b = sel[i + 1] as Element;
+        if (!(a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING)) return false;
+      }
+      return true;
+    });
+    expect(inOrder, '/how-it-works sections must run exactness -> current vs final -> accounting -> boundary').toBe(true);
+  });
+
+  test('VALIDATION: the current position is stated before any category detail', async ({ page }) => {
+    await page.goto('/validation');
+    const here = page.locator('.here');
+    await expect(here).toBeVisible();
+    await expect(here).toContainText('You are here');
+    await expect(here).toContainText('Mechanism clarification');
+
+    // It must sit in the first screenful, not below an eleven-row table.
+    const top = await here.evaluate((el) => el.getBoundingClientRect().top + window.scrollY);
+    expect(top, '"You are here" must be within the first fold').toBeLessThan(700);
+
+    // And it must precede both the roadmap and the dashboard.
+    const precedes = await page.evaluate(() => {
+      const here = document.querySelector('.here');
+      const roadmap = document.querySelector('.rm');
+      const dash = document.querySelector('.vd');
+      if (!here || !roadmap || !dash) return null;
+      return {
+        beforeRoadmap: !!(here.compareDocumentPosition(roadmap) & Node.DOCUMENT_POSITION_FOLLOWING),
+        roadmapBeforeDash: !!(roadmap.compareDocumentPosition(dash) & Node.DOCUMENT_POSITION_FOLLOWING),
+      };
+    });
+    expect(precedes?.beforeRoadmap).toBe(true);
+    expect(precedes?.roadmapBeforeDash, 'the ladder must come before the category breakdown').toBe(true);
+  });
+
+  test('VALIDATION: the dashboard is not a wall of evidence text', async ({ page }) => {
+    await page.goto('/validation');
+    // Each row shows a state and one sentence; the evidence lines live in a drawer instead.
+    await expect(page.locator('.vd-row')).toHaveCount(11);
+    await expect(page.locator('.vd-evidence')).toHaveCount(0);
+    // Nothing is lost: every category's evidence is still reachable, in one place.
+    const drawer = page.locator('details.drawer').first();
+    await expect(drawer).toContainText('Evidence behind every dashboard category');
+    await expect(drawer.locator('.drawer-cat')).toHaveCount(11);
+  });
+
+  test('LICENSING: the split, the billing model and the illustrative framing all read fast', async ({ page }) => {
+    await page.goto('/licensing');
+    // 50/50 in seconds: two equal halves, labelled, with the totals beside them.
+    const halves = page.locator('.ss-half');
+    await expect(halves).toHaveCount(2);
+    await expect(halves.nth(0)).toContainText('$150');
+    await expect(halves.nth(1)).toContainText('$150');
+    await expect(page.locator('.ss-half-share').first()).toContainText('half');
+
+    // Planned balance / auto-reload is unmistakably not live.
+    await expect(page.locator('.bal-planned')).toContainText('not operational');
+    await expect(page.locator('.bal')).toContainText('auto-reload');
+
+    // Illustrative vs proven: the disclaimer is a badge on the figure, not a footnote, and it
+    // appears before the first currency figure in the document.
+    const badge = page.locator('.ss-illustrative');
+    await expect(badge).toContainText('Illustrative economic example. Not a performance guarantee.');
+    const badgeFirst = await page.evaluate(() => {
+      const b = document.querySelector('.ss-illustrative');
+      const firstFigure = document.querySelector('.ss-cost-value');
+      if (!b || !firstFigure) return false;
+      return !!(b.compareDocumentPosition(firstFigure) & Node.DOCUMENT_POSITION_FOLLOWING);
+    });
+    expect(badgeFirst, 'the illustrative badge must precede the first currency figure').toBe(true);
+  });
+});
+
 test.describe('Determinism and boundary wording', () => {
   test('the determinism statement is present and does not invoke probability', async ({ page }) => {
     await page.goto('/how-it-works');
