@@ -4,18 +4,16 @@
 
 /heartstrings              /products/cordel-play                                                     301
 /heartstrings-app          /products/cordel-connect                                                   301
-/about                     /company                                                                  301
 /status                    /progress                                                                 301
 /technology                /technologies                                                              301
 /deepkore                  /technologies/deep-kore                                                    301
 /deepkore-lab              /technologies/deep-kore                                                    301
 /marketing                 /products/cordel-connect/date-planning/restaurants/partner-program          301
-/licensing                 /company/partnerships                                                      301
 /ethics                    /architecture/proof-and-claim-posture                                      301
 /ai-safety                 /architecture/governance-and-intrinsic-halting                              301
 /news                      /progress/changelog                                                        301
 /subscribe                 /preorder                                                                  301
-/demo                      /technologies/bytelite                                                     301
+/demo                      /how-it-works                                                              301
 
 # Cordel brand migration - retired canonical HeartStrings product routes (2026-07-27).
 # Old canonical URLs redirect one-to-one to their Cordel replacement; :splat preserves
@@ -30,5 +28,17 @@
 # existing bookmarks and search-engine results still resolve.
 /products/cordel-connect/byteoracle-horoscopes   /products/cordel-connect/horoscopes                  301
 
-# /research is now a real top-level Research section (2026-08-20), not a redirect to
-# /technologies. Deliberately no rule here - adding one would shadow the live page.
+# /research is a real top-level Research section (2026-08-20), not a redirect to /technologies.
+# Deliberately no rule here - adding one would shadow the page. It is retired from discovery
+# (noindex, absent from the sitemap) but still resolves.
+
+# Public scope reset (2026-08-22). thebytelite.com is a ByteLite-only site: HOME, HOW IT WORKS,
+# VALIDATION, LICENSING, ABOUT, CONTACT. Two rules were REMOVED here because they shadowed real
+# pages that now exist:
+#   /about     -> /company                 (deleted; /about is a real page again)
+#   /licensing -> /company/partnerships    (deleted; /licensing is a real page again)
+# Do not reinstate either without first deleting the page it would shadow.
+#
+# Semantic aliases for the ByteLite public surface.
+/pricing                   /licensing                                                                 301
+/proof                     /validation                                                                301

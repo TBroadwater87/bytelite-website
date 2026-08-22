@@ -1,0 +1,49 @@
+---
+// OPTIONAL VISUAL 08 - why a smaller representation can matter.
+//
+// Deliberately hedged: "can potentially reduce" and "would have to be measured", because no
+// measured savings exist in any of these categories yet. Neutral geometric icons only.
+const AREAS = [
+  { label: 'Storage', note: 'fewer bytes held at rest' },
+  { label: 'Transfer', note: 'fewer bytes moved between systems' },
+  { label: 'Handling', note: 'fewer bytes passed through processing steps' },
+];
+---
+
+<figure class="ii" aria-labelledby="ii-caption">
+  <ul class="ii-areas">
+    {AREAS.map((area) => (
+      <li class="ii-area">
+        <span class="ii-glyph" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="ii-label">{area.label}</span>
+        <span class="ii-note">{area.note}</span>
+      </li>
+    ))}
+  </ul>
+  <figcaption id="ii-caption" class="ii-caption">
+    Reducing the representation of data can potentially reduce the infrastructure resources
+    associated with storing or moving that representation. Whether it does, and by how much, would
+    have to be measured for a given workload &mdash; ByteLite does not claim savings in any of
+    these categories today.
+  </figcaption>
+</figure>
+
+<style>
+.ii { margin: 0; background: #0d1120; border: 1px solid #1a2235; border-radius: .875rem; padding: 1.75rem; }
+.ii-areas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: .875rem; }
+@media (max-width: 640px) { .ii-areas { grid-template-columns: 1fr; } }
+.ii-area {
+  display: flex; flex-direction: column; gap: .3rem;
+  background: #07090f; border: 1px solid #1a2235; border-radius: .5rem; padding: 1.125rem;
+}
+.ii-glyph { display: flex; gap: 3px; margin-bottom: .375rem; }
+.ii-glyph span { width: .5rem; height: .875rem; border-radius: 1px; background: #2a3350; border: 1px solid #34406b; }
+.ii-glyph span:first-child { background: rgba(99,102,241,.5); border-color: #6366f1; }
+.ii-label { font-size: .9375rem; font-weight: 600; color: #e4e7f2; }
+.ii-note { font-size: .8125rem; color: #7b829e; line-height: 1.5; }
+.ii-caption {
+  margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #1a2235;
+  font-size: .875rem; color: #7b829e; line-height: 1.7;
+}
+@media (max-width: 600px) { .ii { padding: 1.25rem; } }
+</style>

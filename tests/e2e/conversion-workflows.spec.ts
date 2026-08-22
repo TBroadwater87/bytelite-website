@@ -4,27 +4,10 @@ import { test, expect } from '@playwright/test';
 // focused inquiry entry points, preorder terminology). See Phase 8 of the task for the
 // ten required assertions this file implements.
 
-test.describe('Homepage audience routing', () => {
-  test('exposes the three primary audience paths', async ({ page }) => {
-    await page.goto('/');
-    const audience = page.locator('#audience-paths');
-    await expect(audience.getByRole('heading', { name: 'For People', exact: true })).toBeVisible();
-    await expect(audience.getByRole('heading', { name: 'For Organizations', exact: true })).toBeVisible();
-    await expect(audience.getByRole('heading', { name: 'For Technical Reviewers', exact: true })).toBeVisible();
-  });
-
-  test('every primary CTA resolves successfully', async ({ page, request }) => {
-    await page.goto('/');
-    const hrefs = await page.locator('#audience-paths a, .hero-cta-row a').evaluateAll((els) =>
-      els.map((e) => (e as HTMLAnchorElement).getAttribute('href')).filter((h): h is string => !!h && h.startsWith('/'))
-    );
-    expect(hrefs.length).toBeGreaterThan(5);
-    for (const href of hrefs) {
-      const res = await request.get(href);
-      expect(res.status(), `${href} should resolve 200`).toBe(200);
-    }
-  });
-});
+// The 2026-08-22 public scope reset replaced the three-audience homepage with the ByteLite
+// teaching flow; homepage routing is asserted in critical-paths.spec.ts against the public
+// route allowlist. The blocks below continue to guard the retired portfolio pages, which
+// still build and still resolve - they are simply out of every discovery surface.
 
 test.describe('Preorder terminology stays nonbinding', () => {
   const noPaidOrderPages = ['/preorder', '/preorder/founder-benefits', '/preorder/terms', '/products/cordel-play/preorder'];
@@ -163,35 +146,27 @@ test.describe('Specialized workflows no longer silently substitute general conta
 // src/pages/api/contact.ts - do not hand-edit this table without re-deriving it from source.
 // activeField is null for types that show no conditional field at all.
 // ---------------------------------------------------------------------------------------------
-type ExtraField = 'organization' | 'quantity' | 'platform' | null;
+type ExtraField = 'organization' | null;
 const INQUIRY_TYPE_MATRIX: Array<{ type: string; heading: string; activeField: ExtraField }> = [
-  { type: 'cordel-play', heading: 'Cordel Play — founder reservation interest.', activeField: 'quantity' },
-  { type: 'cordel-connect', heading: 'Cordel Connect — private-test interest.', activeField: 'platform' },
   { type: 'validation-partnership', heading: 'Technical validation inquiry.', activeField: 'organization' },
   { type: 'licensing', heading: 'Licensing inquiry.', activeField: 'organization' },
-  { type: 'manufacturing', heading: 'Manufacturing inquiry.', activeField: 'organization' },
-  { type: 'distribution', heading: 'Distribution inquiry.', activeField: 'organization' },
-  { type: 'investor', heading: 'Investor inquiry.', activeField: 'organization' },
-  { type: 'restaurant-partnership', heading: 'Restaurant partnership inquiry.', activeField: 'organization' },
   { type: 'technology-partnership', heading: 'Technology partnership inquiry.', activeField: 'organization' },
-  // NOTE: the API's INQUIRY_TYPES set also accepts 'byteoracle', but /contact has never offered
-  // it as an option and TYPE_CONFIG has no entry for it, so there is no UI behavior to assert.
-  // It is covered by the unsupported-type test below instead.
-  { type: 'preorder-support', heading: 'Preorder support.', activeField: null },
+  { type: 'investor', heading: 'Investor inquiry.', activeField: 'organization' },
+  // NOTE: the API's INQUIRY_TYPES set still accepts several retired types (byteoracle,
+  // cordel-play, restaurant-partnership and others). /contact no longer offers any of them,
+  // and TYPE_CONFIG has no entry for them, so they have no UI behavior to assert - they are
+  // covered by the unsupported-type test below instead. The backend enum is deliberately
+  // left wider than the UI so previously-sent inquiries keep validating.
   { type: 'privacy-request', heading: 'Privacy request.', activeField: null },
   { type: 'general', heading: 'Get in touch.', activeField: null },
 ];
 
-const FIELD_KEYS = ['organization', 'quantity', 'platform'] as const;
+const FIELD_KEYS = ['organization'] as const;
 const CONTAINER_SELECTOR: Record<(typeof FIELD_KEYS)[number], string> = {
   organization: '#ct-field-organization',
-  quantity: '#ct-field-quantity',
-  platform: '#ct-field-platform',
 };
 const INPUT_SELECTOR: Record<(typeof FIELD_KEYS)[number], string> = {
   organization: '#ct-organization',
-  quantity: '#ct-quantity',
-  platform: '#ct-platform',
 };
 
 test.describe('Conditional contact fields are mutually exclusive per inquiry type', () => {
@@ -265,38 +240,62 @@ test.describe('Conditional contact fields are mutually exclusive per inquiry typ
     });
 
     expect(formEntries.organization).toBe('Acme Licensing Co');
-    // quantityInterest/platform inputs are disabled -> FormData omits them entirely.
+    // The retired quantity/platform inputs no longer exist in the DOM at all.
     expect(formEntries.quantityInterest).toBeUndefined();
     expect(formEntries.platform).toBeUndefined();
   });
 
-  test('switching inquiry type via the dropdown (no reload) clears the old field and activates the new one', async ({ page }) => {
-    await page.goto('/contact?type=cordel-play');
-    await expect(page.locator(CONTAINER_SELECTOR.quantity)).toBeVisible();
+  test('switching inquiry type via the dropdown (no reload) clears and deactivates the old field', async ({ page }) => {
+    await page.goto('/contact?type=licensing');
+    await expect(page.locator(CONTAINER_SELECTOR.organization)).toBeVisible();
 
     // Populate the currently active field.
-    await page.locator(INPUT_SELECTOR.quantity).selectOption('4+');
+    await page.locator(INPUT_SELECTOR.organization).fill('Acme Licensing Co');
 
-    // Switch to a type with a different active field, via the dropdown, no navigation.
-    await page.locator('#ct-subject').selectOption('cordel-connect');
+    // Switch to a type with no conditional field, via the dropdown, no navigation.
+    await page.locator('#ct-subject').selectOption('general');
 
     // Old field: hidden, disabled, value cleared.
-    await expect(page.locator(CONTAINER_SELECTOR.quantity)).toBeHidden();
-    await expect(page.locator(INPUT_SELECTOR.quantity)).toBeDisabled();
-    await expect(page.locator(INPUT_SELECTOR.quantity)).toHaveValue('');
+    await expect(page.locator(CONTAINER_SELECTOR.organization)).toBeHidden();
+    await expect(page.locator(INPUT_SELECTOR.organization)).toBeDisabled();
+    await expect(page.locator(INPUT_SELECTOR.organization)).toHaveValue('');
 
-    // New field: visible, enabled.
-    await expect(page.locator(CONTAINER_SELECTOR.platform)).toBeVisible();
-    await expect(page.locator(INPUT_SELECTOR.platform)).toBeEnabled();
-
-    await page.locator(INPUT_SELECTOR.platform).selectOption('android');
+    // Switch back: visible, enabled, and still empty (never restores a stale value).
+    await page.locator('#ct-subject').selectOption('investor');
+    await expect(page.locator(CONTAINER_SELECTOR.organization)).toBeVisible();
+    await expect(page.locator(INPUT_SELECTOR.organization)).toBeEnabled();
+    await expect(page.locator(INPUT_SELECTOR.organization)).toHaveValue('');
 
     const formEntries = await page.evaluate(() => {
       const form = document.getElementById('ct-form') as HTMLFormElement;
       return Object.fromEntries(new FormData(form).entries());
     });
-    expect(formEntries.platform).toBe('android');
-    expect(formEntries.quantityInterest).toBeUndefined();
+    expect(formEntries.organization).toBe('');
+  });
+
+  test('the retired conditional fields are gone from the DOM entirely', async ({ page }) => {
+    await page.goto('/contact');
+    await expect(page.locator('#ct-field-quantity')).toHaveCount(0);
+    await expect(page.locator('#ct-field-platform')).toHaveCount(0);
+    await expect(page.locator('#ct-quantity')).toHaveCount(0);
+    await expect(page.locator('#ct-platform')).toHaveCount(0);
+  });
+
+  test('the inquiry-type dropdown offers only ByteLite-scope types', async ({ page }) => {
+    await page.goto('/contact');
+    const values = await page
+      .locator('#ct-subject option')
+      .evaluateAll((opts) => opts.map((o) => (o as HTMLOptionElement).value).filter(Boolean));
+    expect(values.sort()).toEqual(
+      [
+        'general',
+        'investor',
+        'licensing',
+        'privacy-request',
+        'technology-partnership',
+        'validation-partnership',
+      ].sort()
+    );
   });
 });
 
@@ -322,14 +321,14 @@ test.describe('Contact form is fully keyboard-operable', () => {
   });
 
   test('Tab from the inquiry-type dropdown never focuses a hidden conditional input', async ({ page }) => {
-    // cordel-connect's active field is "platform" - organization and quantity must be unreachable.
-    await page.goto('/contact?type=cordel-connect');
+    // privacy-request activates no conditional field - the disabled organization input must be
+    // out of the Tab order entirely, not merely visually hidden.
+    await page.goto('/contact?type=privacy-request');
     await page.locator('#ct-subject').focus();
     await page.keyboard.press('Tab');
     const focusedId = await page.evaluate(() => document.activeElement?.id);
-    expect(focusedId).toBe('ct-platform');
+    expect(focusedId).toBe('ct-message');
     expect(focusedId).not.toBe('ct-organization');
-    expect(focusedId).not.toBe('ct-quantity');
   });
 
   test('Tab from the inquiry-type dropdown skips straight to the message field when no conditional field is active', async ({ page }) => {

@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SavingsSplit from '../components/bytelite/SavingsSplit.astro';
+import BalanceAutoReload from '../components/bytelite/BalanceAutoReload.astro';
+import { LICENSING_HEADLINE, LICENSING_CORE, LICENSING_NO_SAVING_RULE } from '../data/bytelite';
+---
+
+<Layout
+  title="ByteLite Licensing | We share verified savings"
+  description="ByteLite's planned commercial model: a 50/50 share of verified qualifying savings. No verified saving means no savings-share fee. ByteLite is not yet production-qualified."
+  keywords="ByteLite licensing, verified savings, shared savings model"
+  canonical="https://www.thebytelite.com/licensing/"
+>
+  <Header slot="header" />
+
+  <section class="page-hero">
+    <div class="container narrow">
+      <p class="planned"><span class="planned-dot" aria-hidden="true"></span>Planned commercial model</p>
+      <p class="eyebrow">Licensing</p>
+      <h1>{LICENSING_HEADLINE}</h1>
+      <p class="hero-sub">{LICENSING_CORE}</p>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container narrow">
+      <SavingsSplit />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <h2>The rule that matters most.</h2>
+      <p class="rule">{LICENSING_NO_SAVING_RULE}</p>
+      <p class="body">
+        The fee is a share of savings that were measured against an agreed baseline. If a workload
+        produces no verified qualifying saving, that workload produces no savings-share fee. This
+        is deliberately the opposite of paying for a promise.
+      </p>
+      <p class="body">
+        It also means the model only makes sense once ByteLite can actually be measured in a real
+        environment &mdash; which is a validation question, not a pricing one.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container narrow">
+      <h2>How billing would work.</h2>
+      <p class="lede">
+        The intended mechanism is a prepaid balance with automatic top-up, with the ByteLite share
+        deducted from verified savings as they are measured.
+      </p>
+      <BalanceAutoReload />
+      <p class="body">
+        Larger accounts would be able to use invoice billing instead. No payment method is
+        collected anywhere on this site today.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <h2>Availability.</h2>
+      <p class="body">
+        ByteLite is research under validation. It is not production-qualified, and no technology on
+        this site is available to license today. The model above describes how licensing is
+        intended to work when it is.
+      </p>
+      <p class="body">
+        Organizations who want to be part of that conversation early &mdash; particularly anyone
+        able to independently validate a specific claim &mdash; are the most useful people to hear
+        from.
+      </p>
+      <div class="cta-row">
+        <a href="/validation" class="btn btn-outline">See the current evidence</a>
+        <a href="/contact?type=licensing" class="btn btn-primary">Licensing inquiry</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.narrow { max-width: 780px; }
+.page-hero { padding: 3.5rem 0 2.5rem; }
+.planned {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: #fbbf24; background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.3);
+  border-radius: 9999px; padding: .25rem .75rem; margin-bottom: 1.25rem;
+}
+.planned-dot { width: .4rem; height: .4rem; border-radius: 50%; background: #fbbf24; }
+.hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.8; }
+h2 { margin-bottom: .75rem; }
+.lede { font-size: 1.0625rem; color: #a0a8c0; line-height: 1.75; margin-bottom: 1.5rem; }
+.rule {
+  font-size: 1.125rem; font-weight: 600; color: #c4c8f0; line-height: 1.6;
+  background: rgba(52,211,153,.06); border: 1px solid rgba(52,211,153,.26);
+  border-radius: .625rem; padding: 1.125rem 1.25rem; margin-bottom: 1.5rem;
+}
+.body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1rem; }
+.cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.75rem; }
+</style>

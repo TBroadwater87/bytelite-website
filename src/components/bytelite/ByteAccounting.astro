@@ -1,0 +1,103 @@
+---
+// GRAPHIC 4 - complete artifact accounting.
+//
+// Communicates the DISCIPLINE (everything required to rebuild is counted) without naming any
+// internal construct. The three named parts below are deliberately generic accounting
+// categories, not ByteLite's private field names or container grammar. Its job is to stop a
+// visitor believing a small headline number alone is being advertised as the final file.
+import { ILLUSTRATIVE_LABEL } from '../../data/bytelite';
+
+const PARTS = [
+  { label: 'Primary representation', hint: 'the represented content itself' },
+  { label: 'All required reconstruction information', hint: 'everything that restores the exact original' },
+  { label: 'Required artifact state', hint: 'anything else the artifact must carry to decode' },
+];
+---
+
+<figure class="ba" aria-labelledby="ba-caption">
+  <ul class="ba-parts">
+    {PARTS.map((part, i) => (
+      <li class="ba-part">
+        {i > 0 && <span class="ba-plus" aria-hidden="true">+</span>}
+        <span class="ba-part-label">{part.label}</span>
+        <span class="ba-part-hint">{part.hint}</span>
+      </li>
+    ))}
+  </ul>
+
+  <p class="ba-equals" aria-hidden="true">=</p>
+
+  <p class="ba-total">Complete ByteLite artifact</p>
+
+  <p class="ba-rule">Any compression claim is based on the complete artifact.</p>
+
+  <div class="ba-outcomes">
+    <div class="ba-outcome ba-outcome-yes">
+      <p class="ba-test">Complete artifact &lt; original input</p>
+      <p class="ba-result"><span class="ba-mark" aria-hidden="true">&#10003;</span> Counted reduction</p>
+    </div>
+    <div class="ba-outcome ba-outcome-no">
+      <p class="ba-test">Complete artifact is the same or larger</p>
+      <p class="ba-result"><span class="ba-mark" aria-hidden="true">&#10005;</span> No counted reduction</p>
+    </div>
+  </div>
+
+  <figcaption id="ba-caption" class="ba-caption">
+    <span class="ba-illustrative">{ILLUSTRATIVE_LABEL}</span>
+    A reduction only counts when <em>everything</em> needed to rebuild the file is included in the
+    measurement. Moving cost somewhere that is not counted is not a reduction.
+  </figcaption>
+</figure>
+
+<style>
+.ba { margin: 0; background: #0d1120; border: 1px solid #1a2235; border-radius: .875rem; padding: 1.75rem; }
+.ba-rule {
+  font-size: .9375rem; font-weight: 600; color: #c4c8f0; line-height: 1.55; text-align: center;
+  background: rgba(99,102,241,.06); border: 1px solid rgba(99,102,241,.26);
+  border-radius: .5rem; padding: .75rem .875rem; margin: .875rem 0 0;
+}
+.ba-parts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+.ba-part {
+  position: relative;
+  display: flex; flex-direction: column; gap: .1rem;
+  background: #07090f; border: 1px solid #1a2235; border-left: 3px solid #6366f1;
+  border-radius: .5rem; padding: .75rem .875rem;
+}
+.ba-plus {
+  position: absolute; top: -.6rem; left: .875rem;
+  font-size: .8125rem; font-weight: 700; color: #6366f1;
+  background: #0d1120; padding: 0 .25rem; line-height: 1;
+}
+.ba-part-label { font-size: .9375rem; font-weight: 600; color: #e4e7f2; }
+.ba-part-hint { font-size: .8125rem; color: #7b829e; }
+
+.ba-equals { text-align: center; font-size: 1.25rem; font-weight: 700; color: #6366f1; margin: .875rem 0; }
+.ba-total {
+  text-align: center; font-size: 1rem; font-weight: 700; color: #c4c8f0;
+  background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.25);
+  border-radius: .5rem; padding: .75rem; margin-bottom: 1.25rem;
+}
+
+.ba-outcomes { display: grid; grid-template-columns: 1fr 1fr; gap: .875rem; }
+@media (max-width: 620px) { .ba-outcomes { grid-template-columns: 1fr; } }
+.ba-outcome { border-radius: .5rem; padding: 1rem; border: 1px solid; }
+.ba-outcome-yes { background: rgba(52,211,153,.05); border-color: rgba(52,211,153,.28); }
+.ba-outcome-no { background: rgba(248,113,113,.04); border-color: rgba(248,113,113,.22); }
+.ba-test { font-size: .8125rem; color: #7b829e; margin-bottom: .5rem; line-height: 1.5; }
+.ba-result { display: flex; align-items: center; gap: .5rem; font-size: .9375rem; font-weight: 600; margin: 0; }
+.ba-outcome-yes .ba-result { color: #34d399; }
+.ba-outcome-no .ba-result { color: #f87171; }
+.ba-mark { flex-shrink: 0; }
+
+.ba-caption {
+  margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #1a2235;
+  font-size: .875rem; color: #7b829e; line-height: 1.7;
+}
+.ba-caption em { color: #c4c8f0; }
+.ba-illustrative {
+  display: block; margin-bottom: .5rem;
+  font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fbbf24;
+}
+
+@media (max-width: 600px) { .ba { padding: 1.25rem; } }
+</style>

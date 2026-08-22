@@ -1,159 +1,40 @@
 ---
+// Primary navigation. Public scope is ByteLite only - six flat destinations, no project-family
+// menus, no dropdowns. Retired portfolio routes still build but are not linked from here.
 const currentPath = Astro.url.pathname;
 function isActive(href: string) {
   if (href === '/') return currentPath === '/';
   return currentPath === href || currentPath.startsWith(href + '/');
 }
-// A dropdown highlights as the current section for its own href and its own children only.
-// Children marked `crossSection` are convenience links into a different top-level section (the
-// Research menu points at Architecture and Progress, for example) and must not light up two
-// top-level items at once.
-function sectionActive(item: NavItem) {
-  const ownHrefs = [item.href, ...(item.children ?? []).filter((child) => !child.crossSection).map((child) => child.href)];
-  return ownHrefs.some(isActive);
-}
 
-interface NavChild {
-  label: string;
-  href: string;
-  crossSection?: boolean;
-}
-interface NavItem {
-  label: string;
-  href: string;
-  children?: NavChild[];
-}
-
-const NAV: NavItem[] = [
-  {
-    label: 'Technologies',
-    href: '/technologies',
-    children: [
-      { label: 'Technology Overview', href: '/technologies' },
-      { label: 'ByteLite', href: '/technologies/bytelite' },
-      { label: 'ByteSight', href: '/technologies/bytesight' },
-      { label: 'Deep Kore', href: '/technologies/deep-kore' },
-      { label: 'AIya', href: '/technologies/deep-kore/aiya' },
-      { label: 'Genesis Goalkeeper', href: '/technologies/deep-kore/genesis-goalkeeper' },
-      { label: 'Revelation Vanguard', href: '/technologies/deep-kore/revelation-vanguard' },
-    ],
-  },
-  {
-    label: 'Architecture',
-    href: '/architecture',
-  },
-  {
-    label: 'Research',
-    href: '/research',
-    children: [
-      { label: 'Research Overview', href: '/research' },
-      { label: 'Deterministic Structural Cognition', href: '/research/deterministic-structural-cognition' },
-      { label: 'Plain-English Explanation', href: '/research/plain-english' },
-      { label: 'Architecture & Governance', href: '/architecture', crossSection: true },
-      { label: 'Current Status', href: '/progress', crossSection: true },
-      { label: 'Validation Evidence', href: '/progress/validation-evidence', crossSection: true },
-    ],
-  },
-  {
-    label: 'Cordel Play',
-    href: '/products/cordel-play',
-    children: [
-      { label: 'Overview', href: '/products/cordel-play' },
-      { label: 'How It Plays', href: '/products/cordel-play/how-it-plays' },
-      { label: 'Editions', href: '/products/cordel-play/editions' },
-      { label: 'Components', href: '/products/cordel-play/components' },
-      { label: 'Consent Architecture', href: '/products/cordel-play/consent-architecture' },
-      { label: 'Development Status', href: '/products/cordel-play/development-status' },
-      { label: 'Preorder', href: '/products/cordel-play/preorder' },
-    ],
-  },
-  {
-    label: 'Cordel Connect',
-    href: '/products/cordel-connect',
-    children: [
-      { label: 'Overview', href: '/products/cordel-connect' },
-      { label: 'Compatibility & Matching', href: '/products/cordel-connect/compatibility-and-matching' },
-      { label: 'Privacy Architecture', href: '/products/cordel-connect/privacy-architecture' },
-      { label: 'Safety', href: '/products/cordel-connect/safety' },
-      { label: 'Cartoonized Profiles', href: '/products/cordel-connect/cartoonized-profiles' },
-      { label: 'AIya & Aion', href: '/products/cordel-connect/aiya-and-aion' },
-      { label: 'Games & Shared Activities', href: '/products/cordel-connect/games-and-shared-activities' },
-      { label: 'Horoscopes', href: '/products/cordel-connect/horoscopes' },
-      { label: 'Date Planning', href: '/products/cordel-connect/date-planning' },
-    ],
-  },
-  {
-    label: 'Progress',
-    href: '/progress',
-    children: [
-      { label: 'Current Status', href: '/progress' },
-      { label: 'Validation Evidence', href: '/progress/validation-evidence' },
-      { label: 'Development Timeline', href: '/progress/development-timeline' },
-      { label: 'Changelog', href: '/progress/changelog' },
-    ],
-  },
-  {
-    label: 'Preorder',
-    href: '/preorder',
-    children: [
-      { label: 'All Eligible Products', href: '/preorder' },
-      { label: 'Founder Benefits', href: '/preorder/founder-benefits' },
-      { label: 'Preorder Terms', href: '/preorder/terms' },
-      { label: 'Order Status', href: '/preorder/status' },
-    ],
-  },
-  {
-    label: 'Company',
-    href: '/company',
-    children: [
-      { label: 'About ByteLite LLC', href: '/company' },
-      { label: 'Founder', href: '/company/founder' },
-      { label: 'Partnerships', href: '/company/partnerships' },
-      { label: 'Investors', href: '/company/investors' },
-      { label: 'Contact', href: '/contact' },
-      { label: 'Legal', href: '/company/legal' },
-    ],
-  },
+const NAV = [
+  { label: 'How It Works', href: '/how-it-works' },
+  { label: 'Validation', href: '/validation' },
+  { label: 'Licensing', href: '/licensing' },
+  { label: 'About', href: '/about' },
 ];
 ---
 
 <header class="site-header">
   <nav class="container nav-inner" aria-label="Primary">
-    <a href="/" class="nav-logo" aria-label="ByteLite LLC home">
-      <img src="/bytelite-logo.png" alt="ByteLite LLC" width="32" height="32" />
-      <span class="nav-logo-text">ByteLite LLC</span>
+    <a href="/" class="nav-logo" aria-label="ByteLite home">
+      <img src="/bytelite-logo.png" alt="" width="30" height="30" />
+      <span class="nav-logo-text">ByteLite</span>
     </a>
 
     <div class="nav-links" id="navLinks">
       {NAV.map((item) => (
-        item.children ? (
-          <details class="nav-dropdown" data-nav-dropdown>
-            <summary
-              class:list={['nav-link', 'nav-summary', { active: sectionActive(item) }]}
-              aria-haspopup="true"
-            >
-              {item.label}
-              <svg class="nav-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </summary>
-            <div class="nav-dropdown-panel" role="menu">
-              {item.children.map((child) => (
-                <a role="menuitem" href={child.href} class:list={['nav-dropdown-link', { active: isActive(child.href) }]}>{child.label}</a>
-              ))}
-            </div>
-          </details>
-        ) : (
-          <a href={item.href} class:list={['nav-link', { active: isActive(item.href) }]}>{item.label}</a>
-        )
+        <a href={item.href} class:list={['nav-link', { active: isActive(item.href) }]}>{item.label}</a>
       ))}
     </div>
 
     <a href="/contact" class="nav-contact-cta">Contact</a>
 
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-        <line x1="3" y1="6" x2="21" y2="6" class="line-top" />
-        <line x1="3" y1="12" x2="21" y2="12" class="line-mid" />
-        <line x1="3" y1="18" x2="21" y2="18" class="line-bot" />
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
       </svg>
     </button>
   </nav>
@@ -166,34 +47,14 @@ const NAV: NavItem[] = [
     const open = links?.classList.toggle('nav-open');
     toggle.setAttribute('aria-expanded', String(!!open));
   });
-  links?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
-    links.classList.remove('nav-open');
-    toggle?.setAttribute('aria-expanded', 'false');
-  }));
-
-  const dropdowns = Array.from(document.querySelectorAll<HTMLDetailsElement>('[data-nav-dropdown]'));
-
-  function closeAll(except?: HTMLDetailsElement) {
-    dropdowns.forEach((d) => {
-      if (d !== except) d.open = false;
-    });
-  }
-
-  dropdowns.forEach((d) => {
-    d.addEventListener('toggle', () => {
-      if (d.open) closeAll(d);
-    });
-  });
-
-  document.addEventListener('click', (e) => {
-    const target = e.target as Node;
-    const insideAny = dropdowns.some((d) => d.contains(target));
-    if (!insideAny) closeAll();
-  });
-
+  links?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => {
+      links.classList.remove('nav-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    })
+  );
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      closeAll();
       links?.classList.remove('nav-open');
       toggle?.setAttribute('aria-expanded', 'false');
     }
@@ -207,70 +68,29 @@ const NAV: NavItem[] = [
   backdrop-filter: blur(12px);
   border-bottom: 1px solid #1a2235;
 }
-.nav-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  height: 4rem; gap: 1.25rem;
-}
-.nav-logo {
-  display: flex; align-items: center; gap: .625rem; flex-shrink: 0;
-}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 4rem; gap: 1.25rem; }
+.nav-logo { display: flex; align-items: center; gap: .625rem; flex-shrink: 0; }
 .nav-logo img { border-radius: .25rem; }
-.nav-logo-text {
-  font-size: .9375rem; font-weight: 600; color: #e4e7f2;
-  letter-spacing: -.01em; white-space: nowrap;
-}
+.nav-logo-text { font-size: 1rem; font-weight: 700; color: #e4e7f2; letter-spacing: -.01em; white-space: nowrap; }
 .nav-logo:hover .nav-logo-text { color: #818cf8; }
-.nav-links {
-  display: flex; align-items: center; gap: .125rem;
-  flex: 1; min-width: 0;
-}
+.nav-links { display: flex; align-items: center; gap: .25rem; flex: 1; justify-content: center; }
 .nav-link {
-  display: flex; align-items: center; gap: .3rem;
-  padding: .5rem .75rem;
-  font-size: .8125rem; font-weight: 450; color: #7b829e;
-  border-radius: .375rem; transition: color .15s, background .15s;
-  white-space: nowrap; cursor: pointer; list-style: none;
+  padding: .5rem .875rem; font-size: .875rem; font-weight: 450; color: #7b829e;
+  border-radius: .375rem; transition: color .15s, background .15s; white-space: nowrap;
 }
-.nav-link::-webkit-details-marker { display: none; }
-.nav-link:hover { color: #e4e7f2; background: rgba(255,255,255,.04); }
+.nav-link:hover, .nav-link:focus-visible { color: #e4e7f2; background: rgba(255,255,255,.04); }
 .nav-link.active { color: #e4e7f2; }
-.nav-caret { flex-shrink: 0; opacity: .6; transition: transform .15s; }
-details[open] > .nav-summary .nav-caret { transform: rotate(180deg); }
-
-.nav-dropdown { position: relative; }
-.nav-dropdown-panel {
-  position: absolute; top: calc(100% + .5rem); left: 0;
-  min-width: 240px; max-width: 320px;
-  background: #0d1120; border: 1px solid #1a2235; border-radius: .625rem;
-  padding: .5rem; box-shadow: 0 12px 32px rgba(0,0,0,.5);
-  display: flex; flex-direction: column; gap: .125rem;
-  max-height: 70vh; overflow-y: auto;
-}
-.nav-dropdown-link {
-  display: block; padding: .5rem .625rem; border-radius: .375rem;
-  font-size: .8125rem; color: #a0a8c0; white-space: normal;
-}
-.nav-dropdown-link:hover { background: rgba(99,102,241,.1); color: #e4e7f2; }
-.nav-dropdown-link.active { color: #818cf8; background: rgba(99,102,241,.08); }
-
 .nav-contact-cta {
-  flex-shrink: 0;
-  padding: .5rem 1rem; font-size: .8125rem; font-weight: 600;
+  flex-shrink: 0; padding: .5rem 1.125rem; font-size: .875rem; font-weight: 600;
   background: rgba(99,102,241,.12); color: #818cf8;
   border: 1px solid rgba(99,102,241,.22); border-radius: .375rem;
   transition: background .15s, color .15s;
 }
-.nav-contact-cta:hover { background: #6366f1; color: #fff; }
-
-.nav-toggle {
-  display: none; background: none; border: none;
-  color: #7b829e; padding: .375rem; border-radius: .375rem; flex-shrink: 0;
-}
+.nav-contact-cta:hover, .nav-contact-cta:focus-visible { background: #6366f1; color: #fff; }
+.nav-toggle { display: none; background: none; border: none; color: #7b829e; padding: .375rem; border-radius: .375rem; flex-shrink: 0; }
 .nav-toggle:hover { color: #e4e7f2; background: rgba(255,255,255,.05); }
 
-/* Collapse to the mobile menu at 1250px rather than 1100px: eight top-level items plus the
-   contact CTA no longer fit the desktop row without shrinking type or overflowing. */
-@media (max-width: 1250px) {
+@media (max-width: 720px) {
   .nav-links { display: none; }
   .nav-toggle { display: flex; align-items: center; justify-content: center; }
   .nav-links.nav-open {
@@ -280,6 +100,5 @@ details[open] > .nav-summary .nav-caret { transform: rotate(180deg); }
     padding: .75rem 1rem; max-height: calc(100vh - 4rem); overflow-y: auto;
   }
   .nav-links.nav-open .nav-link { padding: .75rem 1rem; font-size: 1rem; border-radius: .5rem; }
-  .nav-links.nav-open .nav-dropdown-panel { position: static; box-shadow: none; margin: .25rem 0 .5rem .75rem; }
 }
 </style>

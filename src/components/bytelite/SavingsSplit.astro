@@ -1,0 +1,113 @@
+---
+// CORE VISUAL 06 - the 50/50 verified-savings licensing model.
+//
+// The single most misreadable figure on the site, so it is built to make one distinction
+// unmissable: the split is of the SAVINGS, not of the customer's costs. It must never read as
+// "ByteLite cuts your costs by 50%".
+import { SAVINGS_EXAMPLE, ILLUSTRATIVE_ECONOMIC_LABEL } from '../../data/bytelite';
+
+const money = (n: number) => '$' + n.toLocaleString('en-US');
+const e = SAVINGS_EXAMPLE;
+---
+
+<figure class="ss" aria-labelledby="ss-caption">
+  <p class="ss-illustrative">{ILLUSTRATIVE_ECONOMIC_LABEL}</p>
+
+  <div class="ss-costs">
+    <div class="ss-cost">
+      <span class="ss-cost-label">Baseline qualifying cost</span>
+      <span class="ss-cost-value">{money(e.baselineCost)}</span>
+      <span class="ss-bar ss-bar-baseline" aria-hidden="true"></span>
+    </div>
+    <div class="ss-cost">
+      <span class="ss-cost-label">Measured cost with ByteLite</span>
+      <span class="ss-cost-value">{money(e.measuredCost)}</span>
+      <span class="ss-bar ss-bar-measured" aria-hidden="true"></span>
+    </div>
+  </div>
+
+  <p class="ss-savings">
+    Verified savings <strong>{money(e.verifiedSavings)}</strong>
+  </p>
+
+  <div class="ss-split" role="group" aria-label="How the verified savings are divided">
+    <div class="ss-half ss-half-customer">
+      <span class="ss-half-who">Customer retains</span>
+      <span class="ss-half-amount">{money(e.customerRetains)}</span>
+      <span class="ss-half-share">half</span>
+    </div>
+    <div class="ss-half ss-half-bytelite">
+      <span class="ss-half-who">ByteLite license fee</span>
+      <span class="ss-half-amount">{money(e.byteLiteFee)}</span>
+      <span class="ss-half-share">half</span>
+    </div>
+  </div>
+
+  <dl class="ss-net">
+    <div class="ss-net-row">
+      <dt>Customer effective cost</dt>
+      <dd>{money(e.customerEffectiveCost)}</dd>
+    </div>
+    <div class="ss-net-row">
+      <dt>Customer net saving</dt>
+      <dd class="ss-net-good">{money(e.customerRetains)}</dd>
+    </div>
+  </dl>
+
+  <p class="ss-rule">ByteLite earns only from verified savings.</p>
+  <p class="ss-subrule">The customer keeps half. ByteLite receives half.</p>
+
+  <figcaption id="ss-caption" class="ss-caption">
+    The 50/50 split applies to the <em>savings ByteLite creates</em>, measured against an agreed
+    baseline. It is not a claim that costs fall by half.
+  </figcaption>
+</figure>
+
+<style>
+.ss { margin: 0; background: #0d1120; border: 1px solid #1a2235; border-radius: .875rem; padding: 1.75rem; }
+.ss-illustrative {
+  font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: #fbbf24; margin-bottom: 1.25rem;
+}
+.ss-costs { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.25rem; }
+.ss-cost { display: grid; grid-template-columns: 1fr auto; gap: .25rem .875rem; align-items: baseline; }
+.ss-cost-label { font-size: .875rem; color: #a0a8c0; }
+.ss-cost-value { font-family: ui-monospace, 'Courier New', monospace; font-size: 1rem; font-weight: 700; color: #e4e7f2; }
+.ss-bar { grid-column: 1 / -1; height: .5rem; border-radius: 9999px; display: block; }
+.ss-bar-baseline { width: 100%; background: #2a3350; }
+.ss-bar-measured { width: 70%; background: #6366f1; }
+
+.ss-savings {
+  font-size: 1rem; color: #a0a8c0; margin-bottom: 1rem;
+  padding: .75rem .875rem; border-radius: .5rem;
+  background: rgba(52,211,153,.06); border: 1px solid rgba(52,211,153,.26);
+}
+.ss-savings strong { color: #34d399; font-family: ui-monospace, 'Courier New', monospace; }
+
+.ss-split { display: grid; grid-template-columns: 1fr 1fr; gap: .875rem; margin-bottom: 1.25rem; }
+@media (max-width: 560px) { .ss-split { grid-template-columns: 1fr; } }
+.ss-half {
+  display: flex; flex-direction: column; gap: .2rem;
+  border-radius: .5rem; padding: 1rem; border: 1px solid;
+}
+.ss-half-customer { background: rgba(52,211,153,.05); border-color: rgba(52,211,153,.26); }
+.ss-half-bytelite { background: rgba(99,102,241,.06); border-color: rgba(99,102,241,.28); }
+.ss-half-who { font-size: .75rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #7b829e; }
+.ss-half-amount { font-family: ui-monospace, 'Courier New', monospace; font-size: 1.375rem; font-weight: 700; color: #e4e7f2; }
+.ss-half-share { font-size: .75rem; color: #7b829e; }
+
+.ss-net { margin: 0 0 1.25rem; border-top: 1px solid #1a2235; padding-top: 1rem; }
+.ss-net-row { display: flex; justify-content: space-between; gap: 1rem; padding: .3rem 0; }
+.ss-net dt { font-size: .875rem; color: #7b829e; }
+.ss-net dd { margin: 0; font-family: ui-monospace, 'Courier New', monospace; font-size: .9375rem; color: #e4e7f2; }
+.ss-net-good { color: #34d399 !important; }
+
+.ss-rule { font-size: 1.0625rem; font-weight: 700; color: #c4c8f0; }
+.ss-subrule { font-size: .875rem; color: #7b829e; margin-top: .25rem; }
+.ss-caption {
+  margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #1a2235;
+  font-size: .875rem; color: #7b829e; line-height: 1.7;
+}
+.ss-caption em { color: #c4c8f0; }
+@media (max-width: 600px) { .ss { padding: 1.25rem; } }
+</style>

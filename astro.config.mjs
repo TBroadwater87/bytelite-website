@@ -8,9 +8,26 @@ export default defineConfig({
   integrations: [
     tailwind(),
     sitemap({
-      // byteflow/bytecost/byteoracle: excluded from all public surfaces per the
-      // August 1, 2026 canonical model (their routes still build, just unlisted).
-      filter: (page) => !/\/(marketing\/admin|preorder\/status|technologies\/byteflow|technologies\/bytecost|technologies\/byteoracle)\/?$/.test(page),
+      // Public scope reset (2026-08-22): thebytelite.com is a ByteLite-only site.
+      // The sitemap is an explicit allowlist rather than a denylist, so a retired
+      // portfolio route can never re-enter search discovery by being added back to
+      // src/pages. Retired routes still build and still resolve - they are served
+      // noindex and are simply absent from every discovery surface.
+      filter: (page) => {
+        // `page` is an absolute URL string; take everything from the origin's
+        // trailing slash onward and normalise away the trailing slash.
+        const path = page.replace(/^https?:\/\/[^/]+/, '').replace(/\/$/, '') || '/';
+        return [
+          '/',
+          '/how-it-works',
+          '/validation',
+          '/licensing',
+          '/about',
+          '/contact',
+          '/privacy',
+          '/terms',
+        ].includes(path);
+      },
     }),
     react()
   ],

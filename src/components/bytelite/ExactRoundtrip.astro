@@ -1,0 +1,93 @@
+---
+// CORE VISUAL 02 - lossless exactness. The point it must land: "close enough" is failure.
+// The equality check is expressed in text as well as colour, and the hashes are obvious
+// placeholders rather than any real internal artifact digest.
+---
+
+<figure class="rt" aria-labelledby="rt-caption">
+  <ol class="rt-chain">
+    <li class="rt-node"><span class="rt-node-kind">Original</span><span class="rt-node-name">file</span></li>
+    <li class="rt-op" aria-hidden="true">encode</li>
+    <li class="rt-node rt-node-repr"><span class="rt-node-kind">Representation</span><span class="rt-node-name">structure</span></li>
+    <li class="rt-op" aria-hidden="true">decode</li>
+    <li class="rt-node rt-node-out"><span class="rt-node-kind">Reconstructed</span><span class="rt-node-name">file</span></li>
+  </ol>
+
+  <div class="rt-check">
+    <div class="rt-check-row">
+      <span class="rt-hash">hash(original)</span>
+      <span class="rt-eq" aria-hidden="true">=</span>
+      <span class="rt-hash">hash(reconstructed)</span>
+    </div>
+    <p class="rt-verdict rt-verdict-pass">
+      <span class="rt-mark" aria-hidden="true">&#10003;</span>
+      Identical &mdash; the roundtrip passes
+    </p>
+    <p class="rt-verdict rt-verdict-fail">
+      <span class="rt-mark" aria-hidden="true">&#10005;</span>
+      Anything other than identical &mdash; the roundtrip fails, and no reduction may be claimed
+    </p>
+  </div>
+
+  <figcaption id="rt-caption" class="rt-caption">
+    ByteLite compares the rebuilt file against the original. There is no partial credit: a file
+    that comes back <em>almost</em> the same is a failure, not a smaller file.
+  </figcaption>
+</figure>
+
+<style>
+.rt { margin: 0; background: #0d1120; border: 1px solid #1a2235; border-radius: .875rem; padding: 1.75rem; }
+.rt-chain {
+  list-style: none; margin: 0 0 1.5rem; padding: 0;
+  display: flex; align-items: center; gap: .625rem; flex-wrap: wrap;
+}
+.rt-node {
+  display: flex; flex-direction: column; gap: .15rem;
+  background: #07090f; border: 1px solid #2a3350; border-radius: .5rem;
+  padding: .75rem .875rem; min-width: 8.5rem;
+}
+.rt-node-repr { border-color: #6366f1; }
+.rt-node-out { border-color: #34d399; }
+.rt-node-kind {
+  font-size: .625rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #7b829e;
+}
+.rt-node-name { font-size: .9375rem; color: #e4e7f2; }
+.rt-op {
+  font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: #818cf8; padding: 0 .125rem;
+}
+.rt-op::after { content: " \2192"; }
+
+.rt-check { background: #07090f; border: 1px solid #1a2235; border-radius: .625rem; padding: 1.25rem; }
+.rt-check-row { display: flex; align-items: center; gap: .875rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.rt-hash {
+  font-family: ui-monospace, 'Courier New', monospace; font-size: .8125rem; color: #c4c8f0;
+  background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.22);
+  border-radius: .375rem; padding: .3rem .625rem;
+}
+.rt-eq { font-size: 1.125rem; font-weight: 700; color: #34d399; }
+.rt-verdict {
+  display: flex; align-items: flex-start; gap: .625rem;
+  font-size: .875rem; line-height: 1.65; margin: 0;
+}
+.rt-verdict + .rt-verdict { margin-top: .5rem; }
+.rt-verdict-pass { color: #a0a8c0; }
+.rt-verdict-fail { color: #7b829e; }
+.rt-mark { flex-shrink: 0; font-weight: 700; }
+.rt-verdict-pass .rt-mark { color: #34d399; }
+.rt-verdict-fail .rt-mark { color: #f87171; }
+
+.rt-caption {
+  margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #1a2235;
+  font-size: .875rem; color: #7b829e; line-height: 1.7;
+}
+.rt-caption em { color: #c4c8f0; }
+
+@media (max-width: 600px) {
+  .rt { padding: 1.25rem; }
+  .rt-chain { flex-direction: column; align-items: stretch; }
+  .rt-node { min-width: 0; }
+  .rt-op { padding: .125rem 0; }
+  .rt-op::after { content: " \2193"; }
+}
+</style>

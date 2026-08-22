@@ -1,0 +1,197 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ExactRoundtrip from '../components/bytelite/ExactRoundtrip.astro';
+import CurrentVsFinal from '../components/bytelite/CurrentVsFinal.astro';
+import ByteAccounting from '../components/bytelite/ByteAccounting.astro';
+import ReductionGate from '../components/bytelite/ReductionGate.astro';
+import InfrastructureImpact from '../components/bytelite/InfrastructureImpact.astro';
+import {
+  DETERMINISM_STATEMENT,
+  ENTROPY_STATEMENT,
+  TARGET_STATEMENT,
+  DEVELOPMENT_STATEMENT,
+} from '../data/bytelite';
+---
+
+<Layout
+  title="How ByteLite Works | ByteLite"
+  description="The public principles behind ByteLite: determinism, exact reconstruction, a self-contained final artifact, complete counting, recursive processing and proof before claim. Explained with diagrams, not mechanism."
+  keywords="how ByteLite works, deterministic lossless representation, exact reconstruction, self-contained artifact, complete accounting"
+  canonical="https://www.thebytelite.com/how-it-works/"
+>
+  <Header slot="header" />
+
+  <section class="page-hero">
+    <div class="container narrow">
+      <p class="eyebrow">How it works</p>
+      <h1>Principles, not mechanism.</h1>
+      <p class="hero-sub">
+        This page explains what ByteLite must achieve and how it holds itself to account. The
+        methods that produce a representation are proprietary and are not published here.
+      </p>
+    </div>
+  </section>
+
+  <!-- 1. DETERMINISM -->
+  <section class="section">
+    <div class="container narrow">
+      <p class="step-num">01</p>
+      <h2>Determinism</h2>
+      <p class="lede">The same input and build produce the same output, every time.</p>
+      <p class="body">{DETERMINISM_STATEMENT}</p>
+      <p class="body">{ENTROPY_STATEMENT}</p>
+    </div>
+  </section>
+
+  <!-- 2. EXACT RECONSTRUCTION -->
+  <section class="section section-alt">
+    <div class="container narrow">
+      <p class="step-num">02</p>
+      <h2>Exact reconstruction</h2>
+      <p class="lede">The original must come back byte for byte, or the attempt failed.</p>
+      <ExactRoundtrip />
+      <p class="body">
+        This is the precondition for everything else. A representation that loses even one byte is
+        not a smaller file &mdash; it is a different file.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. SELF-CONTAINED FINAL TARGET -->
+  <section class="section">
+    <div class="container narrow">
+      <p class="step-num">03</p>
+      <h2>A self-contained final artifact</h2>
+      <p class="lede">
+        Everything the decoder needs is intended to live inside the artifact itself &mdash; not in
+        a companion file that travels beside it.
+      </p>
+      <CurrentVsFinal />
+      <p class="body">
+        This is the clearest difference between where ByteLite is today and where it is going.
+        Development deliberately writes reconstruction evidence out in the open so the architecture
+        can be inspected, replayed and falsified. That scaffold is a research tool. The final
+        artifact must stand alone.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4. COMPLETE COUNTING -->
+  <section class="section section-alt">
+    <div class="container narrow">
+      <p class="step-num">04</p>
+      <h2>Complete counting</h2>
+      <p class="lede">
+        A reduction counts only when the complete artifact is smaller &mdash; everything included.
+      </p>
+      <ByteAccounting />
+      <p class="body">
+        This is the discipline that separates a measurement from a claim. If part of what the
+        decoder needs lives somewhere that was not counted, the number is not real.
+      </p>
+    </div>
+  </section>
+
+  <!-- 5. THE CLAIM GATE -->
+  <section class="section">
+    <div class="container narrow">
+      <p class="step-num">05</p>
+      <h2>Proof before claim</h2>
+      <p class="lede">Two questions decide whether ByteLite may claim anything at all.</p>
+      <ReductionGate />
+      <p class="body">
+        <strong class="target-note">Target:</strong> {TARGET_STATEMENT}
+      </p>
+      <p class="body">
+        <strong class="dev-note">Current state:</strong> {DEVELOPMENT_STATEMENT} The gate above
+        governs what ByteLite is willing to claim today; it is not a statement about how far the
+        architecture is meant to reach.
+      </p>
+    </div>
+  </section>
+
+  <!-- TECHNICAL DETAIL, optional and collapsed -->
+  <section class="section section-alt">
+    <div class="container narrow">
+      <h2>Technical details</h2>
+      <details class="drawer">
+        <summary>Recursive processing, at a high level</summary>
+        <p>
+          The complete representation ByteLite produces is itself a candidate for further
+          reduction. Whether another pass is taken is decided by the same accounting rule as the
+          first: it counts only if the complete artifact gets smaller. A pass that does not improve
+          the complete artifact is not taken.
+        </p>
+      </details>
+      <details class="drawer">
+        <summary>Intrinsic convergence, as a target</summary>
+        <p>
+          The intended behavior is that recursion stops because the work is finished, not because
+          a counter ran out. No iteration cap, timeout or "good enough" threshold decides the
+          outcome. Demonstrating that convergence is an open gate, not a completed result.
+        </p>
+      </details>
+      <details class="drawer">
+        <summary>Verification</summary>
+        <p>
+          Every result is checked by rebuilding the original and comparing it against the input.
+          The size reported is counted from the finished artifact rather than estimated from a
+          model of it.
+        </p>
+      </details>
+      <details class="drawer">
+        <summary>What is not published</summary>
+        <p>
+          The internal rules and formats that produce a representation are trade secrets and are
+          not disclosed on this site, and neither is the way required reconstruction information is
+          intended to become compact. The public material describes what ByteLite must prove, not
+          how it is built.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <!-- WHY IT COULD MATTER -->
+  <section class="section">
+    <div class="container narrow">
+      <p class="eyebrow">If it works</p>
+      <h2>Why a smaller representation can matter.</h2>
+      <InfrastructureImpact />
+      <div class="cta-row">
+        <a href="/validation" class="btn btn-primary">What has been proven</a>
+        <a href="/licensing" class="btn btn-outline">Licensing</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.narrow { max-width: 780px; }
+.page-hero { padding: 4rem 0 2.5rem; }
+.hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.75; }
+.step-num {
+  font-family: ui-monospace, 'Courier New', monospace;
+  font-size: .75rem; font-weight: 700; color: #6366f1; letter-spacing: .1em; margin-bottom: .5rem;
+}
+h2 { margin-bottom: .75rem; }
+.lede { font-size: 1.0625rem; color: #c4c8f0; line-height: 1.75; margin-bottom: 1.5rem; }
+.body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1.25rem; }
+.target-note { color: #818cf8; }
+.dev-note { color: #fbbf24; }
+.cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.75rem; }
+
+.drawer { border: 1px solid #1a2235; border-radius: .625rem; background: #0d1120; margin-bottom: .75rem; }
+.drawer summary {
+  cursor: pointer; padding: .875rem 1.125rem;
+  font-size: .9375rem; font-weight: 600; color: #c4c8f0; list-style: none;
+}
+.drawer summary::-webkit-details-marker { display: none; }
+.drawer summary::before { content: "+ "; color: #818cf8; font-weight: 700; }
+.drawer[open] summary::before { content: "\2212 "; }
+.drawer summary:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; border-radius: .625rem; }
+.drawer p { padding: 0 1.125rem 1.125rem; font-size: .9375rem; color: #a0a8c0; line-height: 1.75; margin: 0; }
+</style>

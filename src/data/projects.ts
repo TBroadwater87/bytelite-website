@@ -100,7 +100,9 @@ export const BYTELITE: ProjectRecord = {
     "ByteLite is ByteLite LLC's deterministic digital-structure research system, investigating reversible structural representation and recursive reduction. It is undergoing lossless round-trip, structural transformation, memory-efficiency, workbench, and corpus validation.",
   status: 'Internal Validation',
   validationFocus: 'Perfect lossless round-trip and memory-efficient structural convergence',
-  nextMilestone: 'Repeatable corpus validation through the canonical workbench',
+  // Named without the internal tooling term: this string renders on the public
+  // /validation page (public scope reset, 2026-08-22).
+  nextMilestone: 'Repeatable corpus validation: the same measured result across a broad standard body of files',
   lastValidated: UNDATED,
   currentCapabilities: [
     { label: 'Exact lossless round-trip validation on internal test artifacts', evidence: 'Internally Validated' },
@@ -110,7 +112,9 @@ export const BYTELITE: ProjectRecord = {
   inDevelopment: [
     'Implementation hardening toward claim-safe public release',
     'Expanding proof surfaces beyond the current internal artifact set',
-    'Structural footprint interfaces for downstream systems (Deep Kore, ByteSight)',
+    // Deliberately unnamed: the public ByteLite surface does not enumerate sibling
+    // ByteLite LLC systems (public scope reset, 2026-08-22).
+    'Structural footprint interfaces for downstream systems',
   ],
   endGame: [
     'Deterministic transformation and structural representation usable as a foundation layer for other ByteLite LLC systems',
@@ -123,7 +127,7 @@ export const BYTELITE: ProjectRecord = {
     limitation('That round-trip evidence has not been independently audited.'),
     limitation('No production-scale real-file compression is publicly claimed.'),
     limitation('No independent third-party benchmark of ByteLite exists publicly.'),
-    limitation('Internal mechanisms (encoding rules, generator details, carrier formats) remain private trade secrets during validation and are not disclosed on this site.'),
+    limitation('Internal mechanisms remain private trade secrets during validation and are not disclosed on this site.'),
   ],
   integrationReceives: ['Raw digital artifacts submitted for deterministic structural transformation'],
   integrationProduces: ['Exact-reconstruction structural representations', 'Counted artifact size for verified claims'],

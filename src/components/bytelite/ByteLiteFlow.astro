@@ -1,0 +1,115 @@
+---
+// GRAPHIC 1 - the public ByteLite target, in five seconds.
+//
+// Original data -> ByteLite -> self-contained representation -> exact reconstruction -> the
+// identical original. Built from CSS-grid byte cells rather than an image so it scales, reflows,
+// survives zoom, and carries real text.
+//
+// This figure explains the OBJECTIVE. The block counts are round numbers chosen for legibility,
+// so it is labelled a conceptual target: it is neither a measured result nor a claimed universal
+// ratio. It must reveal nothing about the mechanism that produces the representation.
+import { CONCEPTUAL_TARGET_LABEL } from '../../data/bytelite';
+
+const ORIGINAL_CELLS = 32;
+const REPRESENTATION_CELLS = 20;
+---
+
+<figure class="bf" aria-labelledby="bf-caption">
+  <ol class="bf-steps">
+    <li class="bf-step">
+      <p class="bf-label">Original data</p>
+      <div class="bf-cells bf-cells-original" aria-hidden="true">
+        {Array.from({ length: ORIGINAL_CELLS }).map(() => <span class="bf-cell"></span>)}
+      </div>
+      <p class="bf-note">{ORIGINAL_CELLS} units</p>
+    </li>
+
+    <li class="bf-arrow" aria-hidden="true"><span class="bf-arrow-mark"></span><span class="bf-arrow-word">ByteLite</span></li>
+
+    <li class="bf-step">
+      <p class="bf-label">Self-contained representation</p>
+      <div class="bf-cells bf-cells-repr" aria-hidden="true">
+        {Array.from({ length: REPRESENTATION_CELLS }).map(() => <span class="bf-cell bf-cell-repr"></span>)}
+      </div>
+      <p class="bf-note">{REPRESENTATION_CELLS} units &mdash; everything needed to rebuild the original, inside one artifact</p>
+    </li>
+
+    <li class="bf-arrow" aria-hidden="true"><span class="bf-arrow-mark"></span><span class="bf-arrow-word">Exact reconstruction</span></li>
+
+    <li class="bf-step">
+      <p class="bf-label">Original data, restored</p>
+      <div class="bf-cells bf-cells-original" aria-hidden="true">
+        {Array.from({ length: ORIGINAL_CELLS }).map(() => <span class="bf-cell bf-cell-restored"></span>)}
+      </div>
+      <p class="bf-note bf-note-ok">Identical to the input</p>
+    </li>
+  </ol>
+
+  <figcaption id="bf-caption" class="bf-caption">
+    <span class="bf-illustrative">{CONCEPTUAL_TARGET_LABEL}</span>
+    ByteLite's target is to turn a source file into one self-contained representation that is
+    smaller than the original, and to reconstruct the original from it exactly. That target
+    remains under active engineering and validation.
+  </figcaption>
+</figure>
+
+<style>
+.bf {
+  margin: 0;
+  background: #0d1120;
+  border: 1px solid #1a2235;
+  border-radius: .875rem;
+  padding: 1.75rem;
+}
+.bf-steps {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: .875rem;
+}
+.bf-step { min-width: 0; }
+.bf-label {
+  font-size: .6875rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: #7b829e; margin-bottom: .625rem;
+}
+.bf-cells {
+  display: grid;
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  gap: 3px;
+  max-width: 26rem;
+}
+.bf-cells-repr { grid-template-columns: repeat(10, minmax(0, 1fr)); max-width: 16.25rem; }
+.bf-cell {
+  aspect-ratio: 1; border-radius: 2px;
+  background: #2a3350; border: 1px solid #34406b;
+}
+.bf-cell-repr { background: rgba(99,102,241,.55); border-color: #6366f1; }
+.bf-cell-restored { background: rgba(52,211,153,.35); border-color: #34d399; }
+.bf-note { font-size: .8125rem; color: #7b829e; margin-top: .625rem; }
+.bf-note-ok { color: #34d399; }
+
+.bf-arrow { display: flex; align-items: center; gap: .75rem; padding-left: .25rem; }
+.bf-arrow-mark {
+  width: 0; height: 0; flex-shrink: 0;
+  border-left: 6px solid transparent; border-right: 6px solid transparent;
+  border-top: 9px solid #6366f1;
+}
+.bf-arrow-word {
+  font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: #818cf8;
+}
+
+.bf-caption {
+  margin-top: 1.5rem; padding-top: 1.125rem; border-top: 1px solid #1a2235;
+  font-size: .875rem; color: #7b829e; line-height: 1.7;
+}
+.bf-illustrative {
+  display: block; margin-bottom: .5rem;
+  font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: #fbbf24;
+}
+
+@media (max-width: 600px) {
+  .bf { padding: 1.25rem; }
+  .bf-cells { grid-template-columns: repeat(8, minmax(0, 1fr)); max-width: 13rem; }
+  .bf-cells-repr { grid-template-columns: repeat(5, minmax(0, 1fr)); max-width: 8.125rem; }
+}
+</style>

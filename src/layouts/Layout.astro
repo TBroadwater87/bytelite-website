@@ -19,14 +19,16 @@ export interface Props {
 
 const {
   title,
-  description = "ByteLite LLC builds privacy-first products and deterministic systems research from Helena, Montana.",
-  keywords = "ByteLite LLC, Cordel Play, privacy-first products, deterministic systems research, Helena Montana",
+  description = "ByteLite is developing a deterministic lossless representation architecture from ByteLite LLC in Helena, Montana. Exact reconstruction. Smaller representation.",
+  keywords = "ByteLite, ByteLite LLC, deterministic lossless representation, exact reconstruction, self-contained artifact, compression research, Helena Montana",
   canonical,
   noindex = false,
   ogImage = "/bytelite-logo.png",
 } = Astro.props;
 
 const canonicalURL = canonical || Astro.url.href;
+// Absolute, because social crawlers do not resolve root-relative image paths.
+const ogImageURL = new URL(ogImage, 'https://www.thebytelite.com').href;
 
 // foundingDate is the LEGAL FORMATION year of the entity, not the year the research began.
 // Both come from src/data/company.ts so the two can never be conflated here.
@@ -62,14 +64,14 @@ const organizationJsonLd = {
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalURL} />
-  <meta property="og:image" content={ogImage} />
+  <meta property="og:image" content={ogImageURL} />
   <meta property="og:site_name" content="ByteLite LLC" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={ogImage} />
+  <meta name="twitter:image" content={ogImageURL} />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/bytelite-logo.png" />

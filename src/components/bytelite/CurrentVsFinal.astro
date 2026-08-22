@@ -1,0 +1,130 @@
+---
+// GRAPHIC 2 - current development vs final target.
+//
+// The single most important diagram on the site, and the one with the tightest IP boundary.
+// It teaches exactly one lesson: development today writes reconstruction evidence out
+// explicitly so the architecture can be proven; the final artifact is intended to carry that
+// information inside itself. It deliberately shows NOTHING about how that transition is made -
+// no arrow between the two columns, no mechanism, no intermediate stage - because the
+// relationship between those private mechanisms is itself the disclosure risk.
+import { SIDECAR_SCAFFOLD_STATEMENT, SELF_CONTAINED_TARGET_STATEMENT } from '../../data/bytelite';
+
+const CURRENT_STEPS = [
+  { label: 'Source', kind: 'plain' },
+  { label: 'ByteLite research engine', kind: 'engine' },
+  { label: 'Structural representation', kind: 'repr' },
+  { label: 'Explicit reconstruction evidence', kind: 'sidecar' },
+  { label: 'Exact verification', kind: 'verify' },
+];
+
+// Naming the final artifact's extension is public-safe: it identifies the target output without
+// saying anything about how the representation inside it is constructed.
+const FINAL_STEPS = [
+  { label: 'Source', kind: 'plain' },
+  { label: 'ByteLite', kind: 'engine' },
+  { label: 'Self-contained artifact (.root)', kind: 'artifact' },
+  { label: 'ByteLite decoder', kind: 'engine' },
+  { label: 'Exact source', kind: 'plain' },
+];
+---
+
+<figure class="cf" aria-labelledby="cf-caption">
+  <div class="cf-cols">
+    <section class="cf-col cf-col-now" aria-labelledby="cf-now-head">
+      <p class="cf-tag cf-tag-now">Development proof scaffold</p>
+      <h3 id="cf-now-head" class="cf-col-head">Current development</h3>
+      <ol class="cf-steps">
+        {CURRENT_STEPS.map((step, i) => (
+          <li class:list={['cf-step', `cf-step-${step.kind}`]}>
+            {i > 0 && <span class="cf-down" aria-hidden="true"></span>}
+            <span class="cf-step-box">{step.label}</span>
+          </li>
+        ))}
+      </ol>
+      <p class="cf-note">
+        Reconstruction evidence is written out where it can be inspected, replayed and
+        falsified. It is a research scaffold.
+      </p>
+    </section>
+
+    <section class="cf-col cf-col-final" aria-labelledby="cf-final-head">
+      <p class="cf-tag cf-tag-final">All required reconstruction information included</p>
+      <h3 id="cf-final-head" class="cf-col-head">Final target</h3>
+      <ol class="cf-steps">
+        {FINAL_STEPS.map((step, i) => (
+          <li class:list={['cf-step', `cf-step-${step.kind}`]}>
+            {i > 0 && <span class="cf-down" aria-hidden="true"></span>}
+            <span class="cf-step-box">{step.label}</span>
+          </li>
+        ))}
+      </ol>
+      <p class="cf-note">
+        One artifact carries everything the decoder needs. Nothing essential lives outside the
+        counted representation.
+      </p>
+    </section>
+  </div>
+
+  <figcaption id="cf-caption" class="cf-caption">
+    <span class="cf-caption-line">{SIDECAR_SCAFFOLD_STATEMENT}</span>
+    <span class="cf-caption-line">{SELF_CONTAINED_TARGET_STATEMENT}</span>
+  </figcaption>
+</figure>
+
+<style>
+.cf { margin: 0; background: #0d1120; border: 1px solid #1a2235; border-radius: .875rem; padding: 1.75rem; }
+.cf-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+@media (max-width: 760px) { .cf-cols { grid-template-columns: 1fr; gap: 1.75rem; } }
+
+.cf-col { background: #07090f; border: 1px solid #1a2235; border-radius: .75rem; padding: 1.375rem; }
+.cf-col-now { border-top: 3px solid #fbbf24; }
+.cf-col-final { border-top: 3px solid #6366f1; }
+
+.cf-tag {
+  display: inline-block;
+  font-size: .625rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  border-radius: 9999px; padding: .2rem .625rem; margin-bottom: .75rem; line-height: 1.5;
+}
+.cf-tag-now { color: #fbbf24; background: rgba(251,191,36,.09); border: 1px solid rgba(251,191,36,.3); }
+.cf-tag-final { color: #818cf8; background: rgba(99,102,241,.1); border: 1px solid rgba(99,102,241,.3); }
+
+.cf-col-head { font-size: 1rem; color: #e4e7f2; margin: 0 0 1rem; }
+
+.cf-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.cf-step { display: flex; flex-direction: column; align-items: stretch; }
+.cf-step-box {
+  display: block; text-align: center;
+  font-size: .8125rem; line-height: 1.45; color: #c4c8f0;
+  background: #0d1120; border: 1px solid #24304a; border-radius: .4rem;
+  padding: .625rem .625rem;
+}
+.cf-step-engine .cf-step-box { color: #e4e7f2; font-weight: 600; border-color: #34406b; background: #111733; }
+.cf-step-sidecar .cf-step-box {
+  color: #fbbf24; border-color: rgba(251,191,36,.4); background: rgba(251,191,36,.05);
+  border-style: dashed;
+}
+.cf-step-artifact .cf-step-box {
+  color: #a5b4fc; border-color: rgba(99,102,241,.45); background: rgba(99,102,241,.07); font-weight: 600;
+}
+.cf-step-repr .cf-step-box { color: #a5b4fc; border-color: rgba(99,102,241,.3); }
+.cf-step-verify .cf-step-box { color: #34d399; border-color: rgba(52,211,153,.35); background: rgba(52,211,153,.05); }
+
+.cf-down {
+  display: block; width: 1px; height: .875rem; margin: 0 auto; background: #2a3350; position: relative;
+}
+.cf-down::after {
+  content: ""; position: absolute; left: -3px; bottom: 0;
+  border-left: 3.5px solid transparent; border-right: 3.5px solid transparent; border-top: 5px solid #2a3350;
+}
+
+.cf-note { font-size: .8125rem; color: #7b829e; line-height: 1.65; margin: 1rem 0 0; }
+
+.cf-caption {
+  margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #1a2235;
+  display: flex; flex-direction: column; gap: .5rem;
+  font-size: .875rem; color: #7b829e; line-height: 1.7;
+}
+.cf-caption-line { display: block; }
+
+@media (max-width: 600px) { .cf { padding: 1.25rem; } .cf-col { padding: 1.125rem; } }
+</style>

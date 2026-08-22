@@ -157,9 +157,92 @@ TypeScript strict mode is enabled with additional strictness settings:
 - Run `npm run test:all` before committing
 - Aim for >80% code coverage
 
+## Owner Law: target vs proof (2026-08-22)
+
+The single distinction the public site exists to hold. Break it in either direction and the site
+is wrong, so both halves are enforced by `tests/e2e/public-scope-vocabulary.spec.ts`.
+
+**The architectural target.** Universal deterministic lossless shrink: every eligible source file
+represented by a complete self-contained ByteLite artifact smaller than the original, from which
+the original is reconstructed exactly. Never narrow this. These sentences are forbidden and are
+tested for:
+
+- "only expects structured files to shrink" / "structured files only"
+- "random files are inherently expected not to shrink"
+- "only intended to find savings in some classes of files"
+- "does not promise that every file shrinks"
+- "some data has no lawful reusable structure to find"
+
+**The proof status.** Not finished. Never complete it. Also forbidden and tested for: "has proven
+universal compression", "universal shrink is complete", "universally compresses every file",
+"third-party verified", "peer reviewed", "production qualified", plus the information-theory
+overreaches ("Shannon does not apply", "defeated information theory").
+
+**The current development state.** ByteLite writes reconstruction evidence out explicitly so
+transformations can be inspected, replayed and falsified. Publicly this is *"explicit
+reconstruction evidence"* and *"a research scaffold, not the intended final artifact"* — never
+the internal classification vocabulary. The final artifact is self-contained: all
+reconstruction-essential information ends up inside the counted representation.
+
+**The IP boundary.** The site may say WHAT ByteLite intends to achieve. It may never say HOW.
+In particular no page may show or describe the transition from today's explicit evidence to the
+compact in-band state — `CurrentVsFinal.astro` deliberately draws two columns with nothing
+between them, and that gap is load-bearing, not a layout oversight. `.root` is approved public
+wording (it names the target output); "root-of-roots", library selection/construction, opcode or
+Ogram law, Foundation internals, motion programs, carrier construction and sidecar compaction
+are not.
+
+Canonical wording lives in `src/data/bytelite.ts` (`BYTELITE_CANON`, `TARGET_STATEMENT`,
+`DEVELOPMENT_STATEMENT`, `PROOF_STATEMENT`, `SIDECAR_SCAFFOLD_STATEMENT`,
+`SELF_CONTAINED_TARGET_STATEMENT`). Import it; never restate it inline.
+
+## Public Scope Law (2026-08-22)
+
+thebytelite.com is a **ByteLite-only** public site. Six destinations are discoverable:
+
+`/` &middot; `/how-it-works` &middot; `/validation` &middot; `/licensing` &middot; `/about` &middot; `/contact`
+(plus `/privacy`, `/terms` in the sitemap and `/responsible-disclosure`, `/404` which are not).
+
+Everything under `architecture/`, `company/`, `marketing/`, `preorder/`, `products/`,
+`progress/`, `research/`, `technologies/` and `architecture.astro` is **retired from
+discovery, not deleted**: those 53 routes still build and still return 200, but each passes
+`noindex={true}` to `Layout` and none appears in the sitemap, the header, or the footer.
+
+Three rules follow from this and are enforced by tests:
+
+1. **The sitemap is an allowlist**, not a denylist (`astro.config.mjs`). Adding a page under
+   `src/pages/` can never put it back into search discovery by accident.
+2. **No public page links into a retired section.** `critical-paths.spec.ts` walks every
+   `main a[href^="/"]` on the homepage and every header link against the public route list.
+3. **No public page names a sibling ByteLite LLC system.** Deep Kore, ByteSight, ByteOracle,
+   ByteFlow, ByteCost, AIya, Aion, Genesis Goalkeeper, Revelation Vanguard, Cordel Connect and
+   Cordel Play are absent from all eight public routes. Where a legal disclosure must cover a
+   non-public service (privacy policy, terms), it describes the service generically rather
+   than by product name.
+
+Do not reinstate the `/about -> /company` or `/licensing -> /company/partnerships` redirects:
+both shadowed real pages and were deleted from `vercel.json` and `public/_redirects`.
+
+Teaching diagrams live in `src/components/bytelite/` and are pure CSS/HTML - no images, so they
+survive zoom, reflow, and a screen reader. No safe real screenshot of the development tooling
+exists in this repository; do not fabricate one, and do not publish an unsanitised capture.
+
+| Diagram | Teaches |
+|---|---|
+| `ByteLiteFlow` | The target: source → self-contained representation → exact original |
+| `CurrentStatusBox` | Currently / still required, both columns always |
+| `CurrentVsFinal` | Development proof scaffold vs the self-contained final artifact |
+| `ExactRoundtrip` | `hash(original) = hash(reconstructed)`, no partial credit |
+| `ByteAccounting` | Any compression claim rests on the complete artifact |
+| `ReductionGate` | Claim discipline - what may be claimed today |
+| `DevelopmentRoadmap` | Eleven gates, exactly one current position |
+| `WhatItIsNot` | The boundary, never the replacement mechanism |
+| `ValidationDashboard` | Ten categories, ByteLite only, state written in words |
+| `SavingsSplit` / `BalanceAutoReload` | Planned economics, labelled illustrative |
+
 ## Canonical Data Law
 
-Three modules under `src/data/` are the single source of truth for anything the site asserts.
+Four modules under `src/data/` are the single source of truth for anything the site asserts.
 Never restate one of these facts inline in a page — import it, so it cannot drift between pages.
 
 | Module | Owns | Never hardcode in a page |
@@ -167,6 +250,7 @@ Never restate one of these facts inline in a page — import it, so it cannot dr
 | `src/data/projects.ts` | Every project's status, capabilities, validation statements, availability, routes | Technology/project counts (`TECHNOLOGY_COUNT_WORD`, `PUBLIC_PROJECT_COUNT_WORD`), status labels, validation prose |
 | `src/data/company.ts` | Company identity and dates | "Founded" years — `RESEARCH_BEGAN_YEAR` (2024, when the work began) and `LEGAL_FORMATION_YEAR` (2025, the LLC) are **not interchangeable** and must never collapse into one "founded" year |
 | `src/data/research.ts` | Research publication metadata, the canonical progression figure, the maturity table, evidence vocabulary, bibliography, disclosure language | Research route paths (`RESEARCH_ROUTES`), disclosure-boundary wording, publication date/version |
+| `src/data/bytelite.ts` | The public ByteLite surface: the two-line law, the validation ladder and current rung, the enwik9 state, the licensing/billing example figures, the illustrative-only labels | Stage states and labels, savings-split numbers, "Illustrative only" wording |
 
 `ProjectRecord.validation` is a list of `ValidationStatement`s, each tagged `evidence` or
 `limitation` via the `evidence()` / `limitation()` helpers. `/progress/validation-evidence`
@@ -178,10 +262,11 @@ paths, drive letters, build locations, and branch plumbing do not. Translate a b
 into its evidentiary meaning ("integration parity has not been qualified") rather than describing
 the repository layout.
 
-## Research Section
+## Research Section (retired from discovery 2026-08-22)
 
 `/research`, `/research/deterministic-structural-cognition` (the public thesis), and
-`/research/plain-english`. Shared components live in `src/components/research/`. The thesis's
+`/research/plain-english`. These still build and resolve, but are `noindex` and are linked
+from nowhere - see **Public Scope Law**. Shared components live in `src/components/research/`. The thesis's
 section ids, numbers, titles, and table of contents all render from one `SECTION` map in the page,
 so a renamed section cannot leave a dead anchor.
 

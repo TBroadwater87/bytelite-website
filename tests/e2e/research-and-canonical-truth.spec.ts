@@ -32,11 +32,13 @@ test.describe('The research section is a real destination', () => {
     await expect(page.locator(`main a[href="${RESEARCH_PLAIN_ENGLISH}"]`).first()).toBeVisible();
   });
 
-  test('Research appears in the primary navigation and the footer', async ({ page }) => {
+  // The 2026-08-22 public scope reset removed Research from the primary navigation and the
+  // footer: the section still builds and still resolves, but it is off every discovery surface
+  // and is served noindex. That retirement is asserted in critical-paths.spec.ts.
+  test('Research is absent from the primary navigation and the footer', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator(`.nav-links a[href="${RESEARCH_LANDING}"]`)).toHaveCount(1);
-    await expect(page.locator(`.site-footer a[href="${RESEARCH_LANDING}"]`)).toHaveCount(1);
-    await expect(page.locator(`.site-footer a[href="${RESEARCH_THESIS}"]`)).toHaveCount(1);
+    await expect(page.locator(`.nav-links a[href^="${RESEARCH_LANDING}"]`)).toHaveCount(0);
+    await expect(page.locator(`.site-footer a[href^="${RESEARCH_LANDING}"]`)).toHaveCount(0);
   });
 
   test('the thesis carries its publication metadata and does not claim review', async ({ page }) => {

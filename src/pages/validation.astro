@@ -1,0 +1,185 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ValidationDashboard from '../components/bytelite/ValidationDashboard.astro';
+import DevelopmentRoadmap from '../components/bytelite/DevelopmentRoadmap.astro';
+import {
+  PROVEN,
+  NOT_PROVEN,
+  BYTELITE_STATUS,
+  CURRENT_ROADMAP_STAGE,
+  TARGET_STATEMENT,
+  PROOF_STATEMENT,
+} from '../data/bytelite';
+import { BYTELITE } from '../data/projects';
+
+const NEXT_GATE = BYTELITE.nextMilestone;
+---
+
+<Layout
+  title="ByteLite Validation | What has and has not been proven"
+  description="The current evidence state for ByteLite across architecture, reversibility, self-contained artifact, complete accounting, recursion, the universal target, corpus testing, independent validation and production qualification."
+  keywords="ByteLite validation, evidence, exact reconstruction, self-contained artifact, independent verification"
+  canonical="https://www.thebytelite.com/validation/"
+>
+  <Header slot="header" />
+
+  <section class="page-hero">
+    <div class="container narrow">
+      <p class="eyebrow">Validation</p>
+      <h1>What has been proven, and what has not.</h1>
+      <p class="hero-sub">
+        Canonical project status: <strong>{BYTELITE_STATUS}</strong>. Everything below is internal
+        to ByteLite LLC. None of it has been independently verified.
+      </p>
+      <div class="claims">
+        <p class="claim claim-target"><span class="claim-tag">Target</span>{TARGET_STATEMENT}</p>
+        <p class="claim claim-proof"><span class="claim-tag">Proof</span>{PROOF_STATEMENT}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section class="section-sm">
+    <div class="container narrow">
+      <ValidationDashboard variant="full" includeEnwik9={true} />
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="section section-alt">
+    <div class="container narrow">
+      <h2>The development roadmap.</h2>
+      <p class="lede">
+        The gates from architecture to production qualification, in order, with ByteLite's current
+        position marked.
+      </p>
+      <DevelopmentRoadmap />
+      {CURRENT_ROADMAP_STAGE && (
+        <p class="position">
+          Current position: <strong>{CURRENT_ROADMAP_STAGE.label}</strong>. Nothing beyond it has
+          been reached.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <!-- PROVEN / NOT PROVEN -->
+  <section class="section">
+    <div class="container narrow">
+      <h2>Stated plainly.</h2>
+      <div class="split">
+        <div class="split-col">
+          <h3 class="split-h split-h-yes">What has been proven</h3>
+          <ul class="split-list">{PROVEN.map((item) => <li>{item}</li>)}</ul>
+        </div>
+        <div class="split-col">
+          <h3 class="split-h split-h-no">What has not been proven</h3>
+          <ul class="split-list split-list-no">{NOT_PROVEN.map((item) => <li>{item}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT GATE + DETAIL -->
+  <section class="section section-alt">
+    <div class="container narrow">
+      <h2>Next required gate.</h2>
+      <p class="gate">{NEXT_GATE}</p>
+
+      <h3 class="detail-h">Detailed evidence</h3>
+      <details class="drawer">
+        <summary>Capabilities currently claimed, and their evidence level</summary>
+        <ul class="drawer-list">
+          {BYTELITE.currentCapabilities.map((cap) => (
+            <li><span class="drawer-tag">{cap.evidence}</span>{cap.label}</li>
+          ))}
+        </ul>
+      </details>
+      <details class="drawer">
+        <summary>Validation statements and limits, verbatim</summary>
+        <ul class="drawer-list">
+          {BYTELITE.validation.map((statement) => <li>{statement.text}</li>)}
+        </ul>
+      </details>
+      <details class="drawer">
+        <summary>Active work</summary>
+        <ul class="drawer-list">
+          {BYTELITE.inDevelopment.map((item) => <li>{item}</li>)}
+        </ul>
+      </details>
+
+      <div class="cta-row">
+        <a href="/how-it-works" class="btn btn-outline">How it works</a>
+        <a href="/contact?type=validation-partnership" class="btn btn-primary">Technical validation inquiry</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.narrow { max-width: 780px; }
+.page-hero { padding: 4rem 0 2rem; }
+.hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.75; }
+.hero-sub strong { color: #a78bfa; }
+h2 { margin-bottom: .75rem; }
+.lede { font-size: 1.0625rem; color: #a0a8c0; line-height: 1.75; margin-bottom: 1.5rem; }
+
+.claims { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.75rem; }
+@media (max-width: 760px) { .claims { grid-template-columns: 1fr; } }
+.claim {
+  font-size: .9375rem; line-height: 1.7; color: #a0a8c0; margin: 0;
+  background: #0d1120; border: 1px solid #1a2235; border-radius: .625rem; padding: 1.125rem;
+}
+.claim-tag {
+  display: block; margin-bottom: .5rem;
+  font-size: .625rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+}
+.claim-target { border-left: 3px solid #6366f1; }
+.claim-target .claim-tag { color: #818cf8; }
+.claim-proof { border-left: 3px solid #fbbf24; }
+.claim-proof .claim-tag { color: #fbbf24; }
+
+.position { margin-top: 1.25rem; font-size: .9375rem; color: #7b829e; line-height: 1.7; }
+.position strong { color: #fbbf24; }
+
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.5rem; }
+@media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
+.split-col { background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem; padding: 1.5rem; }
+.split-h { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .875rem; }
+.split-h-yes { color: #34d399; }
+.split-h-no { color: #f87171; }
+.split-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .75rem; }
+.split-list li { font-size: .9375rem; color: #a0a8c0; line-height: 1.65; padding-left: 1.375rem; position: relative; }
+.split-list li::before { content: "\2713"; position: absolute; left: 0; color: #34d399; font-weight: 700; }
+.split-list-no li::before { content: "\00D7"; color: #f87171; }
+
+.gate {
+  font-size: 1.0625rem; color: #c4c8f0; line-height: 1.7;
+  background: rgba(251,191,36,.06); border: 1px solid rgba(251,191,36,.28);
+  border-radius: .625rem; padding: 1.125rem 1.25rem; margin-bottom: 2rem;
+}
+.detail-h { font-size: 1rem; color: #e4e7f2; margin-bottom: .875rem; }
+.drawer { border: 1px solid #1a2235; border-radius: .625rem; background: #0d1120; margin-bottom: .75rem; }
+.drawer summary {
+  cursor: pointer; padding: .875rem 1.125rem;
+  font-size: .9375rem; font-weight: 600; color: #c4c8f0; list-style: none;
+}
+.drawer summary::-webkit-details-marker { display: none; }
+.drawer summary::before { content: "+ "; color: #818cf8; font-weight: 700; }
+.drawer[open] summary::before { content: "\2212 "; }
+.drawer summary:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; border-radius: .625rem; }
+.drawer-list { list-style: none; padding: 0 1.125rem 1.125rem; margin: 0; display: flex; flex-direction: column; gap: .625rem; }
+.drawer-list li { font-size: .875rem; color: #a0a8c0; line-height: 1.7; }
+.drawer-tag {
+  display: inline-block; margin-right: .5rem;
+  font-size: .625rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: #34d399; background: rgba(52,211,153,.1); border: 1px solid rgba(52,211,153,.24);
+  border-radius: .25rem; padding: .1rem .4rem;
+}
+.cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 2rem; }
+.cta-row .btn { white-space: normal; text-align: center; }
+</style>

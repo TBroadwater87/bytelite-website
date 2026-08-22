@@ -1,0 +1,75 @@
+---
+// VALIDATION DASHBOARD - ByteLite only, never a company-wide project matrix.
+//
+// Every row's state comes from VALIDATION_DASHBOARD, which is derived from the canonical
+// BYTELITE project record. The state word is always rendered as text next to the row, so the
+// meaning does not depend on the colour of the left border.
+import {
+  VALIDATION_DASHBOARD,
+  ENWIK9_ROW,
+  DASHBOARD_STATE_LABEL,
+  type DashboardRow,
+} from '../../data/bytelite';
+
+interface Props {
+  /** 'compact' shows label + state only; 'full' adds the meaning and the evidence line. */
+  variant?: 'compact' | 'full';
+  /** enwik9 is a benchmark question, not an architecture gate - opt in where it belongs. */
+  includeEnwik9?: boolean;
+}
+
+const { variant = 'compact', includeEnwik9 = false } = Astro.props;
+const rows: DashboardRow[] = includeEnwik9
+  ? [...VALIDATION_DASHBOARD, ENWIK9_ROW]
+  : VALIDATION_DASHBOARD;
+---
+
+<div class:list={['vd', `vd-${variant}`]}>
+  {rows.map((row) => (
+    <div class:list={['vd-row', `vd-${row.state}`]}>
+      <div class="vd-top">
+        <span class="vd-label">{row.label}</span>
+        <span class="vd-state">{DASHBOARD_STATE_LABEL[row.state]}</span>
+      </div>
+      {variant === 'full' && (
+        <div class="vd-detail">
+          <p class="vd-meaning">{row.meaning}</p>
+          <p class="vd-evidence">{row.evidence}</p>
+        </div>
+      )}
+    </div>
+  ))}
+</div>
+
+<style>
+.vd { border: 1px solid #1a2235; border-radius: .875rem; overflow: hidden; background: #0d1120; }
+.vd-row { padding: .875rem 1.25rem; border-bottom: 1px solid #1a2235; border-left: 3px solid #2a3350; }
+.vd-row:last-child { border-bottom: none; }
+
+.vd-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.vd-label { font-size: .9375rem; color: #e4e7f2; }
+.vd-state {
+  font-size: .6875rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  padding: .2rem .6rem; border-radius: 9999px; border: 1px solid; white-space: nowrap;
+}
+
+.vd-proven-internal { border-left-color: #34d399; }
+.vd-proven-internal .vd-state { color: #34d399; background: rgba(52,211,153,.1); border-color: rgba(52,211,153,.28); }
+.vd-partial { border-left-color: #2dd4bf; }
+.vd-partial .vd-state { color: #2dd4bf; background: rgba(45,212,191,.1); border-color: rgba(45,212,191,.28); }
+.vd-in-development { border-left-color: #fbbf24; }
+.vd-in-development .vd-state { color: #fbbf24; background: rgba(251,191,36,.1); border-color: rgba(251,191,36,.3); }
+.vd-not-proven { border-left-color: #2a3350; }
+.vd-not-proven .vd-state { color: #7b829e; background: rgba(123,130,158,.08); border-color: rgba(123,130,158,.22); }
+.vd-not-tested { border-left-color: #2a3350; }
+.vd-not-tested .vd-state { color: #7b829e; background: rgba(123,130,158,.08); border-color: rgba(123,130,158,.22); }
+
+.vd-detail { margin-top: .5rem; }
+.vd-meaning { font-size: .875rem; color: #a0a8c0; line-height: 1.65; margin: 0; }
+.vd-evidence { font-size: .8125rem; color: #7b829e; line-height: 1.65; margin: .375rem 0 0; }
+.vd-full .vd-row { padding: 1.125rem 1.25rem; }
+
+@media (max-width: 620px) {
+  .vd-top { flex-direction: column; align-items: flex-start; gap: .5rem; }
+}
+</style>

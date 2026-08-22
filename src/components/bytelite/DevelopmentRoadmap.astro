@@ -1,0 +1,79 @@
+---
+// GRAPHIC 5 - the development roadmap.
+//
+// The gates from architecture to production qualification, in order, with exactly one current
+// position. State is written in words on every row (not only shown as a colour or a shape), so
+// a future gate can never read as complete. The stage list is derived from ROADMAP - a page
+// cannot mark a gate closed by editing a template.
+import { ROADMAP, ROADMAP_STATE_LABEL } from '../../data/bytelite';
+---
+
+<figure class="rm" aria-labelledby="rm-caption">
+  <ol class="rm-list">
+    {ROADMAP.map((stage, i) => (
+      <li class:list={['rm-item', `rm-${stage.state}`]}>
+        <span class="rm-rail" aria-hidden="true"><span class="rm-dot"></span></span>
+        <div class="rm-body">
+          <span class="rm-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <span class="rm-label">{stage.label}</span>
+          <span class="rm-state">{ROADMAP_STATE_LABEL[stage.state]}</span>
+        </div>
+      </li>
+    ))}
+  </ol>
+
+  <figcaption id="rm-caption" class="rm-caption">
+    Each gate must close before the next one means anything. Gates marked closed rest on internal
+    evidence only; nothing beyond the current position has been reached.
+  </figcaption>
+</figure>
+
+<style>
+.rm { margin: 0; background: #0d1120; border: 1px solid #1a2235; border-radius: .875rem; padding: 1.75rem; }
+.rm-list { list-style: none; margin: 0; padding: 0; }
+.rm-item { display: flex; gap: .875rem; }
+
+.rm-rail { position: relative; flex-shrink: 0; width: .875rem; display: flex; justify-content: center; }
+.rm-rail::before {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 1px; background: #1f2942;
+}
+.rm-item:first-child .rm-rail::before { top: .7rem; }
+.rm-item:last-child .rm-rail::before { bottom: calc(100% - .7rem); }
+.rm-dot {
+  position: relative; z-index: 1; margin-top: .45rem;
+  width: .55rem; height: .55rem; border-radius: 50%;
+  background: #0d1120; border: 1.5px solid #2a3350;
+}
+.rm-done .rm-dot { background: #34d399; border-color: #34d399; }
+.rm-current .rm-dot {
+  background: #fbbf24; border-color: #fbbf24;
+  box-shadow: 0 0 0 3px rgba(251,191,36,.18);
+}
+
+.rm-body {
+  flex: 1; display: flex; align-items: baseline; gap: .625rem; flex-wrap: wrap;
+  padding: .5rem 0 .75rem;
+}
+.rm-num {
+  font-family: ui-monospace, 'Courier New', monospace;
+  font-size: .6875rem; color: #4a5068; letter-spacing: .06em;
+}
+.rm-label { font-size: .9375rem; color: #7b829e; }
+.rm-done .rm-label { color: #c4c8f0; }
+.rm-current .rm-label { color: #e4e7f2; font-weight: 600; }
+
+.rm-state {
+  font-size: .625rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  padding: .15rem .5rem; border-radius: 9999px; border: 1px solid; white-space: nowrap;
+  color: #7b829e; background: rgba(123,130,158,.07); border-color: rgba(123,130,158,.2);
+}
+.rm-done .rm-state { color: #34d399; background: rgba(52,211,153,.09); border-color: rgba(52,211,153,.26); }
+.rm-current .rm-state { color: #fbbf24; background: rgba(251,191,36,.09); border-color: rgba(251,191,36,.3); }
+
+.rm-caption {
+  margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #1a2235;
+  font-size: .875rem; color: #7b829e; line-height: 1.7;
+}
+
+@media (max-width: 600px) { .rm { padding: 1.25rem; } .rm-label { font-size: .875rem; } }
+</style>

@@ -1,0 +1,88 @@
+---
+// CORE VISUAL - the claim gate.
+//
+// This is the proof philosophy in one figure: two questions, and a claim is only permitted when
+// both answer yes. It replaces several paragraphs of "what this is not" disclaimer.
+//
+// The caption must stay a statement about CLAIM DISCIPLINE, not about the architecture's reach.
+// "This is why ByteLite does not promise that every file shrinks" would misdescribe the target -
+// a smaller self-contained representation for every eligible source file is exactly what
+// ByteLite is being built to achieve. The gate governs what may be CLAIMED today.
+---
+
+<figure class="rg" aria-labelledby="rg-caption">
+  <ol class="rg-flow">
+    <li class="rg-question">
+      <p class="rg-q">Can the original be reconstructed exactly?</p>
+      <div class="rg-branches">
+        <p class="rg-branch rg-branch-no">
+          <span class="rg-answer">No</span>
+          <span class="rg-outcome">Fail. Do not claim.</span>
+        </p>
+        <p class="rg-branch rg-branch-yes">
+          <span class="rg-answer">Yes</span>
+          <span class="rg-outcome">Continue</span>
+        </p>
+      </div>
+    </li>
+
+    <li class="rg-question">
+      <p class="rg-q">Is the complete artifact smaller?</p>
+      <div class="rg-branches">
+        <p class="rg-branch rg-branch-no">
+          <span class="rg-answer">No</span>
+          <span class="rg-outcome">Preserve the original. No reduction claim yet.</span>
+        </p>
+        <p class="rg-branch rg-branch-yes">
+          <span class="rg-answer">Yes</span>
+          <span class="rg-outcome">Continue</span>
+        </p>
+      </div>
+    </li>
+
+    <li class="rg-final">
+      <span class="rg-mark" aria-hidden="true">&#10003;</span>
+      Counted lossless reduction
+    </li>
+  </ol>
+
+  <figcaption id="rg-caption" class="rg-caption">
+    Both gates must pass before anything may be claimed. Where they do not yet pass, the honest
+    result is to preserve the original and say so. This governs what ByteLite claims today
+    &mdash; it is not a limit on what the architecture is being built to achieve.
+  </figcaption>
+</figure>
+
+<style>
+.rg { margin: 0; background: #0d1120; border: 1px solid #1a2235; border-radius: .875rem; padding: 1.75rem; }
+.rg-flow { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.rg-question { background: #07090f; border: 1px solid #1a2235; border-radius: .625rem; padding: 1.125rem; }
+.rg-q { font-size: 1rem; font-weight: 600; color: #e4e7f2; margin-bottom: .875rem; line-height: 1.5; }
+.rg-branches { display: grid; grid-template-columns: 1fr 1fr; gap: .625rem; }
+@media (max-width: 620px) { .rg-branches { grid-template-columns: 1fr; } }
+.rg-branch {
+  display: flex; flex-direction: column; gap: .2rem;
+  border-radius: .5rem; padding: .75rem .875rem; margin: 0;
+  border: 1px solid;
+}
+.rg-branch-no { background: rgba(248,113,113,.04); border-color: rgba(248,113,113,.22); }
+.rg-branch-yes { background: rgba(52,211,153,.05); border-color: rgba(52,211,153,.26); }
+.rg-answer { font-size: .6875rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.rg-branch-no .rg-answer { color: #f87171; }
+.rg-branch-yes .rg-answer { color: #34d399; }
+.rg-outcome { font-size: .875rem; color: #a0a8c0; line-height: 1.5; }
+
+.rg-final {
+  display: flex; align-items: center; justify-content: center; gap: .625rem;
+  font-size: 1.0625rem; font-weight: 700; color: #34d399;
+  background: rgba(52,211,153,.08); border: 1px solid rgba(52,211,153,.32);
+  border-radius: .625rem; padding: 1.125rem; text-align: center;
+}
+.rg-mark { flex-shrink: 0; }
+
+.rg-caption {
+  margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #1a2235;
+  font-size: .875rem; color: #7b829e; line-height: 1.7;
+}
+@media (max-width: 600px) { .rg { padding: 1.25rem; } }
+</style>

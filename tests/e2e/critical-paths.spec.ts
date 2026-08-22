@@ -1,36 +1,84 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('ByteLite LLC critical user paths', () => {
+// Public scope reset (2026-08-22): thebytelite.com is a ByteLite-only site. These tests assert
+// the six public destinations behave, and that nothing from the retired portfolio has crept
+// back onto a discovery surface.
+
+const PUBLIC_ROUTES = [
+  '/',
+  '/how-it-works',
+  '/validation',
+  '/licensing',
+  '/about',
+  '/contact',
+];
+
+test.describe('ByteLite public site critical paths', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
 
-  test('homepage loads with the ByteLite LLC technology-first identity', async ({ page }) => {
-    await expect(page).toHaveTitle(/ByteLite LLC/);
-    await expect(page.locator('h1')).toContainText('Deterministic systems that preserve what matters');
-    await expect(page.getByRole('link', { name: 'Explore the Technology', exact: true })).toBeVisible();
+  test('homepage leads with the ByteLite law', async ({ page }) => {
+    await expect(page).toHaveTitle(/ByteLite/);
+    await expect(page.locator('h1')).toContainText('Exact reconstruction.');
+    await expect(page.locator('h1')).toContainText('Smaller representation.');
   });
 
   test('homepage never shows retired overclaiming language', async ({ page }) => {
     const body = page.locator('body');
     await expect(body).not.toContainText('Patent US');
     await expect(body).not.toContainText('1GB into 15 bytes');
-    // The proof-posture section explicitly denies finished AGI as a claim - assert the denial
-    // is present rather than substring-matching "finished AGI", which also matches the denial itself.
-    await expect(body).toContainText('not a claim that finished AGI exists');
+    await expect(body).not.toContainText('HeartStrings');
+    await expect(body).not.toContainText('Heartstrings');
   });
 
-  test('primary navigation reaches the Technologies section', async ({ page }) => {
-    // Below the 1100px breakpoint, the primary nav is hidden behind the hamburger toggle.
+  test('every public route resolves and every homepage CTA reaches one', async ({ page, request }) => {
+    for (const route of PUBLIC_ROUTES) {
+      const response = await request.get(route);
+      expect(response.status(), `${route} should resolve 200`).toBe(200);
+    }
+
+    const hrefs = await page
+      .locator('main a[href^="/"]')
+      .evaluateAll((links) => links.map((l) => l.getAttribute('href') || ''));
+    expect(hrefs.length).toBeGreaterThan(0);
+    for (const href of hrefs) {
+      const path = (href.split('?')[0] || '').replace(/\/$/, '') || '/';
+      expect(PUBLIC_ROUTES, `homepage links to ${href}, which is not a public route`).toContain(path);
+    }
+  });
+
+  test('primary navigation is the flat ByteLite set', async ({ page }) => {
     const toggle = page.locator('#navToggle');
     if (await toggle.isVisible()) {
       await toggle.click();
     }
     const nav = page.getByRole('navigation', { name: 'Primary' });
-    await nav.getByText('Technologies', { exact: true }).click();
-    await nav.getByRole('menuitem', { name: 'Technology Overview' }).click();
-    await expect(page).toHaveURL('/technologies');
-    await expect(page.locator('h1')).toContainText('Technology Portfolio');
+    for (const label of ['How It Works', 'Validation', 'Licensing', 'About']) {
+      await expect(nav.getByRole('link', { name: label, exact: true })).toBeVisible();
+    }
+    await expect(nav.getByRole('link', { name: 'Contact', exact: true })).toBeVisible();
+
+    // No portfolio destination survives in the header.
+    const navHrefs = await nav
+      .locator('a[href^="/"]')
+      .evaluateAll((links) => links.map((l) => l.getAttribute('href') || ''));
+    for (const href of navHrefs) {
+      expect(PUBLIC_ROUTES, `nav links to ${href}, which is not a public route`).toContain(
+        href.replace(/\/$/, '') || '/'
+      );
+    }
+  });
+
+  test('navigation reaches How It Works', async ({ page }) => {
+    const toggle = page.locator('#navToggle');
+    if (await toggle.isVisible()) {
+      await toggle.click();
+    }
+    const nav = page.getByRole('navigation', { name: 'Primary' });
+    await nav.getByRole('link', { name: 'How It Works', exact: true }).click();
+    await expect(page).toHaveURL(/\/how-it-works\/?$/);
+    await expect(page.locator('h1')).toContainText('Principles, not mechanism.');
   });
 
   test('mobile navigation toggle opens and closes the menu', async ({ page }) => {
@@ -66,49 +114,49 @@ test.describe('ByteLite LLC critical user paths', () => {
   });
 });
 
-test.describe('Cordel brand migration', () => {
-  test('homepage uses Cordel branding and never shows the retired HeartStrings name', async ({ page }) => {
-    await page.goto('/');
-    const body = page.locator('body');
-    await expect(body).toContainText('Cordel Play');
-    await expect(body).toContainText('Cordel Connect');
-    await expect(body).not.toContainText('HeartStrings');
-    await expect(body).not.toContainText('Heartstrings');
-  });
+test.describe('Retired portfolio routes are out of discovery, not deleted', () => {
+  const RETIRED = [
+    '/technologies',
+    '/technologies/bytelite',
+    '/technologies/deep-kore',
+    '/products/cordel-play',
+    '/products/cordel-connect',
+    '/products/cordel-connect/date-planning/restaurants/partner-program',
+    '/progress',
+    '/research',
+    '/company',
+    '/architecture',
+    '/preorder',
+    '/marketing/signup',
+  ];
 
-  test('primary navigation uses Cordel Play and Cordel Connect', async ({ page }) => {
-    await page.goto('/');
-    const toggle = page.locator('#navToggle');
-    if (await toggle.isVisible()) {
-      await toggle.click();
-    }
-    const nav = page.getByRole('navigation', { name: 'Primary' });
-    await expect(nav.getByText('Cordel Play', { exact: true })).toBeVisible();
-    await expect(nav.getByText('Cordel Connect', { exact: true })).toBeVisible();
-  });
-
-  test('Cordel Play and Cordel Connect canonical routes resolve', async ({ request }) => {
-    const routes = [
-      '/products/cordel-play',
-      '/products/cordel-play/components',
-      '/products/cordel-play/consent-architecture',
-      '/products/cordel-play/preorder',
-      '/products/cordel-connect',
-      '/products/cordel-connect/safety',
-      '/products/cordel-connect/date-planning/restaurants/partner-program',
-    ];
-    for (const route of routes) {
+  for (const route of RETIRED) {
+    test(`${route} still resolves but is served noindex`, async ({ request }) => {
       const response = await request.get(route);
-      expect(response.status(), `${route} should resolve 200`).toBe(200);
-    }
+      expect(response.status(), `${route} should still resolve`).toBe(200);
+      const html = await response.text();
+      expect(html, `${route} must carry a noindex robots meta`).toContain('noindex, nofollow');
+    });
+  }
+
+  test('the sitemap lists only the public ByteLite routes', async ({ request }) => {
+    const response = await request.get('/sitemap-0.xml');
+    expect(response.status()).toBe(200);
+    const xml = await response.text();
+    const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) =>
+      (m[1] || '').replace(/^https?:\/\/[^/]+/, '').replace(/\/$/, '') || '/'
+    );
+    expect(locs.sort()).toEqual(
+      ['/', '/about', '/contact', '/how-it-works', '/licensing', '/privacy', '/terms', '/validation'].sort()
+    );
   });
 
-  test('no image alt text on the homepage references HeartStrings', async ({ page }) => {
-    await page.goto('/');
-    const altTexts = await page.locator('img').evaluateAll((imgs) => imgs.map((i) => i.getAttribute('alt') || ''));
-    for (const alt of altTexts) {
-      expect(alt.toLowerCase()).not.toContain('heartstrings');
-    }
+  test('/about and /licensing are real pages, not redirects to retired routes', async ({ page }) => {
+    await page.goto('/about');
+    await expect(page.locator('h1')).toContainText('ByteLite LLC');
+    await page.goto('/licensing');
+    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('body')).toContainText('verified');
   });
 });
 

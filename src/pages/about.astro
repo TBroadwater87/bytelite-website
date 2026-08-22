@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import {
+  COMPANY_NAME,
+  COMPANY_LOCATION,
+  COMPANY_STRUCTURE,
+  FOUNDER_NAME,
+  RESEARCH_BEGAN_YEAR,
+  LEGAL_FORMATION_YEAR,
+} from '../data/company';
+---
+
+<Layout
+  title="About ByteLite LLC"
+  description="ByteLite LLC is a founder-led research company in Helena, Montana developing ByteLite, a deterministic lossless data-representation architecture."
+  keywords="ByteLite LLC, Helena Montana, founder-led research"
+  canonical="https://www.thebytelite.com/about/"
+>
+  <Header slot="header" />
+
+  <section class="page-hero">
+    <div class="container narrow">
+      <p class="eyebrow">About</p>
+      <h1>{COMPANY_NAME}</h1>
+      <p class="hero-sub">
+        Founder-led technology research and development focused on ByteLite, in {COMPANY_LOCATION}. The research
+        work began in {RESEARCH_BEGAN_YEAR}; {COMPANY_NAME} was formed in {LEGAL_FORMATION_YEAR}.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <h2>The work.</h2>
+      <p class="body">
+        Data is expensive to keep and to move. ByteLite is being developed as a deterministic
+        lossless representation architecture, with the target of producing a smaller
+        self-contained representation for every eligible source file, from which the exact
+        original can be reconstructed. That target is still being engineered and proven.
+      </p>
+
+      <h2 class="mt">The proof philosophy.</h2>
+      <p class="body">
+        Exact reconstruction comes first, because a system that cannot return the original has not
+        earned the right to talk about size. Any size claim is counted from the complete artifact
+        &mdash; not estimated, and not with part of the cost moved somewhere uncounted.
+      </p>
+      <p class="body">
+        Where something has not been proven, this site says so. We are still building this, and
+        saying so plainly is better than polished language that makes unfinished work sound
+        finished.
+      </p>
+
+      <h2 class="mt">Commercial intent.</h2>
+      <p class="body">
+        The plan is to license ByteLite against a 50/50 share of verified qualifying savings, so
+        the company earns only when a measured saving exists. That model depends on validation
+        that is still in progress.
+      </p>
+
+      <dl class="facts">
+        <div><dt>Company</dt><dd>{COMPANY_NAME}</dd></div>
+        <div><dt>Location</dt><dd>{COMPANY_LOCATION}</dd></div>
+        <div><dt>Structure</dt><dd>{COMPANY_STRUCTURE}</dd></div>
+        <div><dt>Founder</dt><dd>{FOUNDER_NAME}</dd></div>
+        <div><dt>Research began</dt><dd>{RESEARCH_BEGAN_YEAR}</dd></div>
+        <div><dt>LLC formed</dt><dd>{LEGAL_FORMATION_YEAR}</dd></div>
+      </dl>
+
+      <div class="cta-row">
+        <a href="/validation" class="btn btn-outline">Current evidence</a>
+        <a href="/contact" class="btn btn-primary">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.narrow { max-width: 780px; }
+.page-hero { padding: 4rem 0 2rem; }
+.hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.8; }
+h2 { margin-bottom: .75rem; }
+.mt { margin-top: 2.5rem; }
+.body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1rem; }
+.facts {
+  margin: 2.5rem 0 0; padding: 1.5rem;
+  background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 2rem;
+}
+@media (max-width: 560px) { .facts { grid-template-columns: 1fr; } }
+.facts dt { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #555e7a; }
+.facts dd { margin: .2rem 0 0; font-size: .9375rem; color: #e4e7f2; }
+.cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 2rem; }
+</style>
