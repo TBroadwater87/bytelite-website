@@ -2,15 +2,24 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import PricingModels from '../components/bytelite/PricingModels.astro';
 import SavingsSplit from '../components/bytelite/SavingsSplit.astro';
 import BalanceAutoReload from '../components/bytelite/BalanceAutoReload.astro';
-import { LICENSING_HEADLINE, LICENSING_CORE, LICENSING_NO_SAVING_RULE } from '../data/bytelite';
+import {
+  LICENSING_HEADLINE,
+  LICENSING_CORE,
+  LICENSING_NO_SAVING_RULE,
+  PERSONAL_PLAN,
+  PERSONAL_USAGE_WORDING,
+} from '../data/bytelite';
+
+const money = (n: number) => '$' + n.toFixed(2);
 ---
 
 <Layout
-  title="ByteLite Licensing | We share verified savings"
-  description="ByteLite's planned commercial model: a 50/50 share of verified qualifying savings. No verified saving means no savings-share fee. ByteLite is not yet production-qualified."
-  keywords="ByteLite licensing, verified savings, shared savings model"
+  title="ByteLite Pricing and Licensing | Two pricing models"
+  description="Personal ByteLite is a flat subscription at $9.99 a month or $99.99 a year, with no percentage-of-savings fee. Business and enterprise licensing is a 50/50 share of verified qualifying savings."
+  keywords="ByteLite pricing, personal plan, verified savings licensing, shared savings model"
   canonical="https://www.thebytelite.com/licensing/"
 >
   <Header slot="header" />
@@ -18,19 +27,53 @@ import { LICENSING_HEADLINE, LICENSING_CORE, LICENSING_NO_SAVING_RULE } from '..
   <section class="page-hero">
     <div class="container narrow">
       <p class="planned"><span class="planned-dot" aria-hidden="true"></span>Planned commercial model</p>
-      <p class="eyebrow">Licensing</p>
+      <p class="eyebrow">Pricing and licensing</p>
       <h1>{LICENSING_HEADLINE}</h1>
       <p class="hero-sub">{LICENSING_CORE}</p>
     </div>
   </section>
 
+  <!-- The two billing models, before any figure that belongs to only one of them -->
   <section class="section-sm">
     <div class="container narrow">
-      <SavingsSplit />
+      <PricingModels headingLevel={2} />
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container narrow">
+      <h2>Personal use is a flat subscription.</h2>
+      <p class="lede">
+        {money(PERSONAL_PLAN.monthly)} a month, or {money(PERSONAL_PLAN.annual)} a year. That is
+        the whole price.
+      </p>
+      <p class="body">
+        A personal workload can be a single very large file. Billing a percentage of savings on
+        that could turn one ordinary afternoon into an unexpectedly large charge, so personal
+        accounts are not billed that way at all. There is no savings-share fee on a personal
+        subscription, and the price does not move with how much ByteLite saves.
+      </p>
+      <p class="body">
+        The annual plan replaces twelve monthly payments of {money(PERSONAL_PLAN.monthly)}, which
+        total {money(PERSONAL_PLAN.twelveMonthsOfMonthly)}, and so saves
+        {money(PERSONAL_PLAN.annualSaving)}.
+      </p>
+      <p class="body-note">{PERSONAL_USAGE_WORDING}</p>
     </div>
   </section>
 
   <section class="section">
+    <div class="container narrow">
+      <h2>Business licensing shares verified savings.</h2>
+      <p class="lede">
+        For commercial workloads, ByteLite receives 50% of verified qualifying savings and the
+        customer retains the other 50%.
+      </p>
+      <SavingsSplit />
+    </div>
+  </section>
+
+  <section class="section section-alt">
     <div class="container narrow">
       <h2>The rule that matters most.</h2>
       <p class="rule">{LICENSING_NO_SAVING_RULE}</p>
@@ -46,22 +89,23 @@ import { LICENSING_HEADLINE, LICENSING_CORE, LICENSING_NO_SAVING_RULE } from '..
     </div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section">
     <div class="container narrow">
-      <h2>How billing would work.</h2>
+      <h2>How a savings-share account would settle.</h2>
       <p class="lede">
-        The intended mechanism is a prepaid balance with automatic top-up, with the ByteLite share
-        deducted from verified savings as they are measured.
+        One possible mechanism for business accounts: a prepaid balance with automatic top-up, with
+        the ByteLite share deducted from verified savings as they are measured.
       </p>
       <BalanceAutoReload />
       <p class="body">
-        Larger accounts would be able to use invoice billing instead. No payment method is
-        collected anywhere on this site today.
+        Larger accounts would be able to use invoice billing instead. None of this applies to a
+        personal subscription, which would bill monthly or annually like any other subscription.
+        No payment method is collected anywhere on this site today.
       </p>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section-alt">
     <div class="container narrow">
       <h2>Availability.</h2>
       <p class="body">
@@ -103,5 +147,6 @@ h2 { margin-bottom: .75rem; }
   border-radius: .625rem; padding: 1.125rem 1.25rem; margin-bottom: 1.5rem;
 }
 .body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1rem; }
+.body-note { font-size: .875rem; color: #7b829e; line-height: 1.7; margin-top: 1rem; }
 .cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.75rem; }
 </style>

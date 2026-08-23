@@ -48,7 +48,12 @@ export default defineConfig({
     // and blocks real click interactions in tests (e.g. the cookie banner's Accept button).
     command: 'npm run build && npm run preview',
     port: 4321,
-    reuseExistingServer: !process.env.CI,
+    // Never reuse a server this run did not start, locally or in CI. Reuse silently serves
+    // whatever dist that other server happens to hold - which, after a source edit, is a STALE
+    // build, and produces failures that cannot be reproduced afterwards because the tree on disk
+    // is already correct. Refusing to reuse turns that class of ghost failure into an immediate,
+    // legible port collision instead. Every run now tests the build it just produced.
+    reuseExistingServer: false,
     timeout: 120_000,
   },
 });

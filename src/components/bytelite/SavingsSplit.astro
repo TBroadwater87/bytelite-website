@@ -1,17 +1,26 @@
 ---
-// CORE VISUAL 06 - the 50/50 verified-savings licensing model.
+// The BUSINESS / ENTERPRISE billing model: 50% of verified qualifying savings.
 //
-// The single most misreadable figure on the site, so it is built to make one distinction
-// unmissable: the split is of the SAVINGS, not of the customer's costs. It must never read as
-// "ByteLite cuts your costs by 50%".
-import { SAVINGS_EXAMPLE, ILLUSTRATIVE_ECONOMIC_LABEL } from '../../data/bytelite';
+// This figure does not apply to personal subscriptions, which are flat-rate and carry no
+// percentage-of-savings fee at all - see PricingModels.astro. It is the most misreadable figure
+// on the site, so it is built to make two things unmissable:
+//   1. the split is of the SAVINGS, not of the customers costs - never 'costs fall by half';
+//   2. the 90% reduction is ByteLites TARGET, not a measured result, so the target label is a
+//      badge above the figures rather than a footnote below them.
+import {
+  SAVINGS_EXAMPLE,
+  TARGET_EXAMPLE_LABEL,
+  TARGET_EXAMPLE_EXPLANATION,
+} from '../../data/bytelite';
 
 const money = (n: number) => '$' + n.toLocaleString('en-US');
 const e = SAVINGS_EXAMPLE;
 ---
 
 <figure class="ss" aria-labelledby="ss-caption">
-  <p class="ss-illustrative"><span class="ss-dot" aria-hidden="true"></span>{ILLUSTRATIVE_ECONOMIC_LABEL}</p>
+  <p class="ss-illustrative"><span class="ss-dot" aria-hidden="true"></span>{TARGET_EXAMPLE_LABEL}</p>
+
+  <p class="ss-scope">Business and enterprise licensing. Personal subscriptions are flat-rate and are not billed this way.</p>
 
   <div class="ss-costs">
     <div class="ss-cost">
@@ -20,16 +29,15 @@ const e = SAVINGS_EXAMPLE;
       <span class="ss-bar ss-bar-baseline" aria-hidden="true"></span>
     </div>
     <div class="ss-cost">
-      <span class="ss-cost-label">Measured cost with ByteLite</span>
+      <span class="ss-cost-label">Target qualifying cost with ByteLite</span>
       <span class="ss-cost-value">{money(e.measuredCost)}</span>
       <span class="ss-bar ss-bar-measured" aria-hidden="true"></span>
     </div>
   </div>
 
   <p class="ss-savings">
-    Verified savings <strong>{money(e.verifiedSavings)}</strong>
+    Verified savings <strong>{money(e.verifiedSavings)}</strong> <span class="ss-rate">({e.verifiedSavingsRatePct}% of baseline)</span>
   </p>
-
   <div class="ss-split" role="group" aria-label="How the verified savings are divided">
     <div class="ss-half ss-half-customer">
       <span class="ss-half-who">Customer retains</span>
@@ -50,7 +58,9 @@ const e = SAVINGS_EXAMPLE;
     </div>
     <div class="ss-net-row">
       <dt>Customer net saving</dt>
-      <dd class="ss-net-good">{money(e.customerRetains)}</dd>
+      <dd class="ss-net-good">
+        {money(e.customerNetSaving)} <span class="ss-rate">({e.customerNetSavingRatePct}% of baseline)</span>
+      </dd>
     </div>
   </dl>
 
@@ -58,13 +68,23 @@ const e = SAVINGS_EXAMPLE;
   <p class="ss-subrule">The customer keeps half. ByteLite receives half.</p>
 
   <figcaption id="ss-caption" class="ss-caption">
-    The 50/50 split applies to the <em>savings ByteLite creates</em>, measured against an agreed
-    baseline. It is not a claim that costs fall by half.
+    <span class="ss-caption-line">{TARGET_EXAMPLE_EXPLANATION}</span>
+    <span class="ss-caption-line">
+      The 50/50 split applies to the <em>savings ByteLite creates</em>, measured against an agreed
+      baseline. It is not a claim that costs fall by half.
+    </span>
   </figcaption>
 </figure>
 
 <style>
 .ss { margin: 0; background: #0d1120; border: 1px solid #1a2235; border-radius: .875rem; padding: 1.75rem; }
+.ss-scope {
+  font-size: .8125rem; color: #7b829e; line-height: 1.6; margin: 0 0 1.25rem;
+  padding-bottom: 1rem; border-bottom: 1px solid #1a2235;
+}
+.ss-rate { font-size: .8125rem; font-weight: 500; color: #7b829e; }
+.ss-caption-line { display: block; }
+.ss-caption-line + .ss-caption-line { margin-top: .5rem; }
 /* A badge, not a caption line: the figures are large and the disclaimer has to compete with
    them on a skim. Matches the "planned billing model" pill on BalanceAutoReload so the two
    economic figures carry the same visual warning. */

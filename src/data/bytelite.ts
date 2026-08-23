@@ -312,19 +312,82 @@ export const NOT_PROVEN: string[] = [
 ];
 
 // ---------------------------------------------------------------------------------------------
-// Planned commercial model. These are ILLUSTRATIVE figures chosen to make the split legible,
-// not a forecast, a price, or a claim about achievable savings.
+// COMMERCIAL MODEL - TWO BILLING MODELS, NOT TWO FEATURE TIERS
+//
+// These are two different answers to two different economic questions, and the site must never
+// blur them:
+//
+//   PERSONAL  - a flat subscription. Predictable. NO percentage-of-savings fee, ever. An
+//               individual might process one very large file, and a percentage model could turn
+//               that single personal workload into a surprise bill. Flat pricing exists to make
+//               that impossible.
+//   BUSINESS  - value-based licensing: 50% of verified qualifying savings, customer retains 50%.
+//
+// Nothing here may imply that a personal subscriber owes a share of savings.
 // ---------------------------------------------------------------------------------------------
 
-export const SAVINGS_EXAMPLE = {
-  baselineCost: 1000,
-  measuredCost: 700,
-  verifiedSavings: 300,
-  customerRetains: 150,
-  byteLiteFee: 150,
-  customerEffectiveCost: 850,
+export const PERSONAL_PLAN = {
+  name: 'Personal ByteLite',
+  monthly: 9.99,
+  annual: 99.99,
+  /** 12 x 9.99 = 119.88, which the annual plan replaces. */
+  twelveMonthsOfMonthly: 119.88,
+  annualSaving: 19.89,
+  hasSavingsShareFee: false,
 } as const;
 
+export const PERSONAL_SUMMARY =
+  'Predictable flat-rate ByteLite access for personal use. No percentage-of-savings fee.';
+
+/**
+ * The card renders this line plus a dedicated no-fee callout, so it deliberately omits the
+ * second sentence of PERSONAL_SUMMARY rather than printing "No percentage-of-savings fee" twice.
+ */
+export const PERSONAL_SUMMARY_SHORT = 'Predictable flat-rate ByteLite access for personal use.';
+
+/**
+ * Deliberately NOT "unlimited". No production economics or capacity evidence exists to support an
+ * unlimited promise, and no specific file-size or monthly-byte cap has been established either -
+ * so the wording commits to neither.
+ */
+export const PERSONAL_USAGE_WORDING =
+  'Subject to reasonable personal-use and service-capacity limits.';
+
+export const BUSINESS_SUMMARY =
+  'Value-based licensing for commercial workloads. ByteLite receives 50% of verified qualifying savings; the customer retains the other 50%.';
+
+export const BUSINESS_APPLIES_TO = [
+  'Businesses and commercial data workloads',
+  'Enterprise infrastructure',
+  'Cloud, storage and network integrations',
+  'Large-scale licensed deployment',
+];
+
+/**
+ * TARGET economics, not measured results. The 90% figure is the architecture's target reduction;
+ * it has not been demonstrated and must never be rendered without its label.
+ */
+export const SAVINGS_EXAMPLE = {
+  baselineCost: 1000,
+  measuredCost: 100,
+  verifiedSavings: 900,
+  verifiedSavingsRatePct: 90,
+  customerRetains: 450,
+  byteLiteFee: 450,
+  customerEffectiveCost: 550,
+  customerNetSaving: 450,
+  customerNetSavingRatePct: 45,
+} as const;
+
+export const TARGET_EXAMPLE_LABEL = 'Target economic example — not a current performance claim';
+
+export const TARGET_EXAMPLE_EXPLANATION =
+  "This example illustrates ByteLite's target economics: a 90% verified qualifying-cost reduction followed by a 50/50 split of verified savings. Actual savings will be determined by measured production results.";
+
+/**
+ * Prepaid balance / auto-reload is a BUSINESS settlement option only. It is explicitly not the
+ * personal plan's mechanism - personal accounts would use ordinary recurring subscription billing.
+ */
 export const BALANCE_EXAMPLE = {
   currentBalance: 42.18,
   minimumBalance: 25.0,
@@ -334,10 +397,13 @@ export const BALANCE_EXAMPLE = {
   periodByteLiteFee: 9.2,
 } as const;
 
-export const LICENSING_HEADLINE = 'We share verified savings.';
+export const BUSINESS_SETTLEMENT_OPTIONS =
+  'Prepaid balance with auto-reload, invoicing, or enterprise settlement are possible implementation options for savings-share accounts. Personal subscriptions would use ordinary recurring billing instead.';
+
+export const LICENSING_HEADLINE = 'Two pricing models.';
 
 export const LICENSING_CORE =
-  'ByteLite licensing is designed around a 50/50 share of verified qualifying savings. The customer retains half. ByteLite receives half as its licensing fee. This does not mean ByteLite guarantees a 50% reduction in total costs.';
+  'Personal use is a flat subscription with no percentage-of-savings fee. Business and enterprise licensing is designed around a 50/50 share of verified qualifying savings. This does not mean ByteLite guarantees a 50% reduction in total costs.';
 
 export const LICENSING_NO_SAVING_RULE =
   'No verified saving means no savings-share fee for that saving.';

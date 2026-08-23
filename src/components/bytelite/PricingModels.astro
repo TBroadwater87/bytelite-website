@@ -1,0 +1,157 @@
+---
+// The two billing models, side by side.
+//
+// These are NOT feature tiers and must never read as "basic vs premium". They are two different
+// billing mechanisms for two different economic contexts, so each card leads with HOW it bills,
+// not with what it includes. The personal card states the absence of a savings-share fee as a
+// first-class fact, because the whole point of flat pricing is that one large personal file can
+// never produce a percentage-based surprise bill.
+import {
+  PERSONAL_PLAN,
+  PERSONAL_SUMMARY_SHORT,
+  PERSONAL_USAGE_WORDING,
+  BUSINESS_SUMMARY,
+  BUSINESS_APPLIES_TO,
+} from '../../data/bytelite';
+
+interface Props {
+  /**
+   * Heading level for the two card names. On /licensing this block follows the page h1 directly,
+   * so the cards must be h2; on the homepage it sits inside an h2 section, so h3 is correct.
+   * Getting this wrong skips a heading level for a screen-reader user.
+   */
+  headingLevel?: 2 | 3;
+}
+const { headingLevel = 3 } = Astro.props;
+const H = (headingLevel === 2 ? 'h2' : 'h3') as 'h2' | 'h3';
+
+const money = (n: number) => '$' + n.toFixed(2);
+---
+
+<div class="pm">
+  <section class="pm-card pm-personal" aria-labelledby="pm-personal-head">
+    <p class="pm-kind pm-kind-personal">Flat subscription</p>
+    <H id="pm-personal-head" class="pm-name">{PERSONAL_PLAN.name}</H>
+
+    <div class="pm-prices">
+      <p class="pm-price">
+        <span class="pm-amount">{money(PERSONAL_PLAN.monthly)}</span>
+        <span class="pm-per">/ month</span>
+      </p>
+      <p class="pm-or">or</p>
+      <p class="pm-price">
+        <span class="pm-amount">{money(PERSONAL_PLAN.annual)}</span>
+        <span class="pm-per">/ year</span>
+      </p>
+    </div>
+
+    <p class="pm-annual-note">
+      The annual plan replaces twelve monthly payments of {money(PERSONAL_PLAN.monthly)}
+      ({money(PERSONAL_PLAN.twelveMonthsOfMonthly)}), saving
+      <strong>{money(PERSONAL_PLAN.annualSaving)}</strong>.
+    </p>
+
+    <p class="pm-summary">{PERSONAL_SUMMARY_SHORT}</p>
+
+    <p class="pm-nofee">
+      <span class="pm-nofee-mark" aria-hidden="true"></span>
+      <span><strong>No percentage-of-savings fee.</strong> What you pay does not change with the
+      size of a file or how much ByteLite saves on it.</span>
+    </p>
+
+    <p class="pm-limits">{PERSONAL_USAGE_WORDING}</p>
+  </section>
+
+  <section class="pm-card pm-business" aria-labelledby="pm-business-head">
+    <p class="pm-kind pm-kind-business">Value-based licensing</p>
+    <H id="pm-business-head" class="pm-name">Business and enterprise</H>
+
+    <div class="pm-prices">
+      <p class="pm-price">
+        <span class="pm-amount pm-amount-pct">50%</span>
+        <span class="pm-per">of verified qualifying savings</span>
+      </p>
+    </div>
+
+    <p class="pm-annual-note">
+      The customer retains the other <strong>50%</strong>. No verified qualifying saving means no
+      savings-share fee attributable to that saving.
+    </p>
+
+    <p class="pm-summary">{BUSINESS_SUMMARY}</p>
+
+    <ul class="pm-applies">
+      {BUSINESS_APPLIES_TO.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+</div>
+
+<style>
+.pm { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+@media (max-width: 800px) { .pm { grid-template-columns: 1fr; } }
+
+.pm-card {
+  background: #0d1120; border: 1px solid #1a2235; border-radius: .875rem; padding: 1.75rem;
+  display: flex; flex-direction: column;
+}
+.pm-personal { border-top: 3px solid #34d399; }
+.pm-business { border-top: 3px solid #6366f1; }
+
+.pm-kind {
+  display: inline-block; align-self: flex-start;
+  font-size: .625rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  border-radius: 9999px; padding: .2rem .625rem; margin-bottom: .875rem;
+}
+.pm-kind-personal { color: #34d399; background: rgba(52,211,153,.09); border: 1px solid rgba(52,211,153,.3); }
+.pm-kind-business { color: #818cf8; background: rgba(99,102,241,.1); border: 1px solid rgba(99,102,241,.3); }
+
+.pm-name { font-size: 1.125rem; color: #e4e7f2; margin: 0 0 1.25rem; }
+
+.pm-prices { display: flex; align-items: baseline; gap: .75rem; flex-wrap: wrap; }
+.pm-price { display: flex; align-items: baseline; gap: .45rem; margin: 0; }
+.pm-amount {
+  font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 700; color: #e4e7f2; letter-spacing: -.02em;
+  line-height: 1.1;
+}
+.pm-amount-pct { color: #a5b4fc; }
+.pm-per { font-size: .875rem; color: #7b829e; }
+.pm-or { font-size: .8125rem; color: #4a5068; margin: 0; }
+
+.pm-annual-note { font-size: .875rem; color: #a0a8c0; line-height: 1.65; margin: 1rem 0 0; }
+.pm-annual-note strong { color: #e4e7f2; }
+
+.pm-summary {
+  font-size: .9375rem; color: #c4c8f0; line-height: 1.7;
+  margin: 1.125rem 0 0; padding-top: 1.125rem; border-top: 1px solid #1a2235;
+}
+
+.pm-nofee {
+  display: flex; align-items: flex-start; gap: .625rem;
+  font-size: .875rem; color: #a0a8c0; line-height: 1.65;
+  background: rgba(52,211,153,.06); border: 1px solid rgba(52,211,153,.26);
+  border-radius: .5rem; padding: .875rem 1rem; margin: 1.125rem 0 0;
+}
+.pm-nofee strong { color: #34d399; }
+.pm-nofee-mark {
+  flex-shrink: 0; width: .875rem; height: .875rem; margin-top: .2rem; border-radius: 50%;
+  background: rgba(52,211,153,.14); border: 1px solid #34d399; position: relative;
+}
+.pm-nofee-mark::after {
+  content: ""; position: absolute; left: .27rem; top: .1rem;
+  width: .22rem; height: .45rem; border: solid #34d399; border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+
+.pm-limits { font-size: .8125rem; color: #7b829e; line-height: 1.6; margin: .875rem 0 0; }
+
+.pm-applies { list-style: none; margin: 1.125rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+.pm-applies li {
+  font-size: .875rem; color: #a0a8c0; line-height: 1.55; padding-left: 1.125rem; position: relative;
+}
+.pm-applies li::before {
+  content: ""; position: absolute; left: 0; top: .55em;
+  width: .3rem; height: .3rem; border-radius: 50%; background: #6366f1;
+}
+
+@media (max-width: 600px) { .pm-card { padding: 1.25rem; } }
+</style>

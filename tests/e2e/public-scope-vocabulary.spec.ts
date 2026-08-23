@@ -241,16 +241,18 @@ test.describe('Page acceptance checklist', () => {
     const order = await page.evaluate(() => {
       const flow = document.querySelector('.bf');
       const status = document.querySelector('.cs');
-      const savings = document.querySelector('.ss');
-      if (!flow || !status || !savings) return null;
+      // The homepage carries the two pricing MODELS, not the business target example - that
+      // figure only makes sense inside the business section on /licensing.
+      const pricing = document.querySelector('.pm');
+      if (!flow || !status || !pricing) return null;
       return {
         flowBeforeStatus: !!(flow.compareDocumentPosition(status) & Node.DOCUMENT_POSITION_FOLLOWING),
-        statusBeforeSavings: !!(status.compareDocumentPosition(savings) & Node.DOCUMENT_POSITION_FOLLOWING),
+        statusBeforePricing: !!(status.compareDocumentPosition(pricing) & Node.DOCUMENT_POSITION_FOLLOWING),
       };
     });
-    expect(order, 'homepage must carry the flow, status and savings figures').not.toBeNull();
+    expect(order, 'homepage must carry the flow, status and pricing figures').not.toBeNull();
     expect(order?.flowBeforeStatus, 'the target diagram must come before the status box').toBe(true);
-    expect(order?.statusBeforeSavings, 'the status box must come before the economics').toBe(true);
+    expect(order?.statusBeforePricing, 'the status box must come before the economics').toBe(true);
   });
 
   test('HOW IT WORKS: exactness, current-vs-final, accounting and the boundary all appear', async ({ page }) => {
@@ -314,8 +316,8 @@ test.describe('Page acceptance checklist', () => {
     // 50/50 in seconds: two equal halves, labelled, with the totals beside them.
     const halves = page.locator('.ss-half');
     await expect(halves).toHaveCount(2);
-    await expect(halves.nth(0)).toContainText('$150');
-    await expect(halves.nth(1)).toContainText('$150');
+    await expect(halves.nth(0)).toContainText('$450');
+    await expect(halves.nth(1)).toContainText('$450');
     await expect(page.locator('.ss-half-share').first()).toContainText('half');
 
     // Planned balance / auto-reload is unmistakably not live.
@@ -325,7 +327,7 @@ test.describe('Page acceptance checklist', () => {
     // Illustrative vs proven: the disclaimer is a badge on the figure, not a footnote, and it
     // appears before the first currency figure in the document.
     const badge = page.locator('.ss-illustrative');
-    await expect(badge).toContainText('Illustrative economic example. Not a performance guarantee.');
+    await expect(badge).toContainText('Target economic example — not a current performance claim');
     const badgeFirst = await page.evaluate(() => {
       const b = document.querySelector('.ss-illustrative');
       const firstFigure = document.querySelector('.ss-cost-value');
@@ -376,35 +378,55 @@ test.describe('Claim discipline on figures and economics', () => {
     );
   });
 
-  test('the economic example is labelled illustrative and not a guarantee', async ({ page }) => {
-    for (const route of ['/', '/licensing']) {
+  test('the business example is labelled a target, not a current performance claim', async ({ page }) => {
+    for (const route of ['/licensing']) {
       await page.goto(route);
+      await expect(page.locator('.ss-illustrative')).toContainText(
+        'Target economic example — not a current performance claim'
+      );
       await expect(page.locator('body')).toContainText(
-        'Illustrative economic example. Not a performance guarantee.'
+        "This example illustrates ByteLite's target economics"
+      );
+      await expect(page.locator('body')).toContainText(
+        'Actual savings will be determined by measured production results.'
       );
     }
   });
 
-  test('the savings split is never presented as a cost cut', async ({ page }) => {
-    for (const route of ['/', '/licensing']) {
+  test('the 90% figure is never stated as an achieved result', async ({ page }) => {
+    for (const route of PUBLIC_ROUTES) {
       await page.goto(route);
       const text = ((await page.locator('body').innerText()) ?? '').toLowerCase();
-      expect(text, `${route}`).not.toContain('cut your costs by half');
-      expect(text, `${route}`).not.toContain('50% cost');
-      expect(text, `${route}`).not.toContain('halve your costs');
-      // "guarantees a 50% reduction" cannot be tested by absence: the approved denial contains
-      // the same substring. Assert the denial is present instead - if the affirmative ever
-      // replaced it, this fails.
-      expect(text).toContain('not a claim that costs fall by half');
+      for (const phrase of [
+        'guarantees a 90%',
+        'achieves a 90%',
+        'delivers a 90%',
+        'proven 90%',
+        'measured 90%',
+        '90% reduction achieved',
+      ]) {
+        expect(text, `${route} must not say "${phrase}"`).not.toContain(phrase);
+      }
     }
   });
 
-  test('the licensing page states the 50/50 verified-savings allocation and the no-saving rule', async ({ page }) => {
+  test('the savings split is never presented as a cost cut', async ({ page }) => {
+    await page.goto('/licensing');
+    const text = ((await page.locator('body').innerText()) ?? '').toLowerCase();
+    expect(text).not.toContain('cut your costs by half');
+    expect(text).not.toContain('50% cost');
+    expect(text).not.toContain('halve your costs');
+    // "guarantees a 50% reduction" cannot be tested by absence: the approved denial contains
+    // the same substring. Assert the denial is present instead - if the affirmative ever
+    // replaced it, this fails.
+    expect(text).toContain('not a claim that costs fall by half');
+  });
+
+  test('the licensing page states the 50/50 business allocation and the no-saving rule', async ({ page }) => {
     await page.goto('/licensing');
     const body = page.locator('body');
     await expect(body).toContainText('50/50 share of verified qualifying savings');
-    await expect(body).toContainText('The customer retains half.');
-    await expect(body).toContainText('ByteLite receives half');
+    await expect(body).toContainText('The customer keeps half. ByteLite receives half.');
     await expect(body).toContainText('does not mean ByteLite guarantees a 50% reduction in total costs');
     await expect(body).toContainText('No verified saving means no savings-share fee');
   });

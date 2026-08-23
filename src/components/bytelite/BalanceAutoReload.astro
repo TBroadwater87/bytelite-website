@@ -1,9 +1,13 @@
 ---
-// CORE VISUAL 07 - planned billing UX.
+// Planned settlement UX for BUSINESS savings-share accounts only.
+//
+// This is NOT the personal plan's mechanism. Personal subscriptions are ordinary recurring
+// monthly/annual billing, and presenting a prepaid balance as the consumer default would imply
+// exactly the surprise-billing risk that flat pricing exists to remove.
 //
 // PLANNED, not operational. No payment collection exists. The card is explicitly badged so it
 // cannot be mistaken for a live account screen.
-import { BALANCE_EXAMPLE } from '../../data/bytelite';
+import { BALANCE_EXAMPLE, BUSINESS_SETTLEMENT_OPTIONS } from '../../data/bytelite';
 
 const money = (n: number) => '$' + n.toFixed(2);
 const b = BALANCE_EXAMPLE;
@@ -19,6 +23,7 @@ const LOOP = [
 
 <figure class="bal" aria-labelledby="bal-caption">
   <p class="bal-planned"><span class="bal-dot" aria-hidden="true"></span>Planned billing model &mdash; not operational</p>
+  <p class="bal-scope">Business savings-share accounts only. Personal subscriptions bill monthly or annually.</p>
 
   <div class="bal-card">
     <p class="bal-card-title">ByteLite balance</p>
@@ -45,9 +50,8 @@ const LOOP = [
   </ol>
 
   <figcaption id="bal-caption" class="bal-caption">
-    The intended model is a prepaid balance with a configurable minimum and auto-reload, where the
-    ByteLite fee is taken from verified savings. Enterprise accounts would use invoice billing.
-    None of this is live, and no payment method is collected anywhere on this site.
+    {BUSINESS_SETTLEMENT_OPTIONS} None of this is live, and no payment method is collected
+    anywhere on this site.
   </figcaption>
 </figure>
 
@@ -59,6 +63,7 @@ const LOOP = [
   color: #fbbf24; background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.3);
   border-radius: 9999px; padding: .25rem .75rem; margin-bottom: 1.25rem;
 }
+.bal-scope { font-size: .8125rem; color: #7b829e; line-height: 1.6; margin: 0 0 1.25rem; }
 .bal-dot { width: .4rem; height: .4rem; border-radius: 50%; background: #fbbf24; flex-shrink: 0; }
 
 .bal-card { background: #07090f; border: 1px solid #2a3350; border-radius: .625rem; padding: 1.25rem; }
