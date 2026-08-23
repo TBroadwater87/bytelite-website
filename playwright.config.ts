@@ -48,11 +48,20 @@ export default defineConfig({
     // and blocks real click interactions in tests (e.g. the cookie banner's Accept button).
     command: 'npm run build && npm run preview',
     port: 4321,
-    // Never reuse a server this run did not start, locally or in CI. Reuse silently serves
-    // whatever dist that other server happens to hold - which, after a source edit, is a STALE
-    // build, and produces failures that cannot be reproduced afterwards because the tree on disk
-    // is already correct. Refusing to reuse turns that class of ghost failure into an immediate,
-    // legible port collision instead. Every run now tests the build it just produced.
+    // Never reuse a server this run did not start, locally or in CI.
+    //
+    // The hazard is NOT that a lingering server pins an old dist - measured, `astro preview`
+    // serves from disk per request, so mutating dist under a running server is reflected on the
+    // very next request. The hazard is that `reuseExistingServer: true` makes Playwright skip
+    // `command` altogether when the port is already listening, so `npm run build` never runs and
+    // the suite silently tests whatever dist an earlier build left behind. Measured both ways:
+    // with reuse ON and the port occupied, a marker file planted in dist survived the run (build
+    // skipped, tests green against a dist the run did not produce); with reuse OFF, Playwright
+    // aborts with "http://localhost:4321 is already used".
+    //
+    // So this setting buys a guarantee: either the run builds and serves its own build, or it
+    // fails loudly with a legible port collision. It never silently tests stale output.
+    // `npm run test:e2e:clean` (scripts/e2e-clean.ps1) clears a stale server of our own first.
     reuseExistingServer: false,
     timeout: 120_000,
   },
