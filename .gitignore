@@ -38,3 +38,8 @@ qa/qa-sweep-results.json
 
 # local Cloudflare Pages/Workers dev tooling state (wrangler pages dev, etc.)
 .wrangler/
+
+# Cloudflare Pages LOCAL secrets - never commit. Production values live only as encrypted
+# Pages secrets (dashboard / `wrangler pages secret put`), never in the repository.
+.dev.vars
+.dev.vars.*

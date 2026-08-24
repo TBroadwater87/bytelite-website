@@ -1,0 +1,14 @@
+{
+  // Cloudflare Pages configuration for the `thebytelite` project.
+  //
+  // The site stays a static Astro build - no adapter, no SSR. The only server-side code is the
+  // single Pages Function at functions/api/contact.ts, which is the minimal documented addition
+  // needed for the contact route to reach a mail provider.
+  //
+  // SENDGRID_API_KEY is deliberately absent from `vars`: it is an encrypted Pages secret, set
+  // out of band (dashboard, or `wrangler pages secret put`). Putting it here would commit it.
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "thebytelite",
+  "pages_build_output_dir": "./dist",
+  "compatibility_date": "2026-08-23"
+}
