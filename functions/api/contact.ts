@@ -6,11 +6,11 @@
  * alternative should hosting ever move, and because keeping both as thin adapters over one core
  * costs almost nothing.
  *
- * Every rule that matters lives in src/lib/contact-core.ts. This file is only translation
+ * Every rule that matters lives in api/_lib/contact-core.ts. This file is only translation
  * between the Workers Request/Response and the core.
  */
 
-import { handleContact } from '../../src/lib/contact-core';
+import { handleContact } from '../../api/_lib/contact-core.js';
 
 interface Env {
   /** Encrypted Pages secret. Never logged, never returned. */

@@ -5,13 +5,13 @@
  * already posts to, so no page changed. The site remains a static Astro build: this function
  * coexists with it rather than converting anything to SSR.
  *
- * All logic lives in src/lib/contact-core.ts, shared with the Cloudflare adapter, so this file
+ * All logic lives in api/_lib/contact-core.ts, shared with the Cloudflare adapter, so this file
  * is only translation between Node's req/res and the core. Nothing security-relevant is decided
  * here.
  */
 
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { handleContact } from '../src/lib/contact-core';
+import { handleContact } from './_lib/contact-core.js';
 
 /** Vercel augments IncomingMessage with a parsed body; it may still arrive raw. */
 type VercelLikeRequest = IncomingMessage & { body?: unknown };

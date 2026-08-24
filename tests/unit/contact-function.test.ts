@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { handleContact, __resetRateLimit, INQUIRY_TYPES } from '../../src/lib/contact-core';
+import { handleContact, __resetRateLimit, INQUIRY_TYPES } from '../../api/_lib/contact-core.js';
 import vercelHandler from '../../api/contact';
 
 // Fully mocked: no network, and the key below is a fabricated placeholder, never a real
