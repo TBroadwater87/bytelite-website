@@ -369,7 +369,14 @@ export const BUSINESS_APPLIES_TO = [
  */
 export const SAVINGS_EXAMPLE = {
   baselineCost: 1000,
-  measuredCost: 100,
+  /**
+   * Named `targetCost`, never `measuredCost`. The rendered label has always been "Target
+   * qualifying cost with ByteLite", but the field was called `measuredCost`, and a field name
+   * is exactly the kind of detail that talks a future editor into "correcting" the label to
+   * match it. The 90% reduction has not been measured. Owner law: the words "Measured
+   * qualifying cost with ByteLite" must never appear on this figure.
+   */
+  targetCost: 100,
   verifiedSavings: 900,
   verifiedSavingsRatePct: 90,
   customerRetains: 450,

@@ -30,8 +30,8 @@ const e = SAVINGS_EXAMPLE;
     </div>
     <div class="ss-cost">
       <span class="ss-cost-label">Target qualifying cost with ByteLite</span>
-      <span class="ss-cost-value">{money(e.measuredCost)}</span>
-      <span class="ss-bar ss-bar-measured" aria-hidden="true"></span>
+      <span class="ss-cost-value">{money(e.targetCost)}</span>
+      <span class="ss-bar ss-bar-target" aria-hidden="true"></span>
     </div>
   </div>
 
@@ -101,7 +101,7 @@ const e = SAVINGS_EXAMPLE;
 .ss-cost-value { font-family: ui-monospace, 'Courier New', monospace; font-size: 1rem; font-weight: 700; color: #e4e7f2; }
 .ss-bar { grid-column: 1 / -1; height: .5rem; border-radius: 9999px; display: block; }
 .ss-bar-baseline { width: 100%; background: #2a3350; }
-.ss-bar-measured { width: 70%; background: #6366f1; }
+.ss-bar-target { width: 70%; background: #6366f1; }
 
 .ss-savings {
   font-size: 1rem; color: #a0a8c0; margin-bottom: 1rem;
