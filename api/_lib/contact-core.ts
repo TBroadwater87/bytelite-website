@@ -1,10 +1,14 @@
 /**
- * Platform-agnostic contact-submission logic.
+ * The contact-submission logic. This is the ONLY contact core.
  *
- * Production runs on Vercel (api/contact.ts). A Cloudflare Pages adapter exists too, unused for
- * now. Both are thin: every rule that matters - validation, size limits, header-injection
- * defence, provider-error handling, secret hygiene - lives here, so the two adapters cannot
- * drift apart and one test suite covers both.
+ * Production runs on Vercel through the thin adapter in api/contact.ts, which is the only
+ * adapter. A Cloudflare Pages adapter used to sit beside it; it was never deployed and was
+ * removed on 2026-08-24 (see OWNER_README.md section 16). Do not add a second adapter without
+ * a live platform to run it on - an inert one only makes the hosting question ambiguous again.
+ *
+ * Keeping every rule that matters here - validation, size limits, header-injection defence,
+ * provider-error handling, secret hygiene - is still the point: the adapter stays trivial and
+ * one test suite covers the behaviour that actually protects anything.
  *
  * SECRET HANDLING
  * ---------------
