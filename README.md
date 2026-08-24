@@ -1,250 +1,148 @@
-# ByteLite
+# ByteLite Website
 
-> Revolutionary data compression technology: Transform 1GB into just 15 bytes
+Source for the public ByteLite website at **https://www.thebytelite.com**.
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue)](https://www.typescriptlang.org/)
-[![Tests](https://img.shields.io/badge/Tests-9%2F9%20Passing-green)](./tests)
-[![Security](https://img.shields.io/badge/npm%20audit-0%20vulnerabilities-green)](https://www.npmjs.com/)
-[![License](https://img.shields.io/badge/License-Proprietary-red)](./LICENSE)
+This is a website repository. It is not the ByteLite compression engine, and it contains no
+part of it.
 
-## About
+> **This repository is public.** Never commit a secret value. Never add anything here that the
+> IP boundary in `CLAUDE.md` section 3 forbids publishing.
 
-ByteLite showcases revolutionary data compression technology protected by **Patent US 63/807,027**. This website demonstrates compression ratios that challenge conventional understanding: 1GB → 15 bytes, representing a paradigm shift in data storage and transmission.
+## About ByteLite
 
-**Founder**: Tash Broadwater, Helena MT
-**Technology**: Quantum-scale data transformation
+ByteLite is being developed as a deterministic lossless representation architecture, with the
+target of producing a smaller, self-contained representation from which the exact original can
+be reconstructed. It implements Bit Motion Encoding (BME), a deterministic recursive
+motion-encoding architecture with stream-built foundations.
 
-## Quick Start
+That target is a **research target, not a completed public proof**. The mechanisms required to
+realize it are still under active development and validation. ByteLite has not been
+independently validated and is not production-qualified.
+
+Patent US 63/807,027 (pending). Founder: Tash Broadwater, Helena MT.
+
+The website's job is to hold that distinction steady - what ByteLite is being built to do,
+versus what is actually proven today - and the test suite enforces it in both directions.
+
+## Read these before changing anything
+
+| File | Purpose |
+|---|---|
+| **`CLAUDE.md`** | Canonical law. Public scope, claim law, IP boundary, pricing, deployment, contact, tests. Read first. |
+| **`OWNER_README.md`** | Operational continuity. Architecture, what each external service does, deployment and recovery commands, current open blockers. |
+
+## Technology
+
+- [Astro 5](https://astro.build) - static build, no adapter, no SSR
+- [React 19](https://react.dev) - interactive islands only
+- [Tailwind CSS](https://tailwindcss.com)
+- TypeScript, strict mode
+- [Vitest](https://vitest.dev) unit tests, [Playwright](https://playwright.dev) E2E across 5 browser engines
+- ESLint + Prettier
+
+## Quick start
 
 ```bash
-# Install dependencies
 npm install
-
-# Start development server
-npm run dev
-
-# Open browser
-http://localhost:4321
+npm run dev          # http://localhost:4321
 ```
 
-## Technology Stack
-
-- **Framework**: [Astro 5.0](https://astro.build) - Modern static site builder
-- **UI Library**: [React 19](https://react.dev) - Interactive components
-- **Styling**: [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS
-- **Language**: TypeScript (Strict Mode)
-- **Testing**: Vitest + Playwright
-- **Code Quality**: ESLint + Prettier
-
-## Project Structure
-
-```
-bytelite-website/
-├── src/
-│   ├── components/       # React & Astro components
-│   │   ├── Hero.astro
-│   │   ├── ProofDemo.astro
-│   │   ├── InteractiveCompressionDemo.tsx
-│   │   └── ErrorBoundary.tsx
-│   ├── pages/            # Route pages
-│   │   ├── index.astro
-│   │   ├── demo.astro
-│   │   ├── technology.astro
-│   │   └── api/
-│   │       └── compress.ts
-│   ├── layouts/          # Page layouts
-│   │   └── Layout.astro
-│   ├── styles/           # Global styles
-│   └── middleware.ts     # Security headers
-├── tests/
-│   ├── unit/             # Component tests
-│   ├── integration/      # Integration tests
-│   └── e2e/              # End-to-end tests
-├── public/               # Static assets
-└── .env.example          # Environment template
-```
-
-## Development
-
-### Available Commands
+## Commands
 
 ```bash
-# Development
-npm run dev              # Start dev server (localhost:4321)
-npm run build            # Production build
-npm run preview          # Preview production build
+npm run build              # production static build -> ./dist
+npm run preview            # serve the production build locally
 
-# Testing
-npm run test             # Unit & integration tests
-npm run test:coverage    # Test with coverage report
-npm run test:e2e         # End-to-end tests
-npm run test:e2e:ui      # E2E tests with UI
-npm run test:all         # Run all tests
+npx vitest run             # unit tests
+npx astro check            # Astro/template diagnostics
+npx tsc --noEmit           # TypeScript
+npx eslint .               # lint
+npx playwright test        # full E2E suite
+npm run test:e2e:clean     # E2E, clearing a stale preview server this repo owns first
 
-# Code Quality
-npm run lint             # Lint codebase
-npm run lint:fix         # Auto-fix linting issues
-npm run format           # Format code
-npm run format:check     # Check formatting
+npm run format             # Prettier
 ```
 
-### Environment Setup
+## Architecture
 
-1. Copy the environment template:
-```bash
-cp .env.example .env
+A static Astro build plus exactly one server-side function.
+
+```
+src/
+  components/   Astro and React components; teaching diagrams in components/bytelite/
+  pages/        Routes. Six are public; the rest are retired from discovery, not deleted.
+  layouts/      Base layout with SEO and the noindex switch
+  data/         Canonical facts. Single source of truth - never restate these inline.
+  styles/       Global CSS and design tokens
+  middleware.ts Header policy record; inert in a static build (see OWNER_README section 17)
+api/
+  contact.ts        POST /api/contact - Vercel Function
+  health.ts         TEMPORARY migration probe; delete after the domain cutover
+  _lib/
+    contact-core.ts All contact logic: validation, limits, header-injection defence
+tests/
+  unit/         Vitest
+  e2e/          Playwright
+qa/             Dated evidence from prior QA passes. History, not instruction.
 ```
 
-2. Configure your environment variables:
-```env
-PUBLIC_SITE_URL=https://thebytelite.com
-PUBLIC_GA_ID=G-XXXXXXXXXX
-API_RATE_LIMIT_WINDOW=60000
-API_MAX_REQUESTS_PER_WINDOW=10
+**Canonical data.** Anything the site asserts comes from `src/data/` - `bytelite.ts`,
+`projects.ts`, `company.ts`, `research.ts`. Import those values; never hardcode a price, a
+status label, a count, or a claim into a page, or the pages will drift apart.
+
+**Public scope.** The site is ByteLite-only. Six discoverable routes: `/`, `/how-it-works`,
+`/validation`, `/licensing`, `/about`, `/contact`, plus `/privacy` and `/terms` in the sitemap.
+The build emits 68 HTML pages; 8 are in the sitemap, `/404.html` is the error page, and the
+other 59 are served `noindex`. Those still return 200 so old links keep working, but they are
+absent from the sitemap and linked from nowhere. See `CLAUDE.md` section 1.
+
+## Contact form
+
+`POST /api/contact` runs as a Vercel Function beside the static site and delivers through
+SendGrid. All logic lives in `api/_lib/contact-core.ts`: input validation, size caps,
+header-injection defence, and strict secret hygiene - the SendGrid credential is used in
+exactly one place and never logged, never returned.
+
+It requires three environment variables in Vercel Production, by name:
+
+```
+SENDGRID_API_KEY
+CONTACT_TO_EMAIL
+CONTACT_FROM_EMAIL
 ```
 
-### Development Guidelines
-
-- **TypeScript Strict Mode**: Enabled and enforced
-- **Testing**: Write tests for all new components
-- **Code Style**: Run `npm run lint:fix` before committing
-- **Security**: Never commit secrets or API keys
-
-## Features
-
-### 🔒 Security
-
-- **Rate Limiting**: API endpoints limited to 10 requests/minute
-- **CORS Protection**: Configured allowed origins
-- **Security Headers**: CSP, HSTS, X-Frame-Options, etc.
-- **Input Validation**: File size limits, type checking
-- **TypeScript**: Strict type safety throughout
-
-### ⚡ Performance
-
-- **Async Loading**: Fonts and analytics load after page render
-- **Image Optimization**: Sharp integration for asset optimization
-- **HTML Compression**: Minified production builds
-- **Prefetching**: Enabled for faster navigation
-- **CDN Ready**: Optimized for edge deployment
-
-### 🧪 Testing
-
-- **Unit Tests**: React component testing with Testing Library
-- **Integration Tests**: Multi-system functionality tests
-- **E2E Tests**: Critical user path testing with Playwright
-- **Coverage**: 9/9 tests passing
-
-### 🎨 Components
-
-- **Interactive Demo**: Real-time compression simulation
-- **Error Boundaries**: Production-ready error handling
-- **SEO Optimized**: Structured data, meta tags, sitemaps
-- **Accessible**: ARIA labels, semantic HTML
-- **Responsive**: Mobile-first design
-
-## API Endpoints
-
-### POST /api/compress
-
-Simulate ByteLite compression on uploaded files.
-
-**Rate Limit**: 10 requests per minute
-
-**Request**:
-```typescript
-FormData {
-  file: File  // Max 2GB
-}
-```
-
-**Response**:
-```json
-{
-  "original": 1073741824,
-  "compressed": 15,
-  "ratio": "99.999999"
-}
-```
-
-**Headers**:
-- `X-RateLimit-Limit`: Maximum requests allowed
-- `X-RateLimit-Remaining`: Remaining requests in window
+If any is missing the route returns `503` and states plainly that nothing was sent. It never
+reports a success that did not happen. A `202` means SendGrid queued the message - which is not
+the same as an inbox receiving it.
 
 ## Deployment
 
-### Build for Production
+Hosted on **Vercel**. Pushing to `main` triggers a production deployment through the GitHub
+integration.
 
-```bash
-npm run build
-```
+**Cloudflare provides DNS only.** It is not the host. Cloudflare Pages was used historically
+and has been removed. Do not infer the hosting provider from the DNS provider, and do not
+migrate hosting providers. See `OWNER_README.md` sections 4 and 6.
 
-This creates an optimized build in `./dist/`
+Before deploying: run the full test suite, and confirm the Vercel team and project explicitly
+rather than assuming. `OWNER_README.md` section 5 has the exact commands.
 
-### Pre-deployment Checklist
+## Environment
 
-- [ ] All tests passing (`npm run test:all`)
-- [ ] No linting errors (`npm run lint`)
-- [ ] Environment variables configured
-- [ ] Google Analytics ID updated
-- [ ] Security headers verified
+The three contact variables above are runtime secrets. They live only in the Vercel project's
+Production environment - never in a `.env` file, and never in this repository.
 
-### Recommended Hosting
-
-- **Vercel** - Automatic deployments, serverless functions
-- **Netlify** - Easy setup, excellent CDN
-- **Cloudflare Pages** - Best performance, DDoS protection
-
-All platforms support Astro SSR and security headers middleware.
-
-## Performance Targets
-
-| Metric | Target | Current |
-|--------|--------|---------|
-| Desktop Lighthouse | 95+ | ~85-90 |
-| Mobile Lighthouse | 90+ | ~70-75 |
-| First Contentful Paint | <1.5s | - |
-| Time to Interactive | <3.0s | - |
-
-## Known Issues & Technical Debt
-
-See [CLAUDE.md](./CLAUDE.md) for detailed technical debt tracking.
-
-**High Priority**:
-1. Logo optimization (463KB → ~50KB)
-2. Large component refactoring (ProofDemo.astro)
-3. Comprehensive E2E test coverage
-
-## Contributing
-
-This is a proprietary project. For inquiries, contact the project owner.
-
-## Patent Information
-
-This website showcases technology protected by:
-- **Patent Application**: US 63/807,027
-- **Status**: Pending
-- **Coverage**: Revolutionary data compression methods
-
-## Business Model
-
-ByteLite operates on a revenue-sharing model:
-- **Pricing**: 50% of customer savings
-- **Target Market**: Enterprise data storage, cloud providers, IoT devices
-- **Competition**: Preparing for Hutter Prize submission
-
-## Contact
-
-- **Founder**: Tash Broadwater
-- **Location**: Helena, Montana
-- **Website**: https://thebytelite.com
+`.env.example` lists six older build-time names (`PUBLIC_SITE_URL`, `PUBLIC_GA_ID`,
+`PUBLIC_API_URL`, `API_RATE_LIMIT_WINDOW`, `API_MAX_REQUESTS_PER_WINDOW`, `API_MAX_FILE_SIZE`).
+As of 2026-08-24 **none of them is read by any code in this repository** - the canonical site
+URL is hardcoded in `astro.config.mjs`, no analytics tag is wired into the layout, and the
+`API_*` limits belonged to a removed route. They are still set in Vercel. Do not wire them back
+up without deciding they are actually wanted.
 
 ## License
 
-All rights reserved. This is proprietary software.
+All rights reserved. Proprietary.
 
----
+## Contact
 
-**Last Updated**: 2025-11-14
-**Version**: 0.0.1
-**Status**: Development-ready
+https://www.thebytelite.com/contact
