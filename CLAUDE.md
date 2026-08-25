@@ -447,4 +447,6 @@ procedure, and the current open blockers live in `OWNER_README.md`.**
 
 Last reviewed against reality: 2026-08-25. The custom-domain cutover is closed and contact
 delivery is proven to the mailbox; the runtime evidence is `qa/contact-verification-2026-08-25.md`,
-taken against `https://www.thebytelite.com` serving commit `0e5ffab`.
+taken against `https://www.thebytelite.com` serving commit `0e5ffab`. Production was re-verified
+after the cleanup at commit `fbe6371`: 200 on `www`, 308 from the apex, 404 on the deleted probe,
+405 on `GET /api/contact`, 400 on an invalid POST.

@@ -48,6 +48,7 @@ not a permanent truth. Re-verify with section 9.
 
 ```
 LAST_VERIFIED_DATE=2026-08-25
+LAST_VERIFIED_COMMIT=fbe6371
 PRODUCTION_BRANCH=main
 PRODUCTION_HOST=Vercel
 VERCEL_TEAM=ByteLite_LLC              (CLI scope slug: bytelitellc)
@@ -82,6 +83,13 @@ The runtime fingerprint that closed it, taken from the temporary probe before it
 Node v24.18.0, 57 environment variables visible, all three contact variable names present,
 `vercelEnv` production, branch main, commit 0e5ffab. The superseded deployment reported
 Node v22.23.1, 48 variables, and none of the three names.
+
+`LAST_VERIFIED_COMMIT` is the commit that was actually observed serving production
+(`fbe6371`, deployment `dpl_2SFFVGgJk7r7EPXMwgDwoRsZ9upV`, both domains aliased to it, function
+manifest showing `api/contact` and nothing else). The commit that records this line is a later,
+documentation-only commit: it changes no page, no route and no function, so it does not
+invalidate the verification above. If you ever find this field naming a commit that changed
+runtime behaviour and was never checked afterwards, distrust it and re-verify with section 9.
 
 ---
 
