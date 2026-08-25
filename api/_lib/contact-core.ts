@@ -29,6 +29,18 @@ export const RATE_LIMIT_WINDOW = 60_000;
 export const MAX_PER_WINDOW = 5;
 
 /**
+ * How long to wait on the mail provider before giving up.
+ *
+ * Without this the request inherits the platform's function ceiling, so a provider that accepts
+ * the connection and then stalls holds a compute slot for minutes per request - a cheap way for
+ * someone else's outage (or a deliberate slowloris) to become our resource exhaustion. Ten seconds
+ * is far above SendGrid's normal response time, so a timeout here means something is actually
+ * wrong. The abort surfaces as a thrown fetch, which the existing catch already turns into an
+ * honest 502 that logs `err.name` only.
+ */
+export const PROVIDER_TIMEOUT_MS = 10_000;
+
+/**
  * Best-effort throttle, per server instance. Serverless platforms run many instances, so this is
  * NOT a distributed rate limit and must not be described as one - it only blunts a single client
  * hammering a single instance. A real control would need a shared store.
@@ -198,6 +210,7 @@ export async function handleContact(
         reply_to: { email, name },
         content: [{ type: 'text/plain', value: lines.join('\n') }],
       }),
+      signal: AbortSignal.timeout(PROVIDER_TIMEOUT_MS),
     });
   } catch (err) {
     // Deliberately does not log `err` wholesale: a thrown fetch error can carry the request,

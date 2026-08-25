@@ -237,6 +237,30 @@ describe('rate limiting', () => {
   });
 });
 
+describe('provider timeout', () => {
+  it('gives the provider a bounded deadline rather than the whole function ceiling', async () => {
+    const f = sendgridOk();
+    await handleContact(VALID, CONFIG, client(), deps(f));
+    const init = f.mock.calls[0]![1] as RequestInit;
+    expect(init.signal, 'the provider call must carry an abort signal').toBeDefined();
+    expect(init.signal!.aborted).toBe(false);
+  });
+
+  it('reports 502 when the provider stalls past the deadline, and logs no key', async () => {
+    // What AbortSignal.timeout produces when it fires.
+    const timeout = new Error('The operation was aborted due to timeout');
+    timeout.name = 'TimeoutError';
+    const f = vi.fn().mockRejectedValue(timeout);
+
+    const res = await handleContact(VALID, CONFIG, client(), deps(f));
+    expect(res.status, 'a stalled provider must never look like success').toBe(502);
+    expect(JSON.stringify(res.body)).toContain('was not sent');
+    const all = logged.join('\n');
+    expect(all).toContain('TimeoutError');
+    expect(all).not.toContain(FAKE_KEY);
+  });
+});
+
 // ------------------------------------------------------------------------------------------
 // Vercel adapter - the production route. Only translation is tested here; the rules above are
 // what the core guarantees.
@@ -326,5 +350,36 @@ describe('Vercel adapter', () => {
     const { res, captured } = mockRes();
     await vercelHandler(mockReq('POST', '{not json'), res);
     expect(captured.statusCode).toBe(400);
+  });
+
+  // The rate-limit key must not be something the caller can pick. `x-forwarded-for` is
+  // caller-supplied on the way in, so keying off it lets one client rotate the header and never
+  // be throttled at all.
+  it('keys the rate limit on platform headers, never on caller-supplied x-forwarded-for', async () => {
+    process.env.SENDGRID_API_KEY = FAKE_KEY;
+    process.env.CONTACT_TO_EMAIL = CONFIG.toEmail;
+    process.env.CONTACT_FROM_EMAIL = CONFIG.fromEmail;
+
+    // Two requests from ONE real client that forges a different X-Forwarded-For each time.
+    // Both must land on the same limiter bucket, so the sixth is refused.
+    const statuses: number[] = [];
+    for (let i = 0; i < 6; i++) {
+      vi.stubGlobal('fetch', sendgridOk());
+      const { res, captured } = mockRes();
+      await vercelHandler(
+        mockReq('POST', VALID, {
+          'x-forwarded-for': `198.51.100.${i}`,
+          'x-vercel-forwarded-for': '203.0.113.77',
+        }),
+        res
+      );
+      statuses.push(captured.statusCode);
+      vi.unstubAllGlobals();
+    }
+
+    expect(
+      statuses.filter((s) => s === 429).length,
+      'forging x-forwarded-for must not buy extra allowance'
+    ).toBeGreaterThan(0);
   });
 });

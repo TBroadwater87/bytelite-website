@@ -52,11 +52,28 @@ async function readJsonBody(req: VercelLikeRequest): Promise<unknown> {
   }
 }
 
-/** Vercel sets x-forwarded-for; take the first hop, which is the client. */
+/**
+ * The rate-limit key. It must be something the caller cannot choose.
+ *
+ * `x-forwarded-for` is deliberately NOT trusted here. Its first hop is whatever the caller put
+ * there: a client can send its own `X-Forwarded-For`, the platform appends the real address after
+ * it, and reading `[0]` therefore hands the attacker the limiter's key. Rotating that one header
+ * per request defeats the throttle completely, which is worse than having no throttle, because it
+ * looks like one exists.
+ *
+ * `x-vercel-forwarded-for` and `x-real-ip` are set by the platform on the way in and cannot be
+ * forged by the request. Falling back to the socket address keeps this honest off-platform.
+ */
 function clientId(req: VercelLikeRequest): string {
-  const fwd = req.headers['x-forwarded-for'];
-  const raw = Array.isArray(fwd) ? fwd[0] : fwd;
-  return raw?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
+  const first = (v: string | string[] | undefined): string | undefined =>
+    (Array.isArray(v) ? v[0] : v)?.split(',')[0]?.trim() || undefined;
+
+  return (
+    first(req.headers['x-vercel-forwarded-for']) ??
+    first(req.headers['x-real-ip']) ??
+    req.socket?.remoteAddress ??
+    'unknown'
+  );
 }
 
 function send(res: ServerResponse, status: number, body: Record<string, unknown>): void {
