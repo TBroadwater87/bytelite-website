@@ -290,7 +290,18 @@ Get-Content .vercel\project.json         # confirm the ids above
 `garrett.ns.cloudflare.com`, `kim.ns.cloudflare.com`.
 
 **Website records.** `www.thebytelite.com` is a CNAME to `cname.vercel-dns.com`. The apex
-`thebytelite.com` uses Vercel anycast A records and 307-redirects to `www`.
+`thebytelite.com` uses Vercel anycast A records and 308-redirects to `www`.
+
+**Where that apex redirect lives, and why it moved.** It is the first entry in `vercel.json`
+`redirects`, matched on the request `host`. It used to be a domain-level "redirect to another
+domain" setting in the old project's dashboard. **That setting did not survive the ownership
+transfer** - measured 2026-08-25, immediately after the cutover the apex returned `200` and
+served the whole site as a second copy rather than redirecting. Nothing was visibly broken (the
+canonical tag still pointed at `www`), which is exactly why it could have gone unnoticed.
+
+Keeping it in `vercel.json` means it is version-controlled, reviewable in a diff, and moves with
+the repository the next time a project changes hands. A dashboard toggle does none of those
+things. Do not "tidy it up" back into the dashboard.
 
 These records are **DNS-only (grey cloud), not Cloudflare-proxied.** That was verified by the
 response headers: `server: Vercel` with no `cf-ray` header. Keep them DNS-only. Proxying them
