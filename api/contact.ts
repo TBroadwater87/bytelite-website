@@ -93,6 +93,28 @@ export default async function handler(
     return;
   }
 
+  // This endpoint takes JSON and nothing else.
+  //
+  // Not pedantry - it is the CSRF boundary. `application/x-www-form-urlencoded`, `multipart/
+  // form-data` and `text/plain` are "simple" request types: a cross-origin HTML form can POST
+  // them with no preflight and no consent, and the platform parses urlencoded bodies into
+  // `req.body` as an object, so such a submission used to sail straight through validation as if
+  // it were ours. Measured against production 2026-08-25: a urlencoded form POST returned 202.
+  //
+  // The gain to an attacker was never "send mail" - this is a public endpoint, anyone can curl
+  // it. The gain was sending it from OTHER PEOPLE'S browsers and addresses, which turns every
+  // visitor to a hostile page into a sender and makes the per-address throttle meaningless.
+  //
+  // Requiring application/json closes that: a cross-origin fetch that sets this content type
+  // triggers a CORS preflight, this route answers no preflight, and the browser never sends the
+  // request. The site's own form already posts application/json, so nothing legitimate changes.
+  const rawType = req.headers['content-type'];
+  const contentType = (Array.isArray(rawType) ? rawType[0] : rawType) ?? '';
+  if (contentType.toLowerCase().split(';')[0]?.trim() !== 'application/json') {
+    send(res, 415, { error: 'Unsupported content type. Send application/json.' });
+    return;
+  }
+
   const body = await readJsonBody(req);
 
   const result = await handleContact(

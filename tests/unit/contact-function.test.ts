@@ -295,7 +295,11 @@ function mockReq(method: string, body: unknown, headers: Record<string, string> 
   return {
     method,
     body,
-    headers: { 'x-forwarded-for': '203.0.113.9', ...headers },
+    headers: {
+      'x-forwarded-for': '203.0.113.9',
+      'content-type': 'application/json',
+      ...headers,
+    },
     socket: { remoteAddress: '203.0.113.9' },
   } as never;
 }
@@ -350,6 +354,49 @@ describe('Vercel adapter', () => {
     const { res, captured } = mockRes();
     await vercelHandler(mockReq('POST', '{not json'), res);
     expect(captured.statusCode).toBe(400);
+  });
+
+  // The CSRF boundary. A cross-origin HTML form can POST these content types with no preflight,
+  // and the platform parses urlencoded bodies into req.body as an object - so before this guard a
+  // form POST from a hostile page was indistinguishable from our own submission. Measured against
+  // production: it returned 202 and delivered.
+  it('refuses every content type a cross-origin form could send without a preflight', async () => {
+    process.env.SENDGRID_API_KEY = FAKE_KEY;
+    process.env.CONTACT_TO_EMAIL = CONFIG.toEmail;
+    process.env.CONTACT_FROM_EMAIL = CONFIG.fromEmail;
+
+    for (const ct of [
+      'application/x-www-form-urlencoded',
+      'multipart/form-data; boundary=x',
+      'text/plain',
+      'application/xml',
+      '',
+    ]) {
+      const f = sendgridOk();
+      vi.stubGlobal('fetch', f);
+      __resetRateLimit();
+      const { res, captured } = mockRes();
+      // A body that would otherwise be perfectly valid.
+      await vercelHandler(mockReq('POST', VALID, { 'content-type': ct }), res);
+      expect(captured.statusCode, `content-type "${ct}" must be refused`).toBe(415);
+      expect(f, `content-type "${ct}" must not reach the mail provider`).not.toHaveBeenCalled();
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('still accepts application/json with a charset parameter', async () => {
+    process.env.SENDGRID_API_KEY = FAKE_KEY;
+    process.env.CONTACT_TO_EMAIL = CONFIG.toEmail;
+    process.env.CONTACT_FROM_EMAIL = CONFIG.fromEmail;
+    vi.stubGlobal('fetch', sendgridOk());
+    __resetRateLimit();
+    const { res, captured } = mockRes();
+    await vercelHandler(
+      mockReq('POST', VALID, { 'content-type': 'application/json; charset=utf-8' }),
+      res
+    );
+    expect(captured.statusCode).toBe(202);
+    vi.unstubAllGlobals();
   });
 
   // The rate-limit key must not be something the caller can pick. `x-forwarded-for` is
