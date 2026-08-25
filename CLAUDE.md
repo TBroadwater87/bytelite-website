@@ -310,6 +310,17 @@ The route must:
   existing catch path, so it is reported as an honest 502 and logged by `err.name` only.
 - **key the rate limit on a header the caller cannot forge** - `x-vercel-forwarded-for`, then
   `x-real-ip`, then the socket address. Never the first hop of `x-forwarded-for`; see section 14.
+- **accept `application/json` and nothing else**, answering 415 before reading the body.
+  `application/x-www-form-urlencoded`, `multipart/form-data` and `text/plain` are "simple"
+  request types that a cross-origin HTML form can POST with no preflight and no consent, and the
+  platform parses urlencoded bodies into `req.body` as an object - so before this guard a form
+  POST from a hostile page was accepted as a real submission. Requiring JSON forces a preflight
+  this route does not answer.
+
+**Probing this route is not free.** A valid payload sends real mail to a real person. Test it
+with payloads that cannot pass validation, and confirm the deployment is actually aliased before
+probing at all - otherwise you are testing the previous deployment and mailing the owner to
+learn it.
 
 **`POST /api/contact` is the only server-side route.** `api/health.ts` was a temporary
 migration probe during the 2026-08 domain cutover; it was deleted on 2026-08-25 once delivery

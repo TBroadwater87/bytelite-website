@@ -716,8 +716,16 @@ MODERATE_BEFORE=4                  MODERATE_AFTER=4
 LOW_BEFORE=3                       LOW_AFTER=3
 ```
 
-The nine that remain are all **Astro**, and all nine are **provably unreachable in this build**.
-The one that was fixed was `sharp`.
+The one that was fixed was `sharp`. The nine that remain are **eight Astro plus one esbuild**,
+and every one of them is **provably unreachable in this build**.
+
+`esbuild` (GHSA-g7r4-m6w7-qqqr, low, CVSS 2.5) is "arbitrary file read when running the
+development server on Windows" - esbuild's *own* `serve` command, which nothing here runs. Vite
+uses esbuild as a transform library, not as a server. The attack is `AV:L` (local) anyway, so it
+needs someone already on the machine. Astro pins `esbuild: ^0.27.3` and the patch is `0.28.1`,
+outside that range, so forcing it would mean overriding a build-critical package past what its
+maintainer tested - real risk, for a local-only issue in a server we never start. Left open
+deliberately; it clears when Astro's range moves.
 
 ### Why nine Astro alerts are open and that is not negligence
 
@@ -831,6 +839,41 @@ a CSP change the same way, in a browser, against the real build, before shipping
 
 Strict CSP is available later if wanted, by stopping Astro from inlining scripts so `script-src`
 can drop to `'self'`. That is a build-output change affecting every page and is an owner decision.
+
+### What attacking the live route actually found
+
+Reading the code found nothing. Attacking the deployed endpoint found one real gap:
+
+```
+POST /api/contact   Content-Type: application/x-www-form-urlencoded   -> 202 {"status":"sent"}
+POST /api/contact   Content-Type: text/plain                          -> 202 {"status":"sent"}
+```
+
+Vercel parses urlencoded bodies into `req.body` as an object, and the adapter accepted any
+object, so a plain HTML form POST was indistinguishable from the site's own `fetch`. Those three
+content types are "simple" requests: a cross-origin form can send them with **no preflight and no
+consent**. The gain to an attacker was never "send mail" - it is a public endpoint, anyone can
+curl it - it was sending from *other people's browsers and addresses*, which makes the per-address
+throttle meaningless because every request arrives from a different real client.
+
+Now fixed: anything that is not `application/json` gets **415 before the body is read**. A
+cross-origin `fetch` setting that content type triggers a preflight this route does not answer,
+so the browser never sends it. Verified live, with deliberately invalid bodies so the check
+itself could not send anything:
+
+```
+form-urlencoded / text/plain / multipart / xml  -> 415
+application/json  and  application/json; charset=utf-8  -> 400 (validation, nothing sent)
+```
+
+**Four real emails reached the contact mailbox during this audit**, all synthetic (`name: "a"`,
+`message: "m"`). Two came from the probe that discovered the gap - they were expected to be
+rejected, not accepted. Two more came from re-running that probe against production before the
+fix had finished deploying. They were not intended and they are the only mail this pass produced.
+They do serve as the post-change delivery proof: they exercised the new rate-limit key and the
+new provider deadline end to end and still delivered, so no further verification message was
+sent. **Lesson for next time: probe a mail-sending endpoint only with payloads that cannot pass
+validation, and confirm the deployment is aliased before probing at all.**
 
 ---
 
