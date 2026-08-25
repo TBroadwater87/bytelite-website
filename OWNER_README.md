@@ -760,6 +760,17 @@ utility class across 63 pages and 1410 E2E assertions including the reflow check
 fix advisories that cannot currently be triggered. Revisit it when Astro 7 support lands in the
 integrations, or immediately if this site ever stops being static - see the trigger below.
 
+**Decided 2026-08-25: defer.** The owner reviewed the tradeoff and chose to leave Astro at 5.18.2
+rather than take a Tailwind 4 migration to fix unreachable advisories. Do not re-open this as if
+it were an oversight - it is a considered position with a stated expiry condition (the trigger
+below). Re-raise it only when the trigger fires, or when `@astrojs/tailwind` gains Astro 7
+support and the migration stops being a Tailwind rewrite.
+
+**Also decided 2026-08-25: the nine alerts stay OPEN in GitHub, undismissed.** Dismissing them
+would tidy the dashboard, but an open alert is the thing that will still be visible if this site
+ever stops being static and the whole "not applicable" argument collapses. Visible-and-explained
+was judged safer than dismissed-and-forgotten. Do not dismiss them to make a report look clean.
+
 **The trigger that makes all nine live.** If anyone adds an adapter, sets `output: 'server'`, or
 writes `export const prerender = false`, the reachability argument above collapses and the Astro
 upgrade becomes urgent rather than optional. Treat that change as a security change.
