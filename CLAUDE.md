@@ -522,8 +522,19 @@ error path, or a report. Report finding *types* and locations. A caught fetch er
 **Operational detail, service-by-service troubleshooting, deployment commands, recovery
 procedure, and the current open blockers live in `OWNER_README.md`.**
 
-Last reviewed against reality: 2026-08-25. The custom-domain cutover is closed and contact
-delivery is proven to the mailbox; the runtime evidence is `qa/contact-verification-2026-08-25.md`,
-taken against `https://www.thebytelite.com` serving commit `0e5ffab`. Production was re-verified
-after the cleanup at commit `fbe6371`: 200 on `www`, 308 from the apex, 404 on the deleted probe,
-405 on `GET /api/contact`, 400 on an invalid POST.
+Last reviewed against reality: 2026-08-25, against commit `8ea2de6` serving production
+(deployment `dpl_8SvCeGwcFguaxy1aMmQD2bGDPi7T`).
+
+The custom-domain cutover is closed and contact delivery is proven to the mailbox; the runtime
+evidence is `qa/contact-verification-2026-08-25.md`, taken against `https://www.thebytelite.com`
+serving commit `0e5ffab`. A security and dependency hardening pass followed
+(`2c348d6..5a73c76`): all seven security headers are now served from `vercel.json`, the contact
+route requires `application/json` and bounds its provider call, and the rate-limit key no longer
+trusts a caller-supplied header.
+
+Verified live at `8ea2de6`: 200 on `www`, 308 from the apex, 404 on the deleted probe, 405 on
+`GET /api/contact`, 415 on a non-JSON POST, 400 on an invalid JSON POST.
+
+**WEBSITE_ACTIVE_DEVELOPMENT=FROZEN.** Resume from `reports/WEBSITE_AUTHORITATIVE_HANDOFF.md`,
+which carries the checkpoint and the only legitimate reasons to reopen this repository. Routine
+package-version drift is not one of them.

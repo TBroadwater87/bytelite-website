@@ -48,7 +48,7 @@ not a permanent truth. Re-verify with section 9.
 
 ```
 LAST_VERIFIED_DATE=2026-08-25
-LAST_VERIFIED_COMMIT=fbe6371
+LAST_VERIFIED_COMMIT=8ea2de6
 PRODUCTION_BRANCH=main
 PRODUCTION_HOST=Vercel
 VERCEL_TEAM=ByteLite_LLC              (CLI scope slug: bytelitellc)
@@ -85,7 +85,7 @@ Node v24.18.0, 57 environment variables visible, all three contact variable name
 Node v22.23.1, 48 variables, and none of the three names.
 
 `LAST_VERIFIED_COMMIT` is the commit that was actually observed serving production
-(`fbe6371`, deployment `dpl_2SFFVGgJk7r7EPXMwgDwoRsZ9upV`, both domains aliased to it, function
+(`8ea2de6`, deployment `dpl_8SvCeGwcFguaxy1aMmQD2bGDPi7T`, both domains aliased to it, function
 manifest showing `api/contact` and nothing else). The commit that records this line is a later,
 documentation-only commit: it changes no page, no route and no function, so it does not
 invalidate the verification above. If you ever find this field naming a commit that changed
@@ -709,7 +709,7 @@ shadowed real pages that now exist.
 
 ```
 LAST_SECURITY_AUDIT_DATE=2026-08-25
-LAST_SECURITY_AUDIT_COMMIT=see section 2 LAST_VERIFIED_COMMIT
+LAST_SECURITY_AUDIT_COMMIT=2c348d6..5a73c76   (the audit's own commits)
 DEPENDABOT_ALERTS_BEFORE=10        DEPENDABOT_ALERTS_AFTER=9
 HIGH_BEFORE=3                      HIGH_AFTER=2
 MODERATE_BEFORE=4                  MODERATE_AFTER=4
@@ -754,7 +754,7 @@ already happened and what ships is plain HTML.
 bump**, because `@astrojs/tailwind@6.0.2` peers on `astro: ^3 || ^4 || ^5` and has no Astro 6/7
 release at all. So the real cost is: drop `@astrojs/tailwind`, migrate to Tailwind 4 via
 `@tailwindcss/vite`, rewrite `tailwind.config.mjs` into CSS `@theme` form, and re-verify every
-utility class across 63 pages and 1410 E2E assertions including the reflow checks.
+utility class across 63 pages and 1485 E2E assertions including the reflow checks.
 
 **That is an owner decision, not an agent's.** It is a real migration on a live marketing site to
 fix advisories that cannot currently be triggered. Revisit it when Astro 7 support lands in the
@@ -933,7 +933,33 @@ On 2026-08-24, Windows 11, before and after the cleanup pass:
 The 24 ESLint warnings are pre-existing `no-explicit-any` in `RestaurantSignup.tsx`,
 `RestaurantAdmin.tsx` and `tests/setup.ts`. They were not introduced by the cleanup.
 
-Record counts with the commit and the date. A bare "1410/1410" with no anchor is not evidence.
+**Second dated snapshot - the 2026-08-25 security pass:**
+
+```
+On 2026-08-25, Windows 11, after the security/dependency hardening:
+
+  npm ci                PASS  917 packages, exit 0
+  npm run build         PASS  63 routes, 343 files in dist
+  npx vitest run        PASS  35/35 (2 files)   <- 30 before, +5 security tests
+  npx astro check       PASS  0 err / 6 hints   (144 files; middleware.ts removed)
+  npx tsc --noEmit      PASS  0 errors
+  npx eslint .          PASS  0 err / 24 warn
+  npx playwright test   PASS  1485/1485 (39.4m) <- 1410 before, +75 new assertions
+  security headers      ALL SEVEN present in production
+  secret scan           CLEAN (tree, dist, full git history across all refs)
+```
+
+The E2E suite grew from 1410 to 1485 because this pass ADDED assertions and split one
+over-broad test; nothing was weakened or removed.
+
+**Why that E2E number is still trustworthy at a later commit.** The run happened before
+`5a73c76`, which changed `api/contact.ts` and its unit tests. Neither is an input to the Astro
+build - `api/` is a Vercel Function that lives beside the static site, not inside it. That was
+proven rather than assumed: `dist` rebuilt to a byte-identical 343-file manifest,
+SHA256 `157F221198D1C68312DBAF3090B5A86B9941DBCF8A1095C01913EE6599007F8A`, both before and after.
+Re-confirmed again at `8ea2de6`. Recompute it with the same method before trusting this line.
+
+Record counts with the commit and the date. A bare "1485/1485" with no anchor is not evidence.
 
 ---
 
@@ -1155,5 +1181,10 @@ Environment variable NAMES required in Vercel Production: `SENDGRID_API_KEY`,
 
 ---
 
-**Last verified: 2026-08-24, against commit 0e5ffab.**
+**Last verified: 2026-08-25, against commit 8ea2de6.**
 Re-verify with section 9 before trusting any line of this document.
+
+**Website active development is FROZEN.** The machine-readable checkpoint a future agent should
+resume from is `reports/WEBSITE_AUTHORITATIVE_HANDOFF.md`. Read CLAUDE.md, then this file, then
+that handoff, then `git status` - and only then inspect deltas. Do not re-scout the hosting,
+domain, mail or security questions; they are settled and the evidence is recorded.
