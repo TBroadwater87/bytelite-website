@@ -1,5 +1,6 @@
 {
   "redirects": [
+    { "source": "/", "has": [{ "type": "host", "value": "thebytelite.com" }], "destination": "https://www.thebytelite.com/", "statusCode": 308 },
     { "source": "/:path*", "has": [{ "type": "host", "value": "thebytelite.com" }], "destination": "https://www.thebytelite.com/:path*", "statusCode": 308 },
     { "source": "/heartstrings", "destination": "/products/cordel-play", "statusCode": 301 },
     { "source": "/heartstrings-app", "destination": "/products/cordel-connect", "statusCode": 301 },
