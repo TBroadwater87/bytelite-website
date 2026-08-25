@@ -305,6 +305,11 @@ The route must:
   only, because a thrown fetch error can carry the request and its Authorization header.
 - distinguish provider acceptance from mailbox receipt. SendGrid `202` means queued. It is
   not proof the mail arrived.
+- **bound the provider call.** `PROVIDER_TIMEOUT_MS` aborts a stalled SendGrid request so one
+  provider outage cannot pin compute slots until the platform ceiling. The abort arrives on the
+  existing catch path, so it is reported as an honest 502 and logged by `err.name` only.
+- **key the rate limit on a header the caller cannot forge** - `x-vercel-forwarded-for`, then
+  `x-real-ip`, then the socket address. Never the first hop of `x-forwarded-for`; see section 14.
 
 **`POST /api/contact` is the only server-side route.** `api/health.ts` was a temporary
 migration probe during the 2026-08 domain cutover; it was deleted on 2026-08-25 once delivery
@@ -439,6 +444,67 @@ Edit files in place. Do not rename source files. Do not add new source files unl
   "Commercial / Lighthouse / Strategic" versions. This is a single unified website.
 - Research pages state hypotheses; they must never state capability. Anything that exists
   belongs in `projects.ts` and is surfaced through Current Status and Validation Evidence.
+
+---
+
+## 14. SECURITY LAW
+
+**A package in the lockfile is not an exploit.** Every dependency finding gets a reachability
+argument before it gets a version bump, and the argument must come from configuration, not
+optimism. This site is `output: 'static'` with no adapter: Astro renders at BUILD time, from this
+repository's own files, and ships plain HTML. An advisory whose precondition is request-time
+rendering, an attacker-controlled slot name, a `Host` header, `define:vars`, a `transition:*`
+directive, a spread attribute name, or a server island is **structurally unreachable here**, and
+saying so with the grep that proves it is a stronger answer than a major upgrade. Record the
+proof; do not silently ignore the alert.
+
+**The reverse is equally binding: unreachable is not the same as absent.** Re-run the
+reachability argument whenever the architecture moves. Adding an adapter, setting
+`output: 'server'`, or introducing `prerender = false` turns a whole class of "not applicable"
+into "exploitable" in one commit. See section 7 rule 9.
+
+**`npm audit fix --force` is prohibited.** It resolves every finding by installing whatever
+version satisfies the advisory, including major upgrades, without asking whether the vulnerable
+path is reachable or whether the new major breaks the site. Fix in this order: patch, minor, a
+direct-dependency bump that lifts the transitive package, a narrowly justified `overrides` entry,
+and only then a major migration. Every `overrides` entry needs a documented reason and a stated
+condition for removing it again.
+
+**Dependency changes require the full matrix in section 9**, ending with `npm ci` from a clean
+state so the lockfile is proven self-consistent. Never hand-edit `package-lock.json`. Never swap
+npm for another package manager.
+
+**Contact secrets are server-side only, and the visitor controls nothing that addresses mail.**
+The recipient and the sending identity come from environment variables and from nowhere else. A
+submitted body may never choose, extend or influence a destination, a sender, a Bcc, or a header.
+The visitor's address is used as `reply_to` only, after control characters are stripped. Anything
+that would let a request pick where mail goes is an open relay; do not build one.
+
+**A rate-limit key must be something the caller cannot choose.** `x-forwarded-for` is
+caller-supplied: its first hop is whatever the client sent, so keying a throttle off it lets one
+client rotate the header and never be limited, which is worse than no throttle because it looks
+like one. Use the platform's own `x-vercel-forwarded-for` / `x-real-ip`, then the socket address.
+
+**Every outbound call from a function needs a deadline.** Without one, a provider that accepts
+the connection and stalls holds a compute slot until the platform ceiling, turning someone else's
+outage into ours.
+
+**Security headers are served by the host, not by the framework.** In a static build Astro
+middleware runs at build time and its headers are discarded. `vercel.json` is the only place that
+actually sets them, and it is therefore the single source of truth - do not create a second,
+divergent policy elsewhere and do not cite an inert file as evidence that headers are live.
+**A CSP must be validated in a real browser against the real build before it ships**, because the
+violations that matter come from runtime `fetch` calls that no static reading of the source
+reveals. Never widen a directive to `*` or add `unsafe-eval` to silence a console error; widen
+only to a specific origin the site provably calls, and write down why.
+
+**Do not add security vendors.** No CAPTCHA, scanner, WAF service, monitoring agent, analytics or
+badge unless a demonstrated vulnerability requires it. A longer vendor list is a larger attack
+surface, not a smaller one.
+
+**Never print a secret value** - not in a commit, a log, a response body, a test fixture, an
+error path, or a report. Report finding *types* and locations. A caught fetch error is logged by
+`err.name` only, because the thrown object can carry the request and its Authorization header.
 
 ---
 

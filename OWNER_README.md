@@ -705,6 +705,135 @@ shadowed real pages that now exist.
 
 ---
 
+## 14b. Security and Dependencies
+
+```
+LAST_SECURITY_AUDIT_DATE=2026-08-25
+LAST_SECURITY_AUDIT_COMMIT=see section 2 LAST_VERIFIED_COMMIT
+DEPENDABOT_ALERTS_BEFORE=10        DEPENDABOT_ALERTS_AFTER=9
+HIGH_BEFORE=3                      HIGH_AFTER=2
+MODERATE_BEFORE=4                  MODERATE_AFTER=4
+LOW_BEFORE=3                       LOW_AFTER=3
+```
+
+The nine that remain are all **Astro**, and all nine are **provably unreachable in this build**.
+The one that was fixed was `sharp`.
+
+### Why nine Astro alerts are open and that is not negligence
+
+Every open Astro advisory needs one of these to be exploitable: request-time rendering, an
+attacker-controlled slot name, a `Host` header reaching a server, `define:vars`, a `transition:*`
+directive, a spread attribute name, or a server island. Measured 2026-08-25, this repository has
+**none of them**:
+
+```powershell
+# no adapter, no output:'server', nothing opting out of prerender
+Select-String -Path astro.config.mjs -Pattern 'adapter|output'      # no match
+Select-String -Path src\**\*.astro,src\**\*.ts -Pattern 'prerender' # no match
+# none of the vulnerable features are used anywhere
+Select-String -Path src -Recurse -Pattern 'define:vars|transition:|server:defer|\{\.\.\.'
+Select-String -Path src -Recurse -Pattern '<slot\s+name=\{|Astro\.slots'
+# and the build emits no server entrypoint at all
+Get-ChildItem dist -Recurse -Include 'entry.mjs','_worker.js','*.func'   # nothing
+```
+
+Astro renders at BUILD time here, from this repository's own files. A visitor cannot supply
+anything that reaches the vulnerable code, because by the time a visitor arrives the rendering
+already happened and what ships is plain HTML.
+
+**Closing them requires Astro 7.** The first release patched against all of them is 7.1.0, and
+`astro@5.18.2` is the newest 5.x - there is no patch inside 5. That upgrade is **not a version
+bump**, because `@astrojs/tailwind@6.0.2` peers on `astro: ^3 || ^4 || ^5` and has no Astro 6/7
+release at all. So the real cost is: drop `@astrojs/tailwind`, migrate to Tailwind 4 via
+`@tailwindcss/vite`, rewrite `tailwind.config.mjs` into CSS `@theme` form, and re-verify every
+utility class across 63 pages and 1410 E2E assertions including the reflow checks.
+
+**That is an owner decision, not an agent's.** It is a real migration on a live marketing site to
+fix advisories that cannot currently be triggered. Revisit it when Astro 7 support lands in the
+integrations, or immediately if this site ever stops being static - see the trigger below.
+
+**The trigger that makes all nine live.** If anyone adds an adapter, sets `output: 'server'`, or
+writes `export const prerender = false`, the reachability argument above collapses and the Astro
+upgrade becomes urgent rather than optional. Treat that change as a security change.
+
+### Routine commands
+
+```powershell
+gh api "repos/TBroadwater87/bytelite-website/dependabot/alerts?state=open&per_page=100"
+npm audit                 # advisory view, with the caveat below
+npm outdated              # informational only - newer is not a mandate
+npm ls sharp esbuild      # prove what a transitive package actually resolved to
+```
+
+**`npm audit fix --force` is prohibited here.** It would install `astro@7.2.6` - a breaking
+change, on a live site, to fix findings that are unreachable. Fix order is patch, minor,
+direct-dependency bump, narrow `overrides`, and major migration last. See CLAUDE.md section 14.
+
+### The one `overrides` entry, and when to remove it
+
+`package.json` pins `sharp: ^0.35.3`. `sharp` is an *optional* dependency of Astro (which asks
+for `^0.34.0`) and is the configured image service, but nothing here ever invokes it: there is no
+`astro:assets` import, no `<Image>`, no `getImage()`, and no image imported from `src/`. It would
+run at build time only and never sees a visitor's input. The override closes a high alert at zero
+behavioural cost. **Remove it once Astro's own range reaches `>= 0.35.0`.** It installs with an
+`EBADENGINE` warning on Node < 22.19.0; Vercel builds on Node 24, so this is a local-only notice.
+
+### Where secrets live, conceptually
+
+Nowhere in this repository, and nowhere in the build output - both were scanned, along with the
+full Git history across all refs, and all three are clean. `SENDGRID_API_KEY`, `CONTACT_TO_EMAIL`
+and `CONTACT_FROM_EMAIL` exist **only** in the Vercel Production environment, are read at request
+time inside the function, and reach exactly one place: the SendGrid `Authorization` header.
+
+To rotate the SendGrid key without a value ever touching source:
+
+1. Create a new key in SendGrid with **Mail Send** permission only. Do not delete the old one yet.
+2. `.\Add-ByteLite-SendGrid.ps1` (prompts for the value as a `SecureString` and never echoes or
+   stores it), or set it in the Vercel dashboard under Settings -> Environment Variables.
+3. **Redeploy.** A running deployment does not pick up a changed variable on its own.
+4. Verify with the section 8 steps - expect 405 on `GET`, 400 on an invalid POST, 202 on a real
+   one - then look in the mailbox.
+5. Only after receipt is confirmed, delete the old key in SendGrid.
+
+Never paste a key into a file, a commit, a chat, or a log. `vercel env ls production --scope
+bytelitellc` prints names and `Encrypted`, never values, which is the only listing you need.
+
+### Security headers
+
+Served by `vercel.json` `headers`, which is the **only** live source. Astro middleware cannot do
+this in a static build; `src/middleware.ts` used to hold a second, divergent policy that named
+Google Analytics hosts this site does not use, and it was deleted on 2026-08-25 for exactly that
+reason. Do not recreate it.
+
+Verify after any deployment:
+
+```powershell
+$r = Invoke-WebRequest -Uri 'https://www.thebytelite.com/' -SkipHttpErrorCheck
+$r.Headers['content-security-policy']
+$r.Headers['x-frame-options']; $r.Headers['x-content-type-options']
+$r.Headers['referrer-policy']; $r.Headers['permissions-policy']
+```
+
+The CSP carries `script-src 'self' 'unsafe-inline'`, and that is a deliberate, documented limit
+rather than an oversight: Astro inlines its bundled module scripts into the HTML (128 inline
+module scripts plus 5 bare inline blocks across 68 pages, measured), so removing `'unsafe-inline'`
+would break the navigation toggle, the cookie banner and the contact form on every page. A
+nonce would need request-time rendering, which a static build does not have, and a hash list
+would change on every build. What the policy *does* buy is real: no external script origin, no
+`unsafe-eval` (verified: no `eval`/`new Function` in any shipped asset), `object-src 'none'`,
+`base-uri 'self'`, `form-action 'self'`, `frame-ancestors 'none'`, and a `connect-src` limited to
+this origin plus `https://api.thebytelite.com`.
+
+That last origin is load-bearing: `/marketing/signup` and `/marketing/admin` fetch the restaurant
+portal backend there at runtime. It was found only by loading the real build in a real browser and
+watching for `securitypolicyviolation` - static reading of the source never showed it. **Validate
+a CSP change the same way, in a browser, against the real build, before shipping it.**
+
+Strict CSP is available later if wanted, by stopping Astro from inlining scripts so `script-src`
+can drop to `'self'`. That is a build-output change affecting every page and is an owner decision.
+
+---
+
 ## 15. Testing
 
 All commands from `D:\bytelite-website`.
@@ -822,10 +951,17 @@ routes by `Host` header, every project answers on the same `cname.vercel-dns.com
 | `functions/api/contact.ts` | Cloudflare Pages adapter for the contact route. Never deployed; its own header said "NOT the production path". | `api/contact.ts` |
 | `functions/env.d.ts` | Ambient types existing only for that adapter | nothing needed |
 | `public/_redirects` | Cloudflare Pages redirect file. Inert on Vercel, and served publicly as a static file, exposing retired product route names. Its 19 rules are duplicated exactly in `vercel.json`. | `vercel.json` `redirects` |
-| `public/_headers` | Cloudflare Pages header file. Inert on Vercel and served publicly. | Policy text preserved in `src/middleware.ts`; see blocker 2 |
+| `public/_headers` | Cloudflare Pages header file. Inert on Vercel and served publicly. | The live policy is now the `headers` block in `vercel.json`; see section 14b |
 | `public/_routes.json` | Cloudflare Pages function-routing manifest. Meaningless on Vercel. | Vercel routes `api/` automatically |
 | `src/pages/api/compress.ts` | POST-only Astro API route in a static build: emitted no file at all (the build log says "file not created, response body was empty") and returned 404 in production. Its rate limiting and CORS protected nothing. Its documented response advertised a compression ratio that must never be claimed. | nothing - it was never deployed |
 | `src/components/ProofDemo.astro` | A 114-byte stub whose own comment read "Archived component - not in use by any page" | nothing |
+
+### Removed in the 2026-08-25 security pass
+
+| Name | Why removed | Replaced by |
+|---|---|---|
+| `src/middleware.ts` | Inert in a static build, and once `vercel.json` began serving real headers it became a **second, divergent security policy** - one that allowed `googletagmanager.com` and `google-analytics.com`, neither of which this site loads (verified: no analytics reference in any built page). A stale security policy that cannot be enforced is worse than none, because it reads like evidence. | The `headers` block in `vercel.json`, which is authored *and* enforced |
+| `chart.js` (dependency) | Proven unused: the string appears only in `package.json` and `package-lock.json` - zero references in `src/`, `tests/`, config, or `dist/`. | nothing - no chart is rendered anywhere |
 
 ### Removed in the 2026-08-25 closure
 
@@ -839,7 +975,6 @@ routes by `Host` header, every project answers on the same `cname.vercel-dns.com
 | Item | Why it is uncertain |
 |---|---|
 | `src/pages/api/deepkore-submit.ts` | Its `GET` half prerenders to a real static file, so `/api/deepkore-submit` returns 200 today. Deleting it would change live public behaviour (200 -> 404), which is more than cleanup. Its `POST` half is dead in a static build. It names a retired sibling product on a public URL, so it is worth an owner decision - but it is not this pass's call to make. |
-| `src/middleware.ts` | Astro middleware does not run at request time in a static build, so it does not serve the security headers it defines. It is retained because it is the authored record of the intended header policy and would become live if an adapter were ever added. A comment now says so at the top of the file. |
 | `verify_site.ps1` | A root-level forbidden-word and build checker from an earlier pass. Still runs, overlaps partly with the E2E claim audit. Harmless; unclear whether it is still the owner's preferred gate. |
 | `.env.example` | Lists six build-time names - `PUBLIC_SITE_URL`, `PUBLIC_GA_ID`, `PUBLIC_API_URL`, `API_RATE_LIMIT_WINDOW`, `API_MAX_REQUESTS_PER_WINDOW`, `API_MAX_FILE_SIZE`. Verified 2026-08-24: **none is read by any code here.** The canonical site URL is hardcoded in `astro.config.mjs`; no analytics tag is wired into `Layout.astro`; the `API_*` limits belonged to the removed `compress.ts`. All six are still set in the Vercel project. The file is protected by a local write-deny rule, so it was left exactly as it was. It also does not mention the three variables that actually matter (`SENDGRID_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`) - those are runtime secrets and correctly live only in Vercel. |
 | `PROJECT-FIXES-SUMMARY.md`, `SITE_FULL_PUBLIC_REDESIGN_AND_DEPLOY_REPORT.md`, `ASSET_MANIFEST.md`, `reports/` | Dated session records that describe an older architecture. Kept as history. Read them as history, never as current instruction. |
@@ -863,37 +998,20 @@ merely because an implementation exists.
 | Blocker 1 - custom-domain cutover | **DONE.** `www.thebytelite.com` and the apex both alias the ByteLite_LLC deployment. No Cloudflare DNS change was needed. |
 | Blocker 3 - mailbox receipt not confirmed | **DONE.** Confirmed by looking in the destination inbox, not inferred from a 202. |
 | Blocker 4 - remove the temporary health probe | **DONE.** `api/health.ts` deleted, and every reference to it in this file and `CLAUDE.md` removed. |
+| Blocker 2 (2026-08-24 numbering) - security headers not served | **DONE 2026-08-25.** CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy and COOP are now served from `vercel.json`. The inert, divergent `src/middleware.ts` policy was deleted. Details in section 14b. |
 
-### Blocker 1 - Security headers are not being served (NOT DONE)
+### Blocker 1 - Astro is nine advisories behind, and catching up means Tailwind 4
 
-Measured 2026-08-24 on both `www.thebytelite.com` and `bytelite-website.vercel.app`:
-Content-Security-Policy, X-Frame-Options, X-Content-Type-Options, Referrer-Policy and
-Permissions-Policy are **all absent**. Only HSTS is present, and that is Vercel's own default.
+Not exploitable today - every one of the nine needs a precondition this static build does not
+have, and the proof is in section 14b. It is listed here because "unreachable" is a property of
+the current architecture, not a permanent fact, and because the gap widens over time.
 
-The cause is a three-way gap, and all three mechanisms are inert on Vercel:
+The decision is whether to take Astro 5 -> 7 now or later. It is a genuine migration:
+`@astrojs/tailwind` has no Astro 6/7 release, so it means moving to Tailwind 4 via
+`@tailwindcss/vite` and rewriting the Tailwind config into CSS `@theme` form, then re-verifying
+the visual result across 63 pages. Section 14b has the full analysis.
 
-- `src/middleware.ts` - Astro middleware runs at build time in a static build. The headers it
-  sets on the prerender response are discarded; static files are served by the host.
-- `astro.config.mjs` `server.headers` - applies to the dev server only.
-- `public/_headers` - a Cloudflare Pages file. Vercel ignores it and served it as a public
-  static asset. (Removed in this pass; the policy text survives in `src/middleware.ts`.)
-
-**This was not fixed in this pass, deliberately.** Applying a CSP that has never been enforced
-against the live site is a real behaviour change with real breakage risk (Google Fonts, Google
-Analytics), and it cannot be validated locally - the E2E suite runs against `astro preview`,
-which does not read `vercel.json` headers at all. It needs a preview deployment to test on.
-
-The fix, when the owner chooses to take it, is a `headers` block in `vercel.json` carrying the
-policy already written in `src/middleware.ts`. Verify with:
-
-```powershell
-$r = Invoke-WebRequest -Uri 'https://www.thebytelite.com/' -UseBasicParsing
-$r.Headers['content-security-policy']
-$r.Headers['x-frame-options']
-```
-
-Deploy it to a Vercel preview URL first and load every public page with the browser console
-open before promoting it.
+Take it immediately if the site ever stops being fully static.
 
 ### Blocker 2 - Logo weight
 
