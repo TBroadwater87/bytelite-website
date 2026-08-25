@@ -257,6 +257,24 @@ Absolute rules:
 8. **Never infer the hosting provider from the DNS provider.**
 9. **Never add an Astro adapter or set `output: 'server'`** to make one API route work. The
    site is static; server-side code lives in `api/` as a Vercel Function beside it.
+10. **Verify runtime behaviour on the canonical production domain**, `https://www.thebytelite.com`,
+    or on a project alias such as `bytelite-website-bytelitellc.vercel.app`. A raw per-deployment
+    URL (`bytelite-website-<hash>-bytelitellc.vercel.app`) is protected: it answers with Vercel's
+    own authentication page. That HTML is Vercel, not this site. Reading it as the application
+    produces confident nonsense - a "working" 200 that never touched the build, or a "broken"
+    site that is perfectly fine.
+11. **Never restore the superseded Vercel path.** See below.
+
+**The superseded path - historical fact, never current.** Until 2026-08-25, `www.thebytelite.com`
+was served by a project under a different Vercel account (`Tash Broadwater's projects`). It ran
+Node 22, exposed 48 environment variables, and did not have the three contact variables. It is
+superseded. Do not redeploy it, do not point the domain back at it, and do not describe it as
+current in any document.
+
+Both deployments were built from the same Git commit, so the pages looked identical and
+comparing content proved nothing. What actually distinguished them was the **runtime
+fingerprint** - Node version, environment-variable count, presence of the contact variable
+names. When two deployments disagree, compare what the runtime reports, not what the page says.
 
 ---
 
@@ -288,9 +306,31 @@ The route must:
 - distinguish provider acceptance from mailbox receipt. SendGrid `202` means queued. It is
   not proof the mail arrived.
 
-`api/health.ts` is a TEMPORARY migration probe. It reports variable PRESENCE only, never a
-value. Delete it once the custom-domain cutover is verified. It must not become a permanent
-public API.
+**`POST /api/contact` is the only server-side route.** `api/health.ts` was a temporary
+migration probe during the 2026-08 domain cutover; it was deleted on 2026-08-25 once delivery
+was proven end to end. Do not reinstate it, and do not add any other diagnostic endpoint that
+reports deployment configuration to the public internet. A probe that survives its migration
+has become a permanent public API by accident.
+
+**Delivery is proven, and the proof has three separate parts.** Never merge them:
+
+| Fact | How it is established |
+|---|---|
+| The site accepted the request | `POST /api/contact` returned 202 |
+| The provider accepted the message | SendGrid answered 202, meaning queued |
+| The mailbox received it | Someone looked in the destination inbox and saw it |
+
+Closed on 2026-08-25 against `https://www.thebytelite.com` at commit `0e5ffab`, all three
+parts separately: `qa/contact-verification-2026-08-25.md`. Mail path is SendGrid ->
+`tash@thebytelite.com` -> Cloudflare Email Routing -> the owner's mailbox. A future agent that
+re-verifies this must confirm the third part by inspection, never by inferring it from the
+first two.
+
+**The contact page carries no outage notice.** The banner that stood there while delivery was
+being reconfigured was removed on 2026-08-25 and `public-scope-vocabulary.spec.ts` now asserts
+its absence. Honest error handling is a different thing and stays: a failed submission still
+says the message was not sent. Do not restore a standing outage notice while delivery works,
+and do not delete the failure path along with the banner.
 
 ---
 
@@ -405,4 +445,6 @@ Edit files in place. Do not rename source files. Do not add new source files unl
 **Operational detail, service-by-service troubleshooting, deployment commands, recovery
 procedure, and the current open blockers live in `OWNER_README.md`.**
 
-Last reviewed against reality: 2026-08-24 at commit 0e5ffab.
+Last reviewed against reality: 2026-08-25. The custom-domain cutover is closed and contact
+delivery is proven to the mailbox; the runtime evidence is `qa/contact-verification-2026-08-25.md`,
+taken against `https://www.thebytelite.com` serving commit `0e5ffab`.

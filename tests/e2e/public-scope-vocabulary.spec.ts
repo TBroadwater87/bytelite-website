@@ -71,6 +71,28 @@ const INTERNAL_TERMS = [
   'C:\\',
 ];
 
+// Checked against the rendered MARKUP, not just the visible text, so a class name, id, data
+// attribute or HTML comment cannot smuggle internal vocabulary onto a public page. Every entry
+// is lowercase (the markup is lowercased before comparison) and every entry is a substring match,
+// so nothing here may be a substring of an ordinary English word - that is why "ogram" is absent
+// and stays in INTERNAL_TERM_PATTERNS above, where it gets a word boundary.
+const MECHANISM_TERMS_IN_MARKUP = [
+  'sidecar',
+  'opcode',
+  'motion-program',
+  'motion program',
+  'library-of-libraries',
+  'library of libraries',
+  'root-of-roots',
+  'root of roots',
+  'carrier construction',
+  'recursive metadata integration',
+  'foundation construction',
+  'szudzik',
+  'dictionary cascade',
+  'sigma-9',
+];
+
 for (const route of PUBLIC_ROUTES) {
   test(`${route} names no sibling ByteLite LLC system`, async ({ page }) => {
     await page.goto(route);
@@ -89,6 +111,20 @@ for (const route of PUBLIC_ROUTES) {
     }
     for (const pattern of INTERNAL_TERM_PATTERNS) {
       expect(raw, `${route} must not match ${pattern}`).not.toMatch(pattern);
+    }
+  });
+
+  // The test above reads innerText, which is only what a visitor SEES. Markup is published too:
+  // a class name, an id, a data attribute and a comment are all world-readable in view-source.
+  // That gap was real, not hypothetical - the current-vs-final diagram shipped a step styled
+  // `cf-step-sidecar` on every rendered page while its visible label correctly read "Explicit
+  // reconstruction evidence". The label was public vocabulary; the class name was not. Found and
+  // removed 2026-08-25. This guards the source so the next one cannot hide in an attribute.
+  test(`${route} carries no internal vocabulary in its markup either`, async ({ page }) => {
+    await page.goto(route);
+    const html = (await page.content()).toLowerCase();
+    for (const term of MECHANISM_TERMS_IN_MARKUP) {
+      expect(html, `${route} must not carry "${term}" anywhere in its markup`).not.toContain(term);
     }
   });
 }
@@ -393,22 +429,31 @@ test.describe('Claim discipline on figures and economics', () => {
     }
   });
 
-  test('the 90% figure is never stated as an achieved result', async ({ page }) => {
-    for (const route of PUBLIC_ROUTES) {
+  // One test per route, which is this file's convention everywhere else (see the loops above).
+  // It was written as a single test walking all eight routes, which made it the only test in the
+  // suite performing eight navigations inside one 30s budget. Measured 2026-08-25: 7.5s in an
+  // idle Firefox, but the whole eight-route walk shares one timeout, so machine contention takes
+  // out all eight assertions at once and the failure names no route. Splitting changes no
+  // assertion - the same six phrases are still checked on the same eight routes - and gives each
+  // route its own budget and its own name in the report.
+  const ACHIEVED_RESULT_PHRASES = [
+    'guarantees a 90%',
+    'achieves a 90%',
+    'delivers a 90%',
+    'proven 90%',
+    'measured 90%',
+    '90% reduction achieved',
+  ];
+
+  for (const route of PUBLIC_ROUTES) {
+    test(`${route} never states the 90% figure as an achieved result`, async ({ page }) => {
       await page.goto(route);
       const text = ((await page.locator('body').innerText()) ?? '').toLowerCase();
-      for (const phrase of [
-        'guarantees a 90%',
-        'achieves a 90%',
-        'delivers a 90%',
-        'proven 90%',
-        'measured 90%',
-        '90% reduction achieved',
-      ]) {
+      for (const phrase of ACHIEVED_RESULT_PHRASES) {
         expect(text, `${route} must not say "${phrase}"`).not.toContain(phrase);
       }
-    }
-  });
+    });
+  }
 
   test('the savings split is never presented as a cost cut', async ({ page }) => {
     await page.goto('/licensing');
@@ -446,9 +491,17 @@ test.describe('Claim discipline on figures and economics', () => {
     await expect(body).toContainText('Any compression claim is based on the complete artifact.');
   });
 
-  test('the contact form does not claim delivery it cannot perform', async ({ page }) => {
+  // Delivery through POST /api/contact was proven end to end on 2026-08-25 - request accepted,
+  // provider accepted, and the message confirmed in the destination mailbox (qa/contact-
+  // verification-2026-08-25.md). The outage banner that used to stand here was therefore removed.
+  // This test now guards both directions of that fact: no page may advertise an outage that is
+  // not happening, and no page may promise more than receipt.
+  test('the contact form neither advertises a false outage nor overpromises', async ({ page }) => {
     await page.goto('/contact');
-    await expect(page.locator('.ct-outage')).toBeVisible();
-    await expect(page.locator('.ct-outage')).toContainText('cannot send right now');
+    await expect(page.locator('.ct-outage')).toHaveCount(0);
+    const body = page.locator('body');
+    await expect(body).not.toContainText('temporarily unavailable');
+    await expect(body).not.toContainText('cannot send right now');
+    await expect(body).toContainText('does not guarantee acceptance');
   });
 });

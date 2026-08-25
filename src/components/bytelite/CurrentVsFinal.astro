@@ -13,7 +13,10 @@ const CURRENT_STEPS = [
   { label: 'Source', kind: 'plain' },
   { label: 'ByteLite research engine', kind: 'engine' },
   { label: 'Structural representation', kind: 'repr' },
-  { label: 'Explicit reconstruction evidence', kind: 'sidecar' },
+  // `kind` becomes a CSS class in the rendered HTML, so it is public surface as surely as the
+  // label is. It must therefore use the public vocabulary too - "evidence", never the internal
+  // classification term this step used to be named after.
+  { label: 'Explicit reconstruction evidence', kind: 'evidence' },
   { label: 'Exact verification', kind: 'verify' },
 ];
 
@@ -99,7 +102,7 @@ const FINAL_STEPS = [
   padding: .625rem .625rem;
 }
 .cf-step-engine .cf-step-box { color: #e4e7f2; font-weight: 600; border-color: #34406b; background: #111733; }
-.cf-step-sidecar .cf-step-box {
+.cf-step-evidence .cf-step-box {
   color: #fbbf24; border-color: rgba(251,191,36,.4); background: rgba(251,191,36,.05);
   border-style: dashed;
 }

@@ -76,8 +76,7 @@ src/
   styles/       Global CSS and design tokens
   middleware.ts Header policy record; inert in a static build (see OWNER_README section 17)
 api/
-  contact.ts        POST /api/contact - Vercel Function
-  health.ts         TEMPORARY migration probe; delete after the domain cutover
+  contact.ts        POST /api/contact - Vercel Function, the only server-side route
   _lib/
     contact-core.ts All contact logic: validation, limits, header-injection defence
 tests/

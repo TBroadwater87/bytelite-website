@@ -31,12 +31,13 @@ historically and is no longer part of this project.
 **Where the source lives.** GitHub, `TBroadwater87/bytelite-website`, branch `main`.
 **This repository is PUBLIC.** Anything committed is world-readable.
 
-**Current production status.** The site is live and healthy. The contact form works, end to
-end, on the new Vercel project.
+**Current production status.** The site is live on `https://www.thebytelite.com`, served by
+`ByteLite_LLC/bytelite-website`. The contact form works end to end on the real domain: request
+accepted, provider accepted, and message confirmed in the destination mailbox on 2026-08-25.
 
-**Remaining blocker, in one sentence.** `www.thebytelite.com` is still served by the OLD Vercel
-project, which has no SendGrid configuration, so the contact form is broken on the real domain
-until the custom-domain cutover in section 17 is performed.
+**Remaining blockers.** None that break anything. Section 17 lists four open items - absent
+security headers, an oversized logo, DMARC reports going to an unmonitored address, and two
+`_vercel` TXT records that cannot be classified from DNS. All are known, none is urgent.
 
 ---
 
@@ -46,8 +47,7 @@ Everything below was verified by direct observation on the date shown. It is a d
 not a permanent truth. Re-verify with section 9.
 
 ```
-LAST_VERIFIED_DATE=2026-08-24
-LAST_VERIFIED_COMMIT=0e5ffab43bfca785ee6f522b972bc191fec27bf1
+LAST_VERIFIED_DATE=2026-08-25
 PRODUCTION_BRANCH=main
 PRODUCTION_HOST=Vercel
 VERCEL_TEAM=ByteLite_LLC              (CLI scope slug: bytelitellc)
@@ -57,28 +57,31 @@ GITHUB_REPOSITORY=TBroadwater87/bytelite-website   (PUBLIC)
 DNS_PROVIDER=Cloudflare               (nameservers garrett/kim.ns.cloudflare.com)
 OUTBOUND_EMAIL_PROVIDER=SendGrid
 INBOUND_EMAIL_ROUTING=Cloudflare Email Routing
-CONTACT_ROUTE=POST /api/contact
-CONTACT_STATUS=WORKING on bytelite-website.vercel.app; NOT working on www.thebytelite.com
+CONTACT_ROUTE=POST /api/contact       (the ONLY server-side route)
+CONTACT_STATUS=WORKING on www.thebytelite.com, proven to the mailbox
+CUSTOM_DOMAIN_CUTOVER_COMPLETE=YES
 ```
 
-**The one thing that is split between current and target.** Do not read past this.
+**The cutover is closed.** `www.thebytelite.com` and the apex both alias the ByteLite_LLC
+deployment. The older Vercel account's project no longer holds the domain.
+
+The evidence, kept as three separate facts because they are three different things:
 
 ```
-CUSTOM_DOMAIN_CUTOVER_COMPLETE=NO
-
-CURRENT: www.thebytelite.com is served by an OLDER Vercel project.
-         Evidence (2026-08-24): GET https://www.thebytelite.com/api/health returned
-         {"SENDGRID_API_KEY":false,"CONTACT_TO_EMAIL":false,"CONTACT_FROM_EMAIL":false},
-         48 environment variables visible, Node v22.23.1.
-         That project cannot be given the environment variables; that is why a new one exists.
-
-TARGET:  www.thebytelite.com is served by ByteLite_LLC/bytelite-website.
-         Evidence (2026-08-24): GET https://bytelite-website.vercel.app/api/health returned
-         all three variables true, 57 variables visible, Node v24.18.0, commit 0e5ffab,
-         vercelEnv "production", branch "main".
+WEBSITE_REQUEST_ACCEPTED   YES  POST /api/contact -> 202 {"status":"sent"}
+                                2026-08-25T05:20:48Z, https://www.thebytelite.com
+SENDGRID_PROVIDER_ACCEPTED YES  the route returns 202 only on a non-error SendGrid response;
+                                SendGrid 202 means QUEUED, not delivered
+MAILBOX_RECEIPT_CONFIRMED  YES  owner looked in the destination inbox on 2026-08-25 and found
+                                the message. Not inferred from the two facts above.
 ```
 
-Both deployments run the same commit. The difference is configuration, not code.
+Full dated capture, including the failure-behaviour probes: `qa/contact-verification-2026-08-25.md`.
+
+The runtime fingerprint that closed it, taken from the temporary probe before it was deleted:
+Node v24.18.0, 57 environment variables visible, all three contact variable names present,
+`vercelEnv` production, branch main, commit 0e5ffab. The superseded deployment reported
+Node v22.23.1, 48 variables, and none of the three names.
 
 ---
 
@@ -199,9 +202,11 @@ vercel project inspect bytelite-website --scope bytelitellc
 #    through the GitHub integration. Use it only for a deliberate manual deploy.
 vercel deploy --prod --scope bytelitellc
 
-# 8. Verify the deployment that just went out
-vercel ls bytelite-website --scope bytelitellc
-Invoke-WebRequest -Uri 'https://bytelite-website.vercel.app/api/health?cb=1' -UseBasicParsing
+# 8. Verify the deployment that just went out, on the canonical domain
+vercel ls    bytelite-website --scope bytelitellc
+vercel alias ls --scope bytelitellc
+Invoke-WebRequest -Uri 'https://www.thebytelite.com/'                        -SkipHttpErrorCheck
+Invoke-WebRequest -Uri 'https://www.thebytelite.com/api/contact' -Method GET -SkipHttpErrorCheck
 ```
 
 The normal path is: commit to `main`, push, let Vercel build. Manual `vercel deploy` is the
@@ -244,21 +249,24 @@ projectId  prj_XmNkNFp156U94VveZgoPuMHPfW6u
 orgId      team_LjWPr2MnAsCrv6U1ddGy8BSh
 ```
 
-**Verify which project owns www.thebytelite.com.** The CLI will not tell you directly. Two
-ways, in order of reliability:
+**Verify which project owns www.thebytelite.com.** Two ways, in order of reliability:
 
 1. The Vercel dashboard: Domains -> `thebytelite.com` shows the project it is assigned to.
    This is authoritative.
-2. Live evidence, which works even when you cannot reach the dashboard:
+2. The alias table, which the CLI will tell you directly:
 
 ```powershell
-Invoke-WebRequest -Uri 'https://www.thebytelite.com/api/health?cb=1' -UseBasicParsing
-Invoke-WebRequest -Uri 'https://bytelite-website.vercel.app/api/health?cb=1' -UseBasicParsing
+vercel alias ls --scope bytelitellc
 ```
 
-If the two responses differ in `commit`, `node`, or the environment-variable booleans, they are
-being served by different projects. (This only works while `api/health.ts` still exists - see
-section 17.)
+Expect `thebytelite.com` and `www.thebytelite.com` both listed against a
+`bytelite-website-<hash>-bytelitellc.vercel.app` deployment. If either domain is absent from
+this table, it is assigned to a project outside this team - which is exactly the state that
+caused the 2026-08 incident in section 16.
+
+**Do not** try to answer this by fetching that `bytelite-website-<hash>-...vercel.app` URL in a
+browser or with `Invoke-WebRequest`. Per-deployment URLs are protected and return Vercel's own
+authentication page. You will be reading Vercel's HTML and thinking it is the site.
 
 **Use GitHub deployment status as evidence.** The GitHub repository's Deployments tab records
 which Vercel project claimed each commit, with the deployment URL. That survives even when the
@@ -322,6 +330,49 @@ The `TXT` record set also carries two Google site verifications, two OpenAI doma
 verifications, and a Microsoft 365 (`onmicrosoft.com`) verification. They are inert leftovers.
 Do not remove one without knowing which service still depends on it.
 
+### The `_vercel` verification TXT records
+
+Three values were present at `_vercel.thebytelite.com` on 2026-08-25, left over from the
+ownership transfer:
+
+| # | Value | Claims | Classification |
+|---|---|---|---|
+| 1 | `vc-domain-verify=thebytelite.com,8583c5a9f551618d20ee` | apex | **UNKNOWN** - one of the two apex values belongs to the superseded account, the other to ByteLite_LLC. Which is which cannot be told apart from DNS. |
+| 2 | `vc-domain-verify=thebytelite.com,886aa98d5db087f7059e` | apex | **UNKNOWN**, same reason. |
+| 3 | `vc-domain-verify=www.thebytelite.com,068d77a3fd1eec807e40` | www | **OBSOLETE for serving.** `www` is verified and aliased; Vercel only reads this record while a domain is pending verification. |
+
+**Nothing was deleted.** All three are still in place. The rule is: delete only what is proven
+obsolete, and never delete UNKNOWN. Two of these three are UNKNOWN.
+
+Why this cannot be resolved from DNS alone: a `vc-domain-verify` value is an opaque token. Both
+apex values are well-formed, and DNS does not record which Vercel account asked for which. The
+only place that mapping exists is the Vercel dashboard, and it only shows a challenge value
+while a domain is actually pending verification. Both domains are verified and serving right
+now, so Vercel is showing nothing to compare against.
+
+**Safe procedure when you want them gone.** Reversible, one record at a time:
+
+1. Vercel dashboard -> ByteLite_LLC -> bytelite-website -> Settings -> Domains. Confirm both
+   `thebytelite.com` and `www.thebytelite.com` read **Valid Configuration**. If either does not,
+   stop; a verification record is doing real work.
+2. In Cloudflare DNS, note the full value of the record you are about to remove, so you can put
+   it back character for character.
+3. Delete ONE record. Wait for TTL, then reload the Vercel Domains page.
+4. Both domains must still read Valid Configuration and `https://www.thebytelite.com/` must
+   still return 200. If either flips to pending or unverified, restore the record immediately -
+   that one was load-bearing and is `CURRENTLY_REQUIRED`.
+5. Repeat for the next record. Stop at the first one that matters.
+
+There is a reason to eventually remove the apex pair rather than leave them: a stale
+verification token in your DNS is a standing claim credential. Leaving the superseded account's
+value in place leaves that account able to re-verify the apex. That is an argument for doing
+this deliberately, not an argument for guessing which one it is today.
+
+An agent working on this repository has read access to Cloudflare Email Routing and zone
+metadata, but **not** to DNS records - `GET /zones/{id}/dns_records` returns HTTP 403. So an
+agent can read these values through public DNS resolution and classify them, and cannot delete
+them. That is the correct division: the destructive half needs a human at the dashboard.
+
 If SendGrid ever reports the sending domain as unauthenticated, that is a Cloudflare DNS
 problem, not a Vercel problem.
 
@@ -384,23 +435,37 @@ The code is deliberately built to never claim more than it knows. Missing config
 `503` and says nothing was sent. A provider rejection returns `502` and says nothing was sent.
 There is no path that reports success for a message that was not queued.
 
-**Verifying the route by hand** (this sends a real email when it reaches step 3):
+**All three were closed on 2026-08-25**, separately, against `https://www.thebytelite.com`:
+202 from the route, 202 from SendGrid, and the message found in the destination inbox by the
+owner. Captured in `qa/contact-verification-2026-08-25.md`. If you re-verify later, close all
+three again - the third one is the one that is tempting to skip and the only one that proves
+anything to a person waiting for a reply.
+
+**Verifying the route by hand.** Step 3 sends a real email; steps 1 and 2 do not.
 
 ```powershell
-# 1. Route exists and is POST-only  -> expect 405
-Invoke-WebRequest -Uri 'https://bytelite-website.vercel.app/api/contact' -Method GET -UseBasicParsing
+# 1. Route exists and is POST-only  -> expect 405, Allow: POST
+Invoke-WebRequest -Uri 'https://www.thebytelite.com/api/contact' -Method GET -SkipHttpErrorCheck
 
 # 2. Configured and validating      -> expect 400, NOT 503
+#    A 503 here means a variable is missing from the Production environment.
 $bad = '{"name":"","email":"nope","inquiryType":"nope","message":""}'
-Invoke-WebRequest -Uri 'https://bytelite-website.vercel.app/api/contact' -Method POST `
-  -ContentType 'application/json' -Body $bad -UseBasicParsing
+Invoke-WebRequest -Uri 'https://www.thebytelite.com/api/contact' -Method POST `
+  -ContentType 'application/json' -Body $bad -SkipHttpErrorCheck
 
 # 3. Real send                      -> expect 202 {"status":"sent"}
+#    Then GO AND LOOK IN THE INBOX. A 202 is not receipt.
 $good = @{ name='Probe'; email='you@example.com'; inquiryType='general'
            message='Deployment verification.' } | ConvertTo-Json -Compress
-Invoke-WebRequest -Uri 'https://bytelite-website.vercel.app/api/contact' -Method POST `
-  -ContentType 'application/json' -Body $good -UseBasicParsing
+Invoke-WebRequest -Uri 'https://www.thebytelite.com/api/contact' -Method POST `
+  -ContentType 'application/json' -Body $good -SkipHttpErrorCheck
 ```
+
+**Where the mail actually goes.** Read the live Cloudflare Email Routing rules rather than
+trusting a document; the rule set as read on 2026-08-25 forwards `tash@thebytelite.com` to the
+owner's personal mailbox, and a catch-all rule drops everything else. Six other company
+aliases forward to the same place. If the contact form appears to work and nothing arrives,
+check that rule set before suspecting SendGrid.
 
 A `503` at step 2 means the environment variables did not reach that deployment. A `502` means
 SendGrid refused; read the Vercel runtime logs, which record SendGrid's own error text (never
@@ -430,19 +495,31 @@ vercel domains ls     --scope bytelitellc
 vercel env ls production --scope bytelitellc      # NAMES only, values stay encrypted
 
 # DNS
-Resolve-DnsName -Name 'www.thebytelite.com' -Type CNAME
-Resolve-DnsName -Name 'thebytelite.com'     -Type NS
+Resolve-DnsName -Name 'www.thebytelite.com'     -Type CNAME
+Resolve-DnsName -Name 'thebytelite.com'         -Type NS
+Resolve-DnsName -Name '_vercel.thebytelite.com' -Type TXT
 
-# Live behaviour
-Invoke-WebRequest -Uri 'https://www.thebytelite.com/'                  -UseBasicParsing
-Invoke-WebRequest -Uri 'https://bytelite-website.vercel.app/'          -UseBasicParsing
-Invoke-WebRequest -Uri 'https://bytelite-website.vercel.app/api/health?cb=1' -UseBasicParsing
+# Live behaviour - always the canonical domain or a project alias, NEVER a raw
+# per-deployment URL. Those are protected and answer with Vercel's own login page.
+Invoke-WebRequest -Uri 'https://www.thebytelite.com/'                    -SkipHttpErrorCheck
+Invoke-WebRequest -Uri 'https://thebytelite.com/' -MaximumRedirection 0  -SkipHttpErrorCheck
+Invoke-WebRequest -Uri 'https://bytelite-website-bytelitellc.vercel.app/' -SkipHttpErrorCheck
+Invoke-WebRequest -Uri 'https://www.thebytelite.com/api/contact' -Method GET -SkipHttpErrorCheck
+
+# Which deployment is actually serving the domain, and from which commit
+vercel alias ls --scope bytelitellc
 
 # GitHub
 gh repo view TBroadwater87/bytelite-website --json name,visibility,defaultBranchRef
 ```
 
 If any of these contradicts this document, the machine is right. Fix the document.
+
+**There is no longer a runtime probe endpoint.** `api/health.ts` existed only for the 2026-08
+cutover and was deleted once delivery was proven. Do not add another one to answer a question a
+CLI command can answer. If you genuinely need a runtime fingerprint again, add it, use it, and
+delete it in the same working session - the failure mode is that a temporary diagnostic quietly
+becomes a permanent public endpoint reporting your configuration to anyone who asks.
 
 ---
 
@@ -671,7 +748,52 @@ Recorded so a future agent does not rediscover a dead system and restore it.
 | **A duplicate Vercel project was created during recovery** | Because `.vercel/` was missing locally, a new project was created instead of linking the existing one. This is why section 6 leads with that warning. |
 | **`reuseExistingServer: true` could skip the E2E build** | With reuse on and port 4321 already listening, Playwright skips its `command` entirely, so `npm run build` never runs and the suite silently tests a stale `dist`. Reproduced with a marker file planted in `dist`. It is now `false`, so a run either builds its own output or fails loudly on a port collision. |
 | **A Firefox screenshot visual test was retired** | `hierarchy-diagram-visual-check.spec.ts` was written as a one-off human review aid; its own comment said the screenshots were "a review aid, not an assertion". It was replaced by `retired-route-rendering.spec.ts`, a deterministic contract test. |
-| **Security headers silently stopped being served** | The header policy was written for Cloudflare Pages (`public/_headers`). Vercel ignores that file, so moving hosts dropped CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy and Permissions-Policy without any error. See section 17, blocker 2. |
+| **Security headers silently stopped being served** | The header policy was written for Cloudflare Pages (`public/_headers`). Vercel ignores that file, so moving hosts dropped CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy and Permissions-Policy without any error. See section 17, blocker 1. |
+
+### The 2026-08-25 domain-ownership incident
+
+The single most expensive confusion in this project's history, written down so it is never
+repeated.
+
+**What was true.** `www.thebytelite.com` was attached to a project under a *different Vercel
+account* (`Tash Broadwater's projects`), not to `ByteLite_LLC/bytelite-website`. The contact
+form worked perfectly on the new project's `.vercel.app` URL and was broken on the real domain.
+
+**Why it resisted diagnosis for so long.** Both deployments were built from **the same Git
+commit**. Every page was byte-identical. Viewing the site, comparing HTML, diffing content,
+checking the commit - all of it agreed, and all of it was measuring the wrong thing. The
+difference was never in the code. It was in which account's environment the code was running
+inside.
+
+**What actually settled it.** The runtime fingerprint, not the page:
+
+```
+OLD (superseded)   Node v22.23.1   48 env vars   SENDGRID_API_KEY/CONTACT_* absent
+NEW (canonical)    Node v24.18.0   57 env vars   all three present
+```
+
+Two deployments of one commit can differ only in runtime and configuration. So compare runtime
+and configuration. A temporary probe reporting variable *names* and presence booleans - never
+values - was what made those two columns visible at all.
+
+**How it was resolved.** Vercel required `_vercel` TXT ownership verification on the zone.
+Once that verified, usable custom-domain authority transferred to
+`ByteLite_LLC/bytelite-website`, and the old account received Vercel's "Another account has
+taken ownership" notice. **No hosting DNS migration was required.** Cloudflare remained the
+authoritative DNS provider throughout, and the `www` CNAME never changed - because Vercel
+routes by `Host` header, every project answers on the same `cname.vercel-dns.com`.
+
+**The four lessons.**
+
+1. **Never infer the website host from the DNS provider.** Cloudflare answering for the domain
+   said nothing about who served the pages.
+2. **Never compare deployments by their content.** Compare what their runtime reports.
+3. **Never probe a raw per-deployment URL and read the result as the application.** Those URLs
+   are protected and return Vercel's own authentication page. That HTML is Vercel, not this
+   site. Verify on the canonical domain or a project alias.
+4. **Never create a second Vercel project because `.vercel/` is missing.** That already
+   happened once, and a duplicate project is exactly what turns "which one serves the domain?"
+   into a research task.
 
 ### Removed in the 2026-08-24 cleanup
 
@@ -685,6 +807,13 @@ Recorded so a future agent does not rediscover a dead system and restore it.
 | `public/_routes.json` | Cloudflare Pages function-routing manifest. Meaningless on Vercel. | Vercel routes `api/` automatically |
 | `src/pages/api/compress.ts` | POST-only Astro API route in a static build: emitted no file at all (the build log says "file not created, response body was empty") and returned 404 in production. Its rate limiting and CORS protected nothing. Its documented response advertised a compression ratio that must never be claimed. | nothing - it was never deployed |
 | `src/components/ProofDemo.astro` | A 114-byte stub whose own comment read "Archived component - not in use by any page" | nothing |
+
+### Removed in the 2026-08-25 closure
+
+| Name | Why removed | Replaced by |
+|---|---|---|
+| `api/health.ts` | Temporary migration probe for the domain cutover. Its own header said to delete it once contact was confirmed in production; that was confirmed on 2026-08-25. A diagnostic that outlives its migration has become a permanent public endpoint reporting deployment configuration to anyone who asks. | nothing - the facts it reported are available from `vercel env ls`, `vercel alias ls`, and a `GET /api/contact` that expects 405 |
+| The `/contact` outage banner (`.ct-outage`) | It announced that form submissions were unavailable. Delivery is now proven end to end, so the banner had become a false statement in the other direction. | Honest error handling, which stayed: a failed submission still says the message was not sent. `public-scope-vocabulary.spec.ts` now asserts the banner's absence *and* that the page does not overpromise. |
 
 ### Kept, classified UNKNOWN - do not delete without evidence
 
@@ -705,56 +834,18 @@ Recorded so a future agent does not rediscover a dead system and restore it.
 
 ## 17. Current Open Work
 
-Real, unresolved, and verified as unresolved on 2026-08-24. Nothing here is marked complete
+Real, unresolved, and verified as unresolved on 2026-08-25. Nothing here is marked complete
 merely because an implementation exists.
 
-### Blocker 1 - Custom-domain cutover (NOT DONE)
+**Closed on 2026-08-25**, and moved into section 16 as history rather than deleted:
 
-`www.thebytelite.com` is still served by the old Vercel project, which has no SendGrid
-configuration. **The contact form is therefore broken on the real domain**, while working
-perfectly on `bytelite-website.vercel.app`.
+| Was | Outcome |
+|---|---|
+| Blocker 1 - custom-domain cutover | **DONE.** `www.thebytelite.com` and the apex both alias the ByteLite_LLC deployment. No Cloudflare DNS change was needed. |
+| Blocker 3 - mailbox receipt not confirmed | **DONE.** Confirmed by looking in the destination inbox, not inferred from a 202. |
+| Blocker 4 - remove the temporary health probe | **DONE.** `api/health.ts` deleted, and every reference to it in this file and `CLAUDE.md` removed. |
 
-The three gates that had to pass before a cutover was allowed have all passed:
-
-```
-ENVIRONMENT_VARIABLES      PASS   all three present, Production, on the new project
-CONTACT_FUNCTION           PASS   405 on GET, 400 on invalid, 202 on valid
-SENDGRID_PROVIDER_ACCEPTED PASS   SendGrid returned 202 Accepted
-```
-
-Procedure. **No Cloudflare DNS change is required** - see section 7.
-
-1. In the Vercel dashboard, open Domains -> `thebytelite.com` and note which project holds
-   `www.thebytelite.com` and the apex. This is the authoritative answer.
-2. In that OLD project: Settings -> Domains -> remove `www.thebytelite.com` and
-   `thebytelite.com`. Remove the *assignment* only. Do not delete the project, its deployments,
-   or the domain from the team account.
-3. Immediately attach them to the new project:
-   ```powershell
-   vercel domains add www.thebytelite.com bytelite-website --scope bytelitellc
-   vercel domains add thebytelite.com     bytelite-website --scope bytelitellc
-   ```
-   Then set the apex to redirect to `www`, matching today's 307 behaviour.
-   Order matters: Vercel refuses a domain still assigned elsewhere, so step 2 must precede
-   step 3. Expect seconds to a couple of minutes of `DEPLOYMENT_NOT_FOUND` in between. Run
-   steps 2 and 3 back to back.
-4. Vercel reissues the certificate automatically over the existing DNS. Only if it stalls will
-   Vercel ask for an `_acme-challenge` TXT record - that is the *only* circumstance for touching
-   Cloudflare here.
-5. Verify:
-   ```powershell
-   Invoke-WebRequest -Uri 'https://www.thebytelite.com/api/health?cb=2' -UseBasicParsing
-   Invoke-WebRequest -Uri 'https://thebytelite.com/' -UseBasicParsing -MaximumRedirection 0
-   ```
-   Expect all three variables `true` and Node v24 on the first; a 307 to `www` on the second.
-   Then submit the real form on `/contact`.
-6. **Rollback:** remove the two domains from `bytelite-website` and re-add them to the old
-   project. The old project is untouched, so this restores the current state exactly, and DNS
-   never changed.
-
-**Do not delete the old Vercel project** until the cutover has been stable for a while.
-
-### Blocker 2 - Security headers are not being served (NOT DONE)
+### Blocker 1 - Security headers are not being served (NOT DONE)
 
 Measured 2026-08-24 on both `www.thebytelite.com` and `bytelite-website.vercel.app`:
 Content-Security-Policy, X-Frame-Options, X-Content-Type-Options, Referrer-Policy and
@@ -785,30 +876,12 @@ $r.Headers['x-frame-options']
 Deploy it to a Vercel preview URL first and load every public page with the browser console
 open before promoting it.
 
-### Blocker 3 - Mailbox receipt not confirmed
-
-A test submission returned SendGrid `202 Accepted` on 2026-08-24, delivered to
-`tash@thebytelite.com` with subject `ByteLite inquiry: general - ByteLite Deployment Probe`.
-That proves the provider queued it. **Nobody has confirmed it arrived in the real inbox.**
-Check that mailbox, or SendGrid's Activity Feed for a `delivered` event, then record the result
-here.
-
-### Blocker 4 - Remove the temporary health probe
-
-`api/health.ts` is a migration diagnostic. Its own header says to delete it once contact is
-confirmed working in production. It is **deliberately retained for now** because it is the
-instrument that verifies blocker 1. Delete it immediately after the cutover verifies, and
-remove the references to it in section 6 of this file.
-
-It exposes: variable presence booleans, related variable NAMES, a count, `VERCEL_ENV`, branch,
-short commit, and the Node version. **It never exposes a value.** Low risk, but not permanent.
-
-### Blocker 5 - Logo weight
+### Blocker 2 - Logo weight
 
 `public/bytelite-logo.png` is 473 KB. Target is roughly 50 KB as WebP. Real, unfixed, and
 purely a performance item.
 
-### Blocker 6 - DMARC reports go to an address you may not control (low priority)
+### Blocker 3 - DMARC reports go to an address you may not control (low priority)
 
 Measured 2026-08-24: `_dmarc.thebytelite.com` is `v=DMARC1; p=none;
 rua=mailto:report@dmarc.cloud.em.secureserver.net`. The policy is monitor-only, and the
@@ -818,6 +891,13 @@ setup. Nothing is broken - `p=none` enforces nothing - but nobody is reading the
 If you want DMARC visibility, repoint `rua=` at an address you control. Do **not** tighten the
 policy beyond `p=none` until SendGrid is confirmed passing DKIM alignment in its Activity Feed;
 see section 7 for why SPF not listing SendGrid is expected rather than a defect.
+
+### Blocker 4 - Three `_vercel` verification TXT records, two of them UNKNOWN
+
+Nothing is broken. Two apex `vc-domain-verify` values exist where one account's would do, and
+DNS cannot say which belongs to the superseded account. Full classification and a reversible
+removal procedure are in section 7. Deliberately left in place: the rule is never to delete an
+UNKNOWN.
 
 ---
 
