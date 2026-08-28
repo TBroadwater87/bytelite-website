@@ -588,7 +588,10 @@ export const CORDEL_CONNECT: ProjectRecord = {
     'An active spoken safety phrase (a phrase can be saved today, but saying it does not yet trigger an alert)',
     'Game room, date hub, and friendship features',
     'Cartoonized profile photo transformation',
-    'AIya wingman conversational interface',
+    // Described generically. The underlying conversational system is a sibling ByteLite LLC
+    // system whose name stays off public surfaces (CLAUDE.md section 1 rule 3), and this array
+    // renders directly onto /cordel-connect.
+    'In-app conversational assistance',
     'Daily horoscope integration',
   ],
   endGame: [

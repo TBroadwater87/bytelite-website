@@ -37,7 +37,7 @@ import {
       <p class="body">
         Data is expensive to keep and to move. ByteLite is being developed as a deterministic
         lossless representation architecture, with the target of producing a smaller
-        self-contained representation for every eligible source file, from which the exact
+        self-contained representation for every source file, from which the exact
         original can be reconstructed. That target is still being engineered and proven.
       </p>
 
@@ -51,6 +51,32 @@ import {
         Where something has not been proven, this site says so. We are still building this, and
         saying so plainly is better than polished language that makes unfinished work sound
         finished.
+      </p>
+
+      {/* The <ol> below, not the image, carries the meaning: the image's sub-labels render at
+          roughly 5px at a 320px viewport, so they cannot be the only copy. Nothing here marks a
+          position on the ladder - ByteLite's current rung is stated once, on /validation, and a
+          second copy could drift out of step with the evidence. Full rationale in
+          ASSET_MANIFEST.md, "Website Graphics Refresh Pass". */}
+      <figure class="ladder-fig">
+        <img src="/bytelite/proof-before-claim-ladder.png"
+             alt="Proof-before-claim progression from concept through prototype, proof artifact, validation, and product."
+             width="1672" height="941" loading="lazy" decoding="async" />
+        <figcaption>Claims rise only when the evidence behind them rises.</figcaption>
+      </figure>
+
+      <ol class="ladder">
+        <li><span class="ladder-rung">Concept</span><span class="ladder-note">Idea defined.</span></li>
+        <li><span class="ladder-rung">Prototype</span><span class="ladder-note">System explored.</span></li>
+        <li><span class="ladder-rung">Proof artifact</span><span class="ladder-note">Reproducible output.</span></li>
+        <li><span class="ladder-rung">Validation</span><span class="ladder-note">Tested against criteria.</span></li>
+        <li><span class="ladder-rung">Product</span><span class="ladder-note">Public-facing delivery.</span></li>
+      </ol>
+
+      <p class="body">
+        This ladder is the standard applied to every statement on this site. It is not a progress
+        report: which rung ByteLite currently occupies is recorded in one place only, with the
+        evidence behind it, on the <a href="/validation">validation page</a>.
       </p>
 
       <h2 class="mt">Commercial intent.</h2>
@@ -87,6 +113,28 @@ import {
 h2 { margin-bottom: .75rem; }
 .mt { margin-top: 2.5rem; }
 .body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1rem; }
+/* Constrained by .narrow (780px), never upscaled past its intrinsic 1672px. width/height sit on
+   the tag so the 16:9 box is reserved before the bytes land - no shift on a slow connection. */
+.ladder-fig { margin: 2rem 0 0; }
+.ladder-fig img {
+  display: block; width: 100%; height: auto;
+  border: 1px solid #1a2235; border-radius: .75rem; background: #0d1120;
+}
+.ladder-fig figcaption { margin-top: .75rem; font-size: .875rem; color: #7b829e; line-height: 1.6; }
+.ladder {
+  list-style: none; margin: 1.5rem 0 0; padding: 0; counter-reset: rung;
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .75rem;
+}
+@media (max-width: 700px) { .ladder { grid-template-columns: 1fr; } }
+.ladder li {
+  counter-increment: rung; padding: .875rem 1rem;
+  background: #0d1120; border: 1px solid #1a2235; border-left: 3px solid #6366f1;
+  border-radius: .5rem; display: flex; flex-direction: column; gap: .25rem;
+}
+.ladder li::before { content: counter(rung); font-size: .6875rem; font-weight: 700; color: #555e7a; }
+.ladder-rung { font-size: .9375rem; font-weight: 500; color: #e4e7f2; }
+.ladder-note { font-size: .8125rem; color: #7b829e; line-height: 1.5; }
+
 .facts {
   margin: 2.5rem 0 0; padding: 1.5rem;
   background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem;

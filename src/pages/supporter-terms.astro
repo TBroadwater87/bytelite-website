@@ -1,0 +1,135 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { COMPANY_NAME, COMPANY_LOCATION } from '../data/company';
+import { SUPPORTER_DISCLOSURE, SUPPORTER_REWARD } from '../data/commerce';
+
+const TERMS_VERSION = '2026-08-26';
+---
+
+<Layout
+  title="Founder Supporter Pack terms | ByteLite LLC"
+  description="Terms for the ByteLite LLC Founder Supporter Pack: a one-time commercial purchase with a defined digital reward. Not a donation and not tax deductible."
+  keywords="ByteLite Founder Supporter Pack terms"
+  canonical="https://www.thebytelite.com/supporter-terms/"
+>
+  <Header slot="header" />
+
+  <section class="page-hero">
+    <div class="container narrow">
+      <p class="draft">DRAFT &mdash; awaiting owner review. Not legal or tax advice.</p>
+      <p class="eyebrow">Terms</p>
+      <h1>Founder Supporter Pack terms</h1>
+      <p class="hero-sub">Version {TERMS_VERSION}. {COMPANY_NAME}, {COMPANY_LOCATION}.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <div class="disclosure">
+        <p>{SUPPORTER_DISCLOSURE}</p>
+      </div>
+
+      <h2 class="mt">1. What this is.</h2>
+      <p class="body">
+        A one-time purchase of digital goods from {COMPANY_NAME}, a for-profit Montana limited
+        liability company. You choose the amount you pay at checkout. It is not recurring and will
+        never renew.
+      </p>
+
+      <h2 class="mt">2. What you receive.</h2>
+      <ul class="list">
+        {SUPPORTER_REWARD.map((item) => <li>{item}</li>)}
+      </ul>
+      <p class="body">
+        That list is exhaustive. Nothing outside it is part of this purchase.
+      </p>
+      <p class="body warn">
+        <strong>Open item:</strong> the exact reward files have not been finalised. The purchase
+        control stays disabled until they exist, so nobody can buy a pack that cannot be delivered.
+      </p>
+
+      <h2 class="mt">3. What this is not.</h2>
+      <p class="body">This purchase does not give you:</p>
+      <ul class="list list-no">
+        <li>a charitable donation or any tax deduction &mdash; ByteLite LLC is a for-profit company;</li>
+        <li>equity, shares, options, voting rights or any ownership interest;</li>
+        <li>repayment, interest, revenue share or profit participation;</li>
+        <li>an investment, or any expectation of financial return;</li>
+        <li>ownership of, or a licence to, ByteLite LLC intellectual property;</li>
+        <li>access to ByteLite, Cordel Connect, Cordel Play or any future product;</li>
+        <li>early or beta software access;</li>
+        <li>any control over, or say in, what gets developed;</li>
+        <li>a promise that any particular feature, product, capability or date will be delivered.</li>
+      </ul>
+
+      <h2 class="mt">4. The supporter wall.</h2>
+      <p class="body">
+        Inclusion is optional and off by default. It happens only if you tick a separate, unticked
+        box and choose a display name. That consent is separate from your purchase consent and from
+        any marketing consent &mdash; agreeing to one is never agreeing to another.
+      </p>
+      <p class="body">
+        To be removed, ask through the <a href="/contact">privacy contact</a>. Removal does not
+        refund the purchase, because the digital reward has already been delivered.
+      </p>
+
+      <h2 class="mt">5. Refunds.</h2>
+      <p class="body">
+        The reward is digital and delivered immediately on payment. If the files are not delivered,
+        or are not what this page describes, contact me and I will refund you in full. If you
+        received what is listed in section 2, the purchase is complete.
+      </p>
+
+      <h2 class="mt">6. Payment and data.</h2>
+      <p class="body">
+        Payment is handled by Stripe. ByteLite LLC never receives or stores your card number. What
+        is retained is the fact of the purchase, the plan key and the terms version, so the reward
+        can be delivered and the transaction can be accounted for. See the
+        <a href="/privacy">privacy policy</a>.
+      </p>
+
+      <h2 class="mt">7. Tax.</h2>
+      <p class="body warn">
+        <strong>Open item:</strong> this is a taxable commercial sale, not a gift. Whether sales
+        tax applies to you depends on registrations and product tax codes that are not yet
+        configured. That is a decision for a qualified tax professional, not for this page, and the
+        purchase control stays disabled until it is settled.
+      </p>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.narrow { max-width: 780px; }
+.page-hero { padding: 3.5rem 0 2rem; }
+.draft {
+  display: inline-block; margin-bottom: 1.25rem;
+  font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: #fbbf24; background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.3);
+  border-radius: 9999px; padding: .3rem .875rem;
+}
+.hero-sub { max-width: 640px; font-size: 1rem; margin-top: 1rem; color: #7b829e; line-height: 1.8; }
+h2 { margin-bottom: .75rem; font-size: 1.125rem; }
+.mt { margin-top: 2.5rem; }
+.body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1rem; }
+.warn {
+  background: rgba(251,191,36,.06); border: 1px solid rgba(251,191,36,.28);
+  border-radius: .5rem; padding: 1rem; color: #c4c8f0;
+}
+.disclosure {
+  padding: 1.25rem; background: rgba(244,114,182,.06);
+  border: 1px solid rgba(244,114,182,.3); border-radius: .625rem;
+}
+.disclosure p { font-size: .9375rem; color: #f0d0e0; line-height: 1.7; margin: 0; }
+.list { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .5rem; }
+.list li {
+  font-size: .9375rem; color: #a0a8c0; line-height: 1.65;
+  padding: .625rem .875rem; background: #0d1120;
+  border: 1px solid #1a2235; border-left: 3px solid #34d399; border-radius: .5rem;
+}
+.list-no li { border-left-color: #f472b6; }
+</style>

@@ -1,9 +1,26 @@
 # ByteLite Website - Authoritative Handoff Checkpoint
 
 ```
-WEBSITE_ACTIVE_DEVELOPMENT=FROZEN
+WEBSITE_ACTIVE_DEVELOPMENT=REOPENED 2026-08-26  (owner-authorised canon rebuild)
 DO_NOT_RESCOUT_COMPLETED_INFRASTRUCTURE
 ```
+
+> **2026-08-26 - the freeze was lifted by the owner for a canon rebuild.** Sections 2, 4, 5 and 8
+> below (production identity, security posture, the dirty owner file, the hard rules) are all
+> still accurate and still binding. **Section 3's test snapshot is superseded** - the route table
+> and the test suite were both rewritten, so those numbers describe a site that no longer exists.
+>
+> What changed, in one paragraph: Cordel Connect and Cordel Play became public products; the
+> retired route families (`architecture`, `research`, `progress`, `technologies`, `company`,
+> `preorder`, `products`, `marketing`) were **deleted** rather than served at `noindex`, and now
+> 301 or return 410 from `api/gone.ts`; the site was rewritten in the founder's voice; nine
+> IP-safe graphics went into primary content; and Stripe test-mode commerce was built as
+> `api/` Vercel Functions. `CLAUDE.md` was rewritten to match and is still the law - see its new
+> sections 15 (COMMERCE LAW) and 16 (WITHHELD ASSETS AND OPEN OWNER DECISIONS).
+>
+> **The architecture did NOT change**: still `output: 'static'`, still no adapter, still
+> Vercel Functions beside the build. Section 4's reachability argument therefore still holds,
+> with one amendment recorded there.
 
 This is an operator checkpoint, not a second OWNER_README. It says what was true, at which
 commit, with what evidence - so the next agent resumes instead of re-discovering.
@@ -138,6 +155,24 @@ decision, 2026-08-25. Full analysis in OWNER_README section 14b.
 
 **Never run `npm audit fix --force`.** It installs `astro@7.2.6` - a breaking change, on a live
 site, to fix findings nothing can currently trigger.
+
+**Amendment, 2026-08-26.** The strongest sentence in this section used to be: *"`api/contact.ts`
+imports only `node:http` types and its own core, which imports nothing - zero npm packages execute
+at production request time."* That is **no longer true**. The `stripe` package now executes at
+request time inside `api/checkout.ts`, `api/checkout-session.ts` and `api/stripe-webhook.ts`.
+
+This was an explicit owner decision (use the official SDK rather than hand-rolled REST over
+`fetch`), and it narrows the argument rather than breaking it:
+
+- The **Astro** advisories are still unreachable. Nothing about them changed: no adapter, no
+  `output: 'server'`, no `prerender = false`, and `dist` still emits no server entrypoint. Astro
+  does not run at request time at all.
+- What changed is that a **new dependency tree now does**. `stripe` and its transitive packages
+  are request-time reachable and must be treated that way: their advisories are live findings, not
+  "not applicable", and they need patching on the normal schedule.
+- `api/contact.ts` itself is untouched and still imports zero npm packages.
+
+Re-run this argument whenever a package is added to `api/`.
 
 ## 5. Known unrelated dirty file - DO NOT TOUCH
 

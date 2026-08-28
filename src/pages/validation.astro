@@ -38,7 +38,7 @@ const DASHBOARD_ROWS = [...VALIDATION_DASHBOARD, ENWIK9_ROW];
       <p class="eyebrow">Validation</p>
       <h1>What has been proven, and what has not.</h1>
       <p class="hero-sub">
-        Canonical project status: <strong>{BYTELITE_STATUS}</strong>. Everything below is internal
+        Where ByteLite stands today: <strong>{BYTELITE_STATUS}</strong>. Everything below is internal
         to ByteLite LLC. None of it has been independently verified.
       </p>
 
@@ -78,12 +78,23 @@ const DASHBOARD_ROWS = [...VALIDATION_DASHBOARD, ENWIK9_ROW];
         The same picture broken out by what is actually being validated. Supporting evidence for
         every row is in one place at the foot of this page.
       </p>
+
+      <!-- The five categories below are also the shape of the table that follows. The image gives
+           the structure at a glance; the table is still where the actual states live, because a
+           reviewer needs the rows, not a picture of the rows. -->
+      <img
+        class="fig"
+        src="/bytelite/validation-evidence-visual.png"
+        alt="Structured evidence categories: validation, evidence, status, limitations and review."
+        width="1672" height="941" loading="lazy" decoding="async"
+      />
+
       <ValidationDashboard variant="full" includeEnwik9={true} />
     </div>
   </section>
 
   <!-- PROVEN / NOT PROVEN -->
-  <section class="section section-alt2">
+  <section class="section section-alt2" id="unfinished">
     <div class="container narrow">
       <h2>Stated plainly.</h2>
       <div class="split">
@@ -150,6 +161,10 @@ const DASHBOARD_ROWS = [...VALIDATION_DASHBOARD, ENWIK9_ROW];
 </Layout>
 
 <style>
+.fig {
+  display: block; width: 100%; height: auto; margin: 0 0 2rem;
+  border: 1px solid #1a2235; border-radius: .75rem; background: #0d1120;
+}
 .narrow { max-width: 780px; }
 .page-hero { padding: 4rem 0 2rem; }
 .hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.75; }

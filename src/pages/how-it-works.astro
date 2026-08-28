@@ -30,6 +30,36 @@ import { DETERMINISM_STATEMENT, TARGET_STATEMENT, DEVELOPMENT_STATEMENT } from '
     </div>
   </section>
 
+  <!-- Public Review Framework.
+       This is NOT the ByteLite algorithm, the processing pipeline, the encoding flow or the
+       internal architecture, and it must never be captioned as any of those. It is the list of
+       things an outside reviewer is allowed to examine. Naming it correctly is the whole point:
+       a diagram captioned "how it works" would be an implementation disclosure. -->
+  <section class="section-sm">
+    <div class="container narrow">
+      <h2 class="prf-h">What can be reviewed from outside</h2>
+      <p class="lede">
+        People ask what they are allowed to look at. This is the answer: six categories that can be
+        examined without me handing over the mechanism. It is a review framework, not a description
+        of how ByteLite operates internally.
+      </p>
+      <img
+        class="fig"
+        src="/bytelite/deterministic-flow-diagram.png"
+        alt="Public review framework: source, result, evidence, status, limitations and review."
+        width="1672" height="941" loading="lazy" decoding="async"
+      />
+      <ul class="prf-list">
+        <li><strong>Source</strong> &mdash; the declared inputs.</li>
+        <li><strong>Result</strong> &mdash; the observable output.</li>
+        <li><strong>Evidence</strong> &mdash; the supporting artifacts.</li>
+        <li><strong>Status</strong> &mdash; the current state, labelled.</li>
+        <li><strong>Limitations</strong> &mdash; the boundaries I already know about.</li>
+        <li><strong>Review</strong> &mdash; technical examination of all of the above.</li>
+      </ul>
+    </div>
+  </section>
+
   <!-- 1. DETERMINISM -->
   <section class="section">
     <div class="container narrow">
@@ -117,6 +147,27 @@ import { DETERMINISM_STATEMENT, TARGET_STATEMENT, DEVELOPMENT_STATEMENT } from '
         that is the part that stays private.
       </p>
       <WhatItIsNot />
+
+      <!-- Differentiator. "ByteLite Priorities" is the required wording and stays: these are
+           design priorities, not benchmarked, certified or independently validated outcomes. -->
+      <h3 class="diff-h">Different by design</h3>
+      <p class="body">
+        The column on the right is a list of priorities I chose, not a list of results anyone has
+        certified. It says what ByteLite is built to be, which is a different claim from what it
+        has been proven to do.
+      </p>
+      <img
+        class="fig"
+        src="/bytelite/byte-vs-blackbox-comparison.png"
+        alt="A common probabilistic approach compared with ByteLite priorities: deterministic operation, explicit constraints, evidence tracked, auditable artifacts."
+        width="1672" height="941" loading="lazy" decoding="async"
+      />
+      <ul class="prf-list">
+        <li><strong>Deterministic operation</strong> instead of probabilistic outputs.</li>
+        <li><strong>Explicit constraints</strong> instead of confidence scores.</li>
+        <li><strong>Evidence tracked</strong> instead of limited explainability.</li>
+        <li><strong>Auditable artifacts</strong> instead of statistical behaviour.</li>
+      </ul>
     </div>
   </section>
 
@@ -180,6 +231,19 @@ import { DETERMINISM_STATEMENT, TARGET_STATEMENT, DEVELOPMENT_STATEMENT } from '
 <style>
 .narrow { max-width: 780px; }
 .page-hero { padding: 4rem 0 2.5rem; }
+.fig {
+  display: block; width: 100%; height: auto; margin: 1.5rem 0;
+  border: 1px solid #1a2235; border-radius: .75rem; background: #0d1120;
+}
+.prf-h { margin-bottom: 1rem; }
+.diff-h { font-size: 1.125rem; color: #e4e7f2; margin: 2.5rem 0 .75rem; }
+.prf-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.prf-list li {
+  font-size: .9375rem; color: #a0a8c0; line-height: 1.65;
+  padding: .625rem .875rem; background: #0d1120;
+  border: 1px solid #1a2235; border-left: 3px solid #6366f1; border-radius: .5rem;
+}
+.prf-list strong { color: #e4e7f2; font-weight: 600; }
 .hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.75; }
 .step-num {
   font-family: ui-monospace, 'Courier New', monospace;

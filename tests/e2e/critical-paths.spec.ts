@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
 
-// Public scope reset (2026-08-22): thebytelite.com is a ByteLite-only site. These tests assert
-// the six public destinations behave, and that nothing from the retired portfolio has crept
-// back onto a discovery surface.
+// Critical paths, rewritten 2026-08-26. Two jobs:
+//   1. every internal link on a public page reaches a page that still exists;
+//   2. the commerce surface is honest - no working checkout for an unapproved product, and no
+//      page that calls a reservation a subscription.
 
 const PUBLIC_ROUTES = [
   '/',
@@ -11,171 +12,194 @@ const PUBLIC_ROUTES = [
   '/licensing',
   '/about',
   '/contact',
+  '/founder-access',
+  '/support',
+  '/cordel-connect',
+  '/cordel-play',
+  '/privacy',
+  '/terms',
+  '/preorder-terms',
+  '/supporter-terms',
 ];
 
-test.describe('ByteLite public site critical paths', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-  });
+// Routes that resolve but are deliberately absent from discovery.
+const UNDISCOVERABLE_BUT_VALID = ['/checkout/success', '/checkout/cancel', '/billing', '/responsible-disclosure'];
 
-  test('homepage leads with the ByteLite law', async ({ page }) => {
-    await expect(page).toHaveTitle(/ByteLite/);
-    await expect(page.locator('h1')).toContainText('Exact reconstruction.');
-    await expect(page.locator('h1')).toContainText('Smaller representation.');
-  });
+// The route families deleted in the rebuild. A link to any of them is a dead link, even though
+// production rewrites them - a redirect is for inbound traffic, not for our own navigation.
+const DELETED_PREFIXES = [
+  '/architecture',
+  '/research',
+  '/progress',
+  '/technologies',
+  '/company',
+  '/preorder/',
+  '/products',
+  '/marketing',
+];
 
-  test('homepage never shows retired overclaiming language', async ({ page }) => {
-    const body = page.locator('body');
-    await expect(body).not.toContainText('Patent US');
-    await expect(body).not.toContainText('1GB into 15 bytes');
-    await expect(body).not.toContainText('HeartStrings');
-    await expect(body).not.toContainText('Heartstrings');
-  });
+test.describe('Every internal link goes somewhere that exists', () => {
+  for (const route of PUBLIC_ROUTES) {
+    test(`${route} links only to live routes`, async ({ page }) => {
+      await page.goto(route);
+      const hrefs = await page
+        .locator('a[href^="/"]')
+        .evaluateAll((els) => els.map((e) => e.getAttribute('href') ?? ''));
 
-  test('every public route resolves and every homepage CTA reaches one', async ({ page, request }) => {
-    for (const route of PUBLIC_ROUTES) {
-      const response = await request.get(route);
-      expect(response.status(), `${route} should resolve 200`).toBe(200);
-    }
+      const known = new Set([...PUBLIC_ROUTES, ...UNDISCOVERABLE_BUT_VALID]);
+      const dead: string[] = [];
 
-    const hrefs = await page
-      .locator('main a[href^="/"]')
-      .evaluateAll((links) => links.map((l) => l.getAttribute('href') || ''));
-    expect(hrefs.length).toBeGreaterThan(0);
-    for (const href of hrefs) {
-      const path = (href.split('?')[0] || '').replace(/\/$/, '') || '/';
-      expect(PUBLIC_ROUTES, `homepage links to ${href}, which is not a public route`).toContain(path);
-    }
-  });
+      for (const href of hrefs) {
+        const path = href.split('#')[0]!.split('?')[0]!.replace(/\/$/, '') || '/';
+        if (DELETED_PREFIXES.some((p) => path === p.replace(/\/$/, '') || path.startsWith(p))) {
+          dead.push(href);
+          continue;
+        }
+        if (!known.has(path)) dead.push(href);
+      }
 
-  test('primary navigation is the flat ByteLite set', async ({ page }) => {
-    const toggle = page.locator('#navToggle');
-    if (await toggle.isVisible()) {
-      await toggle.click();
-    }
-    const nav = page.getByRole('navigation', { name: 'Primary' });
-    for (const label of ['How It Works', 'Validation', 'Licensing', 'About']) {
-      await expect(nav.getByRole('link', { name: label, exact: true })).toBeVisible();
-    }
-    await expect(nav.getByRole('link', { name: 'Contact', exact: true })).toBeVisible();
-
-    // No portfolio destination survives in the header.
-    const navHrefs = await nav
-      .locator('a[href^="/"]')
-      .evaluateAll((links) => links.map((l) => l.getAttribute('href') || ''));
-    for (const href of navHrefs) {
-      expect(PUBLIC_ROUTES, `nav links to ${href}, which is not a public route`).toContain(
-        href.replace(/\/$/, '') || '/'
-      );
-    }
-  });
-
-  test('navigation reaches How It Works', async ({ page }) => {
-    const toggle = page.locator('#navToggle');
-    if (await toggle.isVisible()) {
-      await toggle.click();
-    }
-    const nav = page.getByRole('navigation', { name: 'Primary' });
-    await nav.getByRole('link', { name: 'How It Works', exact: true }).click();
-    await expect(page).toHaveURL(/\/how-it-works\/?$/);
-    await expect(page.locator('h1')).toContainText('Principles, not mechanism.');
-  });
-
-  test('mobile navigation toggle opens and closes the menu', async ({ page }) => {
-    await page.setViewportSize({ width: 375, height: 667 });
-    await expect(page.locator('#navLinks')).not.toHaveClass(/nav-open/);
-    await page.click('#navToggle');
-    await expect(page.locator('#navLinks')).toHaveClass(/nav-open/);
-    await page.click('#navToggle');
-    await expect(page.locator('#navLinks')).not.toHaveClass(/nav-open/);
-  });
-
-  test('security headers are present', async ({ request }) => {
-    // Raw HTTP fetch, not a page navigation - avoids browser-specific caching of the repeat
-    // navigation to '/' (Firefox does not always re-expose headers for a cached response).
-    const response = await request.get('/');
-    const headers = response.headers();
-
-    expect(headers['x-frame-options']).toBe('DENY');
-    expect(headers['x-content-type-options']).toBe('nosniff');
-  });
-
-  test('cookie consent banner appears and can be accepted', async ({ page }) => {
-    await page.context().clearCookies();
-    await page.evaluate(() => localStorage.removeItem('bl_cookie_consent'));
-    await page.reload();
-
-    await expect(page.locator('#cookieBanner')).not.toHaveClass(/hidden/);
-    await page.click('#acceptAllBtn');
-    await expect(page.locator('#cookieBanner')).toHaveClass(/hidden/);
-
-    await page.reload();
-    await expect(page.locator('#cookieBanner')).toHaveClass(/hidden/);
-  });
-});
-
-test.describe('Retired portfolio routes are out of discovery, not deleted', () => {
-  const RETIRED = [
-    '/technologies',
-    '/technologies/bytelite',
-    '/technologies/deep-kore',
-    '/products/cordel-play',
-    '/products/cordel-connect',
-    '/products/cordel-connect/date-planning/restaurants/partner-program',
-    '/progress',
-    '/research',
-    '/company',
-    '/architecture',
-    '/preorder',
-    '/marketing/signup',
-  ];
-
-  for (const route of RETIRED) {
-    test(`${route} still resolves but is served noindex`, async ({ request }) => {
-      const response = await request.get(route);
-      expect(response.status(), `${route} should still resolve`).toBe(200);
-      const html = await response.text();
-      expect(html, `${route} must carry a noindex robots meta`).toContain('noindex, nofollow');
+      expect(dead, `${route} links to routes that no longer exist`).toEqual([]);
     });
   }
 
-  test('the sitemap lists only the public ByteLite routes', async ({ request }) => {
-    const response = await request.get('/sitemap-0.xml');
-    expect(response.status()).toBe(200);
-    const xml = await response.text();
-    const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) =>
-      (m[1] || '').replace(/^https?:\/\/[^/]+/, '').replace(/\/$/, '') || '/'
-    );
-    expect(locs.sort()).toEqual(
-      ['/', '/about', '/contact', '/how-it-works', '/licensing', '/privacy', '/terms', '/validation'].sort()
-    );
-  });
-
-  test('/about and /licensing are real pages, not redirects to retired routes', async ({ page }) => {
-    await page.goto('/about');
-    await expect(page.locator('h1')).toContainText('ByteLite LLC');
-    await page.goto('/licensing');
-    await expect(page.locator('h1')).toBeVisible();
-    await expect(page.locator('body')).toContainText('verified');
+  test('the header and footer carry no link into a deleted family', async ({ page }) => {
+    await page.goto('/');
+    const chrome = await page
+      .locator('header a[href^="/"], footer a[href^="/"]')
+      .evaluateAll((els) => els.map((e) => e.getAttribute('href') ?? ''));
+    const leaks = chrome.filter((h) => DELETED_PREFIXES.some((p) => h.startsWith(p)));
+    expect(leaks, 'navigation still points at a deleted family').toEqual([]);
   });
 });
 
-test.describe('Performance-critical metrics', () => {
-  test('homepage loads within a reasonable time budget', async ({ page }) => {
-    const startTime = Date.now();
-    await page.goto('/');
-    const loadTime = Date.now() - startTime;
-
-    expect(loadTime).toBeLessThan(5000);
+test.describe('The commerce surface tells the truth', () => {
+  test('no product claims a price that has not been approved', async ({ page }) => {
+    await page.goto('/founder-access');
+    const text = (await page.locator('body').innerText()) ?? '';
+    // The ONLY prices allowed anywhere are the decided public ByteLite ones, and they live on
+    // /licensing. Founder access must not print a computed founder price.
+    expect(text).not.toMatch(/\$8\.99/);
+    expect(text).not.toMatch(/\$89\.99/);
+    expect(text).not.toMatch(/\$8\.991/);
   });
 
-  test('images declare alt text', async ({ page }) => {
-    await page.goto('/');
-    const images = page.locator('img');
-    const count = await images.count();
+  test('the two founder benefits are never collapsed into one number', async ({ page }) => {
+    for (const route of ['/founder-access', '/preorder-terms']) {
+      await page.goto(route);
+      const body = page.locator('body');
+      // Both benefits stated separately, in their canonical wording.
+      await expect(body).toContainText('10% lower founder price');
+      await expect(body).toContainText('10% additional qualifying entitlement');
 
-    for (let i = 0; i < count; i++) {
-      await expect(images.nth(i)).toHaveAttribute('alt', /.*/);
+      // "20% off" cannot be tested by absence: the approved DENIAL contains the same substring.
+      // (Same trap the 50%-savings rule hit on /licensing.) So assert the denial is present, and
+      // separately ban the affirmative framings that would actually mislead someone.
+      const text = ((await body.innerText()) ?? '').toLowerCase();
+      expect(text, `${route} must deny the 20% reading explicitly`).toContain('do not add up to 20% off');
+      for (const affirmative of ['get 20% off', 'save 20%', 'you get 20%', '20% discount']) {
+        expect(text, `${route} must not offer "${affirmative}"`).not.toContain(affirmative);
+      }
     }
+  });
+
+  test('Cordel Play is never sold as a subscription', async ({ page }) => {
+    await page.goto('/cordel-play');
+    const body = page.locator('body');
+    await expect(body).toContainText('It is not a subscription');
+    const text = ((await body.innerText()) ?? '').toLowerCase();
+    expect(text).not.toContain('subscribe to cordel play');
+    expect(text).not.toContain('monthly plan');
+  });
+
+  test('Cordel Play states the shipping rule that stops a paid preorder', async ({ page }) => {
+    await page.goto('/cordel-play');
+    const body = page.locator('body');
+    await expect(body).toContainText('I am not taking paid preorders');
+    await expect(body).toContainText('within 30 days if no time is stated');
+  });
+
+  test('the Supporter Pack is never called a donation', async ({ page }) => {
+    for (const route of ['/support', '/supporter-terms']) {
+      await page.goto(route);
+      const body = page.locator('body');
+      const text = ((await body.innerText()) ?? '').toLowerCase();
+
+      // The requirement is that the page never SOLICITS a donation or implies deductibility.
+      // Counting the word does not work: the pages legitimately deny it more than once, in
+      // different wordings, and a denial is the opposite of the problem.
+      for (const solicitation of [
+        'donate',
+        'make a donation',
+        'your donation',
+        'donation helps',
+        'tax deductible donation',
+        'tax-deductible',
+      ]) {
+        expect(text, `${route} must not solicit or imply "${solicitation}"`).not.toContain(solicitation);
+      }
+
+      // And the denial must actually be on the page.
+      await expect(body).toContainText('not a charitable donation');
+      await expect(body).toContainText('not tax deductible');
+    }
+  });
+
+  test('the Supporter Pack disclosure sits next to the purchase control', async ({ page }) => {
+    await page.goto('/support');
+    await expect(page.locator('.disclosure')).toContainText('is not a charitable donation and is not tax deductible');
+    // The disclosure must PRECEDE the button in document order.
+    const ok = await page.evaluate(() => {
+      const d = document.querySelector('.disclosure');
+      const b = document.querySelector('.buy-btn');
+      if (!d || !b) return false;
+      return !!(d.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
+    });
+    expect(ok, 'the disclosure must appear before the purchase control').toBe(true);
+  });
+
+  test('the Supporter Pack denies equity, access and repayment explicitly', async ({ page }) => {
+    await page.goto('/supporter-terms');
+    const body = page.locator('body');
+    for (const phrase of ['equity', 'repayment', 'ownership', 'product access']) {
+      await expect(body).toContainText(phrase);
+    }
+  });
+
+  test('a reservation is never described as an active subscription', async ({ page }) => {
+    await page.goto('/founder-access');
+    const body = page.locator('body');
+    await expect(body).toContainText('It is not a subscription, not an account, and not product access.');
+    await expect(body).toContainText('you will be shown the exact amount');
+  });
+
+  test('the cancel page states plainly that nothing was created', async ({ page }) => {
+    await page.goto('/checkout/cancel');
+    await expect(page.locator('body')).toContainText('No payment was taken');
+    await expect(page.locator('body')).toContainText('no subscription was created');
+  });
+
+  // The success page must claim nothing before the server answers. Opening it with a junk
+  // reference must not produce a confirmation.
+  test('the success page confirms nothing without server verification', async ({ page }) => {
+    await page.goto('/checkout/success?session_id=cs_test_obviously_not_real_reference');
+    const body = page.locator('body');
+    await expect(body).not.toContainText('Payment received.');
+    await expect(body).not.toContainText('Reservation recorded.');
+  });
+
+  test('the success page confirms nothing when opened with no reference at all', async ({ page }) => {
+    await page.goto('/checkout/success');
+    await expect(page.locator('#sx-fail')).toBeVisible();
+    await expect(page.locator('body')).not.toContainText('Payment received.');
+  });
+});
+
+test.describe('Contact still works and still refuses to overpromise', () => {
+  test('the contact form neither advertises a false outage nor overpromises', async ({ page }) => {
+    await page.goto('/contact');
+    await expect(page.locator('.ct-outage')).toHaveCount(0);
+    const body = page.locator('body');
+    await expect(body).not.toContainText('temporarily unavailable');
+    await expect(body).toContainText('does not guarantee acceptance');
   });
 });

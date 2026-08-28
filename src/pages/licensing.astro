@@ -3,14 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PricingModels from '../components/bytelite/PricingModels.astro';
-import SavingsSplit from '../components/bytelite/SavingsSplit.astro';
-import BalanceAutoReload from '../components/bytelite/BalanceAutoReload.astro';
 import {
   LICENSING_HEADLINE,
   LICENSING_CORE,
   LICENSING_NO_SAVING_RULE,
   PERSONAL_PLAN,
   PERSONAL_USAGE_WORDING,
+  BUSINESS_SETTLEMENT_OPTIONS,
 } from '../data/bytelite';
 
 const money = (n: number) => '$' + n.toFixed(2);
@@ -69,7 +68,17 @@ const money = (n: number) => '$' + n.toFixed(2);
         For commercial workloads, ByteLite receives 50% of verified qualifying savings and the
         customer retains the other 50%.
       </p>
-      <SavingsSplit />
+      <p class="body">
+        The split is of the savings, not of your costs. If a workload saves you money against an
+        agreed baseline, we take half of that measured saving and you keep the other half. If it
+        saves you nothing, the fee is nothing.
+      </p>
+      <p class="body">
+        This page used to carry a worked example with dollar figures in it. I removed it. Every
+        number in it was invented, and an invented number laid out like an invoice reads as
+        something ByteLite has already done for somebody. It has not. When there is a real measured
+        result, it will appear here with the measurement behind it.
+      </p>
     </div>
   </section>
 
@@ -92,15 +101,11 @@ const money = (n: number) => '$' + n.toFixed(2);
   <section class="section">
     <div class="container narrow">
       <h2>How a savings-share account would settle.</h2>
-      <p class="lede">
-        One possible mechanism for business accounts: a prepaid balance with automatic top-up, with
-        the ByteLite share deducted from verified savings as they are measured.
-      </p>
-      <BalanceAutoReload />
+      <p class="body">{BUSINESS_SETTLEMENT_OPTIONS}</p>
       <p class="body">
-        Larger accounts would be able to use invoice billing instead. None of this applies to a
-        personal subscription, which would bill monthly or annually like any other subscription.
-        No payment method is collected anywhere on this site today.
+        There is no live billing on this site. Founder reservations record interest and do not
+        charge anything. See <a href="/founder-access">founder access</a> for the current state of
+        each product.
       </p>
     </div>
   </section>

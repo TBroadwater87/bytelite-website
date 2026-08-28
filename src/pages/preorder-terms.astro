@@ -1,0 +1,147 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { COMPANY_NAME, COMPANY_LOCATION } from '../data/company';
+import { FOUNDER_BENEFIT_PRICE, FOUNDER_BENEFIT_ENTITLEMENT } from '../data/commerce';
+
+const TERMS_VERSION = '2026-08-26';
+---
+
+<Layout
+  title="Founder reservation and preorder terms | ByteLite LLC"
+  description="Terms covering ByteLite LLC founder reservations: what is charged, what is collected, what a reservation does and does not guarantee, and how to withdraw."
+  keywords="ByteLite founder reservation terms, preorder terms"
+  canonical="https://www.thebytelite.com/preorder-terms/"
+>
+  <Header slot="header" />
+
+  <section class="page-hero">
+    <div class="container narrow">
+      <p class="draft">DRAFT &mdash; awaiting owner review. Not legal advice.</p>
+      <p class="eyebrow">Terms</p>
+      <h1>Founder reservation and preorder terms</h1>
+      <p class="hero-sub">Version {TERMS_VERSION}. {COMPANY_NAME}, {COMPANY_LOCATION}.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <h2>1. Are you charged today?</h2>
+      <p class="body">
+        No. No founder reservation on this site takes a payment. There is no live paid checkout for
+        any ByteLite LLC product at the time of writing.
+      </p>
+
+      <h2 class="mt">2. Is a payment method collected?</h2>
+      <p class="body">
+        For <strong>Cordel Play</strong>: no. Nothing is stored.
+      </p>
+      <p class="body">
+        For subscription products, a reservation may store a payment method with Stripe for future
+        use, and the page will say so plainly before you reach checkout. Storing a payment method
+        is not authorisation to charge it. It is not a subscription, and no recurring billing is
+        created from a reservation.
+      </p>
+
+      <h2 class="mt">3. The products are not available.</h2>
+      <p class="body">
+        ByteLite, Cordel Connect and Cordel Play are all unreleased. A reservation does not give you
+        access to any of them, does not guarantee a launch date, does not guarantee admission, and
+        does not reserve a position in a queue.
+      </p>
+
+      <h2 class="mt">4. Before any first charge.</h2>
+      <p class="body">You will be shown, and must act to confirm:</p>
+      <ul class="list">
+        <li>the exact amount and currency;</li>
+        <li>the billing interval;</li>
+        <li>the date of the first charge;</li>
+        <li>how automatic renewal works;</li>
+        <li>how to cancel, and where;</li>
+        <li>the refund position;</li>
+        <li>what the product does and does not do at that time.</li>
+      </ul>
+      <p class="body">
+        If you do not confirm, nothing is charged. Silence is not consent.
+      </p>
+
+      <h2 class="mt">5. The founder benefit.</h2>
+      <p class="body">It is two separate things:</p>
+      <ul class="list">
+        <li>{FOUNDER_BENEFIT_PRICE};</li>
+        <li>{FOUNDER_BENEFIT_ENTITLEMENT}.</li>
+      </ul>
+      <p class="body">
+        They are not combined: they do not add up to 20% off. The discount applies to the price.
+        The additional entitlement applies to whatever that product meters. Those are two
+        different units, so adding them together would be meaningless.
+      </p>
+      <p class="body warn">
+        <strong>Open item:</strong> the unit of the additional 10% has not been fixed for any
+        product. It will be written here, in specific terms, before that product can be activated
+        or charged. Until then no reservation relies on a meaning that has not been published.
+      </p>
+
+      <h2 class="mt">6. Withdrawing.</h2>
+      <p class="body">
+        Write to me through the <a href="/contact">contact page</a> and ask to be removed. There is
+        no form to find, no retention step and no deadline. Because nothing has been charged, there
+        is nothing to refund.
+      </p>
+
+      <h2 class="mt">7. Cordel Play specifically.</h2>
+      <p class="body">
+        Cordel Play is a physical product for adults aged 18 or over. It is not a subscription.
+      </p>
+      <p class="body">
+        No paid preorder will be accepted for it until ByteLite LLC has a reasonable basis for a
+        stated shipment time and an operating process for delay consent and refunds. The FTC Mail,
+        Internet, or Telephone Order Merchandise Rule requires shipment within the promised time,
+        or within 30 days where no time is stated, and requires your consent to a delay or a refund
+        when that cannot be met.
+      </p>
+
+      <h2 class="mt">8. Payments and data.</h2>
+      <p class="body">
+        Payments and payment methods are handled by Stripe. ByteLite LLC does not receive or store
+        your card number. What ByteLite LLC retains for a reservation is the product, the plan, the
+        founder-offer version and the terms version. See the <a href="/privacy">privacy policy</a>.
+      </p>
+
+      <h2 class="mt">9. Changes.</h2>
+      <p class="body">
+        If these terms change materially before you are charged, you will be shown the new version
+        and asked to accept it. A reservation made under one version is never silently migrated to
+        another.
+      </p>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.narrow { max-width: 780px; }
+.page-hero { padding: 3.5rem 0 2rem; }
+.draft {
+  display: inline-block; margin-bottom: 1.25rem;
+  font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: #fbbf24; background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.3);
+  border-radius: 9999px; padding: .3rem .875rem;
+}
+.hero-sub { max-width: 640px; font-size: 1rem; margin-top: 1rem; color: #7b829e; line-height: 1.8; }
+h2 { margin-bottom: .75rem; font-size: 1.125rem; }
+.mt { margin-top: 2.5rem; }
+.body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1rem; }
+.warn {
+  background: rgba(251,191,36,.06); border: 1px solid rgba(251,191,36,.28);
+  border-radius: .5rem; padding: 1rem; color: #c4c8f0;
+}
+.list { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .5rem; }
+.list li {
+  font-size: .9375rem; color: #a0a8c0; line-height: 1.65;
+  padding: .625rem .875rem; background: #0d1120;
+  border: 1px solid #1a2235; border-left: 3px solid #6366f1; border-radius: .5rem;
+}
+</style>

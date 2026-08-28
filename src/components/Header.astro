@@ -1,6 +1,10 @@
 ---
-// Primary navigation. Public scope is ByteLite only - six flat destinations, no project-family
-// menus, no dropdowns. Retired portfolio routes still build but are not linked from here.
+// Primary navigation. Flat, no dropdowns, no project-family menus.
+//
+// Rebuild 2026-08-26: ByteLite stays first and the technology pages come before the products,
+// because the site's job is still to explain ByteLite. The retired route families are not
+// "unlinked" any more - their source is deleted and they 301 or return 410. Nothing here can
+// point at a page that no longer exists.
 const currentPath = Astro.url.pathname;
 function isActive(href: string) {
   if (href === '/') return currentPath === '/';
@@ -11,6 +15,7 @@ const NAV = [
   { label: 'How It Works', href: '/how-it-works' },
   { label: 'Validation', href: '/validation' },
   { label: 'Licensing', href: '/licensing' },
+  { label: 'Founder Access', href: '/founder-access' },
   { label: 'About', href: '/about' },
 ];
 ---
@@ -90,7 +95,11 @@ const NAV = [
 .nav-toggle { display: none; background: none; border: none; color: #7b829e; padding: .375rem; border-radius: .375rem; flex-shrink: 0; }
 .nav-toggle:hover { color: #e4e7f2; background: rgba(255,255,255,.05); }
 
-@media (max-width: 720px) {
+/* 860px, not 720px. The nav gained a fifth item ("Founder Access") in the 2026-08-26 rebuild and
+   the row stopped fitting: measured 791px of content inside a 768px viewport, a 23px overflow on
+   every page in Chromium, Firefox and Mobile Chrome. The collapse point has to clear the widest
+   the row can get, so it moves with the item count - do not lower it to "look more desktop". */
+@media (max-width: 860px) {
   .nav-links { display: none; }
   .nav-toggle { display: flex; align-items: center; justify-content: center; }
   .nav-links.nav-open {

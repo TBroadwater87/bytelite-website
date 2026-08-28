@@ -1,0 +1,146 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout
+  title="Checkout complete | ByteLite LLC"
+  description="Confirmation page for a completed ByteLite LLC checkout."
+  keywords="ByteLite checkout confirmation"
+  canonical="https://www.thebytelite.com/checkout/success/"
+  noindex={true}
+>
+  <Header slot="header" />
+
+  <section class="page-hero">
+    <div class="container narrow">
+      <p class="eyebrow">Checkout</p>
+      <!-- Deliberately neutral until the server answers. This page starts by claiming NOTHING:
+           anyone can open /checkout/success/?session_id=whatever, so the URL is a lookup key and
+           never evidence. The heading below is replaced only after /api/checkout-session says
+           Stripe considers the session complete. -->
+      <h1 id="sx-heading">Checking your order&hellip;</h1>
+      <p class="hero-sub" id="sx-body">
+        One moment while this is confirmed with the payment provider.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <div id="sx-detail" hidden>
+        <dl class="facts">
+          <div><dt>Item</dt><dd id="sx-plan">&mdash;</dd></div>
+          <div><dt>Type</dt><dd id="sx-kind">&mdash;</dd></div>
+        </dl>
+      </div>
+
+      <div id="sx-reward" hidden>
+        <h2>Your Founder Supporter Pack.</h2>
+        <p class="body">
+          The download link below is enabled because the payment was confirmed with Stripe on the
+          server, not because of anything in the address bar.
+        </p>
+        <p class="body" id="sx-reward-note">
+          The reward files are not finalised yet. When they are, this is where they will appear,
+          and I will email the address you used at checkout.
+        </p>
+      </div>
+
+      <div id="sx-fail" hidden>
+        <h2>This order is not confirmed.</h2>
+        <p class="body">
+          Stripe does not report this checkout as complete. Nothing has been unlocked. If you
+          believe you were charged, <a href="/contact">tell me directly</a> and include the date
+          and time &mdash; do not send card details.
+        </p>
+      </div>
+
+      <div class="cta-row">
+        <a href="/founder-access" class="btn btn-outline">Founder access</a>
+        <a href="/contact" class="btn btn-primary">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id') ?? '';
+
+  const heading = document.getElementById('sx-heading');
+  const body = document.getElementById('sx-body');
+  const detail = document.getElementById('sx-detail');
+  const reward = document.getElementById('sx-reward');
+  const fail = document.getElementById('sx-fail');
+
+  function showFailure(message: string) {
+    if (heading) heading.textContent = 'Not confirmed.';
+    if (body) body.textContent = message;
+    if (fail) fail.hidden = false;
+  }
+
+  async function verify() {
+    if (!sessionId) {
+      showFailure('This page was opened without a checkout reference, so there is nothing to confirm.');
+      return;
+    }
+    try {
+      const res = await fetch(`/api/checkout-session?session_id=${encodeURIComponent(sessionId)}`);
+      const json = await res.json().catch(() => ({}));
+
+      if (!res.ok || !json.confirmed) {
+        showFailure('Stripe does not report this checkout as complete.');
+        return;
+      }
+
+      const isReservation = json.kind === 'reservation';
+      if (heading) {
+        heading.textContent = isReservation ? 'Reservation recorded.' : 'Payment received.';
+      }
+      if (body) {
+        body.textContent = isReservation
+          ? 'You are on the founder list for this product. Nothing was charged, and this is not a subscription. You will be told the exact price, billing interval and cancellation terms before anything is ever billed, and you will have to confirm it yourself.'
+          : 'Thank you. Your purchase is confirmed.';
+      }
+
+      const planEl = document.getElementById('sx-plan');
+      const kindEl = document.getElementById('sx-kind');
+      if (planEl) planEl.textContent = json.planLabel ?? 'Not recorded';
+      if (kindEl) {
+        kindEl.textContent = isReservation
+          ? 'Founder reservation - no charge'
+          : 'One-time purchase';
+      }
+      if (detail) detail.hidden = false;
+
+      // Gated on the SERVER's answer for this specific product, never on the plan key the browser
+      // happens to hold.
+      if (json.supporterPackUnlocked && reward) reward.hidden = false;
+    } catch {
+      showFailure('This order could not be confirmed right now.');
+    }
+  }
+
+  verify();
+</script>
+
+<style>
+.narrow { max-width: 780px; }
+.page-hero { padding: 3.5rem 0 2rem; }
+.hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.8; }
+h2 { margin-bottom: .75rem; }
+.body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1rem; }
+.facts {
+  margin: 0 0 2rem; padding: 1.5rem;
+  background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 2rem;
+}
+@media (max-width: 560px) { .facts { grid-template-columns: 1fr; } }
+.facts dt { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #555e7a; }
+.facts dd { margin: .2rem 0 0; font-size: .9375rem; color: #e4e7f2; }
+.cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 2rem; }
+</style>

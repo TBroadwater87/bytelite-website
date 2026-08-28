@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout
+  title="Checkout cancelled | ByteLite LLC"
+  description="This ByteLite LLC checkout was not completed and nothing was created."
+  keywords="ByteLite checkout cancelled"
+  canonical="https://www.thebytelite.com/checkout/cancel/"
+  noindex={true}
+>
+  <Header slot="header" />
+
+  <section class="page-hero">
+    <div class="container narrow">
+      <p class="eyebrow">Checkout</p>
+      <h1>Nothing happened.</h1>
+      <p class="hero-sub">
+        You left checkout before it completed. No payment was taken, no payment method was stored,
+        no subscription was created and no reservation was recorded. There is nothing to cancel and
+        nothing to refund.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <p class="body">
+        If you meant to complete it, you can start again from founder access. If something on the
+        way through was unclear or broken, I would rather hear about it than have you assume it was
+        you.
+      </p>
+      <div class="cta-row">
+        <a href="/founder-access" class="btn btn-primary">Back to founder access</a>
+        <a href="/contact" class="btn btn-outline">Tell me what went wrong</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.narrow { max-width: 780px; }
+.page-hero { padding: 3.5rem 0 2rem; }
+.hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.8; }
+.body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; }
+.cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 2rem; }
+</style>

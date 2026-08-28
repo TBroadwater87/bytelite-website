@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { CORDEL_PLAY } from '../data/projects';
+
+// Every fact on this page comes from the canonical project record. Nothing about components,
+// contents, price, shipping or availability is written inline, so this page cannot drift away
+// from what the company actually claims elsewhere.
+const record = CORDEL_PLAY;
+---
+
+<Layout
+  title="Cordel Play | ByteLite LLC"
+  description="Cordel Play is a consent-first adult board game from ByteLite LLC. Product design is complete; manufacturing is in preparation. No retail release date has been announced."
+  keywords="Cordel Play, adult board game, consent-first, ByteLite LLC"
+  canonical="https://www.thebytelite.com/cordel-play/"
+>
+  <Header slot="header" />
+
+  <section class="page-hero">
+    <div class="container narrow">
+      <p class="eyebrow">Product &middot; 18+</p>
+      <h1>Cordel Play</h1>
+      <p class="hero-sub">{record.shortDescription}</p>
+      <p class="age-gate">
+        This is an adult product. It is intended for people aged 18 or over.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <h2>What it is.</h2>
+      <p class="body">{record.mission}</p>
+
+      <h2 class="mt">Where it actually is.</h2>
+      <dl class="facts">
+        <div><dt>Status</dt><dd>{record.status}</dd></div>
+        <div><dt>Availability</dt><dd>{record.availability}</dd></div>
+        <div><dt>Next milestone</dt><dd>{record.nextMilestone}</dd></div>
+        <div><dt>Validation focus</dt><dd>{record.validationFocus}</dd></div>
+      </dl>
+
+      <h3 class="mt">Done</h3>
+      <ul class="list">
+        {record.currentCapabilities.map((c) => <li>{c.label}</li>)}
+      </ul>
+
+      <h3 class="mt">Not done</h3>
+      <ul class="list list-open">
+        {record.inDevelopment.map((c) => <li>{c}</li>)}
+      </ul>
+
+      <h2 class="mt">The honest limitations.</h2>
+      <ul class="list list-limit">
+        {record.validation.map((v) => <li>{v.text}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- The commercial rule that governs this product. It is a legal constraint, not a preference,
+       so it is stated on the product page and not buried in terms. -->
+  <section class="section section-alt">
+    <div class="container narrow">
+      <h2>Why you cannot buy it here.</h2>
+      <p class="body">
+        Cordel Play is a physical product in a box. It is not a subscription and will never be sold
+        as one.
+      </p>
+      <p class="body">
+        I am not taking paid preorders for it. Under the FTC Mail, Internet, or Telephone Order
+        Merchandise Rule, taking your money means committing to ship within a stated time, or
+        within 30 days if no time is stated, and having a real process for getting your consent or
+        refunding you when that slips. There is no approved shipment date, no approved price and no
+        approved refund process yet, so there is nothing here I could honestly charge you for.
+      </p>
+      <p class="body">
+        You can register interest without paying anything. That records that you want it and locks
+        the founder benefit. It stores no payment method and takes no money.
+      </p>
+      <div class="cta-row">
+        <a href="/founder-access" class="btn btn-primary">Register interest &mdash; no charge</a>
+        <a href="/preorder-terms" class="btn btn-outline">Reservation terms</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.narrow { max-width: 780px; }
+.page-hero { padding: 3.5rem 0 2rem; }
+.hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.8; }
+.age-gate {
+  display: inline-block; margin-top: 1.25rem;
+  font-size: .8125rem; font-weight: 600;
+  color: #fbbf24; background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.3);
+  border-radius: .5rem; padding: .5rem .875rem;
+}
+h2 { margin-bottom: .75rem; }
+h3 { font-size: 1rem; color: #e4e7f2; margin-bottom: .625rem; }
+.mt { margin-top: 2.5rem; }
+.body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1rem; }
+.facts {
+  margin: 1.25rem 0 0; padding: 1.5rem;
+  background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 2rem;
+}
+@media (max-width: 560px) { .facts { grid-template-columns: 1fr; } }
+.facts dt { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #555e7a; }
+.facts dd { margin: .2rem 0 0; font-size: .9375rem; color: #e4e7f2; }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.list li {
+  font-size: .9375rem; color: #a0a8c0; line-height: 1.65;
+  padding: .625rem .875rem; background: #0d1120;
+  border: 1px solid #1a2235; border-left: 3px solid #34d399; border-radius: .5rem;
+}
+.list-open li { border-left-color: #fbbf24; }
+.list-limit li { border-left-color: #f472b6; }
+.cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.75rem; }
+</style>

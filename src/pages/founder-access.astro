@@ -1,0 +1,245 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import {
+  FOUNDER_CARDS,
+  cardIsActionable,
+  COMMERCE_PHASE,
+  FOUNDER_OFFER_OPEN,
+  FOUNDER_BENEFIT_PRICE,
+  FOUNDER_BENEFIT_ENTITLEMENT,
+  FOUNDER_ENTITLEMENT_UNDEFINED_NOTE,
+} from '../data/commerce';
+
+const cards = FOUNDER_CARDS.map((c) => ({ ...c, actionable: cardIsActionable(c) }));
+const anyActionable = cards.some((c) => c.actionable);
+---
+
+<Layout
+  title="Founder access | ByteLite LLC"
+  description="Founder reservations for ByteLite, Cordel Connect and Cordel Play. Nothing is charged today. Each product shows its real commercial state."
+  keywords="ByteLite founder access, founder reservation, Cordel Connect, Cordel Play"
+  canonical="https://www.thebytelite.com/founder-access/"
+>
+  <Header slot="header" />
+
+  <section class="page-hero">
+    <div class="container narrow">
+      <p class="eyebrow">Founder access</p>
+      <h1>Reserve early. Pay nothing today.</h1>
+      <p class="hero-sub">
+        Three products, three different states. None of them is finished, so none of them takes
+        your money right now. This page exists so you can register interest and lock the founder
+        benefit before general release &mdash; not so I can bill you for something that does not
+        exist yet.
+      </p>
+    </div>
+  </section>
+
+  <!-- Engagement map. This shows WAYS IN to ByteLite - four audiences pointing at one core. It is
+       not a technology stack, not a subsystem map and not a product dependency diagram, and it
+       must never be captioned as one. -->
+  <section class="section-sm">
+    <div class="container narrow">
+      <img
+        class="fig"
+        src="/bytelite/product-ecosystem-overview.png"
+        alt="One ByteLite core with four ways to engage: individuals, organizations, technical reviewers and founder preorder."
+        width="1672" height="941" loading="lazy" decoding="async"
+      />
+      <p class="body-note">
+        Four ways in to the same thing. This is a map of how people engage with ByteLite &mdash;
+        not a diagram of how anything is built.
+      </p>
+    </div>
+  </section>
+
+  <!-- The two benefits, kept apart. Collapsing them into "20% off" would be arithmetic on two
+       different units: one is money, the other is whatever the product meters. -->
+  <section class="section-sm">
+    <div class="container narrow">
+      <img
+        class="fig"
+        src="/bytelite/founder-preorder-highlight.png"
+        alt="Founder preorder: 10% lower price, 10% more entitlement, reserved before general release."
+        width="1672" height="941" loading="lazy" decoding="async"
+      />
+      <h2>The founder benefit is two separate things.</h2>
+      <ul class="benefits">
+        <li><span class="b-num">1</span><span class="b-text">{FOUNDER_BENEFIT_PRICE}</span></li>
+        <li><span class="b-num">2</span><span class="b-text">{FOUNDER_BENEFIT_ENTITLEMENT}</span></li>
+      </ul>
+      <p class="body-note">
+        These do not add up to 20% off. One is a discount on the price. The other is more of
+        whatever that product counts. {FOUNDER_ENTITLEMENT_UNDEFINED_NOTE}
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Products.</h2>
+      <p class="lede">
+        Each card says what the thing is and what state it is actually in. Where a control is
+        disabled, it is disabled because a real decision has not been made, not because the page
+        is broken.
+      </p>
+
+      <div class="cards">
+        {cards.map((card) => (
+          <article class="card-fa">
+            <h3>{card.title}</h3>
+            <p class="fa-what">{card.what}</p>
+            <p class="fa-state">{card.state}</p>
+            <p class="fa-kind">
+              {card.kind === 'reservation'
+                ? 'Physical product - reservation only'
+                : `Subscription - billed per ${card.interval}`}
+            </p>
+            <div class="fa-actions">
+              {card.actionable ? (
+                <button
+                  type="button"
+                  class="btn btn-primary fa-btn"
+                  data-plan={card.planKey}
+                >Reserve &mdash; no charge</button>
+              ) : (
+                <button type="button" class="btn btn-outline fa-btn" disabled aria-describedby={`why-${card.planKey}`}>
+                  Founder access is being configured
+                </button>
+              )}
+              <a href={card.href} class="fa-link">What this is &rarr;</a>
+            </div>
+            {!card.actionable && (
+              <p class="fa-why" id={`why-${card.planKey}`}>
+                Disabled until its price and terms are approved. Nothing here will take a payment
+                before that.
+              </p>
+            )}
+          </article>
+        ))}
+      </div>
+
+      <p class="fa-status" role="status" id="fa-status"></p>
+    </div>
+  </section>
+
+  {!anyActionable && (
+    <section class="section section-alt">
+      <div class="container narrow">
+        <h2>Nothing is live yet.</h2>
+        <p class="body">
+          Every control on this page is currently switched off at the server, not just hidden. The
+          commerce phase is <code>{COMMERCE_PHASE}</code> and the founder offer window is
+          {FOUNDER_OFFER_OPEN ? ' open' : ' closed'}. If you want to be told when reservations
+          open, <a href="/contact">say so directly</a> and I will write to you myself.
+        </p>
+      </div>
+    </section>
+  )}
+
+  <section class="section section-alt">
+    <div class="container narrow">
+      <h2>What a reservation is, and is not.</h2>
+      <p class="body">
+        A reservation records that you want the product and which founder offer you accepted. It
+        is not a subscription, not an account, and not product access. It does not guarantee a
+        launch date or a place in a queue.
+      </p>
+      <p class="body">
+        Before anything is ever charged you will be shown the exact amount, the billing interval,
+        the first charge date, how renewal works and how to cancel &mdash; and you will have to
+        act to confirm it. A reservation does not turn into a payment on its own.
+      </p>
+      <p class="body">
+        Full wording: <a href="/preorder-terms">founder reservation and preorder terms</a>.
+      </p>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<script>
+  // Progressive enhancement over real <button> elements. The browser chooses a PLAN KEY and
+  // nothing else - no price, no amount, no URL - because the server reads nothing else.
+  const status = document.getElementById('fa-status');
+  document.querySelectorAll<HTMLButtonElement>('.fa-btn[data-plan]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const planKey = btn.dataset.plan;
+      if (!planKey) return;
+      btn.disabled = true;
+      if (status) status.textContent = 'Opening secure checkout...';
+      try {
+        const res = await fetch('/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ planKey }),
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || !json.url) {
+          throw new Error(json.error || 'Checkout could not be started.');
+        }
+        // A navigation, not a form POST: the site's CSP sets form-action 'self', and widening a
+        // CSP to make a payment path work is exactly what the security canon forbids.
+        window.location.assign(json.url);
+      } catch (err) {
+        if (status) {
+          status.textContent =
+            err instanceof Error ? err.message : 'Checkout could not be started.';
+        }
+        btn.disabled = false;
+      }
+    });
+  });
+</script>
+
+<style>
+.narrow { max-width: 780px; }
+.page-hero { padding: 3.5rem 0 2rem; }
+.fig {
+  display: block; width: 100%; height: auto; margin: 0 0 1.5rem;
+  border: 1px solid #1a2235; border-radius: .75rem; background: #0d1120;
+}
+.hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.8; }
+h2 { margin-bottom: .75rem; }
+.lede { font-size: 1.0625rem; color: #a0a8c0; line-height: 1.75; margin-bottom: 2rem; max-width: 640px; }
+.body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1rem; }
+.body-note { font-size: .875rem; color: #7b829e; line-height: 1.7; margin-top: 1rem; max-width: 640px; }
+
+.benefits { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .75rem; max-width: 640px; }
+.benefits li {
+  display: flex; align-items: center; gap: .875rem;
+  background: #0d1120; border: 1px solid #1a2235; border-left: 3px solid #6366f1;
+  border-radius: .5rem; padding: .875rem 1rem;
+}
+.b-num {
+  flex-shrink: 0; width: 1.5rem; height: 1.5rem; border-radius: 50%;
+  background: rgba(99,102,241,.15); color: #a5b4fc;
+  display: grid; place-items: center; font-size: .8125rem; font-weight: 700;
+}
+.b-text { color: #e4e7f2; font-size: .9375rem; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+.card-fa {
+  background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem; padding: 1.5rem;
+  display: flex; flex-direction: column; gap: .625rem;
+}
+.card-fa h3 { font-size: 1.0625rem; color: #e4e7f2; margin: 0; }
+.fa-what { font-size: .9375rem; color: #a0a8c0; line-height: 1.65; margin: 0; }
+.fa-state { font-size: .875rem; color: #7b829e; line-height: 1.65; margin: 0; }
+.fa-kind {
+  font-size: .6875rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: #555e7a; margin: 0;
+}
+.fa-actions { margin-top: auto; padding-top: .75rem; display: flex; flex-direction: column; gap: .625rem; align-items: flex-start; }
+.fa-btn { width: 100%; justify-content: center; }
+.fa-btn:disabled { opacity: .55; cursor: not-allowed; }
+.fa-btn:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }
+.fa-link { font-size: .875rem; color: #818cf8; }
+.fa-link:hover, .fa-link:focus-visible { color: #a5b4fc; }
+.fa-why { font-size: .8125rem; color: #555e7a; line-height: 1.6; margin: 0; }
+.fa-status { margin-top: 1.5rem; font-size: .9375rem; color: #a5b4fc; min-height: 1.4em; }
+code { background: #131a2c; padding: .1rem .4rem; border-radius: .25rem; font-size: .875em; color: #c4c8f0; }
+</style>

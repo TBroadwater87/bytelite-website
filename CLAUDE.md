@@ -24,37 +24,52 @@ It is not a product, not the compression engine, and not a portfolio site.
 
 ## 1. PUBLIC SCOPE
 
-thebytelite.com is a **ByteLite-only** site. Do not restore portfolio scope.
+**Rewritten 2026-08-26 by owner decision.** thebytelite.com was a ByteLite-only site with the
+retired portfolio kept alive at `noindex`. Both halves of that changed: **Cordel is now a public
+commercial product family**, and the retired families are **deleted**, not hidden.
 
-Six discoverable destinations:
+ByteLite still comes first. It is the reason the site exists, it owns the homepage, and the
+technology pages precede the product pages in every navigation surface.
 
-`/` . `/how-it-works` . `/validation` . `/licensing` . `/about` . `/contact`
+**Discoverable (in the sitemap allowlist in `astro.config.mjs`):**
 
-Plus `/privacy` and `/terms` in the sitemap, and `/responsible-disclosure` and `/404`
-which are not.
+`/` . `/how-it-works` . `/validation` . `/licensing` . `/about` . `/contact` .
+`/founder-access` . `/support` . `/cordel-connect` . `/cordel-play` . `/privacy` . `/terms` .
+`/preorder-terms` . `/supporter-terms`
 
-Everything under `architecture/`, `company/`, `marketing/`, `preorder/`, `products/`,
-`progress/`, `research/`, `technologies/` and `architecture.astro` is **retired from
-discovery, not deleted**. Those routes still build and still return 200, but each passes
-`noindex={true}` to `Layout` and none appears in the sitemap, the header, or the footer.
+**Resolvable but deliberately not discoverable:** `/checkout/success`, `/checkout/cancel`,
+`/billing`, `/responsible-disclosure`, `/404`. The first three are steps inside a flow, not
+destinations; a search result landing on a bare success page would be meaningless.
 
-Three rules follow, all enforced by tests:
+**Deleted, not retired.** `architecture/`, `company/`, `marketing/`, `preorder/`, `products/`,
+`progress/`, `research/`, `technologies/`, `architecture.astro` and `src/pages/api/` no longer
+exist. Every one of those URLs now either 301s to a real successor or returns **410 Gone** from
+`api/gone.ts`. See `vercel.json`.
 
-1. **The sitemap is an allowlist**, not a denylist (`astro.config.mjs`). Adding a page under
-   `src/pages/` can never put it back into search discovery by accident.
-2. **No public page links into a retired section.** `critical-paths.spec.ts` walks every
-   `main a[href^="/"]` on the homepage and every header link against the public route list.
-3. **No public page names a sibling ByteLite LLC system.** Deep Kore, ByteSight, ByteOracle,
-   ByteFlow, ByteCost, AIya, Aion, Genesis Goalkeeper, Revelation Vanguard, Cordel Connect
-   and Cordel Play are absent from all eight public routes. Where a legal disclosure must
-   cover a non-public service (privacy policy, terms), it describes the service generically
-   rather than by product name.
+**410 rather than 404, and rather than a noindex 200.** A 200 with `noindex` still serves the
+stale page to anyone with the link and still costs a crawl. A 404 says "try again later". A 410
+says "this is gone deliberately", and it leaves the index far faster. Those pages named retired
+systems, so getting them out of the index *is* the job.
 
-A compatibility redirect is not public product promotion. Redirects and legal disclosures may
-name history where there is a real reason; public pages may not.
+Rules that survive, all enforced by tests:
+
+1. **The sitemap is an allowlist**, not a denylist. Adding a page under `src/pages/` can never
+   put it into search discovery by accident.
+2. **No public page links to a route that no longer exists.** Enforced against the built HTML.
+3. **These names stay off every public surface:** Deep Kore, ByteSight, ByteOracle, ByteFlow,
+   ByteCost, AIya, Aion, Genesis Goalkeeper, Revelation Vanguard, HeartStrings, and the
+   misspellings Codrel / Cordea / Cordia. Not in pages, titles, descriptions, alt text,
+   structured data, sitemaps, client-shipped comments, or public assets.
+   **Cordel Connect and Cordel Play are no longer on that list.** They are current products with
+   their own canonical pages.
+4. **A 410 body names nothing.** A gone-page that recites the retired product it replaced would
+   republish the exact vocabulary the retirement removed.
+
+Do not resurrect the obsolete portfolio, the abandoned architecture pages, or the speculative
+technology-stack claims. Cordel being public is not permission to bring any of that back.
 
 Do not reinstate the `/about -> /company` or `/licensing -> /company/partnerships` redirects.
-Both shadowed real pages and were deleted from `vercel.json`.
+Both shadowed real pages.
 
 ---
 
@@ -169,8 +184,7 @@ Canonical wording is in `src/data/bytelite.ts` (`IS_NOT`). Import it; never rest
 ## 5. PRICING LAW
 
 Two billing models, not two feature tiers. Canonical values live in `src/data/bytelite.ts`
-(`PERSONAL_PLAN`, `SAVINGS_EXAMPLE`, `TARGET_EXAMPLE_LABEL`). Import them; never hardcode a
-price in a page.
+(`PERSONAL_PLAN`). Import them; never hardcode a price in a page.
 
 **PERSONAL** - flat subscription.
 
@@ -189,22 +203,37 @@ price in a page.
 - The 50/50 split is of the **savings**, not of the customer's costs. It is never
   "costs fall by half".
 
-**Target economic example** - and it is labelled as target, always:
+**No worked economic example. Removed 2026-08-26, permanently.**
 
-```
-Baseline qualifying cost              $1,000
-Target qualifying cost with ByteLite  $  100
-Target verified savings               $  900   (90%)
-Customer retains                      $  450
-ByteLite fee                          $  450
-Customer effective cost               $  550
-Customer net saving                   $  450   (45%)
-```
+This section used to carry a $1,000 -> $100 -> 50/50 chain, and `src/data/bytelite.ts` used to
+export `SAVINGS_EXAMPLE` and `BALANCE_EXAMPLE` (a $42.18 balance, a $25.00 minimum, a $100.00
+auto-reload, an $18.40 settlement). Every one of those numbers was invented. Labelling them a
+target kept them technically honest, but an invented number laid out like an invoice still reads
+to a visitor as something ByteLite already did for somebody.
 
-This is a TARGET ECONOMIC EXAMPLE. It is NOT a current performance claim.
+**Never put a currency figure on a public page that did not come from a measured result.** The
+model is fully expressible in words - 50% of verified qualifying savings, and no verified saving
+means no fee - and words cannot be mistaken for an operational account.
 
-**Never label the $100 figure "Measured qualifying cost with ByteLite."** The rendered label
-is and stays "Target qualifying cost with ByteLite". `pricing-models.spec.ts` guards this.
+The only prices that may appear are `PERSONAL_PLAN`'s `$9.99` / `$99.99`, because those are
+decided public prices rather than modelled outcomes.
+
+**FOUNDER PRICING.** The founder benefit is exactly two things and they are never combined:
+
+- **10% lower founder price**
+- **10% additional qualifying entitlement**
+
+They are not "20% off". One is a discount on money; the other is more of whatever the product
+meters. Adding them is arithmetic on two different units.
+
+**Nothing in this repository computes a founder price.** 10% off `$9.99` is `$8.991`, and Stripe
+prices are integer minor units. Rounding that is a commercial decision with a legal consequence,
+so the rounded figure lives in an owner-approved Stripe Price object and reaches the code only as
+an ID in an environment variable. Never write `* 0.9` anywhere.
+
+**The meaning of the additional 10% is undefined and must stay undefined until the owner sets
+it.** No page may invent a unit for it. `src/data/commerce.ts` says so in
+`FOUNDER_ENTITLEMENT_UNDEFINED_NOTE`; import that rather than paraphrasing it.
 
 ---
 
@@ -322,11 +351,13 @@ with payloads that cannot pass validation, and confirm the deployment is actuall
 probing at all - otherwise you are testing the previous deployment and mailing the owner to
 learn it.
 
-**`POST /api/contact` is the only server-side route.** `api/health.ts` was a temporary
-migration probe during the 2026-08 domain cutover; it was deleted on 2026-08-25 once delivery
-was proven end to end. Do not reinstate it, and do not add any other diagnostic endpoint that
-reports deployment configuration to the public internet. A probe that survives its migration
-has become a permanent public API by accident.
+**`POST /api/contact` is no longer the only server-side route** - see section 15. The routes that
+exist are `contact`, `checkout`, `checkout-session`, `stripe-webhook` and `gone`, and that list is
+closed. The original rule survives in its important half: **do not add any diagnostic endpoint
+that reports deployment configuration to the public internet.** `api/health.ts` was a temporary
+migration probe during the 2026-08 domain cutover, deleted on 2026-08-25 once delivery was proven
+end to end. Do not reinstate it. A probe that survives its migration has become a permanent public
+API by accident.
 
 **Delivery is proven, and the proof has three separate parts.** Never merge them:
 
@@ -404,9 +435,31 @@ than describing the repository layout.
 
 ## 11. TEACHING DIAGRAMS
 
-Diagrams live in `src/components/bytelite/` and are pure CSS/HTML - no images, so they survive
-zoom, reflow, and a screen reader. No safe real screenshot of the development tooling exists in
-this repository; do not fabricate one, and do not publish an unsanitised capture.
+**Teaching diagrams** live in `src/components/bytelite/` and are pure CSS/HTML - no images, so
+they survive zoom, reflow, and a screen reader. That has not changed and must not: a diagram whose
+meaning lives only in pixels is unreadable at 320px and invisible to a screen reader.
+
+**Brand and marketing graphics are a separate category, added 2026-08-26.** The nine approved
+IP-safe PNGs in `public/bytelite/` may appear in primary page content, under one rule that is not
+negotiable:
+
+> **The image may never be the only carrier of its meaning.** Every graphic that contains words
+> must sit beside real semantic HTML saying the same thing - a list, a table, or prose. The image
+> is reinforcement.
+
+The reason is measured, not stylistic: these renders are 1672px wide and their sub-labels land at
+roughly 5px inside a 320px viewport. At that size the text is gone. The HTML beside it is what a
+phone, a zoomed browser and a screen reader actually read.
+
+Every such image also carries intrinsic `width` and `height` (so the box is reserved and nothing
+shifts), `height: auto` (so nothing stretches), and `loading="lazy"` unless it is the homepage
+hero - which is `eager` with `fetchpriority="high"`, because lazy-loading the largest element on
+the first screen delays the LCP rather than helping it.
+
+`milestone-timeline.png` is **not published**. See section 16.
+
+No safe real screenshot of the development tooling exists in this repository; do not fabricate
+one, and do not publish an unsanitised capture.
 
 | Diagram | Teaches |
 |---|---|
@@ -535,6 +588,89 @@ trusts a caller-supplied header.
 Verified live at `8ea2de6`: 200 on `www`, 308 from the apex, 404 on the deleted probe, 405 on
 `GET /api/contact`, 415 on a non-JSON POST, 400 on an invalid JSON POST.
 
-**WEBSITE_ACTIVE_DEVELOPMENT=FROZEN.** Resume from `reports/WEBSITE_AUTHORITATIVE_HANDOFF.md`,
-which carries the checkpoint and the only legitimate reasons to reopen this repository. Routine
-package-version drift is not one of them.
+**WEBSITE_ACTIVE_DEVELOPMENT=REOPENED 2026-08-26** for the owner-authorised canon rebuild
+(Cordel public scope, founder voice, IP-safe graphics, Stripe test-mode commerce). The freeze in
+`reports/WEBSITE_AUTHORITATIVE_HANDOFF.md` is superseded for this work only; everything that
+document says about DNS, hosting, the superseded Vercel path and contact delivery stands.
+
+---
+
+## 15. COMMERCE LAW
+
+Added 2026-08-26. Stripe is the payment processor. Everything below is enforced in
+`api/_lib/commerce-core.ts` and its tests.
+
+**Stripe is server-side only.** `STRIPE_SECRET_KEY` and `STRIPE_WEBHOOK_SECRET` are read at
+request time inside `api/`. Neither may ever be renamed with a `PUBLIC_` prefix - Astro inlines
+`PUBLIC_` variables into the browser bundle, which would publish the key to every visitor. No
+Stripe.js is loaded and no publishable key is used: checkout is Stripe-hosted and reached by
+navigation.
+
+**The browser chooses a plan key and nothing else.** Never a price, an amount, a currency, a
+Stripe Price ID, a mode, a discount, a success URL or a product description. `resolveCheckout()`
+is the only thing that turns a key into a Stripe call, and an unknown key dies there.
+
+**Anything unrecognised fails closed.** `readPhase()` maps an unset or misspelled
+`COMMERCE_PHASE` to `disabled`. A typo in an environment variable must never fail open into live
+commerce.
+
+**A plan with no approved Stripe Price is not purchasable.** It renders an honest "being
+configured" state and its checkout call is refused server-side. A disabled-looking button whose
+server would have accepted the call is a worse bug than a broken button.
+
+**A reservation is not a subscription.** `setup` mode stores a payment method after saying so; it
+creates no recurring object. Before any first charge the customer must be shown the exact amount,
+interval, first-charge date, renewal behaviour, cancellation method and refund position, and must
+act to confirm. Silence is never consent.
+
+**Cordel Play takes no money.** It is a physical 18+ product, never a subscription. No paid
+preorder until there is a reasonable basis for a stated shipment time and an operating
+delay-consent/refund process - the FTC Mail, Internet, or Telephone Order Merchandise Rule
+requires shipment within the promised time, or 30 days where none is stated.
+
+**The Supporter Pack is a purchase, not a donation.** ByteLite LLC is for-profit; the payment is
+not tax deductible and conveys no equity, repayment, ownership, product access or governance. The
+disclosure in `SUPPORTER_DISCLOSURE` sits adjacent to the purchase control, not in a footnote.
+
+**Only the webhook decides a payment is real.** `/checkout/success` starts by claiming nothing and
+asks `/api/checkout-session`, which asks Stripe. A `session_id` in the URL is a lookup key and
+never evidence - anyone can type one.
+
+**Never build an unauthenticated portal-session endpoint.** `/billing` links to Stripe's hosted
+portal login. An endpoint minting a portal session from a checkout session id would hand anyone
+holding that id someone else's invoices, card and cancellation.
+
+**Never log a payment value.** Errors are logged by `err.name` only: a thrown Stripe error can
+carry the request, and the request carries the Authorization header. Plan keys and session ids are
+loggable; amounts, emails, customer ids and payment methods are not.
+
+**The Stripe API version is pinned** in `api/_lib/stripe-client.ts`. Change it only as its own
+reviewed commit, never to silence a type error.
+
+**Consents stay separate.** Purchase, subscription activation, supporter-wall listing and
+marketing are four different agreements. Never bundle them into one checkbox.
+
+---
+
+## 16. WITHHELD ASSETS AND OPEN OWNER DECISIONS
+
+`milestone-timeline.png` is supplied but **not published**. It renders "Research -> Architecture ->
+Validation -> Product Build -> Website Launch -> Ongoing Development" as passed stations. Section
+2 holds INDEPENDENT VALIDATION and PRODUCTION QUALIFICATION as open gates and `/validation` states
+"None of it has been independently verified", so a timeline showing validation as a completed
+milestone collapses target into completed proof. It may be published when either the artwork or
+the claim state changes - not before.
+
+Open decisions that block activation, and which no agent may resolve by assumption:
+
+- the rounded founder monthly and annual prices for ByteLite;
+- the public monthly and annual prices for Cordel Connect;
+- what "10% additional qualifying entitlement" is measured in, per product;
+- whether founder reservations collect a payment method or contact details only;
+- Cordel Play's price, shipment estimate, refund and delay-consent processes;
+- the Supporter Pack's reward files and minimum amount;
+- tax registrations and whether `STRIPE_AUTOMATIC_TAX_ENABLED` may become `true`;
+- final legal approval of the drafts on `/preorder-terms` and `/supporter-terms`;
+- the move from Stripe test mode to live mode.
+
+Until each is closed, the affected control stays disabled at the server, not merely hidden.

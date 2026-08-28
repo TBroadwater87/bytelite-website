@@ -5,7 +5,7 @@
 // ByteLite's ARCHITECTURAL TARGET and its CURRENT ENGINEERING PROOF STATUS are two different
 // things, and the site must never collapse one into the other in either direction:
 //
-//   * The target is a smaller, self-contained representation for EVERY eligible source file,
+//   * The target is a smaller, self-contained representation for EVERY source file,
 //     from which the exact original is reconstructed. Nothing here may narrow that to
 //     "only structured files shrink" or "random data is expected not to shrink".
 //   * The proof is not finished. Nothing here may present universal self-contained shrink,
@@ -27,7 +27,7 @@ export const BYTELITE_LAW_SECONDARY = 'Smaller representation.';
 export const BYTELITE_HERO_WHAT =
   'ByteLite is developing a deterministic lossless representation architecture designed to reconstruct the exact original while reducing the complete information required to represent it.';
 export const BYTELITE_HERO_TARGET =
-  'Its research target is a smaller self-contained representation for every eligible source file. That target remains under active engineering and validation.';
+  'Its research target is a smaller self-contained representation for every source file. That target remains under active engineering and validation.';
 
 /**
  * The canonical public status statement. Any page that summarises ByteLite's position must
@@ -41,7 +41,7 @@ export const BYTELITE_CANON = [
 
 /** The three sentences that keep target, development state and proof state apart. */
 export const TARGET_STATEMENT =
-  'ByteLite is being developed with the target of producing a smaller exact, self-contained representation for every eligible source file.';
+  'ByteLite is being developed with the target of producing a smaller exact, self-contained representation for every source file.';
 export const DEVELOPMENT_STATEMENT =
   'The mechanism required to establish that target is still under active development and validation.';
 export const PROOF_STATEMENT =
@@ -144,7 +144,7 @@ export const VALIDATION_DASHBOARD: DashboardRow[] = [
   },
   {
     id: 'scaffolded-proof',
-    label: 'Current scaffold-assisted proof',
+    label: 'Evidence written out explicitly',
     state: 'partial',
     meaning:
       'Transformations can be inspected, replayed and falsified today because reconstruction evidence is written out explicitly.',
@@ -178,7 +178,7 @@ export const VALIDATION_DASHBOARD: DashboardRow[] = [
     id: 'universal',
     label: 'Universal-shrink target',
     state: 'not-proven',
-    meaning: 'A smaller self-contained representation for every eligible source file.',
+    meaning: 'A smaller self-contained representation for every source file.',
     evidence:
       'ByteLite’s architectural target. It is not a completed public proof, and this site does not present it as one.',
   },
@@ -233,7 +233,7 @@ export const ROADMAP: RoadmapStage[] = [
   { id: 'architecture', label: 'Architecture', state: 'done' },
   { id: 'reversibility', label: 'Exact reversibility', state: 'done' },
   { id: 'scaffold', label: 'Explicit proof scaffold', state: 'done' },
-  { id: 'mechanism', label: 'Mechanism clarification', state: 'current' },
+  { id: 'mechanism', label: 'Working out the mechanism', state: 'current' },
   { id: 'compact', label: 'Compact required state', state: 'ahead' },
   { id: 'self-contained', label: 'Self-contained artifact', state: 'ahead' },
   { id: 'recursion', label: 'Complete-representation recursion', state: 'ahead' },
@@ -303,7 +303,7 @@ export const PROVEN: string[] = [
 ];
 
 export const NOT_PROVEN: string[] = [
-  'The universal target. A smaller self-contained representation for every eligible source file is what ByteLite is being built to achieve, not something it has demonstrated.',
+  'The universal target. A smaller self-contained representation for every source file is what ByteLite is being built to achieve, not something it has demonstrated.',
   'A self-contained final artifact. Development currently relies on explicit reconstruction evidence that the final architecture must absorb.',
   'A specific compression ratio. No public ratio is claimed.',
   'A completed full enwik9 benchmark result.',
@@ -364,48 +364,21 @@ export const BUSINESS_APPLIES_TO = [
 ];
 
 /**
- * TARGET economics, not measured results. The 90% figure is the architecture's target reduction;
- * it has not been demonstrated and must never be rendered without its label.
+ * Removed 2026-08-26, deliberately and permanently.
+ *
+ * This module used to export SAVINGS_EXAMPLE (a $1,000 -> $100 "target" chain ending in a 50/50
+ * split of $900) and BALANCE_EXAMPLE (a $42.18 balance, a $25.00 minimum, a $100.00 auto-reload
+ * and an $18.40 settlement). Every one of those numbers was invented. Labelling them a target
+ * kept them technically honest, but an invented number rendered as a settled account still reads
+ * to a visitor as something ByteLite has already done.
+ *
+ * The commercial model says everything it needs to in words - 50% of verified qualifying savings,
+ * and no verified saving means no fee - and words cannot be mistaken for an operational balance.
+ * Do not reintroduce a currency figure here that did not come from a measured result.
  */
-export const SAVINGS_EXAMPLE = {
-  baselineCost: 1000,
-  /**
-   * Named `targetCost`, never `measuredCost`. The rendered label has always been "Target
-   * qualifying cost with ByteLite", but the field was called `measuredCost`, and a field name
-   * is exactly the kind of detail that talks a future editor into "correcting" the label to
-   * match it. The 90% reduction has not been measured. Owner law: the words "Measured
-   * qualifying cost with ByteLite" must never appear on this figure.
-   */
-  targetCost: 100,
-  verifiedSavings: 900,
-  verifiedSavingsRatePct: 90,
-  customerRetains: 450,
-  byteLiteFee: 450,
-  customerEffectiveCost: 550,
-  customerNetSaving: 450,
-  customerNetSavingRatePct: 45,
-} as const;
-
-export const TARGET_EXAMPLE_LABEL = 'Target economic example — not a current performance claim';
-
-export const TARGET_EXAMPLE_EXPLANATION =
-  "This example illustrates ByteLite's target economics: a 90% verified qualifying-cost reduction followed by a 50/50 split of verified savings. Actual savings will be determined by measured production results.";
-
-/**
- * Prepaid balance / auto-reload is a BUSINESS settlement option only. It is explicitly not the
- * personal plan's mechanism - personal accounts would use ordinary recurring subscription billing.
- */
-export const BALANCE_EXAMPLE = {
-  currentBalance: 42.18,
-  minimumBalance: 25.0,
-  autoReload: 100.0,
-  periodVerifiedSavings: 18.4,
-  periodCustomerRetains: 9.2,
-  periodByteLiteFee: 9.2,
-} as const;
 
 export const BUSINESS_SETTLEMENT_OPTIONS =
-  'Prepaid balance with auto-reload, invoicing, or enterprise settlement are possible implementation options for savings-share accounts. Personal subscriptions would use ordinary recurring billing instead.';
+  'Settlement for savings-share accounts is not yet built. Invoicing and prepaid arrangements are both possible, and the choice will be made with the first commercial customer rather than announced in advance. Personal subscriptions bill on an ordinary recurring cycle.';
 
 export const LICENSING_HEADLINE = 'Two pricing models.';
 

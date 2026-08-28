@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { CORDEL_CONNECT } from '../data/projects';
+
+// Facts come from the canonical project record only. Nothing about matching, scoring, ranking or
+// how compatibility is computed appears anywhere on this page - that is protected mechanism, and
+// a product page is exactly where it tends to leak out as a feature boast.
+const record = CORDEL_CONNECT;
+---
+
+<Layout
+  title="Cordel Connect | ByteLite LLC"
+  description="Cordel Connect is a privacy-focused compatibility application from ByteLite LLC. Substantially implemented and not yet publicly released. No public price has been set."
+  keywords="Cordel Connect, compatibility application, privacy, ByteLite LLC"
+  canonical="https://www.thebytelite.com/cordel-connect/"
+>
+  <Header slot="header" />
+
+  <section class="page-hero">
+    <div class="container narrow">
+      <p class="eyebrow">Product</p>
+      <h1>Cordel Connect</h1>
+      <p class="hero-sub">{record.shortDescription}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <h2>What it is.</h2>
+      <p class="body">{record.mission}</p>
+
+      <h2 class="mt">Where it actually is.</h2>
+      <dl class="facts">
+        <div><dt>Status</dt><dd>{record.status}</dd></div>
+        <div><dt>Availability</dt><dd>{record.availability}</dd></div>
+        <div><dt>Next milestone</dt><dd>{record.nextMilestone}</dd></div>
+        <div><dt>Validation focus</dt><dd>{record.validationFocus}</dd></div>
+      </dl>
+
+      <h3 class="mt">Built</h3>
+      <ul class="list">
+        {record.currentCapabilities.map((c) => <li>{c.label}</li>)}
+      </ul>
+
+      <h3 class="mt">Not built</h3>
+      <ul class="list list-open">
+        {record.inDevelopment.map((c) => <li>{c}</li>)}
+      </ul>
+
+      <h2 class="mt">The honest limitations.</h2>
+      <ul class="list list-limit">
+        {record.validation.map((v) => <li>{v.text}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container narrow">
+      <h2>Pricing.</h2>
+      <p class="body">
+        There is no public price for Cordel Connect. Monthly and annual plans are the intended
+        shape, but neither figure has been set, so neither appears here. I would rather show you
+        nothing than show you a number I would have to change later.
+      </p>
+      <p class="body">
+        Because there is no price, there is nothing to charge. A founder reservation registers
+        interest and locks the founder benefit. It does not start a subscription and does not bill
+        you.
+      </p>
+      <div class="cta-row">
+        <a href="/founder-access" class="btn btn-primary">Register interest &mdash; no charge</a>
+        <a href="/preorder-terms" class="btn btn-outline">Reservation terms</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.narrow { max-width: 780px; }
+.page-hero { padding: 3.5rem 0 2rem; }
+.hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.8; }
+h2 { margin-bottom: .75rem; }
+h3 { font-size: 1rem; color: #e4e7f2; margin-bottom: .625rem; }
+.mt { margin-top: 2.5rem; }
+.body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1rem; }
+.facts {
+  margin: 1.25rem 0 0; padding: 1.5rem;
+  background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 2rem;
+}
+@media (max-width: 560px) { .facts { grid-template-columns: 1fr; } }
+.facts dt { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #555e7a; }
+.facts dd { margin: .2rem 0 0; font-size: .9375rem; color: #e4e7f2; }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.list li {
+  font-size: .9375rem; color: #a0a8c0; line-height: 1.65;
+  padding: .625rem .875rem; background: #0d1120;
+  border: 1px solid #1a2235; border-left: 3px solid #34d399; border-radius: .5rem;
+}
+.list-open li { border-left-color: #fbbf24; }
+.list-limit li { border-left-color: #f472b6; }
+.cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.75rem; }
+</style>

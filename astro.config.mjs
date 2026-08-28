@@ -8,11 +8,17 @@ export default defineConfig({
   integrations: [
     tailwind(),
     sitemap({
-      // Public scope reset (2026-08-22): thebytelite.com is a ByteLite-only site.
-      // The sitemap is an explicit allowlist rather than a denylist, so a retired
-      // portfolio route can never re-enter search discovery by being added back to
-      // src/pages. Retired routes still build and still resolve - they are served
-      // noindex and are simply absent from every discovery surface.
+      // The sitemap is an explicit ALLOWLIST, not a denylist. Adding a file under src/pages can
+      // therefore never put a page into search discovery by accident - it has to be named here.
+      //
+      // Rebuild 2026-08-26: the retired route families (architecture, research, progress,
+      // technologies, company, preorder, products, marketing) are no longer merely absent from
+      // this list - their source files are deleted. They now 301 to a real successor or return
+      // 410 Gone from api/gone.ts. See vercel.json.
+      //
+      // Deliberately absent from discovery while still resolving: /checkout/success,
+      // /checkout/cancel and /billing. They are transactional endpoints of a flow, not
+      // destinations, and a search result landing on a bare success page would be meaningless.
       filter: (page) => {
         // `page` is an absolute URL string; take everything from the origin's
         // trailing slash onward and normalise away the trailing slash.
@@ -24,8 +30,14 @@ export default defineConfig({
           '/licensing',
           '/about',
           '/contact',
+          '/founder-access',
+          '/support',
+          '/cordel-connect',
+          '/cordel-play',
           '/privacy',
           '/terms',
+          '/preorder-terms',
+          '/supporter-terms',
         ].includes(path);
       },
     }),

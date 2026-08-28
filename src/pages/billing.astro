@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { CUSTOMER_PORTAL_URL } from '../data/commerce';
+
+// Deliberately a LINK to Stripe's hosted portal login, not an endpoint that mints a portal
+// session. An unauthenticated endpoint that turns a checkout session id into a portal session
+// would hand anyone holding that id someone else's billing account - their invoices, their card,
+// their cancellation. Stripe's login link asks for the customer's own email and mails them a
+// link, which is the authentication this site does not otherwise have.
+const portalConfigured = CUSTOMER_PORTAL_URL.length > 0;
+---
+
+<Layout
+  title="Manage your billing | ByteLite LLC"
+  description="Manage payment methods, invoices and cancellation for a ByteLite LLC subscription through Stripe's secure customer portal."
+  keywords="ByteLite billing, manage subscription, cancel subscription"
+  canonical="https://www.thebytelite.com/billing/"
+  noindex={true}
+>
+  <Header slot="header" />
+
+  <section class="page-hero">
+    <div class="container narrow">
+      <p class="eyebrow">Billing</p>
+      <h1>Manage or cancel your billing.</h1>
+      <p class="hero-sub">
+        Payment methods, invoices, plan changes and cancellation are all handled in Stripe's own
+        secure portal. ByteLite LLC never stores your card details, so there is nothing here for me
+        to hold onto.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      {portalConfigured ? (
+        <>
+          <p class="body">
+            You will be asked for the email address you used at checkout. Stripe sends a link to
+            that address, which is how it confirms the account is yours.
+          </p>
+          <div class="cta-row">
+            <a href={CUSTOMER_PORTAL_URL} class="btn btn-primary" rel="noopener">
+              Open the Stripe customer portal
+            </a>
+          </div>
+        </>
+      ) : (
+        <p class="body">
+          There is no billing to manage yet. No subscription on this site is active and nothing has
+          been charged, so the portal is not configured. If you think you have been billed by
+          ByteLite LLC, <a href="/contact">contact me directly</a>.
+        </p>
+      )}
+
+      <h2 class="mt">Cancelling.</h2>
+      <p class="body">
+        Cancellation is one action in that portal. There is no retention flow, no phone call, no
+        "are you sure" chain and nothing you have to email me to unlock. If you ever find that
+        cancelling is harder than starting, that is a bug and I want to know about it.
+      </p>
+      <p class="body">
+        A founder reservation is not a subscription and has nothing to cancel. If you want to be
+        taken off the founder list, <a href="/contact">ask</a> and I will remove you.
+      </p>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+.narrow { max-width: 780px; }
+.page-hero { padding: 3.5rem 0 2rem; }
+.hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.8; }
+h2 { margin-bottom: .75rem; }
+.mt { margin-top: 2.5rem; }
+.body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1rem; }
+.cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.75rem; }
+</style>

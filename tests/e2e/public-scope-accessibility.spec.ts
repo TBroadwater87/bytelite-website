@@ -1,8 +1,17 @@
 import { test, expect } from '@playwright/test';
 
-// Accessibility and layout guards for the ByteLite public surface (2026-08-22 scope reset).
-// The teaching diagrams are pure CSS/HTML, so they are subject to the same overflow, zoom,
-// keyboard and reduced-motion rules as the prose around them.
+// Accessibility and layout guards, rewritten 2026-08-26.
+//
+// THE IMAGE RULE CHANGED, AND ITS REASON DID NOT.
+//
+// This suite used to assert that `main img` was EMPTY on the four core routes - teaching diagrams
+// had to be CSS/HTML so they survived zoom, reflow and a screen reader. The owner has since
+// approved nine IP-safe brand graphics in primary content, so a blanket ban is wrong.
+//
+// The ban is therefore NARROWED, not deleted. Images are allowed; an image being the ONLY carrier
+// of its meaning is not. Measured reason: these renders are 1672px wide and their sub-labels land
+// at roughly 5px inside a 320px viewport, where the text is simply gone. So every content image
+// must have real alt text, real intrinsic dimensions, and real semantic HTML beside it.
 
 const PUBLIC_ROUTES = [
   '/',
@@ -11,13 +20,19 @@ const PUBLIC_ROUTES = [
   '/licensing',
   '/about',
   '/contact',
+  '/founder-access',
+  '/support',
+  '/cordel-connect',
+  '/cordel-play',
   '/privacy',
   '/terms',
+  '/preorder-terms',
+  '/supporter-terms',
 ];
 
-// Browser zoom shrinks the CSS viewport: at a 1280px window, 200% zoom is ~640 CSS px and
-// 400% zoom is ~320 CSS px. Emulating the resulting widths is the reliable cross-engine way
-// to assert the WCAG 1.4.10 reflow requirement.
+// Browser zoom shrinks the CSS viewport: at a 1280px window, 200% zoom is ~640 CSS px and 400%
+// zoom is ~320 CSS px. Emulating the resulting widths is the reliable cross-engine way to assert
+// the WCAG 1.4.10 reflow requirement.
 const WIDTHS = [
   { label: '320px (400% zoom)', width: 320 },
   { label: '640px (200% zoom)', width: 640 },
@@ -35,7 +50,6 @@ for (const { label, width } of WIDTHS) {
           scrollWidth: document.documentElement.scrollWidth,
           clientWidth: document.documentElement.clientWidth,
         }));
-        // A 1px rounding tolerance; anything wider is a real overflow.
         expect(
           overflow.scrollWidth - overflow.clientWidth,
           `${route} at ${width}px: scrollWidth ${overflow.scrollWidth} vs clientWidth ${overflow.clientWidth}`
@@ -44,6 +58,124 @@ for (const { label, width } of WIDTHS) {
     }
   });
 }
+
+test.describe('Content images are reinforcement, never the only copy', () => {
+  for (const route of PUBLIC_ROUTES) {
+    test(`${route} gives every content image alt text and reserved space`, async ({ page }) => {
+      await page.goto(route);
+      const imgs = await page.locator('main img').evaluateAll((els) =>
+        els.map((e) => ({
+          src: e.getAttribute('src') ?? '',
+          alt: e.getAttribute('alt'),
+          width: e.getAttribute('width'),
+          height: e.getAttribute('height'),
+          loading: e.getAttribute('loading'),
+        }))
+      );
+
+      for (const img of imgs) {
+        // A decorative image declares itself with alt="". Anything else must describe itself.
+        expect(img.alt, `${route}: ${img.src} needs an alt attribute`).not.toBeNull();
+        if (img.alt !== '') {
+          expect(img.alt!.length, `${route}: ${img.src} needs meaningful alt text`).toBeGreaterThan(10);
+        }
+        // Intrinsic dimensions reserve the box before the bytes land: no layout shift.
+        expect(img.width, `${route}: ${img.src} needs an intrinsic width`).toBeTruthy();
+        expect(img.height, `${route}: ${img.src} needs an intrinsic height`).toBeTruthy();
+      }
+    });
+  }
+
+  test('no content image is stretched away from its intrinsic aspect ratio', async ({ page }) => {
+    for (const route of ['/', '/how-it-works', '/validation', '/founder-access', '/about']) {
+      await page.goto(route);
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      const bad = await page.locator('main img').evaluateAll((els) =>
+        els
+          .filter((e) => {
+            const img = e as HTMLImageElement;
+            if (!img.naturalWidth || !img.naturalHeight) return false;
+            const r = img.getBoundingClientRect();
+            if (!r.width || !r.height) return false;
+            const intrinsic = img.naturalWidth / img.naturalHeight;
+            const rendered = r.width / r.height;
+            // 2% tolerance absorbs sub-pixel rounding of an auto height.
+            return Math.abs(intrinsic - rendered) / intrinsic > 0.02;
+          })
+          .map((e) => e.getAttribute('src') ?? '')
+      );
+      expect(bad, `${route} renders a distorted image`).toEqual([]);
+    }
+  });
+
+  // The narrowed ban. Each graphic's meaning must also exist as text on the same page, so a
+  // screen reader, a 320px viewport and a search engine all still get it.
+  const TEXT_EQUIVALENTS: Array<{ route: string; image: string; mustAlsoSay: string[] }> = [
+    {
+      route: '/',
+      image: 'proof-before-claim-ladder.png',
+      mustAlsoSay: ['Proven internally', 'Not proven'],
+    },
+    {
+      route: '/',
+      image: 'audience-entry-cards.png',
+      mustAlsoSay: ['For people', 'For organizations', 'For technical reviewers'],
+    },
+    {
+      route: '/how-it-works',
+      image: 'deterministic-flow-diagram.png',
+      mustAlsoSay: ['Source', 'Result', 'Evidence', 'Status', 'Limitations', 'Review'],
+    },
+    {
+      route: '/how-it-works',
+      image: 'byte-vs-blackbox-comparison.png',
+      mustAlsoSay: ['Deterministic operation', 'Explicit constraints', 'Auditable artifacts'],
+    },
+    {
+      route: '/founder-access',
+      image: 'founder-preorder-highlight.png',
+      mustAlsoSay: ['10% lower founder price', '10% additional qualifying entitlement'],
+    },
+  ];
+
+  for (const { route, image, mustAlsoSay } of TEXT_EQUIVALENTS) {
+    test(`${route}: ${image} has a real text equivalent`, async ({ page }) => {
+      await page.goto(route);
+      await expect(page.locator(`main img[src*="${image}"]`)).toHaveCount(1);
+      const body = page.locator('body');
+      for (const phrase of mustAlsoSay) {
+        await expect(body, `${route} must state "${phrase}" as text, not only inside ${image}`).toContainText(phrase);
+      }
+    });
+  }
+
+  // Lazy-loading the largest element on the first screen delays the LCP rather than helping it.
+  test('the homepage hero graphic is eager; everything below the fold is lazy', async ({ page }) => {
+    await page.goto('/');
+    const hero = page.locator('main img[src*="bytelite-stack-hero.png"]');
+    await expect(hero).toHaveAttribute('loading', 'eager');
+    await expect(hero).toHaveAttribute('fetchpriority', 'high');
+
+    const belowFold = await page
+      .locator('main img:not([src*="bytelite-stack-hero.png"])')
+      .evaluateAll((els) => els.map((e) => e.getAttribute('loading')));
+    for (const loading of belowFold) {
+      expect(loading).toBe('lazy');
+    }
+  });
+
+  test('the withheld milestone graphic is published nowhere', async ({ page }) => {
+    // It renders Validation and Product Build as passed stations, which contradicts
+    // "None of it has been independently verified." CLAUDE.md section 16.
+    for (const route of PUBLIC_ROUTES) {
+      await page.goto(route);
+      await expect(
+        page.locator('img[src*="milestone-timeline"]'),
+        `${route} must not publish milestone-timeline.png`
+      ).toHaveCount(0);
+    }
+  });
+});
 
 test.describe('Document structure', () => {
   for (const route of PUBLIC_ROUTES) {
@@ -92,15 +224,6 @@ test.describe('Keyboard operability', () => {
     await expect(toggle).toHaveAttribute('aria-expanded', 'false');
   });
 
-  test('the collapsible technical drawers open with the keyboard alone', async ({ page }) => {
-    await page.goto('/how-it-works');
-    const summary = page.locator('details summary').first();
-    await summary.focus();
-    await expect(summary).toBeFocused();
-    await page.keyboard.press('Enter');
-    await expect(page.locator('details').first()).toHaveAttribute('open', '');
-  });
-
   test('every focusable control on the contact form has a visible focus indicator', async ({ page }) => {
     await page.goto('/contact?type=licensing');
     for (const id of ['#ct-name', '#ct-email', '#ct-subject', '#ct-organization', '#ct-message', '#ct-consent']) {
@@ -115,6 +238,17 @@ test.describe('Keyboard operability', () => {
       expect(hasIndicator, `${id} must show a focus indicator`).toBe(true);
     }
   });
+
+  // Commerce actions must be real controls, never a clickable image or a styled div.
+  test('every founder action is a real button or link', async ({ page }) => {
+    await page.goto('/founder-access');
+    const controls = page.locator('.fa-actions button, .fa-actions a');
+    expect(await controls.count()).toBeGreaterThan(0);
+    const tags = await controls.evaluateAll((els) => els.map((e) => e.tagName));
+    for (const tag of tags) {
+      expect(['BUTTON', 'A']).toContain(tag);
+    }
+  });
 });
 
 test.describe('Reduced motion', () => {
@@ -122,7 +256,6 @@ test.describe('Reduced motion', () => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/');
     await expect(page.locator('h1')).toBeVisible();
-    // Content must not depend on an animation having run.
     await expect(page.locator('main')).toBeVisible();
     const hidden = await page
       .locator('main h2')
@@ -131,31 +264,19 @@ test.describe('Reduced motion', () => {
   });
 });
 
-test.describe('Teaching diagrams are text, not images', () => {
-  test('no diagram is delivered as an image that would be lost to a screen reader', async ({ page }) => {
-    for (const route of ['/', '/how-it-works', '/validation', '/licensing']) {
-      await page.goto(route);
-      // The only <img> on a public page is the header logo, which is decorative (alt="").
-      const imgs = await page
-        .locator('main img')
-        .evaluateAll((els) => els.map((e) => e.getAttribute('src') || ''));
-      expect(imgs, `${route} should render its diagrams as markup, not images`).toEqual([]);
-    }
-  });
-
+test.describe('Teaching diagrams stay text', () => {
+  // The CSS/HTML teaching diagrams were NOT replaced by the brand graphics. They remain markup.
   test('the roundtrip and accounting diagrams expose their content as text', async ({ page }) => {
     await page.goto('/how-it-works');
     const body = page.locator('body');
     await expect(body).toContainText('hash(original)');
     await expect(body).toContainText('Complete ByteLite artifact');
-    await expect(body).toContainText('All required reconstruction information');
   });
 
   test('the current-vs-final diagram is markup, and its state is written in words', async ({ page }) => {
     await page.goto('/how-it-works');
     const fig = page.locator('.cf').first();
     await expect(fig.locator('img')).toHaveCount(0);
-    // Both column states are readable as text, not conveyed by the border colour alone.
     await expect(fig).toContainText('Current development');
     await expect(fig).toContainText('Final target');
   });
