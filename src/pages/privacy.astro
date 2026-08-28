@@ -32,7 +32,7 @@ import Footer from '../components/Footer.astro';
         <h2>What this website collects</h2>
         <h3>Contact form submissions</h3>
         <p>If you submit the contact form, your name, email address, inquiry type, message, and optionally an organization name are submitted to an endpoint on this site. Your IP address is used to enforce a submission rate limit. This data is used solely to respond to your inquiry. It is not sold, shared with third parties, or used for marketing.</p>
-        <p>No third-party email or CRM provider is currently configured for this form. Submissions are validated and recorded server-side so that an inquiry is not silently lost.</p>
+        <p>Delivery uses SendGrid, a third-party transactional email provider, which processes the message in order to send it. There is no CRM and no marketing automation: the message becomes an email to ByteLite LLC and nothing else. Submissions are validated server-side, and a failed submission tells you it failed rather than silently discarding your message.</p>
         <h3>Analytics</h3>
         <p><strong>No analytics provider is currently loaded on this website.</strong> No Google Analytics tag, no other analytics script, and no advertising or tracking script is served by any page. If privacy-respecting analytics are added in future, they will run only where you have recorded consent through the cookie preferences described below, and this policy will be updated before that happens.</p>
         <h3>Cookies and local storage</h3>
@@ -54,14 +54,21 @@ import Footer from '../components/Footer.astro';
       <div class="legal-section">
         <h2>Other ByteLite LLC services</h2>
         <p>This website is about ByteLite. ByteLite LLC also operates separate, non-public services that are not presented on this site but that do process data, and they are disclosed here so this policy stays complete.</p>
-        <p><strong>Private application testing.</strong> One ByteLite LLC application is in private Android test and beta development only. It is not available on any public app store. A separate, app-specific privacy policy will be published before any broader beta release or public app launch. Beta participants are informed of data handling specific to their testing role.</p>
-        <p><strong>Restaurant partner pilot.</strong> A restaurant partner signup workflow collects restaurant account details, business profile information, uploaded logo and photos, and the promotional deal a participating restaurant chooses to offer. That data is held by the program's own backend service rather than by this website. Stripe is the checkout processor for that workflow and is currently operating in <strong>test mode</strong>: completing checkout does not process a real card charge and does not create a real restaurant listing. Card details are entered on Stripe's own hosted checkout; ByteLite LLC does not receive or store card data in either test or live mode. This policy will be updated before live charging is enabled.</p>
-        <p><strong>Founder reservations.</strong> Founder reservations for eligible products currently go through the contact form rather than a dedicated reservation system, since no paid preorder exists yet. The same contact-form data handling described above applies.</p>
+        <p><strong>Cordel Connect.</strong> This application is in private Android test and beta development only. It is not available on any public app store. A separate, app-specific privacy policy will be published before any broader beta release or public app launch. Beta participants are informed of data handling specific to their testing role. Nothing about that testing is collected through this website.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Payments and founder reservations</h2>
+        <p><strong>Nothing on this website charges you today.</strong> Every founder control is switched off at the server, not merely hidden, and a request to start a checkout is refused rather than processed.</p>
+        <p><strong>When it is enabled, payment is handled by Stripe.</strong> Card details are entered on Stripe's own hosted checkout page. ByteLite LLC never receives, sees or stores your card number, in test mode or live mode. Stripe processes that data as its own controller under its own privacy policy.</p>
+        <p><strong>What ByteLite LLC would retain</strong> for a reservation or purchase is deliberately small: which product and plan you chose, which version of the founder offer you accepted, and which version of the terms applied. That is what is needed to honour the offer later and to account for the transaction. It does not include your card details.</p>
+        <p><strong>Supporter wall listing is separate and off by default.</strong> If the Founder Supporter Pack is ever purchased, appearing on a public supporter wall happens only if you tick a separate, unticked box and choose a display name. Agreeing to a purchase is never agreeing to be listed, and neither is agreeing to marketing - there is no marketing list.</p>
+        <p>Removal from a supporter wall, or withdrawal of a reservation, can be requested through the contact page at any time.</p>
       </div>
 
       <div class="legal-section">
         <h2>Third-party services</h2>
-        <p>This website is served by a third-party hosting provider, which necessarily processes request data such as IP addresses in the ordinary course of serving pages. Web fonts are loaded from Google Fonts. Stripe is used as the checkout processor for the restaurant partner pilot described above. ByteLite LLC does not use advertising networks on this website, and no advertising or tracking script is served by any page.</p>
+        <p>This website is served by a third-party hosting provider, which necessarily processes request data such as IP addresses in the ordinary course of serving pages. Web fonts are loaded from Google Fonts. SendGrid delivers contact-form messages. Stripe is the payment processor for founder reservations and the Founder Supporter Pack, and is currently operating in <strong>test mode</strong> with all checkout controls disabled. ByteLite LLC does not use advertising networks on this website, and no advertising or tracking script is served by any page.</p>
       </div>
 
       <div class="legal-section">
