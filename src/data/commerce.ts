@@ -134,9 +134,15 @@ export function cardIsActionable(card: FounderCard): boolean {
   return card.priceEnvVar ? hasPrice(card.priceEnvVar) : false;
 }
 
-export const SUPPORTER_PACK_ACTIONABLE =
-  (COMMERCE_PHASE === 'test' || COMMERCE_PHASE === 'live') &&
-  hasPrice('STRIPE_PRICE_FOUNDER_SUPPORTER_PACK');
+/**
+ * Hard false, mirroring `ownerEnabled: false` on the plan in `api/_lib/commerce-core.ts`.
+ *
+ * The blocker is not configuration. The pack promises specific digital files, those files do not
+ * exist in final form, and no Stripe Price or COMMERCE_PHASE value changes that. Selling it now
+ * would take money for something undeliverable. The server refuses the plan independently, so
+ * this constant only governs whether the page renders a live-looking button.
+ */
+export const SUPPORTER_PACK_ACTIONABLE = false;
 
 /**
  * The disclosure that must sit next to the Supporter Pack purchase control. Exported so it cannot

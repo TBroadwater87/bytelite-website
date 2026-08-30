@@ -15,7 +15,7 @@ import Footer from '../components/Footer.astro';
     <div class="container">
       <p class="eyebrow">Security</p>
       <h1>Responsible Disclosure</h1>
-      <p class="legal-sub">Last updated: May 2026</p>
+      <p class="legal-sub">Last updated: 29 August 2026</p>
     </div>
   </section>
 
@@ -31,10 +31,13 @@ import Footer from '../components/Footer.astro';
         <h2>Scope</h2>
         <p>This policy applies to security issues affecting:</p>
         <ul class="legal-list">
-          <li>ByteLite LLC public websites (thebytelite.com)</li>
-          <li>Public contact forms and explicitly public services</li>
+          <li>The public ByteLite LLC website at <strong>thebytelite.com</strong>, including every page it serves</li>
+          <li>The public contact form and the endpoint behind it</li>
+          <li>The publicly reachable checkout and billing endpoints, and the payment flows they start</li>
+          <li>Any other ByteLite LLC service that is reachable from the public internet without credentials</li>
         </ul>
         <p>Private beta software, research systems, and non-public infrastructure are outside public testing scope unless explicitly authorized in writing by ByteLite LLC.</p>
+        <p><strong>Please do not test payment flows with real card details.</strong> Payment is handled by Stripe on Stripe's own hosted pages, and the checkout controls on this site are currently disabled. If you believe you have found a payment-related issue, describe it and we will reproduce it in a test environment rather than asking you to complete a transaction.</p>
       </div>
 
       <div class="legal-section">
@@ -55,12 +58,16 @@ import Footer from '../components/Footer.astro';
 
       <div class="legal-section">
         <h2>Our Commitment</h2>
+        <!-- The previous version promised acknowledgement within 48 hours and an assessment
+             within 7 days. ByteLite LLC is one person. A promise that cannot be reliably kept is
+             worse than an honest one, and a researcher who is told "48 hours" and hears nothing
+             for a week reasonably concludes the report was ignored. -->
         <ul class="legal-list">
-          <li>We will acknowledge receipt within 48 hours</li>
-          <li>We will provide an initial assessment within 7 days</li>
-          <li>We will keep you informed of progress</li>
+          <li>We will make a reasonable effort to acknowledge valid reports and to provide updates as review progresses</li>
+          <li>We will tell you what we found, including if we conclude the issue is not exploitable</li>
           <li>We will credit you (if desired) when the issue is resolved</li>
         </ul>
+        <p>ByteLite LLC is a solo-founder company, so there is no security rota and no guaranteed response window. That is a statement of capacity, not of how seriously reports are taken &mdash; a real vulnerability in a live payment or contact path gets looked at ahead of everything else.</p>
       </div>
 
       <div class="legal-section">

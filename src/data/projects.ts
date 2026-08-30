@@ -551,15 +551,7 @@ export const CORDEL_PLAY: ProjectRecord = {
   integrationProduces: [],
   integrationConsumedBy: ['Cordel Connect (companion app touchpoints)'],
   availability: 'Not publicly available',
-  routes: [
-    '/products/cordel-play',
-    '/products/cordel-play/how-it-plays',
-    '/products/cordel-play/editions',
-    '/products/cordel-play/components',
-    '/products/cordel-play/consent-architecture',
-    '/products/cordel-play/development-status',
-    '/products/cordel-play/preorder',
-  ],
+  routes: ['/cordel-play'],
   claimRestrictions: ['Not currently for sale at retail.'],
   accentColor: '#f472b6',
   heroImage: '/cordel/cordel-play-group-lifestyle-scene.webp',
@@ -570,24 +562,30 @@ export const CORDEL_CONNECT: ProjectRecord = {
   slug: 'cordel-connect',
   name: 'Cordel Connect',
   category: 'Product · Privacy-First Compatibility and Connection',
-  shortDescription: 'Privacy-focused compatibility application with core survey, identity controls, and deterministic intelligence integration substantially implemented.',
+  // Public copy rewritten 2026-08-29. It previously read like an internal status report -
+  // "deterministic intelligence integration", "complete Cordel migration verification",
+  // "two-device validation". That describes engineering plumbing to an audience that wants to
+  // know what the app does for them. This record renders straight onto /cordel-connect, so the
+  // plain-language version has to live here rather than be paraphrased in the template.
+  shortDescription:
+    'A dating app for people who want to be matched on what actually matters to them, without handing over their most personal answers to do it.',
   mission:
-    'Privacy-focused compatibility application with the core compatibility survey, identity controls, private-data handling, two-device validation, and deterministic intelligence integration substantially implemented. Stability validation, production deployment, complete Cordel migration verification, and release preparation remain.',
+    'Most dating apps ask you to trade privacy for a decent match. Cordel Connect is built the other way round. You answer a long compatibility questionnaire, and the most sensitive answers are split into two parts held separately, so no single stored copy gives them away. You get matched on substance rather than on a photo, and the safety tools - blocking, emergency contacts, a safety centre - are part of the product rather than an afterthought. It is for adults who date deliberately and dislike being profiled. It is not finished: today it runs as a private Android test build with no public app store listing.',
   status: 'Private Alpha',
-  validationFocus: 'Application stability and complete production integration',
-  nextMilestone: 'Stable private-alpha build across supported devices',
+  validationFocus: 'Making the app stable and dependable on real devices',
+  nextMilestone: 'A stable private-alpha build across supported devices',
   lastValidated: UNDATED,
   currentCapabilities: [
-    { label: 'Private Android test builds with login, discover, matches, messages, profile, and settings surfaces', evidence: 'Implemented' },
-    { label: 'Compatibility questionnaire (~75 starter questions, extensible to hundreds)', evidence: 'Implemented' },
-    { label: 'Two-party secret-sharing privacy model for sensitive answers', evidence: 'Implemented' },
-    { label: 'Check-in pins on a map and emergency contact management inside the safety hub', evidence: 'Implemented' },
+    { label: 'A working app you can sign into, with discover, matches, messages, profile and settings', evidence: 'Implemented' },
+    { label: 'A compatibility questionnaire that starts at about 75 questions and can go much deeper', evidence: 'Implemented' },
+    { label: 'Sensitive answers split into two separately held parts, so no single stored copy reveals them', evidence: 'Implemented' },
+    { label: 'Safety controls: block a person, add emergency contacts, drop a check-in pin on a map', evidence: 'Implemented' },
   ],
   inDevelopment: [
-    'Live-location sharing with trusted contacts (location is captured today but not yet delivered anywhere a contact can see it)',
-    'An active spoken safety phrase (a phrase can be saved today, but saying it does not yet trigger an alert)',
-    'Game room, date hub, and friendship features',
-    'Cartoonized profile photo transformation',
+    'Sharing your live location with a trusted contact. The app records location today, but nobody else can see it yet, so do not rely on this.',
+    'A spoken safety phrase. You can save one today, but saying it does not raise an alert yet, so do not rely on this either.',
+    'Games, a date hub, and friendship features',
+    'Turning a profile photo into an illustrated version',
     // Described generically. The underlying conversational system is a sibling ByteLite LLC
     // system whose name stays off public surfaces (CLAUDE.md section 1 rule 3), and this array
     // renders directly onto /cordel-connect.
@@ -596,32 +594,19 @@ export const CORDEL_CONNECT: ProjectRecord = {
   ],
   endGame: [
     'Public beta and eventual public app-store release',
-    'Full Blind Date Roulette (Treater / Treatie / Dutch) flow with restaurant integration',
-    'Complete cartoonized-profile system with paid/consent-based original-photo reveal',
+    'A blind-date planning flow',
+    'Illustrated profiles, with the original photo revealed only by consent',
   ],
   validation: [
     evidence('A full app-specific privacy policy will be published before any public launch or broader beta release.'),
     limitation('Private Android test builds only. No public app store listing.'),
   ],
-  integrationReceives: ['AIya (wingman)', 'Deterministic horoscope engine (name pending; see the Horoscopes feature)', 'ByteSight (planned photo adapter)'],
+  integrationReceives: [],
   integrationProduces: ['Match/compatibility results', 'Date-planning flows'],
   integrationConsumedBy: [],
   availability: 'Private test',
-  routes: [
-    '/products/cordel-connect',
-    '/products/cordel-connect/compatibility-and-matching',
-    '/products/cordel-connect/privacy-architecture',
-    '/products/cordel-connect/safety',
-    '/products/cordel-connect/cartoonized-profiles',
-    '/products/cordel-connect/aiya-and-aion',
-    '/products/cordel-connect/games-and-shared-activities',
-    '/products/cordel-connect/horoscopes',
-    '/products/cordel-connect/date-planning',
-    '/products/cordel-connect/date-planning/blind-date-roulette',
-    '/products/cordel-connect/date-planning/restaurants',
-    '/products/cordel-connect/date-planning/restaurants/partner-program',
-  ],
-  claimRestrictions: ['Not on any public app store.', 'Not a finished/production AI product (AIya).', 'The horoscope feature is deterministic and locally generated; no underlying engine name is published while an internal rename is pending.'],
+  routes: ['/cordel-connect'],
+  claimRestrictions: ['Not on any public app store.', 'Not a finished product.'],
   accentColor: '#818cf8',
 };
 

@@ -23,8 +23,6 @@ const PUBLIC_ROUTES = [
   '/cordel-play',
   '/privacy',
   '/terms',
-  '/preorder-terms',
-  '/supporter-terms',
 ];
 
 // Every figure from the deleted simulations. If any reappears, something restored a fabrication.

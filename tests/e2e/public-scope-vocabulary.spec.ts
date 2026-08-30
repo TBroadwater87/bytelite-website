@@ -23,8 +23,6 @@ const PUBLIC_ROUTES = [
   '/cordel-play',
   '/privacy',
   '/terms',
-  '/preorder-terms',
-  '/supporter-terms',
 ];
 
 // Sibling systems and retired brands. None of these is ByteLite or Cordel, so none belongs on a

@@ -31,8 +31,6 @@ const CANONICAL = [
   '/billing',
   '/privacy',
   '/terms',
-  '/preorder-terms',
-  '/supporter-terms',
   '/responsible-disclosure',
 ];
 
@@ -194,8 +192,14 @@ describe('the built output contains only canonical pages', () => {
       .filter((u) => !u.includes('sitemap'))
       .map((u) => u.replace(/^https?:\/\/[^/]+/, '').replace(/\/$/, '') || '/');
 
-    // Discovery must exclude the transactional flow pages even though they resolve.
-    for (const undiscoverable of ['/checkout/success', '/checkout/cancel', '/billing', '/responsible-disclosure']) {
+    // Discovery must exclude the transactional flow pages even though they resolve, and the two
+    // legal DRAFTS - indexing an unreviewed legal page presents it as a settled position.
+    for (const undiscoverable of [
+      '/checkout/success',
+      '/checkout/cancel',
+      '/billing',
+      '/responsible-disclosure',
+    ]) {
       expect(urls, `${undiscoverable} must not be in the sitemap`).not.toContain(undiscoverable);
     }
     for (const url of urls) {

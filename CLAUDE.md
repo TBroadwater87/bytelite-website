@@ -34,12 +34,19 @@ technology pages precede the product pages in every navigation surface.
 **Discoverable (in the sitemap allowlist in `astro.config.mjs`):**
 
 `/` . `/how-it-works` . `/validation` . `/licensing` . `/about` . `/contact` .
-`/founder-access` . `/support` . `/cordel-connect` . `/cordel-play` . `/privacy` . `/terms` .
-`/preorder-terms` . `/supporter-terms`
+`/founder-access` . `/support` . `/cordel-connect` . `/cordel-play` . `/privacy` . `/terms`
 
 **Resolvable but deliberately not discoverable:** `/checkout/success`, `/checkout/cancel`,
 `/billing`, `/responsible-disclosure`, `/404`. The first three are steps inside a flow, not
 destinations; a search result landing on a bare success page would be meaningless.
+
+**Withdrawn 2026-08-29:** `/preorder-terms` and `/supporter-terms`. Both were unreviewed drafts
+carrying a visible DRAFT badge. They are **deleted from the build and return 404**, not merely
+de-indexed: `noindex` keeps a page out of a search index, but anyone holding the URL could still
+read an unapproved legal document and reasonably treat it as ByteLite LLC's settled position.
+Their content is in git history. Recreate them only when the terms are approved, and add them to
+the sitemap allowlist at the same time. Until then, **no page may link to them**, and every
+checkout that would depend on them stays disabled.
 
 **Deleted, not retired.** `architecture/`, `company/`, `marketing/`, `preorder/`, `products/`,
 `progress/`, `research/`, `technologies/`, `architecture.astro` and `src/pages/api/` no longer
@@ -659,7 +666,27 @@ Validation -> Product Build -> Website Launch -> Ongoing Development" as passed 
 2 holds INDEPENDENT VALIDATION and PRODUCTION QUALIFICATION as open gates and `/validation` states
 "None of it has been independently verified", so a timeline showing validation as a completed
 milestone collapses target into completed proof. It may be published when either the artwork or
-the claim state changes - not before.
+the claim state changes - not before. It is not in this repository at all: the file is in git
+history and in the source refresh package. **The website repository is not an asset archive** -
+do not park unpublished artwork here, inside `public/` or beside it.
+
+**Published images are WebP, and PNG masters do not ship.** The nine published graphics are served
+from `public/bytelite/*.webp` at 1400px wide - 928 KB in total, down from 14.6 MB of PNG. Re-encode
+with `sharp` at `quality: 90, effort: 6`; below that, the fine label text in these diagrams smears
+before anything else does. Verify labels are still readable after any re-encode. Keep the `width`
+and `height` attributes matching the real intrinsic size (1400x788), not the original master.
+
+**`public/` is a published surface, and a URL is public whether or not a page links to it.** On
+2026-08-29, 35 unreferenced image files whose *filenames* contained a retired system name (`aiya`,
+`aion`, `bytesight`, `deep-kore`, ...) were still being served at enumerable URLs.
+
+**`public/` now contains only what the built site actually requests.** That is 13 images plus
+`favicon.svg`, `robots.txt` and `site.webmanifest` - 1.28 MB of images, down from 26.97 MB. The
+deleted material (Cordel screenshots and renders, tier cards, brand copies, unused fonts, the
+unrelated `preview/tacodelsol` client site, `browserconfig.xml` and its missing tile image) lives
+in git history and in the canonical Cordel project; the website repository does not archive it.
+
+Before adding a file to `public/`, ask whether a page requests it. If not, it does not belong here.
 
 Open decisions that block activation, and which no agent may resolve by assumption:
 

@@ -67,6 +67,37 @@ describe('the browser cannot choose anything but a known key', () => {
   });
 });
 
+// Some blockers are not configuration. The Supporter Pack promises specific digital files that do
+// not exist yet, and no Stripe Price or COMMERCE_PHASE value makes them exist. `ownerEnabled` is
+// the gate for that class of blocker, and it must beat every environment variable.
+describe('the owner gate cannot be lifted by configuration', () => {
+  test('the Supporter Pack is refused in every phase, even live with a valid Price', () => {
+    for (const phase of ['test', 'reservation', 'live'] as const) {
+      const r = resolveCheckout('founder-supporter-pack', env({ phase }));
+      expect(r, `phase ${phase} must still refuse`).toMatchObject({ ok: false, status: 503 });
+    }
+  });
+
+  test('it is refused even with the founder offer open and a Price configured', () => {
+    const r = resolveCheckout('founder-supporter-pack', {
+      phase: 'live',
+      founderOffer: 'prelaunch',
+      priceIdFor: () => 'price_live_definitely_set',
+    });
+    expect(r).toMatchObject({ ok: false, status: 503 });
+  });
+
+  test('the gate is recorded on the plan itself, not inferred', () => {
+    expect(findPlan('founder-supporter-pack')?.ownerEnabled).toBe(false);
+  });
+
+  test('every other plan is owner-enabled, so the gate is not blanket-off', () => {
+    for (const plan of PLANS.filter((p) => p.key !== 'founder-supporter-pack')) {
+      expect(plan.ownerEnabled, `${plan.key} should be owner-enabled`).toBe(true);
+    }
+  });
+});
+
 describe('disabled means disabled', () => {
   test('no plan can be checked out while the phase is disabled', () => {
     for (const plan of PLANS) {
@@ -148,11 +179,10 @@ describe('modes match the kind of thing being sold', () => {
     if (r.ok) expect(r.mode).toBe('subscription');
   });
 
-  test('the Supporter Pack is a one-time payment and never recurring', () => {
-    const r = resolveCheckout('founder-supporter-pack', env({ phase: 'live' }));
-    expect(r.ok).toBe(true);
-    if (r.ok) expect(r.mode).toBe('payment');
-    expect(findPlan('founder-supporter-pack')?.interval).toBeNull();
+  test('the Supporter Pack is typed as a one-time purchase, never recurring', () => {
+    const plan = findPlan('founder-supporter-pack');
+    expect(plan?.kind).toBe('one-time');
+    expect(plan?.interval).toBeNull();
   });
 
   test('no plan is simultaneously a subscription and a physical product', () => {

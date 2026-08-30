@@ -19,24 +19,36 @@ import {
 
   <section class="page-hero">
     <div class="container narrow">
-      <p class="eyebrow">Founder Supporter Pack</p>
-      <h1>Buy the pack. Get the pack.</h1>
+      <p class="eyebrow">Founder Supporter Pack &middot; Coming later</p>
+      <h1>Supporter Pack in preparation.</h1>
       <p class="hero-sub">
-        Some people want to back this before there is a product to sell them. This is the honest
-        way to do that: a one-time purchase, at a price you choose, for a specific set of digital
-        items. You get those items. That is the whole transaction.
+        Some people want to back this before there is a product to sell them. When it opens, this
+        will be the honest way to do that: a one-time purchase, at a price you choose, for a
+        specific set of digital items. You get those items. That is the whole transaction.
+      </p>
+      <p class="prep">
+        <strong>It is not on sale yet.</strong> The pack is still being prepared &mdash; the actual
+        files do not exist in final form, so there is nothing I could deliver if you paid today.
+        Payment stays switched off at the server until they do.
       </p>
     </div>
   </section>
 
   <section class="section">
     <div class="container narrow">
-      <h2>What you actually receive.</h2>
+      <h2>What you will actually receive.</h2>
       <ul class="reward">
         {SUPPORTER_REWARD.map((item) => <li>{item}</li>)}
       </ul>
       <p class="body-note">
-        That list is complete. If something is not on it, you are not buying it.
+        That list is complete. If something is not on it, you are not buying it. The list is also
+        the specification I have to meet before this can go on sale &mdash; I am not going to take
+        money for it and work out the contents afterwards.
+      </p>
+      <p class="body-note">
+        ByteLite LLC is a for-profit company. This is a purchase, not a donation, and it is not
+        tax deductible. It does not give you equity, a return, a say in what gets built, or a
+        guarantee that any product ships.
       </p>
 
       <h2 class="mt">What you are not buying.</h2>
@@ -64,7 +76,7 @@ import {
           </button>
         ) : (
           <button type="button" class="btn btn-outline buy-btn" disabled aria-describedby="buy-why">
-            Not available yet
+            Being prepared &mdash; not on sale
           </button>
         )}
         <p class="buy-why" id="buy-why">
@@ -76,7 +88,9 @@ import {
       </div>
 
       <p class="body">
-        Full wording: <a href="/supporter-terms">Founder Supporter Pack terms</a>.
+        The full terms for this purchase are still being drafted and are not published yet. That is
+        deliberate and it is why nothing here can take your money: I am not going to sell you
+        something under terms you have not been able to read.
       </p>
     </div>
   </section>
@@ -112,6 +126,11 @@ import {
 .narrow { max-width: 780px; }
 .page-hero { padding: 3.5rem 0 2rem; }
 .hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.8; }
+.prep {
+  max-width: 640px; margin-top: 1.5rem; padding: 1rem 1.125rem;
+  font-size: .9375rem; color: #c4c8f0; line-height: 1.7;
+  background: rgba(251,191,36,.06); border: 1px solid rgba(251,191,36,.3); border-radius: .625rem;
+}
 h2 { margin-bottom: .75rem; }
 h3 { font-size: 1rem; color: #e4e7f2; margin-bottom: .625rem; }
 .mt { margin-top: 2.5rem; }

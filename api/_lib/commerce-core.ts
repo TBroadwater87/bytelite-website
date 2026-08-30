@@ -42,6 +42,16 @@ export interface PlanDefinition {
   interval: 'month' | 'year' | null;
   /** True when Stripe should let the customer choose what to pay (Supporter Pack). */
   customerChosenAmount: boolean;
+  /**
+   * Hard owner gate, independent of every environment variable.
+   *
+   * Some blockers are not configuration. The Founder Supporter Pack cannot be sold until the
+   * reward files it promises actually exist, and no Stripe Price ID or COMMERCE_PHASE value can
+   * make that true. Setting this false means the plan is refused even in `live` phase with a
+   * valid Price configured - the only way to enable it is to edit this file, which is a reviewed
+   * change rather than a dashboard toggle someone makes at 2am.
+   */
+  ownerEnabled: boolean;
 }
 
 /**
@@ -62,6 +72,7 @@ export const PLANS: readonly PlanDefinition[] = [
     priceEnvVar: 'STRIPE_PRICE_BYTELITE_MONTHLY_FOUNDER',
     interval: 'month',
     customerChosenAmount: false,
+    ownerEnabled: true,
   },
   {
     key: 'bytelite-annual-founder',
@@ -71,6 +82,7 @@ export const PLANS: readonly PlanDefinition[] = [
     priceEnvVar: 'STRIPE_PRICE_BYTELITE_ANNUAL_FOUNDER',
     interval: 'year',
     customerChosenAmount: false,
+    ownerEnabled: true,
   },
   {
     key: 'cordel-connect-monthly-founder',
@@ -80,6 +92,7 @@ export const PLANS: readonly PlanDefinition[] = [
     priceEnvVar: 'STRIPE_PRICE_CORDEL_CONNECT_MONTHLY_FOUNDER',
     interval: 'month',
     customerChosenAmount: false,
+    ownerEnabled: true,
   },
   {
     key: 'cordel-connect-annual-founder',
@@ -89,6 +102,7 @@ export const PLANS: readonly PlanDefinition[] = [
     priceEnvVar: 'STRIPE_PRICE_CORDEL_CONNECT_ANNUAL_FOUNDER',
     interval: 'year',
     customerChosenAmount: false,
+    ownerEnabled: true,
   },
   {
     // Physical, 18+, and explicitly NOT a subscription. No charge is taken here under any phase:
@@ -101,6 +115,7 @@ export const PLANS: readonly PlanDefinition[] = [
     priceEnvVar: null,
     interval: null,
     customerChosenAmount: false,
+    ownerEnabled: true,
   },
   {
     key: 'founder-supporter-pack',
@@ -110,6 +125,8 @@ export const PLANS: readonly PlanDefinition[] = [
     priceEnvVar: 'STRIPE_PRICE_FOUNDER_SUPPORTER_PACK',
     interval: null,
     customerChosenAmount: true,
+    // Gated off until the reward files exist. See ownerEnabled above.
+    ownerEnabled: false,
   },
 ] as const;
 
@@ -150,6 +167,10 @@ export interface CommerceEnv {
 export function resolveCheckout(planKey: unknown, env: CommerceEnv): Resolution {
   const plan = findPlan(planKey);
   if (!plan) return { ok: false, status: 400, reason: 'Unknown plan.' };
+
+  if (!plan.ownerEnabled) {
+    return { ok: false, status: 503, reason: 'This is not available yet.' };
+  }
 
   if (env.phase === 'disabled') {
     return { ok: false, status: 503, reason: 'Checkout is not enabled.' };

@@ -19,6 +19,12 @@ export default defineConfig({
       // Deliberately absent from discovery while still resolving: /checkout/success,
       // /checkout/cancel and /billing. They are transactional endpoints of a flow, not
       // destinations, and a search result landing on a bare success page would be meaningless.
+      //
+      // /preorder-terms and /supporter-terms were WITHDRAWN on 2026-08-29 - deleted from the
+      // build, not merely dropped from this list. Both were unreviewed drafts, and `noindex` only
+      // keeps a page out of a search index; anyone holding the URL could still read it and treat
+      // it as ByteLite LLC's settled legal position. Their content is in git history. Recreate
+      // them only when the terms are approved, and add them here at the same time.
       filter: (page) => {
         // `page` is an absolute URL string; take everything from the origin's
         // trailing slash onward and normalise away the trailing slash.
@@ -36,8 +42,6 @@ export default defineConfig({
           '/cordel-play',
           '/privacy',
           '/terms',
-          '/preorder-terms',
-          '/supporter-terms',
         ].includes(path);
       },
     }),

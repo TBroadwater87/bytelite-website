@@ -1,3 +1,0 @@
-# This is an unofficial redesign PREVIEW. Keep it out of search indexes.
-User-agent: *
-Disallow: /

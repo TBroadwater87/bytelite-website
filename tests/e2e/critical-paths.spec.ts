@@ -18,8 +18,6 @@ const PUBLIC_ROUTES = [
   '/cordel-play',
   '/privacy',
   '/terms',
-  '/preorder-terms',
-  '/supporter-terms',
 ];
 
 // Routes that resolve but are deliberately absent from discovery.
@@ -84,7 +82,7 @@ test.describe('The commerce surface tells the truth', () => {
   });
 
   test('the two founder benefits are never collapsed into one number', async ({ page }) => {
-    for (const route of ['/founder-access', '/preorder-terms']) {
+    for (const route of ['/founder-access']) {
       await page.goto(route);
       const body = page.locator('body');
       // Both benefits stated separately, in their canonical wording.
@@ -119,7 +117,7 @@ test.describe('The commerce surface tells the truth', () => {
   });
 
   test('the Supporter Pack is never called a donation', async ({ page }) => {
-    for (const route of ['/support', '/supporter-terms']) {
+    for (const route of ['/support']) {
       await page.goto(route);
       const body = page.locator('body');
       const text = ((await body.innerText()) ?? '').toLowerCase();
@@ -158,11 +156,24 @@ test.describe('The commerce surface tells the truth', () => {
   });
 
   test('the Supporter Pack denies equity, access and repayment explicitly', async ({ page }) => {
-    await page.goto('/supporter-terms');
+    // Asserted on /support itself, not on a separate terms page. The draft terms pages were
+    // withdrawn on 2026-08-29, so the disclosure has to be complete where the visitor actually is.
+    await page.goto('/support');
     const body = page.locator('body');
     for (const phrase of ['equity', 'repayment', 'ownership', 'product access']) {
       await expect(body).toContainText(phrase);
     }
+  });
+
+  test('the Supporter Pack is labelled as not yet on sale', async ({ page }) => {
+    await page.goto('/support');
+    const body = page.locator('body');
+    await expect(body).toContainText('Supporter Pack in preparation');
+    await expect(body).toContainText('It is not on sale yet');
+    // The control must be present, disabled, and honest about why.
+    const btn = page.locator('.buy-btn');
+    await expect(btn).toBeDisabled();
+    await expect(btn).toContainText('Being prepared');
   });
 
   test('a reservation is never described as an active subscription', async ({ page }) => {

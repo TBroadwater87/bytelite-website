@@ -26,8 +26,6 @@ const PUBLIC_ROUTES = [
   '/cordel-play',
   '/privacy',
   '/terms',
-  '/preorder-terms',
-  '/supporter-terms',
 ];
 
 // Browser zoom shrinks the CSS viewport: at a 1280px window, 200% zoom is ~640 CSS px and 400%
@@ -113,27 +111,27 @@ test.describe('Content images are reinforcement, never the only copy', () => {
   const TEXT_EQUIVALENTS: Array<{ route: string; image: string; mustAlsoSay: string[] }> = [
     {
       route: '/',
-      image: 'proof-before-claim-ladder.png',
+      image: 'proof-before-claim-ladder.webp',
       mustAlsoSay: ['Proven internally', 'Not proven'],
     },
     {
       route: '/',
-      image: 'audience-entry-cards.png',
+      image: 'audience-entry-cards.webp',
       mustAlsoSay: ['For people', 'For organizations', 'For technical reviewers'],
     },
     {
       route: '/how-it-works',
-      image: 'deterministic-flow-diagram.png',
+      image: 'deterministic-flow-diagram.webp',
       mustAlsoSay: ['Source', 'Result', 'Evidence', 'Status', 'Limitations', 'Review'],
     },
     {
       route: '/how-it-works',
-      image: 'byte-vs-blackbox-comparison.png',
+      image: 'byte-vs-blackbox-comparison.webp',
       mustAlsoSay: ['Deterministic operation', 'Explicit constraints', 'Auditable artifacts'],
     },
     {
       route: '/founder-access',
-      image: 'founder-preorder-highlight.png',
+      image: 'founder-preorder-highlight.webp',
       mustAlsoSay: ['10% lower founder price', '10% additional qualifying entitlement'],
     },
   ];
@@ -152,12 +150,12 @@ test.describe('Content images are reinforcement, never the only copy', () => {
   // Lazy-loading the largest element on the first screen delays the LCP rather than helping it.
   test('the homepage hero graphic is eager; everything below the fold is lazy', async ({ page }) => {
     await page.goto('/');
-    const hero = page.locator('main img[src*="bytelite-stack-hero.png"]');
+    const hero = page.locator('main img[src*="bytelite-stack-hero.webp"]');
     await expect(hero).toHaveAttribute('loading', 'eager');
     await expect(hero).toHaveAttribute('fetchpriority', 'high');
 
     const belowFold = await page
-      .locator('main img:not([src*="bytelite-stack-hero.png"])')
+      .locator('main img:not([src*="bytelite-stack-hero.webp"])')
       .evaluateAll((els) => els.map((e) => e.getAttribute('loading')));
     for (const loading of belowFold) {
       expect(loading).toBe('lazy');
@@ -171,8 +169,35 @@ test.describe('Content images are reinforcement, never the only copy', () => {
       await page.goto(route);
       await expect(
         page.locator('img[src*="milestone-timeline"]'),
-        `${route} must not publish milestone-timeline.png`
+        `${route} must not publish milestone-timeline.webp`
       ).toHaveCount(0);
+    }
+  });
+});
+
+// The two legal drafts were WITHDRAWN on 2026-08-29, not merely de-indexed.
+//
+// Owner decision: an unreviewed legal document should not be publicly reachable at all. `noindex`
+// keeps a page out of a search index; it does not stop anyone who has the URL from reading it and
+// treating it as ByteLite LLC's position. The pages are deleted from the build; their content
+// survives in git history. Nothing on the site may link to them, and no checkout that would
+// depend on them is enabled.
+test.describe('Unreviewed legal drafts are gone, not hidden', () => {
+  for (const route of ['/preorder-terms', '/supporter-terms']) {
+    test(`${route} returns 404`, async ({ page }) => {
+      const res = await page.goto(route);
+      expect(res?.status(), `${route} must not be reachable`).toBe(404);
+    });
+  }
+
+  test('no page links to a withdrawn draft', async ({ page }) => {
+    for (const route of ['/', '/support', '/founder-access', '/terms', '/cordel-play', '/cordel-connect']) {
+      await page.goto(route);
+      const hrefs = await page
+        .locator('a[href]')
+        .evaluateAll((els) => els.map((e) => e.getAttribute('href') ?? ''));
+      const leaks = hrefs.filter((h) => h.includes('preorder-terms') || h.includes('supporter-terms'));
+      expect(leaks, `${route} still links to a withdrawn draft`).toEqual([]);
     }
   });
 });
