@@ -20,6 +20,11 @@ export default defineConfig({
       // /checkout/cancel and /billing. They are transactional endpoints of a flow, not
       // destinations, and a search result landing on a bare success page would be meaningless.
       //
+      // /deep-kore added 2026-09-01 by owner instruction. It is the ONE public route on which
+      // Deep Kore, AIya, Genesis Goalkeeper and Revelation Vanguard may be named; every other
+      // public route still may not, and public-scope-vocabulary.spec.ts asserts that route by
+      // route. See CLAUDE.md section 1 rule 3 and section 19.
+      //
       // /preorder-terms and /supporter-terms were WITHDRAWN on 2026-08-29 - deleted from the
       // build, not merely dropped from this list. Both were unreviewed drafts, and `noindex` only
       // keeps a page out of a search index; anyone holding the URL could still read it and treat
@@ -37,6 +42,7 @@ export default defineConfig({
           '/about',
           '/contact',
           '/founder-access',
+          '/deep-kore',
           '/support',
           '/cordel-connect',
           '/cordel-play',

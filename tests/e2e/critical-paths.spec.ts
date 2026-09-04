@@ -13,6 +13,7 @@ const PUBLIC_ROUTES = [
   '/about',
   '/contact',
   '/founder-access',
+  '/deep-kore',
   '/support',
   '/cordel-connect',
   '/cordel-play',
@@ -112,7 +113,7 @@ test.describe('The commerce surface tells the truth', () => {
   test('Cordel Play states the shipping rule that stops a paid preorder', async ({ page }) => {
     await page.goto('/cordel-play');
     const body = page.locator('body');
-    await expect(body).toContainText('I am not taking paid preorders');
+    await expect(body).toContainText('ByteLite LLC is not taking paid preorders');
     await expect(body).toContainText('within 30 days if no time is stated');
   });
 

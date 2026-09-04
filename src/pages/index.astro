@@ -2,20 +2,36 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { PROVEN, NOT_PROVEN, DETERMINISM_STATEMENT, ENTROPY_STATEMENT } from '../data/bytelite';
+import {
+  PROVEN,
+  NOT_PROVEN,
+  DETERMINISM_STATEMENT,
+  ENTROPY_STATEMENT,
+  HOMEPAGE_STATUS,
+  HISTORICAL_PROTOTYPE_SCOPE,
+} from '../data/bytelite';
+import { COMPANY_NAME, FOUNDER_NAME, COMPANY_LOCATION } from '../data/company';
 import { FOUNDER_CARDS, cardIsActionable } from '../data/commerce';
 
-// Founder-voice rebuild, 2026-08-26.
+// Company-voice rebuild, 2026-08-31.
 //
 // The long technical dossier that used to live here moved to /how-it-works and /validation. This
-// page has one job: say what ByteLite is, what is actually proven, what is not, and where to go
-// next - in Tash's voice, not a compliance committee's.
+// page has one job: say what ByteLite is, what ByteLite LLC has actually established, what is
+// still open, and where to go next.
+//
+// VOICE: this is the company speaking. "I", "me" and "my" appear in exactly one place on this
+// site - the signed founder note below - and nowhere else on any page. The rule exists because
+// founder-singular commercial copy reads as a personal undertaking, and licensing, billing and
+// support obligations belong to ByteLite LLC.
+//
+// The status strip is derived from ROADMAP in src/data/bytelite.ts, never typed here, so a gate
+// cannot look further along on the homepage than it is in the canonical record.
 const cards = FOUNDER_CARDS.map((c) => ({ ...c, actionable: cardIsActionable(c) }));
 ---
 
 <Layout
-  title="ByteLite | The file comes back exactly. Or it failed."
-  description="ByteLite is a deterministic lossless data-representation architecture in development at ByteLite LLC. Internal tests prove exact reconstruction on the current proof artifacts. The complete self-contained target is not proven."
+  title="ByteLite | Every file builds its own route."
+  description="ByteLite is deterministic recursive compression built from the structure of the file itself. The original returns exactly, or the result does not count."
   keywords="ByteLite, deterministic compression, exact reconstruction, lossless, ByteLite LLC"
   canonical="https://www.thebytelite.com/"
 >
@@ -24,22 +40,41 @@ const cards = FOUNDER_CARDS.map((c) => ({ ...c, actionable: cardIsActionable(c) 
   <!-- HERO -->
   <section class="hero">
     <div class="container hero-inner">
-      <p class="eyebrow">ByteLite</p>
-      <h1 class="hero-h1">The file comes back exactly. Or it failed.</h1>
+      <p class="eyebrow">{COMPANY_NAME}</p>
+      <h1 class="hero-h1">Every file builds its own route.</h1>
       <p class="hero-sub">
-        I am building ByteLite to represent data in a smaller, self-contained form without guessing,
-        dropping bytes, or hiding reconstruction information somewhere that was not counted.
+        ByteLite is deterministic recursive compression built from the structure of the file
+        itself. The original returns exactly, or the result does not count.
       </p>
-      <p class="hero-sub hero-sub-2">
-        Internal tests prove exact reconstruction on the current proof artifacts. They do not yet
-        prove the complete self-contained target across broad file corpora.
-      </p>
-      <p class="rule-strip">No hand-waving. No uncounted reconstruction state. No partial credit.</p>
+      <p class="rule-strip">Exact reconstruction. Complete representation. Deterministic operation.</p>
       <div class="hero-cta">
-        <a href="/validation" class="btn btn-primary">See What Is Proven</a>
-        <a href="/validation#unfinished" class="btn btn-outline">See What Is Still Unfinished</a>
-        <a href="/contact" class="btn btn-ghost">Talk to Tash</a>
+        <a href="/how-it-works" class="btn btn-primary">See How ByteLite Works</a>
+        <a href="/validation" class="btn btn-outline">Review the Evidence</a>
+        <a href="/founder-access" class="btn btn-ghost">Founder Access</a>
       </div>
+    </div>
+  </section>
+
+  <!-- WHERE THE WORK STANDS.
+       One status section, deliberately. The previous build repeated a warning on every section of
+       every page, which buried the technology under its own disclaimer. Qualification lives here
+       and, in full, on /validation. -->
+  <section class="section-sm">
+    <div class="container narrow">
+      <h2 class="status-h">Where the work stands.</h2>
+      <ul class="status">
+        {HOMEPAGE_STATUS.map((s) => (
+          <li>
+            <span class="status-l">{s.label}</span>
+            <span class="status-n">{s.note}</span>
+          </li>
+        ))}
+      </ul>
+      {/* The scope line sits with the list, not in a footnote. The prototype result is a real
+          company-reported demonstration; the two things a reader could wrongly take from it are
+          that today's encoder does it automatically and that somebody outside checked it. */}
+      <p class="status-scope">{HISTORICAL_PROTOTYPE_SCOPE}</p>
+      <p class="after"><a href="/validation">Every claim, with the evidence behind it &rarr;</a></p>
     </div>
   </section>
 
@@ -68,7 +103,9 @@ const cards = FOUNDER_CARDS.map((c) => ({ ...c, actionable: cardIsActionable(c) 
         your file, it is returning something that resembles it.
       </p>
       <p class="body">
-        ByteLite is an attempt at the honest version of that. {DETERMINISM_STATEMENT}
+        ByteLite is the honest version of that. It reads structure from the file itself and builds
+        its reduction route from what it finds, rather than forcing every input through one fixed
+        statistical model. {DETERMINISM_STATEMENT}
       </p>
       <p class="body">{ENTROPY_STATEMENT}</p>
     </div>
@@ -77,7 +114,7 @@ const cards = FOUNDER_CARDS.map((c) => ({ ...c, actionable: cardIsActionable(c) 
   <!-- THREE RULES -->
   <section class="section section-alt">
     <div class="container narrow">
-      <h2>Three rules I will not trade away.</h2>
+      <h2>Three rules ByteLite LLC will not trade away.</h2>
       <ol class="rules">
         <li>
           <h3>Exact reconstruction</h3>
@@ -139,9 +176,9 @@ const cards = FOUNDER_CARDS.map((c) => ({ ...c, actionable: cardIsActionable(c) 
         measured.
       </p>
       <p class="body">
-        I am not going to put a percentage here. I do not have a verified one, and a number on a
-        marketing page that nobody measured is exactly the kind of thing this site exists to avoid.
-        When there is a real figure, it will arrive with the measurement attached.
+        There is no percentage on this page. ByteLite LLC does not have a verified one, and a
+        number nobody measured is exactly what this site exists to avoid. When there is a real
+        figure, it will arrive with the measurement attached.
       </p>
       <p class="after"><a href="/licensing">How pricing and licensing would work &rarr;</a></p>
     </div>
@@ -169,7 +206,7 @@ const cards = FOUNDER_CARDS.map((c) => ({ ...c, actionable: cardIsActionable(c) 
         </a>
         <a class="path" href="/validation">
           <span class="path-t">For technical reviewers</span>
-          <span class="path-d">Evidence, current status and the limitations I know about.</span>
+          <span class="path-d">Evidence, current status and the known limitations.</span>
         </a>
       </div>
     </div>
@@ -180,8 +217,8 @@ const cards = FOUNDER_CARDS.map((c) => ({ ...c, actionable: cardIsActionable(c) 
     <div class="container narrow">
       <h2>Founder access.</h2>
       <p class="lede">
-        Nothing here is finished, so nothing here charges you. Each card says what state it is
-        really in.
+        None of these products is available yet, so none of them charges you. Each card says the
+        state it is really in.
       </p>
       <ul class="fa-list">
         {cards.map((card) => (
@@ -197,17 +234,30 @@ const cards = FOUNDER_CARDS.map((c) => ({ ...c, actionable: cardIsActionable(c) 
     </div>
   </section>
 
-  <!-- FOUNDER STATEMENT -->
+  <!-- THE COMPANY -->
   <section class="section">
     <div class="container narrow">
+      <h2>Who builds it.</h2>
+      <p class="body">
+        {COMPANY_NAME} is a founder-led technology company in {COMPANY_LOCATION}. It is small on
+        purpose: there is no marketing function positioned to turn an unfinished result into a
+        finished claim, and every statement on this site is answerable to the evidence behind it.
+      </p>
+      <p class="after"><a href="/about">About {COMPANY_NAME} &rarr;</a></p>
+
+      {/* THE ONE FOUNDER NOTE.
+          First-person singular is confined to this block and does not appear anywhere else on the
+          public site. It is labelled and signed so a reader can tell a personal statement from
+          company copy - which is the whole reason the rest of the site stopped using "I". */}
       <blockquote class="founder">
+        <p class="founder-label">A note from {FOUNDER_NAME}</p>
         <p>
-          I am Tash Broadwater. I am building ByteLite in Helena, Montana. There is no hidden
-          engineering department and no marketing team allowed to turn an unfinished result into a
-          finished claim. I am responsible for what this site says, and I can be asked about it
-          directly.
+          I started this because the honest version of the problem was more interesting than the
+          marketable one. I am responsible for what this site says, and I can be asked about any of
+          it directly.
         </p>
         <p>If a result fails, it stays failed until the code proves otherwise.</p>
+        <footer class="founder-sign">{FOUNDER_NAME}, founder, {COMPANY_NAME}</footer>
       </blockquote>
     </div>
   </section>
@@ -221,14 +271,14 @@ const cards = FOUNDER_CARDS.map((c) => ({ ...c, actionable: cardIsActionable(c) 
         alt="ByteLite LLC contact invitation for general inquiries, licensing and technical review."
         width="1400" height="788" loading="lazy" decoding="async"
       />
-      <h2 class="cta-h">Ask me something hard.</h2>
+      <h2 class="cta-h">Talk with {COMPANY_NAME}.</h2>
       <p class="body">
-        Technical validation, licensing, partnership and investor conversations all come to me
-        directly. If you can falsify something on this site, that is the most useful message I can
-        get.
+        General inquiries, licensing, technical review, founder access and product questions are
+        all welcome, and they reach the company directly. Evidence that falsifies something on this
+        site is the most useful message it can receive.
       </p>
       <div class="hero-cta">
-        <a href="/contact" class="btn btn-primary">Talk to Tash</a>
+        <a href="/contact" class="btn btn-primary">Contact {COMPANY_NAME}</a>
         <a href="/validation" class="btn btn-outline">Read the evidence first</a>
       </div>
     </div>
@@ -244,7 +294,6 @@ const cards = FOUNDER_CARDS.map((c) => ({ ...c, actionable: cardIsActionable(c) 
 .hero-inner { max-width: 820px; }
 .hero-h1 { font-size: clamp(2rem, 6vw, 3.5rem); line-height: 1.08; letter-spacing: -.02em; }
 .hero-sub { max-width: 660px; font-size: 1.0625rem; margin-top: 1.25rem; color: #a0a8c0; line-height: 1.75; }
-.hero-sub-2 { color: #7b829e; font-size: 1rem; }
 .rule-strip {
   margin-top: 1.75rem; padding: .875rem 1.125rem; max-width: 660px;
   font-size: .9375rem; font-weight: 600; color: #c4c8f0;
@@ -317,12 +366,33 @@ h3 { font-size: 1rem; color: #e4e7f2; margin-bottom: .5rem; }
 .fa-open { color: #34d399; }
 .fa-shut { color: #7b829e; }
 
+/* One status block for the whole page. Label and note are separate elements so the state and its
+   qualifier are never collapsed into a single sentence that can be quoted without the caveat. */
+.status-h { margin-bottom: 1.25rem; }
+.status { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.status li {
+  display: flex; flex-direction: column; gap: .25rem;
+  padding: .875rem 1rem; background: #0d1120;
+  border: 1px solid #1a2235; border-left: 3px solid #6366f1; border-radius: .5rem;
+}
+.status-l { font-size: .9375rem; font-weight: 600; color: #e4e7f2; line-height: 1.5; }
+.status-n { font-size: .8438rem; color: #7b829e; line-height: 1.6; }
+.status-scope {
+  margin-top: 1rem; max-width: 660px;
+  font-size: .875rem; color: #a0a8c0; line-height: 1.7;
+  padding-left: .875rem; border-left: 2px solid #2a3350;
+}
+
 .founder {
-  margin: 0; padding: 1.75rem;
+  margin: 2rem 0 0; padding: 1.75rem;
   background: #0d1120; border: 1px solid #1a2235; border-left: 3px solid #818cf8;
   border-radius: .75rem;
 }
 .founder p { font-size: 1rem; color: #c4c8f0; line-height: 1.8; margin: 0 0 1rem; }
-.founder p:last-child { margin-bottom: 0; font-weight: 600; color: #e4e7f2; }
+.founder-label {
+  font-size: .6875rem !important; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: #818cf8 !important; margin-bottom: .875rem !important;
+}
+.founder-sign { font-size: .8125rem; color: #7b829e; font-style: normal; }
 .cta-h { margin-top: 0; }
 </style>

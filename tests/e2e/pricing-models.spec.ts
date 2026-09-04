@@ -18,6 +18,7 @@ const PUBLIC_ROUTES = [
   '/about',
   '/contact',
   '/founder-access',
+  '/deep-kore',
   '/support',
   '/cordel-connect',
   '/cordel-play',
@@ -58,7 +59,7 @@ test.describe('The invented commercial figures stay deleted', () => {
 
   test('the licensing page says why the worked example was removed', async ({ page }) => {
     await page.goto('/licensing');
-    await expect(page.locator('body')).toContainText('Every number in it was invented');
+    await expect(page.locator('body')).toContainText('carries no worked dollar example');
   });
 });
 
@@ -125,7 +126,7 @@ test.describe('No achieved-performance claim anywhere', () => {
 
   test('the homepage explains why there is no percentage on it', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('body')).toContainText('I am not going to put a percentage here.');
+    await expect(page.locator('body')).toContainText('There is no percentage on this page.');
   });
 });
 

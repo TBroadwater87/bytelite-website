@@ -21,6 +21,7 @@ const PUBLIC_ROUTES = [
   '/about',
   '/contact',
   '/founder-access',
+  '/deep-kore',
   '/support',
   '/cordel-connect',
   '/cordel-play',

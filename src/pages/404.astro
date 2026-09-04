@@ -2,9 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout 
+{/* noindex, and no canonical of its own. Vercel serves this body with a 404 status, which is
+    already enough for a crawler - but the page is also reachable at /404/ as an ordinary 200, and
+    at that URL a self-canonical would invite indexing a dead end. */}
+<Layout
   title="Page Not Found"
   description="Page not found. Return to the ByteLite LLC homepage."
+  noindex={true}
 >
   <section class="error-page">
     <div class="container">

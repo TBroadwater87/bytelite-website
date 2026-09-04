@@ -15,7 +15,9 @@ export default [
   },
   js.configs.recommended,
   {
-    files: ['**/*.{js,ts,tsx}'],
+    // `.mjs` is here for the Node-side tooling under scripts/, which needs the same
+    // `process`/`console` globals this block already declares.
+    files: ['**/*.{js,mjs,ts,tsx}'],
     languageOptions: {
       parser: tsParser,
       ecmaVersion: 'latest',

@@ -31,6 +31,12 @@ pnpm-debug.log*
 /playwright-report/
 /test-results/
 
+# UI-state screenshots written by tests/e2e/deep-kore-console-flow.spec.ts. They are run
+# evidence, regenerated on demand, and this repository is not an asset archive. They sit
+# outside test-results/ because Playwright empties that at the start of every run - which
+# once deleted a clean run's screenshots when the live suite started afterwards.
+/screenshots/
+
 # transient QA-sweep run artifacts (regenerated each run, not RC evidence)
 qa/preview-stdout.log
 qa/preview-stderr.log

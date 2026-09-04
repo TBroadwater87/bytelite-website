@@ -15,6 +15,10 @@ const NAV = [
   { label: 'How It Works', href: '/how-it-works' },
   { label: 'Validation', href: '/validation' },
   { label: 'Licensing', href: '/licensing' },
+  // Deep Kore sits with the technology entries and ahead of Founder Access, because
+  // CLAUDE.md section 1 puts the technology pages before the product pages in every
+  // navigation surface. The footer already grouped it that way; this row did not.
+  { label: 'Deep Kore', href: '/deep-kore' },
   { label: 'Founder Access', href: '/founder-access' },
   { label: 'About', href: '/about' },
 ];
@@ -95,11 +99,14 @@ const NAV = [
 .nav-toggle { display: none; background: none; border: none; color: #7b829e; padding: .375rem; border-radius: .375rem; flex-shrink: 0; }
 .nav-toggle:hover { color: #e4e7f2; background: rgba(255,255,255,.05); }
 
-/* 860px, not 720px. The nav gained a fifth item ("Founder Access") in the 2026-08-26 rebuild and
-   the row stopped fitting: measured 791px of content inside a 768px viewport, a 23px overflow on
-   every page in Chromium, Firefox and Mobile Chrome. The collapse point has to clear the widest
-   the row can get, so it moves with the item count - do not lower it to "look more desktop". */
-@media (max-width: 860px) {
+/* 960px, not 860px and not 720px. This number moves with the ITEM COUNT, because the row has to
+   be allowed to collapse before it can overflow.
+
+   Measured history: at five items ("Founder Access", added 2026-08-26) the row was 791px of
+   content inside a 768px viewport - a 23px overflow in Chromium, Firefox and Mobile Chrome - and
+   860px fixed it. "Deep Kore" makes six, so the threshold moves again. Do not lower it to "look
+   more desktop": the no-horizontal-overflow test decides this number, not taste. */
+@media (max-width: 960px) {
   .nav-links { display: none; }
   .nav-toggle { display: flex; align-items: center; justify-content: center; }
   .nav-links.nav-open {

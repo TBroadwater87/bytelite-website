@@ -13,7 +13,7 @@ import { DETERMINISM_STATEMENT, TARGET_STATEMENT, DEVELOPMENT_STATEMENT } from '
 
 <Layout
   title="How ByteLite Works | ByteLite"
-  description="The public principles behind ByteLite: determinism, exact reconstruction, a self-contained final artifact, complete counting, recursive processing and proof before claim. Explained with diagrams, not mechanism."
+  description="The public principles behind ByteLite: determinism, exact reconstruction, a self-contained final artifact, complete counting and proof before claim. Principles, not mechanism."
   keywords="how ByteLite works, deterministic lossless representation, exact reconstruction, self-contained artifact, complete accounting"
   canonical="https://www.thebytelite.com/how-it-works/"
 >
@@ -39,9 +39,9 @@ import { DETERMINISM_STATEMENT, TARGET_STATEMENT, DEVELOPMENT_STATEMENT } from '
     <div class="container narrow">
       <h2 class="prf-h">What can be reviewed from outside</h2>
       <p class="lede">
-        People ask what they are allowed to look at. This is the answer: six categories that can be
-        examined without me handing over the mechanism. It is a review framework, not a description
-        of how ByteLite operates internally.
+        People ask what they are allowed to look at. This is the answer: six categories a reviewer
+        can examine without ByteLite LLC handing over the mechanism. It is a review framework, not
+        a description of how ByteLite operates internally.
       </p>
       <img
         class="fig"
@@ -54,7 +54,7 @@ import { DETERMINISM_STATEMENT, TARGET_STATEMENT, DEVELOPMENT_STATEMENT } from '
         <li><strong>Result</strong> &mdash; the observable output.</li>
         <li><strong>Evidence</strong> &mdash; the supporting artifacts.</li>
         <li><strong>Status</strong> &mdash; the current state, labelled.</li>
-        <li><strong>Limitations</strong> &mdash; the boundaries I already know about.</li>
+        <li><strong>Limitations</strong> &mdash; the boundaries already known.</li>
         <li><strong>Review</strong> &mdash; technical examination of all of the above.</li>
       </ul>
     </div>
@@ -150,9 +150,9 @@ import { DETERMINISM_STATEMENT, TARGET_STATEMENT, DEVELOPMENT_STATEMENT } from '
 
       <!-- Differentiator. "ByteLite Priorities" is the required wording and stays: these are
            design priorities, not benchmarked, certified or independently validated outcomes. -->
-      <h3 class="diff-h">Different by design</h3>
+      <h3 class="diff-h">How ByteLite differs</h3>
       <p class="body">
-        The column on the right is a list of priorities I chose, not a list of results anyone has
+        The column on the right lists design priorities ByteLite LLC chose, not results anyone has
         certified. It says what ByteLite is built to be, which is a different claim from what it
         has been proven to do.
       </p>
@@ -162,11 +162,18 @@ import { DETERMINISM_STATEMENT, TARGET_STATEMENT, DEVELOPMENT_STATEMENT } from '
         alt="A common probabilistic approach compared with ByteLite priorities: deterministic operation, explicit constraints, evidence tracked, auditable artifacts."
         width="1400" height="788" loading="lazy" decoding="async"
       />
+      {/* The image's four labels are the first four entries here, in the same order, so the
+          graphic never carries meaning the markup does not. The fifth is text-only: it has no
+          counterpart in the artwork and is the one a technical reader asks about first. */}
       <ul class="prf-list">
-        <li><strong>Deterministic operation</strong> instead of probabilistic outputs.</li>
-        <li><strong>Explicit constraints</strong> instead of confidence scores.</li>
-        <li><strong>Evidence tracked</strong> instead of limited explainability.</li>
-        <li><strong>Auditable artifacts</strong> instead of statistical behaviour.</li>
+        <li><strong>Deterministic operation</strong> rather than probabilistic outputs.</li>
+        <li><strong>Explicit constraints</strong> rather than confidence scores.</li>
+        <li><strong>Evidence tracked</strong> rather than limited explainability.</li>
+        <li><strong>Auditable artifacts</strong> rather than statistical behaviour.</li>
+        <li>
+          <strong>File-derived structure</strong> rather than one fixed model applied to every
+          input, and a complete representation rather than hidden external state.
+        </li>
       </ul>
     </div>
   </section>

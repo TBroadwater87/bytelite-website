@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+// The chat disclosure is owner-approved language with exactly one source. It is
+// rendered here and on /deep-kore from this same constant so the two can never drift.
+import { PRIVACY_DISCLOSURE } from '../data/deep-kore';
 ---
 
 <Layout
@@ -16,7 +19,12 @@ import Footer from '../components/Footer.astro';
     <div class="container">
       <p class="eyebrow">Legal</p>
       <h1>Privacy Policy</h1>
-      <p class="legal-sub">Last updated: July 2026</p>
+      <!--
+        The page's own revision marker. It must move whenever the policy changes
+        materially, because the "Changes to this policy" section below promises exactly
+        that. Updated 2026-09-01 for the live chat disclosure.
+      -->
+      <p class="legal-sub">Last updated: September 2026</p>
     </div>
   </section>
 
@@ -35,8 +43,31 @@ import Footer from '../components/Footer.astro';
         <p>Delivery uses SendGrid, a third-party transactional email provider, which processes the message in order to send it. There is no CRM and no marketing automation: the message becomes an email to ByteLite LLC and nothing else. Submissions are validated server-side, and a failed submission tells you it failed rather than silently discarding your message.</p>
         <h3>Analytics</h3>
         <p><strong>No analytics provider is currently loaded on this website.</strong> No Google Analytics tag, no other analytics script, and no advertising or tracking script is served by any page. If privacy-respecting analytics are added in future, they will run only where you have recorded consent through the cookie preferences described below, and this policy will be updated before that happens.</p>
+        <h3>The live chat</h3>
+        <p><strong>The live chat on this website is switched off at the server unless ByteLite LLC has explicitly enabled it.</strong> While it is off, a request to start a session is refused and nothing you could type is sent anywhere.</p>
+        {/*
+          The owner-approved disclosure, imported from src/data/deep-kore.ts and rendered
+          verbatim. The identical sentence appears on /deep-kore, and a test asserts both
+          match. Never paraphrase it here: a promise made on the page and the policy
+          recording it must not differ.
+        */}
+        <p>{PRIVACY_DISCLOSURE}</p>
+        <p>What you type is sent to an endpoint on this site, and from there to a protected Deep Kore system operated by ByteLite LLC. <strong>It is not sent to any third-party AI provider, because there is not one:</strong> no external model, hosted or otherwise, is used at any point, and no scripted or canned answer stands in when the system cannot be reached.</p>
+        <p>Your IP address is seen by the hosting provider in the ordinary course of serving the request, and is passed to Cloudflare Turnstile only if a human check is in use. Errors are recorded by type only. Prompts, responses, session identifiers and credentials are not written to any log.</p>
+        <p><strong>The conversation is not connected to anything else you do on this site.</strong> Chat content is not linked to a contact-form submission, a founder reservation, a Supporter Pack purchase, or anything held by Stripe, and none of those records is available to the chat. There is no account, no profile and no identifier that joins them.</p>
+        <p><strong>The transcript you can see lives only in the page.</strong> It is held in the browser tab's memory for as long as the page is open, and it is not written to local storage, session storage, IndexedDB or any file. Reloading the page or navigating away clears it. No analytics or third-party service receives any part of it, because none is loaded on this website at all.</p>
+        <h3>Values you keep on your own device</h3>
+        <p>During a conversation the system may ask whether it may use a fact you hold privately - <strong>what kind of fact, never the fact itself</strong>. If you choose to enter such a value, it is kept in your browser tab's memory and nowhere else: it is not transmitted to this site, not written to your device's storage, not placed in the conversation you can see, and not included in anything submitted for review.</p>
+        <p>Permission is asked once, for one turn, and nothing is preselected: taking no action is a refusal. You can remove the value before deciding, and it is discarded after the single turn you permitted, when you decline, when the session ends, when the conversation cannot continue, and when you leave the page. <strong>Permission to use a value is not permission to transmit it, and this website transmits no private value at any point.</strong></p>
+        <h3>Concepts submitted for review</h3>
+        <p>If the system does not recognise something in your message, you may be offered the choice to submit it for review. That choice is separate, explicit, specific to that one item, and refused by default; declining stores nothing at all.</p>
+        <p>If you consent, an unverified candidate is stored in a review queue for ByteLite LLC to examine later. <strong>It does not become part of what the system knows.</strong> Consenting authorises storage and nothing else - it does not teach the system, does not make the item correct, and does not activate it; only ByteLite LLC, acting separately, can decide what to do with a candidate. Your message text, the conversation, and any private value you kept on your device are not stored with it.</p>
         <h3>Cookies and local storage</h3>
-        <p>This website does not set advertising cookies. The only value it stores in your browser is your cookie-consent choice, kept in your browser's local storage so the consent banner does not reappear on every page. Clearing your browser storage for this site removes it.</p>
+        <p>This website does not set advertising cookies. It stores your cookie-consent choice in your browser's local storage so the consent banner does not reappear on every page. Clearing your browser storage for this site removes it.</p>
+        <p>If you start a live chat session, two cookies are set for that session and for nothing else: an essential session cookie identifying the session, which your browser's scripts cannot read, and one used to confirm that a request came from this page rather than another site. Both are host-only and marked secure, both are forgotten when your browser session ends, and choosing "End and delete session" clears them immediately. Neither is used for tracking, and no chat cookie is set unless you start a session.</p>
+        <p>Nothing else from a conversation is placed in your browser's storage. The chat writes no message, response, private value or review candidate to local storage, session storage or IndexedDB.</p>
+        <h3>Consents are separate, and stay separate</h3>
+        <p>Starting a conversation, permitting the use of a value held on your device, submitting an unrecognised concept for review, contacting ByteLite LLC, purchasing, and any future marketing all require their own decision. <strong>None of them is bundled with another, and agreeing to one never implies agreeing to any of the others.</strong></p>
       </div>
 
       <div class="legal-section">
@@ -68,7 +99,8 @@ import Footer from '../components/Footer.astro';
 
       <div class="legal-section">
         <h2>Third-party services</h2>
-        <p>This website is served by a third-party hosting provider, which necessarily processes request data such as IP addresses in the ordinary course of serving pages. Web fonts are loaded from Google Fonts. SendGrid delivers contact-form messages. Stripe is the payment processor for founder reservations and the Founder Supporter Pack, and is currently operating in <strong>test mode</strong> with all checkout controls disabled. ByteLite LLC does not use advertising networks on this website, and no advertising or tracking script is served by any page.</p>
+        <p>This website is served by a third-party hosting provider, which necessarily processes request data such as IP addresses in the ordinary course of serving pages. Web fonts are loaded from Google Fonts. SendGrid delivers contact-form messages. Stripe is the payment processor for founder reservations and the Founder Supporter Pack, and is currently operating in <strong>test mode</strong> with all checkout controls disabled. Cloudflare provides the network path to the Deep Kore system behind the live chat, and Cloudflare Turnstile provides the human check where one is in use. ByteLite LLC does not use advertising networks on this website, and no advertising or tracking script is served by any page.</p>
+        <p><strong>No third-party AI or model provider is used anywhere on this website.</strong> The live chat is answered by a ByteLite LLC system and by nothing else, and there is no external model behind it or beside it.</p>
       </div>
 
       <div class="legal-section">
@@ -106,6 +138,6 @@ import Footer from '../components/Footer.astro';
 .legal-section a:hover { color: #a5b4fc; }
 .legal-list { list-style: none; display: flex; flex-direction: column; gap: .625rem; }
 .legal-list li { font-size: .9375rem; color: #7b829e; padding-left: 1.25rem; position: relative; line-height: 1.6; }
-.legal-list li::before { content: "—"; position: absolute; left: 0; color: #4a5068; }
+.legal-list li::before { content: "-"; position: absolute; left: 0; color: #4a5068; }
 
 </style>

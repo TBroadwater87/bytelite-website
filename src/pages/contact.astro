@@ -16,10 +16,10 @@ import Footer from '../components/Footer.astro';
   <section class="ct-hero">
     <div class="container">
       <p class="eyebrow">Contact</p>
-      <h1 id="ct-heading">Get in touch.</h1>
+      <h1 id="ct-heading">Talk with ByteLite LLC.</h1>
       <p class="ct-sub" id="ct-subheading">
-        Technical validation, licensing, partnership and investor conversations are all welcome.
-        Direct, no-middleman contact.
+        General inquiries, licensing, technical review, founder access and product questions are
+        welcome. Messages reach the company directly &mdash; no middleman, no call centre.
       </p>
     </div>
   </section>
@@ -153,7 +153,15 @@ import Footer from '../components/Footer.astro';
       orgLabel: 'Fund / Organization (optional)',
     },
     'privacy-request': { heading: 'Privacy request.', sub: 'Data access, correction, or deletion requests.', extra: 'none' },
-    general: { heading: 'Get in touch.', sub: 'Technical validation, licensing, partnership and investor conversations are all welcome. Direct, no-middleman contact.', extra: 'none' },
+    // `general` is also the on-load state, so its copy MUST match the server-rendered h1/sub in
+    // the hero above. It runs before the visitor touches the select, and it overwrites both. When
+    // the two drifted apart, view-source showed the new heading and the rendered page showed the
+    // old one - so change this entry and the hero together, or not at all.
+    general: {
+      heading: 'Talk with ByteLite LLC.',
+      sub: 'General inquiries, licensing, technical review, founder access and product questions are welcome. Messages reach the company directly - no middleman, no call centre.',
+      extra: 'none',
+    },
   };
 
   const select = document.getElementById('ct-subject') as HTMLSelectElement | null;
@@ -175,7 +183,7 @@ import Footer from '../components/Footer.astro';
 
   function applyType(type: string) {
     const cfg = TYPE_CONFIG[type];
-    if (heading) heading.textContent = cfg ? cfg.heading : 'Get in touch.';
+    if (heading) heading.textContent = (cfg ?? TYPE_CONFIG.general)!.heading;
     if (sub) sub.textContent = (cfg ?? TYPE_CONFIG.general)!.sub;
     const extra = cfg?.extra ?? 'none';
 

@@ -252,6 +252,75 @@ export const ROADMAP_STATE_LABEL: Record<RoadmapState, string> = {
 export const CURRENT_ROADMAP_STAGE = ROADMAP.find((stage) => stage.state === 'current');
 
 // ---------------------------------------------------------------------------------------------
+// THE HISTORICAL PYTHON PROTOTYPE RESULT
+//
+// Owner-approved for publication on 2026-08-31, in writing, as an explicit amendment to the
+// no-ratio rule in CLAUDE.md section 2. It was withheld before that decision; see CLAUDE.md
+// section 18 for the full record of the refusal and the approval that lifted it.
+//
+// THREE THINGS THIS IS NOT, and every one of them is asserted by test:
+//
+//   1. NOT a benchmark of the current C++ implementation. It is an earlier Python prototype.
+//   2. NOT independent validation. It is an internal ByteLite LLC demonstration.
+//   3. NOT accompanied by an invented supporting detail. The owner's instruction was explicit:
+//      do not invent the input identity, test date, runtime, hardware, throughput, comparison
+//      ratio, reviewer, or supporting artifact. Nothing beyond the approved sentence is stated,
+//      and no page may add any of those later without a further written decision.
+//
+// The wording is fixed. It is exported from here, not typed into a page, so the two approved
+// placements cannot drift apart or be softened one at a time.
+// ---------------------------------------------------------------------------------------------
+
+/** The exact owner-approved sentence. Do not paraphrase, split, or hedge this. */
+export const HISTORICAL_PROTOTYPE_RESULT =
+  'An earlier internal Python prototype demonstrated exact lossless reconstruction after reducing a one-terabyte test input to approximately four hundred kilobytes.';
+
+/**
+ * The scope line. It must accompany the result at BOTH approved placements - the result is a real
+ * company-reported demonstration, and the two things a reader could wrongly infer from it are
+ * that the current encoder does this automatically and that somebody outside checked it.
+ */
+export const HISTORICAL_PROTOTYPE_SCOPE =
+  'That is a historical internal demonstration by an earlier Python prototype. It is not a benchmark of the current C++ implementation, and it is not independent validation.';
+
+/** What the work is now. Stated plainly, not as a hedge against the sentence above. */
+export const CURRENT_ENGINEERING_WORK =
+  "The current C++ engineering work is automating ByteLite's deterministic reduction route and expanding reproducible validation.";
+
+/**
+ * The status framing the homepage leads with, derived from ROADMAP above rather than typed into
+ * the page - so a gate cannot advance on the homepage without advancing here first.
+ *
+ * `note` is the honest qualifier that keeps an "established" line from reading as a finished
+ * proof. Each line pairs a state with what that state does NOT yet mean.
+ *
+ * Ordered as a timeline: what was designed, what an earlier prototype showed, what is closed on
+ * internal evidence, what is being built now, and what is still open.
+ */
+export const HOMEPAGE_STATUS: { label: string; note: string }[] = [
+  {
+    label: 'Architecture established',
+    note: 'The deterministic design is settled and internally documented.',
+  },
+  {
+    label: 'Python prototype demonstrated',
+    note: HISTORICAL_PROTOTYPE_RESULT,
+  },
+  {
+    label: 'Exact reconstruction closed on internal evidence',
+    note: 'Verified by rebuilding the file and comparing it against the original.',
+  },
+  {
+    label: 'Automatic C++ encoder in active development',
+    note: CURRENT_ENGINEERING_WORK,
+  },
+  {
+    label: 'Public proof corpus expanding',
+    note: 'Large-corpus and independent results are open gates, not completed ones.',
+  },
+];
+
+// ---------------------------------------------------------------------------------------------
 // WHAT BYTE LITE IS NOT
 //
 // A boundary, not an inventory. Each card says what ByteLite refuses to do; none says what it
@@ -305,7 +374,11 @@ export const PROVEN: string[] = [
 export const NOT_PROVEN: string[] = [
   'The universal target. A smaller self-contained representation for every source file is what ByteLite is being built to achieve, not something it has demonstrated.',
   'A self-contained final artifact. Development currently relies on explicit reconstruction evidence that the final architecture must absorb.',
-  'A specific compression ratio. No public ratio is claimed.',
+  // Replaced 2026-08-31. This line read "A specific compression ratio. No public ratio is
+  // claimed." That became false the moment the owner approved the historical prototype sentence
+  // for publication, and a claim ladder that contradicts the homepage is worse than no ladder.
+  // What is genuinely unproven is the CURRENT encoder reproducing that result automatically.
+  'The same result from the current C++ implementation. The historical Python prototype demonstration is not a benchmark of the automatic encoder, which is still being built.',
   'A completed full enwik9 benchmark result.',
   'Independent third-party verification. Every result above is internal.',
   'Production readiness. ByteLite is research under active development, not a shipping product.',

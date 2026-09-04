@@ -649,6 +649,7 @@ surface:
 | `/licensing` | Personal flat pricing and the business savings-share model | Public, in sitemap | Personal plan can never read as owing a percentage; the 90% example always carries the target label |
 | `/about` | Company and founder context | Public, in sitemap | 2024 research start and 2025 LLC formation are distinct years and never collapse into one "founded" |
 | `/contact` | The contact form | Public, in sitemap | Posts to `/api/contact`; must not promise delivery it cannot verify |
+| `/deep-kore` | The live Deep Kore chat (added 2026-09-01) | Public, in sitemap | The ONE route that may name Deep Kore, AIya, Genesis Goalkeeper or Revelation Vanguard. Says what the system does, never how. No fallback: if the engine is unreachable the page says so and shows no conversation. Runbook: section 21 |
 | `/privacy` | Privacy policy | Public, in sitemap | May cover non-public services generically, never by product name |
 | `/terms` | Terms | Public, in sitemap | Same generic-description rule |
 
@@ -901,21 +902,53 @@ All commands from `D:\bytelite-website`.
 | `npx eslint .` | Lint |
 | `npx playwright test` | Full E2E across 5 browser engines |
 | `npm run test:e2e:clean` | Same, after safely clearing a stale preview server this repo owns |
+| `npm run test:e2e:live` | **Not part of the matrix.** The live Deep Kore proof; needs a running gateway and worker. See section 21.8 |
 
-What the E2E specs individually protect:
+What the E2E specs individually protect. **Corrected 2026-09-01:** this table used to list four
+specs that do not exist - `retired-route-rendering`, `research-and-canonical-truth`,
+`technology-status-claims` and `conversion-workflows` were deleted with the route families they
+covered in the 2026-08-26 rebuild. The five below are the ones actually in `tests/e2e`.
 
 | Spec | Protects |
 |---|---|
-| `critical-paths.spec.ts` | The six public routes work; no public link or nav entry leaves the public allowlist; the forbidden ratio claim is absent |
-| `public-scope-vocabulary.spec.ts` | The Owner Law: target and proof stay distinct in both directions; no sibling product name; no internal implementation vocabulary. Checked against rendered text, so a phrase arriving via `src/data/` is caught the same as one typed into a page |
-| `pricing-models.spec.ts` | A personal visitor can never conclude they owe a percentage; a business visitor can never mistake the target example for a measured result |
+| `critical-paths.spec.ts` | Every public route works; no public link or nav entry leaves the public allowlist; the forbidden ratio claim is absent |
+| `public-scope-vocabulary.spec.ts` | The Owner Law: target and proof stay distinct in both directions; no sibling product name; no internal implementation vocabulary; the two-tier Deep Kore route scoping; company voice. Checked against rendered text AND markup, so a phrase arriving via `src/data/` is caught the same as one typed into a page |
+| `pricing-models.spec.ts` | A personal visitor can never conclude they owe a percentage; no invented currency figure returns |
 | `public-scope-accessibility.spec.ts` | Overflow, 200% zoom, keyboard navigation and reduced-motion behaviour on every public route |
-| `retired-route-rendering.spec.ts` | Retired routes still render correctly, stay `noindex`, and are linked from nowhere |
-| `research-and-canonical-truth.spec.ts` | The research section resolves and states hypotheses, not capability |
-| `technology-status-claims.spec.ts` | Specific corrected status claims do not silently return |
-| `conversion-workflows.spec.ts` | Preorder wording stays non-binding; no paid-order language |
+| `deep-kore-page.spec.ts` | `/deep-kore` publishes exactly the vocabulary the amendment permitted and no engine internals; the console is honest before anything is connected; a failed start produces an error and no conversation |
 
-**Dated verification snapshot - not a permanent truth:**
+And, outside the matrix:
+
+| Spec | Protects |
+|---|---|
+| `tests/live/deep-kore-live.spec.ts` | That real cognition reaches the browser, that two sessions answer identically, that no private diagnostic crosses, and that an unreachable engine produces an error and **no conversation**. Run with `npm run test:e2e:live` against a stack you started |
+
+**Dated verification snapshot, 2026-09-01, after the live Deep Kore chat pass:**
+
+```
+Windows 11, working tree ahead of production (which still serves 21af2ca).
+
+  npm run build            PASS  18 pages
+  npx vitest run           PASS  172/172 (5 files)
+  npx astro check          PASS  0 errors / 0 warnings / 1 hint
+  npx tsc --noEmit         PASS  0 errors
+  npx eslint .             PASS  0 errors / 1 pre-existing warning (tests/setup.ts)
+  npx playwright test      PASS  1665/1665, 5 engines, 40.3m, no retries, no flakes
+
+  Deep Kore repo:
+  cmake -S Source -B Source\build          PASS  438 sources, 428 ctest tests registered
+  test_public_chat_governed_path           PASS  32/32 assertions
+  ctest -R 'vanguard|governed|governance'  PASS  6/6
+
+  Live proof (needs the stack up; not in the matrix):
+  npm run test:e2e:live    PASS  78/78, 3 engines (0 workers left behind)
+```
+
+The single ESLint warning is pre-existing `no-explicit-any` in `tests/setup.ts`. The earlier
+snapshot below is kept for comparison; note it describes a site with 68 pages that no longer
+exists.
+
+**Earlier dated snapshot - historical, not current:**
 
 ```
 On 2026-08-24, Windows 11, before and after the cleanup pass:
@@ -1071,6 +1104,64 @@ routes by `Host` header, every project answers on the same `cname.vercel-dns.com
 Real, unresolved, and verified as unresolved on 2026-08-25. Nothing here is marked complete
 merely because an implementation exists.
 
+### 2026-08-31 - company-voice pass, LOCAL ONLY, awaiting your decision
+
+The public site was rewritten from founder-singular voice ("I am building ByteLite") into company
+voice ("ByteLite LLC"). The rule is now `CLAUDE.md` section 17 and is enforced by test on every
+public route. **The work is committed to nothing** - it is in the working tree only. Production
+still serves `21af2ca`.
+
+What did NOT change, because it was already in its target state: routes, redirects and 410s, the
+sitemap allowlist, the Stripe commerce architecture and its fail-closed gates, the nine published
+WebP graphics, and the withdrawn `/preorder-terms` and `/supporter-terms`.
+
+**The historical prototype result is now published.** It was refused earlier the same day, you
+approved it in writing, and it is live on `/` and `/validation`:
+
+> An earlier internal Python prototype demonstrated exact lossless reconstruction after reducing
+> a one-terabyte test input to approximately four hundred kilobytes.
+
+Three things to know about how it went in:
+
+- **`CLAUDE.md` section 2 was amended**, not bypassed. The no-ratio rule now carries this one
+  narrow exception explicitly, so a future agent cannot read the sentence as a canon violation and
+  delete it.
+- **`NOT_PROVEN` used to say "A specific compression ratio. No public ratio is claimed."** Your
+  approval made that false. It now says the current C++ implementation has not reproduced the
+  result. A test asserts the old line is gone.
+- **No artifact backs the figure, and none was invented.** You instructed that nothing be made up,
+  so the claim is published as a company-reported historical statement and the site frames it that
+  way. Section 18 records this openly. If a public-safe artifact ever exists, put it in `qa/`.
+
+The **sub-64-byte objective was not part of that approval** and is still unpublished.
+
+**Your remaining actions, in order:**
+
+1. Read the rewritten pages. `/` and `/licensing` changed most; `/validation` gained the
+   historical-vs-current section; `/contact` has a new heading.
+2. Confirm the prototype sentence reads the way you intend it to in both placements.
+3. Commit and deploy by the ordinary section 5 procedure. Nothing about DNS, hosting or contact
+   delivery changes.
+4. After deploy, in Google Search Console and Bing Webmaster Tools: submit
+   `https://www.thebytelite.com/sitemap-index.xml`, request recrawl of `/`, `/validation`,
+   `/licensing`, `/contact`, `/about` and `/how-it-works`, and confirm the retired families still
+   report 410.
+
+Nothing in this pass touches Stripe. No Stripe Dashboard action is required by it, and no live
+Stripe object was created. The Stripe and Vercel decisions still open are unchanged and remain
+listed in `CLAUDE.md` section 16.
+
+### Blocker 0 - the logo is 438 KB and renders at 30x30
+
+Carried forward from the old Blocker 2 below and re-measured on 2026-08-31: still open, still
+unfixed. `public/bytelite-logo.png` is 438 KB, is requested by the header on every page at a
+rendered size of 30x30 CSS pixels, and is also the default `og:image`.
+
+**Deliberately not fixed in the company-voice pass**, because the fix is not one file. The header
+mark wants a small WebP; `og:image` wants to stay PNG, since WebP support across social-preview
+crawlers is inconsistent and silently degrading every link preview would be a worse outcome than
+the weight. That is two assets and a social-preview verification, which is its own scoped change.
+
 **Closed on 2026-08-25**, and moved into section 16 as history rather than deleted:
 
 | Was | Outcome |
@@ -1188,3 +1279,808 @@ Re-verify with section 9 before trusting any line of this document.
 resume from is `reports/WEBSITE_AUTHORITATIVE_HANDOFF.md`. Read CLAUDE.md, then this file, then
 that handoff, then `git status` - and only then inspect deltas. Do not re-scout the hosting,
 domain, mail or security questions; they are settled and the evidence is recorded.
+
+---
+
+## 21. Live Deep Kore Chat - Owner Runbook
+
+Added 2026-09-01. The law for this feature is `CLAUDE.md` section 19; this section is how you
+actually stand it up, verify it, and switch it off again.
+
+**Nothing in this runbook has been executed.** No tunnel, DNS record, Access application,
+Turnstile key, Vercel variable or Windows service exists yet. Every step below is yours, because
+every one of them either creates a credential or exposes something to the internet.
+
+**Never paste a secret value into this repository, a commit message, a log, a screenshot or a
+report.** Variables are referred to by NAME throughout, which is deliberate.
+
+### 21.1 What the pieces are
+
+| Piece | Where it lives | What it is |
+|---|---|---|
+| `dk_session_worker.exe` | Deep Kore repo, `Source/build/<config>/` | One process per chat session. Holds one engine with no knowledge path, so durable writes are impossible. Speaks DKW1 on stdio. |
+| `deep_kore_gateway.exe` | Deep Kore repo, `Workbench/deep_kore_gateway/bin/<config>/net8.0-windows/win-x64/` | Loopback HTTP host. Owns the workers, runs turns outside the HTTP request, hands out job ids. |
+| Cloudflare Tunnel | Your Cloudflare account | Publishes the loopback gateway at a hostname without opening a port. |
+| Cloudflare Access | Your Cloudflare account | Stands in front of that hostname. The website presents a service token; nobody else gets through. |
+| The website routes | This repo, `api/deep-kore/` | The only thing that knows the origin's address or holds a credential for it. |
+
+Requests only ever flow one way: browser to this site, this site to the origin. The browser never
+addresses the origin and is never given anything that could.
+
+### 21.2 Build both components
+
+```powershell
+# Deep Kore worker (the session host)
+cd D:\LLC_Projects\DeepKore
+cmake -S Source -B Source\build
+cmake --build Source\build --config Release --target dk_session_worker
+
+# The gateway
+cd D:\LLC_Projects\DeepKore\Workbench\deep_kore_gateway
+dotnet build -c Release
+```
+
+Prove the pair works before anything is exposed:
+
+```powershell
+cd D:\LLC_Projects\DeepKore
+cmake --build Source\build --config Debug --target test_public_chat_governed_path
+Source\build\Debug\test_public_chat_governed_path.exe
+```
+
+That runs 32 assertions across the governed facade and the real DKW1 wire, including a
+byte-identical determinism proof across two independent worker processes. It must print
+`0 failure(s)`. If it does not, stop here - nothing downstream is worth configuring.
+
+### 21.3 Run the gateway on Windows
+
+Three variables, all required, none with a default. The gateway refuses to start if any is
+missing, if the bind address is not loopback, if the token is shorter than 32 characters, or if
+the worker path does not exist.
+
+| Variable | What you set it to |
+|---|---|
+| `DEEP_KORE_BIND_URL` | A loopback URL with a port you choose, e.g. `http://127.0.0.1:<port>/`. It must be loopback - a non-loopback bind is refused. |
+| `DEEP_KORE_GATEWAY_TOKEN` | A long random value you generate. The website sends it as a bearer; the gateway compares it in fixed time. |
+| `DEEP_KORE_WORKER_PATH` | Full path to `dk_session_worker.exe` from the build above. |
+
+Measured on this machine: `HttpListener` bound `http://127.0.0.1:<port>/` as the ordinary
+logged-in user with **no URL ACL required**. If you run it as a service under a different
+account and binding fails, the gateway says so by exception type and you add the ACL with
+`netsh http add urlacl`.
+
+Supervision is your choice - a Windows service wrapper, Task Scheduler at logon, or a console
+window while you are testing. Whatever you choose, the account it runs as must be able to start
+the worker executable.
+
+### 21.4 Cloudflare Tunnel
+
+Publish the loopback gateway at a hostname. Do this from the machine running the gateway.
+
+1. `cloudflared tunnel login`, then create a named tunnel.
+2. Route it to a hostname on `thebytelite.com`. Use a dedicated subdomain; do **not** point it at
+   `www` or the apex, both of which serve the website from Vercel.
+3. Configure the tunnel's ingress to your `DEEP_KORE_BIND_URL`.
+4. Install it as a service so it survives a reboot.
+
+**This creates a DNS record at Cloudflare.** Cloudflare is the authoritative DNS provider for
+this domain and is **not** the website host - see section 4. Adding a tunnel hostname must not
+touch the `www` CNAME to `cname.vercel-dns.com`.
+
+### 21.5 Cloudflare Access
+
+The tunnel hostname is public the moment it exists. Put Access in front of it in the same sitting.
+
+1. Create an Access application for that hostname.
+2. Create a **service token** for it.
+3. Add a policy that allows that service token and nothing else. No email rule, no country rule,
+   no bypass. The only client is this website.
+
+You will be shown a client id and a client secret **once**. They go into Vercel (21.7) and
+nowhere else.
+
+### 21.6 Turnstile (only for the anonymous public phase)
+
+Skip this entirely while the phase is `private_alpha`.
+
+1. Create a Turnstile widget for `www.thebytelite.com`.
+2. The **site key** is public by design - it is set as `PUBLIC_TURNSTILE_SITE_KEY` and appears in
+   the page. The **secret key** is `TURNSTILE_SECRET_KEY` and is server-side only.
+3. The CSP in `vercel.json` already allows `https://challenges.cloudflare.com` in `script-src`
+   and `frame-src`, which is what the widget needs. **Load `/deep-kore` in a real browser with
+   devtools open after setting the site key** and confirm there are no CSP violations - a CSP
+   error is invisible to a static reading of the source and to a test run.
+
+### 21.7 Vercel environment variables
+
+Set these on the **bytelite-website** project under the **ByteLite_LLC** team. Names only; you
+enter the values.
+
+| Variable | Required when | Notes |
+|---|---|---|
+| `DEEP_KORE_CHAT_PHASE` | always | `disabled`, `private_alpha` or `public`. Anything else - including a typo - is treated as `disabled`. |
+| `DEEP_KORE_ORIGIN_URL` | phase not `disabled` | `https://<your tunnel hostname>`. Never a loopback address; Vercel cannot reach your machine directly. |
+| `DEEP_KORE_ACCESS_CLIENT_ID` | phase not `disabled` | From 21.5. |
+| `DEEP_KORE_ACCESS_CLIENT_SECRET` | phase not `disabled` | From 21.5. |
+| `DEEP_KORE_GATEWAY_TOKEN` | phase not `disabled` | The same value as `DEEP_KORE_GATEWAY_TOKEN` on the Windows machine. |
+| `DEEP_KORE_SESSION_SECRET` | phase not `disabled` | Generated for this purpose and used nowhere else. It signs the session cookie. See 21.7a. |
+| `TURNSTILE_SECRET_KEY` | phase `public` only | From 21.6. |
+| `PUBLIC_TURNSTILE_SITE_KEY` | phase `public` only | Public by design. `PUBLIC_` means Astro inlines it into the browser bundle - which is correct here and would be catastrophic for any of the rows above it. |
+| `DEEP_KORE_PUBLIC_CANON_VERSION` | optional | Echoed to the page. Cosmetic. |
+
+On the WINDOWS machine, alongside the three in 21.3, one more is optional:
+
+| Variable | Required when | Notes |
+|---|---|---|
+| `DEEP_KORE_MAX_SESSIONS` | **always** | The maximum number of chat sessions this host may own at once. **No default**; the gateway refuses to start without it, and refuses zero, negative, malformed or overflowing values. Do not guess it - see 21.11 for the measurements taken on this machine. |
+| `DEEP_KORE_SESSION_IDLE_SECONDS` | never | The terminal-idle window in seconds. Unset means the decided default, **1800** (30 minutes). A present but malformed value refuses to start rather than silently falling back - a typo in the setting that governs how long processes live must not pass unnoticed. Zero is legal and is a test value; do not use it in production. |
+
+**Never rename any of the server-side variables with a `PUBLIC_` prefix.** Astro inlines every
+`PUBLIC_` variable into the browser bundle, which would publish the credential to every visitor.
+This is the same rule as `STRIPE_SECRET_KEY` in section 15 of `CLAUDE.md`, and for the same
+reason.
+
+Leaving `DEEP_KORE_CHAT_PHASE` unset is a valid, safe state: the page renders, the control is
+there, and starting a session answers 503 and does nothing.
+
+### 21.7a Generating DEEP_KORE_SESSION_SECRET
+
+Approved 2026-09-01. This value signs the cookie that binds a browser to its Deep Kore
+session. If it is guessable, anyone can mint a session cookie for any session id.
+
+Generate 32 random bytes, on this machine, in PowerShell:
+
+```powershell
+# 32 cryptographically random bytes, base64 -> 44 characters.
+$b = [byte[]]::new(32)
+[System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($b)
+[Convert]::ToBase64String($b)
+```
+
+Copy the printed value straight into the Vercel environment field, then close the window.
+
+Rules the code enforces, so a mistake fails closed rather than serving:
+
+- **At least 32 characters.** A shorter value is refused and the routes answer `503`. This is a
+  floor that catches a typed password, not a strength claim.
+- **Distinct from every other credential.** If it is identical to `DEEP_KORE_GATEWAY_TOKEN`,
+  either Access credential, or `TURNSTILE_SECRET_KEY`, the routes refuse to serve. Reusing one
+  secret means one leak crosses two boundaries, and a hurried copy-paste between Vercel fields is
+  exactly how that happens.
+- **Absent means off.** No default exists, insecure or otherwise.
+
+Rules only you can keep:
+
+- Do not derive it from a ByteLite, Stripe, Cloudflare or Deep Kore credential, or from anything
+  memorable.
+- Do not give it a `PUBLIC_` name, ever. Astro inlines every `PUBLIC_` variable into the browser
+  bundle.
+- Do not paste it into this repository, a commit, a ticket, a chat, a log or a screenshot.
+
+**Rotating it** invalidates every session cookie in the wild. Visitors mid-conversation get "No
+session is open. Start one to continue." and start again; nothing is lost but their scrollback.
+Rotate on any suspicion of exposure.
+
+### 21.7b The session lifecycle, exactly
+
+A session is **one worker process** holding **one engine** with no knowledge path. It exists in
+memory and nowhere else.
+
+**It is created** when a visitor selects "Start a private session" and the server accepts. The
+server generates the session id - the browser never chooses one - and returns it inside a cookie
+signed with `DEEP_KORE_SESSION_SECRET`.
+
+**It ends in exactly two ways.**
+
+| How | What happens |
+|---|---|
+| The visitor selects **"End and delete session"** | The origin disposes the worker and **waits for the process to exit** before answering. The page reports success only on that answer. A delete that failed says so, keeps the transcript, and leaves the session open to be ended again. |
+| **30 minutes of terminal idleness** | A sweep in the gateway ends sessions nobody came back to - a crashed browser, a killed tab, a lost network. Set by `DEEP_KORE_SESSION_IDLE_SECONDS`, default `1800`. |
+
+Restarting the gateway also clears every session, because they only ever existed in its workers'
+memory.
+
+**Closing a tab, reloading, or navigating away does NOT end a session.** The page used to send a
+delete on `pagehide` and no longer does, by owner decision. `pagehide` fires on ordinary
+navigation - so treating it as deletion destroys sessions people are still using - and it does
+not fire on a crash, so the case it existed for is the one case it could not cover. An abandoned
+session is now handled by the 30-minute rule instead, which does not need the browser to be alive
+to say goodbye.
+
+**THE IDLE POLICY NEVER LIMITS COGNITION.** This is the part to be sure of:
+
+- A session with a turn in flight is **never** eligible for reaping, whatever the clock says. The
+  eligibility check tests for an active job first and refuses, at any window including zero.
+- The idle clock does not run during a turn. It restarts when cognition returns its own terminal
+  result, so a turn that took an hour does not leave its session instantly reapable.
+- Every authenticated request restarts the clock, so reading, thinking, or waiting for a slow
+  answer all count as being present.
+- There is no cognition timeout, no maximum poll count, no iteration limit and no token limit
+  anywhere in this path. The only deadline in the website is 10 seconds on a single HTTP hop,
+  which exists so a stalled origin cannot pin a compute slot; it does not bound a turn.
+
+You can verify the whole policy yourself:
+
+```powershell
+$env:DEEP_KORE_GATEWAY_EXE = "<...>\deep_kore_gateway.exe"
+$env:DEEP_KORE_WORKER_EXE  = "<...>\dk_session_worker.exe"
+npm run test:e2e:live
+```
+
+The lifecycle spec starts its own gateways on their own ports with the idle window set to zero -
+the condition under which a session mid-turn would be reaped on the very next sweep if the
+active-job guard were missing. The turn completing is the proof.
+
+**Watch the process count while you test.** `Get-Process dk_session_worker` should fall back to
+zero after sessions end. If it climbs and stays, something is holding sessions open.
+
+### 21.7c What the site tells visitors, and what has to stay true
+
+The chat disclosure is **owner-approved language with exactly one source**: `PRIVACY_DISCLOSURE`
+in `src/data/deep-kore.ts`. It is rendered verbatim in two places - the privacy section of
+`/deep-kore` and the live-chat section of `/privacy` - and a test asserts both match it exactly.
+
+**Never paraphrase it in a page.** A promise made on the page and the policy recording it must be
+the same words. If it has to change, change the constant, once.
+
+`/privacy` carries its own revision marker ("Last updated"), which moved to September 2026 for
+this change because the page promises that material changes are dated. Move it again whenever
+this language does.
+
+Four claims in that text are things the system has to keep true. If any of them stops being true,
+the language is wrong and must change with it - not the other way round:
+
+| The disclosure says | What keeps it true |
+|---|---|
+| Chat content is in temporary service memory and is not retained as a central conversation history | Each session's engine has an empty knowledge path, so every durable write in the engine is guarded behind a check that cannot pass. It is not a setting that can be flipped. |
+| The session is removed on explicit deletion, after 30 minutes of completed inactivity, or when the service restarts | Those are the only three, and 21.7b is how each works. There is no fourth. |
+| Active cognition is not terminated by the inactivity policy | The eligibility check refuses any session with a job in flight, at any window including zero. |
+| ByteLite LLC does not sell chat content or use it for advertising | Nothing stores it to sell. There is no transcript, no analytics on this path, and no third-party AI provider anywhere in it. |
+
+**Logging is part of this promise, not separate from it.** Before the language was published, every
+log was audited against one list: prompts, responses, cookies, session identifiers, bearer
+credentials, `GOV_STAMP`, `state_hash`, private engine output. Two things were changed:
+
+- the reaper logged the **session id** of each session it ended, and now logs a count instead - an
+  id in a log is a handle to a live conversation, and logs travel further than the process that
+  wrote them;
+- the gateway now **drains and discards** the worker's stderr rather than leaving the pipe unread,
+  which both closes a latent deadlock and guarantees worker output has no path into a log.
+
+Everything else already recorded types and variable names only. A unit test drives a complete
+successful turn and fails if any of that list reaches a console channel.
+
+**If you add logging, monitoring or an error tracker to this path, re-run that audit.** An
+exception reporter that captures request bodies would put visitor prompts into a third-party
+service and make the published disclosure false.
+
+### 21.8 Turn it on, and prove it in this order
+
+Each step proves one thing. Do not merge them, and do not infer an earlier one from a later one.
+
+```powershell
+# 1. The gateway is up and refuses an unauthenticated caller.
+#    Expect 401. A 200 here means the token check is not running.
+curl.exe -i -X POST "$env:DEEP_KORE_BIND_URL`v1/sessions" -H "Content-Type: application/json" -d "{}"
+
+# 2. The tunnel reaches it. Expect Cloudflare Access's own challenge, NOT a 401 from the
+#    gateway. Seeing the gateway's 401 here means Access is not in front of the hostname.
+curl.exe -i "https://<tunnel-hostname>/v1/sessions"
+
+# 3. The site's own route is live and fails closed while the phase is unset.
+#    Expect 503 {"error_code":"chat_disabled"}.
+curl.exe -i -X POST "https://www.thebytelite.com/api/deep-kore/session" `
+  -H "Content-Type: application/json" -d "{}"
+
+# 4. A non-JSON POST is refused before the body is read. Expect 415.
+curl.exe -i -X POST "https://www.thebytelite.com/api/deep-kore/session" `
+  -H "Content-Type: application/x-www-form-urlencoded" -d "persona=AIYA"
+
+# 5. Wrong verb. Expect 405 with an Allow header.
+curl.exe -i "https://www.thebytelite.com/api/deep-kore/session"
+```
+
+Then set `DEEP_KORE_CHAT_PHASE=private_alpha`, redeploy, and **use a real browser**:
+
+6. Load `https://www.thebytelite.com/deep-kore`. The page renders whether or not the engine is
+   reachable - that is deliberate, so the built HTML never claims something the runtime
+   contradicts. **A page that looks fine proves nothing.**
+7. Click **Start a private session**. A session cookie appears; no answer appears.
+8. Ask a question. The request returns 202 with a job id and the page begins polling. A response
+   appears with a governance stamp under it.
+9. Stop the gateway process, ask again. The page must say the system could not be reached and
+   must show **no conversation entry**. If anything answers you at this point, something has a
+   fallback and it must be found and removed before this goes public.
+10. Click **End and delete session**. The cookies clear, and `Get-Process dk_session_worker`
+    drops by one. Success is reported only after the worker has actually exited, so if the
+    control says it succeeded, it did.
+11. **Reload the page mid-session.** The transcript is gone - it lived in the page - but the
+    session is not: the cookie survives and the session is still usable. A reload is not a
+    deletion, and nothing on this path treats it as one.
+
+Steps 6 to 10 are also automated, so you do not have to do them by hand every time:
+
+```powershell
+# Point it at whatever is serving the site WITH the functions attached, then:
+$env:DEEP_KORE_LIVE_BASE_URL = "https://www.thebytelite.com"
+npm run test:e2e:live
+```
+
+That runs `tests/live/deep-kore-live.spec.ts` on three browser engines: a session opens, a
+question is answered, the answer carries a governance record, two independent sessions answer
+identically, no private diagnostic reaches the browser, a full turn produces no console error or
+CSP violation, and - the important one - an unreachable engine produces an error and **no
+conversation**.
+
+It is deliberately **not** part of `npm run test:e2e`. That suite must stay hermetic; this one
+needs a live Windows service, and a test that self-skips when its dependency is missing reports
+success while proving nothing. It fails loudly instead.
+
+Only after all eleven does `public` make sense, and `public` additionally requires 21.6
+and a decision on 21.10.
+
+### 21.8a Running the live proof locally, without a deployment
+
+Added 2026-09-04. The live specs need a server that answers BOTH halves of what a visitor
+touches - the built `/deep-kore` page AND the real `/api/deep-kore/*` handlers. In production
+Vercel does both. `astro preview` serves only the first, so before this the live lane could not
+run at all without deploying.
+
+`scripts/deep-kore-live-harness.mjs` closes that. It loads the SAME handler modules Vercel loads,
+gives them a real Node request and response, and reads the same environment-variable names. It is
+not a mock and not a second architecture: if any of the request path, cookie rules, CSRF check or
+origin call were reimplemented there, a pass would prove nothing about production.
+
+```powershell
+# 1. The gateway (one console window), per 21.3.
+$env:DEEP_KORE_BIND_URL      = "http://127.0.0.1:<port>/"
+$env:DEEP_KORE_GATEWAY_TOKEN = "<a long random value you generate>"
+$env:DEEP_KORE_WORKER_PATH   = "<...>\dk_session_worker.exe"
+$env:DEEP_KORE_MAX_SESSIONS  = "<your measured number>"
+& "<...>\deep_kore_gateway.exe"
+
+# 2. The teaching broker (a second window), only for the consent rows.
+#    ISOLATED, so nothing touches your real queue under %LOCALAPPDATA%.
+$env:DEEP_KORE_TEACHING_QUEUE_ROOT            = "<a scratch directory>"
+$env:DEEP_KORE_TEACHING_QUEUE_REQUIRE_ISOLATED = "1"
+$env:DEEP_KORE_TEACHING_MAX_RECORD_BYTES      = "4000000"   # a TEST value, see 21.11c
+$env:DEEP_KORE_GATEWAY_SID = ([System.Security.Principal.WindowsIdentity]::GetCurrent()).User.Value
+& "<...>\dk_teaching_broker.exe"
+
+# 3. The site (a third window).
+npm run build
+$env:DEEP_KORE_CHAT_PHASE           = "private_alpha"
+$env:DEEP_KORE_ORIGIN_URL           = "http://127.0.0.1:<gateway port>"
+$env:DEEP_KORE_GATEWAY_TOKEN        = "<the same token>"
+$env:DEEP_KORE_SESSION_SECRET       = "<32+ random bytes, generated for this, see 21.7a>"
+$env:DEEP_KORE_ACCESS_CLIENT_ID     = "local"
+$env:DEEP_KORE_ACCESS_CLIENT_SECRET = "local"
+node scripts/deep-kore-live-harness.mjs
+
+# 4. The proof.
+npm run test:e2e:live
+```
+
+**The two Access placeholders are the only difference from production, and they are a difference
+in the environment rather than in any code path.** `missingConfig` requires them, correctly -
+production must refuse to run without them - and loopback has no Cloudflare Access in front of it,
+so the gateway simply ignores the headers they produce.
+
+**The harness is deliberately not wired in as a Playwright `webServer`.** The stack spans two
+processes in another repository; starting one automatically would make it easy to run this suite
+against a gateway that is not there and read the resulting failures as product defects.
+
+**Watch `Get-Process dk_session_worker` while it runs.** Every live spec now releases its session
+in an `afterEach`, and the count should return to zero between files. If it climbs and stays,
+something is holding sessions open - and once the count reaches `DEEP_KORE_MAX_SESSIONS`, every
+remaining test fails at session creation in a way that looks exactly like the service being down.
+That was measured on 2026-09-04 with a ceiling of six: the seventh test onward could not open a
+session, and the cause was a missing cleanup hook rather than anything about the product.
+
+
+### 21.9 The kill switch
+
+Set `DEEP_KORE_CHAT_PHASE=disabled` and redeploy. Every route refuses immediately at the server;
+the page still loads and says live chat is not open. That is the correct emergency stop - it does
+not depend on the Windows machine, the tunnel, or Access being reachable.
+
+Stopping the gateway process is a *second*, independent stop: the site then reports the origin
+as unreachable, honestly, and still answers nothing.
+
+### 21.10 The one number still yours to set
+
+Abandoned sessions **are** now reaped (21.7b), and the number of simultaneous sessions **is** now
+bounded - the contract is built and proven. What remains is the value:
+
+**`DEEP_KORE_MAX_SESSIONS` has no default and the gateway will not start without it.** Section
+21.11 has the measurements taken on this machine so you can choose one.
+
+**Re-measured 2026-09-03 against the complete path. `DEEP_KORE_MAX_SESSIONS=6` is CONFIRMED, and
+now for measured reasons rather than provisional ones.** The matrix is in 21.12. The headline is
+that a worker now costs **682 MB**, because it loads its own copy of the canonical 212,446-concept
+snapshot - a cost that did not exist when 21.11 was taken. Memory, not CPU, is the binding
+constraint.
+
+**Provisional value recorded 2026-09-02 by owner decision: `DEEP_KORE_MAX_SESSIONS=6`.**
+
+Three things about that decision are load-bearing and must not be quietly simplified:
+
+- It is **provisional**, and the owner attached a re-verification condition to it: the number is
+  to be re-measured **after** the complete Deep Kore cognition path is connected, because the
+  arrival matrix in 21.11 was taken against the worker as it exists today. A worker that also
+  holds a bootstrap concept graph is a materially different memory and startup profile, so 21.11's
+  numbers would no longer describe the thing being bounded.
+- It is **still a required deployment variable, with no code default**, by explicit owner
+  instruction. Recording a value in this document does not create one in the gateway: the gateway
+  still refuses to start when the variable is absent, zero, negative, malformed or overflowing.
+  Writing `6` into a fallback would convert an owner decision into a code assumption, which is the
+  exact failure 21.10 and the capacity law in `CLAUDE.md` section 19 exist to prevent.
+- It is a value for **this machine**, recorded beside the measurements it was chosen against. It
+  does not travel to a different host.
+
+Two things had to be decided together, and only one of them is a number. The other is **what a
+visitor is told when the host is full**, and it matters as much: without a distinct message, a
+full service says "could not be reached", which describes an outage. You settled that - the two
+codes and their wording are implemented and tested.
+
+**A correction you should have.** An earlier draft of this section said a leaking test suite had
+reached 46 concurrent workers "at which point the next turn failed", and treated that as the
+machine's ceiling. **On measurement that was wrong and it has been withdrawn.** A worker is about
+5 MB of working set and four threads, so 46 of them is roughly 270 MB on a 32 GB machine - not
+close to any limit. The leak was a real defect and fixing it was right; the explanation attached
+to the failure that followed was asserted rather than proven, and the true cause is not known. It
+is recorded here so nobody later mistakes 46 for evidence.
+
+### 21.11 Capacity evidence, measured 2026-09-01
+
+Measured on this machine, with the **Release** worker and the current gateway. No
+crash-to-find-the-limit run was performed and none should be: the numbers below are observations,
+and the last table is the only place a recommendation appears.
+
+**Machine**
+
+| | |
+|---|---|
+| Logical processors | 12 (1 physical package) |
+| Installed memory | 31.93 GB |
+| Free memory at measurement | 13.89 GB |
+| OpenMP | **OFF** (`DEEP_KORE_ENABLE_OPENMP:BOOL=OFF` in the configured cache) |
+
+**Footprint**
+
+| | |
+|---|---|
+| Gateway, idle | 27.1 MB working set, 13 threads |
+| Gateway, holding 3 sessions | 33.0 MB, 18 threads, 320 handles |
+| Worker, idle session (Release) | **5.0-5.4 MB** working set, 0.9 MB private, **4 threads**, 60 handles |
+| Worker, peak during a real turn | **5.8 MB** working set, still 4 threads |
+| Worker, idle session (Debug) | 5.9 MB, 0.9 MB private, 4 threads |
+| 3 sessions, peak total worker memory | 16.2 MB |
+
+Four threads per worker is the ordinary Windows/CRT baseline, **not** a parallel fan-out: OpenMP
+is off, and the thread count does not move during a turn. There is no per-worker thread
+multiplication to account for.
+
+**Cost of arrival, which is the real cost**
+
+| | |
+|---|---|
+| Session creation, first (cold) | 107 ms |
+| Session creation, subsequent | 47 ms, 33 ms |
+| One governed turn, end to end | 31-35 ms observed |
+
+A session costs a **process spawn plus engine construction** - tens of milliseconds of CPU - and
+then almost nothing to hold. That is the shape of the load: bursts of arrivals cost far more than
+concurrency does.
+
+**Concurrency actually exercised**
+
+| | |
+|---|---|
+| Maximum sessions held simultaneously (deliberate measurement) | 3 |
+| Maximum simultaneous real turns **proven** | **3** - three submitted within a 12 ms spread, all three still in flight when the first completed, all three succeeded |
+| Maximum workers observed at once, ever | 46 (a test-suite leak, idle, not turning - see 21.10) |
+| Simultaneous session creations exercised by the suite | 10 attempted against a ceiling of 3; exactly 3 admitted |
+
+**Shared resources**
+
+| | |
+|---|---|
+| Files written under `Data\` by a worker | **0** |
+| Files written in the worker directory | **0** |
+| Engine-owned shared resource constraining simultaneous workers | **None found** |
+
+Each worker holds one engine with an empty knowledge path, so there is no shared writable store,
+no lock file, and no database. Workers are independent processes sharing only read-only code.
+
+**Return to baseline**
+
+| | |
+|---|---|
+| Workers after explicit deletion of every session | 0 |
+| Workers after the gateway stops | 0 |
+| Returned to baseline | **Yes** |
+| Workers after the full three-engine live suite | **0** |
+
+**The three facts, kept separate**
+
+| | Value | What it rests on |
+|---|---|---|
+| Maximum sessions **held** | 46 | Observed once, accidentally, idle. Not a limit and not a recommendation. |
+| Maximum simultaneous cognition turns **proven** | **3** | Directly measured, with overlap established from timestamps. |
+| Maximum simultaneous cognition turns **advisable** | **Not established** | Would require a deliberate concurrency ramp, which was explicitly not run. |
+
+**What the evidence does and does not support.** Memory is plainly not the near-term constraint:
+even a hundred idle sessions would be roughly half a gigabyte. The constraint worth respecting is
+CPU during arrival - each new session spends tens of milliseconds constructing an engine, and a
+burst of simultaneous arrivals contends for the same 12 processors. Nothing here measures where
+that becomes a problem.
+
+**Choosing the value.** A defensible first setting is one that is comfortably below anything
+measured to strain, that you can afford to have fully occupied, and that you are willing to see in
+use while `private_alpha` is the phase. Set it, watch `Get-Process dk_session_worker` under real
+use, and raise it deliberately. **Do not adopt 46**, and do not derive a number from the memory
+figures above - they show what a session costs to *hold*, not what a burst costs to *create*.
+
+### 21.11b Capacity re-measured 2026-09-03, against the COMPLETE path
+
+21.11 measured the worker as it was before the Public Chat Cognition Session integration: a
+governed conversational engine and nothing else. That worker no longer exists. The one that ships
+now loads the canonical **212,446-concept** snapshot at startup, so the numbers below replace
+21.11's for the purpose of choosing a ceiling. 21.11 stays for the record.
+
+One worker process per session, exactly as the gateway spawns them. Release build, Vanguard ON.
+
+| Sessions | Cold start (all READY) | First turn | Warm turn | Peak working set | Peak private | Threads | Distinct first-turn frames | Teardown | Leaked workers |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | 5,681 ms | 48 ms | 3,815 ms | **682.2 MB** | 700.3 MB | 4 | 1 | 911 ms | 0 |
+| 6 | 9,111 ms | 20 ms | 3,954 ms | **4,093.6 MB** | 4,202.6 MB | 21 | 1 | 4,781 ms | 0 |
+| 12 | 14,625 ms | 43 ms | 3,857 ms | **8,185.2 MB** | 8,403.8 MB | 40 | 1 | 9,908 ms | 0 |
+
+Host at measurement: 15,438 MB free physical, 12 logical processors.
+
+**What these say.**
+
+- **A session costs 682 MB, and the cost is the snapshot.** It scales linearly with sessions
+  because each worker process holds its own copy. This is the single dominant number, and it is
+  new: the pre-integration worker was a rounding error by comparison.
+- **Memory is the binding constraint, not CPU.** A warm turn takes ~3.9 s whether one session is
+  running or twelve - twelve single-threaded workers on twelve logical processors do not contend.
+- **"Distinct first-turn frames = 1" at every level** means every concurrent session, given
+  identical input, produced byte-identical output. Concurrency does not perturb determinism.
+- **Zero leaked workers at every level**, and teardown scales linearly.
+
+**Recommendation: keep `DEEP_KORE_MAX_SESSIONS=6`, now confirmed rather than provisional.** At 6 the
+host holds 4.1 GB of workers, about 27% of free memory, leaving room for the OS, the gateway, the
+browser and a burst. 12 is demonstrably survivable - it completed with no failures - but it takes
+8.2 GB, over half the free memory, and triples teardown. 6 is the value that can be fully occupied
+without the machine being near anything.
+
+**The one change that would move this number a lot.** The 682 MB is per PROCESS, and the snapshot
+inside it is immutable and already designed to be shared: `SessionConceptGraph` holds a base
+reference plus a private overlay precisely so one process can host many sessions on one copy. A
+multi-session host would take 6 sessions from ~4.1 GB to roughly one snapshot plus per-session
+state. That host does not exist yet, and until it does the ceiling is really a memory division.
+
+### 21.11c A second required setting: `DEEP_KORE_TEACHING_MAX_RECORD_BYTES`
+
+The Teaching Queue broker now refuses to start without it. Like `DEEP_KORE_MAX_SESSIONS` it has
+**no default**, and missing, zero, non-numeric or overflowing values all stop startup.
+
+It bounds one queue record. The measured basis: a real public candidate whose concept carried
+**35,494 candidate placements** produced a canonical identity of **710,219 bytes** and a complete
+DPAPI-protected record of **711,508 bytes**. A different sentence, stalling on the copula, produced
+**36,876** placements and **735,046** bytes.
+
+A record over the ceiling is refused **before any durable write** - nothing partial is written and
+no candidate is ever truncated to fit, because truncating the sequence would change the canonical
+identity and corrupt the deduplication law. **Do not set this below about 1 MB**, or ordinary
+candidates will be refused; the proofs used 2,000,000.
+
+### 21.12 Things not to do here
+
+- **Do not expose the gateway directly.** It binds loopback and it refuses any other bind. The
+  tunnel plus Access is the only exposure path.
+- **Do not add a diagnostic endpoint** that reports which Deep Kore variables are set. Section 8
+  of `CLAUDE.md` forbids it, and `api/health.ts` is the precedent - a migration probe that
+  became a permanent public API by accident.
+- **Do not add a fallback.** No model, no cached turn, no scripted answer, no "we're having
+  trouble, here's something anyway". A failure is reported as a failure.
+- **Do not add a cognition timeout, a retry, or a maximum poll count.** A turn runs to intrinsic
+  completion. The only bound in the code is a 10-second deadline on one HTTP hop, which exists
+  so a stalled origin cannot pin a compute slot.
+- **Do not enable Revelation Vanguard casually.** It is off by default, and turning it on changes
+  emitted bytes and moves the determinism baseline that `test_public_chat_governed_path`
+  measures.
+- **Do not log conversation content anywhere.** There is no consent for it and no retention
+  policy. Errors are logged by type only.
+- **Do not point the tunnel at `www` or the apex.** Those serve the website from Vercel.
+
+### 21.13 THE WEBSITE'S CONTRACT WITH DEEP KORE
+
+Added 2026-09-04. **This is the cross-repository handoff.** It states only what the website
+actually expects, as implemented, and nothing that would merely be convenient. If Deep Kore
+changes any of it, this site breaks in a way its tests will catch; if this site needs more than
+this, that is a change to be agreed, not assumed.
+
+#### Transport, as implemented
+
+```
+browser  --(same-origin, relative paths only)-->  this site's Vercel Functions
+         --(Cloudflare Access service token + gateway bearer)-->  deep_kore_gateway
+         --(DKW1 over stdio)-->  dk_session_worker  -->  process_governed_turn()
+```
+
+The four routes this site calls on the origin, and nothing else:
+
+| Method | Origin path | When |
+|---|---|---|
+| `POST` | `/v1/sessions` | a visitor starts a session |
+| `POST` | `/v1/sessions/{id}/messages` | one turn |
+| `GET` | `/v1/jobs/{jobId}` (header `X-DK-Session`) | polling that turn |
+| `DELETE` | `/v1/sessions/{id}` | the visitor ends the session |
+| `POST` | `/v1/sessions/{id}/consent` and `/decline` | one teaching-candidate decision |
+
+#### What this site SENDS
+
+- **Create session**: `{ "persona": "AIYA" | "AION" }`. Nothing else. The browser may choose the
+  identity key and a Turnstile token; it may never choose a price, a model, a prompt, a session
+  id, a job id, an origin or any governance setting.
+- **Message**: `{ "message_id", "text", "device"? }`.
+  - `message_id` is **always server-generated**. When the browser supplies a `turn_key` it becomes
+    `HMAC(session_secret, session_id + turn_key)`, so a retry is idempotent while the id stays
+    unforgeable and cannot collide across sessions.
+  - `device` is optional and, on the public path, carries only **opaque ids and closed enum
+    names**: `entities[]` (`entity_id`, `entity_kind`, `relationship_role`, `agreement`),
+    `current_message.segments[]` (`ENTITY` references only), `events[]` (`event_id`, `actor`,
+    `destination`), `tav_disclosures[]` (`tav_id`, `target_entity_id`, `field`, `decision`).
+  - **A `tav_disclosure` NEVER carries a `value`, and a request containing one is refused
+    outright** rather than stripped. This is stricter than the canonical Cordel protocol, where a
+    GRANTED disclosure does carry the literal. On the public path a grant is a PERMISSION, not a
+    disclosure.
+  - Unknown keys are **refused at every level**, not ignored.
+- **Consent**: `{ "reference" }` to `/consent` or `/decline`. The browser names the opaque
+  reference the worker issued and takes a position. It cannot author, alter or substitute a
+  candidate.
+
+#### What this site READS, and what it does with the rest
+
+The worker's outcome discriminant is the contract. **Five values, and this site knows exactly
+these five:**
+
+| `outcome` | The public state it becomes |
+|---|---|
+| `ANSWER` (or absent) | `GOVERNED_TEXT` |
+| `REFUSAL` | `GOVERNED_REFUSAL` |
+| `TAV_REQUIRED` | `TAV_REQUEST` (+ the projected request) |
+| `TEACHING_OFFER` | `UNKNOWN_CONCEPT_OFFER` (+ the projected offer) |
+| `ENGINE_FAILURE` | `TERMINAL_FAILURE` |
+
+**An outcome outside that set becomes a terminal failure, never a new public state.** An absent
+outcome degrades to `GOVERNED_TEXT`, which is the safe reading: it shows the governed answer and
+offers nothing.
+
+From `engine`, exactly four things cross to the browser: `text` (or `warmed_text` when the engine
+reports Vanguard enabled), `persona`, `gk_passed`, and the **redacted** `gov_stamp`. Everything
+else is withheld at the server and never reaches the client bundle: `gk1_decision`,
+`gk2_decision`, `transform_count`, `state_hash`, `adult_consent_invariant_violated`,
+`vanguard_enabled`, `vanguard_diag`.
+
+`gov_stamp` is redacted by an **allowlist** to `GOV_STAMP`, `gk` and `persona`. It is a redaction
+and never a rewrite - surviving segments are the engine's own bytes in the engine's own order. A
+segment a future engine adds is withheld by default.
+
+From `tav_request`: `tav_id`, `target_entity_id` (as `entity_ref`), `field`, `purpose`. The field
+must be in the closed `TavField` set and the purpose must be exactly
+`RESPONSE_REQUIRES_LITERAL_VALUE`; anything else is a fault, not a question.
+
+From `teaching_offer`: `reference` (which must match `^[0-9a-f]{16,128}$`) and `description`.
+**`classification` is deliberately NOT read.** It is the engine's own decision vocabulary and
+section 3 of `CLAUDE.md` forbids publishing that; the worker already derives a safe
+`description` from it, and that is what a visitor sees.
+
+`failure_code` on `ENGINE_FAILURE` is **discarded**. One family of the origin's codes
+(`worker_<code>`) is open-ended by construction, so no allowlist here could stay complete, and
+what a visitor can act on is identical in every case. It collapses to `turn_failed`. The
+diagnostic detail stays where it is useful: the origin's own log.
+
+#### Session semantics this site relies on
+
+- The session id is **server-generated, opaque, and never chosen by the browser**. This site
+  signs it into an HttpOnly `__Host-` cookie with HMAC-SHA256; it holds no other session state.
+- Submitting a turn answers **202 with a job id**, and the turn runs to intrinsic completion in
+  the origin's own process. **Nothing about a Vercel request duration, a fetch deadline or a
+  browser tab is a stopping condition for cognition.** The 10-second bound in the site bounds one
+  HTTP hop only.
+- `queued`, `running`, `succeeded`, `failed` are the **gateway's** transport states. This site
+  collapses the first two into one waiting state and never presents any of them as an engine
+  state.
+- `DELETE` disposes the worker and **waits for the process to exit before answering**. This site
+  reports success only on that answer.
+- `409` on `DELETE` means a turn is in flight; the site keeps the session rather than overruling.
+- Terminal-idle reaping at the origin is **resource cleanup and never a cognition deadline**.
+- Capacity (`session_capacity`) and unavailability (`engine_unavailable`) must stay **distinct
+  codes on a 503**. The site maps them to two different public codes with two different
+  sentences, and merging them upstream would make the site say the wrong thing.
+
+#### Streaming
+
+**There is none, and none is expected.** No token streaming, no partial turn, no server-sent
+events. A response is shown when the canonical result is complete, and this site does not
+simulate progressive output.
+
+#### Environment variables, by NAME only
+
+Server-side, read at request time inside `api/`:
+`DEEP_KORE_CHAT_PHASE`, `DEEP_KORE_ORIGIN_URL`, `DEEP_KORE_ACCESS_CLIENT_ID`,
+`DEEP_KORE_ACCESS_CLIENT_SECRET`, `DEEP_KORE_GATEWAY_TOKEN`, `DEEP_KORE_SESSION_SECRET`,
+`TURNSTILE_SECRET_KEY` (public phase only), `DEEP_KORE_PUBLIC_CANON_VERSION` (optional).
+
+Browser-visible, and public by design: `PUBLIC_TURNSTILE_SITE_KEY`. A Turnstile **site** key is
+not a credential. **No other `PUBLIC_`-prefixed Deep Kore variable may ever exist**, because Astro
+inlines those into the browser bundle.
+
+Origin-side, the owner's: `DEEP_KORE_BIND_URL`, `DEEP_KORE_WORKER_PATH`,
+`DEEP_KORE_MAX_SESSIONS`, `DEEP_KORE_SESSION_IDLE_SECONDS`, `DEEP_KORE_TEACHING_QUEUE_ROOT`,
+`DEEP_KORE_TEACHING_QUEUE_REQUIRE_ISOLATED`, `DEEP_KORE_TEACHING_MAX_RECORD_BYTES`,
+`DEEP_KORE_GATEWAY_SID`.
+
+#### Privacy assumptions this site publishes, which Deep Kore must keep true
+
+Each of these is stated to visitors on `/deep-kore` and `/privacy`. If one stops being true, the
+published wording is wrong and must change with it - not the other way round.
+
+1. Each session's engine has an **empty knowledge path**, so durable knowledge writes are
+   structurally impossible on this path rather than switched off by policy.
+2. A consented teaching candidate is written `UNVERIFIED_CANDIDATE`, source class
+   `PUBLIC_CHAT_UNTRUSTED`, review state `AWAITING_OWNER_REVIEW`, and **public chat can never
+   promote, merge, activate or teach it**.
+3. The queue record carries **no conversation, no message text, no governed response, no personal
+   identifier and no private value**. `original_surface` is written empty on this path.
+4. Conversation content is **not persisted anywhere**, and no log on this path records a prompt,
+   a response, a session id, a stamp or a state hash.
+
+#### Version and compatibility assumptions
+
+- The worker protocol is `DKW1`. A worker older than the gateway fails the frame header, and the
+  gateway reports `worker_bad_header` - measured 2026-09-04 against a worker two days older than
+  the gateway. **Build and deploy the pair together.**
+- `MAX_MESSAGE_BYTES` is `8192` in this site and mirrors `GatewayConfig.MaxMessageBytes`. If one
+  changes, change the other.
+- The site tolerates an **absent** `outcome` (older worker) and refuses an **unrecognised** one.
+  That asymmetry is deliberate: an older engine degrades safely, a newer one cannot invent a
+  public state.
+
+### 21.14 THE TAV SEAM ON THE PUBLIC PATH - an open owner decision
+
+**Measured 2026-09-04 against the real engine, and this is the finding rather than a defect on
+either side.**
+
+```
+"List the parts of a zqxjvwkbrump."                        -> outcome = TEACHING_OFFER
+the same text, plus a device entity model with a
+relationship_role and an ENTITY segment                    -> outcome = TAV_REQUIRED
+```
+
+`generate_tav_request` needs the turn's target entity to resolve to exactly one
+`StructuralEntityKind`, and on this path the only evidence that can do that comes from the
+**device** - `relationship_role` on an entity the message actually references.
+
+A Cordel device has that model. **A public web page does not, and must not invent one.**
+Fabricating a `relationship_role` for a stranger would be inventing TAV evidence, which the public
+path forbids outright.
+
+So, precisely:
+
+- The TAV interface is **implemented, correct, and fully covered** against a scripted
+  `TAV_REQUEST` in `tests/e2e/deep-kore-console-flow.spec.ts` - grants, revocation, one-turn
+  consumption, non-transmission, focus handling and mobile layout, on five browser engines.
+- It is **not reachable by a visitor today**, because nothing in the public interface supplies an
+  entity model.
+- `tests/live/deep-kore-tav-and-consent.spec.ts` now asserts that seam directly, so it cannot be
+  forgotten and cannot be quietly "fixed" by making the page assert an entity it does not know.
+
+**The decision is yours, and it is a product decision, not a code one:** whether the public page
+should gain a surface on which a visitor describes an entity to Deep Kore - "I am asking about a
+person I know" - which would make TAV reachable. That is a new public surface with its own
+privacy and consent consequences. Nothing in this repository assumes it.

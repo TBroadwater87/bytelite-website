@@ -23,6 +23,9 @@ const CANONICAL = [
   '/about',
   '/contact',
   '/founder-access',
+  // Added 2026-09-01 by owner instruction. The one route that may name Deep Kore; see
+  // CLAUDE.md section 19.
+  '/deep-kore',
   '/support',
   '/cordel-connect',
   '/cordel-play',
@@ -132,10 +135,25 @@ describe('410 Gone is wired to a function, not faked', () => {
       '/technologies/byteoracle',
       '/technologies/byteflow',
       '/technologies/bytecost',
-      '/technologies/deep-kore',
     ]) {
       expect(goneSources, `${path} must return 410`).toContain(path);
     }
+    // `/technologies/deep-kore` was on that list until 2026-09-01 and has deliberately
+    // left it. 410 means "gone deliberately", and it is not: Deep Kore now has a live
+    // canonical page. A resource that MOVED gets a 301 to where it moved to, and leaving
+    // a 410 standing for a name the site publishes would be the site contradicting
+    // itself to a crawler.
+    const moved = vercel.redirects.filter((r) => r.destination === '/deep-kore');
+    const movedSources = moved.map((r) => r.source);
+    for (const path of ['/deepkore', '/deepkore-lab', '/technologies/deep-kore']) {
+      expect(movedSources, `${path} must 301 to the live page`).toContain(path);
+    }
+    expect(goneSources).not.toContain('/technologies/deep-kore');
+    // The retired SUBMIT endpoint stays gone. It was an API, not a page, and nothing
+    // replaced it.
+    expect(goneSources, 'the retired submit endpoint must stay 410').toContain(
+      '/api/deepkore-submit'
+    );
   });
 });
 
@@ -207,35 +225,178 @@ describe('the built output contains only canonical pages', () => {
     }
   });
 
+  const walkBuilt = (dir: string): string[] =>
+    readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
+      const full = resolve(dir, e.name);
+      if (e.isDirectory()) return e.name === 'preview' ? [] : walkBuilt(full);
+      return /\.(html|xml)$/.test(e.name) ? [full] : [];
+    });
+
   test.skipIf(!built)('no retired terminology survives anywhere in the built site', () => {
+    // Retired brands and sibling systems. Forbidden in EVERY built file, /deep-kore
+    // included - the 2026-09-01 amendment scoped five Deep Kore names to one route and
+    // touched nothing else on this list. 'DeepKore' unspaced is the retired portfolio
+    // spelling and stays banned outright; the live page uses the two-word name.
     const forbidden = [
       'HeartStrings',
       'ByteFlow',
       'ByteCost',
       'ByteOracle',
       'ByteSight',
-      'Deep Kore',
-      'AIya',
-      'Genesis Goalkeeper',
-      'Revelation Vanguard',
+      'DeepKore',
+      'KoreLattice',
       'Codrel',
       'Cordea',
       'Cordia',
     ];
-    const walk = (dir: string): string[] =>
-      readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
-        const full = resolve(dir, e.name);
-        if (e.isDirectory()) return e.name === 'preview' ? [] : walk(full);
-        return /\.(html|xml)$/.test(e.name) ? [full] : [];
-      });
 
     const offenders: string[] = [];
-    for (const file of walk(dist)) {
+    for (const file of walkBuilt(dist)) {
       const content = readFileSync(file, 'utf8');
       for (const term of forbidden) {
         if (content.includes(term)) offenders.push(`${term} in ${file.replace(dist, '')}`);
       }
     }
     expect(offenders).toEqual([]);
+  });
+
+  // The route-scoped half, asserted against the BUILT MARKUP rather than rendered text.
+  // The Playwright suite checks what a visitor reads; this checks what is served, so a
+  // class name, an aria-label, a meta description or a comment cannot smuggle the
+  // vocabulary onto a page where it does not belong.
+  // The route-scoped rule, asserted against the BUILT MARKUP rather than rendered text.
+  // The Playwright suite checks what a visitor reads; this checks what is served, so a
+  // class name, an aria-label, a meta description or a comment cannot smuggle the
+  // vocabulary onto a page where it does not belong.
+  const CHROME = /<header[\s\S]*?<\/header>|<footer[\s\S]*?<\/footer>/gi;
+  const DEEP_VOCABULARY = ['AIya', 'AIon', 'Aion', 'Genesis Goalkeeper', 'Revelation Vanguard'];
+  // Its own page, plus the two legal pages, which have to name the service they describe.
+  const PRODUCT_NAME_FILES = ['/deep-kore/index.html', '/privacy/index.html', '/terms/index.html'];
+
+  test.skipIf(!built)('the identity and governance vocabulary never leaves its own page', () => {
+    const offenders: string[] = [];
+    for (const file of walkBuilt(dist)) {
+      const rel = file.replace(dist, '').replace(/\\/g, '/');
+      if (rel === '/deep-kore/index.html') continue;
+      const content = readFileSync(file, 'utf8');
+      for (const term of DEEP_VOCABULARY) {
+        if (content.includes(term)) offenders.push(`${term} in ${rel}`);
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  test.skipIf(!built)('the product name appears only where it identifies the product', () => {
+    const offenders: string[] = [];
+    for (const file of walkBuilt(dist)) {
+      const rel = file.replace(dist, '').replace(/\\/g, '/');
+      if (PRODUCT_NAME_FILES.includes(rel)) continue;
+      // Strip the chrome, which carries the link that points at the page.
+      const body = readFileSync(file, 'utf8').replace(CHROME, '');
+      if (body.includes('Deep Kore')) offenders.push(`Deep Kore in the body of ${rel}`);
+    }
+    expect(offenders).toEqual([]);
+  });
+});
+
+
+// ---------------------------------------------------------------------------
+// The production bundle
+// ---------------------------------------------------------------------------
+
+describe('the production bundle carries no secret and no internal detail', () => {
+  /** Every file the build emits, so nothing is checked by sampling. */
+  function builtFiles(dir: string, out: string[] = []): string[] {
+    if (!existsSync(dir)) return out;
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const full = resolve(dir, entry.name);
+      if (entry.isDirectory()) builtFiles(full, out);
+      else if (/\.(html|js|mjs|css|json|xml|txt|webmanifest)$/i.test(entry.name)) out.push(full);
+    }
+    return out;
+  }
+
+  const files = builtFiles(resolve(root, 'dist'));
+
+  test('the build produced something to check', () => {
+    // A scan over an empty directory passes vacuously, which is the one way a guard like
+    // this can report success while proving nothing.
+    expect(files.length).toBeGreaterThan(10);
+  });
+
+  // NAMES, not values. A variable NAME appearing in a client bundle is the signal that
+  // matters: it means something server-side was read where the browser can see it, and it
+  // is the shape `PUBLIC_`-prefixing a Deep Kore variable would produce.
+  test('no server-side variable name reaches the browser', () => {
+    const forbidden = [
+      'DEEP_KORE_ORIGIN_URL',
+      'DEEP_KORE_GATEWAY_TOKEN',
+      'DEEP_KORE_SESSION_SECRET',
+      'DEEP_KORE_ACCESS_CLIENT_ID',
+      'DEEP_KORE_ACCESS_CLIENT_SECRET',
+      'TURNSTILE_SECRET_KEY',
+      'STRIPE_SECRET_KEY',
+      'STRIPE_WEBHOOK_SECRET',
+      'SENDGRID_API_KEY',
+      'CF-Access-Client-Id',
+      'CF-Access-Client-Secret',
+    ];
+    for (const file of files) {
+      const body = readFileSync(file, 'utf8');
+      for (const name of forbidden) {
+        expect(body, `${file} must not contain ${name}`).not.toContain(name);
+      }
+    }
+  });
+
+  test('no engine internal, queue path or machine detail reaches the browser', () => {
+    const forbidden = [
+      'state_hash',
+      'gk1_decision',
+      'gk2_decision',
+      'transform_count',
+      'vanguard_diag',
+      'adult_consent_invariant',
+      'warmed_text',
+      'structural_identity_key',
+      'teaching_case_id',
+      'candidate_placement',
+      'dk_session_worker',
+      'deep_kore_gateway',
+      'dk_teaching_broker',
+      'DeepKoreTeachingBroker',
+      'LOCALAPPDATA',
+      'D:\\LLC_Projects',
+      '127.0.0.1',
+      '\\\\.\\pipe',
+    ];
+    for (const file of files) {
+      const body = readFileSync(file, 'utf8');
+      for (const leak of forbidden) {
+        expect(body, `${file} must not contain ${leak}`).not.toContain(leak);
+      }
+    }
+  });
+
+  // WHAT MAY LAWFULLY APPEAR IN SCREAMING_CASE, and nothing else.
+  //
+  // Asserted as an exact set rather than a denylist, so a variable name added to the
+  // browser bundle by a future change fails here without anyone having to predict it.
+  //
+  // The two that DO appear are the owner-named public error CODES, not variables: the
+  // page maps them to approved sentences, which is the whole reason they are shared with
+  // the client. `PUBLIC_TURNSTILE_SITE_KEY` is inlined only when a site key is configured
+  // - it is not - and a site key is public by design either way.
+  test('the only SCREAMING_CASE Deep Kore tokens in the bundle are the two public codes', () => {
+    const seen = new Set<string>();
+    for (const file of files) {
+      // A plain uppercase-token scan, deliberately without a regex escape in it: the
+      // point of this test is the exact set that comes out, and an escape that is
+      // subtly wrong would quietly make the set empty and the assertion vacuous.
+      for (const token of readFileSync(file, 'utf8').match(/[A-Z][A-Z0-9_]*/g) ?? []) {
+        if (token.includes('DEEP_KORE_') || token.startsWith('TURNSTILE_')) seen.add(token);
+      }
+    }
+    expect([...seen].sort()).toEqual(['DEEP_KORE_SESSION_CAPACITY', 'DEEP_KORE_UNAVAILABLE']);
   });
 });

@@ -17,7 +17,7 @@ const money = (n: number) => '$' + n.toFixed(2);
 
 <Layout
   title="ByteLite Pricing and Licensing | Two pricing models"
-  description="Personal ByteLite is a flat subscription at $9.99 a month or $99.99 a year, with no percentage-of-savings fee. Business and enterprise licensing is a 50/50 share of verified qualifying savings."
+  description="Personal ByteLite is a flat subscription at $9.99 a month or $99.99 a year, with no percentage-of-savings fee. Business licensing shares verified qualifying savings 50/50."
   keywords="ByteLite pricing, personal plan, verified savings licensing, shared savings model"
   canonical="https://www.thebytelite.com/licensing/"
 >
@@ -73,11 +73,12 @@ const money = (n: number) => '$' + n.toFixed(2);
         agreed baseline, we take half of that measured saving and you keep the other half. If it
         saves you nothing, the fee is nothing.
       </p>
+      {/* No worked economic example, permanently. A modelled currency chain laid out like an
+          invoice reads to a visitor as something ByteLite already did for somebody. The model is
+          fully expressible in words, and words cannot be mistaken for an operational account. */}
       <p class="body">
-        This page used to carry a worked example with dollar figures in it. I removed it. Every
-        number in it was invented, and an invented number laid out like an invoice reads as
-        something ByteLite has already done for somebody. It has not. When there is a real measured
-        result, it will appear here with the measurement behind it.
+        This page carries no worked dollar example, because no measured commercial result exists to
+        build one from. When one does, it will appear here with the measurement behind it.
       </p>
     </div>
   </section>
@@ -110,9 +111,38 @@ const money = (n: number) => '$' + n.toFixed(2);
     </div>
   </section>
 
+  {/* What a licensing conversation is and is not. Added 2026-08-31: the page described the
+      billing model in detail and never said what an organization could actually ask for, or what
+      this site does and does not grant. */}
   <section class="section section-alt">
     <div class="container narrow">
-      <h2>Availability.</h2>
+      <h2>What a licensing conversation covers.</h2>
+      <p class="body">
+        ByteLite LLC accepts four kinds of licensing discussion: commercial deployment against the
+        savings-share model, integration into storage or transport infrastructure, evaluation by an
+        organization able to independently validate a specific claim, and research or academic
+        review under written terms.
+      </p>
+      <p class="body">
+        Technical disclosure is staged and governed. Each stage is opened under an agreement rather
+        than on request, and the depth of what is shared follows what a given conversation actually
+        requires. Nothing beyond what is already published is disclosed informally.
+      </p>
+      <p class="body">
+        <strong>Nothing on this website grants a licence.</strong> Reading these pages conveys no
+        patent licence, no source access, no trade-secret disclosure, no implementation right and
+        no permission to reverse-engineer. Every one of those is a separate written agreement.
+      </p>
+
+      <h2 class="mt">What will not be promised.</h2>
+      <p class="body">
+        Before validation and commercial terms are complete, ByteLite LLC will not commit to a
+        compression ratio, a throughput figure, a delivery date, a service level, exclusivity in
+        any territory or sector, or a result on a customer's specific data. Any of those would be a
+        promise about work that has not been measured yet.
+      </p>
+
+      <h2 class="mt">Availability.</h2>
       <p class="body">
         ByteLite is research under validation. It is not production-qualified, and no technology on
         this site is available to license today. The model above describes how licensing is
@@ -152,6 +182,8 @@ h2 { margin-bottom: .75rem; }
   border-radius: .625rem; padding: 1.125rem 1.25rem; margin-bottom: 1.5rem;
 }
 .body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1rem; }
+.body strong { color: #e4e7f2; font-weight: 600; }
+.mt { margin-top: 2.5rem; }
 .body-note { font-size: .875rem; color: #7b829e; line-height: 1.7; margin-top: 1rem; }
 .cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.75rem; }
 </style>

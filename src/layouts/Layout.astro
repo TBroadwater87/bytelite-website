@@ -85,8 +85,16 @@ const organizationJsonLd = {
   <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
 </head>
 <body>
+  <!--
+    The skip link is the FIRST focusable thing on every page. The header carries a six-item
+    navigation, so without this a keyboard or switch user tabs through the whole nav on
+    every page before reaching anything the page is actually about. It is visually hidden
+    until it takes focus, which is the point: it costs sighted users nothing and saves
+    everyone else six presses per navigation.
+  -->
+  <a class="skip-link" href="#main">Skip to content</a>
   <slot name="header" />
-  <main>
+  <main id="main" tabindex="-1">
     <slot />
   </main>
   <slot name="footer" />
@@ -97,6 +105,20 @@ const organizationJsonLd = {
 <style is:global>
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Off-screen until focused, then a real, visible, high-contrast control. Never
+   `display: none` - a hidden element cannot receive focus, so the link would exist in
+   the markup and do nothing, which is worse than not having one. */
+.skip-link {
+  position: absolute; left: .5rem; top: -3rem; z-index: 100;
+  background: #6366f1; color: #fff; padding: .625rem 1rem; border-radius: .5rem;
+  font-size: .875rem; font-weight: 600;
+}
+.skip-link:focus { top: .5rem; }
+/* The main region is focusable only as the skip link's destination, so it must not
+   draw an outline when the page is merely clicked. */
+main:focus { outline: none; }
+main:focus-visible { outline: 2px solid #6366f1; outline-offset: -2px; }
 html { font-size: 16px; scroll-behavior: smooth; }
 body {
   background: #07090f;

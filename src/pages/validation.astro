@@ -15,6 +15,8 @@ import {
   DASHBOARD_STATE_LABEL,
   TARGET_STATEMENT,
   PROOF_STATEMENT,
+  HISTORICAL_PROTOTYPE_RESULT,
+  CURRENT_ENGINEERING_WORK,
 } from '../data/bytelite';
 import { BYTELITE } from '../data/projects';
 
@@ -27,7 +29,7 @@ const DASHBOARD_ROWS = [...VALIDATION_DASHBOARD, ENWIK9_ROW];
 
 <Layout
   title="ByteLite Validation | What has and has not been proven"
-  description="The current evidence state for ByteLite across architecture, reversibility, self-contained artifact, complete accounting, recursion, the universal target, corpus testing, independent validation and production qualification."
+  description="The current evidence state for ByteLite, category by category: what is proven on internal evidence, what is in development, and which gates are still open."
   keywords="ByteLite validation, evidence, exact reconstruction, self-contained artifact, independent verification"
   canonical="https://www.thebytelite.com/validation/"
 >
@@ -59,6 +61,37 @@ const DASHBOARD_ROWS = [...VALIDATION_DASHBOARD, ENWIK9_ROW];
       <div class="claims">
         <p class="claim claim-target"><span class="claim-tag">Target</span>{TARGET_STATEMENT}</p>
         <p class="claim claim-proof"><span class="claim-tag">Proof</span>{PROOF_STATEMENT}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORICAL vs CURRENT.
+       Two columns, side by side, because the distinction IS the content: a prototype result and
+       the engine being built now are different things, and a reader who takes one for the other
+       has been misled. Neither column may borrow the other's state. -->
+  <section class="section-sm">
+    <div class="container narrow">
+      <h2>What an earlier prototype showed, and what is being built now.</h2>
+      <div class="hc">
+        <article class="hc-col hc-past">
+          <p class="hc-tag">Historical &middot; internal</p>
+          <h3>Python prototype</h3>
+          <p class="hc-body">{HISTORICAL_PROTOTYPE_RESULT}</p>
+          <p class="hc-note">
+            An internal ByteLite LLC demonstration by an earlier prototype. It is not a benchmark
+            of the current C++ implementation, and it is not independent validation. No further
+            detail about that run is published.
+          </p>
+        </article>
+        <article class="hc-col hc-now">
+          <p class="hc-tag">Current &middot; in development</p>
+          <h3>Automatic C++ encoder</h3>
+          <p class="hc-body">{CURRENT_ENGINEERING_WORK}</p>
+          <p class="hc-note">
+            Automating the route without human intervention is the work now. Until that is done,
+            the prototype result stands as history rather than as current capability.
+          </p>
+        </article>
       </div>
     </div>
   </section>
@@ -171,6 +204,26 @@ const DASHBOARD_ROWS = [...VALIDATION_DASHBOARD, ENWIK9_ROW];
 .hero-sub strong { color: #a78bfa; }
 h2 { margin-bottom: .75rem; }
 .lede { font-size: 1.0625rem; color: #a0a8c0; line-height: 1.75; margin-bottom: 1.5rem; }
+
+/* Historical vs current. Two columns of equal weight - neither is subordinate, because the
+   distinction between them is the point. They stack at 760px like the .claims grid above. */
+.hc { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+@media (max-width: 760px) { .hc { grid-template-columns: 1fr; } }
+.hc-col {
+  padding: 1.25rem; background: #0d1120;
+  border: 1px solid #1a2235; border-radius: .625rem;
+}
+.hc-past { border-left: 3px solid #64748b; }
+.hc-now { border-left: 3px solid #fbbf24; }
+.hc-tag {
+  font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  margin: 0 0 .5rem;
+}
+.hc-past .hc-tag { color: #94a3b8; }
+.hc-now .hc-tag { color: #fbbf24; }
+.hc-col h3 { font-size: 1rem; color: #e4e7f2; margin: 0 0 .625rem; }
+.hc-body { font-size: .9375rem; color: #c4c8f0; line-height: 1.7; margin: 0 0 .75rem; }
+.hc-note { font-size: .8125rem; color: #7b829e; line-height: 1.65; margin: 0; }
 
 .claims { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.75rem; }
 @media (max-width: 760px) { .claims { grid-template-columns: 1fr; } }
