@@ -69,6 +69,19 @@ export interface EngineTurn {
   text: string;
   persona: string;
   governance: { passed: boolean; stamp: string };
+  /**
+   * Opaque public Tesseract anchor handles established by this turn.
+   *
+   * Each is a lowercase-hex SHA-256 of the concept id salted with a session secret that
+   * is destroyed when the session ends, so a handle names nothing outside its own
+   * session and cannot be turned back into the concept it confirms. The server has
+   * already validated the shape; this file carries the handles and never interprets one.
+   *
+   * There is nothing else here on purpose. No coordinate, placement, edge, candidate
+   * set, elimination trace or topology exists on the wire, so none can be displayed,
+   * and none may be reconstructed. An empty array is the ordinary case.
+   */
+  anchors: string[];
 }
 
 /**
@@ -133,12 +146,33 @@ export interface TurnAccepted {
 
 export type CandidateDecision = { kind: 'SUBMITTED' } | { kind: 'DISCARDED' };
 
-/** The typed TAV answer this device may send. Never a value - there is no field for one. */
+/**
+ * The typed TAV answer this device may send.
+ *
+ * `value` is the private literal, and it is optional for a reason that is not
+ * convenience: it may be present ONLY when `decision` is `GRANTED`. That is the canonical
+ * rule - the protocol's own strict parser rejects a non-GRANTED decision carrying a
+ * non-empty value - and this site's server enforces it independently. The type keeps them
+ * together so a caller cannot forget which decision it belongs to.
+ */
 export interface TavDisclosure {
   tav_id: string;
   target_entity_id: string;
   field: string;
   decision: string;
+  value?: string | undefined;
+}
+
+/**
+ * The visitor's declared structural context for one turn.
+ *
+ * Both halves come from deliberate choices: `entities` is what they described, and
+ * `messageEntityIds` is what they said THIS message is about. Nothing here is derived
+ * from the message text, and nothing is filled in when they chose nothing.
+ */
+export interface TurnContext {
+  entities: Array<Record<string, string>>;
+  messageEntityIds: string[];
 }
 
 // ---------------------------------------------------------------------------
@@ -186,6 +220,7 @@ function readTurn(raw: unknown): EngineTurn | null {
   const t = asRecord(raw);
   if (!t || typeof t['text'] !== 'string') return null;
   const gov = asRecord(t['governance']);
+  const rawAnchors = t['anchors'];
   return {
     text: t['text'],
     persona: typeof t['persona'] === 'string' ? t['persona'] : 'AIYA',
@@ -193,6 +228,10 @@ function readTurn(raw: unknown): EngineTurn | null {
       passed: gov?.['passed'] === true,
       stamp: typeof gov?.['stamp'] === 'string' ? gov['stamp'] : '',
     },
+    // The server has already refused anything that is not an array of well-formed
+    // handles, so this is the ordinary defensive read the rest of this file uses: keep
+    // the strings, keep nothing else, and never invent an entry.
+    anchors: Array.isArray(rawAnchors) ? rawAnchors.filter((a): a is string => typeof a === 'string') : [],
   };
 }
 
@@ -267,7 +306,10 @@ export function readResult(raw: unknown): DeepKoreResult {
 
 export interface DeepKoreClient {
   createSession(turnstileToken?: string | undefined): Promise<Attempt<SessionOpened>>;
-  submitTurn(text: string, opts?: { turnKey?: string; disclosure?: TavDisclosure }): Promise<Attempt<TurnAccepted>>;
+  submitTurn(
+    text: string,
+    opts?: { turnKey?: string; disclosure?: TavDisclosure; context?: TurnContext }
+  ): Promise<Attempt<TurnAccepted>>;
   readJob(jobId: string): Promise<Attempt<JobState>>;
   decideCandidate(reference: string, consent: boolean): Promise<Attempt<CandidateDecision>>;
   endSession(): Promise<Attempt<true>>;
@@ -353,18 +395,47 @@ export function createDeepKoreClient(fetchImpl: typeof fetch = fetch): DeepKoreC
     async submitTurn(text, opts = {}) {
       const body: Record<string, unknown> = { text };
       if (opts.turnKey) body['turn_key'] = opts.turnKey;
-      if (opts.disclosure) {
-        // THE DEVICE ENVELOPE. It carries the typed decision and never a value: there is
-        // no `value` key constructed anywhere in this file, and the server refuses the
-        // whole request if one arrives.
-        body['device'] = {
-          entities: [{ entity_id: opts.disclosure.target_entity_id, entity_kind: 'UNKNOWN' }],
-          current_message: {
-            segments: [{ kind: 'ENTITY', entity_id: opts.disclosure.target_entity_id }],
-          },
-          tav_disclosures: [opts.disclosure],
-        };
+
+      // ---------------------------------------------------------------------
+      // THE DEVICE ENVELOPE, assembled from what the visitor supplied and nothing else.
+      //
+      // Every part of it traces to a deliberate act: an entity exists because they
+      // described one, a segment exists because they said this message is about that
+      // entity, and a disclosure exists because they answered a question the engine
+      // asked. When they have done none of those, there is no envelope at all and the
+      // turn is an ordinary one - which is why regular chat needs no context to work.
+      //
+      // A GRANTED disclosure may carry the private literal for exactly this one request.
+      // It is placed here, sent once, and never held: nothing in this module stores it,
+      // and the caller clears its own copy the moment this returns.
+      // ---------------------------------------------------------------------
+      const device: Record<string, unknown> = {};
+      const ctx = opts.context;
+      if (ctx && ctx.entities.length > 0) {
+        device['entities'] = ctx.entities;
+        if (ctx.messageEntityIds.length > 0) {
+          device['current_message'] = {
+            segments: ctx.messageEntityIds.map((id) => ({ kind: 'ENTITY', entity_id: id })),
+          };
+        }
       }
+      if (opts.disclosure) {
+        // A disclosure answers a request about an entity the engine already knows from
+        // this session's context. The entity is declared here too when the visitor's
+        // context does not already carry it, so the reference can never dangle.
+        if (!device['entities']) {
+          device['entities'] = [
+            { entity_id: opts.disclosure.target_entity_id, entity_kind: 'UNKNOWN' },
+          ];
+        }
+        if (!device['current_message']) {
+          device['current_message'] = {
+            segments: [{ kind: 'ENTITY', entity_id: opts.disclosure.target_entity_id }],
+          };
+        }
+        device['tav_disclosures'] = [opts.disclosure];
+      }
+      if (Object.keys(device).length > 0) body['device'] = device;
 
       const res = await call(MESSAGE_PATH, { method: 'POST', body: JSON.stringify(body) }, true);
       if (!res) return { ok: false, failure: UNREACHABLE };

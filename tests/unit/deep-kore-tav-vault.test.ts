@@ -72,56 +72,83 @@ describe('the volatile vault', () => {
 describe('permission and result are separate facts', () => {
   it('a refusal answers DENIED_BY_USER regardless of possession', () => {
     // The same refusal, with and without a held value, produces the same answer. A
-    // denial therefore cannot reveal whether anything was stored.
+    // denial therefore cannot reveal whether anything was stored - which is why the
+    // decision short-circuits before `held` is even consulted.
     expect(decideTavAnswer(false, false)).toBe('DENIED_BY_USER');
     expect(decideTavAnswer(false, true)).toBe('DENIED_BY_USER');
   });
 
   it('permission with nothing held is UNAVAILABLE', () => {
+    // A possession state, not a refusal. "There is nothing here" tells Deep Kore
+    // something true and different from "I will not say".
     expect(decideTavAnswer(true, false)).toBe('UNAVAILABLE');
   });
 
-  it('permission with a value held is DENIED_BY_POLICY, never GRANTED', () => {
-    // Possession is NOT a disclosure. This is the corrected semantics: the visitor
-    // said yes, and this device still will not transmit a literal.
-    expect(decideTavAnswer(true, true)).toBe('DENIED_BY_POLICY');
+  // ---------------------------------------------------------------------------
+  // SUPERSEDED BY OWNER DECISION, 2026-09-04.
+  //
+  // Three rows here asserted the opposite of what follows: that permission with a value
+  // held is DENIED_BY_POLICY, that GRANTED is unreachable, and that two different
+  // private values cannot produce two different answers. Every one of those was a true
+  // statement about the site as it stood, and each is now false by decision rather than
+  // by drift - the owner authorised the literal to cross on an explicit grant, for one
+  // turn, which is exactly the condition the old rows said could not exist.
+  //
+  // They are replaced rather than deleted quietly, and the reason is recorded, because a
+  // test that reverses direction is the one place a reader most needs to know whether
+  // something was decided or merely eroded.
+  // ---------------------------------------------------------------------------
+  it('permission with a value held is GRANTED', () => {
+    expect(decideTavAnswer(true, true)).toBe('GRANTED');
   });
 
-  it('GRANTED is unreachable from the public path', () => {
+  it('DENIED_BY_POLICY is never produced by this device', () => {
+    // It remains canonical, and other devices with a withholding policy send it. This
+    // browser has no such policy after the authorisation, so sending it would describe
+    // a rule that does not exist.
     const answers = new Set([
       decideTavAnswer(true, true),
       decideTavAnswer(true, false),
       decideTavAnswer(false, true),
       decideTavAnswer(false, false),
     ]);
-    expect(answers.has('GRANTED' as never)).toBe(false);
+    expect(answers.has('DENIED_BY_POLICY' as never)).toBe(false);
   });
 
-  it('UNAVAILABLE is distinct from a policy refusal', () => {
-    // "there is nothing here" and "there is something here and it is not leaving" are
-    // different facts, and Deep Kore is told which one it is.
-    expect(decideTavAnswer(true, false)).not.toBe(decideTavAnswer(true, true));
+  it('a grant and an empty vault stay distinct', () => {
+    // "Here it is" and "there is nothing here" must never collapse into one answer:
+    // they tell Deep Kore different things about whether asking again could help.
+    expect(decideTavAnswer(true, true)).not.toBe(decideTavAnswer(true, false));
   });
 });
 
-describe('the limitation the contract audit found, stated executably', () => {
-  it('two different private values cannot produce two different lawful answers', () => {
-    // This is NOT a shortcoming of the vault. `TavPurpose` has one enumerator,
-    // RESPONSE_REQUIRES_LITERAL_VALUE; there is no TavResponse type in Deep Kore; and
-    // TavDecision is a permission vocabulary. So no canonical TAV operation exists
-    // that computes a non-literal result FROM a value - which means the lawful answer
-    // depends only on POSSESSION, never on WHICH value is possessed.
+describe('the answer depends on possession, and the VALUE rides with the grant', () => {
+  it('two different values both produce GRANTED, and each reads back as itself', () => {
+    // The DECISION is a function of possession alone - which value is held does not
+    // change it, and nothing in this module computes anything from a value. What
+    // differs between these two cases is the literal the caller then reads and sends,
+    // which is the engine's business rather than this device's.
     clearAll();
-    put('e1', 'PHONE_NUMBER', '555-0100');
-    const first = decideTavAnswer(true, has('e1', 'PHONE_NUMBER'));
+    put('e1', 'PHONE_NUMBER', 'SYNTHETIC-0001');
+    expect(decideTavAnswer(true, has('e1', 'PHONE_NUMBER'))).toBe('GRANTED');
+    expect(read('e1', 'PHONE_NUMBER')).toBe('SYNTHETIC-0001');
 
     clearAll();
-    put('e1', 'PHONE_NUMBER', '555-0199');
-    const second = decideTavAnswer(true, has('e1', 'PHONE_NUMBER'));
+    put('e1', 'PHONE_NUMBER', 'SYNTHETIC-0002');
+    expect(decideTavAnswer(true, has('e1', 'PHONE_NUMBER'))).toBe('GRANTED');
+    expect(read('e1', 'PHONE_NUMBER')).toBe('SYNTHETIC-0002');
+  });
 
-    // Identical, and that identity is the finding. Fabricating an operation to make
-    // these differ would be inventing protocol, which the instruction forbids.
-    expect(first).toBe(second);
-    expect(first).toBe('DENIED_BY_POLICY');
+  it('a consumed grant leaves nothing to send twice', () => {
+    clearAll();
+    put('e1', 'EMAIL', 'SYNTHETIC-0003');
+    expect(decideTavAnswer(true, has('e1', 'EMAIL'))).toBe('GRANTED');
+    forget('e1', 'EMAIL');
+
+    // The same request a second time finds nothing, so the honest answer changes with
+    // the facts rather than replaying the first one.
+    expect(has('e1', 'EMAIL')).toBe(false);
+    expect(read('e1', 'EMAIL')).toBeUndefined();
+    expect(decideTavAnswer(true, has('e1', 'EMAIL'))).toBe('UNAVAILABLE');
   });
 });

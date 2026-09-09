@@ -383,11 +383,20 @@ describe('the production bundle carries no secret and no internal detail', () =>
   // Asserted as an exact set rather than a denylist, so a variable name added to the
   // browser bundle by a future change fails here without anyone having to predict it.
   //
-  // The two that DO appear are the owner-named public error CODES, not variables: the
-  // page maps them to approved sentences, which is the whole reason they are shared with
-  // the client. `PUBLIC_TURNSTILE_SITE_KEY` is inlined only when a site key is configured
-  // - it is not - and a site key is public by design either way.
-  test('the only SCREAMING_CASE Deep Kore tokens in the bundle are the two public codes', () => {
+  // The three that DO appear are public error CODES, not variables: the page maps them to
+  // approved sentences, which is the whole reason they are shared with the client.
+  // `PUBLIC_TURNSTILE_SITE_KEY` is inlined only when a site key is configured - it is not
+  // - and a site key is public by design either way.
+  //
+  // `DEEP_KORE_PROVENANCE_MISMATCH` joined the set on 2026-09-07, when the certified
+  // release gained a refusal for a gateway and worker built from different commits. This
+  // test failing on that addition is the guard working: a new token reaching the browser
+  // is a decision, and it gets made here in the open rather than noticed later.
+  //
+  // A code is safe to ship precisely because it is a CODE. It names a service state, not a
+  // commit, a binary, a path or a host - the refusal that carries it is asserted elsewhere
+  // to leak none of those.
+  test('the only SCREAMING_CASE Deep Kore tokens in the bundle are the public codes', () => {
     const seen = new Set<string>();
     for (const file of files) {
       // A plain uppercase-token scan, deliberately without a regex escape in it: the
@@ -397,6 +406,10 @@ describe('the production bundle carries no secret and no internal detail', () =>
         if (token.includes('DEEP_KORE_') || token.startsWith('TURNSTILE_')) seen.add(token);
       }
     }
-    expect([...seen].sort()).toEqual(['DEEP_KORE_SESSION_CAPACITY', 'DEEP_KORE_UNAVAILABLE']);
+    expect([...seen].sort()).toEqual([
+      'DEEP_KORE_PROVENANCE_MISMATCH',
+      'DEEP_KORE_SESSION_CAPACITY',
+      'DEEP_KORE_UNAVAILABLE',
+    ]);
   });
 });

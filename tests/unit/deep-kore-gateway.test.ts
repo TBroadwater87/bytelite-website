@@ -20,7 +20,11 @@ import {
   ERROR_CODES,
   isErrorCode,
 } from '../../api/_lib/deep-kore-core.js';
-import { RESULT_KINDS, isResultKind } from '../../api/_lib/deep-kore-codes.js';
+import {
+  RESULT_KINDS,
+  isResultKind,
+  MAX_DEVICE_BYTES,
+} from '../../api/_lib/deep-kore-codes.js';
 import { ERROR_COPY } from '../../src/data/deep-kore.js';
 
 // Endpoint-level tests for the public Deep Kore chat gateway.
@@ -843,7 +847,130 @@ describe('result polling', () => {
       text: 'I am AIya.',
       persona: 'AIYA',
       governance: { passed: true, stamp: REDACTED_STAMP },
+      // An ordinary turn establishes nothing. The empty array is the honest answer and
+      // is NOT an omission - the field is always present so the interface never has to
+      // distinguish "no anchors" from "an older engine that did not send the field".
+      anchors: [],
     });
+  });
+
+  // ---------------------------------------------------------------------------
+  // PUBLIC TESSERACT ANCHORS
+  //
+  // Added 2026-09-09 with the corrected release d3a4f5af, which introduced
+  // `anchors_established_this_turn` on the governed core. These assert the two halves
+  // that matter: the handles cross, and NOTHING ELSE about them does.
+  // ---------------------------------------------------------------------------
+
+  const ANCHOR_A = 'a'.repeat(64);
+  const ANCHOR_B = '0123456789abcdef'.repeat(4);
+
+  test('anchor handles cross to the browser, and nothing else about them does', async () => {
+    configure('private_alpha');
+    const s = await openSession();
+    vi.stubGlobal(
+      'fetch',
+      stubFetch([
+        [
+          /\/v1\/jobs\//,
+          {
+            status: 200,
+            body: {
+              transport_state: 'succeeded',
+              engine: {
+                ...engineResult(),
+                anchors_established_this_turn: [{ handle: ANCHOR_A }, { handle: ANCHOR_B }],
+              },
+            },
+          },
+        ],
+      ]).impl
+    );
+
+    const captured = await poll(s.cookie, 'dkj-1');
+    expect(captured.status).toBe(200);
+    expect((captured.body['turn'] as Record<string, unknown>)['anchors']).toEqual([
+      ANCHOR_A,
+      ANCHOR_B,
+    ]);
+  });
+
+  test('a malformed anchor array fails the whole turn rather than being repaired', async () => {
+    // Each of these is a different way the origin could be wrong. NONE of them may be
+    // silently dropped, filtered, or partially salvaged: showing a visitor a subset of
+    // the anchors the engine sent would be this site inventing the list.
+    const malformed: unknown[] = [
+      'not-an-array',
+      [{ handle: 'too-short' }],
+      [{ handle: ANCHOR_A.toUpperCase() }],
+      [{ handle: ANCHOR_A, coordinate: '3,7' }],
+      [{ concept_id: 'weather' }],
+      [ANCHOR_A],
+      [null],
+    ];
+
+    // ONE session, reused across the cases. Opening a session inside the loop would need
+    // the session route stubbed as well as the job route, and the mixed stub is what a
+    // reader would then have to untangle to see what this test is actually about.
+    configure('private_alpha');
+    const s = await openSession();
+
+    for (const anchors of malformed) {
+      vi.stubGlobal(
+        'fetch',
+        stubFetch([
+          [
+            /\/v1\/jobs\//,
+            {
+              status: 200,
+              body: {
+                transport_state: 'succeeded',
+                engine: { ...engineResult(), anchors_established_this_turn: anchors },
+              },
+            },
+          ],
+        ]).impl
+      );
+
+      const captured = await poll(s.cookie, 'dkj-1');
+      expect(
+        captured.body['error_code'],
+        `a malformed anchor array was accepted: ${JSON.stringify(anchors)}`
+      ).toBe('malformed_engine_result');
+      expect(captured.body['turn']).toBeUndefined();
+    }
+  });
+
+  test('an anchor refusal never echoes what the origin sent', async () => {
+    configure('private_alpha');
+    const s = await openSession();
+    vi.stubGlobal(
+      'fetch',
+      stubFetch([
+        [
+          /\/v1\/jobs\//,
+          {
+            status: 200,
+            body: {
+              transport_state: 'succeeded',
+              engine: {
+                ...engineResult(),
+                // An origin that started sending internals alongside the handle. The
+                // refusal must not carry any of it back out.
+                anchors_established_this_turn: [
+                  { handle: ANCHOR_A, concept_id: 'weather', coordinate: '3,7,11' },
+                ],
+              },
+            },
+          },
+        ],
+      ]).impl
+    );
+
+    const captured = await poll(s.cookie, 'dkj-1');
+    for (const leak of ['weather', 'concept_id', 'coordinate', '3,7,11', ANCHOR_A]) {
+      expect(captured.raw, `an anchor refusal leaked ${leak}`).not.toContain(leak);
+    }
   });
 
   // THE STAMP IS REDACTED, NOT REWRITTEN.
@@ -1169,6 +1296,70 @@ describe('a full service and a broken service are never confused', () => {
 
     expect(captured.status).toBe(503);
     expect(captured.body).toEqual({ error_code: 'DEEP_KORE_UNAVAILABLE' });
+  });
+
+  // PROVENANCE MISMATCH IS A THIRD SERVICE STATE, NOT A FAILED REQUEST.
+  //
+  // The certified gateway compares the commit its worker reports in READY against its own
+  // and answers `503 provenance_mismatch` when they disagree. Before this mapping existed
+  // that fell through to `502 origin_error`, which reported a mismatched DEPLOYMENT as a
+  // failed REQUEST - the same class of mistake as reporting a full service as an outage,
+  // one step further along, because no retry and no waiting can clear it.
+  test('a provenance mismatch is its own stable code, distinct from capacity and outage', async () => {
+    configure('private_alpha');
+    vi.stubGlobal(
+      'fetch',
+      stubFetch([[/\/v1\/sessions$/, { status: 503, body: { error_code: 'provenance_mismatch' } }]])
+        .impl
+    );
+
+    const { res, captured } = mockRes();
+    await sessionRoute(mockReq({ body: {} }), res);
+
+    // 503 and not 502: the origin refused, it did not malfunction.
+    expect(captured.status).toBe(503);
+    expect(captured.body).toEqual({ error_code: 'DEEP_KORE_PROVENANCE_MISMATCH' });
+    expect(captured.body).not.toEqual({ error_code: 'origin_error' });
+  });
+
+  test('a provenance refusal names no commit, binary, component or machine', async () => {
+    configure('private_alpha');
+    vi.stubGlobal(
+      'fetch',
+      stubFetch([
+        [
+          /\/v1\/sessions$/,
+          {
+            status: 503,
+            // Everything an origin might volunteer about WHY the builds disagree. None of
+            // it is the visitor's business and none of it may be echoed.
+            body: {
+              error_code: 'provenance_mismatch',
+              gateway_commit: '026ee6162df9d49ca8462e15f5714ace9dfcdb58',
+              worker_commit: '00020af4f622962b5e21663a8529cb055a4a217e',
+              worker_path: 'C:\\DeepKore\\Release\\dk_session_worker.exe',
+              host: 'dk-01',
+            },
+          },
+        ],
+      ]).impl
+    );
+
+    const { res, captured } = mockRes();
+    await sessionRoute(mockReq({ body: {} }), res);
+
+    expect(captured.body).toEqual({ error_code: 'DEEP_KORE_PROVENANCE_MISMATCH' });
+    for (const leak of [
+      '026ee616',
+      '00020af4',
+      'dk_session_worker',
+      'C:\\',
+      'dk-01',
+      'gateway_commit',
+      'worker_commit',
+    ]) {
+      expect(captured.raw, `a provenance refusal leaked ${leak}`).not.toContain(leak);
+    }
   });
 
   // THE UNION IS CLOSED AND THE MAPPING IS EXHAUSTIVE.
@@ -1850,41 +2041,187 @@ describe('the device envelope is sanitised at the boundary', () => {
     ]);
   });
 
-  // THE LOAD-BEARING REFUSAL. A private value must never reach this server, and a
-  // disclosure carrying one is rejected rather than stripped: stripping would let a
-  // client believe it had transmitted something it had not.
-  test('a disclosure carrying a value makes the whole request a 400', async () => {
+  // ---------------------------------------------------------------------------
+  // THE PRIVATE VALUE. Owner-authorised 2026-09-04, and bounded by the canonical rule.
+  //
+  // These rows replaced two that asserted a value may NEVER cross. That was the site's
+  // rule before the authorisation, and it is superseded - but only in one direction:
+  // GRANTED may carry a literal, and every other decision still may not, which is the
+  // canonical strict parser's own rule rather than a softening of it.
+  // ---------------------------------------------------------------------------
+  test('a GRANTED disclosure may carry the literal, and it reaches the origin intact', async () => {
     configure('private_alpha');
     const s = await openSession();
 
-    const { captured, calls } = await sendDevice(s, {
+    const { captured, sent } = await sendDevice(s, {
       tav_disclosures: [
         {
           tav_id: 't1',
           target_entity_id: 'e1',
           field: 'PHONE_NUMBER',
           decision: 'GRANTED',
-          value: '555-0100',
+          value: 'SYNTHETIC-0000',
         },
       ],
     });
 
-    expect(captured.status).toBe(400);
-    expect(captured.body).toEqual({ error_code: 'bad_request' });
-    expect(calls, 'no private value may reach the origin, even in a refused request').toHaveLength(
-      0
-    );
+    expect(captured.status).toBe(202);
+    const device = sent!['device'] as Record<string, unknown>;
+    expect(device['tav_disclosures']).toEqual([
+      {
+        tav_id: 't1',
+        target_entity_id: 'e1',
+        field: 'PHONE_NUMBER',
+        decision: 'GRANTED',
+        value: 'SYNTHETIC-0000',
+      },
+    ]);
   });
 
-  test('an empty value is refused too - the shape is what is banned, not the contents', async () => {
+  test('a NON-GRANTED decision carrying a non-empty value is refused outright', async () => {
     configure('private_alpha');
     const s = await openSession();
-    const { captured } = await sendDevice(s, {
+
+    for (const decision of ['DENIED_BY_USER', 'DENIED_BY_POLICY', 'UNAVAILABLE']) {
+      const { captured, calls } = await sendDevice(s, {
+        tav_disclosures: [
+          {
+            tav_id: 't1',
+            target_entity_id: 'e1',
+            field: 'PHONE_NUMBER',
+            decision,
+            value: '555-0100',
+          },
+        ],
+      });
+      // Illegal state unrepresentable, not "should be empty by convention". A literal
+      // leaving a browser under a REFUSAL is the worst thing this feature could do.
+      expect(captured.status, `${decision} must not carry a value`).toBe(400);
+      expect(captured.body).toEqual({ error_code: 'bad_request' });
+      expect(calls, 'a refused literal must not reach the origin either').toHaveLength(0);
+    }
+  });
+
+  test('an empty value is lawful on any decision and discloses nothing', async () => {
+    configure('private_alpha');
+    const s = await openSession();
+    const { captured, sent } = await sendDevice(s, {
       tav_disclosures: [
         { tav_id: 't1', target_entity_id: 'e1', field: 'EMAIL', decision: 'UNAVAILABLE', value: '' },
       ],
     });
+    expect(captured.status).toBe(202);
+    const device = sent!['device'] as Record<string, unknown>;
+    expect((device['tav_disclosures'] as Array<Record<string, unknown>>)[0]!['value']).toBe('');
+  });
+
+  test('a value that is not a string is refused', async () => {
+    configure('private_alpha');
+    const s = await openSession();
+    for (const value of [42, true, null, {}, ['a']]) {
+      const { captured } = await sendDevice(s, {
+        tav_disclosures: [
+          { tav_id: 't1', target_entity_id: 'e1', field: 'EMAIL', decision: 'GRANTED', value },
+        ],
+      });
+      expect(captured.status).toBe(400);
+    }
+  });
+
+  test('a granted literal is never written to any log channel', async () => {
+    configure('private_alpha');
+    const s = await openSession();
+    const seen: string[] = [];
+    for (const channel of ['log', 'info', 'warn', 'error', 'debug'] as const) {
+      vi.spyOn(console, channel).mockImplementation((...args: unknown[]) => {
+        seen.push(args.map((a) => String(a)).join(' '));
+      });
+    }
+
+    const { captured } = await sendDevice(s, {
+      tav_disclosures: [
+        {
+          tav_id: 't1',
+          target_entity_id: 'e1',
+          field: 'ADDRESS',
+          decision: 'GRANTED',
+          value: 'SYNTHETIC-NEVER-LOG-ME-7781',
+        },
+      ],
+    });
+
+    expect(captured.status).toBe(202);
+    expect(seen.join(' | ')).not.toContain('SYNTHETIC-NEVER-LOG-ME-7781');
+  });
+
+  test('the decision and field vocabularies are the canonical ones, not a shape', async () => {
+    configure('private_alpha');
+    const s = await openSession();
+    for (const bad of [
+      { field: 'SOCIAL_SECURITY_NUMBER', decision: 'GRANTED' },
+      { field: 'EMAIL', decision: 'ALLOWED' },
+      { field: 'EMAIL', decision: 'GRANTED_ONCE' },
+    ]) {
+      const { captured } = await sendDevice(s, {
+        tav_disclosures: [{ tav_id: 't1', target_entity_id: 'e1', ...bad }],
+      });
+      expect(captured.status, `${JSON.stringify(bad)} must be refused`).toBe(400);
+    }
+  });
+
+  test('an entity enumerator outside the canonical vocabulary is refused', async () => {
+    configure('private_alpha');
+    const s = await openSession();
+    for (const entity of [
+      { entity_id: 'e1', relationship_role: 'SPOUSE' },
+      { entity_id: 'e1', relationship_role: 'COLLEAGUE' },
+      { entity_id: 'e1', entity_kind: 'ROBOT' },
+      // StructuralEntityKind is what Deep Kore RESOLVES TO by elimination. A device
+      // sending one would be asserting the conclusion instead of the evidence.
+      { entity_id: 'e1', entity_kind: 'BUSINESS' },
+      { entity_id: 'e1', entity_kind: 'MEDICATION' },
+      { entity_id: 'e1', agreement: 'SECOND_PLURAL' },
+    ]) {
+      const { captured } = await sendDevice(s, { entities: [entity] });
+      expect(captured.status, `${JSON.stringify(entity)} must be refused`).toBe(400);
+    }
+  });
+
+  test('every canonical enumerator this site offers is accepted', async () => {
+    configure('private_alpha');
+    const s = await openSession();
+    for (const role of ['SELF', 'PARTNER', 'MATCH', 'FRIEND', 'FAMILY', 'OTHER']) {
+      const { captured } = await sendDevice(s, {
+        entities: [{ entity_id: 'e1', entity_kind: 'UNKNOWN', relationship_role: role }],
+      });
+      expect(captured.status, `${role} is canonical and must be accepted`).toBe(202);
+    }
+    for (const kind of ['SELF', 'PERSON', 'PLACE', 'AI_ASSISTANT', 'GROUP', 'UNKNOWN', 'OTHER']) {
+      const { captured } = await sendDevice(s, {
+        entities: [{ entity_id: 'e1', entity_kind: kind }],
+      });
+      expect(captured.status, `${kind} is canonical and must be accepted`).toBe(202);
+    }
+  });
+
+  test('an envelope past the canonical device ceiling is refused here, not proxied', async () => {
+    configure('private_alpha');
+    const s = await openSession();
+    // MAX_DEVICE_BYTES is the worker's own constant. This site restates it so an
+    // oversized envelope stops here; the number is not one this site chose.
+    const { captured, calls } = await sendDevice(s, {
+      tav_disclosures: [
+        {
+          tav_id: 't1',
+          target_entity_id: 'e1',
+          field: 'OTHER',
+          decision: 'GRANTED',
+          value: 'x'.repeat(MAX_DEVICE_BYTES),
+        },
+      ],
+    });
     expect(captured.status).toBe(400);
+    expect(calls).toHaveLength(0);
   });
 
   test('an unknown key is refused at every level of the envelope', async () => {

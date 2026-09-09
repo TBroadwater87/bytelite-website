@@ -51,6 +51,8 @@ import {
   type TransportFailure,
 } from './deepKoreClient';
 import * as vault from './tavVault';
+import * as context from './privateContext';
+import { RELATIONSHIP_ROLES, DEVICE_ENTITY_KINDS } from '../../../api/_lib/deep-kore-codes';
 
 // The cadence at which the browser asks the server for a job's transport state. This
 // paces one HTTP poll; it does not bound, interrupt or influence the turn.
@@ -172,6 +174,12 @@ interface Entry {
   stamp?: string | undefined;
   /** Whether the emission gate passed. Absent on a visitor entry, which has no gate. */
   passed?: boolean | undefined;
+  /**
+   * Opaque public Tesseract anchor handles this turn established, or absent on a visitor
+   * entry. An engine turn that established nothing carries an empty array, which renders
+   * nothing - an ordinary turn, not a failure.
+   */
+  anchors?: string[] | undefined;
 }
 
 /**
@@ -232,6 +240,15 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
   // moment it is committed to the vault.
   const [privateDraft, setPrivateDraft] = useState('');
   const [vaultCount, setVaultCount] = useState(0);
+
+  // THE PRIVATE CONTEXT PANEL. `contextTick` exists only to re-render after a mutation:
+  // the entities themselves live in the module store, never in React state, so there is
+  // no second copy of a visitor's facts to leak or forget to clear.
+  const [contextOpen, setContextOpen] = useState(false);
+  const [contextTick, setContextTick] = useState(0);
+  const [entityLabel, setEntityLabel] = useState('');
+  const [entityRole, setEntityRole] = useState('');
+  const [entityKind, setEntityKind] = useState('');
 
   const seq = useRef(0);
   const stopped = useRef(false);
@@ -326,7 +343,9 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
   useEffect(() => {
     const wipe = () => {
       vault.clearAll();
+      context.clearAll();
       setVaultCount(0);
+      setContextTick((n) => n + 1);
     };
     window.addEventListener('pagehide', wipe);
     return () => {
@@ -349,8 +368,16 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
     pendingDisclosure.current = null;
     retryable.current = null;
     vault.clearAll();
+    // THE CONTEXT GOES WITH THE VALUES. A relationship a visitor described is as much
+    // theirs as the value they kept, and it does not outlive the conversation it was
+    // given for either.
+    context.clearAll();
     setVaultCount(0);
+    setContextTick((n) => n + 1);
     setPrivateDraft('');
+    setEntityLabel('');
+    setEntityRole('');
+    setEntityKind('');
   }, []);
 
   /** Clears the failure region. Every path that begins new work starts by doing this. */
@@ -433,6 +460,7 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
         text: turn.text,
         stamp: turn.governance.stamp || undefined,
         passed: turn.governance.passed,
+        anchors: turn.anchors,
       },
     ]);
   };
@@ -555,10 +583,18 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
       const pending = pendingDisclosure.current;
       pendingDisclosure.current = null;
 
-      const accepted = await client.submitTurn(
-        text,
-        pending ? { turnKey, disclosure: pending } : { turnKey }
-      );
+      // THE VISITOR'S OWN CONTEXT, and only when they supplied some. An ordinary turn
+      // sends no envelope at all, which is why regular chat works with no context and
+      // why nothing about a visitor is asserted to the engine unless they said it.
+      const turnContext = context.isEmpty()
+        ? undefined
+        : { entities: context.toDeviceEntities(), messageEntityIds: context.includedIds() };
+
+      const accepted = await client.submitTurn(text, {
+        turnKey,
+        ...(pending ? { disclosure: pending } : {}),
+        ...(turnContext ? { context: turnContext } : {}),
+      });
 
       if (!accepted.ok) {
         showFailure(accepted.failure);
@@ -671,23 +707,40 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
       // ONLY when permission was given - `decideTavAnswer` short-circuits on refusal,
       // and this call site mirrors that so a denial reads nothing at all.
       const held = permitted ? vault.has(tav.entity_ref, tav.field) : false;
-      const decision: string = vault.decideTavAnswer(permitted, held);
+      const decision = vault.decideTavAnswer(permitted, held);
 
-      pendingDisclosure.current = {
+      // STEP 3: THE LITERAL, on a grant and on nothing else.
+      //
+      // `read()` is called only in the GRANTED branch, so a refusal and an empty vault
+      // both leave the value unread rather than read-and-discarded. The disclosure that
+      // carries it is built here and sent by the next turn; the canonical rule - a value
+      // only ever on GRANTED - is enforced again by this site's own server.
+      const disclosure: {
+        tav_id: string;
+        target_entity_id: string;
+        field: string;
+        decision: string;
+        value?: string;
+      } = {
         tav_id: tav.tav_id,
         target_entity_id: tav.entity_ref,
         field: tav.field,
         decision,
       };
+      if (decision === 'GRANTED') {
+        disclosure.value = vault.read(tav.entity_ref, tav.field) ?? '';
+      }
+      pendingDisclosure.current = disclosure;
 
-      // STEP 3: the value is cleared after its single authorised use, and on denial.
-      // The grant is consumed here and cannot be replayed: the state leaves
-      // TAV_DECISION_REQUIRED and the vault entry is gone.
+      // STEP 4: the grant is CONSUMED. The vault entry is gone before the turn is even
+      // sent, so there is nothing left to replay, reuse or send twice - the state leaves
+      // TAV_DECISION_REQUIRED and the value leaves with it. A denial and an empty vault
+      // clear too, which costs nothing and keeps one rule instead of three.
       vault.forget(tav.entity_ref, tav.field);
       setVaultCount(vault.size());
 
       if (!permitted) setNotice(UI.tavDeclined);
-      else if (decision === 'DENIED_BY_POLICY') setNotice(UI.tavWithheld);
+      else if (decision === 'GRANTED') setNotice(UI.tavGranted);
       else setNotice(UI.tavNothingHeld);
 
       await submitTurn('Continue.', false, true);
@@ -742,21 +795,77 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
     [privateDraft]
   );
 
+  // ---- Private context ---------------------------------------------------
+
   /**
-   * REVOCATION, BEFORE ANYTHING IS SUBMITTED.
+   * Records one entity the visitor described.
    *
-   * A value kept locally can be taken back at any point up to the decision, and taking
-   * it back is a real deletion rather than a flag: `forget` removes the entry from the
-   * only place it existed. This is separate from declining - a visitor may want the
-   * value gone AND still answer the question - so it is its own control with its own
-   * wording, not a second name for Decline.
+   * Every field comes from a control they operated: the role from a list of canonical
+   * enumerators, the kind from another, the label from their own keyboard. Nothing is
+   * derived from the conversation, and an unrecognised role simply does not add an
+   * entity rather than being coerced into one that looks close.
    */
-  const revokePrivate = useCallback((tav: TavRequest) => {
+  const addEntity = useCallback(() => {
+    if (!entityRole) return;
+    const added = context.add(entityLabel, entityRole, entityKind || undefined);
+    if (!added) return;
+    setEntityLabel('');
+    setEntityRole('');
+    setEntityKind('');
+    setContextTick((n) => n + 1);
+    setNotice(UI.contextAdded);
+  }, [entityLabel, entityRole, entityKind]);
+
+  const removeEntity = useCallback((id: string) => {
+    context.forget(id);
+    setContextTick((n) => n + 1);
+    setNotice(UI.contextRemoved);
+  }, []);
+
+  const toggleEntity = useCallback((id: string, included: boolean) => {
+    context.setIncluded(id, included);
+    setContextTick((n) => n + 1);
+  }, []);
+
+  const clearContext = useCallback(() => {
+    context.clearAll();
+    setContextTick((n) => n + 1);
+    setNotice(UI.contextCleared);
+  }, []);
+
+  /**
+   * DELETING A HELD VALUE, BEFORE ANY DISCLOSURE IS BUILT.
+   *
+   * A value kept locally can be deleted at any point up to the decision, and deleting it
+   * is a real deletion rather than a flag: `forget` removes the entry from the only place
+   * it existed. This is separate from declining - a visitor may want the value gone AND
+   * still answer the question - so it is its own control with its own wording, not a
+   * second name for Decline.
+   *
+   * THIS IS NOT REVOCATION, AND IT WAS PREVIOUSLY NAMED AS IF IT WERE. It only ever
+   * reaches a value this tab is still holding. It cannot reach a disclosure that has
+   * already been sent, because there is no protocol message that could: the certified
+   * `TavDecision` is `GRANTED | DENIED_BY_POLICY | DENIED_BY_USER | UNAVAILABLE`, with no
+   * `REVOKED`, and owner ruling 2026-09-07 confirms none is to be added or expected.
+   *
+   * What actually protects a visitor after a grant is not recall but scope: the value is
+   * disclosed for exactly one turn and cleared unconditionally by the engine before the
+   * outcome is even built. A completed disclosure cannot be taken back, and this control
+   * must never be worded, named or tested as though it could.
+   */
+  const removeHeldPrivateValue = useCallback((tav: TavRequest) => {
     vault.forget(tav.entity_ref, tav.field);
     setPrivateDraft('');
     setVaultCount(vault.size());
-    setNotice(UI.tavRevoked);
+    setNotice(UI.tavRemovedHeld);
   }, []);
+
+  // Read straight from the module store on every render. `contextTick` is what makes
+  // React re-render after a mutation; the entities themselves are never copied into
+  // component state, so there is no second place a visitor's facts could survive a
+  // `clearAll()` that missed one.
+  void contextTick;
+  const entities = context.all();
 
   const blockedReason = composerBlockedReason(state);
   // Both the reason a control is unavailable and the current failure are ASSOCIATED with
@@ -840,6 +949,38 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
                   </p>
                   <p className="dk-why-note">{UI.whyStampNote}</p>
                   <p className="dk-why-note">{UI.whyNoProvenance}</p>
+                  {/*
+                    PUBLIC TESSERACT ANCHORS.
+
+                    Rendered only when the turn actually established something. An empty
+                    array is the ordinary case and shows nothing at all - an absent
+                    section is not an omission and must never be dressed up as one.
+
+                    Each handle is printed as the opaque token it is. There is deliberately
+                    nothing to expand, sort, link or look up: the wire carries a hash and
+                    no second field, so there is no coordinate, placement, edge, candidate
+                    set or trace available to render even if someone wanted to. The copy
+                    beside it says plainly that this is not learning, because an anchor
+                    confirming that structure settled is the thing a visitor is most likely
+                    to mistake for Deep Kore having been taught something.
+                  */}
+                  {e.anchors && e.anchors.length > 0 && (
+                    <div className="dk-anchors" data-dk-anchors={e.anchors.length}>
+                      <p className="dk-anchors-heading">{UI.anchorsHeading}</p>
+                      <p className="dk-why-note">{UI.anchorsNote}</p>
+                      <ul className="dk-anchor-list">
+                        {e.anchors.map((handle) => (
+                          <li key={handle} className="dk-anchor">
+                            <span className="dk-anchor-label">{UI.anchorLabel}</span>
+                            <code className="dk-anchor-handle" title={handle}>
+                              {handle.slice(0, 12)}
+                            </code>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="dk-why-note">{UI.anchorsNotLearning}</p>
+                    </div>
+                  )}
                 </div>
               </details>
             )}
@@ -925,18 +1066,23 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
                 {UI.tavPrivateSave}
               </button>
               {/*
-                REVOCATION. Present only while there is something to revoke, and
-                deliberately distinct from Decline: one takes the value back, the other
+                LOCAL DELETION. Present only while this tab is still holding something,
+                and deliberately distinct from Decline: one deletes the value, the other
                 answers the question. A visitor may want both, or either, or neither.
+
+                Its presence condition is also the honest statement of its limit. It is
+                rendered from `vault.has(...)`, so it exists exactly when there is a held
+                value to delete - never after a grant has been consumed, because by then
+                there is nothing here to act on and nothing anywhere that could recall it.
               */}
               {vault.has(state.tav.entity_ref, state.tav.field) && (
                 <button
                   type="button"
                   className="btn btn-ghost btn-sm"
-                  data-dk-action="revoke"
-                  onClick={() => revokePrivate(state.tav)}
+                  data-dk-action="remove-held-value"
+                  onClick={() => removeHeldPrivateValue(state.tav)}
                 >
-                  {UI.tavRevoke}
+                  {UI.tavRemoveHeld}
                 </button>
               )}
             </div>
@@ -948,17 +1094,33 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
             input here and no autofocus onto Continue, so permission is only ever given
             by a deliberate press.
           */}
+          {/*
+            THE SENDING CONTROL SAYS IT SENDS.
+
+            Its label changes with what is actually held, because the same press means
+            two different things: with a value in the vault it transmits that value for
+            one answer, and with nothing held it transmits only that there is nothing.
+            A single fixed label would be wrong in one of those cases, and the case it
+            would be wrong in is the one where something private leaves the tab.
+
+            Neither control is preselected and neither is autofocused: permission is
+            only ever given by a deliberate press.
+          */}
           <div className="dk-ask-actions">
             <button
               type="button"
               className="btn btn-primary btn-sm"
+              data-dk-action="tav-permit"
               onClick={() => void tavDecide(state.tav, true)}
             >
-              {UI.tavContinue}
+              {vault.has(state.tav.entity_ref, state.tav.field)
+                ? UI.tavContinue
+                : UI.tavContinueWithout}
             </button>
             <button
               type="button"
               className="btn btn-ghost btn-sm"
+              data-dk-action="tav-decline"
               onClick={() => void tavDecide(state.tav, false)}
             >
               {UI.tavDecline}
@@ -1001,6 +1163,173 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
               {UI.offerDecline}
             </button>
           </div>
+        </section>
+      )}
+
+      {/* ---- Private context ---------------------------------------------
+        THE ONLY PLACE STRUCTURAL EVIDENCE ENTERS THIS SYSTEM FROM A BROWSER.
+
+        It is a disclosure, closed by default, and the conversation works with it
+        untouched. That ordering is deliberate: a visitor who just wants to talk should
+        never have to answer questions about their relationships first, and the feature
+        should read as something they reach for rather than something asked of them.
+
+        Every control below records a fact the visitor states. There is no parser here,
+        no lexicon, and nothing that reads the transcript - the page cannot work out who
+        anyone is, and does not try.
+      */}
+      {(state.kind === 'READY' ||
+        state.kind === 'TURN_IN_PROGRESS' ||
+        state.kind === 'TAV_DECISION_REQUIRED' ||
+        state.kind === 'TEACHING_CONSENT_REQUIRED') && (
+        <section className="dk-context" data-dk-context={contextOpen ? 'open' : 'closed'}>
+          <button
+            type="button"
+            className="dk-context-toggle"
+            aria-expanded={contextOpen}
+            aria-controls="dk-context-body"
+            data-dk-action="toggle-context"
+            onClick={() => setContextOpen((open) => !open)}
+          >
+            {contextOpen ? UI.contextToggleClose : UI.contextToggleOpen}
+            {entities.length > 0 && (
+              <span className="dk-context-count">{entities.length}</span>
+            )}
+          </button>
+
+          {contextOpen && (
+            <div className="dk-context-body" id="dk-context-body">
+              <h3 className="dk-context-heading">{UI.contextHeading}</h3>
+              <p className="dk-context-intro">{UI.contextIntro}</p>
+              <p className="dk-context-note">{UI.contextOptional}</p>
+              <p className="dk-context-note">{UI.contextPrivacy}</p>
+
+              {entities.length === 0 ? (
+                <p className="dk-context-empty">{UI.contextEmpty}</p>
+              ) : (
+                <ul className="dk-context-list">
+                  {entities.map((e) => (
+                    <li key={e.id} className="dk-context-item" data-dk-entity={e.id}>
+                      <div className="dk-context-item-head">
+                        <span className="dk-context-name">
+                          {e.label || UI.contextLabelField}
+                          {/* Stated on every row, because it is the promise most worth
+                              repeating where the name actually appears. */}
+                          <span className="dk-context-never">{UI.contextNeverSent}</span>
+                        </span>
+                        <button
+                          type="button"
+                          className="dk-context-remove"
+                          data-dk-action="remove-entity"
+                          onClick={() => removeEntity(e.id)}
+                        >
+                          {UI.contextRemove}
+                        </button>
+                      </div>
+                      <p className="dk-context-facts">
+                        <code>{e.role}</code>
+                        {e.kind && <code>{e.kind}</code>}
+                      </p>
+                      <label className="dk-context-include">
+                        <input
+                          type="checkbox"
+                          checked={e.included}
+                          data-dk-action="include-entity"
+                          onChange={(ev) => toggleEntity(e.id, ev.target.checked)}
+                        />
+                        <span>{UI.contextInclude}</span>
+                      </label>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <div className="dk-context-form">
+                <div className="dk-context-field">
+                  <label htmlFor="dk-entity-label">{UI.contextLabelField}</label>
+                  <input
+                    id="dk-entity-label"
+                    type="text"
+                    autoComplete="off"
+                    value={entityLabel}
+                    aria-describedby="dk-entity-label-hint"
+                    onChange={(e) => setEntityLabel(e.target.value)}
+                  />
+                  <p className="dk-context-hint" id="dk-entity-label-hint">
+                    {UI.contextLabelHint}
+                  </p>
+                </div>
+
+                <div className="dk-context-field">
+                  <label htmlFor="dk-entity-role">{UI.contextRoleField}</label>
+                  {/*
+                    A select over the CANONICAL enumerators, with no option selected
+                    until the visitor picks one. There is no default relationship,
+                    because a default here would be the page deciding something about
+                    someone's life.
+                  */}
+                  <select
+                    id="dk-entity-role"
+                    value={entityRole}
+                    aria-describedby="dk-entity-role-hint"
+                    onChange={(e) => setEntityRole(e.target.value)}
+                  >
+                    <option value="">{UI.contextRolePlaceholder}</option>
+                    {RELATIONSHIP_ROLES.map((role) => (
+                      <option key={role} value={role}>
+                        {role}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="dk-context-hint" id="dk-entity-role-hint">
+                    {UI.contextRoleHint}
+                  </p>
+                </div>
+
+                <div className="dk-context-field">
+                  <label htmlFor="dk-entity-kind">{UI.contextKindField}</label>
+                  <select
+                    id="dk-entity-kind"
+                    value={entityKind}
+                    aria-describedby="dk-entity-kind-hint"
+                    onChange={(e) => setEntityKind(e.target.value)}
+                  >
+                    <option value="">{UI.contextKindPlaceholder}</option>
+                    {DEVICE_ENTITY_KINDS.map((kind) => (
+                      <option key={kind} value={kind}>
+                        {kind}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="dk-context-hint" id="dk-entity-kind-hint">
+                    {UI.contextKindHint}
+                  </p>
+                </div>
+
+                <div className="dk-context-actions">
+                  <button
+                    type="button"
+                    className="btn btn-primary btn-sm"
+                    data-dk-action="add-entity"
+                    onClick={addEntity}
+                    disabled={!entityRole}
+                  >
+                    {UI.contextAdd}
+                  </button>
+                  {entities.length > 0 && (
+                    <button
+                      type="button"
+                      className="btn btn-ghost btn-sm"
+                      data-dk-action="clear-context"
+                      onClick={clearContext}
+                    >
+                      {UI.contextClear}
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </section>
       )}
 

@@ -1643,7 +1643,6 @@ $env:DEEP_KORE_MAX_SESSIONS  = "<your measured number>"
 #    ISOLATED, so nothing touches your real queue under %LOCALAPPDATA%.
 $env:DEEP_KORE_TEACHING_QUEUE_ROOT            = "<a scratch directory>"
 $env:DEEP_KORE_TEACHING_QUEUE_REQUIRE_ISOLATED = "1"
-$env:DEEP_KORE_TEACHING_MAX_RECORD_BYTES      = "4000000"   # a TEST value, see 21.11c
 $env:DEEP_KORE_GATEWAY_SID = ([System.Security.Principal.WindowsIdentity]::GetCurrent()).User.Value
 & "<...>\dk_teaching_broker.exe"
 
@@ -1862,10 +1861,28 @@ reference plus a private overlay precisely so one process can host many sessions
 multi-session host would take 6 sessions from ~4.1 GB to roughly one snapshot plus per-session
 state. That host does not exist yet, and until it does the ceiling is really a memory division.
 
-### 21.11c A second required setting: `DEEP_KORE_TEACHING_MAX_RECORD_BYTES`
+### 21.11c `DEEP_KORE_TEACHING_MAX_RECORD_BYTES` - WITHDRAWN 2026-09-09, and why
 
-The Teaching Queue broker now refuses to start without it. Like `DEEP_KORE_MAX_SESSIONS` it has
-**no default**, and missing, zero, non-numeric or overflowing values all stop startup.
+**This setting no longer exists.** The certified broker at
+`d3a4f5af4d433838d473ff74cd370721c477fbdf` does not read it, does not define it, and no longer
+carries the `ERR_RECORD_TOO_LARGE` refusal that enforced it. The Deep Kore release records the same
+fact as `OWNER_ARBITRARY_TEACHING_SIZE_LIMIT = ABSENT`. **Do not set it, and do not reintroduce it.**
+
+The measurements below are KEPT, because they are still the reason the limit was wrong. They were
+re-confirmed on 2026-09-09 against the corrected release: a live public candidate produced a
+DPAPI-protected record whose decrypted plaintext measured **711,508 bytes** with a
+`candidate_sequence_length` of **35494** - matching the original figures exactly, and confirming the
+canonical sequence is stored whole rather than trimmed to fit any ceiling.
+
+**Why the cap was the wrong shape.** It was a transport bound applied to a canonical identity, so an
+owner-chosen number decided which concepts could be taught at all. Refusing rather than truncating
+was the correct half - the sequence was never silently corrupted - but a refusal driven by an
+arbitrary ceiling still discards a lawful candidate for a reason that has nothing to do with the
+candidate. The broker now bounds the small fields and deliberately does not bound
+`structural_identity_key`.
+
+**The historical record of the setting follows, for reading old evidence files only.** It had no
+default, and missing, zero, non-numeric or overflowing values all stopped startup.
 
 It bounds one queue record. The measured basis: a real public candidate whose concept carried
 **35,494 candidate placements** produced a canonical identity of **710,219 bytes** and a complete
@@ -1874,8 +1891,56 @@ DPAPI-protected record of **711,508 bytes**. A different sentence, stalling on t
 
 A record over the ceiling is refused **before any durable write** - nothing partial is written and
 no candidate is ever truncated to fit, because truncating the sequence would change the canonical
-identity and corrupt the deduplication law. **Do not set this below about 1 MB**, or ordinary
-candidates will be refused; the proofs used 2,000,000.
+identity and corrupt the deduplication law.
+
+#### 21.11c-i THE INTRINSIC-MAXIMUM DETERMINATION, asked for 2026-09-04
+
+The owner asked whether an intrinsic maximum already exists in the canonical wire or record
+format, rather than a number being chosen. Read against Deep Kore at `b75aaef`:
+
+**No intrinsic maximum exists for the record, and the record is canonically self-delimiting.**
+
+- The durable store is `[u32 length-prefix][DPAPI-protected blob]`, appended
+  (`teaching_record_framing.hpp`). Every record delimits itself. Nothing has to know a maximum in
+  order to read one, and a truncated write is detected by the boundary plus decrypt failure - not
+  by a size rule.
+- The wire frame is `DKTB1` magic, `u32` op, `u32` payload length, then length-prefixed fields.
+  Also self-delimiting.
+- The field that actually grows is `structural_identity_key`, and it **IS** the complete sorted
+  candidate-ID sequence. Its length is a function of how many candidate placements the concept
+  carries, and nothing in either format bounds that count. `teaching_case.hpp` says so directly:
+  it is "stored WHOLE and is never trimmed, sampled, reordered or partially stored".
+
+The only ceiling anywhere is **4,294,967,295** bytes, which is `2^32 - 1` and exists solely
+because the length prefix is 32 bits. That is a REPRESENTATIONAL limit of the encoding, not a
+statement about how large a record may be, and it derives nothing.
+
+**So the variable conflicts with the architecture**, and the conflict is visible in the fact that
+it currently does two incompatible jobs:
+
+| Where | What it does | What it should be |
+|---|---|---|
+| `payload_len > g_max_record_bytes` (line 396) | Bounds a **hostile declared length before the allocation it would cause**. Legitimate, necessary, and exactly the same class as `MAX_SMALL_FIELD_BYTES`. | A framing constant in the broker's own law. Wants to be as SMALL as possible. |
+| `read_field(cur, structural_identity_key, g_max_record_bytes)` (line 422) | Bounds the **canonical identity**, so an owner-chosen number decides which lawful candidates can ever be queued. | Nothing. Wants to be as LARGE as possible, ideally absent. |
+
+One variable cannot be both, and that is why no non-arbitrary value exists: every candidate value
+is simultaneously too large for the first job and too small for the second.
+
+**The measured 711,508 and 735,046-byte records bound nothing.** They are two observations of two
+particular concepts. Padding either one into an operational limit would be inventing exactly the
+arbitrary ceiling this determination was asked to avoid, and it would still refuse the first
+concept that happened to be larger.
+
+**The correction belongs to the Deep Kore repository and was NOT made in this website pass** -
+that repository is owned by a concurrent session and this pass is read-only there. Stated for
+whoever does make it: keep a framing bound on `payload_len`, as a constant beside
+`MAX_SMALL_FIELD_BYTES` with the same justification; stop applying it to
+`structural_identity_key`; and remove `DEEP_KORE_TEACHING_MAX_RECORD_BYTES`, because a record
+ceiling is not a thing the architecture has room for.
+
+Until that happens the variable is still required to start the broker, and the website's own
+proofs set it to a **test** value with an isolated queue root. That value is not a recommendation
+and appears in no production guidance.
 
 ### 21.12 Things not to do here
 
@@ -2020,10 +2085,12 @@ Browser-visible, and public by design: `PUBLIC_TURNSTILE_SITE_KEY`. A Turnstile 
 not a credential. **No other `PUBLIC_`-prefixed Deep Kore variable may ever exist**, because Astro
 inlines those into the browser bundle.
 
-Origin-side, the owner's: `DEEP_KORE_BIND_URL`, `DEEP_KORE_WORKER_PATH`,
-`DEEP_KORE_MAX_SESSIONS`, `DEEP_KORE_SESSION_IDLE_SECONDS`, `DEEP_KORE_TEACHING_QUEUE_ROOT`,
-`DEEP_KORE_TEACHING_QUEUE_REQUIRE_ISOLATED`, `DEEP_KORE_TEACHING_MAX_RECORD_BYTES`,
+Origin-side, the owner's: `DEEP_KORE_BIND_URL`, `DEEP_KORE_GATEWAY_TOKEN`,
+`DEEP_KORE_WORKER_PATH`, `DEEP_KORE_MAX_SESSIONS`, `DEEP_KORE_SESSION_IDLE_SECONDS`,
+`DEEP_KORE_TEACHING_QUEUE_ROOT`, `DEEP_KORE_TEACHING_QUEUE_REQUIRE_ISOLATED`,
 `DEEP_KORE_GATEWAY_SID`.
+
+`DEEP_KORE_TEACHING_MAX_RECORD_BYTES` was in this list and is **withdrawn** - see 21.11c.
 
 #### Privacy assumptions this site publishes, which Deep Kore must keep true
 
@@ -2080,7 +2147,42 @@ So, precisely:
 - `tests/live/deep-kore-tav-and-consent.spec.ts` now asserts that seam directly, so it cannot be
   forgotten and cannot be quietly "fixed" by making the page assert an entity it does not know.
 
-**The decision is yours, and it is a product decision, not a code one:** whether the public page
-should gain a surface on which a visitor describes an entity to Deep Kore - "I am asking about a
-person I know" - which would make TAV reachable. That is a new public surface with its own
-privacy and consent consequences. Nothing in this repository assumes it.
+**That decision was taken on 2026-09-04.** The owner authorised the smallest lawful visitor-facing
+Private Context surface, and authorised the private literal to cross on an explicit grant for one
+turn. The measurement above is unchanged and is the reason the surface exists: the site still
+cannot produce a TAV request on its own, and still must not.
+
+### 21.15 THE PRIVATE CONTEXT SURFACE, as built
+
+**Closed by default, optional, and ordinary conversation works without it** - a visitor who just
+wants to talk is never asked about their relationships first.
+
+What a visitor does: names an entity for their own benefit, chooses a **relationship role** from
+the six canonical enumerators, optionally chooses a **device entity kind** from the seven, and
+ticks which message is about it. That is the entire surface.
+
+What crosses: an **opaque random reference** plus the enumerators they chose. **The name never
+does** - it exists so they can recognise their own entries, and the reference is not derived from
+it. Events are not exposed at all, and `StructuralEntityKind` is never sent: that is what Deep
+Kore resolves TO, and sending it would assert the conclusion instead of the evidence.
+
+**The private value.** When the real engine returns a TAV request, the visitor may send one
+specific fact for that one answer. Nothing is preselected; taking no action sends nothing. A grant
+is consumed before the turn is even sent, so a later question has to ask again. The canonical rule
+is mirrored exactly - a value only ever on `GRANTED`, and a non-GRANTED decision carrying one is
+refused outright - and this site enforces it independently of the upstream parser.
+
+**Everything is cleared** on use, denial, revocation, removal, explicit clear, session deletion,
+terminal failure, navigation and page closure. None of it touches `localStorage`,
+`sessionStorage`, IndexedDB, a cookie, a URL, a log, an analytics call or the review queue.
+
+**Four claims here are things the system must keep true**, and if one stops being true the
+published copy on `/deep-kore`, `/privacy` and `/terms` is wrong and must change with it - not the
+other way round:
+
+| The site says | What keeps it true |
+|---|---|
+| Nothing is worked out from your messages | `privateContext.ts` has no parser, no lexicon and no transcript access; a test scans its code for them |
+| The name you use is never transmitted | `toDeviceEntities()` is the only wire-shape producer and never writes a label |
+| A value is used for one answer and then discarded | The vault entry is forgotten in the same breath the disclosure is built |
+| Declining sends nothing | The refusal branch never reads the vault, and the disclosure carries no value field |

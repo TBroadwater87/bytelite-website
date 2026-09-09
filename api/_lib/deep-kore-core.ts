@@ -21,10 +21,18 @@ import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import {
   CODE_SESSION_CAPACITY as CAPACITY,
   CODE_UNAVAILABLE as UNAVAILABLE,
+  CODE_PROVENANCE_MISMATCH as PROVENANCE_MISMATCH,
   type DeepKoreErrorCode,
   type Exhaustive,
   type MustBeTrue,
   type PublicResultKind,
+  MAX_DEVICE_BYTES,
+  TAV_PURPOSE,
+  isAgreement,
+  isDeviceEntityKind,
+  isRelationshipRole,
+  isTavDecision,
+  isTavField,
 } from './deep-kore-codes.js';
 
 // ---------------------------------------------------------------------------
@@ -340,7 +348,40 @@ export interface PublicTurn {
     passed: boolean;
     stamp: string;
   };
+  /**
+   * PUBLIC TESSERACT ANCHOR HANDLES established by this turn.
+   *
+   * Opaque, session-scoped, and deliberately nothing more. Each is
+   * `SHA-256(concept_id || session_secret)` in lowercase hex, where the session secret
+   * is 32 CSPRNG bytes generated when the session is created and destroyed when it ends.
+   * The handle therefore cannot be reversed to the concept it confirms, cannot be
+   * correlated across sessions, and becomes unverifiable the moment the session dies -
+   * no API can reproduce or validate it once the secret is gone.
+   *
+   * WHAT AN ANCHOR IS: a confirmation that structural cognition reached ESTABLISHED for
+   * some concept during this turn, in this session's private overlay.
+   *
+   * WHAT IT IS NOT, AND WHAT THE ENGINE DELIBERATELY DOES NOT SEND: the concept id, a
+   * Tesseract coordinate, a placement, an edge, a candidate set, an elimination trace,
+   * graph topology, private state, a machine path, or any process or host detail. There
+   * is no field on the wire for any of those, so this site cannot leak one by accident
+   * and must never derive, reconstruct or infer one.
+   *
+   * An empty array is the ordinary case and means exactly what it says: this turn
+   * established nothing. It is never a failure and must never be rendered as one.
+   */
+  anchors: string[];
 }
+
+/**
+ * The lowercase-hex SHA-256 shape an anchor handle always has.
+ *
+ * Validated rather than trusted. The handle is the one anchor field that crosses, so if
+ * the origin ever sent something of a different shape this site refuses the whole result
+ * instead of forwarding an unrecognised string to a visitor - the same rule that already
+ * governs every other upstream value.
+ */
+const ANCHOR_HANDLE = /^[0-9a-f]{64}$/;
 
 /**
  * THE CLOSED TYPED RESULT UNION the browser is allowed to receive.
@@ -410,19 +451,9 @@ export interface PublicTeachingOffer {
   description: string;
 }
 
-/** The closed TavField vocabulary the browser may be asked about. */
-const TAV_FIELDS = new Set([
-  'DISPLAY_NAME',
-  'ADDRESS',
-  'PHONE_NUMBER',
-  'EMAIL',
-  'RELATIONSHIP_LABEL',
-  'EVENT_DESCRIPTION_DETAIL',
-  'OTHER',
-]);
-
-/** The only lawful TAV purpose. Anything else is refused rather than rendered. */
-const TAV_PURPOSE = 'RESPONSE_REQUIRES_LITERAL_VALUE';
+// The closed TavField vocabulary and the single lawful purpose now come from the shared
+// contract module, so the server, the browser's own controls and the projection below all
+// read ONE transcription of the canonical headers rather than three that can drift.
 
 function toPublicTav(raw: unknown): PublicTavRequest | null {
   const r = asRecord(raw);
@@ -433,8 +464,8 @@ function toPublicTav(raw: unknown): PublicTavRequest | null {
   const purpose = r['purpose'];
   if (typeof tavId !== 'string' || tavId.length === 0) return null;
   if (typeof target !== 'string' || target.length === 0) return null;
-  if (typeof field !== 'string' || !TAV_FIELDS.has(field)) return null;
-  if (purpose !== TAV_PURPOSE) return null;
+  if (!isTavField(field)) return null;
+  if (typeof purpose !== 'string' || purpose !== TAV_PURPOSE) return null;
   return { tav_id: tavId, entity_ref: target, field, purpose };
 }
 
@@ -535,6 +566,7 @@ interface EngineShape {
   gov_stamp?: unknown;
   warmed_text?: unknown;
   vanguard_enabled?: unknown;
+  anchors_established_this_turn?: unknown;
 }
 
 /**
@@ -556,6 +588,9 @@ export function toPublicTurn(engine: unknown): PublicTurn | null {
   const vanguardOn = e.vanguard_enabled === true;
   const text = vanguardOn && warmed.length > 0 ? warmed : e.text;
 
+  const anchors = toAnchorHandles(e.anchors_established_this_turn);
+  if (anchors === null) return null;
+
   return {
     text,
     persona: typeof e.persona === 'string' ? e.persona : 'AIYA',
@@ -563,7 +598,42 @@ export function toPublicTurn(engine: unknown): PublicTurn | null {
       passed: e.gk_passed === true,
       stamp: publicStamp(e.gov_stamp),
     },
+    anchors,
   };
+}
+
+/**
+ * Projects `anchors_established_this_turn` to the handles, or `null` if it is malformed.
+ *
+ * ABSENT IS NOT MALFORMED. The origin's stated compatibility contract is that the typed
+ * members are additive and that an older worker which omits one degrades the caller to
+ * its earlier behaviour rather than breaking it. An absent array therefore means "no
+ * anchors", exactly as an empty one does.
+ *
+ * PRESENT-BUT-WRONG IS A FAULT, AND FAILS THE WHOLE TURN. Returning `null` here makes
+ * `toPublicTurn` return `null`, which the result mapper already turns into
+ * `malformed_engine_result`. That is deliberate and is the same standing rule the rest of
+ * this boundary follows: a value this site does not recognise is never repaired, never
+ * partially salvaged, and never passed through. Dropping the bad entries and rendering the
+ * rest would quietly show a visitor an anchor list that is not the one the engine sent.
+ */
+function toAnchorHandles(raw: unknown): string[] | null {
+  if (raw === undefined || raw === null) return [];
+  if (!Array.isArray(raw)) return null;
+
+  const handles: string[] = [];
+  for (const entry of raw) {
+    if (!entry || typeof entry !== 'object' || Array.isArray(entry)) return null;
+    // An allowlist, like every other body this boundary reads: an anchor object carries
+    // `handle` and nothing else. An extra key means the origin's contract moved and this
+    // site has not been reconciled to it, which is a reason to stop rather than guess.
+    const keys = Object.keys(entry as Record<string, unknown>);
+    if (keys.length !== 1 || keys[0] !== 'handle') return null;
+    const handle = (entry as { handle: unknown }).handle;
+    if (typeof handle !== 'string' || !ANCHOR_HANDLE.test(handle)) return null;
+    handles.push(handle);
+  }
+  return handles;
 }
 
 // ---------------------------------------------------------------------------
@@ -885,7 +955,9 @@ const DEVICE_KEYS = ['entities', 'current_message', 'events', 'tav_disclosures']
 const ENTITY_KEYS = ['entity_id', 'entity_kind', 'relationship_role', 'agreement'] as const;
 const SEGMENT_KEYS = ['kind', 'entity_id'] as const;
 const EVENT_KEYS = ['event_id', 'actor', 'destination'] as const;
-const DISCLOSURE_KEYS = ['tav_id', 'target_entity_id', 'field', 'decision'] as const;
+// `value` is in this list ONLY because a GRANTED disclosure may lawfully carry one. The
+// decision rule in sanitizeDevice is what actually governs whether it may be non-empty.
+const DISCLOSURE_KEYS = ['tav_id', 'target_entity_id', 'field', 'decision', 'value'] as const;
 
 /**
  * The CSRF check for state-changing methods, in addition to `SameSite=Strict` and the
@@ -1003,6 +1075,22 @@ export async function handleCreateSession(
     }
     if (res.status === 503 && code === 'engine_unavailable') {
       return fail(503, UNAVAILABLE);
+    }
+
+    // PROVENANCE IS A THIRD FACT, AND IT IS NOT AN OUTAGE EITHER.
+    //
+    // The certified gateway compares the commit its worker reports in READY against the
+    // commit compiled into the gateway, and answers `503 provenance_mismatch` when they
+    // disagree - disposing the worker and releasing the slot rather than running a session
+    // across two builds whose governance may differ.
+    //
+    // Folding that into `origin_error` would be the same mistake as folding capacity into
+    // outage, one step further along: it reports a mismatched DEPLOYMENT as a failed
+    // REQUEST. Nothing the visitor does clears it and nothing the service does clears it
+    // either - an operator has to redeploy matched binaries - so it needs its own code to
+    // say so. The status stays 503 because the origin refused rather than malfunctioned.
+    if (res.status === 503 && code === 'provenance_mismatch') {
+      return fail(503, PROVENANCE_MISMATCH);
     }
     return fail(502, 'origin_error');
   }
@@ -1132,13 +1220,24 @@ function sanitizeDevice(raw: unknown): { ok: true; device: Record<string, unknow
       const id = r['entity_id'];
       if (typeof id !== 'string' || !isPlainToken(id)) return { ok: false };
       const ent: Record<string, unknown> = { entity_id: id };
-      for (const k of ['entity_kind', 'relationship_role', 'agreement']) {
+      // CANONICAL ENUMERATORS, not a shape guard.
+      //
+      // This accepted anything matching /^[A-Z_]{1,40}$/ and left the vocabulary to the
+      // worker. That was defensible while the browser sent nothing but a typed decision.
+      // It is not defensible now that a VISITOR chooses these values in the interface: a
+      // control able to offer a value the engine does not define is one that can be wrong
+      // in a way only the origin notices, after the visitor chose it in good faith. The
+      // lists come from the shared contract module, so the control and this check cannot
+      // disagree with each other.
+      const enums: ReadonlyArray<readonly [string, (v: unknown) => boolean]> = [
+        ['entity_kind', isDeviceEntityKind],
+        ['relationship_role', isRelationshipRole],
+        ['agreement', isAgreement],
+      ];
+      for (const [k, isValid] of enums) {
         const v = r[k];
         if (v === undefined) continue;
-        // Closed enum NAMES only. The worker parses them against the canonical
-        // vocabularies and refuses anything unrecognised, so this is a shape guard
-        // rather than a second vocabulary that could drift.
-        if (typeof v !== 'string' || !/^[A-Z_]{1,40}$/.test(v)) return { ok: false };
+        if (!isValid(v)) return { ok: false };
         ent[k] = v;
       }
       cleaned.push(ent);
@@ -1199,15 +1298,6 @@ function sanitizeDevice(raw: unknown): { ok: true; device: Record<string, unknow
     for (const t of disclosures) {
       const r = asRecord(t);
       if (!r) return { ok: false };
-      // THE LOAD-BEARING REFUSAL. A private value must never reach this server, so a
-      // disclosure carrying one is rejected rather than stripped: stripping would let
-      // a client believe it had transmitted something it had not, and would make the
-      // absence of values a habit rather than a guarantee.
-      //
-      // The key allowlist below covers `value` as well, and deliberately so: this line
-      // stays because it names the one field that matters, and the allowlist stays
-      // because it catches whatever a future protocol calls it instead.
-      if ('value' in r) return { ok: false };
       if (!onlyKnownKeys(r, DISCLOSURE_KEYS)) return { ok: false };
       const tavId = r['tav_id'];
       const target = r['target_entity_id'];
@@ -1215,14 +1305,65 @@ function sanitizeDevice(raw: unknown): { ok: true; device: Record<string, unknow
       const decision = r['decision'];
       if (typeof tavId !== 'string' || !isPlainToken(tavId)) return { ok: false };
       if (typeof target !== 'string' || !isPlainToken(target)) return { ok: false };
-      if (typeof field !== 'string' || !/^[A-Z_]{1,40}$/.test(field)) return { ok: false };
-      if (typeof decision !== 'string' || !/^[A-Z_]{1,40}$/.test(decision)) return { ok: false };
-      cleaned.push({ tav_id: tavId, target_entity_id: target, field, decision });
+      if (!isTavField(field)) return { ok: false };
+      if (!isTavDecision(decision)) return { ok: false };
+
+      // ---------------------------------------------------------------------
+      // THE PRIVATE VALUE, AND THE ONE CONDITION UNDER WHICH IT MAY CROSS.
+      //
+      // Authorised by the owner on 2026-09-04. It is written to MIRROR the canonical
+      // strict parser rather than merely resemble it: `value` is meaningful ONLY when
+      // the decision is GRANTED, and a non-GRANTED decision carrying a NON-EMPTY value
+      // is rejected outright - "illegal state unrepresentable, not merely should be
+      // empty by convention", in the protocol header's own words.
+      //
+      // This site enforces that at its OWN boundary rather than relying on the upstream
+      // one. Two independent parsers refusing the same illegal shape is the point: a
+      // literal leaving a browser under a refusal is the worst thing this feature could
+      // do, and it should have to get past both to happen.
+      //
+      // WHAT IS DELIBERATELY ABSENT: a length of our own. The value is bounded by
+      // MAX_DEVICE_BYTES - the worker's own constant, applied to the whole envelope
+      // below - so nothing here invents a limit on how much a visitor may choose to
+      // disclose about themselves.
+      //
+      // It is never logged, never echoed, never stored and never returned. It exists in
+      // this process only for as long as it takes to forward one request.
+      // ---------------------------------------------------------------------
+      const value = r['value'];
+      const disclosure: Record<string, unknown> = {
+        tav_id: tavId,
+        target_entity_id: target,
+        field,
+        decision,
+      };
+      if (value !== undefined) {
+        if (typeof value !== 'string') return { ok: false };
+        if (value.length > 0 && decision !== 'GRANTED') return { ok: false };
+        // An empty value is lawful on any decision and discloses nothing, so it is
+        // forwarded in the canonical shape rather than silently dropped.
+        disclosure['value'] = value;
+      }
+      cleaned.push(disclosure);
     }
     out['tav_disclosures'] = cleaned;
   }
 
-  return { ok: true, device: Object.keys(out).length > 0 ? out : undefined };
+  if (Object.keys(out).length === 0) return { ok: true, device: undefined };
+
+  // THE ENVELOPE CEILING, AND IT IS NOT THIS SITE'S NUMBER.
+  //
+  // `MAX_DEVICE_BYTES` is `dk_session_worker`'s own constant, restated in the shared
+  // contract module and applied here so an oversized envelope is refused at this
+  // boundary instead of being proxied to an origin that will reject it anyway - exactly
+  // the arrangement `MAX_MESSAGE_BYTES` already has with the gateway's constant.
+  //
+  // It is also what bounds a granted private value, which is why this site needs no
+  // limit of its own on one: a visitor may disclose as much as the canonical envelope
+  // can carry, and not one byte of that is decided here.
+  if (Buffer.byteLength(JSON.stringify(out), 'utf8') > MAX_DEVICE_BYTES) return { ok: false };
+
+  return { ok: true, device: out };
 }
 
 export async function handleMessage(

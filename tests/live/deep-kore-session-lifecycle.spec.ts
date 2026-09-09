@@ -232,22 +232,29 @@ test.describe('terminal-idle reaping is resource cleanup, never a cognition dead
       const done = await awaitTurn(request, gw.url, sessionId, jobId);
       expect(done.state).toBe('succeeded');
 
-      // Now go quiet. Every authenticated request restarts the idle clock, so the test
-      // must genuinely stop touching the session - which is exactly the condition the
-      // policy describes. Poll only for the OUTCOME, and give the sweeper room to run.
-      const deadline = Date.now() + 60_000;
-      let reaped = false;
-      while (Date.now() < deadline) {
-        await new Promise((r) => setTimeout(r, 1000));
-        const probe = await request.post(`${gw.url}v1/sessions/${sessionId}/messages`, {
-          headers: { ...auth(), 'Content-Type': 'application/json' },
-          data: { message_id: 'probe-' + Date.now(), text: 'still there?' },
-        });
-        if (probe.status() === 404) { reaped = true; break; }
-        // A probe is itself activity, so if it succeeded the clock restarted and the
-        // next quiet interval starts now. That is the policy working as written.
-      }
-      expect(reaped, 'a terminally idle session was never reaped').toBe(true);
+      // NOW GO GENUINELY QUIET, AND MEASURE ONCE.
+      //
+      // This used to poll every second with a real message submission until one came
+      // back 404. That could only ever pass by winning a race, for two compounding
+      // reasons: every authenticated request calls `Touch()`, so each probe restarted
+      // the very clock the test was waiting on; and a probe SUBMITS A TURN, so the
+      // session spent much of each interval with cognition in flight - a state that is
+      // correctly never eligible for reaping. Reaping could therefore only happen if a
+      // sweep landed in the gap between one turn completing and the next probe starting.
+      // It failed on chromium in one run and firefox in the next, which is exactly what
+      // that race looks like.
+      //
+      // The fix is the same reasoning the sibling test below already states: outlast more
+      // than one sweep interval in real silence, then look ONCE. The wait is the
+      // measurement, not a workaround for a race, so the timeout is raised to fit it
+      // rather than the wait being shortened to fit the timeout.
+      test.setTimeout(120_000);
+      await new Promise((r) => setTimeout(r, 32_000));
+
+      // A single probe, after the fact. At an idle window of zero, two full sweep
+      // intervals of silence must have taken it.
+      const probe = await request.get(`${gw.url}v1/jobs/${jobId}`, { headers: auth(sessionId) });
+      expect(probe.status(), 'a terminally idle session was never reaped').toBe(404);
     } finally {
       await stopGateway(request, gw);
     }

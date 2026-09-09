@@ -115,6 +115,29 @@ interface Recorded {
   body: string | null;
 }
 
+/**
+ * Marks a request the scripted transport was never told how to answer.
+ *
+ * Checked after every test rather than inside the route handler: a handler that throws
+ * is reported by Playwright as a route error and does NOT fail the test, so enforcing it
+ * there would have produced a warning nobody reads. The four public routes are the whole
+ * surface this glob can match, so a request reaching the fallthrough is always a defect
+ * in the script or in the page - never an ordinary case that needs tolerating.
+ */
+const UNSCRIPTED = 'harness-unscripted-request';
+
+// Playwright parses this signature to decide which fixtures the hook needs, and rejects
+// anything but a destructuring pattern in the first position. The empty pattern is the
+// documented way to say "no fixtures, just the test info" - naming a fixture instead
+// would set one up for every test in the file to satisfy a linter.
+// eslint-disable-next-line no-empty-pattern
+test.afterEach(({}, testInfo) => {
+  const stray = testInfo.annotations
+    .filter((a) => a.type === UNSCRIPTED)
+    .map((a) => a.description);
+  expect(stray, 'the page made a request the scripted transport does not describe').toEqual([]);
+});
+
 const OK_SESSION: Answer = {
   status: 201,
   body: { ok: true, persona: 'AIYA', canon_version: null, csrf_token: 'csrf-token-for-test', max_message_bytes: 8192 },
@@ -122,7 +145,7 @@ const OK_SESSION: Answer = {
 const OK_MESSAGE: Answer = { status: 202, body: { job_id: 'job-test-1', duplicate: false } };
 const OK_DELETE: Answer = { status: 200, body: { deleted: true } };
 
-const governedTurn = (text: string) => ({
+const governedTurn = (text: string, anchors: string[] = []) => ({
   state: 'succeeded',
   result: {
     kind: 'GOVERNED_TEXT',
@@ -130,9 +153,16 @@ const governedTurn = (text: string) => ({
       text,
       persona: 'AIYA',
       governance: { passed: true, stamp: 'GOV_STAMP|gk=pass|persona=AIYA' },
+      // Defaults to empty because that is the ordinary turn. A test that wants anchors
+      // asks for them, so no test accidentally asserts against a list it did not intend.
+      anchors,
     },
   },
 });
+
+/** Two well-formed anchor handles: lowercase hex, 64 characters, exactly as the engine sends. */
+const ANCHOR_ONE = 'b'.repeat(64);
+const ANCHOR_TWO = '0123456789abcdef'.repeat(4);
 
 const RUNNING: Answer = { status: 200, body: { state: 'running' } };
 
@@ -184,6 +214,16 @@ async function installTransport(page: Page, script: Script): Promise<Recorded[]>
   const recorded: Recorded[] = [];
   let pollIndex = 0;
 
+  // Recorded against the TEST rather than a module-level list, deliberately. A shared
+  // array would be scenario state living longer than the scenario, which is the defect
+  // this pass went looking for - and with one worker it would still be wrong, just
+  // harder to see. The annotation belongs to the test that provoked it and dies with it.
+  const unscripted = {
+    push(what: string) {
+      test.info().annotations.push({ type: UNSCRIPTED, description: what });
+    },
+  };
+
   await page.route('**/api/deep-kore/**', async (route: Route) => {
     const req = route.request();
     const path = new URL(req.url()).pathname;
@@ -208,14 +248,58 @@ async function installTransport(page: Page, script: Script): Promise<Recorded[]>
     }
     if (path.includes('/api/deep-kore/result/')) {
       const polls = script.polls ?? [governedTurn('A governed answer.')].map((body) => ({ status: 200, body }));
+      // The last entry repeats deliberately, so a script need not count polls. That is
+      // safe ONLY while the repeating entry is terminal: a script whose final answer is
+      // `running` would be answered `running` for ever, and the console - which has no
+      // attempt cap by design - would poll until the test timed out with nothing to say
+      // about why. Naming it here turns a silent 30-second hang into a script defect
+      // reported at the request that caused it.
+      const exhausted = pollIndex >= polls.length;
       const a = polls[Math.min(pollIndex, polls.length - 1)]!;
+      if (exhausted && (a.body as { state?: string })?.state === 'running') {
+        unscripted.push(`${method} ${path} - poll script exhausted on a non-terminal answer`);
+      }
       pollIndex += 1;
       return answer(a);
     }
-    return route.fulfill({ status: 500, contentType: 'application/json', body: '{}' });
+
+    // NEVER A SILENT FALLTHROUGH. An unmatched request means the page called something
+    // this script does not describe. Answering it with an empty 500 hid that: the console
+    // reported an ordinary origin failure and the test failed several steps later, on a
+    // state assertion that was never the defect. The request is named instead, so the
+    // report points at what actually happened.
+    unscripted.push(`${method} ${path}`);
+    return route.fulfill({
+      status: 500,
+      contentType: 'application/json',
+      body: JSON.stringify({ error_code: 'harness_unscripted_request' }),
+    });
   });
 
   return recorded;
+}
+
+/**
+ * Waits until a request the page was expected to make has actually been recorded, and
+ * returns that one by position.
+ *
+ * A click resolves when the click is DISPATCHED, not when the request it causes has been
+ * issued and observed by the route handler. Reading the recording straight after one
+ * therefore reads the PREVIOUS request - which is exactly how the Firefox run of
+ * "a granted value is sent exactly once" read turn 3 (a plain message, no device
+ * envelope) while asserting about turn 4, and died on `device` being undefined.
+ *
+ * Waiting for the request ITSELF is the fix. An arbitrary pause would be the same race
+ * with a longer fuse, and section 9 forbids one for precisely this reason. Position is
+ * used rather than `.at(-1)` so the assertion names the turn it means: with four message
+ * requests in this conversation, "the last one" is only the right one by luck.
+ */
+async function nthRequest(recorded: Recorded[], suffix: string, n: number): Promise<Recorded> {
+  const matching = () => recorded.filter((r) => r.path.endsWith(suffix));
+  await expect
+    .poll(matching, { message: `waiting for ${n} ${suffix} request(s) to have been made` })
+    .toHaveLength(n);
+  return matching()[n - 1]!;
 }
 
 const consoleState = (page: Page) => page.locator('.dk-console');
@@ -226,6 +310,31 @@ const composer = (page: Page) => page.locator('#dk-input');
 async function startSession(page: Page) {
   await startButton(page).click();
   await expect(consoleState(page)).toHaveAttribute('data-dk-state', 'READY');
+}
+
+/**
+ * Type a private value and hand it to the vault, waiting for the one precondition that
+ * makes the handler capable of doing anything.
+ *
+ * WHY THIS IS NOT JUST `fill` THEN `click`. `#dk-private` is a controlled input and
+ * "Keep locally" is `disabled` until React has processed the change, so the click depends
+ * on a state transition that `fill()` only STARTS. Firefox failed here on a real run: the
+ * trace shows the click dispatched 52ms after the fill, and the failure snapshot shows the
+ * input still holding the text with the button focused and the vault still empty - the
+ * click landed on a handler that could not yet see the draft, so `keepPrivate` returned at
+ * its empty-value guard and nothing happened. Every later assertion then failed for a
+ * reason that had nothing to do with what it was testing.
+ *
+ * Awaiting `toBeEnabled()` states that dependency instead of hoping the two land in order.
+ * It is the same correction, and the same reasoning, as waiting for a request to be
+ * OBSERVED rather than reading whichever one happens to be last: a click resolves when it
+ * is dispatched, never when its effect has happened.
+ */
+async function keepPrivateValue(page: Page, value: string) {
+  await page.locator('#dk-private').fill(value);
+  const keep = page.getByRole('button', { name: 'Keep locally' });
+  await expect(keep, 'the composer never enabled, so the vault could not be written').toBeEnabled();
+  await keep.click();
 }
 
 async function say(page: Page, text: string) {
@@ -369,9 +478,14 @@ test.describe('a value the visitor keeps on their own device', () => {
     const ask = page.locator('[data-dk-ask="tav"]');
     await expect(ask).toBeVisible();
     await expect(ask.locator('code')).toHaveText('PHONE_NUMBER');
-    // The request is a PREDICATE. There is no value in it and nothing for the page to
-    // evaluate, which is why a TAV request can never be a script-delivery channel.
-    await expect(ask).toContainText('never the value itself');
+    // THE REQUEST ITSELF IS STILL A PREDICATE. It names a KIND of fact and carries no
+    // value, no lookup key and nothing for the page to evaluate - which is why a TAV
+    // request can never be a script-delivery channel, and remains true now that an
+    // answer may carry a literal.
+    await expect(ask).toContainText('has asked for one fact by name');
+    // And the copy states the actual bargain rather than the one that used to apply.
+    await expect(ask).toContainText('used for this one answer and then discarded');
+    await expect(ask).toContainText('If you decline, nothing is sent');
     // No checked input anywhere, and no autofocus onto the permitting control.
     await expect(ask.locator('input:checked')).toHaveCount(0);
 
@@ -419,11 +533,15 @@ test.describe('a value the visitor keeps on their own device', () => {
     ]);
   });
 
-  test('a permitted turn still transmits no value, and the grant is consumed once', async ({ page }) => {
+  test('a granted value is sent exactly once and is gone afterwards', async ({ page }) => {
+    // SUPERSEDES a row that asserted a permitted turn transmits NO value. That was the
+    // site's rule until the owner authorised the literal to cross on an explicit grant,
+    // for one turn. The consumption half of the old row is unchanged and still asserted
+    // below - it is the transmission half that was decided differently.
     const recorded = await installTransport(page, {
       polls: [
         TAV_REQUEST,
-        { status: 200, body: governedTurn('Answered without the literal.') },
+        { status: 200, body: governedTurn('Answered with what you sent.') },
         TAV_REQUEST,
         { status: 200, body: governedTurn('Answered again.') },
       ],
@@ -433,68 +551,175 @@ test.describe('a value the visitor keeps on their own device', () => {
     await say(page, 'List the parts of a zqxjvwkbrump.');
     await expect(page.locator('[data-dk-ask="tav"]')).toBeVisible();
 
-    await page.locator('#dk-private').fill(PRIVATE_VALUE);
-    await page.getByRole('button', { name: 'Keep locally' }).click();
+    await keepPrivateValue(page, PRIVATE_VALUE);
     await expect(page.locator('.dk-private-held')).toContainText('Held in this tab only');
 
-    await page.getByRole('button', { name: 'Continue without sending the value' }).click();
-    // PERMISSION IS NOT DISCLOSURE. The visitor said yes; this device still does not
-    // transmit a literal, so the engine is told disclosure was withheld.
-    await expect(page.locator('.dk-notice')).toContainText('The value stayed on this device');
+    // THE CONTROL SAYS IT SENDS, because with a value held that is what it does.
+    const permit = page.locator('[data-dk-action="tav-permit"]');
+    await expect(permit).toHaveText('Send it for this answer only');
+    await permit.click();
+
+    await expect(page.locator('.dk-notice')).toContainText('Sent for that one answer, and cleared');
     await settleBanner(page);
     await shot(page, '08-tav-grant-confirmation');
 
-    await expect(page.locator('.dk-turn-engine').last()).toContainText('Answered without the literal.');
+    await expect(page.locator('.dk-turn-engine').last()).toContainText('Answered with what you sent.');
 
-    // THE VALUE APPEARS IN NO REQUEST THIS PAGE EVER MADE.
-    for (const r of recorded) {
-      expect(r.body ?? '', `${r.method} ${r.path} must not carry the private value`).not.toContain(
-        PRIVATE_VALUE
-      );
-    }
-    const lastMessage = recorded.filter((r) => r.path.endsWith('/message')).at(-1)!;
-    expect(lastMessage.body!).not.toContain('"value"');
-    const body = JSON.parse(lastMessage.body!) as {
+    // IT CROSSED EXACTLY ONCE, on the one request that carried the grant.
+    const carrying = recorded.filter((r) => (r.body ?? '').includes(PRIVATE_VALUE));
+    expect(carrying, 'the literal must cross exactly one request').toHaveLength(1);
+    expect(carrying[0]!.path).toBe('/api/deep-kore/message');
+
+    const granted = JSON.parse(carrying[0]!.body!) as {
       device: { tav_disclosures: Array<Record<string, unknown>> };
     };
-    expect(body.device.tav_disclosures[0]!['decision']).toBe('DENIED_BY_POLICY');
+    expect(granted.device.tav_disclosures[0]!['decision']).toBe('GRANTED');
+    expect(granted.device.tav_disclosures[0]!['value']).toBe(PRIVATE_VALUE);
+
+    // AND IT IS NOT IN THE CONVERSATION. What was disclosed to the engine was not
+    // disclosed to the screen.
+    await expect(page.locator('.dk-transcript')).not.toContainText(PRIVATE_VALUE);
 
     // A SECOND REQUEST FINDS NOTHING HELD. The grant was consumed and the value with it,
     // so the same question asked again cannot silently reuse the earlier permission.
     await say(page, 'Ask me again.');
     await expect(page.locator('[data-dk-ask="tav"]')).toBeVisible();
     await expect(page.locator('.dk-private-held')).toHaveCount(0);
-    await page.getByRole('button', { name: 'Continue without sending the value' }).click();
+    // AND NOTHING OFFERS TO TAKE THE EARLIER DISCLOSURE BACK. The delete control is
+    // rendered only while this tab holds a value, so its absence here is the honest shape
+    // of owner ruling 2026-09-07: a completed disclosure cannot be retroactively revoked,
+    // and the interface must not imply otherwise by leaving a control standing that looks
+    // as though it could.
+    await expect(page.locator('[data-dk-action="remove-held-value"]')).toHaveCount(0);
+    await expect(permit).toHaveText('Continue without sending it');
+    await permit.click();
 
-    const second = recorded.filter((r) => r.path.endsWith('/message')).at(-1)!;
+    // THE FOURTH message request, named by position rather than taken as "the last one".
+    // This conversation sends four: the opening question, the granted continuation, the
+    // repeat question, and the continuation that finds nothing held. Only the fourth is
+    // the one this assertion is about, and only waiting for it makes reading it sound -
+    // `.at(-1)` returned the THIRD on a Firefox run, a plain message with no device
+    // envelope at all, because a click resolves before the request it causes is observed.
+    const second = await nthRequest(recorded, '/message', 4);
     const secondBody = JSON.parse(second.body!) as {
       device: { tav_disclosures: Array<Record<string, unknown>> };
     };
-    // Nothing is held any more, so the honest answer is a possession state, not a policy
-    // refusal. Collapsing the two would tell the engine the wrong thing.
+    // Nothing is held any more, so the honest answer is a possession state. It carries
+    // no value field at all.
     expect(secondBody.device.tav_disclosures[0]!['decision']).toBe('UNAVAILABLE');
+    expect(second.body!).not.toContain(PRIVATE_VALUE);
+
+    // Across the WHOLE conversation the literal appears in one request and nowhere else.
+    expect(recorded.filter((r) => (r.body ?? '').includes(PRIVATE_VALUE))).toHaveLength(1);
   });
 
-  test('a value can be revoked before any decision is taken', async ({ page }) => {
+  // A HELD VALUE CAN BE DELETED FROM THIS TAB. THAT IS NOT REVOCATION.
+  //
+  // This test and its control were both named for revocation until owner ruling
+  // 2026-09-07. Nothing about the behaviour was wrong - it deletes a value the tab is
+  // still holding, before any disclosure exists - but the name claimed a protocol
+  // capability that does not exist. `TavDecision` is
+  // `GRANTED | DENIED_BY_POLICY | DENIED_BY_USER | UNAVAILABLE`; there is no `REVOKED`,
+  // and a test asserting "revocation" would be standing evidence for a promise the
+  // system cannot keep.
+  test('a held value can be deleted from this tab before any decision is taken', async ({
+    page,
+  }) => {
     await installTransport(page, { polls: [TAV_REQUEST] });
     await page.goto(ROUTE);
     await startSession(page);
     await say(page, 'List the parts of a zqxjvwkbrump.');
     await expect(page.locator('[data-dk-ask="tav"]')).toBeVisible();
 
-    // Revocation does not exist until there is something to revoke.
-    await expect(page.locator('[data-dk-action="revoke"]')).toHaveCount(0);
+    // The control does not exist until this tab is holding something to delete.
+    await expect(page.locator('[data-dk-action="remove-held-value"]')).toHaveCount(0);
 
-    await page.locator('#dk-private').fill(PRIVATE_VALUE);
-    await page.getByRole('button', { name: 'Keep locally' }).click();
-    await expect(page.locator('[data-dk-action="revoke"]')).toBeVisible();
+    await keepPrivateValue(page, PRIVATE_VALUE);
+    await expect(page.locator('[data-dk-action="remove-held-value"]')).toBeVisible();
 
     await page.getByRole('button', { name: 'Remove it from this tab' }).click();
     await expect(page.locator('.dk-notice')).toContainText('Nothing was sent, and nothing is held');
-    await expect(page.locator('[data-dk-action="revoke"]')).toHaveCount(0);
+    await expect(page.locator('[data-dk-action="remove-held-value"]')).toHaveCount(0);
     await expect(page.locator('.dk-private-held')).toHaveCount(0);
-    // Still in the same state: revoking a value is not answering the question.
+    // Still in the same state: deleting a value is not answering the question.
     await expect(consoleState(page)).toHaveAttribute('data-dk-state', 'TAV_DECISION_REQUIRED');
+  });
+
+  // -------------------------------------------------------------------------
+  // PUBLIC TESSERACT ANCHORS IN THE INTERFACE
+  //
+  // Added 2026-09-09 with corrected release d3a4f5af. An anchor confirms structure
+  // settled during a turn. The two things a visitor could most easily be misled about
+  // are what it reveals (nothing) and what it means (not learning), so both are asserted
+  // rather than described.
+  // -------------------------------------------------------------------------
+
+  test('an ordinary turn establishes nothing and shows no anchor section', async ({ page }) => {
+    await installTransport(page, { polls: [{ status: 200, body: governedTurn('Done.') }] });
+    await page.goto(ROUTE);
+    await startSession(page);
+    await say(page, 'Say something ordinary.');
+    await expect(page.locator('.dk-turn-engine').last()).toContainText('Done.');
+
+    // An empty anchor list renders NOTHING. The absence is the ordinary case and must
+    // never be dressed up as a warning, a failure, or a missing feature.
+    await page.locator('.dk-why').last().locator('summary').click();
+    await expect(page.locator('.dk-anchors')).toHaveCount(0);
+  });
+
+  test('established anchors are shown as opaque handles and nothing else', async ({ page }) => {
+    await installTransport(page, {
+      polls: [{ status: 200, body: governedTurn('Settled.', [ANCHOR_ONE, ANCHOR_TWO]) }],
+    });
+    await page.goto(ROUTE);
+    await startSession(page);
+    await say(page, 'Tell me about a zqxjvwkbrump.');
+    await expect(page.locator('.dk-turn-engine').last()).toContainText('Settled.');
+
+    // Anchors live INSIDE the governance disclosure, closed by default - a visitor
+    // reading a conversation should not have a list of hashes under every sentence.
+    // Asserted as NOT VISIBLE rather than absent: a closed <details> still has its
+    // content in the DOM, so counting elements would test the wrong thing and would
+    // pass for the wrong reason if the disclosure were ever removed entirely.
+    await expect(page.locator('.dk-anchors')).not.toBeVisible();
+
+    await page.locator('.dk-why').last().locator('summary').click();
+    const anchors = page.locator('.dk-anchors');
+    await expect(anchors).toBeVisible();
+    await expect(anchors).toHaveAttribute('data-dk-anchors', '2');
+    await expect(page.locator('.dk-anchor')).toHaveCount(2);
+
+    // AND IT SAYS WHAT THIS IS NOT. An anchor confirming structure settled is the thing
+    // most likely to be mistaken for Deep Kore having been taught something.
+    await expect(anchors).toContainText('This is not learning');
+
+    // The handle is the only anchor datum that exists on the wire. Nothing resembling a
+    // concept id, coordinate, placement, edge or trace can appear, because none is sent.
+    const body = (await page.locator('.dk-anchors').innerText()).toLowerCase();
+    for (const forbidden of ['concept', 'coordinate', 'placement', 'edge', 'trace', 'topology']) {
+      expect(body, `the anchor panel mentioned ${forbidden}`).not.toContain(forbidden);
+    }
+  });
+
+  test('anchors do not survive the session that issued them', async ({ page }) => {
+    await installTransport(page, {
+      polls: [{ status: 200, body: governedTurn('Settled.', [ANCHOR_ONE]) }],
+    });
+    await page.goto(ROUTE);
+    await startSession(page);
+    await say(page, 'Tell me about a zqxjvwkbrump.');
+    await page.locator('.dk-why').last().locator('summary').click();
+    await expect(page.locator('.dk-anchors')).toBeVisible();
+
+    // Ending the session clears the transcript, and the anchors go with it. The handle
+    // is unverifiable at the origin from this moment too - the session secret that
+    // derived it is destroyed - so nothing anywhere can still resolve it.
+    // TERMINATED, not ENDED: the console keeps those two structurally distinct so that
+    // "you ended it" and "it broke" can never be shown as the same thing.
+    await page.getByRole('button', { name: 'End and delete session' }).click();
+    await expect(consoleState(page)).toHaveAttribute('data-dk-state', 'TERMINATED');
+    await expect(page.locator('.dk-anchors')).toHaveCount(0);
+    await expect(page.locator('body')).not.toContainText(ANCHOR_ONE);
   });
 
   test('focus returns to a lawful control once the question is answered', async ({ page }) => {
@@ -520,9 +745,8 @@ test.describe('a value the visitor keeps on their own device', () => {
     await page.goto(ROUTE);
     await startSession(page);
     await say(page, 'Ask me something.');
-    await page.locator('#dk-private').fill(PRIVATE_VALUE);
-    await page.getByRole('button', { name: 'Keep locally' }).click();
-    await page.getByRole('button', { name: 'Continue without sending the value' }).click();
+    await keepPrivateValue(page, PRIVATE_VALUE);
+    await page.locator('[data-dk-action="tav-permit"]').click();
     await expect(page.locator('.dk-turn-engine').last()).toContainText('Done.');
 
     await expect(page.locator('.dk-transcript')).not.toContainText(PRIVATE_VALUE);
@@ -1100,5 +1324,308 @@ test.describe('the phone layout is real, not a desktop layout that fits', () => 
     await expect(transcript).toHaveAttribute('tabindex', '0');
     const box = await transcript.boundingBox();
     expect(box!.height).toBeLessThan(MOBILE.height);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Private context - the visitor's own structural facts
+// ---------------------------------------------------------------------------
+
+/** A label a visitor might plausibly type. It must never appear in a request. */
+const ENTITY_LABEL = 'SYNTHETIC-LABEL-Alexandra-4402';
+
+/**
+ * Opens the private-context panel, whatever state it is already in.
+ *
+ * Idempotent on purpose: whether the disclosure is open is COMPONENT state and survives
+ * a session ending, so a helper that always clicked would close it half the time. That
+ * is also correct behaviour worth keeping - a visitor who opened the panel does not want
+ * it to snap shut because a session ended - so the helper adapts rather than the page.
+ */
+async function openContext(page: Page) {
+  if ((await page.locator('#dk-context-body').count()) === 0) {
+    await page.locator('[data-dk-action="toggle-context"]').click();
+  }
+  await expect(page.locator('#dk-context-body')).toBeVisible();
+}
+
+async function addEntity(page: Page, label: string, role: string, kind?: string) {
+  await page.locator('#dk-entity-label').fill(label);
+  await page.locator('#dk-entity-role').selectOption(role);
+  if (kind) await page.locator('#dk-entity-kind').selectOption(kind);
+  await page.locator('[data-dk-action="add-entity"]').click();
+}
+
+test.describe('private context is offered, never required, and never inferred', () => {
+  test('the panel is closed by default and the conversation works untouched', async ({ page }) => {
+    const recorded = await installTransport(page, {
+      polls: [{ status: 200, body: governedTurn('An ordinary answer.') }],
+    });
+    await page.goto(ROUTE);
+    await startSession(page);
+
+    // Closed. A visitor who just wants to talk is never asked about their relationships.
+    await expect(page.locator('#dk-context-body')).toHaveCount(0);
+    await expect(page.locator('[data-dk-action="toggle-context"]')).toBeVisible();
+
+    await say(page, 'What are you?');
+    await expect(page.locator('.dk-turn-engine')).toHaveCount(1);
+
+    // AND NOTHING WAS ASSERTED ABOUT THEM. Regular chat sends no envelope at all.
+    const message = recorded.find((r) => r.path.endsWith('/message'))!;
+    const body = JSON.parse(message.body!) as Record<string, unknown>;
+    expect(body['device']).toBeUndefined();
+    expect(Object.keys(body).sort()).toEqual(['text', 'turn_key']);
+  });
+
+  test('it opens, explains itself, and offers only canonical values', async ({ page }) => {
+    await installTransport(page, {});
+    await page.goto(ROUTE);
+    await startSession(page);
+    await openContext(page);
+
+    const panel = page.locator('#dk-context-body');
+    await expect(panel).toContainText('Nothing here is worked out from your messages');
+    await expect(panel).toContainText('Entirely optional');
+    await expect(panel).toContainText('never sent');
+
+    // THE LISTS ARE THE CANONICAL ONES. A control able to offer a value the engine does
+    // not define is one that can be wrong in a way only the origin notices.
+    const roles = await page.locator('#dk-entity-role option').allTextContents();
+    expect(roles).toEqual(['Choose one', 'SELF', 'PARTNER', 'MATCH', 'FRIEND', 'FAMILY', 'OTHER']);
+    const kinds = await page.locator('#dk-entity-kind option').allTextContents();
+    expect(kinds).toEqual([
+      'Prefer not to say',
+      'SELF',
+      'PERSON',
+      'PLACE',
+      'AI_ASSISTANT',
+      'GROUP',
+      'UNKNOWN',
+      'OTHER',
+    ]);
+
+    // Nothing is preselected. There is no default relationship, because a default here
+    // would be the page deciding something about somebody's life.
+    await expect(page.locator('#dk-entity-role')).toHaveValue('');
+    await expect(page.locator('#dk-entity-kind')).toHaveValue('');
+    // And nothing can be added until a role is chosen: the role IS the evidence.
+    await expect(page.locator('[data-dk-action="add-entity"]')).toBeDisabled();
+
+    await settleBanner(page);
+    await shot(page, '19-private-context-empty');
+  });
+
+  test('an entity is added only when the visitor chooses a role', async ({ page }) => {
+    await installTransport(page, {});
+    await page.goto(ROUTE);
+    await startSession(page);
+    await openContext(page);
+
+    await page.locator('#dk-entity-label').fill(ENTITY_LABEL);
+    // A label alone adds nothing.
+    await expect(page.locator('[data-dk-action="add-entity"]')).toBeDisabled();
+
+    await page.locator('#dk-entity-role').selectOption('PARTNER');
+    await expect(page.locator('[data-dk-action="add-entity"]')).toBeEnabled();
+    await page.locator('[data-dk-action="add-entity"]').click();
+
+    const item = page.locator('[data-dk-entity]');
+    await expect(item).toHaveCount(1);
+    await expect(item).toContainText(ENTITY_LABEL);
+    await expect(item.locator('code')).toHaveText(['PARTNER']);
+    // Not attached to the next message on its own.
+    await expect(item.locator('input[type="checkbox"]')).not.toBeChecked();
+
+    await settleBanner(page);
+    await shot(page, '20-private-context-filled');
+  });
+
+  test('the label never leaves the tab, and the reference that does carries nothing', async ({
+    page,
+  }) => {
+    const recorded = await installTransport(page, {
+      polls: [{ status: 200, body: governedTurn('An answer.') }],
+    });
+    await page.goto(ROUTE);
+    await startSession(page);
+    await openContext(page);
+    await addEntity(page, ENTITY_LABEL, 'PARTNER', 'PERSON');
+    await page.locator('[data-dk-action="include-entity"]').check();
+
+    await say(page, 'Tell me about them.');
+    await expect(page.locator('.dk-turn-engine')).toHaveCount(1);
+
+    for (const r of recorded) {
+      expect(r.body ?? '', `${r.path} must not carry the label`).not.toContain(ENTITY_LABEL);
+      expect(r.body ?? '').not.toContain('Alexandra');
+    }
+
+    const message = recorded.filter((r) => r.path.endsWith('/message')).at(-1)!;
+    const body = JSON.parse(message.body!) as { device: Record<string, unknown> };
+    const entity = (body.device['entities'] as Array<Record<string, string>>)[0]!;
+    // The opaque reference and the enumerators they chose. Nothing else.
+    expect(Object.keys(entity).sort()).toEqual([
+      'entity_id',
+      'entity_kind',
+      'relationship_role',
+    ]);
+    expect(entity['relationship_role']).toBe('PARTNER');
+    expect(entity['entity_kind']).toBe('PERSON');
+    expect(entity['entity_id']).toMatch(/^[A-Za-z0-9_-]+$/);
+    // And the reference is not derived from the label.
+    expect(entity['entity_id']).not.toContain('Alex');
+
+    // The segment is what says THIS message is about them.
+    expect(body.device['current_message']).toEqual({
+      segments: [{ kind: 'ENTITY', entity_id: entity['entity_id'] }],
+    });
+  });
+
+  test('describing someone is not saying the message is about them', async ({ page }) => {
+    const recorded = await installTransport(page, {
+      polls: [{ status: 200, body: governedTurn('An answer.') }],
+    });
+    await page.goto(ROUTE);
+    await startSession(page);
+    await openContext(page);
+    await addEntity(page, ENTITY_LABEL, 'FRIEND');
+    // The checkbox is deliberately left alone.
+
+    await say(page, 'A question about nothing in particular.');
+    await expect(page.locator('.dk-turn-engine')).toHaveCount(1);
+
+    const message = recorded.filter((r) => r.path.endsWith('/message')).at(-1)!;
+    const body = JSON.parse(message.body!) as { device: Record<string, unknown> };
+    expect(body.device['entities']).toHaveLength(1);
+    expect(body.device['current_message']).toBeUndefined();
+  });
+
+  test('removing and clearing are real deletions', async ({ page }) => {
+    const recorded = await installTransport(page, {
+      polls: [{ status: 200, body: governedTurn('An answer.') }],
+    });
+    await page.goto(ROUTE);
+    await startSession(page);
+    await openContext(page);
+    await addEntity(page, ENTITY_LABEL, 'PARTNER');
+    await addEntity(page, 'SYNTHETIC-LABEL-Second', 'FAMILY');
+    await expect(page.locator('[data-dk-entity]')).toHaveCount(2);
+
+    await page.locator('[data-dk-action="remove-entity"]').first().click();
+    await expect(page.locator('[data-dk-entity]')).toHaveCount(1);
+    await expect(page.locator('.dk-notice')).toContainText('Nothing about it is held any more');
+
+    await page.locator('[data-dk-action="clear-context"]').click();
+    await expect(page.locator('[data-dk-entity]')).toHaveCount(0);
+
+    // And with nothing left, the next turn asserts nothing again.
+    await say(page, 'Back to an ordinary question.');
+    await expect(page.locator('.dk-turn-engine')).toHaveCount(1);
+    const message = recorded.filter((r) => r.path.endsWith('/message')).at(-1)!;
+    expect(JSON.parse(message.body!)['device']).toBeUndefined();
+  });
+
+  test('ending the session clears the whole private context', async ({ page }) => {
+    await installTransport(page, {});
+    await page.goto(ROUTE);
+    await startSession(page);
+    await openContext(page);
+    await addEntity(page, ENTITY_LABEL, 'PARTNER');
+    await expect(page.locator('[data-dk-entity]')).toHaveCount(1);
+
+    await page.getByRole('button', { name: 'End and delete session' }).click();
+    await expect(consoleState(page)).toHaveAttribute('data-dk-state', 'TERMINATED');
+
+    // A relationship a visitor described is as much theirs as a value they kept, and it
+    // does not outlive the conversation it was given for.
+    await startSession(page);
+    await openContext(page);
+    await expect(page.locator('[data-dk-entity]')).toHaveCount(0);
+    await expect(page.locator('#dk-context-body')).toContainText('Nothing has been added');
+  });
+
+  test('leaving the page clears it too, and nothing durable survives', async ({ page }) => {
+    await installTransport(page, {});
+    await page.goto(ROUTE);
+    await startSession(page);
+    await openContext(page);
+    await addEntity(page, ENTITY_LABEL, 'PARTNER', 'PERSON');
+
+    const stores = await page.evaluate(async () => ({
+      local: JSON.stringify(Object.entries(localStorage)),
+      session: JSON.stringify(Object.entries(sessionStorage)),
+      cookies: document.cookie,
+      idb: 'databases' in indexedDB ? (await indexedDB.databases()).length : 0,
+    }));
+    expect(stores.local).not.toContain(ENTITY_LABEL);
+    expect(stores.session).not.toContain(ENTITY_LABEL);
+    expect(stores.cookies).not.toContain(ENTITY_LABEL);
+    expect(stores.idb).toBe(0);
+
+    await page.reload();
+    await startSession(page);
+    await openContext(page);
+    await expect(page.locator('[data-dk-entity]')).toHaveCount(0);
+  });
+
+  test('a terminal failure clears it as well', async ({ page }) => {
+    await installTransport(page, {
+      message: { status: 404, body: { error_code: 'session_expired' } },
+    });
+    await page.goto(ROUTE);
+    await startSession(page);
+    await openContext(page);
+    await addEntity(page, ENTITY_LABEL, 'PARTNER');
+    await expect(page.locator('[data-dk-entity]')).toHaveCount(1);
+
+    await say(page, 'Anything.');
+    await expect(consoleState(page)).toHaveAttribute('data-dk-state', 'TERMINAL_FAILURE');
+
+    await startSession(page);
+    await openContext(page);
+    await expect(page.locator('[data-dk-entity]')).toHaveCount(0);
+  });
+
+  test('the panel is usable at 320px', async ({ page }) => {
+    await installTransport(page, {});
+    await page.setViewportSize(MOBILE);
+    await page.goto(ROUTE);
+    await startSession(page);
+    await openContext(page);
+    await addEntity(page, ENTITY_LABEL, 'PARTNER', 'PERSON');
+
+    await expect(page.locator('[data-dk-entity]')).toHaveCount(1);
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow, 'the context panel must not widen the page').toBeLessThanOrEqual(0);
+
+    await settleBanner(page);
+    await shot(page, '22-mobile-private-context', 'mobile');
+  });
+
+  test('every control in the panel is reachable and labelled', async ({ page }) => {
+    await installTransport(page, {});
+    await page.goto(ROUTE);
+    await startSession(page);
+    await openContext(page);
+
+    // The toggle states whether the region is open, and names the region it controls.
+    const toggle = page.locator('[data-dk-action="toggle-context"]');
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    await expect(toggle).toHaveAttribute('aria-controls', 'dk-context-body');
+
+    // Every input has a real label and a described hint, not a placeholder standing in.
+    for (const id of ['#dk-entity-label', '#dk-entity-role', '#dk-entity-kind']) {
+      const control = page.locator(id);
+      const labelled = await page.evaluate((sel) => {
+        const el = document.querySelector(sel) as HTMLElement | null;
+        if (!el) return false;
+        return Boolean(document.querySelector(`label[for="${el.id}"]`));
+      }, id);
+      expect(labelled, `${id} needs a real label`).toBe(true);
+      await expect(control).toHaveAttribute('aria-describedby', /dk-entity-/);
+    }
   });
 });

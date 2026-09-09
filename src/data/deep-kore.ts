@@ -204,14 +204,24 @@ export const PRIVACY_HEADLINE = 'This conversation is not kept.';
  */
 export const CONSENT_SURFACES: Array<{ heading: string; body: string }> = [
   {
-    heading: 'A value you keep on this device',
+    heading: 'Context you choose to give',
     body:
-      'Deep Kore can ask whether it may use a fact you hold privately - what kind of fact, ' +
-      'never the fact itself. Anything you enter for that stays in this browser tab: it is ' +
-      'not sent to this site, not written to your device, and not placed in the conversation. ' +
-      'You can enter it, remove it, permit its use, or decline, and declining is the default ' +
-      'until you press something. It is forgotten when the session ends, when you leave the ' +
-      'page, and after the single turn you permitted.',
+      'Deep Kore answers from structure. For some questions it needs to know how you are ' +
+      'related to the person or place you are asking about, and it has no way to know that ' +
+      'unless you say so - nothing is worked out from your messages. You can describe that ' +
+      'relationship yourself, and it stays in your browser tab. The name you use for someone ' +
+      'is never sent; what is sent is an anonymous reference and the relationship you chose. ' +
+      'All of it is optional, and ordinary conversation works without any of it.',
+  },
+  {
+    heading: 'A private value, if you decide to send one',
+    body:
+      'Having that context, Deep Kore may ask for one specific fact by name - a phone number, ' +
+      'an address - because the answer has to state it back. You choose whether to send it. ' +
+      'If you do, it is used for that one answer and then discarded: it is not stored, not ' +
+      'shown in the conversation, and never written to the review queue. If you decline, ' +
+      'nothing is sent and the conversation continues. Nothing is preselected, a permission ' +
+      'covers one turn only, and a later question has to ask again.',
   },
   {
     heading: 'A concept Deep Kore did not recognise',
@@ -252,6 +262,32 @@ export const UI = {
   whyNoProvenance:
     'Deep Kore returns no source list, no confidence score and no reasoning trace on this ' +
     'path, so none is shown. Nothing here is reconstructed by this website.',
+
+  // ---- PUBLIC TESSERACT ANCHORS ------------------------------------------
+  //
+  // Added 2026-09-09, when the corrected Deep Kore release began sending them. An anchor
+  // says one thing: structural cognition settled a concept during this turn, inside this
+  // session's own private overlay.
+  //
+  // THE COPY MUST NOT OVERSTATE IT. An anchor is not learning, not a fact accepted into
+  // canonical knowledge, and not something that outlives the session - a public session
+  // structurally cannot write to the shared knowledge base. Wording that implied Deep Kore
+  // "learned" or "remembered" would describe a system this is deliberately not.
+  //
+  // The handle is shown because showing an opaque token is honest about what exists, and
+  // because a visitor can see for themselves that it says nothing. It is truncated for
+  // display only - the full value is present and carries no more meaning than the prefix,
+  // since it is a hash salted with a secret that dies with the session.
+  anchorsHeading: 'Structure settled during this turn',
+  anchorsNote:
+    'Deep Kore settled the structure of one or more ideas while working on this turn. Each ' +
+    'is listed below as an opaque reference and nothing more: the reference cannot be turned ' +
+    'back into the idea it stands for, means nothing outside this conversation, and stops ' +
+    'meaning anything at all once the session ends.',
+  anchorsNotLearning:
+    'This is not learning. Nothing was added to what Deep Kore knows, nothing is kept after ' +
+    'this session, and nothing here is shared with anyone else.',
+  anchorLabel: 'Reference',
   transcriptLabel: 'Conversation',
   composerLabel: 'Your message',
   idleNote:
@@ -261,27 +297,86 @@ export const UI = {
 
   // ---- TAV: a permission request about a value that never leaves the device ----
   tavHeading: 'Deep Kore is asking about a value you kept on this device',
+  // CORRECTED 2026-09-04, because the previous sentence became false.
+  //
+  // It said a private value "is not sent to this site". That was true while a grant was
+  // a permission and nothing more. The owner has now authorised the literal to cross on
+  // an explicit grant, for one turn - so the copy says exactly that instead. A promise
+  // the system no longer keeps is worse than no promise, and softening it would have
+  // been worse still.
   tavLocalOnly:
-    'Anything you marked private stays in this browser tab. It is not sent to this site, ' +
-    'not stored on your device, and not written to the review queue. Deep Kore is asking ' +
-    'only whether you permit it to use what kind of fact this is - never the value itself.',
-  tavContinue: 'Continue without sending the value',
+    'What you keep here stays in this browser tab: it is not written to your device and ' +
+    'not saved anywhere. Deep Kore has asked for one fact by name. If you send it, it is ' +
+    'used for this one answer and then discarded - it is not stored, not shown in the ' +
+    'conversation, and never written to the review queue. If you decline, nothing is sent.',
+  tavContinue: 'Send it for this answer only',
+  tavContinueWithout: 'Continue without sending it',
   tavDecline: 'Decline',
   tavDeclined: 'Declined. Nothing was evaluated and nothing was sent.',
-  tavWithheld:
-    'Permission noted. The value stayed on this device: this site never transmits a ' +
-    'private value, so Deep Kore was told only that disclosure was withheld.',
+  tavGranted:
+    'Sent for that one answer, and cleared. It is no longer held in this tab, and a ' +
+    'later question will have to ask you again.',
   tavPrivateLabel: 'A private value, kept only in this tab',
   tavPrivateHint:
-    'Optional. If you enter something here it stays in this browser tab only, and it is ' +
+    'Optional. It stays in this browser tab until you send it or remove it, and it is ' +
     'cleared when the session ends.',
   tavPrivateSave: 'Keep locally',
   tavNothingHeld:
     'Permission noted. Nothing of that kind was held on this device, so there was nothing ' +
     'to use and nothing was sent.',
-  tavRevoke: 'Remove it from this tab',
-  tavRevoked: 'Removed. Nothing was sent, and nothing is held any more.',
+  // REMOVING A HELD VALUE IS A LOCAL DELETION, AND THE NAMES SAY SO.
+  //
+  // These two used to be `tavRevoke` / `tavRevoked`. The visitor-facing sentences were
+  // always accurate - they say "remove from this tab", never "revoke" - but the KEYS said
+  // revocation, and so did the handler, the selector and the tests behind them. That was
+  // a name promising something the protocol does not have.
+  //
+  // OWNER RULING 2026-09-07: revocation is not a wire-protocol concept. There is no
+  // `TavDecision::REVOKED` in the certified release and none is to be added or expected.
+  // What a visitor can actually do is delete the value before any disclosure is built -
+  // and once a disclosure has been sent for its one turn, it cannot be called back.
+  // Naming this "revoke" invited exactly that false belief.
+  tavRemoveHeld: 'Remove it from this tab',
+  tavRemovedHeld: 'Removed. Nothing was sent, and nothing is held any more.',
   tavHeld: 'Held in this tab only.',
+
+  // ---- Private context: the visitor's own structural facts ----------------
+  //
+  // Every label here describes an act the VISITOR takes. There is deliberately no
+  // wording anywhere in this block that suggests the page worked something out, noticed
+  // something, or filled anything in - because it does none of those, and copy that
+  // implied otherwise would be the first step toward code that did.
+  contextHeading: 'Who or what you are asking about',
+  contextToggleOpen: 'Add private context',
+  contextToggleClose: 'Hide private context',
+  contextIntro:
+    'Deep Kore answers from structure. For some questions it needs to know how you are ' +
+    'related to the person or place you are asking about, and it has no way to know that ' +
+    'unless you say so. Nothing here is worked out from your messages.',
+  contextOptional:
+    'Entirely optional. Ordinary conversation works without any of this, and leaving it ' +
+    'empty changes nothing about what you can ask.',
+  contextPrivacy:
+    'This stays in this browser tab. The name you use is for you: it is never sent - what ' +
+    'is sent is an anonymous reference and the relationship you chose. All of it is ' +
+    'cleared when the session ends or you leave the page.',
+  contextLabelField: 'What you want to call them, just for you',
+  contextLabelHint: 'Only you ever see this. It is not transmitted.',
+  contextRoleField: 'How they are related to you',
+  contextRoleHint: 'Required. This is the part Deep Kore actually uses.',
+  contextRolePlaceholder: 'Choose one',
+  contextKindField: 'What kind of thing they are',
+  contextKindHint: 'Optional. Leave it unset if you would rather not say.',
+  contextKindPlaceholder: 'Prefer not to say',
+  contextAdd: 'Add to private context',
+  contextAdded: 'Added. It is held in this tab only.',
+  contextRemove: 'Remove',
+  contextRemoved: 'Removed. Nothing about it is held any more.',
+  contextClear: 'Clear all private context',
+  contextCleared: 'Cleared. Nothing you described is held any more.',
+  contextInclude: 'My next message is about this',
+  contextEmpty: 'Nothing has been added. Conversation works without it.',
+  contextNeverSent: 'Never sent',
 
   // ---- Unknown-concept teaching consent ----------------------------------
   offerHeading: 'Deep Kore did not recognise something in that message',
@@ -343,6 +438,26 @@ export const ERROR_COPY: Record<DeepKoreErrorCode, string> = {
     'and no message was submitted. Please return later.',
   DEEP_KORE_UNAVAILABLE:
     'Deep Kore is temporarily unavailable. No message was submitted.',
+
+  // A THIRD SERVICE STATE, KEPT SEPARATE FROM THE OTHER TWO FOR THE SAME REASON THEY ARE
+  // SEPARATE FROM EACH OTHER.
+  //
+  // The origin refused because its own components disagree about which build they are, and
+  // it will keep refusing until an operator redeploys matched binaries. Telling a visitor
+  // to "return later" - the capacity sentence - would be untrue, and calling it temporary
+  // unavailability would be a guess about a timeframe nobody has. So it says the honest
+  // thing: not now, not by waiting, and the owner has been given something to fix.
+  //
+  // It names no binary, no commit, no component and no machine. A visitor learns the
+  // service will not serve; which parts disagree stays at the origin.
+  //
+  // DRAFTED, NOT YET OWNER-APPROVED. The two sentences above it are owner-specified
+  // verbatim; this one was written against the certified release's refusal and needs the
+  // owner's sign-off with the privacy and terms wording before the phase is enabled.
+  DEEP_KORE_PROVENANCE_MISMATCH:
+    'Deep Kore is not accepting sessions because its components are mismatched. No session ' +
+    'was created and no message was submitted. This will not clear on its own - it needs ' +
+    'attention from ByteLite LLC.',
 
   chat_disabled: 'Live chat is not open at the moment.',
   not_configured: 'Live chat is not available right now.',

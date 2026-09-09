@@ -170,9 +170,13 @@ test.describe('a governed conversation, end to end', () => {
  *
  * So the TAV surface is IMPLEMENTED, correct, and fully covered against a scripted
  * TAV_REQUEST in `tests/e2e/deep-kore-console-flow.spec.ts` - every rule about grants,
- * revocation, one-turn consumption and non-transmission is asserted there, in five
- * browser engines. What is NOT provable live is that a visitor reaches it, because
- * nothing in the public interface supplies an entity model.
+ * local deletion of a held value, one-turn consumption and non-transmission is asserted
+ * there, in five browser engines. What is NOT provable live is that a visitor reaches it,
+ * because nothing in the public interface supplies an entity model.
+ *
+ * That list said "revocation" until owner ruling 2026-09-07. It never described a wire
+ * message - the certified `TavDecision` has no `REVOKED` and none is to be expected - and
+ * the word made a local deletion sound like a recall of something already sent.
  *
  * Whether to add one is an OWNER decision, not a code decision: it would mean a new
  * public surface on which a visitor describes a person or a place to Deep Kore. It is

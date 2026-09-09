@@ -1190,9 +1190,79 @@ have been describing a website it is not, which is the exact defect commit `0bbc
   condition:** if Turnstile is not adopted, remove both origins in the same commit that removes
   the widget.
 
+### THE TESSERACT ANCHOR GATE - CLOSED 2026-09-09 BY A CORRECTED RELEASE
+
+**This gate was open, and it is now closed by a real protocol change rather than by narrowing the
+requirement.** The record of both halves is kept, because the shape of the fix is the useful part.
+
+**What was true at release `026ee61`, and is no longer.** `public_chat_session.hpp` declared
+`tesseract_anchors` `// internal`; the worker's outcome serializer carried the comment "no placement
+id, no coordinate, no elimination trace, **no anchor**"; anchors reached only the DKTB1 frame,
+travelling worker to broker into the DPAPI-encrypted Teaching Queue record. No public outcome
+carried an anchor field, so the site could not display one without inventing it. The owner ruled
+that this was a defect in the Deep Kore release rather than a feature to drop, and the site stayed
+blocked instead of improvising.
+
+**What the corrected release `d3a4f5af4d433838d473ff74cd370721c477fbdf` provides.** The governed
+core gained `anchors_established_this_turn`: an array of objects carrying exactly one field,
+`handle`. Each handle is `SHA-256(concept_id || session_secret)` in lowercase hex, where the session
+secret is 32 CSPRNG bytes created with the session and destroyed by `end_session()`.
+
+**Why that shape is the right answer and not a compromise.** A handle confirms that structural
+cognition reached ESTABLISHED for some concept this turn, and confirms nothing else. It cannot be
+reversed to the concept, cannot be correlated across sessions because the salt differs, and becomes
+permanently unverifiable when the session ends - no API can reproduce or validate it once the secret
+is gone. It also cannot be used to ask for more: no API accepts a handle as a lookup key. So the
+privacy property is structural, not a policy promise, which is the same standard the rest of this
+feature is held to.
+
+**What still may never cross, and has nowhere on the wire to travel:** the concept id, a Tesseract
+coordinate, a placement, an edge, a candidate set, an elimination trace, graph topology, private
+state, a machine path, or any process or host detail. The site must never derive, reconstruct or
+infer one of those from a handle, and must never render a placeholder standing in for one.
+
+**How the site treats a malformed anchor array: it fails the whole turn.** `toAnchorHandles()`
+returns `null` for a non-array, a non-hex or wrong-length handle, an entry carrying any key besides
+`handle`, or a bare string, and `toPublicTurn()` then yields `malformed_engine_result`. Dropping bad
+entries and rendering the rest was considered and rejected: it would show a visitor an anchor list
+that is not the one the engine sent. An ABSENT array is different and is not an error - the origin's
+stated compatibility contract is that these members are additive, so absent means "no anchors",
+exactly as an empty array does.
+
+**An empty array is the ordinary case.** Most turns establish nothing. The UI renders nothing at
+all, and that absence must never be dressed up as a failure, a warning, or a missing feature.
+
+**The copy may not overstate it.** An anchor is not learning. A public session structurally cannot
+write to the shared canonical knowledge base, nothing survives the session, and nothing is shared
+with another visitor. `UI.anchorsNotLearning` says exactly that beside the list and must stay.
+
+**A new release is a new reconciliation, never an inherited one.** When any further package arrives,
+repeat artifact hashes and runtime provenance for gateway, worker and broker, and re-read every
+transcribed vocabulary before any live claim.
+
+### THE RELEASE DOCUMENTS ARE NOT THE CONTRACT. THE HEADERS AND THE BINARIES ARE.
+
+Recorded 2026-09-07, because it nearly caused real damage. `Documentation/PUBLIC_CHAT_PROTOCOL_
+CONTRACT.md` at release `026ee61` disagrees with the binaries it ships beside in at least eight
+places: the job-poll route, the job state field name, the capacity refusal body, the session-create
+response, the session id prefix, the TAV request field names, the `TavDecision` vocabulary, and the
+engine-failure field name. Its own footer names a different commit than its header, which is the
+likely cause.
+
+**This site was already correct on all eight**, because it was built against the running gateway
+rather than against the document. Reconciling the site *to that document* would have replaced eight
+correct implementations with wrong ones - including swapping the real four-value `TavDecision` for
+an invented three-value one containing `REVOKED`.
+
+**So: reconcile against `core/protocol/*.hpp`, the gateway's `Program.cs`, and the worker's
+`main.cpp`. Treat release prose as a hint about where to look, never as the specification.**
+
 ### Owner gates still open on this feature
 
 None of these may be resolved by assumption:
+
+- ~~**a privacy-safe, session-scoped public Tesseract anchor representation**~~ - **CLOSED
+  2026-09-09**, delivered by corrected release `d3a4f5af`. See the section above;
 
 - the Deep Kore origin hostname and the loopback bind address;
 - `DEEP_KORE_CHAT_PHASE` - it is `disabled` until the owner sets it;
@@ -1213,15 +1283,30 @@ None of these may be resolved by assumption:
   emitted bytes differ from the Vanguard-off path - which is why the public baseline must be
   measured with it ON;
 - where the gateway, worker and teaching broker are installed and how they are supervised on
-  Windows;
+  Windows. **The identity model itself is CLOSED - owner ruling 2026-09-07 - and it is the
+  two-identity production model:**
+  - **gateway and worker** run under an unprivileged Windows **virtual service identity**;
+  - **broker and the owner Workbench** run under the **owner's own Windows identity**, which is
+    what DPAPI `CURRENT_USER` scope requires to write and later read a Teaching Queue record;
+  - **the gateway and worker must not be able to decrypt Teaching Queue records.** That is the
+    point of the split, not a side effect of it: the processes reachable from the public internet
+    are precisely the ones with no key to the vault, so a compromise of the public path cannot
+    read what visitors consented to store.
+
+  **A single-identity local run does not satisfy this gate**, and the 2026-09-04 proof that ran
+  everything under one account is explicitly recorded as not satisfying it. Identity isolation has
+  to be proven with the identities actually separated, or it is not proven at all. Creating the
+  service identity, installing the services and running that lane are owner actions.
 - **whether the public page should gain a surface on which a visitor describes an entity.** Added
   2026-09-04. It is what would make the TAV decision surface reachable by a visitor at all - see
   "THE TAV SEAM" below and `OWNER_README.md` section 21.14 - and it is a product decision with its
   own privacy and consent consequences, not a code decision;
 - **owner and counsel approval of the live-chat section drafted into `/terms`** on 2026-09-04;
-- **the value of `DEEP_KORE_MAX_SESSIONS`.** The contract is implemented and proven; the number is
-  not set and must not be. `OWNER_README.md` section 21.11 carries the measurements taken on this
-  machine so the owner can choose one.
+- ~~**the value of `DEEP_KORE_MAX_SESSIONS`**~~ - **CLOSED 2026-09-07 by owner decision: 8.**
+  Measured on the certified release against a real worker, not estimated: 682 MB of worker working
+  set per session and 35 MB for the gateway, so six sessions occupy 4.1 GB and twelve occupy 8.2 GB
+  on a 32 GB machine. Eight is the owner's choice with operating margin left over. It is a value for
+  **this** hardware; re-measure before deploying to different hardware.
 
 **Closed on 2026-09-01**, and recorded here so they are not reopened by assumption: the session
 secret (approved, with the contract above), the privacy wording (approved, verbatim, single
@@ -1237,9 +1322,18 @@ at once. Both are needed; neither substitutes for the other.
 **The number is the owner's and is never guessed.** There is **no production default**, and the
 gateway refuses to start without a value - missing, zero, negative, malformed or overflowing all
 stop startup. It must not be derived from processor count, installed memory, a formula, or the
-**46 concurrent workers** a leaking test suite once produced. The phase stays `disabled` until the
-owner supplies a measured value. Tests inject a tiny ceiling to exercise the contract; there is no
-code path by which that becomes a production fallback, because there is no fallback path at all.
+**46 concurrent workers** a leaking test suite once produced. Tests inject a tiny ceiling to
+exercise the contract; there is no code path by which that becomes a production fallback, because
+there is no fallback path at all.
+
+**The owner set it to 8 on 2026-09-07, from measurement.** That closes the value, not the rule:
+the rule above is exactly why 8 is written down here as a measured figure for a 32 GB machine
+rather than as a number this repository may reuse anywhere else. The measurement that produced it
+also corrects the per-worker figure recorded below - a real public-chat worker holds **682 MB**,
+not the ~5 MB an early empty-knowledge worker showed, because it loads a canonical snapshot of
+212,446 concepts. Both numbers are kept: the small one was measured on a worker that was not doing
+this job, and mistaking one for the other is what would make a capacity choice wrong by two orders
+of magnitude.
 
 **A correction, recorded because the mistake is instructive.** That 46-worker incident was first
 written up here as the machine's capacity ceiling being reached. **It was not, and the claim was
@@ -1337,13 +1431,33 @@ own message is absent from the serialized record.
 **The canonical sequence is never trimmed, sampled, reordered or partially stored.** It is measured
 at 710,219 bytes for a real 35,494-entry candidate. `teaching_case_id` is its SHA-256 and is a
 deterministic **index** - never a replacement for the sequence, and never treated as collision-free
-proof of identity. A record that will not fit the admission ceiling is refused **before any durable
-write**; it is never truncated to fit, because truncating the sequence would silently corrupt the
-existing deduplication law.
+proof of identity.
 
-**Two settings are required and neither has a default:** `DEEP_KORE_MAX_SESSIONS` (the gateway) and
-`DEEP_KORE_TEACHING_MAX_RECORD_BYTES` (the broker). Both refuse to start when absent, zero,
-malformed or overflowing. See `OWNER_README.md` 21.11b and 21.11c for the measurements behind each.
+**Corrected 2026-09-07 against the certified release.** This section used to end that paragraph with
+"a record that will not fit the admission ceiling is refused before any durable write", and to say
+underneath that **two** settings were required with no default - `DEEP_KORE_MAX_SESSIONS` and
+`DEEP_KORE_TEACHING_MAX_RECORD_BYTES`. The second half of both statements is now false, and the
+correction is a real change of law rather than a tidy-up.
+
+**There is no size ceiling on `structural_identity_key` at all.** The certified broker at
+`026ee6162df9d49ca8462e15f5714ace9dfcdb58` does not read `DEEP_KORE_TEACHING_MAX_RECORD_BYTES`,
+does not define it, and no longer carries the `ERR_RECORD_TOO_LARGE` refusal that enforced it. Its
+own comment states the rule that replaced it: the small fields are bounded, and the canonical
+identity field deliberately is not. The release records the same thing as
+`OWNER_ARBITRARY_TEACHING_SIZE_LIMIT = ABSENT`.
+
+**The reasoning matters more than the deletion.** A cap on that field was always the wrong shape:
+it is a transport bound applied to a canonical identity, so an owner-chosen number decided which
+concepts could be taught. Refusing rather than truncating was the correct half - the sequence was
+never silently corrupted - but a refusal driven by an arbitrary ceiling still discards a lawful
+candidate for a reason that has nothing to do with the candidate. **Do not reintroduce it, in the
+broker or here, and do not add a website-side equivalent.**
+
+**One setting remains required with no default:** `DEEP_KORE_MAX_SESSIONS` (the gateway), which
+refuses to start when absent, zero, malformed or overflowing. **Its value is no longer open.** It
+was measured on the certified release and set by the owner to **8**, against a benchmark of 682 MB
+of worker working set per session on a 32 GB machine. See `OWNER_README.md` 21.11b, and re-measure
+before deploying to different hardware.
 
 **"Unknown" means unknown relative to the frozen snapshot used for that turn**, decided by the
 canonical unknown-lexeme extractor plus Law L1's `resolve_lexical_denotation()`. A surface is never
@@ -1451,11 +1565,16 @@ So, stated exactly:
 
 - the TAV interface is implemented and correct, and every rule about it is asserted against a
   scripted `TAV_REQUEST` in `tests/e2e/deep-kore-console-flow.spec.ts` on five browser engines;
-- **it is not reachable by a visitor today**, and the live specs now assert that seam directly so
-  it cannot be forgotten or quietly "fixed" by making the page assert an entity it does not know;
-- whether the public page gains a surface on which a visitor describes an entity is an **owner
-  decision**, recorded in `OWNER_README.md` section 21.14. It would be a new public surface with
-  its own privacy and consent consequences.
+- it was **not reachable by a visitor** when this was written, and the live specs assert that seam
+  directly so it cannot be forgotten or quietly "fixed" by making the page assert an entity it
+  does not know;
+- whether the public page gains a surface on which a visitor describes an entity was an **owner
+  decision**, recorded in `OWNER_README.md` section 21.14.
+
+**THAT DECISION WAS TAKEN ON 2026-09-04, and the seam above is now closed by consent rather than
+by inference.** The visitor supplies the entity and the relationship themselves - see "THE PRIVATE
+CONTEXT SURFACE" below. The measurement in this section stands unchanged and is the reason the
+surface exists: the site still cannot produce a TAV request on its own, and still must not.
 
 ### The privacy policy and the terms both moved
 
@@ -1483,6 +1602,140 @@ session creation looking exactly like an outage. Both live specs now release in 
 the release waits out a `409` rather than giving up on it - a session with a turn in flight refuses
 deletion, which is correct, so cleanup has to wait for the turn rather than leak the session it
 came to release.
+
+### THE PRIVATE CONTEXT SURFACE, authorised 2026-09-04
+
+**The owner authorised the smallest lawful visitor-facing surface required to make real TAV
+reachable, and authorised the private literal to cross on an explicit grant for one turn.** Both
+halves are recorded here because both reverse something this canon previously stated.
+
+**What made the surface necessary.** A TAV request is lawful only when the turn's target entity
+resolves to exactly one structural kind, and the only evidence that can do that on this path is a
+**relationship role on an entity the message references**. A Cordel device has an entity model. A
+public web page does not, and inventing one for a stranger is inventing TAV evidence. So the only
+lawful route is for the VISITOR to supply it deliberately.
+
+**What was built, and what was deliberately not.** The visitor declares an entity, chooses a
+canonical relationship role, and says which message is about it. That is all. Events are NOT
+exposed - `events[]` is a second evidence source and is not needed to reach TAV. No free-text
+context crosses. And `StructuralEntityKind` (PERSON / PLACE / BUSINESS / ORGANIZATION / EVENT /
+MEDICATION) is **never sent**: that is what Deep Kore RESOLVES TO by elimination, and a device
+sending one asserts the conclusion instead of the evidence. The device enumeration is `EntityKind`,
+which is a different list.
+
+**Nothing is inferred, and the module cannot infer.** `privateContext.ts` has no parser, no
+lexicon and no access to the transcript, and a test asserts their absence against its code with
+comments stripped. An entity is not attached to the next message on its own: describing someone
+and saying a message is about them are two different statements, and only the visitor makes the
+second one.
+
+**The label never leaves.** A visitor needs to recognise which entity they mean, and a name is the
+natural way to do it - so a name is exactly what must not be transmitted. `toDeviceEntities()` is
+the only function producing wire shape and cannot emit a label because it never writes one. The
+opaque `entity_id` is random and is **not** derived from the label.
+
+**One transcription of the canonical vocabulary, in `api/_lib/deep-kore-codes.ts`**, read by both
+the server's validation and the browser's controls. The server previously accepted
+`^[A-Z_]{1,40}$` for the entity enumerators and deferred the vocabulary to the worker; that is no
+longer good enough now that a VISITOR chooses these values, because a control able to offer
+something the engine does not define is wrong in a way only the origin notices - after the visitor
+chose it in good faith.
+
+### THE PRIVATE VALUE MAY NOW CROSS, UNDER EXACTLY ONE CONDITION
+
+This reverses the rule that stood until 2026-09-04, under which a disclosure carrying a value was
+refused outright and a grant was a permission rather than a disclosure. **That rule is superseded,
+in one direction only.**
+
+The canonical contract is what the site now mirrors, and `hs_dk_context_cordel_v6.hpp` states it:
+`value` is meaningful ONLY when `decision==GRANTED`, and the strict parser rejects any request
+where a non-GRANTED decision carries a non-empty value - "illegal state unrepresentable, not
+merely should be empty by convention".
+
+**The site enforces that at its own boundary rather than relying on the upstream one.** Two
+independent parsers refusing the same illegal shape is the point: a literal leaving a browser under
+a REFUSAL is the worst thing this feature could do, and it should have to get past both.
+
+The three answers this device gives:
+
+| Situation | Decision | Value |
+|---|---|---|
+| Visitor refused | `DENIED_BY_USER` | none, and the vault is not read at all |
+| Permitted, value held | `GRANTED` | the literal, once, then consumed |
+| Permitted, nothing held | `UNAVAILABLE` | none |
+
+**`DENIED_BY_POLICY` is canonical and this device never sends it.** It means "there is something
+here and this device will not disclose it", and this browser has no such policy after the
+authorisation. Sending it would describe a rule that does not exist.
+
+### WHAT A VISITOR CAN AND CANNOT TAKE BACK - OWNER RULING 2026-09-07
+
+**Revocation is not a wire-protocol concept, and this site must never imply that it is.** The
+certified `TavDecision` is `GRANTED | DENIED_BY_POLICY | DENIED_BY_USER | UNAVAILABLE`. There is no
+`REVOKED` enumerator anywhere in release `026ee6162df9d49ca8462e15f5714ace9dfcdb58`, and **none is
+to be added or expected.** Do not send one, do not parse one, and do not write copy, a control
+name, a selector or a test name that describes one.
+
+The lawful behaviour, in full, is five statements:
+
+1. **Deny before granting.** A refusal is a real answer and reads nothing from the vault.
+2. **Remove the Private Context entry before a later request.** Deletion is available up to the
+   moment a disclosure is built, and it is a real deletion from the only place the value existed.
+3. **A granted disclosure applies to one turn.**
+4. **The grant clears after that turn** - unconditionally, at the engine, before the outcome is
+   even constructed.
+5. **A completed disclosure cannot be retroactively revoked.**
+
+**Statement 5 is the one a visitor could most easily be misled about, so the interface proves it
+structurally rather than promising it.** The delete control is rendered from `vault.has(...)`, so it
+exists exactly while there is a held value to delete and vanishes once a grant is consumed. There
+is deliberately no control standing afterwards that looks as though it could recall what was sent.
+
+**A naming correction was made under this ruling, and the reason is worth keeping.** The handler,
+the selector, the copy keys and the E2E test were all named for revocation
+(`revokePrivate`, `data-dk-action="revoke"`, `tavRevoke`/`tavRevoked`). The **behaviour was always
+correct** and the visitor-facing sentences always said "remove from this tab" - but every name
+behind them claimed a capability the protocol does not have. A name that promises more than the
+system delivers is the first step toward code that tries to deliver it. They are now
+`removeHeldPrivateValue`, `data-dk-action="remove-held-value"` and `tavRemoveHeld`/`tavRemovedHeld`.
+
+**No length of this site's own bounds the value.** `MAX_DEVICE_BYTES` (262144) is the worker's own
+constant, restated in the shared module and applied to the serialised envelope - so an oversized
+envelope is refused here rather than proxied, and nothing invents a limit on how much a visitor
+may choose to disclose about themselves.
+
+**The grant is consumed before the turn is even sent.** The vault entry is forgotten in the same
+breath as the disclosure is built, so there is nothing left to replay or send twice, and a later
+question has to ask again.
+
+### THE COPY THAT BECAME FALSE, AND WAS CORRECTED RATHER THAN SOFTENED
+
+`UI.tavLocalOnly` said a private value "is not sent to this site". True while a grant was a
+permission; false the moment one could carry a literal. It now says what actually happens - sent
+for one answer, then discarded, and nothing sent if you decline. The same correction was made to
+the `/deep-kore` consent cards, `/privacy` and `/terms`.
+
+**A promise the system no longer keeps is worse than no promise, and softening one is worse
+still.** Any future change to what crosses must move this copy in the same commit.
+
+### THE CONCURRENT DEEP KORE SESSION, and what it means for a live claim
+
+**As of 2026-09-04 the Deep Kore repository is owned by a separate session** that holds
+`public_chat` and the final public AIya contract. This repository may READ it and must not modify,
+stage, commit, reset or stash anything in it.
+
+**Every public-chat contract observed before that session's integrated green commit is
+PROVISIONAL**, and this canon says so rather than pretending otherwise. Deep Kore HEAD moved
+`88f01cd` -> `b75aaef` during that pass, but the `public_chat` files remained uncommitted, so the
+integrated contract had not landed and **no live proof was reported for the Private Context
+surface**.
+
+**Before any live verification: re-read the FINAL committed contract from the integrated HEAD and
+reconcile.** The reconciliation is deliberately cheap - every canonical value the site depends on
+is transcribed in ONE module carrying a PROVISIONAL banner that names its source headers. Re-read
+those headers against that module, correct it, re-run the suites, and only then run the live lane.
+Do not freeze this site to an obsolete intermediate structure, and do not report an older pass's
+live proof as covering a newer surface.
 
 ### Verification that must not be skipped
 

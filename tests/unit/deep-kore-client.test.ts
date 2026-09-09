@@ -252,7 +252,7 @@ describe('a wire result becomes a typed result, or a typed fault', () => {
     if (r.kind !== 'GOVERNED_TEXT') return;
     // The application model has nowhere to put a diagnostic, so one cannot ride along
     // into the interface even if the server ever started sending it.
-    expect(Object.keys(r.turn).sort()).toEqual(['governance', 'persona', 'text']);
+    expect(Object.keys(r.turn).sort()).toEqual(['anchors', 'governance', 'persona', 'text']);
     expect(Object.keys(r.turn.governance).sort()).toEqual(['passed', 'stamp']);
     expect(JSON.stringify(r)).not.toContain('c0056f8303e08d66');
   });
@@ -426,5 +426,185 @@ describe('cancellation stops this browser waiting, and nothing else', () => {
     // completed - never as something Deep Kore said.
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.failure.status).toBe(0);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// The visitor's structural context, and the one-turn literal
+// ---------------------------------------------------------------------------
+
+describe('the device envelope is assembled from what the visitor supplied', () => {
+  test('an ordinary turn sends no envelope at all', async () => {
+    const { client, calls } = await openedClient([
+      [/\/message$/, { status: 202, body: { job_id: 'job-1' } }],
+    ]);
+    await client.submitTurn('What are you?', { turnKey: 't1' });
+
+    const body = JSON.parse(String(calls.find((c) => c.url.endsWith('/message'))!.init.body));
+    // Regular chat asserts nothing about a visitor, because they said nothing to assert.
+    expect(Object.keys(body).sort()).toEqual(['text', 'turn_key']);
+    expect(body['device']).toBeUndefined();
+  });
+
+  test('declared entities cross, and only the included ones are referenced', async () => {
+    const { client, calls } = await openedClient([
+      [/\/message$/, { status: 202, body: { job_id: 'job-1' } }],
+    ]);
+    await client.submitTurn('Tell me about them.', {
+      turnKey: 't1',
+      context: {
+        entities: [
+          { entity_id: 'eaaa', relationship_role: 'PARTNER', entity_kind: 'UNKNOWN' },
+          { entity_id: 'ebbb', relationship_role: 'FRIEND' },
+        ],
+        messageEntityIds: ['eaaa'],
+      },
+    });
+
+    const body = JSON.parse(String(calls.find((c) => c.url.endsWith('/message'))!.init.body)) as {
+      device: Record<string, unknown>;
+    };
+    expect(body.device['entities']).toEqual([
+      { entity_id: 'eaaa', relationship_role: 'PARTNER', entity_kind: 'UNKNOWN' },
+      { entity_id: 'ebbb', relationship_role: 'FRIEND' },
+    ]);
+    // The segment is what says THIS message is about them. It names one of the two.
+    expect(body.device['current_message']).toEqual({
+      segments: [{ kind: 'ENTITY', entity_id: 'eaaa' }],
+    });
+  });
+
+  test('context with nothing included sends entities and no segment', async () => {
+    const { client, calls } = await openedClient([
+      [/\/message$/, { status: 202, body: { job_id: 'job-1' } }],
+    ]);
+    await client.submitTurn('A general question.', {
+      turnKey: 't1',
+      context: {
+        entities: [{ entity_id: 'eaaa', relationship_role: 'PARTNER' }],
+        messageEntityIds: [],
+      },
+    });
+
+    const body = JSON.parse(String(calls.find((c) => c.url.endsWith('/message'))!.init.body)) as {
+      device: Record<string, unknown>;
+    };
+    expect(body.device['entities']).toHaveLength(1);
+    // Describing someone is not saying the message is about them.
+    expect(body.device['current_message']).toBeUndefined();
+  });
+
+  test('empty context sends no envelope', async () => {
+    const { client, calls } = await openedClient([
+      [/\/message$/, { status: 202, body: { job_id: 'job-1' } }],
+    ]);
+    await client.submitTurn('Hello.', {
+      turnKey: 't1',
+      context: { entities: [], messageEntityIds: [] },
+    });
+    const body = JSON.parse(String(calls.find((c) => c.url.endsWith('/message'))!.init.body));
+    expect(body['device']).toBeUndefined();
+  });
+
+  test('a GRANTED disclosure carries the literal for exactly that request', async () => {
+    const { client, calls } = await openedClient([
+      [/\/message$/, { status: 202, body: { job_id: 'job-1' } }],
+    ]);
+    await client.submitTurn('Continue.', {
+      turnKey: 't2',
+      disclosure: {
+        tav_id: 'tav-1',
+        target_entity_id: 'eaaa',
+        field: 'PHONE_NUMBER',
+        decision: 'GRANTED',
+        value: 'SYNTHETIC-0000',
+      },
+      context: {
+        entities: [{ entity_id: 'eaaa', relationship_role: 'PARTNER' }],
+        messageEntityIds: ['eaaa'],
+      },
+    });
+
+    const body = JSON.parse(String(calls.find((c) => c.url.endsWith('/message'))!.init.body)) as {
+      device: { tav_disclosures: Array<Record<string, unknown>> };
+    };
+    expect(body.device.tav_disclosures[0]).toEqual({
+      tav_id: 'tav-1',
+      target_entity_id: 'eaaa',
+      field: 'PHONE_NUMBER',
+      decision: 'GRANTED',
+      value: 'SYNTHETIC-0000',
+    });
+  });
+
+  test('a refusal carries no value field at all', async () => {
+    const { client, calls } = await openedClient([
+      [/\/message$/, { status: 202, body: { job_id: 'job-1' } }],
+    ]);
+    await client.submitTurn('Continue.', {
+      turnKey: 't3',
+      disclosure: {
+        tav_id: 'tav-1',
+        target_entity_id: 'eaaa',
+        field: 'PHONE_NUMBER',
+        decision: 'DENIED_BY_USER',
+      },
+    });
+
+    const raw = String(calls.find((c) => c.url.endsWith('/message'))!.init.body);
+    expect(raw).not.toContain('"value"');
+  });
+
+  test('a disclosure declares its own entity when the visitor kept no context', async () => {
+    // A segment referencing an entity absent from `entities` would be a dangling
+    // reference, so the disclosure's target is declared rather than assumed present.
+    const { client, calls } = await openedClient([
+      [/\/message$/, { status: 202, body: { job_id: 'job-1' } }],
+    ]);
+    await client.submitTurn('Continue.', {
+      turnKey: 't4',
+      disclosure: {
+        tav_id: 'tav-1',
+        target_entity_id: 'eccc',
+        field: 'EMAIL',
+        decision: 'UNAVAILABLE',
+      },
+    });
+
+    const body = JSON.parse(String(calls.find((c) => c.url.endsWith('/message'))!.init.body)) as {
+      device: Record<string, unknown>;
+    };
+    expect(body.device['entities']).toEqual([{ entity_id: 'eccc', entity_kind: 'UNKNOWN' }]);
+    expect(body.device['current_message']).toEqual({
+      segments: [{ kind: 'ENTITY', entity_id: 'eccc' }],
+    });
+  });
+
+  test('a visitor-declared entity is not overwritten by the disclosure default', async () => {
+    const { client, calls } = await openedClient([
+      [/\/message$/, { status: 202, body: { job_id: 'job-1' } }],
+    ]);
+    await client.submitTurn('Continue.', {
+      turnKey: 't5',
+      disclosure: {
+        tav_id: 'tav-1',
+        target_entity_id: 'eaaa',
+        field: 'EMAIL',
+        decision: 'GRANTED',
+        value: 'SYNTHETIC-0001',
+      },
+      context: {
+        entities: [{ entity_id: 'eaaa', relationship_role: 'PARTNER', entity_kind: 'PERSON' }],
+        messageEntityIds: ['eaaa'],
+      },
+    });
+
+    const body = JSON.parse(String(calls.find((c) => c.url.endsWith('/message'))!.init.body)) as {
+      device: Record<string, unknown>;
+    };
+    // The visitor said PERSON. The convenience default does not overrule them.
+    expect(body.device['entities']).toEqual([
+      { entity_id: 'eaaa', relationship_role: 'PARTNER', entity_kind: 'PERSON' },
+    ]);
   });
 });
