@@ -2092,6 +2092,91 @@ Origin-side, the owner's: `DEEP_KORE_BIND_URL`, `DEEP_KORE_GATEWAY_TOKEN`,
 
 `DEEP_KORE_TEACHING_MAX_RECORD_BYTES` was in this list and is **withdrawn** - see 21.11c.
 
+### 21.15 PRODUCTION TRANSPORT - PREPARED 2026-09-10, AWAITING CREDENTIALS
+
+Everything below is settled and needs no further decisions. What remains is authentication that
+only the owner can complete. Nothing here contains a secret, and no value here was invented: each
+is either read from the repository, read from the deployable package, or is an owner choice marked
+as such.
+
+**The deployable package is the ONLY runtime source.**
+
+```
+D:\LLC_Projects\DeepKore\Release\public_chat_corrected_d3a4f5af_deployable
+```
+
+Verified 2026-09-10: all eight files present, all three certified SHA256 unchanged, and the gateway
+**starts from package-only paths** (the earlier package could not - it had no `runtimeconfig.json`,
+so the .NET host fell back to self-contained and died on `hostpolicy.dll`). On startup it reports
+`provenance: commit=d3a4f5af... clean proto=DKW1` and refuses an unauthenticated request with
+`401 {"error_code":"unauthorized"}` - a code and no message, as the public contract requires.
+The older `public_chat_corrected_d3a4f5af` directory is historical evidence only.
+
+**The website hardcodes no package path.** Binaries are located at run time through
+`DEEP_KORE_WORKER_PATH` (gateway) and `DEEP_KORE_GATEWAY_EXE` / `DEEP_KORE_WORKER_EXE` (the
+lifecycle spec). Moving to the deployable package is therefore a configuration change and
+invalidates no test result.
+
+**The three services, and which identity each runs as.** This split is the security property, not a
+convention: the processes reachable from the internet are exactly the ones with no key to the vault.
+
+| Process | Windows identity | Why |
+|---|---|---|
+| gateway + workers | unprivileged virtual service account | internet-reachable; must NOT decrypt the queue |
+| broker + Workbench | the owner's own account | DPAPI `CURRENT_USER` requires it |
+
+**Tunnel origin.** The tunnel's only destination is the gateway's loopback listener - the value of
+`DEEP_KORE_BIND_URL`, which has no default and must be a loopback URI. The port is an owner choice;
+local proofs used `18080`. Nothing but the tunnel may reach it, and the browser must never address
+it at all.
+
+A minimal `~/.cloudflared/config.yml` once a tunnel exists:
+
+```yaml
+tunnel: <tunnel-uuid-from-`cloudflared tunnel list`>
+credentials-file: C:\Users\<owner>\.cloudflared\<tunnel-uuid>.json
+ingress:
+  - hostname: <the Access-protected hostname>
+    service: http://127.0.0.1:<the port in DEEP_KORE_BIND_URL>
+  - service: http_status:404
+```
+
+The trailing catch-all is required by cloudflared and is the right default: anything not the one
+named hostname gets 404 rather than reaching the gateway.
+
+**Access is service-to-service, never interactive.** Vercel functions call the origin with
+`CF-Access-Client-Id` / `CF-Access-Client-Secret` from `DEEP_KORE_ACCESS_CLIENT_ID` and
+`DEEP_KORE_ACCESS_CLIENT_SECRET`. An interactive human-login Access policy would break the server
+path, because there is no human in it. Both values are server-only and neither may ever gain a
+`PUBLIC_` twin.
+
+**Vercel production values, in the order to set them.** Every name below is the canonical one read
+from the source; do not create aliases.
+
+| Variable | Value | Class |
+|---|---|---|
+| `DEEP_KORE_CHAT_PHASE` | `disabled` | set FIRST, and leave it until the gate passes |
+| `DEEP_KORE_ORIGIN_URL` | the Access-protected hostname | server-only |
+| `DEEP_KORE_GATEWAY_TOKEN` | 32+ chars, matches the gateway's own | SECRET |
+| `DEEP_KORE_SESSION_SECRET` | 32+ random bytes, generated for this and derived from nothing else | SECRET |
+| `DEEP_KORE_ACCESS_CLIENT_ID` | Access service token id | SECRET |
+| `DEEP_KORE_ACCESS_CLIENT_SECRET` | Access service token secret | SECRET |
+| `PUBLIC_TURNSTILE_SITE_KEY` | Turnstile **site** key | browser-safe by design |
+| `TURNSTILE_SECRET_KEY` | Turnstile secret | SECRET |
+
+`DEEP_KORE_MAX_SESSIONS` is **origin-side, not Vercel** - it configures the gateway on the Windows
+host, where the workers actually live. Its value is `8`.
+
+**Rollback is one variable and one deploy.** Set `DEEP_KORE_CHAT_PHASE` back to `disabled` and
+redeploy. `readPhase()` maps anything unset or misspelled to `disabled`, so the failure direction is
+already safe: a typo cannot fail open into a live public surface. **If a defect appears after
+enablement, disable FIRST and diagnose afterwards** - never leave a broken authority or privacy path
+serving the public while it is being investigated.
+
+**What "deployed disabled" must look like before anything is enabled:** the homepage healthy,
+`/deep-kore` rendering, session creation refused at the server, no origin credential anywhere in the
+browser bundle, and DNS, email, Stripe, Cordel and every unrelated route unchanged.
+
 #### Privacy assumptions this site publishes, which Deep Kore must keep true
 
 Each of these is stated to visitors on `/deep-kore` and `/privacy`. If one stops being true, the
