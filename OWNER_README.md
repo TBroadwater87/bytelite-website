@@ -2177,6 +2177,49 @@ serving the public while it is being investigated.
 `/deep-kore` rendering, session creation refused at the server, no origin credential anywhere in the
 browser bundle, and DNS, email, Stripe, Cordel and every unrelated route unchanged.
 
+#### 21.15a Decided and built, 2026-09-11
+
+The owner chose the two values canon keeps as owner gates, and the tunnel was created and proven
+against them. None of the identifiers below is a secret; the tunnel credentials file is, and it
+lives in `C:\Users\tbroa\.cloudflared\` and nowhere in this repository.
+
+| Item | Value |
+|---|---|
+| Origin hostname | `dk-origin.thebytelite.com` - owner choice. Deliberately neutral: DNS names are public and appear in certificate-transparency logs, and canon rule 3 keeps the product name off surfaces outside its allowed routes |
+| Gateway bind | `DEEP_KORE_BIND_URL = http://127.0.0.1:18080/` - owner choice; the port the full live suite was proven against |
+| Tunnel | `deep-kore-origin`, id `d322213f-2065-4e8a-8bec-cae49687c747` - the only Deep Kore tunnel; the two Cordel tunnels were not touched |
+| Tunnel config | `C:\Users\tbroa\.cloudflared\deep-kore-origin.yml` - a tunnel-specific file, NOT the default `config.yml`, so it cannot collide with anything a Cordel tunnel reads |
+| DNS | proxied CNAME `dk-origin` -> the tunnel, created by `cloudflared tunnel route dns`; the apex and `www` records were verified unchanged afterwards |
+| Gateway service SID | `NT SERVICE\DeepKoreGateway` = `S-1-5-80-1328862559-3497750024-723998161-452260922-2304252446`, confirmed with `sc.exe showsid`. This is the value for `DEEP_KORE_GATEWAY_SID` on the broker once the gateway runs under that identity |
+
+**The ingress has one detail that is easy to lose.** The gateway is a .NET `HttpListener` bound to
+the prefix `http://127.0.0.1:18080/`, and `HttpListener` refuses any request whose `Host` header
+does not match its prefix. cloudflared forwards the public hostname by default, so the rule carries
+`originRequest.httpHostHeader: 127.0.0.1:18080`. Without it every request would die at the
+listener with a 400 before reaching authentication, which looks like a tunnel fault and is not one.
+
+**What was proven, before Access existed:**
+
+| Check | Result |
+|---|---|
+| Connectors | four registered across three Seattle edge locations |
+| Public request, origin down | `502` from Cloudflare - fails closed |
+| Public request, gateway up, no credential | `401 {"error_code":"unauthorized"}` - the gateway's own body, so the whole path and the Host rewrite work |
+| Wrong bearer | `401` |
+| Unknown path `/admin` | `401` - authentication runs before routing |
+| Gateway listening socket | `127.0.0.1:18080` only |
+| The host's LAN address on 18080 | not reachable - no direct exposure |
+| Any other hostname through this tunnel | the `http_status:404` catch-all |
+
+The gateway ran for that proof only, with a throwaway bearer nobody else held, and was stopped
+immediately; the tunnel was stopped afterwards too. **Nothing runs until Access is in front of it.**
+A bearer token alone is one barrier, and the architecture requires two.
+
+**Access must be a Service Auth policy, never Allow.** The website sends exactly
+`CF-Access-Client-Id` and `CF-Access-Client-Secret` (`api/_lib/deep-kore-core.ts`). An Allow policy
+with an identity rule would answer Vercel's server with a login redirect, because there is no human
+on that path.
+
 #### Privacy assumptions this site publishes, which Deep Kore must keep true
 
 Each of these is stated to visitors on `/deep-kore` and `/privacy`. If one stops being true, the

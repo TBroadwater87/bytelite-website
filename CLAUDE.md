@@ -1264,9 +1264,13 @@ None of these may be resolved by assumption:
 - ~~**a privacy-safe, session-scoped public Tesseract anchor representation**~~ - **CLOSED
   2026-09-09**, delivered by corrected release `d3a4f5af`. See the section above;
 
-- the Deep Kore origin hostname and the loopback bind address;
+- ~~the Deep Kore origin hostname and the loopback bind address~~ - **CLOSED 2026-09-11 by owner
+  decision:** `dk-origin.thebytelite.com`, bound at `http://127.0.0.1:18080/`. The hostname is
+  deliberately neutral because DNS names are public; see `OWNER_README.md` 21.15a;
 - `DEEP_KORE_CHAT_PHASE` - it is `disabled` until the owner sets it;
-- the Cloudflare Tunnel and the Cloudflare Access service token;
+- ~~the Cloudflare Tunnel~~ - **BUILT 2026-09-11:** tunnel `deep-kore-origin`, proven end to end to
+  the gateway and failing closed, and deliberately left stopped until Access is in front of it;
+- the Cloudflare Access application and its service token;
 - the Turnstile site and secret keys;
 - whether **AIon** is exposed on the public page. Both identities are implemented and proven
   through the same governed path; only AIya is rendered, because a second public identity is an
