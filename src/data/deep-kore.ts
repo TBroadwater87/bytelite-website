@@ -242,6 +242,21 @@ export const CONSENT_SURFACES: Array<{ heading: string; body: string }> = [
 export const UI = {
   start: 'Start a private session',
   starting: 'Starting...',
+
+  // THE SESSION EXISTS AND IS NOT YET ABLE TO ANSWER.
+  //
+  // Protocol v1.2 accepts a session immediately and initializes it afterwards, because
+  // the worker must load a canonical knowledge snapshot first. The wording says what is
+  // actually happening and promises no duration: the site is not told one, the origin
+  // does not guarantee one, and a countdown would be a number invented here.
+  //
+  // It must not say connected, ready, verified, or anything a visitor could read as
+  // "AIya is listening now", because it is not - the composer is deliberately shut
+  // until the origin itself reports ready.
+  sessionInitializing:
+    'Preparing a private session. Deep Kore is loading what it knows; this usually takes ' +
+    'a few moments. You can type in the meantime, and you can cancel.',
+  composerInitializing: 'The session is still being prepared. You can type; sending opens when it is ready.',
   end: 'End and delete session',
   ending: 'Ending...',
   send: 'Send',

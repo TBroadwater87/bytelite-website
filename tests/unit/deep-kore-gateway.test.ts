@@ -358,13 +358,189 @@ describe('request boundary', () => {
     expect(impl).not.toHaveBeenCalled();
   });
 
+  // GET was an unsupported verb until protocol v1.2, when it became the session's
+  // initialization-status read. It is a METHOD on this route rather than a fifth Deep
+  // Kore endpoint, because canon section 8 closes the route list and a status read is
+  // another question about the session the caller already holds. PUT never had a meaning
+  // here and still does not, so it is what proves the refusal path.
   test('the wrong verb is 405 with an Allow header, not a silent 404', async () => {
     configure('private_alpha');
     const { res, captured } = mockRes();
-    await sessionRoute(mockReq({ method: 'GET' }), res);
+    await sessionRoute(mockReq({ method: 'PUT' }), res);
 
     expect(captured.status).toBe(405);
-    expect(captured.headers['allow']).toBe('POST, DELETE');
+    expect(captured.headers['allow']).toBe('POST, GET, DELETE');
+  });
+
+  // ---------------------------------------------------------------------------
+  // PROTOCOL v1.2 - ASYNCHRONOUS IDEMPOTENT SESSION CREATION
+  //
+  // The origin answers 202 with `initializing` and finishes the expensive worker start
+  // afterwards, because waiting inside one HTTP request meant a measured 14.2s against a
+  // 10s transport bound - which timed out the caller while the origin went on to build a
+  // session nobody held a reference to. These assert the website half of the fix.
+  // ---------------------------------------------------------------------------
+
+  test('session creation forwards a derived creation identity, never the browser key', async () => {
+    configure('private_alpha');
+    const { impl, calls } = stubFetch([
+      [
+        /\/v1\/sessions$/,
+        { status: 202, body: { session_id: 'dks-abc', state: 'initializing', duplicate: false } },
+      ],
+    ]);
+    vi.stubGlobal('fetch', impl);
+
+    const { res, captured } = mockRes();
+    await sessionRoute(mockReq({ body: { creation_key: 'visitor-chosen-key' } }), res);
+
+    expect(captured.status).toBe(201);
+    const sent = JSON.parse(String(calls[0]?.init?.body ?? '{}')) as Record<string, unknown>;
+    // The upstream identity is an HMAC of the key under the server secret, exactly as a
+    // turn key becomes a message id. The visitor can make a retry idempotent; they cannot
+    // choose, guess, or collide with an upstream identifier.
+    expect(typeof sent['creation_id']).toBe('string');
+    expect(sent['creation_id']).not.toBe('visitor-chosen-key');
+    expect(String(sent['creation_id'])).toMatch(/^[0-9a-f]{32}$/);
+  });
+
+  test('the same creation key always derives the same creation identity', async () => {
+    configure('private_alpha');
+    const idFor = async (key: string) => {
+      const { impl, calls } = stubFetch([
+        [/\/v1\/sessions$/, { status: 202, body: { session_id: 'dks-abc', state: 'initializing' } }],
+      ]);
+      vi.stubGlobal('fetch', impl);
+      const { res } = mockRes();
+      await sessionRoute(mockReq({ body: { creation_key: key } }), res);
+      return (JSON.parse(String(calls[0]?.init?.body ?? '{}')) as Record<string, unknown>)[
+        'creation_id'
+      ];
+    };
+
+    // THIS IS THE WHOLE POINT. A retry after an uncertain response must resolve to the
+    // same session rather than allocate a second worker and a second capacity slot.
+    expect(await idFor('same-key')).toBe(await idFor('same-key'));
+    expect(await idFor('same-key')).not.toBe(await idFor('different-key'));
+  });
+
+  test('an accepted session reports initializing and does not claim to be ready', async () => {
+    configure('private_alpha');
+    vi.stubGlobal(
+      'fetch',
+      stubFetch([
+        [
+          /\/v1\/sessions$/,
+          { status: 202, body: { session_id: 'dks-abc', state: 'initializing', duplicate: false } },
+        ],
+      ]).impl
+    );
+
+    const { res, captured } = mockRes();
+    await sessionRoute(mockReq({ body: { creation_key: 'k1' } }), res);
+
+    expect(captured.status).toBe(201);
+    expect(captured.body['state']).toBe('initializing');
+    expect(captured.body['ok']).toBe(true);
+  });
+
+  test('a v1 origin answering 201 is reported ready, so either protocol works', async () => {
+    configure('private_alpha');
+    vi.stubGlobal(
+      'fetch',
+      stubFetch([[/\/v1\/sessions$/, { status: 201, body: { session_id: 'dks-abc' } }]]).impl
+    );
+
+    const { res, captured } = mockRes();
+    await sessionRoute(mockReq({ body: { creation_key: 'k1' } }), res);
+
+    // A v1 gateway only answers once the worker is READY, so 201 IS readiness there.
+    // Accepting both is what lets this site work against either origin without guessing.
+    expect(captured.status).toBe(201);
+    expect(captured.body['state']).toBe('ready');
+  });
+
+  test('the status read reports the origin state and never invents one', async () => {
+    configure('private_alpha');
+    const s = await openSession();
+
+    for (const [originState, expected] of [
+      ['initializing', 'initializing'],
+      ['ready', 'ready'],
+    ] as const) {
+      vi.stubGlobal(
+        'fetch',
+        stubFetch([[/\/v1\/sessions\//, { status: 200, body: { state: originState } }]]).impl
+      );
+      const { res, captured } = mockRes();
+      await sessionRoute(mockReq({ method: 'GET', headers: { cookie: s.cookie } }), res);
+      expect(captured.status).toBe(200);
+      expect(captured.body['state']).toBe(expected);
+    }
+  });
+
+  test('a failed initialization carries a closed public code, never the origin string', async () => {
+    configure('private_alpha');
+    const s = await openSession();
+
+    for (const [originCode, expected] of [
+      ['provenance_mismatch', 'DEEP_KORE_PROVENANCE_MISMATCH'],
+      ['engine_unavailable', 'DEEP_KORE_UNAVAILABLE'],
+      // Anything the origin adds later lands on the honest closed default rather than
+      // becoming a new public string this site never approved.
+      ['some_future_origin_code', 'DEEP_KORE_UNAVAILABLE'],
+    ] as const) {
+      vi.stubGlobal(
+        'fetch',
+        stubFetch([
+          [/\/v1\/sessions\//, { status: 200, body: { state: 'failed', failure_code: originCode } }],
+        ]).impl
+      );
+      const { res, captured } = mockRes();
+      await sessionRoute(mockReq({ method: 'GET', headers: { cookie: s.cookie } }), res);
+      expect(captured.body['state']).toBe('failed');
+      expect(captured.body['error_code']).toBe(expected);
+      expect(captured.raw).not.toContain(originCode === 'engine_unavailable' ? 'zzz' : originCode);
+    }
+  });
+
+  test('an unrecognised origin state is a fault, not a new public state', async () => {
+    configure('private_alpha');
+    const s = await openSession();
+    vi.stubGlobal(
+      'fetch',
+      stubFetch([[/\/v1\/sessions\//, { status: 200, body: { state: 'warming_up' } }]]).impl
+    );
+
+    const { res, captured } = mockRes();
+    await sessionRoute(mockReq({ method: 'GET', headers: { cookie: s.cookie } }), res);
+    expect(captured.status).toBe(502);
+    expect(captured.body['error_code']).toBe('origin_error');
+  });
+
+  test('a status read without a session never reaches the origin', async () => {
+    configure('private_alpha');
+    const { impl, calls } = stubFetch([]);
+    vi.stubGlobal('fetch', impl);
+
+    const { res, captured } = mockRes();
+    await sessionRoute(mockReq({ method: 'GET' }), res);
+
+    expect(captured.status).toBe(401);
+    expect(captured.body['error_code']).toBe('no_session');
+    expect(calls.length, 'an unauthenticated status read must not touch the origin').toBe(0);
+  });
+
+  test('an unrecognised session body key is still refused after creation_key was added', async () => {
+    configure('private_alpha');
+    const { impl, calls } = stubFetch([]);
+    vi.stubGlobal('fetch', impl);
+
+    const { res, captured } = mockRes();
+    await sessionRoute(mockReq({ body: { creation_key: 'k1', session_id: 'dks-theirs' } }), res);
+
+    expect(captured.status).toBe(400);
+    expect(calls.length).toBe(0);
   });
 
   test('an unrecognised persona is refused, never reassigned to a default', async () => {

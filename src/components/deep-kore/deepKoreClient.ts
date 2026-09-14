@@ -133,10 +133,33 @@ export interface TransportFailure {
 
 export type Attempt<T> = { ok: true; value: T } | { ok: false; failure: TransportFailure };
 
+/**
+ * The three initialization states a session can report.
+ *
+ * These are the ORIGIN's own names under protocol v1.2, carried through the server
+ * unchanged. `ready` and `failed` are terminal there and terminal here. Nothing in this
+ * file may derive them from elapsed time: a session is ready when the origin says so.
+ */
+export type SessionInitializationState = 'initializing' | 'ready' | 'failed';
+
 export interface SessionOpened {
   persona: string;
   canonVersion: string | null;
   maxMessageBytes: number;
+  /**
+   * Where initialization stands at the moment the session was accepted. Under v1.2 this
+   * is normally `initializing`; a v1 origin answers only once the worker is ready, so it
+   * is `ready` there. Either way the interface waits for `ready` before opening the
+   * composer, rather than assuming which protocol it is talking to.
+   */
+  initializationState: SessionInitializationState;
+}
+
+/** One reading of a session's initialization state, plus the reason if it failed. */
+export interface SessionInitializationStatus {
+  state: SessionInitializationState;
+  /** Present only when `state` is `failed`; always one of this site's closed codes. */
+  errorCode?: DeepKoreErrorCode | undefined;
 }
 
 export interface TurnAccepted {
@@ -214,6 +237,17 @@ const UNREACHABLE: TransportFailure = { code: CODE_UNAVAILABLE, status: 0, fatal
 
 function asRecord(v: unknown): Record<string, unknown> | null {
   return v && typeof v === 'object' && !Array.isArray(v) ? (v as Record<string, unknown>) : null;
+}
+
+/**
+ * Read an initialization state, defaulting anything unrecognised to `initializing`.
+ *
+ * The default is the safe direction and is chosen deliberately: an unknown value must
+ * never open the composer. It keeps the interface waiting for an authoritative `ready`
+ * rather than guessing that silence means success.
+ */
+function readInitializationState(raw: unknown): SessionInitializationState {
+  return raw === 'ready' || raw === 'failed' ? raw : 'initializing';
 }
 
 function readTurn(raw: unknown): EngineTurn | null {
@@ -305,7 +339,18 @@ export function readResult(raw: unknown): DeepKoreResult {
 // ---------------------------------------------------------------------------
 
 export interface DeepKoreClient {
-  createSession(turnstileToken?: string | undefined): Promise<Attempt<SessionOpened>>;
+  createSession(
+    turnstileToken?: string | undefined,
+    creationKey?: string | undefined
+  ): Promise<Attempt<SessionOpened>>;
+  /**
+   * Read the session's current initialization state.
+   *
+   * One request, one answer. It carries no deadline and counts nothing: initialization
+   * ends when the origin reaches a terminal state, and this reports what the origin
+   * currently says. The caller decides whether to ask again.
+   */
+  readSessionInitializationState(): Promise<Attempt<SessionInitializationStatus>>;
   submitTurn(
     text: string,
     opts?: { turnKey?: string; disclosure?: TavDisclosure; context?: TurnContext }
@@ -362,12 +407,17 @@ export function createDeepKoreClient(fetchImpl: typeof fetch = fetch): DeepKoreC
   }
 
   return {
-    async createSession(turnstileToken) {
+    async createSession(turnstileToken, creationKey) {
       const body: Record<string, unknown> = {};
-      // The browser chooses a human-check token and nothing else. `persona` is omitted
-      // deliberately: the server defaults it, and a page that names an identity key is a
-      // page that could name a different one.
+      // The browser chooses a human-check token and an opaque creation key, and nothing
+      // else. `persona` is omitted deliberately: the server defaults it, and a page that
+      // names an identity key is a page that could name a different one.
       if (turnstileToken) body['turnstile_token'] = turnstileToken;
+      // THE SAME KEY ON EVERY ATTEMPT. The server turns it into the upstream creation
+      // identity, so retrying an uncertain request resolves to the SAME session instead
+      // of allocating a second worker and a second capacity slot. Generating a fresh key
+      // on retry is precisely the bug this field exists to prevent.
+      if (creationKey) body['creation_key'] = creationKey;
 
       const res = await call(SESSION_PATH, { method: 'POST', body: JSON.stringify(body) }, false);
       if (!res) return { ok: false, failure: UNREACHABLE };
@@ -388,6 +438,9 @@ export function createDeepKoreClient(fetchImpl: typeof fetch = fetch): DeepKoreC
           canonVersion: typeof r?.['canon_version'] === 'string' ? (r['canon_version'] as string) : null,
           maxMessageBytes:
             typeof r?.['max_message_bytes'] === 'number' ? (r['max_message_bytes'] as number) : 0,
+          // An unrecognised value is treated as `initializing`, which is the safe
+          // direction: the composer stays shut until a later read says `ready`.
+          initializationState: readInitializationState(r?.['state']),
         },
       };
     },
@@ -498,6 +551,28 @@ export function createDeepKoreClient(fetchImpl: typeof fetch = fetch): DeepKoreC
           : { ok: false, failure: { code: 'teaching_broker_unavailable', status: 200, fatal: false } };
       }
       return { ok: true, value: { kind: 'DISCARDED' } };
+    },
+
+    async readSessionInitializationState() {
+      const res = await call(SESSION_PATH, { method: 'GET' }, false);
+      // A request that never completed is a TRANSPORT failure and is returned as one.
+      // It is emphatically not a failed initialization: the origin may well be part way
+      // through loading a knowledge snapshot, and reporting that as a dead session would
+      // be this file inventing an engine result from a network event.
+      if (!res) return { ok: false as const, failure: UNREACHABLE };
+      if (res.status !== 200) {
+        return { ok: false as const, failure: failureFrom(res.json, res.status) };
+      }
+      const r = asRecord(res.json);
+      const state = readInitializationState(r?.['state']);
+      const rawCode = r?.['error_code'];
+      return {
+        ok: true as const,
+        value: {
+          state,
+          errorCode: isErrorCode(rawCode) ? rawCode : undefined,
+        },
+      };
     },
 
     async endSession() {

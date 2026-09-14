@@ -1,6 +1,11 @@
 /**
  * POST   /api/deep-kore/session   - start a private Deep Kore chat session
+ * GET    /api/deep-kore/session   - report whether it has finished initializing
  * DELETE /api/deep-kore/session   - end it and discard its ephemeral state
+ *
+ * GET is a METHOD on this route rather than a fifth Deep Kore endpoint, because canon
+ * section 8 closes the list of server routes this site has and a status read is another
+ * question about the session the caller already holds, not a new capability.
  *
  * A Vercel Function beside the static Astro build, exactly like api/contact.ts. The
  * site is still `output: 'static'` with no adapter; nothing here converts any page to
@@ -10,7 +15,12 @@
  */
 
 import type { ServerResponse } from 'node:http';
-import { readConfig, handleCreateSession, handleDeleteSession } from '../_lib/deep-kore-core.js';
+import {
+  readConfig,
+  handleCreateSession,
+  handleSessionStatus,
+  handleDeleteSession,
+} from '../_lib/deep-kore-core.js';
 import {
   toGatewayRequest,
   send,
@@ -29,10 +39,15 @@ export default async function handler(
     return;
   }
 
+  if (req.method === 'GET') {
+    send(res, await handleSessionStatus(await toGatewayRequest(req), cfg));
+    return;
+  }
+
   if (req.method === 'DELETE') {
     send(res, await handleDeleteSession(await toGatewayRequest(req), cfg));
     return;
   }
 
-  methodNotAllowed(res, 'POST, DELETE');
+  methodNotAllowed(res, 'POST, GET, DELETE');
 }

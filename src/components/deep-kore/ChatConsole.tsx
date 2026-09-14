@@ -37,7 +37,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { KeyboardEvent, ReactNode } from 'react';
 import { UI, ERROR_COPY, PUBLIC_IDENTITY } from '../../data/deep-kore';
-import type { DeepKoreErrorCode } from '../../../api/_lib/deep-kore-codes';
+import { CODE_UNAVAILABLE, type DeepKoreErrorCode } from '../../../api/_lib/deep-kore-codes';
 // THE ONLY WAY THIS COMPONENT TALKS TO DEEP KORE. There is no `fetch` in this file, no
 // path, no header and no status code: the adapter owns all of that and hands back a typed
 // application model. See deepKoreClient.ts for why that boundary exists.
@@ -68,7 +68,18 @@ const POLL_INTERVAL_MS = 700;
  */
 type ClientState =
   | { kind: 'IDLE' }
+  // The creation request itself is in flight. This is a TRANSPORT state: nothing is
+  // known yet about whether a session exists.
   | { kind: 'STARTING' }
+  // The origin has accepted the session and is initializing it. Under protocol v1.2
+  // creation answers immediately with `initializing`, because the worker must load a
+  // canonical knowledge snapshot before it can carry a turn - measured at roughly
+  // fourteen seconds, which is why waiting inside one HTTP request was the wrong shape.
+  //
+  // The session EXISTS here. It owns a capacity slot and can be deleted, which is what
+  // separates it from STARTING and is why the visitor may end it while it is still
+  // coming up.
+  | { kind: 'INITIALIZING' }
   | { kind: 'READY' }
   | { kind: 'TURN_IN_PROGRESS' }
   // PERMISSION and RESULT are separate fields, because they are separate facts.
@@ -100,6 +111,8 @@ function stateSummary(s: ClientState): ReactNode {
       return UI.idleNote;
     case 'STARTING':
       return UI.starting;
+    case 'INITIALIZING':
+      return UI.sessionInitializing;
     case 'TERMINATED':
       return UI.endedNote;
     case 'TERMINAL_FAILURE':
@@ -139,6 +152,8 @@ function composerBlockedReason(s: ClientState): string | null {
       return UI.composerNoSession;
     case 'STARTING':
       return UI.composerStarting;
+    case 'INITIALIZING':
+      return UI.composerInitializing;
     case 'TURN_IN_PROGRESS':
       return UI.composerTurnRunning;
     case 'TAV_DECISION_REQUIRED':
@@ -281,6 +296,21 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
   // TAV and teaching consent are two members of one union - so one ref serves both.
   const askRegion = useRef<HTMLElement | null>(null);
   const prevKind = useRef<ClientState['kind']>('IDLE');
+  /**
+   * The creation key for the session attempt in flight, held so a retry reuses it.
+   * Cleared once the session reaches a terminal state, so the NEXT attempt is a new
+   * session rather than a resolution of the previous one.
+   */
+  const sessionCreationKey = useRef<string>('');
+  /**
+   * Guards against overlapping initialization polls.
+   *
+   * A remount, a double press, or a retry must not start a second chain against the same
+   * session: two chains would race to set the state and could reopen a composer the other
+   * had already closed. Exactly one chain runs, and it owns the transition out of
+   * INITIALIZING.
+   */
+  const initializationPollActive = useRef<boolean>(false);
   const focusReturnPending = useRef(false);
 
   // The composer is live ONLY in READY. While a decision is required the visitor is
@@ -392,6 +422,55 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
     setLastFailure(f);
   }, []);
 
+  /**
+   * Waits for the origin to finish initializing the session it already accepted.
+   *
+   * NO ATTEMPT CAP AND NO DEADLINE, for the same reason `pollJob` has none. Protocol
+   * v1.2 certifies that initialization ends only at its own terminal state, so a
+   * countdown here would be a stopping rule imposed from outside the engine - and the
+   * timeout it replaced is precisely the defect this protocol exists to remove.
+   *
+   * A FAILED POLL IS NOT A FAILED SESSION. A request that never completed says nothing
+   * about the worker, which is very likely still loading its snapshot. The loop simply
+   * asks again; only the ORIGIN may declare the session failed.
+   *
+   * Exactly one chain runs at a time, and it stops on ready, on failure, and whenever
+   * the console leaves INITIALIZING - which is what ending or leaving does.
+   */
+  const awaitSessionInitialization = useCallback(async () => {
+    if (initializationPollActive.current) return;
+    initializationPollActive.current = true;
+    try {
+      for (;;) {
+        if (stopped.current) return;
+        await new Promise((r) => setTimeout(r, POLL_INTERVAL_MS));
+        if (stopped.current) return;
+
+        const status = await clientRef.current?.readSessionInitializationState();
+        if (!status) return;
+        if (!status.ok) {
+          // Transport only. Keep waiting: the session is still coming up at the origin.
+          continue;
+        }
+        if (status.value.state === 'ready') {
+          sessionCreationKey.current = '';
+          setState({ kind: 'READY' });
+          window.requestAnimationFrame(() => composer.current?.focus());
+          return;
+        }
+        if (status.value.state === 'failed') {
+          sessionCreationKey.current = '';
+          // The origin's own terminal verdict, rendered through the closed public code
+          // set. Nothing here invents a reason.
+          setState({ kind: 'TERMINAL_FAILURE', code: status.value.errorCode ?? CODE_UNAVAILABLE });
+          return;
+        }
+      }
+    } finally {
+      initializationPollActive.current = false;
+    }
+  }, []);
+
   const start = useCallback(async () => {
     clearFailure();
     setStatus('');
@@ -410,16 +489,37 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
       }
     }
 
-    const opened = await client.createSession(token);
+    // ONE CREATION KEY PER ATTEMPT, REUSED ON EVERY RETRY OF THAT ATTEMPT.
+    //
+    // The server turns this into the upstream creation identity, so a request whose
+    // response was lost can be repeated and resolve to the SAME session. Minting a new
+    // key on retry is exactly the bug that leaks a worker and a capacity slot, so the
+    // key is generated once here and only replaced when the visitor starts over.
+    if (!sessionCreationKey.current) {
+      sessionCreationKey.current = crypto.randomUUID().replace(/-/g, '');
+    }
+
+    const opened = await client.createSession(token, sessionCreationKey.current);
     if (!opened.ok) {
       showFailure(opened.failure);
       setState({ kind: 'IDLE' });
       return;
     }
     setEntries([]);
-    setState({ kind: 'READY' });
-    window.requestAnimationFrame(() => composer.current?.focus());
-  }, [turnstileSiteKey, client, clearFailure, showFailure]);
+
+    // A v1 origin answers only once the worker is ready; a v1.2 origin answers at once
+    // and initializes afterwards. The site does not assume which it is talking to - it
+    // reads the state it was given and waits when told to wait.
+    if (opened.value.initializationState === 'ready') {
+      sessionCreationKey.current = '';
+      setState({ kind: 'READY' });
+      window.requestAnimationFrame(() => composer.current?.focus());
+      return;
+    }
+
+    setState({ kind: 'INITIALIZING' });
+    void awaitSessionInitialization();
+  }, [turnstileSiteKey, client, clearFailure, showFailure, awaitSessionInitialization]);
 
   const end = useCallback(async () => {
     setState({ kind: 'ENDING' });
@@ -508,6 +608,7 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
     },
     [discardLocalState, showFailure]
   );
+
 
   /**
    * Polls one job to a terminal transport state, then enters the state the ENGINE's own

@@ -946,7 +946,7 @@ function onlyKnownKeys(body: Record<string, unknown>, allowed: readonly string[]
  * reference and a boolean. Nothing addresses a model, a prompt, a session, a job, an
  * origin, a price, a governance setting or a queue.
  */
-const SESSION_BODY_KEYS = ['persona', 'turnstile_token'] as const;
+const SESSION_BODY_KEYS = ['persona', 'turnstile_token', 'creation_key'] as const;
 const MESSAGE_BODY_KEYS = ['text', 'turn_key', 'device'] as const;
 const CONSENT_BODY_KEYS = ['reference', 'consent'] as const;
 
@@ -1057,10 +1057,34 @@ export async function handleCreateSession(
     if (!ok) return fail(403, 'verification_failed');
   }
 
-  const res = await tryOrigin(cfg, 'POST', '/v1/sessions', { persona }, {}, fetchImpl);
+  // THE CREATION IDENTITY, AND WHY THE BROWSER DOES NOT CHOOSE IT.
+  //
+  // Protocol v1.2 makes session creation idempotent on a `creation_id`. The browser
+  // supplies an opaque `creation_key` and this server derives the identity from it,
+  // exactly as `turn_key` becomes a message id: a visitor can therefore make a retry
+  // idempotent without being able to choose, guess or collide with an upstream
+  // identifier - including another visitor's.
+  //
+  // The stability is the whole point. A transport failure leaves the caller unsure
+  // whether the origin created a session; retrying with the SAME key resolves to the
+  // SAME session rather than allocating a second worker and a second capacity slot.
+  const creationId = creationIdFor(body['creation_key'], cfg.sessionSecret ?? '');
+
+  const res = await tryOrigin(
+    cfg,
+    'POST',
+    '/v1/sessions',
+    { persona, creation_id: creationId },
+    {},
+    fetchImpl
+  );
   if (!res) return fail(503, UNAVAILABLE);
 
-  if (res.status !== 201) {
+  // 202 is the v1.2 answer: the session exists and is INITIALIZING. 201 is the v1
+  // answer, returned only once the worker is READY. Both are success, and both carry a
+  // session id - accepting either is what lets this site work against an origin on
+  // either protocol without guessing which one it is talking to.
+  if (res.status !== 201 && res.status !== 202) {
     const code = originCode(res);
 
     // CAPACITY AND OUTAGE ARE DIFFERENT FACTS AND GET DIFFERENT CODES.
@@ -1101,12 +1125,27 @@ export async function handleCreateSession(
     return fail(502, 'origin_error');
   }
 
+  // THE SESSION'S INITIALIZATION STATE, CARRIED VERBATIM FROM THE ORIGIN.
+  //
+  // A v1.2 origin answers `initializing`; a v1 origin answers 201 having already
+  // waited for READY, which is `ready` by construction. The site never infers this
+  // from elapsed time and never assumes it - the composer stays shut until the ORIGIN
+  // says ready, because only the origin knows.
+  const originState = originBody?.['state'];
+  const state: SessionInitState =
+    res.status === 201
+      ? 'ready'
+      : originState === 'ready' || originState === 'failed'
+        ? originState
+        : 'initializing';
+
   const csrf = newCsrfToken();
   return {
     status: 201,
     body: {
       ok: true,
       persona,
+      state,
       // Echoed so the page can show which public canon it is talking to. The value is
       // owner-set; the site never invents one.
       canon_version: cfg.canonVersion ?? null,
@@ -1121,6 +1160,106 @@ export async function handleCreateSession(
       csrfCookie(csrf, req.secure),
     ],
   };
+}
+
+/**
+ * The three states a Deep Kore session can be in before it can carry a conversation.
+ *
+ * These are the ORIGIN's own names, carried through unchanged. They are not a website
+ * invention and must not become one: `initializing`, `ready` and `failed` are what
+ * protocol v1.2 defines, and `ready` and `failed` are terminal there, so they are
+ * terminal here too.
+ */
+export type SessionInitState = 'initializing' | 'ready' | 'failed';
+
+/**
+ * The upstream creation identity, derived from the browser's opaque key.
+ *
+ * Identical in construction and in reasoning to `messageIdFor`: HMAC under the server
+ * secret, so the value is stable for a given key - which is what makes a retry
+ * idempotent - while remaining unforgeable and impossible to collide with another
+ * visitor's. A missing or malformed key yields a fresh random identity, which is the
+ * safe direction: a caller that supplied nothing to be idempotent ON gets a new
+ * session rather than silently joining someone else's.
+ */
+function creationIdFor(creationKey: unknown, secret: string): string {
+  if (typeof creationKey === 'string' && isPlainToken(creationKey)) {
+    return createHmac('sha256', secret).update(`create:${creationKey}`).digest('hex').slice(0, 32);
+  }
+  return randomBytes(16).toString('hex');
+}
+
+// ---------------------------------------------------------------------------
+// GET /api/deep-kore/session - initialization status
+// ---------------------------------------------------------------------------
+
+/**
+ * Report whether the session this browser owns has finished initializing.
+ *
+ * WHY THIS IS THE SAME ROUTE AND NOT A NEW ONE. Section 8 of the canon closes the list
+ * of server routes this site has. A status read is not a new capability - it is another
+ * question about the session the caller already holds - so it is a METHOD on the
+ * existing session route rather than a fifth Deep Kore endpoint.
+ *
+ * THE SESSION IS READ FROM THE SIGNED COOKIE, never from the body or the query. A
+ * browser-supplied session id would be an account-takeover primitive, which is the whole
+ * reason the cookie is authenticated in the first place.
+ *
+ * THERE IS NO DEADLINE HERE, AND THERE MUST NEVER BE ONE. This answers what the origin
+ * currently says and nothing more. It counts no attempts, measures no elapsed time, and
+ * cannot fail a session for taking too long - initialization ends when the ORIGIN
+ * reaches a terminal state, which is exactly the law the protocol certifies.
+ */
+export async function handleSessionStatus(
+  req: GatewayRequest,
+  cfg: DeepKoreConfig,
+  fetchImpl: typeof fetch = fetch
+): Promise<GatewayResponse> {
+  const gate = preflight(cfg);
+  if (gate) return gate;
+
+  const sessionId = resolveSession(req, cfg);
+  if (!sessionId) return failClearing(401, 'no_session', req.secure);
+
+  const res = await tryOrigin(cfg, 'GET', `/v1/sessions/${sessionId}`, undefined, {}, fetchImpl);
+  if (!res) return fail(503, UNAVAILABLE);
+
+  // The session is gone at the origin. That is a real answer, not a transport fault,
+  // and the cookie is cleared so the page cannot keep polling something that no longer
+  // exists.
+  if (res.status === 404) return failClearing(401, 'session_expired', req.secure);
+  if (res.status !== 200) return fail(502, 'origin_error');
+
+  const originBody = asRecord(res.body);
+  const raw = originBody?.['state'];
+  if (raw !== 'initializing' && raw !== 'ready' && raw !== 'failed') {
+    // An unrecognised state is a fault, never a new public state to improvise around.
+    return fail(502, 'origin_error');
+  }
+  const state: SessionInitState = raw;
+
+  if (state === 'failed') {
+    return {
+      status: 200,
+      body: { state, error_code: initFailureCode(originBody?.['failure_code']) },
+      cookies: [],
+    };
+  }
+  return { status: 200, body: { state }, cookies: [] };
+}
+
+/**
+ * Map the origin's initialization failure vocabulary onto this site's closed code set.
+ *
+ * The origin's codes are diagnostics and its list can grow; this site's list cannot, so
+ * the mapping is exhaustive by construction and everything unrecognised lands on
+ * "the service could not start a session for you", which is true of every member.
+ *
+ * `provenance_mismatch` keeps its own code for the reason it already has one: it means
+ * the deployment is mismatched, which no visitor action and no waiting can clear.
+ */
+function initFailureCode(raw: unknown): DeepKoreErrorCode {
+  return raw === 'provenance_mismatch' ? PROVENANCE_MISMATCH : UNAVAILABLE;
 }
 
 // ---------------------------------------------------------------------------
