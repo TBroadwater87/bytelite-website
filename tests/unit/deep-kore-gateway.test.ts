@@ -358,7 +358,7 @@ describe('request boundary', () => {
     expect(impl).not.toHaveBeenCalled();
   });
 
-  // GET was an unsupported verb until protocol v1.2, when it became the session's
+  // GET was an unsupported verb until protocol DKW1.2, when it became the session's
   // initialization-status read. It is a METHOD on this route rather than a fifth Deep
   // Kore endpoint, because canon section 8 closes the route list and a status read is
   // another question about the session the caller already holds. PUT never had a meaning
@@ -373,7 +373,7 @@ describe('request boundary', () => {
   });
 
   // ---------------------------------------------------------------------------
-  // PROTOCOL v1.2 - ASYNCHRONOUS IDEMPOTENT SESSION CREATION
+  // protocol DKW1.2 - ASYNCHRONOUS IDEMPOTENT SESSION CREATION
   //
   // The origin answers 202 with `initializing` and finishes the expensive worker start
   // afterwards, because waiting inside one HTTP request meant a measured 14.2s against a
@@ -444,7 +444,7 @@ describe('request boundary', () => {
     expect(captured.body['ok']).toBe(true);
   });
 
-  test('a v1 origin answering 201 is reported ready, so either protocol works', async () => {
+  test('a DKW1 origin answering 201 is reported ready, so either protocol works', async () => {
     configure('private_alpha');
     vi.stubGlobal(
       'fetch',
@@ -454,7 +454,7 @@ describe('request boundary', () => {
     const { res, captured } = mockRes();
     await sessionRoute(mockReq({ body: { creation_key: 'k1' } }), res);
 
-    // A v1 gateway only answers once the worker is READY, so 201 IS readiness there.
+    // A DKW1 gateway only answers once the worker is READY, so 201 IS readiness there.
     // Accepting both is what lets this site work against either origin without guessing.
     expect(captured.status).toBe(201);
     expect(captured.body['state']).toBe('ready');

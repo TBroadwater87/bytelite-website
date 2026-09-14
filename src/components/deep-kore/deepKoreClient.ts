@@ -136,7 +136,7 @@ export type Attempt<T> = { ok: true; value: T } | { ok: false; failure: Transpor
 /**
  * The three initialization states a session can report.
  *
- * These are the ORIGIN's own names under protocol v1.2, carried through the server
+ * These are the ORIGIN's own names under protocol DKW1.2, carried through the server
  * unchanged. `ready` and `failed` are terminal there and terminal here. Nothing in this
  * file may derive them from elapsed time: a session is ready when the origin says so.
  */
@@ -147,8 +147,8 @@ export interface SessionOpened {
   canonVersion: string | null;
   maxMessageBytes: number;
   /**
-   * Where initialization stands at the moment the session was accepted. Under v1.2 this
-   * is normally `initializing`; a v1 origin answers only once the worker is ready, so it
+   * Where initialization stands at the moment the session was accepted. Under DKW1.2 this
+   * is normally `initializing`; a DKW1 origin answers only once the worker is ready, so it
    * is `ready` there. Either way the interface waits for `ready` before opening the
    * composer, rather than assuming which protocol it is talking to.
    */

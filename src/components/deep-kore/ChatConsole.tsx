@@ -71,7 +71,7 @@ type ClientState =
   // The creation request itself is in flight. This is a TRANSPORT state: nothing is
   // known yet about whether a session exists.
   | { kind: 'STARTING' }
-  // The origin has accepted the session and is initializing it. Under protocol v1.2
+  // The origin has accepted the session and is initializing it. Under protocol DKW1.2
   // creation answers immediately with `initializing`, because the worker must load a
   // canonical knowledge snapshot before it can carry a turn - measured at roughly
   // fourteen seconds, which is why waiting inside one HTTP request was the wrong shape.
@@ -426,7 +426,7 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
    * Waits for the origin to finish initializing the session it already accepted.
    *
    * NO ATTEMPT CAP AND NO DEADLINE, for the same reason `pollJob` has none. Protocol
-   * v1.2 certifies that initialization ends only at its own terminal state, so a
+   * DKW1.2 certifies that initialization ends only at its own terminal state, so a
    * countdown here would be a stopping rule imposed from outside the engine - and the
    * timeout it replaced is precisely the defect this protocol exists to remove.
    *
@@ -507,7 +507,7 @@ export default function ChatConsole({ turnstileSiteKey }: Props) {
     }
     setEntries([]);
 
-    // A v1 origin answers only once the worker is ready; a v1.2 origin answers at once
+    // A DKW1 origin answers only once the worker is ready; A DKW1.2 origin answers at once
     // and initializes afterwards. The site does not assume which it is talking to - it
     // reads the state it was given and waits when told to wait.
     if (opened.value.initializationState === 'ready') {

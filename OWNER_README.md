@@ -2177,6 +2177,52 @@ serving the public while it is being investigated.
 `/deep-kore` rendering, session creation refused at the server, no origin credential anywhere in the
 browser bundle, and DNS, email, Stripe, Cordel and every unrelated route unchanged.
 
+#### 21.15b The backend release this site is written against - DKW1.2
+
+**Protocol version: `DKW1.2`.** Name it exactly that in code, configuration, manifests and
+reporting. "v1.2" is ambiguous - this repository also carries website release numbering and a
+`consent-policy version` - and the gateway announces `proto=DKW1.2` in its own startup banner, so
+the site should use the origin's own name for the origin's own protocol.
+
+```
+RELEASE_PATH       D:\LLC_Projects\DeepKore\Release\public_chat_async_session
+SOURCE_HEAD        c4cd4cd61e79d49a7818186b1f88907ce58ee8bf
+GATEWAY_DLL_SHA256 CA1224319E3B6490724CF71C001AA0A3D9110743952C7D10E47929B24907F73A
+WORKER_EXE_SHA256  1BA5E0FB1F02BD2789254010C4A04252DB201D644E6FEAB0F63DAFC195AA40EC
+```
+
+**`SOURCE_HEAD` was supplied three different ways and only one is real.** `c4dc4cd6...` and
+`c4dcd4cd6...` have both been handed over in writing; the second is 41 characters, and a SHA-1 is
+40. Only `c4cd4cd61e79d49a7818186b1f88907ce58ee8bf` resolves in the Deep Kore repository, and it is
+what the gateway assembly itself embeds. **Take provenance from the binary, never from prose** -
+the same rule this section already learned about release documents.
+
+**The mandatory website contract under DKW1.2:**
+
+1. `POST /v1/sessions` carries a stable `creation_id`.
+2. It answers `202` with `state: "initializing"` - the session already exists and already owns a
+   capacity slot.
+3. Poll `GET /v1/sessions/{id}` until `ready` or `failed`. Both are terminal.
+4. On uncertain transport, retry with the **same** `creation_id`. A fresh one allocates a second
+   worker and a second slot, which is the defect this protocol exists to remove.
+5. **No initialization timeout and no maximum poll count**, ever. Initialization ends at the
+   origin's own terminal state.
+6. `DELETE` works against an initializing session as well as a ready one, and capacity is released
+   exactly once.
+
+**How this site implements it.** The browser sends an opaque `creation_key`; the server derives
+`creation_id = HMAC(secret, key)`, exactly as `turn_key` already becomes a message id - so a
+visitor can make a retry idempotent without being able to choose, guess or collide with an upstream
+identifier. Status is a **method on the existing session route** (`GET /api/deep-kore/session`),
+not a fifth Deep Kore endpoint, because canon section 8 closes that list and a status read is
+another question about the session the caller already holds. `HOP_TIMEOUT_MS` stays at 10 s and now
+bounds only the accept, which is what a transport bound should mean.
+
+**Not yet proven against the real backend, and not claimed.** The package ships a worker that is
+byte-identical to the `d3a4f5af` release and embeds that commit, while its gateway embeds
+`c4cd4cd6`. The gateway enforces equality, so every session ends `failed` with
+`provenance_mismatch` - measured, not predicted. Rebuilding the worker at `c4cd4cd6` is the fix.
+
 #### 21.15a Decided and built, 2026-09-11
 
 The owner chose the two values canon keeps as owner gates, and the tunnel was created and proven

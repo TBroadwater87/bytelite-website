@@ -1059,7 +1059,7 @@ export async function handleCreateSession(
 
   // THE CREATION IDENTITY, AND WHY THE BROWSER DOES NOT CHOOSE IT.
   //
-  // Protocol v1.2 makes session creation idempotent on a `creation_id`. The browser
+  // protocol DKW1.2 makes session creation idempotent on a `creation_id`. The browser
   // supplies an opaque `creation_key` and this server derives the identity from it,
   // exactly as `turn_key` becomes a message id: a visitor can therefore make a retry
   // idempotent without being able to choose, guess or collide with an upstream
@@ -1080,7 +1080,7 @@ export async function handleCreateSession(
   );
   if (!res) return fail(503, UNAVAILABLE);
 
-  // 202 is the v1.2 answer: the session exists and is INITIALIZING. 201 is the v1
+  // 202 is the DKW1.2 answer: the session exists and is INITIALIZING. 201 is the DKW1
   // answer, returned only once the worker is READY. Both are success, and both carry a
   // session id - accepting either is what lets this site work against an origin on
   // either protocol without guessing which one it is talking to.
@@ -1127,7 +1127,7 @@ export async function handleCreateSession(
 
   // THE SESSION'S INITIALIZATION STATE, CARRIED VERBATIM FROM THE ORIGIN.
   //
-  // A v1.2 origin answers `initializing`; a v1 origin answers 201 having already
+  // A DKW1.2 origin answers `initializing`; a DKW1 origin answers 201 having already
   // waited for READY, which is `ready` by construction. The site never infers this
   // from elapsed time and never assumes it - the composer stays shut until the ORIGIN
   // says ready, because only the origin knows.
@@ -1167,7 +1167,7 @@ export async function handleCreateSession(
  *
  * These are the ORIGIN's own names, carried through unchanged. They are not a website
  * invention and must not become one: `initializing`, `ready` and `failed` are what
- * protocol v1.2 defines, and `ready` and `failed` are terminal there, so they are
+ * protocol DKW1.2 defines, and `ready` and `failed` are terminal there, so they are
  * terminal here too.
  */
 export type SessionInitState = 'initializing' | 'ready' | 'failed';

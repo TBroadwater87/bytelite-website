@@ -245,7 +245,7 @@ export const UI = {
 
   // THE SESSION EXISTS AND IS NOT YET ABLE TO ANSWER.
   //
-  // Protocol v1.2 accepts a session immediately and initializes it afterwards, because
+  // protocol DKW1.2 accepts a session immediately and initializes it afterwards, because
   // the worker must load a canonical knowledge snapshot first. The wording says what is
   // actually happening and promises no duration: the site is not told one, the origin
   // does not guarantee one, and a countdown would be a number invented here.
