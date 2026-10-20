@@ -1,43 +1,36 @@
 ---
-import CookieBanner from '../components/CookieBanner.astro';
+import '../styles/tokens.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import {
   COMPANY_NAME,
   COMPANY_LOCALITY,
   COMPANY_REGION,
   COMPANY_COUNTRY,
   LEGAL_FORMATION_YEAR,
+  SITE_ORIGIN,
 } from '../data/company';
 
 export interface Props {
   title: string;
-  description?: string;
-  keywords?: string;
-  canonical?: string;
+  description: string;
+  path: string;
   noindex?: boolean;
-  ogImage?: string;
+  socialImagePath?: string;
 }
 
-const {
-  title,
-  description = "ByteLite is developing a deterministic lossless representation architecture from ByteLite LLC in Helena, Montana. Exact reconstruction. Smaller representation.",
-  keywords = "ByteLite, ByteLite LLC, deterministic lossless representation, exact reconstruction, self-contained artifact, compression research, Helena Montana",
-  canonical,
-  noindex = false,
-  ogImage = "/bytelite-logo.png",
-} = Astro.props;
+const { title, description, path, noindex = false, socialImagePath = '/og-default.jpg' } = Astro.props;
 
-const canonicalURL = canonical || Astro.url.href;
-// Absolute, because social crawlers do not resolve root-relative image paths.
-const ogImageURL = new URL(ogImage, 'https://www.thebytelite.com').href;
+const canonicalUrl = path === '/' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${path.replace(/\/$/, '')}`;
+const socialImageUrl = new URL(socialImagePath, SITE_ORIGIN).href;
 
-// foundingDate is the LEGAL FORMATION year of the entity, not the year the research began.
-// Both come from src/data/company.ts so the two can never be conflated here.
-const organizationJsonLd = {
+const organizationStructuredData = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: COMPANY_NAME,
-  url: 'https://www.thebytelite.com',
-  logo: 'https://www.thebytelite.com/bytelite-logo.png',
+  url: `${SITE_ORIGIN}/`,
+  logo: `${SITE_ORIGIN}/bytelite-mark-256.png`,
   foundingDate: LEGAL_FORMATION_YEAR,
   address: {
     '@type': 'PostalAddress',
@@ -48,155 +41,42 @@ const organizationJsonLd = {
 };
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title}</title>
-  <meta name="description" content={description} />
-  <meta name="keywords" content={keywords} />
-  {noindex && <meta name="robots" content="noindex, nofollow" />}
-  <link rel="canonical" href={canonicalURL} />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonicalUrl} />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={canonicalURL} />
-  <meta property="og:image" content={ogImageURL} />
-  <meta property="og:site_name" content="ByteLite LLC" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content={COMPANY_NAME} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={ogImageURL} />
+    <link rel="icon" href="/bytelite-mark-64.png" type="image/png" sizes="64x64" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#fafaf8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1013" media="(prefers-color-scheme: dark)" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/bytelite-logo.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" />
-
-  <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
-</head>
-<body>
-  <slot name="header" />
-  <main>
-    <slot />
-  </main>
-  <slot name="footer" />
-  <CookieBanner />
-</body>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationStructuredData)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header currentPath={path} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>
-
-<style is:global>
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; scroll-behavior: smooth; }
-body {
-  background: #07090f;
-  color: #e4e7f2;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-img { max-width: 100%; height: auto; display: block; }
-a { color: inherit; text-decoration: none; }
-button { cursor: pointer; font-family: inherit; }
-
-/* Container */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-@media (min-width: 768px) { .container { padding: 0 2rem; } }
-
-/* Sections */
-.section      { padding: 5rem 0; }
-.section-sm   { padding: 3rem 0; }
-.section-alt  { background: #0d1120; }
-@media (max-width: 767px) { .section { padding: 3.5rem 0; } }
-
-/* Typography */
-h1 { font-size: clamp(2rem, 4.5vw, 3.25rem); font-weight: 700; line-height: 1.12; letter-spacing: -.02em; }
-h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; line-height: 1.18; letter-spacing: -.015em; }
-h3 { font-size: clamp(1.1rem, 2.2vw, 1.5rem); font-weight: 600; line-height: 1.25; }
-h4 { font-size: 1.125rem; font-weight: 600; }
-p  { color: #a0a8c0; line-height: 1.7; }
-.text-primary { color: #e4e7f2; }
-
-/* Eyebrow */
-.eyebrow {
-  font-size: .75rem; font-weight: 600; letter-spacing: .12em;
-  text-transform: uppercase; color: #6366f1; margin-bottom: .75rem;
-}
-
-/* Buttons */
-.btn {
-  display: inline-flex; align-items: center; gap: .5rem;
-  padding: .75rem 1.75rem; border-radius: .5rem;
-  font-size: .9375rem; font-weight: 500; transition: all .2s;
-  border: none; white-space: nowrap;
-}
-.btn-primary  { background: #6366f1; color: #fff; }
-.btn-primary:hover  { background: #4f52d1; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,.35); }
-.btn-pink     { background: #ec4899; color: #fff; }
-.btn-pink:hover     { background: #db2777; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(236,72,153,.35); }
-.btn-outline  { background: transparent; color: #e4e7f2; border: 1px solid #1a2235; }
-.btn-outline:hover  { border-color: #6366f1; color: #818cf8; }
-.btn-ghost    { background: transparent; color: #7b829e; border: 1px solid #1a2235; }
-.btn-ghost:hover    { color: #e4e7f2; border-color: #24304a; }
-.btn-sm { padding: .5rem 1.25rem; font-size: .875rem; }
-/* Buttons stay on one line at normal widths, but a long label must be allowed to wrap on very
-   narrow screens rather than push the whole document into horizontal scroll. */
-@media (max-width: 380px) { .btn { white-space: normal; text-align: center; } }
-
-/* Status badges */
-.badge {
-  display: inline-flex; align-items: center;
-  padding: .25rem .75rem; border-radius: 9999px;
-  font-size: .75rem; font-weight: 500; white-space: nowrap;
-}
-.badge-prelaunch  { background: rgba(236,72,153,.12);  color: #f472b6; border: 1px solid rgba(236,72,153,.25); }
-.badge-private    { background: rgba(99,102,241,.12);  color: #818cf8; border: 1px solid rgba(99,102,241,.25); }
-.badge-research   { background: rgba(167,139,250,.12); color: #a78bfa; border: 1px solid rgba(167,139,250,.25); }
-.badge-active     { background: rgba(52,211,153,.12);  color: #34d399; border: 1px solid rgba(52,211,153,.25); }
-.badge-planned    { background: rgba(245,158,11,.12);  color: #fbbf24; border: 1px solid rgba(245,158,11,.25); }
-.badge-none       { background: rgba(123,130,158,.1);  color: #7b829e; border: 1px solid rgba(123,130,158,.2); }
-.badge-beta       { background: rgba(45,212,191,.12);  color: #2dd4bf; border: 1px solid rgba(45,212,191,.25); }
-.badge-paused     { background: rgba(248,113,113,.1);  color: #f87171; border: 1px solid rgba(248,113,113,.22); }
-
-/* Cards */
-.card {
-  background: #0d1120; border: 1px solid #1a2235;
-  border-radius: .75rem; padding: 1.75rem;
-  transition: border-color .2s, box-shadow .2s;
-}
-.card:hover { border-color: #24304a; box-shadow: 0 4px 24px rgba(0,0,0,.25); }
-
-/* Divider */
-.divider { border: none; border-top: 1px solid #1a2235; margin: 0; }
-
-/* Image asset placeholders (real assets pending — drop-in ready) */
-.asset-ph {
-  position: relative; width: 100%;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: .5rem; text-align: center; padding: 1.25rem;
-  background:
-    repeating-linear-gradient(45deg, rgba(129,140,248,.05) 0 10px, transparent 10px 20px),
-    #0d1120;
-  border: 1px dashed #24304a; border-radius: .75rem; color: #7b829e;
-}
-.asset-ph-tag {
-  font-size: .625rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-  color: #fbbf24; background: rgba(245,158,11,.1); border: 1px solid rgba(245,158,11,.28);
-  padding: .2rem .6rem; border-radius: 9999px;
-}
-.asset-ph-path { font-size: .75rem; font-family: ui-monospace, 'Courier New', monospace; color: #818cf8; word-break: break-all; }
-.asset-ph-alt { font-size: .8125rem; color: #555e7a; max-width: 340px; line-height: 1.5; }
-.asset-ph-grid { display: grid; gap: 1.25rem; }
-
-</style>

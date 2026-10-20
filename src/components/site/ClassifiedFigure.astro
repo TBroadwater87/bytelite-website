@@ -1,0 +1,20 @@
+---
+import type { FigureClassification } from '../../data/figure-classification';
+
+export interface Props {
+  classification: FigureClassification;
+  caption: string;
+}
+
+const { classification, caption } = Astro.props;
+---
+
+<figure class="figure" data-figure-classification={classification}>
+  <div class="figure-frame">
+    <slot />
+  </div>
+  <figcaption class="figure-caption">
+    <span class="figure-classification">{classification}</span>
+    <span>{caption}</span>
+  </figcaption>
+</figure>

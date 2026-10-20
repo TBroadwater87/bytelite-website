@@ -20,7 +20,7 @@ CONTACT_FROM_EMAIL=<set-in-vercel>
 
 # --- Stripe: server-side only ---
 
-# Test-mode secret key (starts sk_test_). Moving to a live key is an owner action, not a code change.
+# Test-mode secret key (starts sk_test_). A live key is refused by code unless the owner authorizes live financial transactions in api/_lib/commerce-core.ts.
 STRIPE_SECRET_KEY=<set-in-vercel>
 
 # Signing secret for /api/stripe-webhook (starts whsec_), from the Dashboard webhook endpoint.
@@ -68,8 +68,8 @@ STRIPE_AUTOMATIC_TAX_ENABLED=false
 Mail, Internet, or Telephone Order Merchandise Rule requires a shipment window and a
 delay-consent/refund process before money changes hands, and neither is approved yet.
 
-**No founder price is computed in this repository.** The benefit is "10% lower price", but 10% off
-$9.99 is $8.991 and Stripe prices are integer minor units. Rounding that is a commercial decision
+**No founder price is computed in this repository.** The benefit is "10% lower price", and a
+discounted price must be rounded to whole cents. Rounding that is a commercial decision
 with a legal consequence, so the rounded figure lives in an owner-approved Stripe Price object and
 reaches the code only as an ID. Nothing here multiplies a price by 0.9.
 

@@ -1,157 +1,115 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import PricingModels from '../components/bytelite/PricingModels.astro';
-import {
-  LICENSING_HEADLINE,
-  LICENSING_CORE,
-  LICENSING_NO_SAVING_RULE,
-  PERSONAL_PLAN,
-  PERSONAL_USAGE_WORDING,
-  BUSINESS_SETTLEMENT_OPTIONS,
-} from '../data/bytelite';
+import PageIntro from '../components/site/PageIntro.astro';
+import { COMPANY_NAME } from '../data/company';
+import { PERSONAL_REPRESENTATION_SERVICE_NAME } from '../data/products';
 
-const money = (n: number) => '$' + n.toFixed(2);
+const PARTNERSHIP_ROUTES = [
+  {
+    title: 'Independent evaluation',
+    body: 'Reproduce or test a specific published claim under conditions you control. Evaluations never require disclosure of proprietary methods.',
+    href: '/contact?type=validation-partnership',
+    action: 'Propose an evaluation',
+  },
+  {
+    title: 'Research collaboration',
+    body: 'Bounded collaboration on a defined question, with clear ownership of results.',
+    href: '/contact?type=technology-partnership',
+    action: 'Discuss a collaboration',
+  },
+  {
+    title: 'Licensing interest',
+    body: 'Register interest in licensing once a technology has measured, validated results. Nothing is available to license today.',
+    href: '/contact?type=licensing',
+    action: 'Register licensing interest',
+  },
+  {
+    title: 'Business and investor inquiries',
+    body: 'General conversations about the company and its direction. This website does not offer or sell securities.',
+    href: '/contact?type=investor',
+    action: 'Send a business inquiry',
+  },
+];
 ---
 
 <Layout
-  title="ByteLite Pricing and Licensing | Two pricing models"
-  description="Personal ByteLite is a flat subscription at $9.99 a month or $99.99 a year, with no percentage-of-savings fee. Business and enterprise licensing is a 50/50 share of verified qualifying savings."
-  keywords="ByteLite pricing, personal plan, verified savings licensing, shared savings model"
-  canonical="https://www.thebytelite.com/licensing/"
+  title={`Licensing and Partnerships | ${COMPANY_NAME}`}
+  description="Proposed commercial models and partnership routes for ByteLite LLC. Nothing is available to license or buy today."
+  path="/licensing"
 >
-  <Header slot="header" />
+  <PageIntro
+    eyebrow="Licensing and partnerships"
+    heading="Proposed commercial models, and how to work together."
+    lede="Nothing is available to license or buy today. This page describes the commercial models the company proposes to use once a technology has measured, validated results, and the ways to work with the company now."
+  />
 
-  <section class="page-hero">
-    <div class="container narrow">
-      <p class="planned"><span class="planned-dot" aria-hidden="true"></span>Planned commercial model</p>
-      <p class="eyebrow">Pricing and licensing</p>
-      <h1>{LICENSING_HEADLINE}</h1>
-      <p class="hero-sub">{LICENSING_CORE}</p>
-    </div>
-  </section>
-
-  <!-- The two billing models, before any figure that belongs to only one of them -->
-  <section class="section-sm">
-    <div class="container narrow">
-      <PricingModels headingLevel={2} />
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="container narrow">
-      <h2>Personal use is a flat subscription.</h2>
-      <p class="lede">
-        {money(PERSONAL_PLAN.monthly)} a month, or {money(PERSONAL_PLAN.annual)} a year. That is
-        the whole price.
-      </p>
-      <p class="body">
-        A personal workload can be a single very large file. Billing a percentage of savings on
-        that could turn one ordinary afternoon into an unexpectedly large charge, so personal
-        accounts are not billed that way at all. There is no savings-share fee on a personal
-        subscription, and the price does not move with how much ByteLite saves.
-      </p>
-      <p class="body">
-        The annual plan replaces twelve monthly payments of {money(PERSONAL_PLAN.monthly)}, which
-        total {money(PERSONAL_PLAN.twelveMonthsOfMonthly)}, and so saves
-        {money(PERSONAL_PLAN.annualSaving)}.
-      </p>
-      <p class="body-note">{PERSONAL_USAGE_WORDING}</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container narrow">
-      <h2>Business licensing shares verified savings.</h2>
-      <p class="lede">
-        For commercial workloads, ByteLite receives 50% of verified qualifying savings and the
-        customer retains the other 50%.
-      </p>
-      <p class="body">
-        The split is of the savings, not of your costs. If a workload saves you money against an
-        agreed baseline, we take half of that measured saving and you keep the other half. If it
-        saves you nothing, the fee is nothing.
-      </p>
-      <p class="body">
-        This page used to carry a worked example with dollar figures in it. I removed it. Every
-        number in it was invented, and an invented number laid out like an invoice reads as
-        something ByteLite has already done for somebody. It has not. When there is a real measured
-        result, it will appear here with the measurement behind it.
-      </p>
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="container narrow">
-      <h2>The rule that matters most.</h2>
-      <p class="rule">{LICENSING_NO_SAVING_RULE}</p>
-      <p class="body">
-        The fee is a share of savings that were measured against an agreed baseline. If a workload
-        produces no verified qualifying saving, that workload produces no savings-share fee. This
-        is deliberately the opposite of paying for a promise.
-      </p>
-      <p class="body">
-        It also means the model only makes sense once ByteLite can actually be measured in a real
-        environment &mdash; which is a validation question, not a pricing one.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container narrow">
-      <h2>How a savings-share account would settle.</h2>
-      <p class="body">{BUSINESS_SETTLEMENT_OPTIONS}</p>
-      <p class="body">
-        There is no live billing on this site. Founder reservations record interest and do not
-        charge anything. See <a href="/founder-access">founder access</a> for the current state of
-        each product.
-      </p>
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="container narrow">
-      <h2>Availability.</h2>
-      <p class="body">
-        ByteLite is research under validation. It is not production-qualified, and no technology on
-        this site is available to license today. The model above describes how licensing is
-        intended to work when it is.
-      </p>
-      <p class="body">
-        Organizations who want to be part of that conversation early &mdash; particularly anyone
-        able to independently validate a specific claim &mdash; are the most useful people to hear
-        from.
-      </p>
-      <div class="cta-row">
-        <a href="/validation" class="btn btn-outline">See the current evidence</a>
-        <a href="/contact?type=licensing" class="btn btn-primary">Licensing inquiry</a>
+  <section class="section" aria-labelledby="models-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Proposed models</p>
+        <h2 id="models-heading">Two models for two kinds of use.</h2>
+        <p class="lede">
+          These apply to the data representation research. They are proposals, not offers, and both
+          depend on measured net reduction, which has not been demonstrated.
+        </p>
+      </div>
+      <div class="card-grid">
+        <article class="panel model">
+          <p class="eyebrow">Personal use</p>
+          <h3>{PERSONAL_REPRESENTATION_SERVICE_NAME}: a flat subscription.</h3>
+          <p>
+            A predictable flat subscription for personal use, with no percentage-of-savings fee, so a
+            single large file can never become an unexpected bill. Use would be subject to reasonable
+            personal-use and service-capacity limits.
+          </p>
+          <p class="small-print">No price is published while the underlying research has no working product.</p>
+        </article>
+        <article class="panel model">
+          <p class="eyebrow">Business use</p>
+          <h3>Value-based licensing.</h3>
+          <p>
+            For commercial workloads, the proposed model is a share of verified savings: {COMPANY_NAME}
+            would receive 50% of verified qualifying savings, and the customer would keep the other 50%.
+            No verified saving would mean no fee for that saving.
+          </p>
+          <p class="small-print">This is a split of measured savings. It is not a promise that costs fall by half.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <Footer slot="footer" />
+  <section class="section section-sunken" aria-labelledby="partnership-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Partnerships</p>
+        <h2 id="partnership-heading">Ways to work with {COMPANY_NAME} now.</h2>
+      </div>
+      <div class="card-grid">
+        {PARTNERSHIP_ROUTES.map((route) => (
+          <article class="panel route">
+            <h3>{route.title}</h3>
+            <p>{route.body}</p>
+            <a class="text-link" href={route.href}>{route.action} &rarr;</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="boundaries-heading">
+    <div class="wrap prose">
+      <h2 id="boundaries-heading">Boundaries.</h2>
+      <ul class="fact-list fact-list-plain">
+        <li>No technology described on this website is available to license, and none is production qualified.</li>
+        <li>No price, savings figure or return is promised anywhere on this website.</li>
+        <li>Nothing on this website is an offer of securities or an investment opportunity.</li>
+        <li>Any license would require a separate written agreement.</li>
+      </ul>
+    </div>
+  </section>
 </Layout>
 
 <style>
-.narrow { max-width: 780px; }
-.page-hero { padding: 3.5rem 0 2.5rem; }
-.planned {
-  display: inline-flex; align-items: center; gap: .5rem;
-  font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-  color: #fbbf24; background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.3);
-  border-radius: 9999px; padding: .25rem .75rem; margin-bottom: 1.25rem;
-}
-.planned-dot { width: .4rem; height: .4rem; border-radius: 50%; background: #fbbf24; }
-.hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.8; }
-h2 { margin-bottom: .75rem; }
-.lede { font-size: 1.0625rem; color: #a0a8c0; line-height: 1.75; margin-bottom: 1.5rem; }
-.rule {
-  font-size: 1.125rem; font-weight: 600; color: #c4c8f0; line-height: 1.6;
-  background: rgba(52,211,153,.06); border: 1px solid rgba(52,211,153,.26);
-  border-radius: .625rem; padding: 1.125rem 1.25rem; margin-bottom: 1.5rem;
-}
-.body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1rem; }
-.body-note { font-size: .875rem; color: #7b829e; line-height: 1.7; margin-top: 1rem; }
-.cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.75rem; }
+  .model, .route { display: grid; gap: var(--space-3); align-content: start; }
+  .model h3, .route h3 { font-size: var(--text-lg); }
 </style>

@@ -1,0 +1,13 @@
+---
+import { definitionOf, type EvidenceStatus } from '../../data/evidence-status';
+
+export interface Props {
+  status: EvidenceStatus;
+}
+
+const definition = definitionOf(Astro.props.status);
+---
+
+<span class={`status-badge tone-${definition.tone}`} data-status={definition.status}>
+  <span class="visually-hidden">Status: </span>{definition.label}
+</span>

@@ -1,310 +1,127 @@
 import { test, expect } from '@playwright/test';
+import { ALL_PAGE_ROUTES, DISCOVERABLE_ROUTES } from './public-routes';
+import { loadDisclosureDenylist, disclosureFindings } from '../disclosure-denylist';
 
-// Owner Law guard, rewritten 2026-08-26 for the Cordel-public canon.
-//
-// What changed: Cordel Connect and Cordel Play are now current public products, so they left the
-// forbidden-names list. What did NOT change: every other sibling ByteLite LLC system, the retired
-// brand names, and the internal mechanism vocabulary all stay off every public surface.
-//
-// Checks run against RENDERED text and, separately, against rendered MARKUP - so a phrase that
-// arrives through src/data/ is caught the same as one typed into a page, and a class name or
-// comment cannot smuggle vocabulary past a text-only assertion.
-
-const PUBLIC_ROUTES = [
-  '/',
-  '/how-it-works',
-  '/validation',
-  '/licensing',
-  '/about',
-  '/contact',
-  '/founder-access',
-  '/support',
-  '/cordel-connect',
-  '/cordel-play',
-  '/privacy',
-  '/terms',
+const OVERCLAIMS = [
+  'universal compression',
+  'universal shrink',
+  'every file shrinks',
+  'smaller representation for every source file',
+  'compresses every file',
+  'independently verified result',
+  'third-party verified',
+  'peer reviewed',
+  'production ready',
+  'production-ready',
+  'shannon does not apply',
+  'defeated information theory',
+  'artificial general intelligence has been',
+  'achieved agi',
+  'superintelligent',
+  'solved alignment',
+  'patent pending',
+  'patented',
+  'trademark',
+  '®',
+  '™',
+  '1tb to',
+  'one-terabyte',
+  'four hundred kilobytes',
 ];
 
-// Sibling systems and retired brands. None of these is ByteLite or Cordel, so none belongs on a
-// public page. The misspellings are included because they have appeared in drafts.
-const FORBIDDEN_NAMES = [
-  'Deep Kore',
-  'DeepKore',
-  'KoreLattice',
-  'ByteSight',
-  'ByteOracle',
-  'ByteFlow',
-  'ByteCost',
-  'AIya',
-  'Genesis Goalkeeper',
-  'Revelation Vanguard',
-  'HeartStrings',
-  'Heartstrings',
-  'Codrel',
-  'Cordea',
-  'Cordia',
-];
+const HYPE = ['revolutionary', 'disruptive', 'breakthrough', 'world-changing', 'next-generation', 'industry-leading', 'game-changing'];
 
-// Internal implementation vocabulary. `.root` is deliberately absent: naming the target artifact
-// is owner-approved public wording and says nothing about how the representation is built.
-//
-// Terms that are a substring of an ordinary English word need a word boundary, not a substring
-// match: "Ogram" lowercased sits inside "program", which appears legitimately in legal pages.
-const INTERNAL_TERM_PATTERNS = [/\bograms?\b/i, /\bbnr\b/i];
+const disclosureDenylist = loadDisclosureDenylist();
 
-const INTERNAL_TERMS = [
-  'opcode',
-  'motion program',
-  'single-motion reset',
-  'switch law',
-  'RAW law',
-  'Foundation implementation',
-  'Sigma-9',
-  'Szudzik',
-  'library generator',
-  'library selection',
-  'library of libraries',
-  'root-of-roots',
-  'root of roots',
-  'sidecar compaction',
-  'recursive metadata integration',
-  'generator table',
-  'carrier format',
-  'workbench',
-  'node_modules',
-  'localhost',
-  'D:\\',
-  'C:\\',
-];
-
-const MECHANISM_TERMS_IN_MARKUP = [
-  'sidecar',
-  'opcode',
-  'motion-program',
-  'motion program',
-  'library-of-libraries',
-  'library of libraries',
-  'root-of-roots',
-  'root of roots',
-  'carrier construction',
-  'recursive metadata integration',
-  'foundation construction',
-  'szudzik',
-  'dictionary cascade',
-  'sigma-9',
-];
-
-for (const route of PUBLIC_ROUTES) {
-  test(`${route} names no retired system or brand`, async ({ page }) => {
+for (const route of ALL_PAGE_ROUTES) {
+  test(`${route} carries no denylisted name, term or pattern in text or markup`, async ({ page }) => {
     await page.goto(route);
+    const html = await page.content();
     const text = (await page.locator('body').innerText()) ?? '';
-    for (const name of FORBIDDEN_NAMES) {
-      expect(text, `${route} must not name ${name}`).not.toContain(name);
-    }
+    expect(disclosureFindings(html, disclosureDenylist), `${route} markup`).toEqual([]);
+    expect(disclosureFindings(text, disclosureDenylist), `${route} text`).toEqual([]);
   });
 
-  test(`${route} exposes no internal vocabulary or build plumbing`, async ({ page }) => {
+  test(`${route} makes no overclaim and uses no hype`, async ({ page }) => {
     await page.goto(route);
-    const raw = (await page.locator('body').innerText()) ?? '';
-    const text = raw.toLowerCase();
-    for (const term of INTERNAL_TERMS) {
-      expect(text, `${route} must not contain "${term}"`).not.toContain(term.toLowerCase());
-    }
-    for (const pattern of INTERNAL_TERM_PATTERNS) {
-      expect(raw, `${route} must not match ${pattern}`).not.toMatch(pattern);
-    }
-  });
-
-  // innerText is only what a visitor SEES. Markup is published too: a class name, an id, a data
-  // attribute and a comment are all world-readable in view-source. That gap was real - the
-  // current-vs-final diagram once shipped a step styled `cf-step-sidecar` while its visible label
-  // correctly read "explicit reconstruction evidence".
-  test(`${route} carries no internal vocabulary in its markup either`, async ({ page }) => {
-    await page.goto(route);
-    const html = (await page.content()).toLowerCase();
-    for (const term of MECHANISM_TERMS_IN_MARKUP) {
-      expect(html, `${route} must not carry "${term}" anywhere in its markup`).not.toContain(term);
+    const text = ((await page.locator('body').innerText()) ?? '').toLowerCase();
+    for (const phrase of [...OVERCLAIMS, ...HYPE]) {
+      expect(text, `${route} must not say "${phrase}"`).not.toContain(phrase);
     }
   });
 }
 
-test.describe('The architectural target is never narrowed', () => {
-  const NARROWING = [
-    'only expects structured files to shrink',
-    'only structured files',
-    'structured files only',
-    'random files are inherently expected not to shrink',
-    'random data cannot be compressed',
-    'only intended to find savings in some classes',
-    'does not promise that every file shrinks',
-    'has no lawful reusable structure',
-  ];
-
-  for (const route of PUBLIC_ROUTES) {
-    test(`${route} does not narrow the target to structured data`, async ({ page }) => {
-      await page.goto(route);
-      const text = ((await page.locator('body').innerText()) ?? '').toLowerCase();
-      for (const phrase of NARROWING) {
-        expect(text, `${route} must not say "${phrase}"`).not.toContain(phrase);
-      }
-    });
-  }
-});
-
-test.describe('The proof is never overstated', () => {
-  const OVERCLAIM = [
-    'has proven universal compression',
-    'universal shrink is complete',
-    'proven that every file shrinks',
-    'all random data has been proven smaller',
-    'universally compresses every file',
-    'independently verified result',
-    'third-party verified',
-    'peer reviewed',
-    'production qualified',
-    'shannon does not apply',
-    'defeated information theory',
-    'disproven all compression limits',
-  ];
-
-  for (const route of PUBLIC_ROUTES) {
-    test(`${route} makes no completed-proof or information-theory claim`, async ({ page }) => {
-      await page.goto(route);
-      const text = ((await page.locator('body').innerText()) ?? '').toLowerCase();
-      for (const phrase of OVERCLAIM) {
-        expect(text, `${route} must not say "${phrase}"`).not.toContain(phrase);
-      }
-    });
-  }
-
-  test('the validation page still states that nothing is independently verified', async ({ page }) => {
+test.describe('Required honesty statements', () => {
+  test('validation states that nothing is independently verified', async ({ page }) => {
     await page.goto('/validation');
     await expect(page.locator('body')).toContainText('None of it has been independently verified.');
   });
+
+  test('the homepage hero states the evidence position', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('.hero-status')).toContainText('Nothing has been independently verified.');
+    await expect(page.locator('.hero-status')).toContainText('checkout is switched off');
+  });
+
+  test('data representation states the counting limit and the absence of net reduction', async ({ page }) => {
+    await page.goto('/research/data-representation');
+    const body = page.locator('body');
+    await expect(body).toContainText('No lossless method can make every possible input smaller.');
+    await expect(body).toContainText('Net size reduction has not been demonstrated.');
+    await expect(body).toContainText('does not rely on probabilistic inference or confidence scores');
+  });
+
+  test('machine cognition states that the full chain is not demonstrated end to end', async ({ page }) => {
+    await page.goto('/research/machine-cognition');
+    const body = page.locator('body');
+    await expect(body).toContainText('Not demonstrated end to end.');
+    await expect(body).toContainText('Complete governance has not been demonstrated');
+    await expect(body).toContainText('There is no public demonstration on this site, and none is simulated.');
+  });
+
+  test('the approaches page claims no superiority and cites its sources', async ({ page }) => {
+    await page.goto('/research/approaches-to-ai');
+    const body = page.locator('body');
+    await expect(body).toContainText('That the ByteLite LLC approach is better. There is no comparable evidence.');
+    const sourceLinks = page.locator('ol.sources a[href^="https://"]');
+    expect(await sourceLinks.count()).toBeGreaterThanOrEqual(10);
+    const rowsWithoutSource = await page.locator('table.comparison tbody tr').evaluateAll((rows) =>
+      rows.filter((row) => !row.querySelector('.source-references a')).map((row) => row.querySelector('th')?.textContent?.trim() ?? ''),
+    );
+    expect(rowsWithoutSource.length, `rows without a source: ${rowsWithoutSource.join(', ')}`).toBeLessThanOrEqual(1);
+  });
+
+  test('every conceptual diagram is labelled as a conceptual illustration', async ({ page }) => {
+    for (const route of ['/', '/research', '/research/machine-cognition', '/research/data-representation']) {
+      await page.goto(route);
+      const classifications = await page.locator('figure').evaluateAll((figures) => figures.map((figure) => figure.getAttribute('data-figure-classification')));
+      expect(classifications.length, `${route} should carry at least one labelled figure`).toBeGreaterThan(0);
+      for (const classification of classifications) {
+        expect(['Conceptual illustration', 'Product concept rendering']).toContain(classification);
+      }
+    }
+  });
+
+  test('no milestone is shown with a percentage', async ({ page }) => {
+    for (const route of ['/', '/research/milestones', '/validation', '/research/machine-cognition']) {
+      await page.goto(route);
+      const text = (await page.locator('main').innerText()) ?? '';
+      expect(text, `${route} shows a percentage`).not.toMatch(/\d\s?%/);
+    }
+  });
 });
 
-test.describe('Founder voice replaced the committee voice', () => {
-  test('the homepage leads with the rule, in the first person', async ({ page }) => {
-    await page.goto('/');
-    const hero = page.locator('section.hero');
-    await expect(hero.locator('h1')).toContainText('The file comes back exactly. Or it failed.');
-    await expect(hero).toContainText('I am building ByteLite');
-    // Both halves of the state, together, in the hero - not one without the other.
-    await expect(hero).toContainText('Internal tests prove exact reconstruction');
-    await expect(hero).toContainText('do not yet prove the complete self-contained target');
-    await expect(hero).toContainText('No hand-waving. No uncounted reconstruction state. No partial credit.');
-  });
-
-  test('the founder takes personal responsibility by name', async ({ page }) => {
-    await page.goto('/');
-    const body = page.locator('body');
-    await expect(body).toContainText('I am Tash Broadwater.');
-    await expect(body).toContainText('If a result fails, it stays failed until the code proves otherwise.');
-  });
-
-  // The phrases the brief singled out as committee language. Each one described a state without
-  // ever saying what the state was.
-  const COMMITTEE_PHRASES = [
-    'canonical project status',
-    'mechanism clarification',
-    'current scaffold-assisted proof',
-    'eligible source file',
-  ];
-
-  // Startup filler. These carry no information and were never true of anything on this site.
-  const HYPE_PHRASES = [
-    'revolutionary',
-    'disruptive',
-    'breakthrough',
-    'world-changing',
-    'next-generation',
-    'industry-leading',
-    'game-changing',
-  ];
-
-  for (const route of PUBLIC_ROUTES) {
-    test(`${route} avoids committee language and startup filler`, async ({ page }) => {
+test.describe('Discoverable pages carry complete metadata', () => {
+  for (const route of DISCOVERABLE_ROUTES) {
+    test(`${route} has a title, description, canonical and social image`, async ({ page }) => {
       await page.goto(route);
-      const text = ((await page.locator('body').innerText()) ?? '').toLowerCase();
-      for (const phrase of [...COMMITTEE_PHRASES, ...HYPE_PHRASES]) {
-        expect(text, `${route} must not say "${phrase}"`).not.toContain(phrase);
-      }
+      await expect(page).toHaveTitle(/ByteLite LLC/);
+      const description = await page.locator('meta[name="description"]').getAttribute('content');
+      expect((description ?? '').length).toBeGreaterThan(50);
+      const canonical = await page.locator('link[rel="canonical"]').getAttribute('href');
+      expect(canonical).toBe(route === '/' ? 'https://www.thebytelite.com/' : `https://www.thebytelite.com${route}`);
+      await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'https://www.thebytelite.com/og-default.jpg');
+      await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
     });
   }
-});
-
-test.describe('Current development state is stated honestly', () => {
-  test('the homepage separates what is proven from what is not', async ({ page }) => {
-    await page.goto('/');
-    const body = page.locator('body');
-    await expect(body).toContainText('Proven internally');
-    await expect(body).toContainText('Not proven');
-  });
-
-  test('the current-vs-final graphic shows both columns and no bridging mechanism', async ({ page }) => {
-    await page.goto('/how-it-works');
-    const fig = page.locator('.cf').first();
-    await expect(fig).toContainText('Development proof scaffold');
-    await expect(fig).toContainText('Self-contained artifact (.root)');
-    // Exactly two columns and nothing drawn between them: the transition is the private part.
-    await expect(fig.locator('.cf-col')).toHaveCount(2);
-  });
-
-  test('the development roadmap marks exactly one current position and no future gate as done', async ({ page }) => {
-    await page.goto('/validation');
-    await expect(page.locator('.rm-current')).toHaveCount(1);
-    const states = await page
-      .locator('.rm-item')
-      .evaluateAll((items) =>
-        items.map((el) => ({
-          done: el.classList.contains('rm-done'),
-          current: el.classList.contains('rm-current'),
-        }))
-      );
-    const currentIndex = states.findIndex((s) => s.current);
-    expect(currentIndex).toBeGreaterThan(-1);
-    for (let i = currentIndex + 1; i < states.length; i++) {
-      expect(states[i]?.done, `roadmap gate ${i} is after the current position and must not be done`).toBe(false);
-    }
-  });
-});
-
-test.describe('Determinism and boundary wording', () => {
-  test('the determinism statement is present and does not invoke probability', async ({ page }) => {
-    await page.goto('/how-it-works');
-    await expect(page.locator('body')).toContainText(
-      'does not rely on probabilistic inference or confidence scores'
-    );
-  });
-
-  test('the entropy statement uses the approved framing', async ({ page }) => {
-    for (const route of ['/', '/how-it-works']) {
-      await page.goto(route);
-      await expect(page.locator('body')).toContainText('not built around probabilistic entropy coding');
-    }
-  });
-
-  test('"What ByteLite is not" states a boundary, not a replacement', async ({ page }) => {
-    await page.goto('/how-it-works');
-    const cards = page.locator('.isnot-card');
-    await expect(cards).toHaveCount(5);
-    // A card must never explain what is used INSTEAD of the excluded technique.
-    const text = ((await page.locator('.isnot').innerText()) ?? '').toLowerCase();
-    expect(text).not.toContain('because it instead uses');
-    expect(text).not.toContain('because it uses');
-  });
-
-  test('the public review framework is never called the algorithm or the pipeline', async ({ page }) => {
-    await page.goto('/how-it-works');
-    const text = ((await page.locator('body').innerText()) ?? '').toLowerCase();
-    for (const phrase of [
-      'the bytelite algorithm',
-      'processing pipeline',
-      'encoding flow',
-      'internal architecture',
-    ]) {
-      expect(text, `/how-it-works must not call the review framework "${phrase}"`).not.toContain(phrase);
-    }
-    await expect(page.locator('body')).toContainText('review framework, not a description');
-  });
 });

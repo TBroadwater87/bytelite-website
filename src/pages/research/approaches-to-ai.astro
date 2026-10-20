@@ -1,0 +1,145 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageIntro from '../../components/site/PageIntro.astro';
+import { APPROACH_COMPARISON, EXTERNAL_SOURCES, sourcesFor } from '../../data/ai-approaches';
+import { COMPANY_NAME } from '../../data/company';
+
+const sourceNumber = new Map(EXTERNAL_SOURCES.map((source, index) => [source.id, index + 1]));
+const COLUMN_LABELS = {
+  typicalMainstream: 'Typical mainstream systems',
+  alsoFoundInMainstream: 'Also found in mainstream systems',
+  byteliteToday: `${COMPANY_NAME} cognition research today`,
+  byteliteIntended: 'Intended direction',
+} as const;
+---
+
+<Layout
+  title={`Approaches to AI | ${COMPANY_NAME}`}
+  description="An educational, sourced comparison between mainstream AI approaches and ByteLite LLC's governed machine cognition research. Differences in priorities, not performance claims."
+  path="/research/approaches-to-ai"
+>
+  <PageIntro
+    eyebrow="Approaches to AI"
+    heading="Different priorities, stated carefully."
+    lede="How ByteLite LLC's cognition research differs from mainstream generative AI, and how it does not. This page compares research priorities and architecture. It contains no performance comparison, because no comparable evidence exists."
+  />
+
+  <section class="section" aria-labelledby="ground-rules-heading">
+    <div class="wrap split">
+      <div class="prose">
+        <p class="eyebrow">How to read this page</p>
+        <h2 id="ground-rules-heading">Four columns, kept apart.</h2>
+        <p>
+          For each topic the table separates what typical mainstream systems do, what various
+          mainstream implementations also support, what the ByteLite LLC research demonstrates
+          today, and what it is intended to support in the future.
+        </p>
+        <p>
+          Mainstream AI is not one thing. Many systems combine language models with retrieval,
+          structured knowledge, deterministic tools and safety controls. Statements about external
+          systems are linked to published sources wherever a specific source applies.
+        </p>
+      </div>
+      <div class="notice">
+        <p class="eyebrow">What this page does not claim</p>
+        <ul class="fact-list fact-list-no">
+          <li>That mainstream systems lack reasoning, memory, structured knowledge or safety controls.</li>
+          <li>That the ByteLite LLC approach is better. There is no comparable evidence.</li>
+          <li>Any benchmark score, ranking or performance figure.</li>
+          <li>Artificial general intelligence or superintelligence, achieved or near.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-sunken" aria-labelledby="comparison-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Comparison</p>
+        <h2 id="comparison-heading">Topic by topic.</h2>
+      </div>
+      <table class="data-table data-table-stacked comparison">
+        <caption>Mainstream approaches compared with the ByteLite LLC cognition research. Numbers in brackets refer to the sources below.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Topic</th>
+            <th scope="col">{COLUMN_LABELS.typicalMainstream}</th>
+            <th scope="col">{COLUMN_LABELS.alsoFoundInMainstream}</th>
+            <th scope="col">{COLUMN_LABELS.byteliteToday}</th>
+            <th scope="col">{COLUMN_LABELS.byteliteIntended}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {APPROACH_COMPARISON.map((row) => (
+            <tr>
+              <th scope="row">
+                {row.topic}
+                {row.sourceIds.length > 0 && (
+                  <span class="source-references">
+                    {sourcesFor(row.sourceIds).map((source) => (
+                      <a href={`#source-${source.id}`} >[{sourceNumber.get(source.id)}]<span class="visually-hidden"> {source.citation}</span></a>
+                    ))}
+                  </span>
+                )}
+              </th>
+              <td data-label={COLUMN_LABELS.typicalMainstream}>{row.typicalMainstream}</td>
+              <td data-label={COLUMN_LABELS.alsoFoundInMainstream}>{row.alsoFoundInMainstream}</td>
+              <td data-label={COLUMN_LABELS.byteliteToday}>{row.byteliteToday}</td>
+              <td data-label={COLUMN_LABELS.byteliteIntended}>{row.byteliteIntended}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="summary-heading">
+    <div class="wrap split">
+      <div class="prose">
+        <p class="eyebrow">In short</p>
+        <h2 id="summary-heading">What the difference amounts to.</h2>
+        <p>
+          Mainstream generative systems are broad, capable and widely used today. The ByteLite LLC
+          research gives up that breadth for now in order to pursue explicit knowledge, traceable
+          provenance, visible uncertainty and governed behaviour as first principles.
+        </p>
+        <p>
+          Whether that trade produces useful systems is an open research question. It will be
+          answered by evidence, including independent evaluation, not by this page.
+        </p>
+      </div>
+      <div class="prose">
+        <p class="eyebrow">Read more</p>
+        <ul class="fact-list fact-list-plain">
+          <li><a href="/research/machine-cognition">Machine cognition research</a></li>
+          <li><a href="/research/milestones">Research milestones</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-sunken" aria-labelledby="sources-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Sources</p>
+        <h2 id="sources-heading">References.</h2>
+      </div>
+      <ol class="sources">
+        {EXTERNAL_SOURCES.map((source) => (
+          <li id={`source-${source.id}`}>
+            {source.citation}{' '}
+            <a href={source.url} rel="noopener noreferrer">{source.url.replace(/^https:\/\//, '')}</a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .comparison tbody th { min-width: 9rem; }
+  .source-references { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-1); font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 500; }
+  .source-references a { display: inline-grid; place-items: center; min-width: 1.75rem; min-height: 1.75rem; }
+  .sources { display: grid; gap: var(--space-2); padding-left: 1.75rem; color: var(--color-ink-muted); font-size: var(--text-sm); }
+  .sources a { word-break: break-word; }
+</style>

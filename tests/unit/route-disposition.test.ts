@@ -1,241 +1,238 @@
 import { describe, test, expect } from 'vitest';
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { loadDisclosureDenylist, disclosureFindings } from '../disclosure-denylist';
 
-// Route disposition is verified HERE rather than in Playwright for a concrete reason: the E2E
-// suite runs `astro preview`, which serves the static build and knows nothing about vercel.json.
-// A redirect/410 assertion there would pass or fail for reasons unrelated to the config that
-// actually ships. So the config is asserted directly, and the build output is asserted directly.
-
-const root = resolve(__dirname, '../..');
-const vercel = JSON.parse(readFileSync(resolve(root, 'vercel.json'), 'utf8')) as {
+const repositoryRoot = resolve(__dirname, '../..');
+const vercelConfiguration = JSON.parse(readFileSync(resolve(repositoryRoot, 'vercel.json'), 'utf8')) as {
+  trailingSlash?: boolean;
   redirects: Array<{ source: string; destination: string; statusCode?: number; has?: unknown }>;
   rewrites: Array<{ source: string; destination: string }>;
   headers: Array<{ source: string; headers: Array<{ key: string; value: string }> }>;
 };
 
-/** The canonical routes, i.e. everything that still has a source file. */
-const CANONICAL = [
+const CANONICAL_ROUTES = [
   '/',
-  '/how-it-works',
+  '/research',
+  '/research/machine-cognition',
+  '/research/data-representation',
+  '/research/visual-and-audio',
+  '/research/milestones',
+  '/research/approaches-to-ai',
   '/validation',
+  '/products',
+  '/compatibility-app',
+  '/cordel-play',
+  '/founder-access',
+  '/support',
   '/licensing',
   '/about',
   '/contact',
-  '/founder-access',
-  '/support',
-  '/cordel-connect',
-  '/cordel-play',
-  '/checkout/success',
-  '/checkout/cancel',
-  '/billing',
   '/privacy',
   '/terms',
+  '/billing',
   '/responsible-disclosure',
+  '/checkout/success',
+  '/checkout/cancel',
 ];
 
-/** Deleted families. Every one must resolve to a 301 or a 410 - never to a stale 200. */
-const DELETED_FAMILIES = [
+const RETIRED_ROUTE_FAMILIES = ['/how-it-works', '/architecture', '/progress', '/technologies', '/company', '/preorder', '/marketing'];
+
+const HISTORICAL_URLS_REQUIRING_A_DISPOSITION = [
+  '/how-it-works',
   '/architecture',
-  '/research',
+  '/architecture/integration-map',
   '/progress',
-  '/technologies',
+  '/progress/changelog',
   '/company',
+  '/company/founder',
+  '/company/investors',
+  '/technologies',
+  '/technologies/bytelite',
+  '/technologies/bytesight',
+  '/technologies/deep-kore',
+  '/technologies/deep-kore/aiya',
+  '/technologies/byteoracle',
+  '/technologies/byteflow',
+  '/technologies/bytecost',
+  '/research/deterministic-structural-cognition',
+  '/research/plain-english',
+  '/deepkore',
+  '/deepkore-lab',
+  '/ai-safety',
   '/preorder',
-  '/products',
+  '/preorder/status',
+  '/cordel-connect',
+  '/products/cordel-connect',
+  '/products/cordel-connect/safety',
+  '/products/cordel-play/preorder',
+  '/products/heartstrings-play',
+  '/products/heartstrings-connect/date-planning/restaurants/partner-program',
+  '/heartstrings',
+  '/heartstrings-app',
   '/marketing',
+  '/marketing/thank-you',
+  '/status',
+  '/proof',
+  '/news',
+  '/technology',
+  '/demo',
+  '/ethics',
+  '/pricing',
+  '/subscribe',
+  '/support-us',
 ];
 
-describe('the deleted route families are really deleted', () => {
-  test('no source file survives for any deleted family', () => {
-    for (const family of DELETED_FAMILIES) {
-      const dir = resolve(root, 'src/pages', family.slice(1));
-      expect(existsSync(dir), `src/pages${family} must not exist`).toBe(false);
-      expect(existsSync(`${dir}.astro`), `src/pages${family}.astro must not exist`).toBe(false);
+function escapeForRegex(literal: string): string {
+  return literal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function sourcePatternToRegex(source: string): RegExp {
+  if (source === '/') return /^\/$/;
+  const segmentPatterns = source
+    .split('/')
+    .slice(1)
+    .map((segment) => {
+      if (/^:[a-zA-Z]+\*$/.test(segment) || /^:[a-zA-Z]+\(\.\*\)$/.test(segment)) return '(?:/.*)?';
+      if (/^:[a-zA-Z]+$/.test(segment)) return '/[^/]+';
+      return `/${escapeForRegex(segment)}`;
+    });
+  return new RegExp(`^${segmentPatterns.join('')}$`);
+}
+
+const contentRedirects = vercelConfiguration.redirects.filter((redirect) => !redirect.has);
+
+function firstMatchingDisposition(url: string): { kind: 'redirect' | 'rewrite'; destination: string } | null {
+  const redirect = contentRedirects.find((candidate) => sourcePatternToRegex(candidate.source).test(url));
+  if (redirect) return { kind: 'redirect', destination: redirect.destination };
+  const rewrite = vercelConfiguration.rewrites.find((candidate) => sourcePatternToRegex(candidate.source).test(url));
+  if (rewrite) return { kind: 'rewrite', destination: rewrite.destination };
+  return null;
+}
+
+describe('canonical routes', () => {
+  test('every canonical route has a page source', () => {
+    for (const route of CANONICAL_ROUTES) {
+      const pageBase = route === '/' ? 'src/pages/index' : `src/pages${route}`;
+      const hasSource = existsSync(resolve(repositoryRoot, `${pageBase}.astro`)) || existsSync(resolve(repositoryRoot, pageBase, 'index.astro'));
+      expect(hasSource, `${route} has no page source`).toBe(true);
     }
   });
 
-  test('the Astro API route directory is gone', () => {
-    expect(existsSync(resolve(root, 'src/pages/api'))).toBe(false);
+  test('no redirect or rewrite shadows a canonical route', () => {
+    for (const route of CANONICAL_ROUTES) {
+      expect(firstMatchingDisposition(route), `${route} is captured by a redirect or rewrite`).toBeNull();
+    }
   });
 
-  test('every deleted family has a redirect or a rewrite covering it', () => {
-    for (const family of DELETED_FAMILIES) {
-      const covered =
-        vercel.redirects.some((r) => r.source === family || r.source.startsWith(`${family}/`)) ||
-        vercel.rewrites.some((r) => r.source === family || r.source.startsWith(`${family}/`));
-      expect(covered, `${family} has no disposition in vercel.json`).toBe(true);
+  test('no retired family has a page source', () => {
+    for (const family of RETIRED_ROUTE_FAMILIES) {
+      const pageBase = resolve(repositoryRoot, 'src/pages', family.slice(1));
+      expect(existsSync(pageBase) || existsSync(`${pageBase}.astro`), `src/pages${family} must not exist`).toBe(false);
     }
   });
 });
 
-describe('redirects lead somewhere that exists', () => {
-  const internal = vercel.redirects.filter((r) => !r.destination.startsWith('http'));
-
-  test('no redirect points into a deleted family', () => {
-    for (const r of internal) {
-      for (const family of DELETED_FAMILIES) {
-        expect(
-          r.destination === family || r.destination.startsWith(`${family}/`),
-          `${r.source} -> ${r.destination} points at a deleted family`
-        ).toBe(false);
+describe('historical URLs', () => {
+  test('every known historical URL is redirected to a canonical route or answered 410', () => {
+    for (const url of HISTORICAL_URLS_REQUIRING_A_DISPOSITION) {
+      const disposition = firstMatchingDisposition(url);
+      expect(disposition, `${url} has no disposition`).not.toBeNull();
+      if (disposition!.kind === 'redirect') {
+        const destinationPath = disposition!.destination.split('#')[0]!.replace(/\/$/, '') || '/';
+        expect(CANONICAL_ROUTES, `${url} redirects to non-canonical ${disposition!.destination}`).toContain(destinationPath);
+      } else {
+        expect(disposition!.destination).toBe('/api/gone');
       }
     }
   });
 
-  test('every internal redirect destination is a canonical route', () => {
-    for (const r of internal) {
-      const dest = r.destination.split('#')[0]!.split('?')[0]!.replace(/\/$/, '') || '/';
-      expect(CANONICAL, `${r.source} -> ${r.destination} is not canonical`).toContain(dest);
-    }
-  });
-
-  test('no redirect is its own destination, which would loop', () => {
-    for (const r of vercel.redirects) {
-      expect(r.source, 'a redirect must not target itself').not.toBe(r.destination);
-    }
-  });
-
-  test('content redirects are permanent (301); only the apex uses 308', () => {
-    for (const r of vercel.redirects) {
-      if (r.has) continue; // the apex -> www host rule
-      expect(r.statusCode, `${r.source} must be a permanent redirect`).toBe(301);
-    }
-  });
-});
-
-describe('410 Gone is wired to a function, not faked', () => {
-  test('every rewrite for retired content resolves to /api/gone', () => {
-    for (const r of vercel.rewrites) {
-      expect(r.destination, `${r.source} must rewrite to the gone handler`).toBe('/api/gone');
-    }
-  });
-
-  test('the gone handler exists and returns 410', () => {
-    const src = readFileSync(resolve(root, 'api/gone.ts'), 'utf8');
-    expect(src).toContain('statusCode = 410');
-    expect(src).toContain('noindex');
-  });
-
-  // A 410 that recites the retired product would republish the vocabulary the retirement removed.
-  test('the gone body names no retired system', () => {
-    const src = readFileSync(resolve(root, 'api/gone.ts'), 'utf8');
-    for (const name of ['ByteSight', 'Deep Kore', 'ByteOracle', 'ByteFlow', 'ByteCost', 'HeartStrings']) {
-      expect(src, `api/gone.ts must not name ${name}`).not.toContain(name);
-    }
-  });
-
-  test('the retired technology pages are covered by a 410, not a redirect', () => {
-    const goneSources = vercel.rewrites.map((r) => r.source);
-    for (const path of [
-      '/technologies/bytesight',
+  test('retired and unpublished names answer 410 instead of linking to current pages', () => {
+    for (const url of [
       '/technologies/byteoracle',
       '/technologies/byteflow',
       '/technologies/bytecost',
+      '/technologies/bytesight',
       '/technologies/deep-kore',
+      '/technologies/deep-kore/aiya',
+      '/deepkore',
+      '/deepkore-lab',
+      '/ai-safety',
     ]) {
-      expect(goneSources, `${path} must return 410`).toContain(path);
+      expect(firstMatchingDisposition(url)?.destination).toBe('/api/gone');
     }
+  });
+
+  test('content redirects are permanent, the host redirects are 308, and none loops', () => {
+    for (const redirect of vercelConfiguration.redirects) {
+      expect(redirect.source).not.toBe(redirect.destination);
+      expect(redirect.statusCode).toBe(redirect.has ? 308 : 301);
+    }
+  });
+
+  test('the apex host redirect matches every path, including trailing slashes', () => {
+    const apexRedirects = vercelConfiguration.redirects.filter((redirect) => redirect.has);
+    const catchAll = apexRedirects.find((redirect) => redirect.source !== '/');
+    expect(catchAll).toBeDefined();
+    for (const path of ['/about', '/about/', '/research/milestones/', '/a/b/c']) {
+      expect(sourcePatternToRegex(catchAll!.source).test(path), `${path} must match the apex redirect`).toBe(true);
+    }
+    expect(vercelConfiguration.trailingSlash).toBe(false);
+  });
+
+  test('the gone handler returns 410 and names nothing', () => {
+    const goneSource = readFileSync(resolve(repositoryRoot, 'api/gone.ts'), 'utf8');
+    expect(goneSource).toContain('statusCode = 410');
+    expect(goneSource).toContain('noindex');
+    expect(disclosureFindings(goneSource, loadDisclosureDenylist()).filter((finding) => finding.startsWith('name'))).toEqual([]);
   });
 });
 
-describe('security headers survived the routing rewrite', () => {
-  // The legacy `routes` array is the only vercel.json feature that can emit 410 directly, but it
-  // cannot coexist with `headers`. Using it would have silently dropped all seven headers to gain
-  // one status code. This asserts we did not take that trade.
-  test('the config uses headers, not the legacy routes array', () => {
-    expect(vercel.headers, 'headers must still be configured').toBeTruthy();
-    expect((vercel as Record<string, unknown>).routes, 'legacy routes would drop headers').toBeUndefined();
-  });
+describe('security headers', () => {
+  const headerList = vercelConfiguration.headers[0]!.headers;
+  const contentSecurityPolicy = headerList.find((header) => header.key === 'Content-Security-Policy')!.value;
 
-  test('all seven security headers are still served', () => {
-    const keys = vercel.headers[0]!.headers.map((h) => h.key);
-    for (const key of [
-      'Content-Security-Policy',
-      'X-Content-Type-Options',
-      'X-Frame-Options',
-      'Referrer-Policy',
-      'Permissions-Policy',
-      'Cross-Origin-Opener-Policy',
-    ]) {
-      expect(keys, `${key} must still be served`).toContain(key);
+  test('every security header is served and the legacy routes array is absent', () => {
+    for (const key of ['Content-Security-Policy', 'X-Content-Type-Options', 'X-Frame-Options', 'Referrer-Policy', 'Permissions-Policy', 'Cross-Origin-Opener-Policy']) {
+      expect(headerList.map((header) => header.key)).toContain(key);
     }
+    expect((vercelConfiguration as Record<string, unknown>).routes).toBeUndefined();
   });
 
-  // Stripe checkout is reached by navigation, so no CSP widening was needed. If someone later
-  // adds Stripe.js they must justify it - this catches a silent widening.
-  test('the CSP was not widened for payments', () => {
-    const csp = vercel.headers[0]!.headers.find((h) => h.key === 'Content-Security-Policy')!.value;
-    expect(csp).toContain("form-action 'self'");
-    expect(csp).not.toContain('unsafe-eval');
-    expect(csp).not.toContain('*');
+  test('the content security policy allows no third-party origin and no eval', () => {
+    expect(contentSecurityPolicy).not.toMatch(/https?:\/\//);
+    expect(contentSecurityPolicy).not.toContain('unsafe-eval');
+    expect(contentSecurityPolicy).not.toContain('*');
+    expect(contentSecurityPolicy).toContain("form-action 'self'");
+    expect(contentSecurityPolicy).toContain("frame-ancestors 'none'");
+    expect(contentSecurityPolicy).toContain("object-src 'none'");
   });
 });
 
-describe('the built output contains only canonical pages', () => {
-  const dist = resolve(root, 'dist');
-  const built = existsSync(dist);
+describe('built output', () => {
+  const distributionDirectory = resolve(repositoryRoot, 'dist');
+  const built = existsSync(distributionDirectory);
 
-  test.skipIf(!built)('no deleted family produced a directory in dist', () => {
-    for (const family of DELETED_FAMILIES) {
-      expect(existsSync(resolve(dist, family.slice(1))), `dist${family} must not exist`).toBe(false);
-    }
-  });
-
-  test.skipIf(!built)('the sitemap lists only allowlisted routes', () => {
-    const files = readdirSync(dist).filter((f) => f.startsWith('sitemap') && f.endsWith('.xml'));
-    expect(files.length, 'a sitemap must be generated').toBeGreaterThan(0);
-
-    const urls = files
-      .flatMap((f) => readFileSync(resolve(dist, f), 'utf8').match(/<loc>([^<]+)<\/loc>/g) ?? [])
-      .map((m) => m.replace(/<\/?loc>/g, ''))
-      .filter((u) => !u.includes('sitemap'))
-      .map((u) => u.replace(/^https?:\/\/[^/]+/, '').replace(/\/$/, '') || '/');
-
-    // Discovery must exclude the transactional flow pages even though they resolve, and the two
-    // legal DRAFTS - indexing an unreviewed legal page presents it as a settled position.
-    for (const undiscoverable of [
-      '/checkout/success',
-      '/checkout/cancel',
-      '/billing',
-      '/responsible-disclosure',
-    ]) {
-      expect(urls, `${undiscoverable} must not be in the sitemap`).not.toContain(undiscoverable);
-    }
+  test.skipIf(!built)('the sitemap lists exactly the discoverable routes, without trailing slashes', () => {
+    const sitemapFiles = readdirSync(distributionDirectory).filter((file) => file.startsWith('sitemap') && file.endsWith('.xml'));
+    const urls = sitemapFiles
+      .flatMap((file) => readFileSync(resolve(distributionDirectory, file), 'utf8').match(/<loc>([^<]+)<\/loc>/g) ?? [])
+      .map((match) => match.replace(/<\/?loc>/g, ''))
+      .filter((url) => !url.includes('sitemap'));
+    const paths = urls.map((url) => url.replace(/^https:\/\/www\.thebytelite\.com/, '') || '/');
     for (const url of urls) {
-      expect(CANONICAL, `${url} is in the sitemap but is not canonical`).toContain(url);
+      expect(url.startsWith('https://www.thebytelite.com/')).toBe(true);
+      if (url !== 'https://www.thebytelite.com/') expect(url.endsWith('/'), `${url} has a trailing slash`).toBe(false);
     }
+    for (const undiscoverable of ['/checkout/success', '/checkout/cancel', '/billing', '/responsible-disclosure', '/404']) {
+      expect(paths).not.toContain(undiscoverable);
+    }
+    for (const path of paths) expect(CANONICAL_ROUTES).toContain(path);
+    expect(paths.length).toBe(18);
   });
 
-  test.skipIf(!built)('no retired terminology survives anywhere in the built site', () => {
-    const forbidden = [
-      'HeartStrings',
-      'ByteFlow',
-      'ByteCost',
-      'ByteOracle',
-      'ByteSight',
-      'Deep Kore',
-      'AIya',
-      'Genesis Goalkeeper',
-      'Revelation Vanguard',
-      'Codrel',
-      'Cordea',
-      'Cordia',
-    ];
-    const walk = (dir: string): string[] =>
-      readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
-        const full = resolve(dir, e.name);
-        if (e.isDirectory()) return e.name === 'preview' ? [] : walk(full);
-        return /\.(html|xml)$/.test(e.name) ? [full] : [];
-      });
-
-    const offenders: string[] = [];
-    for (const file of walk(dist)) {
-      const content = readFileSync(file, 'utf8');
-      for (const term of forbidden) {
-        if (content.includes(term)) offenders.push(`${term} in ${file.replace(dist, '')}`);
-      }
-    }
-    expect(offenders).toEqual([]);
+  test.skipIf(!built)('robots.txt points at the sitemap', () => {
+    const robots = readFileSync(resolve(repositoryRoot, 'public/robots.txt'), 'utf8');
+    expect(robots).toContain('Sitemap: https://www.thebytelite.com/sitemap-index.xml');
   });
 });

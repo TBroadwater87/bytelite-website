@@ -1,0 +1,40 @@
+---
+import StatusBadge from './StatusBadge.astro';
+import type { ResearchProgram } from '../../data/research-programs';
+
+export interface Props {
+  program: ResearchProgram;
+}
+
+const { program } = Astro.props;
+---
+
+<article class="program-card">
+  <div class="program-card-top">
+    <h3><a href={program.href}>{program.name}</a></h3>
+    <StatusBadge status={program.overallStatus} />
+  </div>
+  <p class="program-question">{program.question}</p>
+  <dl class="program-facts">
+    <div><dt>Established today</dt><dd>{program.establishedToday}</dd></div>
+    <div><dt>Not yet established</dt><dd>{program.notYetEstablished}</dd></div>
+  </dl>
+  <a class="text-link program-more" href={program.href}>Read more<span class="visually-hidden"> about {program.name}</span> &rarr;</a>
+</article>
+
+<style>
+  .program-card {
+    position: relative; display: flex; flex-direction: column; gap: var(--space-4);
+    padding: var(--space-5); background: var(--color-surface);
+    border: 1px solid var(--color-line); border-radius: var(--radius-lg);
+  }
+  .program-card:hover { border-color: var(--color-line-strong); }
+  .program-card-top { display: grid; gap: var(--space-2); justify-items: start; }
+  .program-card h3 a { color: var(--color-ink); text-decoration: none; }
+  .program-card h3 a:hover { text-decoration: underline; }
+  .program-question { color: var(--color-ink); }
+  .program-facts { display: grid; gap: var(--space-3); margin: 0; font-size: var(--text-sm); }
+  .program-facts dt { font-weight: 600; color: var(--color-ink); }
+  .program-facts dd { margin: 0; color: var(--color-ink-muted); }
+  .program-more { font-size: var(--text-sm); margin-top: auto; }
+</style>

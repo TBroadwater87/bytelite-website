@@ -13,7 +13,7 @@
 
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { findPlan } from './_lib/commerce-core.js';
-import { getStripe, StripeNotConfiguredError } from './_lib/stripe-client.js';
+import { getStripe, StripeUnavailableError } from './_lib/stripe-client.js';
 
 function send(res: ServerResponse, status: number, body: Record<string, unknown>): void {
   res.statusCode = status;
@@ -54,6 +54,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     send(res, 200, {
       confirmed,
       kind: isReservation ? 'reservation' : 'purchase',
+      mode: session.mode,
       planKey,
       planLabel: plan?.label ?? null,
       product: plan?.product ?? null,
@@ -61,7 +62,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
       supporterPackUnlocked: confirmed && plan?.product === 'supporter-pack',
     });
   } catch (err) {
-    if (err instanceof StripeNotConfiguredError) {
+    if (err instanceof StripeUnavailableError) {
       console.error('[checkout-session] ' + err.message);
       send(res, 503, { error: 'Checkout is not configured.' });
       return;

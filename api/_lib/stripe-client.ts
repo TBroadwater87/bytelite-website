@@ -13,6 +13,12 @@
  */
 
 import Stripe from 'stripe';
+import {
+  readPhase,
+  classifyStripeSecretKey,
+  stripeKeyPermittedForPhase,
+  LIVE_FINANCIAL_TRANSACTIONS_OWNER_AUTHORIZED,
+} from './commerce-core.js';
 
 /**
  * Pinned deliberately. Matches the version `stripe@22.5.0` was built against, so the installed
@@ -21,20 +27,31 @@ import Stripe from 'stripe';
  */
 export const STRIPE_API_VERSION = '2026-07-29.dahlia' as const;
 
-export class StripeNotConfiguredError extends Error {
+export class StripeUnavailableError extends Error {}
+
+export class StripeNotConfiguredError extends StripeUnavailableError {
   constructor(missing: string[]) {
     super(`Stripe is not configured; missing: ${missing.join(', ')}`);
     this.name = 'StripeNotConfiguredError';
   }
 }
 
-/**
- * Build a client, or throw StripeNotConfiguredError naming the MISSING VARIABLE NAMES only.
- * Never the values - a thrown error can be logged, and a logged secret is a leaked secret.
- */
+export class StripeKeyRefusedError extends StripeUnavailableError {
+  constructor(reason: string) {
+    super(`Stripe use refused: ${reason}`);
+    this.name = 'StripeKeyRefusedError';
+  }
+}
+
 export function getStripe(): Stripe {
   const key = process.env.STRIPE_SECRET_KEY;
   if (!key) throw new StripeNotConfiguredError(['STRIPE_SECRET_KEY']);
+  const keyDecision = stripeKeyPermittedForPhase(
+    readPhase(process.env.COMMERCE_PHASE),
+    classifyStripeSecretKey(key),
+    LIVE_FINANCIAL_TRANSACTIONS_OWNER_AUTHORIZED
+  );
+  if (!keyDecision.permitted) throw new StripeKeyRefusedError(keyDecision.reason);
 
   return new Stripe(key, {
     apiVersion: STRIPE_API_VERSION,
@@ -44,14 +61,6 @@ export function getStripe(): Stripe {
     // it is the SDK's documented idempotent-retry behaviour for requests that never landed.
     maxNetworkRetries: 1,
   });
-}
-
-/**
- * Guard against pointing production at a live key while the site is still being verified.
- * Test keys start `sk_test_`; live keys start `sk_live_`. We never log either.
- */
-export function secretKeyIsLiveMode(): boolean {
-  return (process.env.STRIPE_SECRET_KEY ?? '').startsWith('sk_live_');
 }
 
 /** The canonical site origin, used to build return URLs. Never taken from the request. */

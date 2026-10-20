@@ -1,41 +1,30 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { COMPANY_NAME } from '../data/company';
 ---
 
-<Layout 
-  title="Page Not Found"
-  description="Page not found. Return to the ByteLite LLC homepage."
+<Layout
+  title={`Page not found | ${COMPANY_NAME}`}
+  description="The requested page does not exist on the ByteLite LLC website."
+  path="/404"
+  noindex={true}
 >
-  <section class="error-page">
-    <div class="container">
-      <h1>404</h1>
-      <p>Page not found</p>
-      <a href="/" class="btn btn-primary">Back to Home</a>
+  <section class="not-found">
+    <div class="wrap wrap-narrow prose">
+      <p class="eyebrow">Error 404</p>
+      <h1>This page does not exist.</h1>
+      <p>It may have moved when the website was reorganised. These pages are the best places to start:</p>
+      <ul class="fact-list fact-list-plain">
+        <li><a href="/">Home</a></li>
+        <li><a href="/research">Research</a></li>
+        <li><a href="/research/milestones">Research milestones</a></li>
+        <li><a href="/products">Products</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
     </div>
   </section>
 </Layout>
 
 <style>
-  .error-page {
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .error-page h1 {
-    font-size: 6rem;
-    background: var(--gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .error-page p {
-    font-size: 1.5rem;
-    color: var(--color-text-muted);
-    margin: 1rem 0 2rem;
-  }
+  .not-found { padding-block: var(--space-9); }
 </style>
-

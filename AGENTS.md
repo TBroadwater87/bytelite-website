@@ -3,8 +3,8 @@
 **The canonical law for this repository is [`CLAUDE.md`](./CLAUDE.md). Read it before touching
 anything. It applies to every agent, not only to Claude.**
 
-Operational detail - architecture, what each external service does, deployment and recovery
-commands, and the current open blockers - is in [`OWNER_README.md`](./OWNER_README.md).
+Operational detail and open owner decisions are kept privately by the owner, outside this public
+repository.
 
 This file used to carry its own copy of the guidance. That copy drifted: it kept a stale
 project structure, an unproven compression-ratio claim, a false statement that security-header
@@ -15,12 +15,13 @@ rather than a duplicate. Do not reintroduce a second copy here.
 
 ## The short version
 
-- **Public scope.** thebytelite.com is a ByteLite-only site. Six discoverable routes. Do not
-  restore portfolio scope, and do not name a sibling ByteLite LLC product on a public page.
-- **Claim law.** Keep target, current state, internal proof, independent validation and
-  production qualification distinct. Never narrow the target; never complete the proof. Never
-  state a compression ratio as achieved.
-- **IP boundary.** The site may say WHAT ByteLite intends to achieve, never HOW.
+- **Public scope.** thebytelite.com is the ByteLite LLC company website: research programs,
+  milestones, products, partnerships and legal pages. Unapproved internal and future brand names
+  stay off every public surface.
+- **Claim law.** Implementation, internal testing, internal validation, independent verification
+  and production qualification stay distinct. Statuses come only from `src/data/milestones.ts`.
+  No universal-reduction claim, no compression ratio, no percentage-complete figure.
+- **IP boundary.** The site may say WHAT a program intends to achieve, never HOW.
 - **Hosting.** Vercel hosts. Cloudflare does DNS and inbound email routing. SendGrid sends
   outbound mail. GitHub holds the source. Never collapse those roles, and never infer the host
   from the DNS provider.

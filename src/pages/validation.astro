@@ -1,254 +1,123 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import ValidationDashboard from '../components/bytelite/ValidationDashboard.astro';
-import DevelopmentRoadmap from '../components/bytelite/DevelopmentRoadmap.astro';
-import {
-  PROVEN,
-  NOT_PROVEN,
-  BYTELITE_STATUS,
-  CURRENT_ROADMAP_STAGE,
-  ROADMAP,
-  VALIDATION_DASHBOARD,
-  ENWIK9_ROW,
-  DASHBOARD_STATE_LABEL,
-  TARGET_STATEMENT,
-  PROOF_STATEMENT,
-} from '../data/bytelite';
-import { BYTELITE } from '../data/projects';
+import PageIntro from '../components/site/PageIntro.astro';
+import StatusBadge from '../components/site/StatusBadge.astro';
+import { PUBLIC_MILESTONES } from '../data/milestones';
+import { researchProgram } from '../data/research-programs';
+import { EVIDENCE_STATUS_DEFINITIONS, EVIDENCE_SCOPE_LABEL } from '../data/evidence-status';
+import { COMPANY_NAME } from '../data/company';
 
-const NEXT_GATE = BYTELITE.nextMilestone;
-
-// The evidence drawer must cover exactly what the dashboard above renders, enwik9 included -
-// derived from the same arrays so a new category cannot appear without its evidence.
-const DASHBOARD_ROWS = [...VALIDATION_DASHBOARD, ENWIK9_ROW];
+const EVALUATION_REQUIREMENTS = [
+  'A specific published claim to test, chosen from the milestone record.',
+  'Inputs and acceptance criteria agreed in writing before any run.',
+  'Conditions controlled by the evaluator, with results reported by the evaluator.',
+  'No disclosure of proprietary methods. An evaluation tests observable behaviour.',
+];
 ---
 
 <Layout
-  title="ByteLite Validation | What has and has not been proven"
-  description="The current evidence state for ByteLite across architecture, reversibility, self-contained artifact, complete accounting, recursion, the universal target, corpus testing, independent validation and production qualification."
-  keywords="ByteLite validation, evidence, exact reconstruction, self-contained artifact, independent verification"
-  canonical="https://www.thebytelite.com/validation/"
+  title={`Validation | ${COMPANY_NAME}`}
+  description="How ByteLite LLC classifies evidence, the current evidence for every public milestone, and how to propose an independent evaluation. None of it has been independently verified."
+  path="/validation"
 >
-  <Header slot="header" />
+  <PageIntro
+    eyebrow="Validation"
+    heading="What has been shown, and by whom."
+    lede="Every public statement about the research rests on evidence of a stated strength. This page explains the classifications and lists the current evidence for every milestone."
+  >
+    <p class="notice"><strong>All evidence to date is internal. None of it has been independently verified.</strong></p>
+  </PageIntro>
 
-  <section class="page-hero">
-    <div class="container narrow">
-      <p class="eyebrow">Validation</p>
-      <h1>What has been proven, and what has not.</h1>
-      <p class="hero-sub">
-        Where ByteLite stands today: <strong>{BYTELITE_STATUS}</strong>. Everything below is internal
-        to ByteLite LLC. None of it has been independently verified.
-      </p>
-
-      {CURRENT_ROADMAP_STAGE && (
-        <aside class="here" aria-label="Current development position">
-          <span class="here-tag">You are here</span>
-          <p class="here-stage">
-            Gate {ROADMAP.findIndex((s) => s.state === 'current') + 1} of {ROADMAP.length}:
-            <strong>{CURRENT_ROADMAP_STAGE.label}</strong>
-          </p>
-          <p class="here-note">
-            The three gates before it are closed on internal evidence. Nothing after it has been
-            reached.
-          </p>
-        </aside>
-      )}
-
-      <div class="claims">
-        <p class="claim claim-target"><span class="claim-tag">Target</span>{TARGET_STATEMENT}</p>
-        <p class="claim claim-proof"><span class="claim-tag">Proof</span>{PROOF_STATEMENT}</p>
+  <section class="section" aria-labelledby="ladder-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Classifications</p>
+        <h2 id="ladder-heading">Evidence classifications.</h2>
+        <p class="lede">
+          Building something, testing it, validating it, having it verified independently and
+          qualifying it for production are separate steps. They are never merged into one claim.
+        </p>
       </div>
+      <dl class="classification-list">
+        {EVIDENCE_STATUS_DEFINITIONS.map((definition) => (
+          <div class="classification">
+            <dt><StatusBadge status={definition.status} /></dt>
+            <dd>
+              {definition.meaning}
+              <span class="classification-scope">{EVIDENCE_SCOPE_LABEL[definition.evidenceScope]}</span>
+            </dd>
+          </div>
+        ))}
+      </dl>
     </div>
   </section>
 
-  <!-- ROADMAP: the ladder comes before the category detail, so position reads first -->
-  <section class="section-sm">
-    <div class="container narrow">
-      <DevelopmentRoadmap />
-    </div>
-  </section>
-
-  <!-- DASHBOARD -->
-  <section class="section section-alt">
-    <div class="container narrow">
-      <h2>Category by category.</h2>
-      <p class="lede">
-        The same picture broken out by what is actually being validated. Supporting evidence for
-        every row is in one place at the foot of this page.
-      </p>
-
-      <!-- The five categories below are also the shape of the table that follows. The image gives
-           the structure at a glance; the table is still where the actual states live, because a
-           reviewer needs the rows, not a picture of the rows. -->
-      <img
-        class="fig"
-        src="/bytelite/validation-evidence-visual.webp"
-        alt="Structured evidence categories: validation, evidence, status, limitations and review."
-        width="1400" height="788" loading="lazy" decoding="async"
-      />
-
-      <ValidationDashboard variant="full" includeEnwik9={true} />
-    </div>
-  </section>
-
-  <!-- PROVEN / NOT PROVEN -->
-  <section class="section section-alt2" id="unfinished">
-    <div class="container narrow">
-      <h2>Stated plainly.</h2>
-      <div class="split">
-        <div class="split-col">
-          <h3 class="split-h split-h-yes">What has been proven</h3>
-          <ul class="split-list">{PROVEN.map((item) => <li>{item}</li>)}</ul>
-        </div>
-        <div class="split-col">
-          <h3 class="split-h split-h-no">What has not been proven</h3>
-          <ul class="split-list split-list-no">{NOT_PROVEN.map((item) => <li>{item}</li>)}</ul>
-        </div>
+  <section class="section section-sunken" aria-labelledby="register-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Current evidence</p>
+        <h2 id="register-heading">Every public milestone at a glance.</h2>
+        <p class="lede">Select a milestone for what has and has not been demonstrated.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- NEXT GATE + DETAIL -->
-  <section class="section">
-    <div class="container narrow">
-      <h2>Next required gate.</h2>
-      <p class="gate">{NEXT_GATE}</p>
-
-      <h3 class="detail-h">Detailed evidence</h3>
-      <details class="drawer">
-        <summary>Evidence behind every dashboard category</summary>
-        <ul class="drawer-list">
-          {DASHBOARD_ROWS.map((row) => (
-            <li>
-              <span class="drawer-cat">{row.label}</span>
-              <span class="drawer-state">{DASHBOARD_STATE_LABEL[row.state]}</span>
-              <span class="drawer-ev">{row.evidence}</span>
-            </li>
+      <table class="data-table data-table-stacked">
+        <caption>Public milestones, their status and the scope of their evidence.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Milestone</th>
+            <th scope="col">Program</th>
+            <th scope="col">Status</th>
+            <th scope="col">Evidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          {PUBLIC_MILESTONES.map((milestone) => (
+            <tr>
+              <th scope="row"><a href={`/research/milestones#${milestone.id}`}>{milestone.title}</a></th>
+              <td data-label="Program">{researchProgram(milestone.programId).name}</td>
+              <td data-label="Status"><StatusBadge status={milestone.status} /></td>
+              <td data-label="Evidence">{EVIDENCE_SCOPE_LABEL[milestone.evidenceScope]}</td>
+            </tr>
           ))}
-        </ul>
-      </details>
-      <details class="drawer">
-        <summary>Capabilities currently claimed, and their evidence level</summary>
-        <ul class="drawer-list">
-          {BYTELITE.currentCapabilities.map((cap) => (
-            <li><span class="drawer-tag">{cap.evidence}</span>{cap.label}</li>
-          ))}
-        </ul>
-      </details>
-      <details class="drawer">
-        <summary>Validation statements and limits, verbatim</summary>
-        <ul class="drawer-list">
-          {BYTELITE.validation.map((statement) => <li>{statement.text}</li>)}
-        </ul>
-      </details>
-      <details class="drawer">
-        <summary>Active work</summary>
-        <ul class="drawer-list">
-          {BYTELITE.inDevelopment.map((item) => <li>{item}</li>)}
-        </ul>
-      </details>
-
-      <div class="cta-row">
-        <a href="/how-it-works" class="btn btn-outline">How it works</a>
-        <a href="/contact?type=validation-partnership" class="btn btn-primary">Technical validation inquiry</a>
-      </div>
+        </tbody>
+      </table>
     </div>
   </section>
 
-  <Footer slot="footer" />
+  <section class="section" aria-labelledby="evaluation-heading">
+    <div class="wrap split">
+      <div class="prose">
+        <p class="eyebrow">Independent evaluation</p>
+        <h2 id="evaluation-heading">How to evaluate a claim.</h2>
+        <p>
+          {COMPANY_NAME} wants its claims tested by people outside the company. An evaluation would
+          need:
+        </p>
+        <ul class="fact-list fact-list-plain">{EVALUATION_REQUIREMENTS.map((item) => <li>{item}</li>)}</ul>
+        <div class="button-row">
+          <a class="button button-primary" href="/contact?type=validation-partnership">Propose an evaluation</a>
+        </div>
+      </div>
+      <div class="prose">
+        <p class="eyebrow">What internal evidence means here</p>
+        <h2>Internal tests, stated as internal tests.</h2>
+        <p>
+          "Internally tested" means automated tests written by {COMPANY_NAME} pass for the stated
+          scope. It is useful evidence that something works as designed. It is not proof that the
+          design is right, and it is not a substitute for someone else checking.
+        </p>
+        <p>
+          Public milestones are updated only through a separately approved evidence review. Internal
+          source changes never move a public status on their own.
+        </p>
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <style>
-.fig {
-  display: block; width: 100%; height: auto; margin: 0 0 2rem;
-  border: 1px solid #1a2235; border-radius: .75rem; background: #0d1120;
-}
-.narrow { max-width: 780px; }
-.page-hero { padding: 4rem 0 2rem; }
-.hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.75; }
-.hero-sub strong { color: #a78bfa; }
-h2 { margin-bottom: .75rem; }
-.lede { font-size: 1.0625rem; color: #a0a8c0; line-height: 1.75; margin-bottom: 1.5rem; }
-
-.claims { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.75rem; }
-@media (max-width: 760px) { .claims { grid-template-columns: 1fr; } }
-.claim {
-  font-size: .9375rem; line-height: 1.7; color: #a0a8c0; margin: 0;
-  background: #0d1120; border: 1px solid #1a2235; border-radius: .625rem; padding: 1.125rem;
-}
-.claim-tag {
-  display: block; margin-bottom: .5rem;
-  font-size: .625rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-}
-.claim-target { border-left: 3px solid #6366f1; }
-.claim-target .claim-tag { color: #818cf8; }
-.claim-proof { border-left: 3px solid #fbbf24; }
-.claim-proof .claim-tag { color: #fbbf24; }
-
-/* "You are here" - the first thing after the headline, because the single most useful fact on
-   this page is which gate ByteLite is actually at. */
-.here {
-  margin-top: 1.75rem;
-  background: rgba(251,191,36,.06); border: 1px solid rgba(251,191,36,.32);
-  border-left: 3px solid #fbbf24; border-radius: .625rem; padding: 1.125rem 1.25rem;
-}
-.here-tag {
-  display: inline-block; margin-bottom: .5rem;
-  font-size: .625rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-  color: #fbbf24;
-}
-.here-stage { font-size: 1.0625rem; color: #c4c8f0; line-height: 1.5; margin: 0; }
-.here-stage strong { color: #e4e7f2; }
-.here-note { font-size: .875rem; color: #7b829e; line-height: 1.65; margin: .5rem 0 0; }
-
-.section-alt2 { background: #090c15; }
-
-.drawer-list li { display: flex; flex-direction: column; gap: .2rem; }
-.drawer-cat { font-size: .9375rem; color: #e4e7f2; font-weight: 500; }
-.drawer-state {
-  align-self: flex-start;
-  font-size: .5625rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-  color: #7b829e; background: rgba(123,130,158,.1); border: 1px solid rgba(123,130,158,.22);
-  border-radius: .25rem; padding: .1rem .4rem;
-}
-.drawer-ev { font-size: .8125rem; color: #7b829e; line-height: 1.65; }
-
-.split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.5rem; }
-@media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
-.split-col { background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem; padding: 1.5rem; }
-.split-h { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .875rem; }
-.split-h-yes { color: #34d399; }
-.split-h-no { color: #f87171; }
-.split-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .75rem; }
-.split-list li { font-size: .9375rem; color: #a0a8c0; line-height: 1.65; padding-left: 1.375rem; position: relative; }
-.split-list li::before { content: "\2713"; position: absolute; left: 0; color: #34d399; font-weight: 700; }
-.split-list-no li::before { content: "\00D7"; color: #f87171; }
-
-.gate {
-  font-size: 1.0625rem; color: #c4c8f0; line-height: 1.7;
-  background: rgba(251,191,36,.06); border: 1px solid rgba(251,191,36,.28);
-  border-radius: .625rem; padding: 1.125rem 1.25rem; margin-bottom: 2rem;
-}
-.detail-h { font-size: 1rem; color: #e4e7f2; margin-bottom: .875rem; }
-.drawer { border: 1px solid #1a2235; border-radius: .625rem; background: #0d1120; margin-bottom: .75rem; }
-.drawer summary {
-  cursor: pointer; padding: .875rem 1.125rem;
-  font-size: .9375rem; font-weight: 600; color: #c4c8f0; list-style: none;
-}
-.drawer summary::-webkit-details-marker { display: none; }
-.drawer summary::before { content: "+ "; color: #818cf8; font-weight: 700; }
-.drawer[open] summary::before { content: "\2212 "; }
-.drawer summary:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; border-radius: .625rem; }
-.drawer-list { list-style: none; padding: 0 1.125rem 1.125rem; margin: 0; display: flex; flex-direction: column; gap: .625rem; }
-.drawer-list li { font-size: .875rem; color: #a0a8c0; line-height: 1.7; }
-.drawer-tag {
-  display: inline-block; margin-right: .5rem;
-  font-size: .625rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-  color: #34d399; background: rgba(52,211,153,.1); border: 1px solid rgba(52,211,153,.24);
-  border-radius: .25rem; padding: .1rem .4rem;
-}
-.cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 2rem; }
-.cta-row .btn { white-space: normal; text-align: center; }
+  .classification-list { display: grid; gap: var(--space-3); margin: 0; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
+  .classification { display: grid; gap: var(--space-2); padding: var(--space-4); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-md); }
+  .classification dd { margin: 0; display: grid; gap: var(--space-1); font-size: var(--text-sm); color: var(--color-ink-muted); }
+  .classification-scope { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-ink-subtle); }
+  .data-table tbody th a { color: var(--color-ink); }
 </style>

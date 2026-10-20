@@ -1,3 +1,6 @@
+import { COMPATIBILITY_APP_NAME, PARTY_GAME_NAME, PERSONAL_REPRESENTATION_SERVICE_NAME } from './products';
+import { LIVE_FINANCIAL_TRANSACTIONS_OWNER_AUTHORIZED } from '../../api/_lib/commerce-core';
+
 /**
  * The public face of the commerce surface.
  *
@@ -19,7 +22,8 @@ export const COMMERCE_PHASE: CommercePhase =
 
 export const FOUNDER_OFFER_OPEN = import.meta.env.FOUNDER_OFFER_PHASE === 'prelaunch';
 
-export const CUSTOMER_PORTAL_URL: string = import.meta.env.STRIPE_CUSTOMER_PORTAL_URL ?? '';
+const configuredCustomerPortalUrl: string = import.meta.env.STRIPE_CUSTOMER_PORTAL_URL ?? '';
+export const CUSTOMER_PORTAL_URL: string = configuredCustomerPortalUrl.startsWith('https://billing.stripe.com/') ? configuredCustomerPortalUrl : '';
 
 /** A plan is only offerable if its Stripe Price exists. Absent price -> honest disabled state. */
 const hasPrice = (envVar: string): boolean => Boolean(import.meta.env[envVar]);
@@ -60,10 +64,10 @@ export const FOUNDER_CARDS: readonly FounderCard[] = [
   {
     planKey: 'bytelite-monthly-founder',
     product: 'bytelite',
-    title: 'ByteLite Personal - monthly',
-    what: 'A flat personal subscription to ByteLite. No percentage-of-savings fee, ever.',
+    title: `${PERSONAL_REPRESENTATION_SERVICE_NAME} - monthly`,
+    what: 'A planned flat personal subscription. No percentage-of-savings fee.',
     state:
-      'ByteLite is not finished and is not available. Nothing is charged. A founder reservation records interest and locks the benefit, and nothing else.',
+      'The underlying research has not demonstrated net size reduction, so there is no product to sell and no approved price. Nothing is charged.',
     kind: 'subscription',
     interval: 'month',
     priceEnvVar: 'STRIPE_PRICE_BYTELITE_MONTHLY_FOUNDER',
@@ -72,10 +76,9 @@ export const FOUNDER_CARDS: readonly FounderCard[] = [
   {
     planKey: 'bytelite-annual-founder',
     product: 'bytelite',
-    title: 'ByteLite Personal - annual',
-    what: 'The same subscription billed once a year instead of monthly.',
-    state:
-      'Same state as the monthly plan: not available, not charged, reservation only.',
+    title: `${PERSONAL_REPRESENTATION_SERVICE_NAME} - annual`,
+    what: 'The same planned subscription billed once a year instead of monthly.',
+    state: 'Same state as the monthly plan: not available and not charged.',
     kind: 'subscription',
     interval: 'year',
     priceEnvVar: 'STRIPE_PRICE_BYTELITE_ANNUAL_FOUNDER',
@@ -84,34 +87,33 @@ export const FOUNDER_CARDS: readonly FounderCard[] = [
   {
     planKey: 'cordel-connect-monthly-founder',
     product: 'cordel-connect',
-    title: 'Cordel Connect - monthly',
-    what: 'A subscription to Cordel Connect, a privacy-focused compatibility application.',
+    title: `${COMPATIBILITY_APP_NAME} - monthly`,
+    what: 'A planned subscription to a privacy-focused compatibility application.',
     state:
-      'No public price has been set for Cordel Connect. Until one is approved there is nothing to charge, so this is a reservation only.',
+      'The application is in private development. No public price has been set, so there is nothing to charge.',
     kind: 'subscription',
     interval: 'month',
     priceEnvVar: 'STRIPE_PRICE_CORDEL_CONNECT_MONTHLY_FOUNDER',
-    href: '/cordel-connect',
+    href: '/compatibility-app',
   },
   {
     planKey: 'cordel-connect-annual-founder',
     product: 'cordel-connect',
-    title: 'Cordel Connect - annual',
-    what: 'The same subscription billed once a year instead of monthly.',
-    state:
-      'No public price has been set for Cordel Connect. Reservation only.',
+    title: `${COMPATIBILITY_APP_NAME} - annual`,
+    what: 'The same planned subscription billed once a year instead of monthly.',
+    state: 'No public price has been set. Nothing is charged.',
     kind: 'subscription',
     interval: 'year',
     priceEnvVar: 'STRIPE_PRICE_CORDEL_CONNECT_ANNUAL_FOUNDER',
-    href: '/cordel-connect',
+    href: '/compatibility-app',
   },
   {
     planKey: 'cordel-play-reservation',
     product: 'cordel-play',
-    title: 'Cordel Play - founder reservation',
-    what: 'A physical adult party game. 18+. A product in a box, not a subscription.',
+    title: `${PARTY_GAME_NAME} - founder reservation`,
+    what: 'A planned physical adult board game. 18+. A product in a box, not a subscription.',
     state:
-      'No price, no shipping estimate and no refund process are approved, so no money is taken and no payment method is stored. This registers interest.',
+      'Prototype stage. No price, shipping estimate or refund process is approved. Nothing can be reserved, and no money or payment details are taken.',
     kind: 'reservation',
     interval: null,
     priceEnvVar: null,
@@ -128,6 +130,7 @@ export const FOUNDER_CARDS: readonly FounderCard[] = [
  */
 export function cardIsActionable(card: FounderCard): boolean {
   if (COMMERCE_PHASE === 'disabled') return false;
+  if (COMMERCE_PHASE === 'live' && !LIVE_FINANCIAL_TRANSACTIONS_OWNER_AUTHORIZED) return false;
   if (!FOUNDER_OFFER_OPEN) return false;
   if (card.kind === 'reservation') return true;
   if (COMMERCE_PHASE === 'reservation') return true;
@@ -153,7 +156,21 @@ export const SUPPORTER_DISCLOSURE =
 
 /** Exactly what a supporter receives. Nothing may be added to this list that is not deliverable. */
 export const SUPPORTER_REWARD = [
-  'A high-resolution wallpaper pack built from the ByteLite brand graphics on this site.',
+  'A high-resolution ByteLite LLC wallpaper pack.',
   'A digital Founder Supporter certificate.',
   'Optional inclusion on a public supporter wall, under a name you choose, only if you tick that box.',
 ] as const;
+
+function cardSavesPaymentMethodOnly(card: FounderCard): boolean {
+  return card.kind === 'reservation' || COMMERCE_PHASE === 'reservation';
+}
+
+export function actionLabelFor(card: FounderCard): string {
+  return cardSavesPaymentMethodOnly(card) ? 'Reserve, no charge now' : 'Continue to subscription checkout';
+}
+
+export function actionableStateFor(card: FounderCard): string {
+  return cardSavesPaymentMethodOnly(card)
+    ? 'A reservation saves a payment method with Stripe for a later, separately confirmed charge. Nothing is charged now.'
+    : 'Opens a Stripe checkout for this subscription. The price and billing interval are shown before you confirm.';
+}

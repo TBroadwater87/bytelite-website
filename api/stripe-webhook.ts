@@ -12,7 +12,7 @@
 
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import type Stripe from 'stripe';
-import { getStripe, StripeNotConfiguredError } from './_lib/stripe-client.js';
+import { getStripe, StripeUnavailableError } from './_lib/stripe-client.js';
 
 /** Vercel's Node runtime parses bodies by default. Opt out so `req` stays a raw stream. */
 export const config = { api: { bodyParser: false } };
@@ -146,7 +146,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     // never reaches fulfilment.
     event = getStripe().webhooks.constructEvent(raw, sig, secret);
   } catch (err) {
-    if (err instanceof StripeNotConfiguredError) {
+    if (err instanceof StripeUnavailableError) {
       console.error('[webhook] ' + err.message);
       send(res, 503, { error: 'Webhook is not configured.' });
       return;

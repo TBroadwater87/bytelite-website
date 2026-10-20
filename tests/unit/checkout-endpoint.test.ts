@@ -1,8 +1,28 @@
 import { describe, test, expect, beforeEach, afterEach, vi } from 'vitest';
+
+const stripeClientMock = vi.hoisted(() => ({ constructions: 0 }));
+
+vi.mock('stripe', async () => {
+  const actualStripeModule = await vi.importActual<typeof import('stripe')>('stripe');
+  const RealStripe = actualStripeModule.default;
+  const unavailableNetwork = () =>
+    Promise.reject(Object.assign(new Error('network disabled in tests'), { name: 'MockedStripeNetworkError' }));
+  function StripeWithoutNetwork(this: unknown, secretKey: string, configuration: ConstructorParameters<typeof RealStripe>[1]) {
+    stripeClientMock.constructions += 1;
+    const client = new RealStripe(secretKey, configuration);
+    client.checkout.sessions.create = vi.fn(unavailableNetwork) as never;
+    client.checkout.sessions.retrieve = vi.fn(unavailableNetwork) as never;
+    return client;
+  }
+  return { ...actualStripeModule, default: StripeWithoutNetwork };
+});
+import Stripe from 'stripe';
 import type { ServerResponse } from 'node:http';
 import checkout from '../../api/checkout.js';
 import webhook from '../../api/stripe-webhook.js';
 import gone from '../../api/gone.js';
+import checkoutSession from '../../api/checkout-session.js';
+import { loadDisclosureDenylist, disclosureFindings } from '../disclosure-denylist';
 
 // Endpoint-level tests for the paths that must work WITHOUT Stripe credentials: every refusal.
 //
@@ -61,6 +81,7 @@ beforeEach(() => {
   delete process.env.STRIPE_WEBHOOK_SECRET;
   delete process.env.COMMERCE_PHASE;
   delete process.env.FOUNDER_OFFER_PHASE;
+  stripeClientMock.constructions = 0;
 });
 
 afterEach(() => {
@@ -184,6 +205,7 @@ describe('POST /api/stripe-webhook refuses everything it should', () => {
   });
 
   test('a forged signature over a real-looking payload is rejected', async () => {
+    process.env.COMMERCE_PHASE = 'test';
     process.env.STRIPE_WEBHOOK_SECRET = 'whsec_notarealsecret000000';
     process.env.STRIPE_SECRET_KEY = 'sk_test_thisisnotarealkey000000';
     const payload = JSON.stringify({
@@ -226,9 +248,7 @@ describe('/api/gone returns a real 410', () => {
   test('the body names no retired system', () => {
     const { res, captured } = mockRes();
     gone(mockReq({ method: 'GET' }) as never, res);
-    for (const name of ['ByteSight', 'Deep Kore', 'ByteOracle', 'HeartStrings', 'ByteFlow']) {
-      expect(captured.raw).not.toContain(name);
-    }
+    expect(disclosureFindings(captured.raw, loadDisclosureDenylist())).toEqual([]);
   });
 
   test('a HEAD request gets the status without the body', () => {
@@ -236,5 +256,154 @@ describe('/api/gone returns a real 410', () => {
     gone(mockReq({ method: 'HEAD' }) as never, res);
     expect(captured.status).toBe(410);
     expect(captured.raw).toBe('');
+  });
+});
+
+describe('a live Stripe key cannot be used through phase configuration alone', () => {
+  const LIVE_SHAPED_KEY = ['sk', 'live', 'fixture'].join('_');
+
+  test.each(['test', 'reservation'])('checkout in the %s phase with a live key is refused before Stripe is contacted', async (phase) => {
+    process.env.COMMERCE_PHASE = phase;
+    process.env.FOUNDER_OFFER_PHASE = 'prelaunch';
+    process.env.STRIPE_SECRET_KEY = LIVE_SHAPED_KEY;
+    const { res, captured } = mockRes();
+    await checkout(mockReq({ body: { planKey: 'cordel-play-reservation' } }), res);
+    expect(captured.status).toBe(503);
+    expect(captured.body.url).toBeUndefined();
+    expect(captured.raw).not.toContain('sk_live_');
+    expect(stripeClientMock.constructions).toBe(0);
+  });
+
+  test.each([['sk', 'live', 'fixture'].join('_'), ['rk', 'live', 'fixture'].join('_')])('a priced subscription in the test phase with key %s is refused before Stripe is constructed', async (liveShapedKey) => {
+    process.env.COMMERCE_PHASE = 'test';
+    process.env.FOUNDER_OFFER_PHASE = 'prelaunch';
+    process.env.STRIPE_SECRET_KEY = liveShapedKey;
+    process.env.STRIPE_PRICE_BYTELITE_MONTHLY_FOUNDER = 'price_notarealprice000000';
+    const { res, captured } = mockRes();
+    await checkout(mockReq({ body: { planKey: 'bytelite-monthly-founder' } }), res);
+    expect(captured.status).toBe(503);
+    expect(captured.body.url).toBeUndefined();
+    expect(stripeClientMock.constructions).toBe(0);
+  });
+
+  test('the live phase is refused without owner authorization in code, even with a live key, prices and an open offer', async () => {
+    process.env.COMMERCE_PHASE = 'live';
+    process.env.FOUNDER_OFFER_PHASE = 'prelaunch';
+    process.env.STRIPE_SECRET_KEY = LIVE_SHAPED_KEY;
+    process.env.STRIPE_PRICE_BYTELITE_MONTHLY_FOUNDER = 'price_notarealprice000000';
+    const { res, captured } = mockRes();
+    await checkout(mockReq({ body: { planKey: 'bytelite-monthly-founder' } }), res);
+    expect(captured.status).toBe(503);
+    expect(captured.body.url).toBeUndefined();
+    expect(stripeClientMock.constructions).toBe(0);
+  });
+
+  test('the live phase refuses even a reservation while unauthorized', async () => {
+    process.env.COMMERCE_PHASE = 'live';
+    process.env.FOUNDER_OFFER_PHASE = 'prelaunch';
+    process.env.STRIPE_SECRET_KEY = LIVE_SHAPED_KEY;
+    const { res, captured } = mockRes();
+    await checkout(mockReq({ body: { planKey: 'cordel-play-reservation' } }), res);
+    expect(captured.status).toBe(503);
+    expect(stripeClientMock.constructions).toBe(0);
+  });
+
+  test('the session lookup refuses a live key in the test phase', async () => {
+    process.env.COMMERCE_PHASE = 'test';
+    process.env.STRIPE_SECRET_KEY = LIVE_SHAPED_KEY;
+    const { res, captured } = mockRes();
+    await checkoutSession(mockReq({ method: 'GET', url: '/api/checkout-session?session_id=cs_test_abcdefghijklmnop' }), res);
+    expect(captured.status).toBe(503);
+    expect(captured.body.confirmed).toBeUndefined();
+    expect(stripeClientMock.constructions).toBe(0);
+  });
+
+  test('the webhook refuses a live key in the test phase', async () => {
+    process.env.COMMERCE_PHASE = 'test';
+    process.env.STRIPE_WEBHOOK_SECRET = 'whsec_notarealsecret000000';
+    process.env.STRIPE_SECRET_KEY = LIVE_SHAPED_KEY;
+    const { res, captured } = mockRes();
+    await webhook(
+      mockReq({
+        headers: { 'stripe-signature': 't=1,v1=deadbeef' },
+        async *[Symbol.asyncIterator]() {
+          yield Buffer.from('{"id":"evt_x"}');
+        },
+      }) as never,
+      res
+    );
+    expect(captured.status).toBe(503);
+    expect(captured.body.received).toBeUndefined();
+    expect(stripeClientMock.constructions).toBe(0);
+  });
+
+  test('the webhook processes nothing while commerce is disabled', async () => {
+    process.env.STRIPE_WEBHOOK_SECRET = 'whsec_notarealsecret000000';
+    process.env.STRIPE_SECRET_KEY = 'sk_test_thisisnotarealkey000000';
+    const { res, captured } = mockRes();
+    await webhook(
+      mockReq({
+        headers: { 'stripe-signature': 't=1,v1=deadbeef' },
+        async *[Symbol.asyncIterator]() {
+          yield Buffer.from('{"id":"evt_x"}');
+        },
+      }) as never,
+      res
+    );
+    expect(captured.status).toBe(503);
+  });
+
+  test('an unrecognised key shape is refused', async () => {
+    process.env.COMMERCE_PHASE = 'test';
+    process.env.FOUNDER_OFFER_PHASE = 'prelaunch';
+    process.env.STRIPE_SECRET_KEY = 'not_a_stripe_key';
+    const { res, captured } = mockRes();
+    await checkout(mockReq({ body: { planKey: 'cordel-play-reservation' } }), res);
+    expect(captured.status).toBe(503);
+    expect(stripeClientMock.constructions).toBe(0);
+  });
+});
+
+describe('webhook signature verification is the real Stripe check', () => {
+  const WEBHOOK_SIGNING_SECRET = 'whsec_notarealsecret000000';
+
+  test('a payload signed with the configured secret is accepted, so the forged-signature rejection is not vacuous', async () => {
+    process.env.COMMERCE_PHASE = 'test';
+    process.env.STRIPE_WEBHOOK_SECRET = WEBHOOK_SIGNING_SECRET;
+    process.env.STRIPE_SECRET_KEY = 'sk_test_thisisnotarealkey000000';
+    const payload = JSON.stringify({ id: 'evt_signed_in_test', type: 'customer.created', data: { object: { id: 'cus_test' } } });
+    const signatureHeader = new Stripe('sk_test_signingfixture00000000').webhooks.generateTestHeaderString({ payload, secret: WEBHOOK_SIGNING_SECRET });
+    const { res, captured } = mockRes();
+    await webhook(
+      mockReq({
+        headers: { 'stripe-signature': signatureHeader },
+        async *[Symbol.asyncIterator]() {
+          yield Buffer.from(payload);
+        },
+      }) as never,
+      res
+    );
+    expect(captured.status).toBe(200);
+    expect(captured.body.received).toBe(true);
+  });
+
+  test('the same payload with a signature made from a different secret is rejected', async () => {
+    process.env.COMMERCE_PHASE = 'test';
+    process.env.STRIPE_WEBHOOK_SECRET = WEBHOOK_SIGNING_SECRET;
+    process.env.STRIPE_SECRET_KEY = 'sk_test_thisisnotarealkey000000';
+    const payload = JSON.stringify({ id: 'evt_wrong_secret', type: 'customer.created', data: { object: { id: 'cus_test' } } });
+    const signatureHeader = new Stripe('sk_test_signingfixture00000000').webhooks.generateTestHeaderString({ payload, secret: 'whsec_adifferentsecret000000' });
+    const { res, captured } = mockRes();
+    await webhook(
+      mockReq({
+        headers: { 'stripe-signature': signatureHeader },
+        async *[Symbol.asyncIterator]() {
+          yield Buffer.from(payload);
+        },
+      }) as never,
+      res
+    );
+    expect(captured.status).toBe(400);
+    expect(captured.body.received).toBeUndefined();
   });
 });

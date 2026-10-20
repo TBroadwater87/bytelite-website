@@ -1,106 +1,90 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import PageIntro from '../components/site/PageIntro.astro';
+import { COMPANY_NAME } from '../data/company';
+import { PARTY_GAME_NAME } from '../data/products';
+
+const LAST_UPDATED = '2026-10-20';
 ---
 
 <Layout
-  title="Terms of Use | ByteLite LLC"
-  description="Terms of use for the ByteLite LLC website, covering founder reservations, the Founder Supporter Pack, product status and proprietary technology."
-  keywords="ByteLite LLC terms of use"
-  
+  title={`Terms of Use | ${COMPANY_NAME}`}
+  description="Terms of use for the ByteLite LLC website: informational content, research statements, product status, commerce controls and proprietary technology."
+  path="/terms"
 >
-  <Header slot="header" />
-
-  <section class="legal-hero">
-    <div class="container">
-      <p class="eyebrow">Legal</p>
-      <h1>Terms of Use</h1>
-      <p class="legal-sub">Last updated: July 2026</p>
-    </div>
-  </section>
+  <PageIntro eyebrow="Legal" heading="Terms of Use">
+    <p class="small-print">Last updated <time datetime={LAST_UPDATED}>20 October 2026</time>.</p>
+  </PageIntro>
 
   <section class="section">
-    <div class="container legal-body">
+    <div class="wrap prose legal">
+      <h2>An informational website</h2>
+      <p>
+        This website provides information about {COMPANY_NAME}, its research and its products. It is
+        not a store. By using it you agree to these terms.
+      </p>
 
-      <div class="legal-section">
-        <h2>This is primarily an informational website.</h2>
-        <p>The ByteLite LLC website provides information about the company, its technology and its products. It is not a general consumer storefront. Two narrow commercial surfaces are planned - the founder reservation system described below, and the Founder Supporter Pack - and <strong>neither is currently able to take a payment.</strong> Their specific terms are still being drafted and are not published yet; they will be published, and you will be asked to accept them, before either can charge anything. No product is available for retail purchase through this website.</p>
-      </div>
+      <h2>Research statements are not product claims</h2>
+      <p>
+        Research described on this website is ongoing. A research objective is an objective, not a
+        claim of existing capability. A status such as "internally tested" means what its definition
+        on the <a href="/research/milestones#status-definitions">milestones page</a> says, and nothing
+        more. Nothing on this website is a claim of independent verification, production readiness or
+        commercial availability unless it says so explicitly.
+      </p>
 
-      <div class="legal-section">
-        <h2>Commerce is switched off.</h2>
-        <p>Payment on this website is handled by Stripe and is currently in <strong>test mode with every checkout control disabled at the server</strong>. A request to start a checkout is refused, not processed. No card is charged, no subscription is created and no payment method is stored.</p>
-        <p>Where a product's price has not been set, this website offers a no-charge founder reservation rather than a paid preorder. Where a price exists but the product does not, it still offers a reservation. These terms will be updated, and you will be shown and asked to accept the change, before any live charge is possible.</p>
-        <p><strong>Cordel Play</strong> is a physical product for adults aged 18 or over. It will not accept a paid preorder until ByteLite LLC has a reasonable basis for a stated shipment time and an operating delay-consent and refund process, as required by the FTC Mail, Internet, or Telephone Order Merchandise Rule.</p>
-        <p><strong>The Founder Supporter Pack</strong> is a one-time purchase of digital goods from a for-profit company. It is not a charitable donation, is not tax deductible, and conveys no equity, repayment right, ownership, product access or control over development.</p>
-      </div>
+      <h2>No purchases, reservations or subscriptions</h2>
+      <p>
+        No payment, reservation, preorder or subscription can be made through this website today.
+        Checkout is switched off in this website's configuration. Before any of that changes, the specific terms will be published, and you will be
+        asked to accept them before anything can be charged.
+      </p>
+      <p>
+        {PARTY_GAME_NAME} is planned as a physical product for adults aged 18 or over. Under the United
+        States Federal Trade Commission's Mail, Internet, or Telephone Order Merchandise Rule, a seller
+        that takes payment must have a reasonable basis to ship within the stated time, or within 30 days
+        if no time is stated, and must have a process for obtaining consent to delays or issuing refunds.
+        {COMPANY_NAME} will not accept a paid preorder until it can meet those requirements.
+      </p>
+      <p>
+        If the Founder Supporter Pack is ever offered, it will be a purchase from {COMPANY_NAME}, a
+        for-profit company. It will not be a charitable donation, it will not be tax deductible, and it
+        will provide no equity, repayment rights, product ownership, product access or control over
+        development. Its contents are listed on the <a href="/support">Supporter Pack page</a>.
+      </p>
 
-      <div class="legal-section">
-        <h2>Technical descriptions.</h2>
-        <p>Descriptions of how ByteLite works on this website explain principles, objectives and claim boundaries. They do not disclose or license proprietary implementation, and they are informational rather than a representation of current product capability. Anything described as a target or an objective is exactly that, and must not be read as a claim of existing capability.</p>
-      </div>
+      <h2>No offer of securities</h2>
+      <p>
+        Nothing on this website is an offer to sell, or a solicitation of an offer to buy, any
+        security or investment. General business and investor inquiries can be sent through the
+        contact form. They create no obligation on either side.
+      </p>
 
-      <div class="legal-section">
-        <h2>Founder preorder and reservations.</h2>
-        <p>Where a product's launch price is not yet announced, this website may offer a no-charge founder reservation rather than a paid preorder. A reservation does not charge any payment method and does not obligate a future purchase. Separate preorder terms govern reservations and any future paid preorder, and are provided at the point of reservation.</p>
-      </div>
+      <h2>Proprietary technology</h2>
+      <p>
+        {COMPANY_NAME}'s research methods and systems are proprietary. Descriptions on this website
+        explain objectives, status and how results are judged. They do not disclose implementation,
+        and nothing on this website grants a license to use, copy or build on {COMPANY_NAME}'s
+        technology. Any use requires a separate written agreement.
+      </p>
 
-      <div class="legal-section">
-        <h2>Product status may change.</h2>
-        <p>Product and project statuses described on this website reflect the best available information at the time of writing. No representation is made that any status is permanent or binding. ByteLite LLC may update, delay, cancel, or modify any product or project without prior notice.</p>
-      </div>
+      <h2>Status can change</h2>
+      <p>
+        Statuses reflect the best information available on the date shown. {COMPANY_NAME} may change,
+        delay or stop any research program or product.
+      </p>
 
-      <div class="legal-section">
-        <h2>Research claims are not production claims.</h2>
-        <p>Research described on this website is private and ongoing. Research status does not constitute a claim of commercial readiness, public availability, or independent verification. No production infrastructure product is currently offered by ByteLite LLC.</p>
-      </div>
+      <h2>No warranties</h2>
+      <p>
+        This website is provided as it is, without warranties of any kind. {COMPANY_NAME} works to keep
+        it accurate but does not guarantee that every statement is complete or current.
+      </p>
 
-      <div class="legal-section">
-        <h2>Architecture descriptions.</h2>
-        <p>Architecture and research descriptions on this website are informational and do not disclose or license proprietary technology. They explain the system design, research objectives, and claim boundaries; they do not constitute mechanism disclosure, patent claims, or production claims.</p>
-      </div>
+      <h2>Governing law</h2>
+      <p>These terms are governed by the laws of the State of Montana, USA, without regard to conflict-of-law principles.</p>
 
-      <div class="legal-section">
-        <h2>Proprietary technology.</h2>
-        <p>ByteLite LLC's research methodology and technology systems are proprietary. Nothing on this website grants any license to use, copy, or build upon ByteLite LLC's systems. Use of any ByteLite technology requires a separate license agreement.</p>
-      </div>
-
-      <div class="legal-section">
-        <h2>No warranties.</h2>
-        <p>This website is provided as-is without warranty of any kind. ByteLite LLC makes no guarantee as to the accuracy, completeness, or timeliness of information provided. Use of this website is at your own risk.</p>
-      </div>
-
-      <div class="legal-section">
-        <h2>Governing law.</h2>
-        <p>These terms are governed by the laws of the State of Montana, USA, without regard to conflict-of-law principles.</p>
-      </div>
-
-      <div class="legal-section">
-        <h2>Contact.</h2>
-        <p>Legal inquiries may be directed through the <a href="/contact">contact page</a>.</p>
-      </div>
-
+      <h2>Contact</h2>
+      <p>Questions about these terms can be sent through the <a href="/contact">contact form</a>.</p>
     </div>
   </section>
-
-  <Footer slot="footer" />
 </Layout>
-
-<style>
-
-.legal-hero { padding: 5rem 0 3.5rem; }
-.legal-hero h1 { max-width: 480px; }
-.legal-sub { margin-top: .75rem; font-size: .9375rem; color: #555e7a; }
-.legal-body { max-width: 760px; }
-.legal-section { margin-bottom: 3rem; }
-.legal-section h2 { font-size: 1.375rem; color: #e4e7f2; margin-bottom: 1rem; padding-bottom: .75rem; border-bottom: 1px solid #1a2235; }
-.legal-section h3 { font-size: 1.0625rem; color: #e4e7f2; margin: 1.5rem 0 .5rem; }
-.legal-section p { font-size: .9375rem; color: #7b829e; line-height: 1.75; margin-bottom: .875rem; }
-.legal-section a { color: #818cf8; }
-.legal-section a:hover { color: #a5b4fc; }
-.legal-list { list-style: none; display: flex; flex-direction: column; gap: .625rem; }
-.legal-list li { font-size: .9375rem; color: #7b829e; padding-left: 1.25rem; position: relative; line-height: 1.6; }
-.legal-list li::before { content: "—"; position: absolute; left: 0; color: #4a5068; }
-
-</style>

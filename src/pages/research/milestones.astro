@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageIntro from '../../components/site/PageIntro.astro';
+import MilestoneCard from '../../components/site/MilestoneCard.astro';
+import StatusBadge from '../../components/site/StatusBadge.astro';
+import { RESEARCH_PROGRAMS } from '../../data/research-programs';
+import { milestonesFor, MILESTONE_UPDATE_POLICY, MILESTONE_REVIEW_DATE } from '../../data/milestones';
+import { EVIDENCE_STATUS_DEFINITIONS } from '../../data/evidence-status';
+import { COMPANY_NAME } from '../../data/company';
+---
+
+<Layout
+  title={`Research Milestones | ${COMPANY_NAME}`}
+  description="Public research milestones for ByteLite LLC: what each program has demonstrated, what it has not, and the next observable result. No percentage-complete figures."
+  path="/research/milestones"
+>
+  <PageIntro
+    eyebrow="Research milestones"
+    heading="Progress shown as gates, not percentages."
+    lede="Each milestone states what has been demonstrated, what has not, the evidence behind it and the next result that would move it. There are no completion percentages anywhere on this page."
+  >
+    <p class="small-print">Last reviewed <time datetime={MILESTONE_REVIEW_DATE}>{MILESTONE_REVIEW_DATE}</time>.</p>
+  </PageIntro>
+
+  <section class="section section-compact" aria-label="Filter milestones by program">
+    <div class="wrap">
+      <div class="filter" data-milestone-filter hidden>
+        <p class="filter-label" id="filter-label">Show</p>
+        <div class="filter-buttons" role="group" aria-labelledby="filter-label">
+          <button type="button" class="filter-button" aria-pressed="true" data-filter-program="all">All programs</button>
+          {RESEARCH_PROGRAMS.map((program) => (
+            <button type="button" class="filter-button" aria-pressed="false" data-filter-program={program.id}>{program.name}</button>
+          ))}
+        </div>
+        <p class="visually-hidden" role="status" data-filter-status></p>
+      </div>
+    </div>
+  </section>
+
+  {RESEARCH_PROGRAMS.map((program) => (
+    <section class="section program-section" aria-labelledby={`${program.id}-heading`} data-program-section={program.id}>
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Program</p>
+          <h2 id={`${program.id}-heading`}><a href={program.href}>{program.name}</a></h2>
+          <p class="lede">{program.question}</p>
+        </div>
+        <div class="milestone-stack">
+          {milestonesFor(program.id).map((milestone) => <MilestoneCard milestone={milestone} />)}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section section-sunken" aria-labelledby="definitions-heading" id="status-definitions">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Definitions</p>
+        <h2 id="definitions-heading">What each status means.</h2>
+        <p class="lede">
+          Implementation and evidence are different things. Software can exist without being
+          verified, and internal testing is never presented as independent verification.
+        </p>
+      </div>
+      <dl class="definitions">
+        {EVIDENCE_STATUS_DEFINITIONS.map((definition) => (
+          <div class="definition">
+            <dt><StatusBadge status={definition.status} /></dt>
+            <dd>{definition.meaning}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="policy-heading">
+    <div class="wrap prose">
+      <p class="eyebrow">Update discipline</p>
+      <h2 id="policy-heading">How this page changes.</h2>
+      <ul class="fact-list fact-list-plain">
+        {MILESTONE_UPDATE_POLICY.map((rule) => <li>{rule}</li>)}
+      </ul>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const filter = document.querySelector<HTMLElement>('[data-milestone-filter]');
+  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-filter-program]'));
+  const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-program-section]'));
+  const announcement = document.querySelector<HTMLElement>('[data-filter-status]');
+
+  function showProgram(programId: string, label: string) {
+    for (const section of sections) {
+      section.hidden = programId !== 'all' && section.dataset.programSection !== programId;
+    }
+    for (const button of buttons) {
+      button.setAttribute('aria-pressed', String(button.dataset.filterProgram === programId));
+    }
+    if (announcement) announcement.textContent = `Showing ${label}.`;
+  }
+
+  if (filter && buttons.length > 0) {
+    filter.hidden = false;
+    for (const button of buttons) {
+      button.addEventListener('click', () => {
+        showProgram(button.dataset.filterProgram ?? 'all', button.textContent?.trim() ?? 'all programs');
+      });
+    }
+  }
+</script>
+
+<style>
+  .filter { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+  .filter[hidden] { display: none; }
+  .filter-label { font-weight: 600; color: var(--color-ink); }
+  .filter-buttons { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .filter-button {
+    min-height: 2.5rem; padding: 0 var(--space-4); font: inherit; font-size: var(--text-sm); font-weight: 600;
+    background: var(--color-surface); color: var(--color-ink); border: 1px solid var(--color-input-border); border-radius: var(--radius-pill); cursor: pointer;
+  }
+  .filter-button[aria-pressed='true'] { background: var(--color-ink); color: var(--color-canvas); border-color: var(--color-ink); }
+  .program-section h2 a { color: inherit; text-decoration: none; }
+  .program-section h2 a:hover { text-decoration: underline; }
+  .milestone-stack { display: grid; gap: var(--space-4); }
+  .definitions { display: grid; gap: var(--space-3); margin: 0; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
+  .definition { display: grid; gap: var(--space-2); padding: var(--space-4); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-md); }
+  .definition dd { margin: 0; font-size: var(--text-sm); color: var(--color-ink-muted); }
+</style>

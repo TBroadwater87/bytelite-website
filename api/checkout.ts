@@ -19,14 +19,15 @@ import {
   readPhase,
   readFounderOfferPhase,
   buildMetadata,
+  LIVE_FINANCIAL_TRANSACTIONS_OWNER_AUTHORIZED,
 } from './_lib/commerce-core.js';
-import { getStripe, StripeNotConfiguredError, siteOrigin } from './_lib/stripe-client.js';
+import { getStripe, StripeUnavailableError, siteOrigin } from './_lib/stripe-client.js';
 
 type VercelLikeRequest = IncomingMessage & { body?: unknown };
 
 /** Bumped when the founder benefit itself changes, so a stored reservation records which offer it accepted. */
-const FOUNDER_OFFER_VERSION = '2026-08-26';
-const TERMS_VERSION = '2026-08-26';
+const FOUNDER_OFFER_VERSION = '2026-10-20';
+const TERMS_VERSION = '2026-10-20';
 
 function send(res: ServerResponse, status: number, body: Record<string, unknown>): void {
   res.statusCode = status;
@@ -85,6 +86,7 @@ export default async function handler(
     phase: readPhase(process.env.COMMERCE_PHASE),
     founderOffer: readFounderOfferPhase(process.env.FOUNDER_OFFER_PHASE),
     priceIdFor: (envVar) => process.env[envVar],
+    liveFinancialTransactionsOwnerAuthorized: LIVE_FINANCIAL_TRANSACTIONS_OWNER_AUTHORIZED,
   });
 
   if (!resolution.ok) {
@@ -105,8 +107,8 @@ export default async function handler(
     const common = {
       // `{CHECKOUT_SESSION_ID}` is a Stripe template, not a value we interpolate. The success page
       // re-reads the session server-side; the query parameter alone is never treated as proof.
-      success_url: `${origin}/checkout/success/?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/checkout/cancel/`,
+      success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/checkout/cancel`,
       metadata,
       automatic_tax:
         process.env.STRIPE_AUTOMATIC_TAX_ENABLED === 'true' ? { enabled: true } : { enabled: false },
@@ -147,7 +149,7 @@ export default async function handler(
 
     send(res, 200, { url: session.url });
   } catch (err) {
-    if (err instanceof StripeNotConfiguredError) {
+    if (err instanceof StripeUnavailableError) {
       // Names only. The message this class builds never contains a value.
       console.error('[checkout] ' + err.message);
       send(res, 503, { error: 'Checkout is not configured.' });

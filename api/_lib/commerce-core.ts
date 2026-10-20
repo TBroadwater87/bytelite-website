@@ -20,7 +20,7 @@ export type PlanKind = 'subscription' | 'reservation' | 'one-time';
  * `disabled`  - no payment or payment-method control is active anywhere.
  * `test`      - Stripe test-mode flows are active so they can be verified end to end.
  * `reservation` - only no-charge reservations (Checkout `setup` mode) are active.
- * `live`      - live paid commerce. Owner-gated; never reachable by editing this file alone.
+ * `live`      - live paid commerce. Refused unless LIVE_FINANCIAL_TRANSACTIONS_OWNER_AUTHORIZED is true.
  */
 export type CommercePhase = 'disabled' | 'test' | 'reservation' | 'live';
 
@@ -57,11 +57,8 @@ export interface PlanDefinition {
 /**
  * The allowlist.
  *
- * Founder pricing is deliberately NOT computed here. The public ByteLite prices are $9.99/month
- * and $99.99/year and the founder benefit is "10% lower price", but 10% off $9.99 is $8.991 and
- * Stripe prices are integer minor units. Rounding that is a commercial decision with a legal
- * consequence, so the rounded founder price lives in an owner-approved Stripe Price object and
- * reaches this code only as an ID. Nothing in this repository multiplies a price by 0.9.
+ * Founder pricing is deliberately NOT computed here. Any founder price is an owner-approved Stripe
+ * Price object that reaches this code only as an ID. Nothing in this repository multiplies a price.
  */
 export const PLANS: readonly PlanDefinition[] = [
   {
@@ -87,7 +84,7 @@ export const PLANS: readonly PlanDefinition[] = [
   {
     key: 'cordel-connect-monthly-founder',
     product: 'cordel-connect',
-    label: 'Cordel Connect - founder monthly',
+    label: 'Compatibility app - founder monthly',
     kind: 'subscription',
     priceEnvVar: 'STRIPE_PRICE_CORDEL_CONNECT_MONTHLY_FOUNDER',
     interval: 'month',
@@ -97,7 +94,7 @@ export const PLANS: readonly PlanDefinition[] = [
   {
     key: 'cordel-connect-annual-founder',
     product: 'cordel-connect',
-    label: 'Cordel Connect - founder annual',
+    label: 'Compatibility app - founder annual',
     kind: 'subscription',
     priceEnvVar: 'STRIPE_PRICE_CORDEL_CONNECT_ANNUAL_FOUNDER',
     interval: 'year',
@@ -145,6 +142,38 @@ export function readFounderOfferPhase(raw: string | undefined): FounderOfferPhas
   return raw === 'prelaunch' ? 'prelaunch' : 'closed';
 }
 
+export const LIVE_FINANCIAL_TRANSACTIONS_OWNER_AUTHORIZED = false;
+
+export type StripeSecretKeyMode = 'test' | 'live' | 'unrecognised';
+
+export function classifyStripeSecretKey(secretKey: string | undefined): StripeSecretKeyMode {
+  if (!secretKey) return 'unrecognised';
+  if (secretKey.startsWith('sk_test_') || secretKey.startsWith('rk_test_')) return 'test';
+  if (secretKey.startsWith('sk_live_') || secretKey.startsWith('rk_live_')) return 'live';
+  return 'unrecognised';
+}
+
+export type StripeKeyDecision = { permitted: true } | { permitted: false; reason: string };
+
+export function stripeKeyPermittedForPhase(
+  phase: CommercePhase,
+  keyMode: StripeSecretKeyMode,
+  liveFinancialTransactionsOwnerAuthorized: boolean
+): StripeKeyDecision {
+  if (phase === 'disabled') return { permitted: false, reason: 'commerce phase is disabled' };
+  if (keyMode === 'unrecognised') return { permitted: false, reason: 'secret key mode is not recognised' };
+  if (keyMode === 'test') {
+    return phase === 'live'
+      ? { permitted: false, reason: 'live phase requires a live key' }
+      : { permitted: true };
+  }
+  if (!liveFinancialTransactionsOwnerAuthorized) {
+    return { permitted: false, reason: 'a live key requires owner authorization of live financial transactions' };
+  }
+  if (phase === 'test') return { permitted: false, reason: 'test phase refuses a live key' };
+  return { permitted: true };
+}
+
 export type Resolution =
   | { ok: true; plan: PlanDefinition; mode: CheckoutMode; priceId: string | null }
   | { ok: false; status: number; reason: string };
@@ -154,15 +183,15 @@ export interface CommerceEnv {
   founderOffer: FounderOfferPhase;
   /** Lookup of the plan's price environment variable. Injected so tests need no real env. */
   priceIdFor: (envVar: string) => string | undefined;
+  liveFinancialTransactionsOwnerAuthorized: boolean;
 }
 
 /**
  * Decide whether a plan key may proceed, and in which Checkout mode.
  *
- * A subscription does NOT become a subscription Checkout automatically. While the product is not
- * generally available, a founder subscription resolves to `setup` mode: no charge, no recurring
- * object created, payment method stored only after the page has said so. The recurring charge is
- * a separate later act that requires the customer to see the final price and confirm.
+ * In the `reservation` phase a founder subscription resolves to `setup` mode: no charge and no
+ * recurring object. In the `test` phase it resolves to a subscription against test-mode prices.
+ * The `live` phase is refused unless live financial transactions are owner-authorized in code.
  */
 export function resolveCheckout(planKey: unknown, env: CommerceEnv): Resolution {
   const plan = findPlan(planKey);
@@ -174,6 +203,10 @@ export function resolveCheckout(planKey: unknown, env: CommerceEnv): Resolution 
 
   if (env.phase === 'disabled') {
     return { ok: false, status: 503, reason: 'Checkout is not enabled.' };
+  }
+
+  if (env.phase === 'live' && !env.liveFinancialTransactionsOwnerAuthorized) {
+    return { ok: false, status: 503, reason: 'Live transactions are not authorized.' };
   }
 
   if (plan.kind !== 'one-time' && env.founderOffer === 'closed') {

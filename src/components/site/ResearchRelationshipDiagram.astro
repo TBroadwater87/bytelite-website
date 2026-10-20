@@ -1,0 +1,65 @@
+---
+import ClassifiedFigure from './ClassifiedFigure.astro';
+
+interface DiagramLayer {
+  label: string;
+  question: string;
+  members: readonly { name: string; href: string }[];
+}
+
+const LAYERS: readonly DiagramLayer[] = [
+  {
+    label: 'Information',
+    question: 'Preserve information exactly and describe it in structured, repeatable forms.',
+    members: [
+      { name: 'Data Representation', href: '/research/data-representation' },
+      { name: 'Visual and Audio', href: '/research/visual-and-audio' },
+    ],
+  },
+  {
+    label: 'Understanding',
+    question: 'Establish what is known, how concepts relate, and what is still missing.',
+    members: [{ name: 'Machine Cognition', href: '/research/machine-cognition' }],
+  },
+  {
+    label: 'Governance',
+    question: 'Keep behaviour inside explicit constraints, with provenance and validation.',
+    members: [{ name: 'Part of Machine Cognition', href: '/research/machine-cognition#governance' }],
+  },
+  {
+    label: 'Applications',
+    question: 'Products may use research results only after they are validated.',
+    members: [{ name: 'Products', href: '/products' }],
+  },
+];
+---
+
+<ClassifiedFigure
+  classification="Conceptual illustration"
+  caption="The intended long-term relationship between the research programs. These integrations do not exist today."
+>
+  <ol class="layers">
+    {LAYERS.map((layer) => (
+      <li class="layer">
+        <p class="layer-label">{layer.label}</p>
+        <p class="layer-question">{layer.question}</p>
+        <ul class="layer-members">
+          {layer.members.map((member) => (
+            <li><a href={member.href}>{member.name}</a></li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ol>
+</ClassifiedFigure>
+
+<style>
+  .layers { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); }
+  .layer {
+    display: grid; gap: var(--space-2); align-content: start; padding: var(--space-4);
+    border: 1px solid var(--color-line); border-radius: var(--radius-md); background: var(--color-canvas); position: relative;
+  }
+  .layer-label { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink); }
+  .layer-question { font-size: var(--text-sm); }
+  .layer-members { list-style: none; display: grid; gap: var(--space-1); font-size: var(--text-sm); font-weight: 600; }
+</style>

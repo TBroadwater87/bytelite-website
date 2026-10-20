@@ -1,158 +1,85 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import {
-  SUPPORTER_PACK_ACTIONABLE,
-  SUPPORTER_DISCLOSURE,
-  SUPPORTER_REWARD,
-} from '../data/commerce';
+import PageIntro from '../components/site/PageIntro.astro';
+import { SUPPORTER_PACK_ACTIONABLE, SUPPORTER_DISCLOSURE, SUPPORTER_REWARD } from '../data/commerce';
+import { COMPANY_NAME } from '../data/company';
+
+const NOT_INCLUDED = [
+  'Access to any product, now or later.',
+  'Early or beta software access.',
+  'Equity, shares, voting rights, revenue share, repayment, interest or profit participation.',
+  `Ownership of, or a license to, any ${COMPANY_NAME} intellectual property.`,
+  'Any say in what is built or when.',
+  'A tax deduction.',
+  'A promise that any particular work is finished, or finished by a date.',
+];
 ---
 
 <Layout
-  title="Founder Supporter Pack | ByteLite LLC"
-  description="A one-time purchase from ByteLite LLC with a digital reward. Not a donation, not tax deductible, and it grants no equity, product access or control over development."
-  keywords="ByteLite Founder Supporter Pack, project support purchase"
-  canonical="https://www.thebytelite.com/support/"
+  title={`Founder Supporter Pack | ${COMPANY_NAME}`}
+  description="A planned one-time purchase of digital items from ByteLite LLC. Not on sale. Not a donation, not tax deductible, and it grants no equity, product access or control over development."
+  path="/support"
 >
-  <Header slot="header" />
-
-  <section class="page-hero">
-    <div class="container narrow">
-      <p class="eyebrow">Founder Supporter Pack &middot; Coming later</p>
-      <h1>Supporter Pack in preparation.</h1>
-      <p class="hero-sub">
-        Some people want to back this before there is a product to sell them. When it opens, this
-        will be the honest way to do that: a one-time purchase, at a price you choose, for a
-        specific set of digital items. You get those items. That is the whole transaction.
-      </p>
-      <p class="prep">
-        <strong>It is not on sale yet.</strong> The pack is still being prepared &mdash; the actual
-        files do not exist in final form, so there is nothing I could deliver if you paid today.
-        Payment stays switched off at the server until they do.
-      </p>
-    </div>
-  </section>
+  <PageIntro
+    eyebrow="Founder Supporter Pack"
+    heading="Supporter Pack: in preparation, not on sale."
+    lede="A planned one-time purchase of a specific set of digital items, for people who want to support the company before there is a product to buy. The items do not exist in final form yet, so nothing can be bought."
+  />
 
   <section class="section">
-    <div class="container narrow">
-      <h2>What you will actually receive.</h2>
-      <ul class="reward">
-        {SUPPORTER_REWARD.map((item) => <li>{item}</li>)}
-      </ul>
-      <p class="body-note">
-        That list is complete. If something is not on it, you are not buying it. The list is also
-        the specification I have to meet before this can go on sale &mdash; I am not going to take
-        money for it and work out the contents afterwards.
-      </p>
-      <p class="body-note">
-        ByteLite LLC is a for-profit company. This is a purchase, not a donation, and it is not
-        tax deductible. It does not give you equity, a return, a say in what gets built, or a
-        guarantee that any product ships.
-      </p>
+    <div class="wrap wrap-narrow prose">
+      <h2>What a supporter would receive.</h2>
+      <ul class="fact-list fact-list-yes">{SUPPORTER_REWARD.map((item) => <li>{item}</li>)}</ul>
+      <p>That list is complete. Anything not on it is not part of the purchase.</p>
 
-      <h2 class="mt">What you are not buying.</h2>
-      <ul class="notlist">
-        <li>ByteLite, Cordel or any other product access &mdash; now or later.</li>
-        <li>Early or beta software access.</li>
-        <li>Equity, shares, voting rights, revenue share, repayment, interest or profit participation.</li>
-        <li>Ownership of, or a licence to, any ByteLite LLC intellectual property.</li>
-        <li>Any say in what gets built or when.</li>
-        <li>A tax deduction.</li>
-        <li>A promise that any particular thing gets finished, or finished by a date.</li>
-      </ul>
+      <h2>What a supporter would not receive.</h2>
+      <ul class="fact-list fact-list-no">{NOT_INCLUDED.map((item) => <li>{item}</li>)}</ul>
 
-      <!-- The disclosure is adjacent to the purchase control, not in a footnote and not on the
-           terms page only. It is the thing a buyer is most likely to be confused about. -->
-      <div class="disclosure">
-        <h3>Read this before you buy.</h3>
+      <div class="notice notice-caution">
+        <h3>Read this before any purchase.</h3>
         <p>{SUPPORTER_DISCLOSURE}</p>
       </div>
 
-      <div class="buy">
+      <div class="purchase">
         {SUPPORTER_PACK_ACTIONABLE ? (
-          <button type="button" class="btn btn-primary buy-btn" id="buy-supporter">
-            Buy the Founder Supporter Pack
-          </button>
+          <button type="button" class="button button-primary purchase-button" id="buy-supporter">Buy the Founder Supporter Pack</button>
         ) : (
-          <button type="button" class="btn btn-outline buy-btn" disabled aria-describedby="buy-why">
-            Being prepared &mdash; not on sale
-          </button>
+          <button type="button" class="button purchase-button" disabled aria-describedby="purchase-reason">Not on sale</button>
         )}
-        <p class="buy-why" id="buy-why">
+        <p class="small-print" id="purchase-reason">
           {SUPPORTER_PACK_ACTIONABLE
-            ? 'You choose the amount at checkout. Payment is handled by Stripe; ByteLite LLC never sees your card details.'
-            : 'The reward files and the minimum amount have not been finalised, so this is switched off at the server. It will not take a payment until it is.'}
+            ? 'Payment is handled by Stripe on its own hosted page.'
+            : 'The reward files and minimum amount are not final, and the purchase terms are not published. The server refuses this purchase until they are.'}
         </p>
-        <p class="buy-status" role="status" id="buy-status"></p>
+        <p class="form-status" role="status" id="purchase-status"></p>
       </div>
-
-      <p class="body">
-        The full terms for this purchase are still being drafted and are not published yet. That is
-        deliberate and it is why nothing here can take your money: I am not going to sell you
-        something under terms you have not been able to read.
-      </p>
     </div>
   </section>
-
-  <Footer slot="footer" />
 </Layout>
 
 <script>
-  const btn = document.getElementById('buy-supporter') as HTMLButtonElement | null;
-  const status = document.getElementById('buy-status');
-  btn?.addEventListener('click', async () => {
-    btn.disabled = true;
-    if (status) status.textContent = 'Opening secure checkout...';
+  const purchaseButton = document.getElementById('buy-supporter') as HTMLButtonElement | null;
+  const purchaseStatus = document.getElementById('purchase-status');
+  purchaseButton?.addEventListener('click', async () => {
+    purchaseButton.disabled = true;
+    if (purchaseStatus) purchaseStatus.textContent = 'Opening secure checkout...';
     try {
-      const res = await fetch('/api/checkout', {
+      const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ planKey: 'founder-supporter-pack' }),
       });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok || !json.url) throw new Error(json.error || 'Checkout could not be started.');
-      window.location.assign(json.url);
-    } catch (err) {
-      if (status) {
-        status.textContent = err instanceof Error ? err.message : 'Checkout could not be started.';
-      }
-      btn.disabled = false;
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result.url) throw new Error(result.error || 'Checkout could not be started.');
+      window.location.assign(result.url);
+    } catch (error) {
+      if (purchaseStatus) purchaseStatus.textContent = error instanceof Error ? error.message : 'Checkout could not be started.';
+      purchaseButton.disabled = false;
     }
   });
 </script>
 
 <style>
-.narrow { max-width: 780px; }
-.page-hero { padding: 3.5rem 0 2rem; }
-.hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.8; }
-.prep {
-  max-width: 640px; margin-top: 1.5rem; padding: 1rem 1.125rem;
-  font-size: .9375rem; color: #c4c8f0; line-height: 1.7;
-  background: rgba(251,191,36,.06); border: 1px solid rgba(251,191,36,.3); border-radius: .625rem;
-}
-h2 { margin-bottom: .75rem; }
-h3 { font-size: 1rem; color: #e4e7f2; margin-bottom: .625rem; }
-.mt { margin-top: 2.5rem; }
-.body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1.5rem; }
-.body-note { font-size: .875rem; color: #7b829e; line-height: 1.7; margin-top: 1rem; }
-.reward, .notlist { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
-.reward li, .notlist li {
-  font-size: .9375rem; color: #a0a8c0; line-height: 1.65;
-  padding: .625rem .875rem; background: #0d1120;
-  border: 1px solid #1a2235; border-left: 3px solid #34d399; border-radius: .5rem;
-}
-.notlist li { border-left-color: #f472b6; }
-.disclosure {
-  margin-top: 2.5rem; padding: 1.25rem;
-  background: rgba(251,191,36,.06); border: 1px solid rgba(251,191,36,.3); border-radius: .625rem;
-}
-.disclosure h3 { color: #fbbf24; margin-bottom: .5rem; }
-.disclosure p { font-size: .9375rem; color: #c4c8f0; line-height: 1.7; margin: 0; }
-.buy { margin-top: 2rem; }
-.buy-btn { width: 100%; justify-content: center; padding: .875rem; }
-.buy-btn:disabled { opacity: .55; cursor: not-allowed; }
-.buy-btn:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }
-.buy-why { font-size: .8125rem; color: #7b829e; line-height: 1.6; margin-top: .75rem; }
-.buy-status { font-size: .9375rem; color: #a5b4fc; min-height: 1.4em; margin-top: .5rem; }
+  .purchase { display: grid; gap: var(--space-2); margin-top: var(--space-4); }
+  .purchase-button { width: 100%; }
 </style>

@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/site/PageIntro.astro';
+import { consumerProduct, PRODUCT_AVAILABILITY_LABEL } from '../data/products';
+import { COMPANY_NAME } from '../data/company';
+
+const product = consumerProduct('compatibility-app');
+---
+
+<Layout
+  title={`${product.displayName} | ${COMPANY_NAME}`}
+  description={`${product.displayName} is a privacy-focused compatibility application from ${COMPANY_NAME}. It is in private development and has not been publicly released.`}
+  path="/compatibility-app"
+>
+  <PageIntro eyebrow={product.category} heading={product.displayName} lede={product.oneLine}>
+    <p><span class="status-badge tone-neutral">{PRODUCT_AVAILABILITY_LABEL[product.availability]}</span></p>
+  </PageIntro>
+
+  <section class="section" aria-labelledby="status-heading">
+    <div class="wrap split">
+      <div class="prose">
+        <h2 id="status-heading">Where it stands.</h2>
+        <p>{product.availabilityDetail}</p>
+        <h3>Exists today</h3>
+        <ul class="fact-list fact-list-yes">{product.whatExistsToday.map((item) => <li>{item}</li>)}</ul>
+        <h3>Does not exist yet</h3>
+        <ul class="fact-list fact-list-no">{product.whatDoesNotExist.map((item) => <li>{item}</li>)}</ul>
+      </div>
+      <div class="prose">
+        <h2>Privacy before launch.</h2>
+        <p>
+          The application is being built around user control of personal data, including export,
+          deletion and control over who can see a profile.
+        </p>
+        <p>
+          An application-specific privacy policy will be published before any public release. This
+          website's own <a href="/privacy">privacy policy</a> covers only this website.
+        </p>
+        <div class="button-row">
+          <a class="button button-secondary" href="/contact">Ask about it</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

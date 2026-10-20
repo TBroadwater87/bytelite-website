@@ -1,302 +1,169 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import PageIntro from '../components/site/PageIntro.astro';
+import { COMPANY_NAME, COMPANY_LOCATION } from '../data/company';
+
+const INQUIRY_OPTIONS = [
+  { value: 'general', label: 'General inquiry or product question' },
+  { value: 'validation-partnership', label: 'Independent evaluation proposal' },
+  { value: 'technology-partnership', label: 'Research or technology partnership' },
+  { value: 'licensing', label: 'Licensing' },
+  { value: 'investor', label: 'Business or investor inquiry' },
+  { value: 'privacy-request', label: 'Privacy request' },
+] as const;
 ---
 
 <Layout
-  title="Contact | ByteLite LLC"
-  description="Contact ByteLite LLC about technical validation, licensing, technology partnerships, or investor conversations."
-  keywords="Contact ByteLite LLC, technical validation, licensing inquiry, partnership"
-  canonical="https://www.thebytelite.com/contact/"
+  title={`Contact | ${COMPANY_NAME}`}
+  description="Contact ByteLite LLC about independent evaluation, research partnerships, licensing, business inquiries or privacy requests."
+  path="/contact"
 >
-  <Header slot="header" />
+  <PageIntro
+    eyebrow="Contact"
+    heading={`Contact ${COMPANY_NAME}.`}
+    lede="Messages reach the company directly. Evidence that something on this site is wrong is as welcome as any other message."
+  />
 
-  <!-- Hero -->
-  <section class="ct-hero">
-    <div class="container">
-      <p class="eyebrow">Contact</p>
-      <h1 id="ct-heading">Get in touch.</h1>
-      <p class="ct-sub" id="ct-subheading">
-        Technical validation, licensing, partnership and investor conversations are all welcome.
-        Direct, no-middleman contact.
-      </p>
-    </div>
-  </section>
-
-  <!-- Contact grid -->
   <section class="section">
-    <div class="container ct-grid">
-      <!-- Form -->
-      <div class="ct-form-area">
-        <h2 style="margin-bottom:1.75rem;">Send a message.</h2>
-        <form class="ct-form" id="ct-form" novalidate>
-          <div class="ct-field">
-            <label for="ct-name">Name <span class="ct-req" aria-hidden="true">*</span></label>
-            <input type="text" id="ct-name" name="name" placeholder="Your name" required maxlength="200" autocomplete="name" />
-          </div>
-          <div class="ct-field">
-            <label for="ct-email">Email <span class="ct-req" aria-hidden="true">*</span></label>
-            <input type="email" id="ct-email" name="email" placeholder="you@example.com" required maxlength="200" autocomplete="email" />
-          </div>
-          <div class="ct-field">
-            <label for="ct-subject">Inquiry type <span class="ct-req" aria-hidden="true">*</span></label>
-            <select id="ct-subject" name="inquiryType" required>
-              <option value="">Select an inquiry type</option>
-              <option value="general">General inquiry</option>
-              <option value="validation-partnership">Technical validation inquiry</option>
-              <option value="licensing">Licensing inquiry</option>
-              <option value="technology-partnership">Technology partnership</option>
-              <option value="investor">Investor inquiry</option>
-              <option value="privacy-request">Privacy request</option>
-            </select>
-          </div>
-
-          <div class="ct-field ct-extra" id="ct-field-organization" hidden>
-            <label for="ct-organization" id="ct-organization-label">Organization</label>
-            <input type="text" id="ct-organization" name="organization" placeholder="Company, institution, or fund name" maxlength="200" />
-          </div>
-
-          <div class="ct-field">
-            <label for="ct-message">Message <span class="ct-req" aria-hidden="true">*</span></label>
-            <textarea id="ct-message" name="message" rows="5" placeholder="Your message..." required maxlength="5000"></textarea>
-          </div>
-
-          <div class="ct-field ct-consent">
-            <label class="ct-checkbox-label">
-              <input type="checkbox" id="ct-consent" name="consent" required />
-              <span>I consent to ByteLite LLC contacting me by email in response to this message. <span class="ct-req" aria-hidden="true">*</span></span>
-            </label>
-          </div>
-
-          <p class="ct-disclaimer">
-            Submitting this form records your inquiry — it does not guarantee acceptance,
-            availability, partnership, or investment access. No payment is collected here.
-          </p>
-
-          <button type="submit" class="btn btn-primary ct-submit">Send Message</button>
-          <p class="ct-note" id="ct-status" role="status" aria-live="polite">
-            Inquiries go to ByteLite LLC by email. No CRM, no marketing automation, no tracking.
-          </p>
-        </form>
-      </div>
-
-      <!-- Info -->
-      <div class="ct-info">
-        <div class="card ct-info-card">
-          <h3 class="ct-info-heading">Inquiry categories</h3>
-          <div class="ct-categories">
-            <div class="ct-cat">
-              <span class="ct-cat-dot" style="background:#6366f1;"></span>
-              <div class="ct-cat-text"><span class="ct-cat-label">Technical validation</span><span class="ct-cat-desc">Independent reproduction or controlled verification of a specific published ByteLite claim.</span></div>
-            </div>
-            <div class="ct-cat">
-              <span class="ct-cat-dot" style="background:#818cf8;"></span>
-              <div class="ct-cat-text"><span class="ct-cat-label">Licensing</span><span class="ct-cat-desc">The planned verified-savings model. Nothing is available to license today.</span></div>
-            </div>
-            <div class="ct-cat">
-              <span class="ct-cat-dot" style="background:#a78bfa;"></span>
-              <div class="ct-cat-text"><span class="ct-cat-label">Technology partnership</span><span class="ct-cat-desc">Bounded collaboration that does not require disclosing proprietary mechanisms.</span></div>
-            </div>
-            <div class="ct-cat">
-              <span class="ct-cat-dot" style="background:#34d399;"></span>
-              <div class="ct-cat-text"><span class="ct-cat-label">Investor conversations</span><span class="ct-cat-desc">Founder-led discussions, held to the same evidence standard as this site.</span></div>
-            </div>
-            <div class="ct-cat">
-              <span class="ct-cat-dot" style="background:#4a5068;"></span>
-              <div class="ct-cat-text"><span class="ct-cat-label">General and privacy</span><span class="ct-cat-desc">Anything else, including data access or deletion requests.</span></div>
-            </div>
-          </div>
+    <div class="wrap contact-layout">
+      <form class="form-grid contact-form" id="contact-form" novalidate>
+        <p class="small-print">Fields marked <span class="required-mark" aria-hidden="true">*</span><span class="visually-hidden">with an asterisk</span> are required.</p>
+        <div class="form-field">
+          <label for="contact-name">Name <span class="required-mark" aria-hidden="true">*</span></label>
+          <input type="text" id="contact-name" name="name" required maxlength="200" autocomplete="name" />
         </div>
-        <div class="card ct-info-card">
-          <h3 class="ct-info-heading">Location</h3>
-          <p style="font-size:.9375rem;">ByteLite LLC<br/>Helena, Montana, USA</p>
+        <div class="form-field">
+          <label for="contact-email">Email <span class="required-mark" aria-hidden="true">*</span></label>
+          <input type="email" id="contact-email" name="email" required maxlength="200" autocomplete="email" />
         </div>
-        <div class="card ct-info-card">
-          <h3 class="ct-info-heading">Response time</h3>
-          <p style="font-size:.9375rem;color:#7b829e;">Direct messages are responded to personally. Typical response within 1–3 business days.</p>
+        <div class="form-field">
+          <label for="contact-inquiry-type">Inquiry type <span class="required-mark" aria-hidden="true">*</span></label>
+          <select id="contact-inquiry-type" name="inquiryType" required aria-describedby="contact-inquiry-hint">
+            <option value="">Choose an inquiry type</option>
+            {INQUIRY_OPTIONS.map((option) => <option value={option.value}>{option.label}</option>)}
+          </select>
+          <p class="form-hint" id="contact-inquiry-hint" data-inquiry-hint></p>
         </div>
-      </div>
+        <div class="form-field" id="contact-organization-field" hidden>
+          <label for="contact-organization">Organization <span class="form-hint">(optional)</span></label>
+          <input type="text" id="contact-organization" name="organization" maxlength="200" autocomplete="organization" disabled />
+        </div>
+        <div class="form-field">
+          <label for="contact-message">Message <span class="required-mark" aria-hidden="true">*</span></label>
+          <textarea id="contact-message" name="message" required maxlength="5000" rows="7"></textarea>
+        </div>
+        <label class="form-checkbox">
+          <input type="checkbox" id="contact-consent" name="consent" required />
+          <span>I agree that {COMPANY_NAME} may reply to me by email about this message. <span class="required-mark" aria-hidden="true">*</span></span>
+        </label>
+        <p class="small-print">
+          Sending a message does not create any agreement, partnership or investment opportunity, and no
+          payment is collected here. How messages are handled is described in the
+          <a href="/privacy">privacy policy</a>.
+        </p>
+        <button type="submit" class="button button-primary">Send message</button>
+        <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <aside class="contact-aside" aria-label="About contacting the company">
+        <div class="panel">
+          <h2 class="aside-heading">What to expect</h2>
+          <p>{COMPANY_NAME} is a small, founder-led company. Messages are read and answered personally, and response times vary.</p>
+        </div>
+        <div class="panel">
+          <h2 class="aside-heading">Independent evaluation</h2>
+          <p>Name the specific claim you want to test. Evaluations never require disclosure of proprietary methods.</p>
+        </div>
+        <div class="panel">
+          <h2 class="aside-heading">Security reports</h2>
+          <p>See the <a href="/responsible-disclosure">responsible disclosure policy</a>.</p>
+        </div>
+        <div class="panel">
+          <h2 class="aside-heading">Location</h2>
+          <p>{COMPANY_NAME}<br />{COMPANY_LOCATION}</p>
+        </div>
+      </aside>
     </div>
   </section>
-
-  <Footer slot="footer" />
 </Layout>
 
 <script>
-  // Per-type configuration: dynamic heading/subheading and which extra field (if any) to reveal.
-  // Keeping this as a lookup table (rather than separate page templates) means every entry point
-  // below reuses the same validated, rate-limited /api/contact backend - no new backend surface.
-  const TYPE_CONFIG: Record<string, { heading: string; sub: string; extra: 'organization' | 'none'; orgLabel?: string }> = {
-    'validation-partnership': {
-      heading: 'Technical validation inquiry.',
-      sub: 'Tell us about your organization and which published claim you would like to verify.',
-      extra: 'organization',
-      orgLabel: 'Organization / Institution',
-    },
-    licensing: {
-      heading: 'Licensing inquiry.',
-      sub: 'Tell us about your organization and the workload you would want measured. Nothing is available to license today.',
-      extra: 'organization',
-      orgLabel: 'Organization / Company',
-    },
-    'technology-partnership': {
-      heading: 'Technology partnership inquiry.',
-      sub: 'Tell us about your organization and the partnership you have in mind.',
-      extra: 'organization',
-      orgLabel: 'Organization / Company',
-    },
-    investor: {
-      heading: 'Investor inquiry.',
-      sub: 'Founder-led conversations - every claim discussed is held to the same proof-gated standard as the public site.',
-      extra: 'organization',
-      orgLabel: 'Fund / Organization (optional)',
-    },
-    'privacy-request': { heading: 'Privacy request.', sub: 'Data access, correction, or deletion requests.', extra: 'none' },
-    general: { heading: 'Get in touch.', sub: 'Technical validation, licensing, partnership and investor conversations are all welcome. Direct, no-middleman contact.', extra: 'none' },
+  const INQUIRY_DETAILS: Record<string, { hint: string; asksForOrganization: boolean }> = {
+    general: { hint: '', asksForOrganization: false },
+    'validation-partnership': { hint: 'Say which published claim you would like to evaluate and how.', asksForOrganization: true },
+    'technology-partnership': { hint: 'Describe the collaboration you have in mind.', asksForOrganization: true },
+    licensing: { hint: 'Nothing is available to license today. Describe the workload you have in mind.', asksForOrganization: true },
+    investor: { hint: 'General inquiries only. This website does not offer or sell securities.', asksForOrganization: true },
+    'privacy-request': { hint: 'Say whether you want to access, correct or delete information.', asksForOrganization: false },
   };
 
-  const select = document.getElementById('ct-subject') as HTMLSelectElement | null;
-  const heading = document.getElementById('ct-heading');
-  const sub = document.getElementById('ct-subheading');
-  const orgLabel = document.getElementById('ct-organization-label');
-  const DEFAULT_ORG_LABEL = 'Organization';
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const inquirySelect = document.getElementById('contact-inquiry-type') as HTMLSelectElement | null;
+  const inquiryHint = document.querySelector<HTMLElement>('[data-inquiry-hint]');
+  const organizationField = document.getElementById('contact-organization-field');
+  const organizationInput = document.getElementById('contact-organization') as HTMLInputElement | null;
+  const statusMessage = document.getElementById('contact-status');
+  const NOT_SENT_MESSAGE = 'Your message was not sent. Nothing was stored, so please try again.';
 
-  // The conditional field is not contractually required by any current inquiry type - this map
-  // exists so a future type that DOES require one only has to flip a value here, and
-  // applyType()'s enable/disable/required syncing stays correct without touching markup.
-  const REQUIRED_WHEN_ACTIVE: Record<'organization', boolean> = {
-    organization: false,
-  };
-
-  const EXTRA_FIELDS: Record<'organization', { container: HTMLElement | null; input: HTMLInputElement | HTMLSelectElement | null }> = {
-    organization: { container: document.getElementById('ct-field-organization'), input: document.getElementById('ct-organization') as HTMLInputElement | null },
-  };
-
-  function applyType(type: string) {
-    const cfg = TYPE_CONFIG[type];
-    if (heading) heading.textContent = cfg ? cfg.heading : 'Get in touch.';
-    if (sub) sub.textContent = (cfg ?? TYPE_CONFIG.general)!.sub;
-    const extra = cfg?.extra ?? 'none';
-
-    (Object.keys(EXTRA_FIELDS) as Array<keyof typeof EXTRA_FIELDS>).forEach((key) => {
-      const { container, input } = EXTRA_FIELDS[key];
-      const isActive = key === extra;
-      // hidden -> removed from layout AND the accessibility tree (enforced visually by the
-      // .ct-field[hidden] CSS rule); disabled -> removed from both FormData on submit and the
-      // Tab order, independent of the hidden state, so a hidden-but-somehow-still-shown field
-      // can never contribute a value or receive keyboard focus.
-      if (container) container.hidden = !isActive;
-      if (input) {
-        input.disabled = !isActive;
-        input.required = isActive && REQUIRED_WHEN_ACTIVE[key];
-        if (!isActive) input.value = '';
-      }
-    });
-
-    if (orgLabel) orgLabel.textContent = cfg?.orgLabel ?? DEFAULT_ORG_LABEL;
+  function applyInquiryType(inquiryType: string) {
+    const details = INQUIRY_DETAILS[inquiryType];
+    if (inquiryHint) inquiryHint.textContent = details?.hint ?? '';
+    const showOrganization = details?.asksForOrganization ?? false;
+    if (organizationField) organizationField.hidden = !showOrganization;
+    if (organizationInput) {
+      organizationInput.disabled = !showOrganization;
+      if (!showOrganization) organizationInput.value = '';
+    }
   }
 
-  const params = new URLSearchParams(window.location.search);
-  const presetType = params.get('type');
-  if (presetType && select && TYPE_CONFIG[presetType]) {
-    select.value = presetType;
+  const requestedInquiryType = new URLSearchParams(window.location.search).get('type');
+  if (inquirySelect && requestedInquiryType && INQUIRY_DETAILS[requestedInquiryType]) {
+    inquirySelect.value = requestedInquiryType;
   }
-  // Always run once on load (not only when a valid ?type= is present) so an unsupported/blank
-  // inquiry type is driven through the same code path and ends up with every conditional field
-  // hidden, disabled, and required=false - never "whatever the static markup happened to be".
-  applyType(select?.value ?? '');
-  select?.addEventListener('change', () => applyType(select.value));
+  applyInquiryType(inquirySelect?.value ?? '');
+  inquirySelect?.addEventListener('change', () => applyInquiryType(inquirySelect.value));
 
-  const form = document.getElementById('ct-form') as HTMLFormElement | null;
-  const status = document.getElementById('ct-status');
-  // The fallback for any failure the server did not describe itself. It states the one thing the
-  // sender needs to know - the message did not go - and never softens that into "we'll be in
-  // touch". Delivery is proven in production, so this is a genuine error path, not a standing
-  // outage notice; it must stay honest rather than be removed along with the outage banner.
-  const UNDELIVERABLE =
-    'This message was not sent. Nothing was stored, so please try again rather than assuming it arrived.';
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
-    const data = new FormData(form);
-    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
-    if (submitBtn) submitBtn.disabled = true;
-    if (status) status.textContent = 'Sending…';
+    const formData = new FormData(form);
+    const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    if (submitButton) submitButton.disabled = true;
+    if (statusMessage) statusMessage.textContent = 'Sending...';
     try {
-      const res = await fetch('/api/contact', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: data.get('name'),
-          email: data.get('email'),
-          inquiryType: data.get('inquiryType'),
-          message: data.get('message'),
-          organization: data.get('organization') || '',
+          name: formData.get('name'),
+          email: formData.get('email'),
+          inquiryType: formData.get('inquiryType'),
+          message: formData.get('message'),
+          organization: formData.get('organization') || '',
         }),
       });
-      const json = await res.json().catch(() => ({}));
-      // A 404 here means the delivery endpoint is not currently deployed. Say so plainly -
-      // never report a success the message did not actually have.
-      if (res.status === 404) throw new Error(UNDELIVERABLE);
-      if (!res.ok) throw new Error(json.error || UNDELIVERABLE);
-      if (status) status.textContent = 'Message received. We typically respond within 1-3 business days. This confirms receipt only, not acceptance.';
+      const result = await response.json().catch(() => ({}));
+      if (response.status === 404) throw new Error(NOT_SENT_MESSAGE);
+      if (!response.ok) throw new Error(result.error || NOT_SENT_MESSAGE);
+      if (statusMessage) statusMessage.textContent = 'Message sent. This confirms it was sent, not that any request has been accepted.';
       form.reset();
-      if (select) applyType(select.value);
-    } catch (err) {
-      if (status) status.textContent = err instanceof Error ? err.message : UNDELIVERABLE;
+      applyInquiryType('');
+    } catch (error) {
+      if (statusMessage) statusMessage.textContent = error instanceof Error ? error.message : NOT_SENT_MESSAGE;
     } finally {
-      if (submitBtn) submitBtn.disabled = false;
+      if (submitButton) submitButton.disabled = false;
     }
   });
 </script>
 
 <style>
-
-.ct-hero { padding: 5.5rem 0 4rem; }
-.ct-hero h1 { max-width: 480px; }
-.ct-sub { max-width: 560px; margin-top: 1rem; font-size: 1.0625rem; color: #7b829e; line-height: 1.75; }
-.ct-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4rem; align-items: start; }
-@media (max-width: 900px) { .ct-grid { grid-template-columns: minmax(0, 1fr); gap: 3rem; } }
-.ct-form { display: flex; flex-direction: column; gap: 1.25rem; }
-.ct-field { display: flex; flex-direction: column; gap: .4rem; }
-.ct-field[hidden] { display: none; }
-.ct-field label { font-size: .875rem; font-weight: 500; color: #a0a8c0; }
-.ct-req { color: #f472b6; }
-.ct-field input, .ct-field select, .ct-field textarea {
-  background: #0d1120; border: 1px solid #1a2235;
-  border-radius: .5rem; padding: .75rem 1rem;
-  color: #e4e7f2; font-family: inherit; font-size: .9375rem;
-  transition: border-color .15s;
-  -webkit-appearance: none;
-}
-.ct-field input::placeholder, .ct-field textarea::placeholder { color: #4a5068; }
-.ct-field input:focus, .ct-field select:focus, .ct-field textarea:focus {
-  outline: 2px solid #6366f1; outline-offset: 1px; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,.12);
-}
-.ct-field select option { background: #0d1120; }
-.ct-field textarea { resize: vertical; min-height: 120px; }
-.ct-hint { font-size: .8125rem; color: #555e7a; margin: 0; }
-.ct-consent { flex-direction: row; }
-.ct-checkbox-label { display: flex; align-items: flex-start; gap: .625rem; font-size: .875rem; color: #a0a8c0; cursor: pointer; }
-.ct-checkbox-label input[type="checkbox"] { width: 1.125rem; height: 1.125rem; margin-top: .125rem; flex-shrink: 0; accent-color: #6366f1; }
-.ct-checkbox-label input[type="checkbox"]:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }
-.ct-disclaimer { font-size: .8125rem; color: #555e7a; line-height: 1.6; margin: 0; }
-.ct-submit { width: 100%; justify-content: center; padding: .875rem; }
-.ct-submit:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }
-.ct-note { font-size: .8125rem; color: #4a5068; text-align: center; }
-.ct-info { display: flex; flex-direction: column; gap: 1.25rem; }
-.ct-info-card { padding: 1.5rem; }
-.ct-info-heading { font-size: 1.125rem; color: #e4e7f2; margin-bottom: .875rem; }
-.ct-info-card p { color: #7b829e; line-height: 1.6; }
-.ct-categories { display: flex; flex-direction: column; gap: .625rem; }
-.ct-cat { display: flex; align-items: flex-start; gap: .75rem; font-size: .9375rem; color: #a0a8c0; }
-.ct-cat-dot { width: .625rem; height: .625rem; border-radius: 50%; flex-shrink: 0; margin-top: .3rem; }
-.ct-cat-text { display: flex; flex-direction: column; gap: .15rem; }
-.ct-cat-label { color: #e4e7f2; font-weight: 500; }
-.ct-cat-desc { font-size: .8125rem; color: #7b829e; line-height: 1.5; }
-
+  .contact-layout { display: grid; gap: var(--space-7); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 60rem) { .contact-layout { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); } }
+  .contact-form { max-width: 40rem; }
+  .contact-aside { display: grid; gap: var(--space-4); align-content: start; }
+  .contact-aside .panel { display: grid; gap: var(--space-2); }
+  .aside-heading { font-family: var(--font-text); font-size: var(--text-base); font-weight: 600; }
 </style>

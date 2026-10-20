@@ -1,108 +1,73 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import PageIntro from '../components/site/PageIntro.astro';
+import { COMPANY_NAME, SECURITY_CONTACT_EMAIL } from '../data/company';
+
+const LAST_UPDATED = '2026-10-20';
 ---
 
 <Layout
-  title="Responsible Disclosure | ByteLite LLC"
-  description="Responsible disclosure policy for ByteLite LLC. How to report security vulnerabilities in our website or services."
+  title={`Responsible Disclosure | ${COMPANY_NAME}`}
+  description="How to report a security vulnerability in the ByteLite LLC website."
+  path="/responsible-disclosure"
   noindex={true}
 >
-  <Header slot="header" />
-
-  <section class="legal-hero">
-    <div class="container">
-      <p class="eyebrow">Security</p>
-      <h1>Responsible Disclosure</h1>
-      <p class="legal-sub">Last updated: 29 August 2026</p>
-    </div>
-  </section>
+  <PageIntro eyebrow="Security" heading="Responsible disclosure">
+    <p class="small-print">Last updated <time datetime={LAST_UPDATED}>20 October 2026</time>.</p>
+  </PageIntro>
 
   <section class="section">
-    <div class="container legal-body">
+    <div class="wrap prose legal">
+      <h2>Scope</h2>
+      <p>This policy covers security issues affecting:</p>
+      <ul>
+        <li>The website at thebytelite.com, including every page it serves.</li>
+        <li>The contact form and the server function behind it.</li>
+        <li>The checkout and billing endpoints of this website, which are currently switched off.</li>
+      </ul>
+      <p>
+        Private software, research systems and non-public infrastructure are outside the scope of
+        public testing unless {COMPANY_NAME} authorizes it in writing.
+      </p>
+      <p>
+        Do not test payment flows with real card details. Describe a suspected payment issue and it
+        will be reproduced in a test environment.
+      </p>
 
-      <div class="legal-section">
-        <h2>Overview</h2>
-        <p>ByteLite LLC takes the security of its website and services seriously. If you believe you have found a security vulnerability, we encourage responsible disclosure.</p>
-      </div>
+      <h2>How to report</h2>
+      <p>
+        Email <a href={`mailto:${SECURITY_CONTACT_EMAIL}`}>{SECURITY_CONTACT_EMAIL}</a>, or use the
+        <a href="/contact">contact form</a>. Include a description of the issue, steps to reproduce it,
+        its likely impact and how to reach you.
+      </p>
 
-      <div class="legal-section">
-        <h2>Scope</h2>
-        <p>This policy applies to security issues affecting:</p>
-        <ul class="legal-list">
-          <li>The public ByteLite LLC website at <strong>thebytelite.com</strong>, including every page it serves</li>
-          <li>The public contact form and the endpoint behind it</li>
-          <li>The publicly reachable checkout and billing endpoints, and the payment flows they start</li>
-          <li>Any other ByteLite LLC service that is reachable from the public internet without credentials</li>
-        </ul>
-        <p>Private beta software, research systems, and non-public infrastructure are outside public testing scope unless explicitly authorized in writing by ByteLite LLC.</p>
-        <p><strong>Please do not test payment flows with real card details.</strong> Payment is handled by Stripe on Stripe's own hosted pages, and the checkout controls on this site are currently disabled. If you believe you have found a payment-related issue, describe it and we will reproduce it in a test environment rather than asking you to complete a transaction.</p>
-      </div>
+      <h2>What to expect</h2>
+      <ul>
+        <li>A reasonable effort to acknowledge valid reports and keep you informed.</li>
+        <li>An explanation of what was found, including when an issue is judged not exploitable.</li>
+        <li>Credit when the issue is resolved, if you want it.</li>
+      </ul>
+      <p>
+        {COMPANY_NAME} is a founder-led company with no security team on call, so there is no guaranteed
+        response time. A real vulnerability in a live path is handled ahead of other work.
+      </p>
 
-      <div class="legal-section">
-        <h2>How to Report</h2>
-        <p>If you have found a security vulnerability, please contact us through the <a href="/contact">contact page</a> or email:</p>
-        <p style="margin-top:1rem;"><a href="mailto:security@thebytelite.com" style="color:#818cf8;font-family:monospace;">security@thebytelite.com</a></p>
-      </div>
+      <h2>Please do not</h2>
+      <ul>
+        <li>Access or change data that is not yours.</li>
+        <li>Take any action that could harm the service or its users, including denial-of-service testing.</li>
+        <li>Disclose the issue publicly before it has been addressed.</li>
+      </ul>
 
-      <div class="legal-section">
-        <h2>What to Include</h2>
-        <ul class="legal-list">
-          <li>Description of the vulnerability</li>
-          <li>Steps to reproduce the issue</li>
-          <li>Potential impact</li>
-          <li>Your contact information</li>
-        </ul>
-      </div>
-
-      <div class="legal-section">
-        <h2>Our Commitment</h2>
-        <!-- The previous version promised acknowledgement within 48 hours and an assessment
-             within 7 days. ByteLite LLC is one person. A promise that cannot be reliably kept is
-             worse than an honest one, and a researcher who is told "48 hours" and hears nothing
-             for a week reasonably concludes the report was ignored. -->
-        <ul class="legal-list">
-          <li>We will make a reasonable effort to acknowledge valid reports and to provide updates as review progresses</li>
-          <li>We will tell you what we found, including if we conclude the issue is not exploitable</li>
-          <li>We will credit you (if desired) when the issue is resolved</li>
-        </ul>
-        <p>ByteLite LLC is a solo-founder company, so there is no security rota and no guaranteed response window. That is a statement of capacity, not of how seriously reports are taken &mdash; a real vulnerability in a live payment or contact path gets looked at ahead of everything else.</p>
-      </div>
-
-      <div class="legal-section">
-        <h2>Please Do Not</h2>
-        <ul class="legal-list">
-          <li>Access or modify data without permission</li>
-          <li>Perform actions that could harm our services or users</li>
-          <li>Publicly disclose the issue before we have addressed it</li>
-        </ul>
-      </div>
-
-      <div class="legal-section">
-        <h2>Legal Protection</h2>
-        <p>ByteLite LLC will not pursue legal action against researchers who follow this responsible disclosure policy, act in good faith, and do not cause harm.</p>
-      </div>
-
+      <h2>Good-faith research</h2>
+      <p>
+        {COMPANY_NAME} will not pursue legal action against researchers who follow this policy, act in
+        good faith and cause no harm.
+      </p>
     </div>
   </section>
-
-  <Footer slot="footer" />
 </Layout>
 
 <style>
-
-.legal-hero { padding: 5rem 0 3.5rem; }
-.legal-hero h1 { max-width: 480px; }
-.legal-sub { margin-top: .75rem; font-size: .9375rem; color: #555e7a; }
-.legal-body { max-width: 760px; }
-.legal-section { margin-bottom: 3rem; }
-.legal-section h2 { font-size: 1.375rem; color: #e4e7f2; margin-bottom: 1rem; padding-bottom: .75rem; border-bottom: 1px solid #1a2235; }
-.legal-section p { font-size: .9375rem; color: #7b829e; line-height: 1.75; margin-bottom: .875rem; }
-.legal-section a { color: #818cf8; }
-.legal-section a:hover { color: #a5b4fc; }
-.legal-list { list-style: none; display: flex; flex-direction: column; gap: .625rem; }
-.legal-list li { font-size: .9375rem; color: #7b829e; padding-left: 1.25rem; position: relative; line-height: 1.6; }
-.legal-list li::before { content: "—"; position: absolute; left: 0; color: #4a5068; }
-
+  .legal ul { padding-left: 1.25rem; display: grid; gap: var(--space-2); color: var(--color-ink-muted); }
 </style>

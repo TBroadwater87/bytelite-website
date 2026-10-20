@@ -6,6 +6,9 @@ import {
   readFounderOfferPhase,
   resolveCheckout,
   buildMetadata,
+  classifyStripeSecretKey,
+  stripeKeyPermittedForPhase,
+  LIVE_FINANCIAL_TRANSACTIONS_OWNER_AUTHORIZED,
   type CommerceEnv,
 } from '../../api/_lib/commerce-core.js';
 
@@ -16,6 +19,7 @@ const env = (over: Partial<CommerceEnv> = {}): CommerceEnv => ({
   phase: 'test',
   founderOffer: 'prelaunch',
   priceIdFor: () => 'price_test_123',
+  liveFinancialTransactionsOwnerAuthorized: false,
   ...over,
 });
 
@@ -83,6 +87,7 @@ describe('the owner gate cannot be lifted by configuration', () => {
       phase: 'live',
       founderOffer: 'prelaunch',
       priceIdFor: () => 'price_live_definitely_set',
+      liveFinancialTransactionsOwnerAuthorized: true,
     });
     expect(r).toMatchObject({ ok: false, status: 503 });
   });
@@ -118,7 +123,7 @@ describe('a missing Stripe Price disables the plan rather than guessing one', ()
   const noPrices = env({ priceIdFor: () => undefined });
 
   test('a subscription with no Price is refused, not defaulted', () => {
-    const r = resolveCheckout('bytelite-monthly-founder', { ...noPrices, phase: 'live' });
+    const r = resolveCheckout('bytelite-monthly-founder', { ...noPrices, phase: 'test' });
     expect(r).toMatchObject({ ok: false, status: 503 });
   });
 
@@ -141,7 +146,7 @@ describe('a missing Stripe Price disables the plan rather than guessing one', ()
 describe('a reservation never becomes a charge', () => {
   test('Cordel Play resolves to setup mode with no price, in every enabled phase', () => {
     for (const phase of ['test', 'reservation', 'live'] as const) {
-      const r = resolveCheckout('cordel-play-reservation', env({ phase }));
+      const r = resolveCheckout('cordel-play-reservation', env({ phase, liveFinancialTransactionsOwnerAuthorized: true }));
       expect(r.ok).toBe(true);
       if (r.ok) {
         expect(r.mode, `phase ${phase}`).toBe('setup');
@@ -174,7 +179,7 @@ describe('a reservation never becomes a charge', () => {
 
 describe('modes match the kind of thing being sold', () => {
   test('subscriptions use subscription mode once live', () => {
-    const r = resolveCheckout('cordel-connect-monthly-founder', env({ phase: 'live' }));
+    const r = resolveCheckout('cordel-connect-monthly-founder', env({ phase: 'live', liveFinancialTransactionsOwnerAuthorized: true }));
     expect(r.ok).toBe(true);
     if (r.ok) expect(r.mode).toBe('subscription');
   });
@@ -226,7 +231,7 @@ describe('metadata records which offer was accepted', () => {
 });
 
 describe('no founder price is ever computed in code', () => {
-  // The benefit is "10% lower price", but 10% off $9.99 is $8.991 and Stripe wants integer minor
+  // The benefit is "10% lower price", and a discounted price must be rounded to whole cents, which Stripe wants as integer minor
   // units. Rounding that is a commercial decision, so it must live in an owner-approved Price
   // object - never in a multiplication here.
   test('no plan definition carries an amount, currency or discount', () => {
@@ -236,5 +241,74 @@ describe('no founder price is ever computed in code', () => {
         expect(keys, `${plan.key} must not define ${forbidden}`).not.toContain(forbidden);
       }
     }
+  });
+});
+
+describe('live financial transactions require owner authorization in code', () => {
+  test('the authorization constant is false', () => {
+    expect(LIVE_FINANCIAL_TRANSACTIONS_OWNER_AUTHORIZED).toBe(false);
+  });
+
+  test('the live phase refuses every plan while unauthorized, even with prices and an open offer', () => {
+    for (const plan of PLANS) {
+      const r = resolveCheckout(plan.key, env({ phase: 'live' }));
+      expect(r, `${plan.key} must be refused in an unauthorized live phase`).toMatchObject({ ok: false, status: 503 });
+    }
+  });
+});
+
+describe('Stripe secret keys are classified by prefix only', () => {
+  test.each([
+    ['sk_test_abc', 'test'],
+    ['rk_test_abc', 'test'],
+    ['sk_live_abc', 'live'],
+    ['rk_live_abc', 'live'],
+    ['pk_live_abc', 'unrecognised'],
+    ['live', 'unrecognised'],
+    ['', 'unrecognised'],
+    [undefined, 'unrecognised'],
+  ] as const)('%j is %s', (secretKey, expectedMode) => {
+    expect(classifyStripeSecretKey(secretKey)).toBe(expectedMode);
+  });
+});
+
+describe('a live key is never accepted because of phase configuration alone', () => {
+  test('the disabled phase refuses every key', () => {
+    for (const keyMode of ['test', 'live', 'unrecognised'] as const) {
+      for (const authorized of [false, true]) {
+        expect(stripeKeyPermittedForPhase('disabled', keyMode, authorized).permitted).toBe(false);
+      }
+    }
+  });
+
+  test('without owner authorization a live key is refused in every phase', () => {
+    for (const phase of ['disabled', 'test', 'reservation', 'live'] as const) {
+      expect(stripeKeyPermittedForPhase(phase, 'live', false).permitted, `phase ${phase}`).toBe(false);
+    }
+  });
+
+  test('the test phase refuses a live key even with owner authorization', () => {
+    expect(stripeKeyPermittedForPhase('test', 'live', true).permitted).toBe(false);
+  });
+
+  test('the live phase refuses a test key', () => {
+    expect(stripeKeyPermittedForPhase('live', 'test', true).permitted).toBe(false);
+    expect(stripeKeyPermittedForPhase('live', 'test', false).permitted).toBe(false);
+  });
+
+  test('an unrecognised key is refused in every phase', () => {
+    for (const phase of ['disabled', 'test', 'reservation', 'live'] as const) {
+      expect(stripeKeyPermittedForPhase(phase, 'unrecognised', true).permitted).toBe(false);
+    }
+  });
+
+  test('a test key is permitted only in the test and reservation phases', () => {
+    expect(stripeKeyPermittedForPhase('test', 'test', false).permitted).toBe(true);
+    expect(stripeKeyPermittedForPhase('reservation', 'test', false).permitted).toBe(true);
+  });
+
+  test('a live key is permitted only with owner authorization in the reservation or live phase', () => {
+    expect(stripeKeyPermittedForPhase('reservation', 'live', true).permitted).toBe(true);
+    expect(stripeKeyPermittedForPhase('live', 'live', true).permitted).toBe(true);
   });
 });

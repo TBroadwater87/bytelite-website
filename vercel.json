@@ -1,59 +1,69 @@
 {
+  "trailingSlash": false,
   "redirects": [
     { "source": "/", "has": [{ "type": "host", "value": "thebytelite.com" }], "destination": "https://www.thebytelite.com/", "statusCode": 308 },
-    { "source": "/:path*", "has": [{ "type": "host", "value": "thebytelite.com" }], "destination": "https://www.thebytelite.com/:path*", "statusCode": 308 },
+    { "source": "/:path(.*)", "has": [{ "type": "host", "value": "thebytelite.com" }], "destination": "https://www.thebytelite.com/:path", "statusCode": 308 },
 
-    { "source": "/architecture", "destination": "/how-it-works", "statusCode": 301 },
-    { "source": "/architecture/:path*", "destination": "/how-it-works", "statusCode": 301 },
-    { "source": "/research", "destination": "/validation", "statusCode": 301 },
-    { "source": "/research/:path*", "destination": "/validation", "statusCode": 301 },
-    { "source": "/progress", "destination": "/validation", "statusCode": 301 },
-    { "source": "/progress/:path*", "destination": "/validation", "statusCode": 301 },
+    { "source": "/how-it-works", "destination": "/research/data-representation", "statusCode": 301 },
+    { "source": "/research/deterministic-structural-cognition", "destination": "/research/machine-cognition", "statusCode": 301 },
+    { "source": "/research/plain-english", "destination": "/research", "statusCode": 301 },
+
+    { "source": "/architecture", "destination": "/research", "statusCode": 301 },
+    { "source": "/architecture/governance-and-intrinsic-halting", "destination": "/research/machine-cognition", "statusCode": 301 },
+    { "source": "/architecture/proof-and-claim-posture", "destination": "/validation", "statusCode": 301 },
+    { "source": "/architecture/:path*", "destination": "/research", "statusCode": 301 },
+
+    { "source": "/progress", "destination": "/research/milestones", "statusCode": 301 },
+    { "source": "/progress/validation-evidence", "destination": "/validation", "statusCode": 301 },
+    { "source": "/progress/:path*", "destination": "/research/milestones", "statusCode": 301 },
+
     { "source": "/company", "destination": "/about", "statusCode": 301 },
+    { "source": "/company/partnerships", "destination": "/licensing", "statusCode": 301 },
+    { "source": "/company/investors", "destination": "/licensing", "statusCode": 301 },
+    { "source": "/company/legal", "destination": "/terms", "statusCode": 301 },
     { "source": "/company/:path*", "destination": "/about", "statusCode": 301 },
 
-    { "source": "/technologies", "destination": "/how-it-works", "statusCode": 301 },
-    { "source": "/technologies/bytelite", "destination": "/how-it-works", "statusCode": 301 },
+    { "source": "/technologies", "destination": "/research", "statusCode": 301 },
+    { "source": "/technologies/bytelite", "destination": "/research/data-representation", "statusCode": 301 },
 
     { "source": "/preorder", "destination": "/founder-access", "statusCode": 301 },
     { "source": "/preorder/:path*", "destination": "/founder-access", "statusCode": 301 },
 
-    { "source": "/products/cordel-connect", "destination": "/cordel-connect", "statusCode": 301 },
-    { "source": "/products/cordel-connect/:path*", "destination": "/cordel-connect", "statusCode": 301 },
+    { "source": "/cordel-connect", "destination": "/compatibility-app", "statusCode": 301 },
+    { "source": "/products/cordel-connect", "destination": "/compatibility-app", "statusCode": 301 },
+    { "source": "/products/cordel-connect/:path*", "destination": "/compatibility-app", "statusCode": 301 },
     { "source": "/products/cordel-play", "destination": "/cordel-play", "statusCode": 301 },
     { "source": "/products/cordel-play/:path*", "destination": "/cordel-play", "statusCode": 301 },
-    { "source": "/products", "destination": "/founder-access", "statusCode": 301 },
-
     { "source": "/heartstrings", "destination": "/cordel-play", "statusCode": 301 },
-    { "source": "/heartstrings-app", "destination": "/cordel-connect", "statusCode": 301 },
+    { "source": "/heartstrings-app", "destination": "/compatibility-app", "statusCode": 301 },
     { "source": "/products/heartstrings-play", "destination": "/cordel-play", "statusCode": 301 },
     { "source": "/products/heartstrings-play/:path*", "destination": "/cordel-play", "statusCode": 301 },
-    { "source": "/products/heartstrings-connect", "destination": "/cordel-connect", "statusCode": 301 },
-    { "source": "/products/heartstrings-connect/:path*", "destination": "/cordel-connect", "statusCode": 301 },
+    { "source": "/products/heartstrings-connect", "destination": "/compatibility-app", "statusCode": 301 },
+    { "source": "/products/heartstrings-connect/:path*", "destination": "/compatibility-app", "statusCode": 301 },
 
-    { "source": "/status", "destination": "/validation", "statusCode": 301 },
+    { "source": "/status", "destination": "/research/milestones", "statusCode": 301 },
     { "source": "/proof", "destination": "/validation", "statusCode": 301 },
-    { "source": "/news", "destination": "/validation", "statusCode": 301 },
-    { "source": "/technology", "destination": "/how-it-works", "statusCode": 301 },
-    { "source": "/demo", "destination": "/how-it-works", "statusCode": 301 },
-    { "source": "/ethics", "destination": "/how-it-works", "statusCode": 301 },
+    { "source": "/news", "destination": "/research/milestones", "statusCode": 301 },
+    { "source": "/technology", "destination": "/research", "statusCode": 301 },
+    { "source": "/demo", "destination": "/research", "statusCode": 301 },
+    { "source": "/ethics", "destination": "/research/approaches-to-ai", "statusCode": 301 },
     { "source": "/pricing", "destination": "/licensing", "statusCode": 301 },
     { "source": "/subscribe", "destination": "/founder-access", "statusCode": 301 },
     { "source": "/support-us", "destination": "/support", "statusCode": 301 }
   ],
   "rewrites": [
     { "source": "/technologies/bytesight", "destination": "/api/gone" },
-    { "source": "/technologies/byteoracle", "destination": "/api/gone" },
-    { "source": "/technologies/byteflow", "destination": "/api/gone" },
-    { "source": "/technologies/bytecost", "destination": "/api/gone" },
     { "source": "/technologies/deep-kore", "destination": "/api/gone" },
     { "source": "/technologies/deep-kore/:path*", "destination": "/api/gone" },
-    { "source": "/technologies/:path*", "destination": "/api/gone" },
-    { "source": "/marketing", "destination": "/api/gone" },
-    { "source": "/marketing/:path*", "destination": "/api/gone" },
     { "source": "/deepkore", "destination": "/api/gone" },
     { "source": "/deepkore-lab", "destination": "/api/gone" },
     { "source": "/ai-safety", "destination": "/api/gone" },
+    { "source": "/technologies/byteoracle", "destination": "/api/gone" },
+    { "source": "/technologies/byteflow", "destination": "/api/gone" },
+    { "source": "/technologies/bytecost", "destination": "/api/gone" },
+    { "source": "/technologies/:path*", "destination": "/api/gone" },
+    { "source": "/marketing", "destination": "/api/gone" },
+    { "source": "/marketing/:path*", "destination": "/api/gone" },
     { "source": "/api/deepkore-submit", "destination": "/api/gone" }
   ],
   "headers": [
@@ -62,7 +72,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.thebytelite.com; manifest-src 'self'; upgrade-insecure-requests"
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; upgrade-insecure-requests"
         },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "X-Frame-Options", "value": "DENY" },

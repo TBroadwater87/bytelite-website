@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageIntro from '../../components/site/PageIntro.astro';
+import ProgramCard from '../../components/site/ProgramCard.astro';
+import ResearchRelationshipDiagram from '../../components/site/ResearchRelationshipDiagram.astro';
+import { RESEARCH_PROGRAMS } from '../../data/research-programs';
+import { COMPANY_NAME } from '../../data/company';
+---
+
+<Layout
+  title={`Research | ${COMPANY_NAME}`}
+  description="The research programs of ByteLite LLC: machine cognition, data representation, and visual and audio information, with the current evidence for each."
+  path="/research"
+>
+  <PageIntro
+    eyebrow="Research"
+    heading="A research portfolio built on proof before claim."
+    lede={`${COMPANY_NAME} runs a small number of connected research programs. Each one is described here by the question it asks, what it has established, and what it has not.`}
+  />
+
+  <section class="section" aria-labelledby="programs-heading">
+    <div class="wrap">
+      <h2 id="programs-heading" class="visually-hidden">Research programs</h2>
+      <div class="card-grid">
+        {RESEARCH_PROGRAMS.map((program) => <ProgramCard program={program} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-sunken" aria-labelledby="relationship-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">How they relate</p>
+        <h2 id="relationship-heading">One direction, separate evidence.</h2>
+        <p class="lede">
+          The programs share a direction: preserve information exactly, establish what is known,
+          and keep behaviour governed. They do not share evidence. A result in one program says
+          nothing about another, and no integration between them exists today.
+        </p>
+      </div>
+      <ResearchRelationshipDiagram />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="disclosure-heading">
+    <div class="wrap split">
+      <div class="prose">
+        <p class="eyebrow">What this site publishes</p>
+        <h2 id="disclosure-heading">Objectives and evidence, not mechanisms.</h2>
+        <p>
+          These pages explain what each program is trying to achieve, why it matters, and how
+          results will be judged. They do not describe the methods used to achieve them. Those
+          methods are proprietary.
+        </p>
+        <p>
+          Every diagram on this site is labelled. A conceptual illustration shows an idea. It is
+          never a screenshot of a working capability.
+        </p>
+      </div>
+      <div class="prose">
+        <p class="eyebrow">Where to go next</p>
+        <ul class="fact-list fact-list-plain">
+          <li><a href="/research/milestones">Research milestones</a>: every public milestone with its status and evidence.</li>
+          <li><a href="/research/approaches-to-ai">Approaches to AI</a>: how the cognition research differs from mainstream AI, with sources.</li>
+          <li><a href="/validation">Validation</a>: how evidence is classified and how to propose an independent evaluation.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>

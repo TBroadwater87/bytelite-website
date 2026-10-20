@@ -1,84 +1,48 @@
 ---
-// Footer. Mirrors the ByteLite-only primary navigation, plus legal. No portfolio discovery.
+import { FOOTER_GROUPS } from '../data/navigation';
+import { COMPANY_NAME, COMPANY_LOCATION, COMPANY_ONE_LINE } from '../data/company';
+
+const copyrightYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <a href="/" class="footer-logo">
-        <img src="/bytelite-logo.png" alt="" width="28" height="28" loading="lazy" />
-        <span>ByteLite LLC</span>
-      </a>
-      <p class="footer-tagline">
-        Deterministic lossless data-representation research. Helena, Montana.
-      </p>
+  <div class="wrap footer-grid">
+    <div class="footer-identity">
+      <p class="footer-name">{COMPANY_NAME}</p>
+      <p class="small-print">{COMPANY_ONE_LINE}</p>
+      <p class="small-print">{COMPANY_LOCATION}</p>
     </div>
-
-    <nav class="footer-col" aria-label="ByteLite">
-      <h2>ByteLite</h2>
-      <a href="/how-it-works">How It Works</a>
-      <a href="/validation">Validation</a>
-      <a href="/licensing">Licensing</a>
-    </nav>
-
-    <nav class="footer-col" aria-label="Products">
-      <h2>Products</h2>
-      <a href="/founder-access">Founder Access</a>
-      <a href="/cordel-connect">Cordel Connect</a>
-      <a href="/cordel-play">Cordel Play</a>
-      <a href="/support">Supporter Pack</a>
-    </nav>
-
-    <nav class="footer-col" aria-label="Company">
-      <h2>Company</h2>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-      <a href="/billing">Billing</a>
-    </nav>
-
-    <nav class="footer-col" aria-label="Legal">
-      <h2>Legal</h2>
-      <a href="/privacy">Privacy</a>
-      <a href="/terms">Terms</a>
-      <a href="/responsible-disclosure">Responsible Disclosure</a>
-    </nav>
+    {FOOTER_GROUPS.map((group) => (
+      <nav class="footer-group" aria-label={`${group.label} links`}>
+        <p class="footer-group-heading">{group.label}</p>
+        <ul>
+          {group.links.map((link) => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    ))}
   </div>
-
-  <div class="footer-bottom">
-    <div class="container footer-bottom-inner">
-      <p>&copy; 2026 ByteLite LLC &middot; Helena, Montana</p>
-      <p>Proof before claim.</p>
-    </div>
+  <div class="wrap">
+    <p class="small-print footer-base">&copy; {copyrightYear} {COMPANY_NAME}. Research statements on this site describe objectives and internal evidence unless a page says otherwise.</p>
   </div>
 </footer>
 
 <style>
-.site-footer { background: #07090f; border-top: 1px solid #1a2235; margin-top: auto; }
-.footer-inner {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 2.5rem; padding-top: 3.5rem; padding-bottom: 3rem;
-}
-@media (max-width: 860px) {
-  .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .footer-brand { grid-column: 1 / -1; }
-}
-@media (max-width: 480px) { .footer-inner { grid-template-columns: 1fr; gap: 1.75rem; } }
-.footer-logo {
-  display: flex; align-items: center; gap: .5rem;
-  font-size: .9375rem; font-weight: 600; color: #e4e7f2; margin-bottom: .875rem;
-}
-.footer-logo img { border-radius: .25rem; }
-.footer-logo:hover { color: #818cf8; }
-.footer-tagline { font-size: .8125rem; color: #4a5068; line-height: 1.6; max-width: 300px; }
-.footer-col h2 {
-  font-size: .6875rem; font-weight: 600; letter-spacing: .1em;
-  text-transform: uppercase; color: #4a5068; margin-bottom: 1rem;
-}
-.footer-col a { display: block; font-size: .875rem; color: #555e7a; margin-bottom: .625rem; transition: color .15s; }
-.footer-col a:hover, .footer-col a:focus-visible { color: #818cf8; }
-.footer-bottom { border-top: 1px solid #1a2235; padding: 1.25rem 0; }
-.footer-bottom-inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.footer-bottom-inner p { font-size: .8125rem; color: #4a5068; }
-@media (max-width: 540px) { .footer-bottom-inner { flex-direction: column; gap: .375rem; } }
+  .site-footer { border-top: 1px solid var(--color-line); background: var(--color-surface-sunken); }
+  .footer-grid {
+    display: grid; gap: var(--space-6); padding-block: var(--space-7);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  }
+  .footer-identity { display: grid; gap: var(--space-2); align-content: start; grid-column: 1 / -1; max-width: 32rem; }
+  @media (min-width: 64rem) {
+    .footer-grid { grid-template-columns: 1.6fr repeat(4, 1fr); }
+    .footer-identity { grid-column: auto; }
+  }
+  .footer-name { font-weight: 700; color: var(--color-ink); }
+  .footer-group-heading { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-subtle); margin-bottom: var(--space-3); }
+  .footer-group ul { list-style: none; display: grid; gap: var(--space-2); }
+  .footer-group a { color: var(--color-ink-muted); text-decoration: none; font-size: var(--text-sm); }
+  .footer-group a:hover { color: var(--color-ink); text-decoration: underline; }
+  .footer-base { border-top: 1px solid var(--color-line); padding-block: var(--space-5); }
 </style>

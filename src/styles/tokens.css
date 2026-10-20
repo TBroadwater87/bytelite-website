@@ -1,291 +1,142 @@
-/* ByteLite Design Tokens - WCAG AA Compliant */
 :root {
-  /* Colors - Light Theme */
-  --color-primary: #0066cc;
-  --color-primary-dark: #0052a3;
-  --color-secondary: #00a86b;
-  --color-accent: #ff4081;
-  --color-background: #ffffff;
-  --color-surface: #f8f9fa;
-  --color-text: #212529;
-  --color-text-muted: #6c757d;
-  --color-border: #dee2e6;
-  --color-error: #dc3545;
-  --color-success: #28a745;
-  
-  /* Spacing */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
-  
-  /* Typography */
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", "Consolas", monospace;
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
-  --font-size-5xl: 3rem;
-  
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  
-  /* Transitions */
-  --transition-fast: 150ms ease-in-out;
-  --transition-base: 250ms ease-in-out;
-  --transition-slow: 350ms ease-in-out;
-  
-  /* Z-index */
-  --z-dropdown: 1000;
-  --z-sticky: 1020;
-  --z-fixed: 1030;
-  --z-modal: 1040;
-  --z-tooltip: 1050;
+  color-scheme: light dark;
+
+  --font-text: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', 'Cascadia Mono', 'Segoe UI Mono', Consolas, 'Liberation Mono', monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
+  --text-2xl: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
+  --text-3xl: clamp(2.125rem, 1.4rem + 3vw, 3.5rem);
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-body: 1.65;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  --measure: 68ch;
+  --content-width: 72rem;
+  --gutter: 1rem;
+
+  --color-canvas: #fafaf8;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #f1f1ed;
+  --color-ink: #15171c;
+  --color-ink-muted: #4a505b;
+  --color-ink-subtle: #646a76;
+  --color-line: #dddcd5;
+  --color-line-strong: #b5b6ae;
+  --color-input-border: #84867e;
+  --color-accent: #1d4ed8;
+  --color-accent-hover: #163aa3;
+  --color-accent-ink: #ffffff;
+  --color-focus: #1d4ed8;
+
+  --tone-neutral-bg: #eeeee9;
+  --tone-neutral-ink: #3d424c;
+  --tone-neutral-line: #cfcfc7;
+  --tone-progress-bg: #fff3d6;
+  --tone-progress-ink: #6f4300;
+  --tone-progress-line: #ecc978;
+  --tone-tested-bg: #e3f2e8;
+  --tone-tested-ink: #13562f;
+  --tone-tested-line: #a5d3b4;
+  --tone-verified-bg: #e1eafc;
+  --tone-verified-ink: #163b94;
+  --tone-verified-line: #a6bdee;
+  --tone-caution-bg: #fce6e3;
+  --tone-caution-ink: #861c15;
+  --tone-caution-line: #eeb0a8;
+
+  --shadow-raised: 0 1px 2px rgb(21 23 28 / 6%), 0 4px 16px rgb(21 23 28 / 5%);
+  --motion-quick: 150ms ease;
 }
 
-/* Dark Theme */
-[data-theme="dark"] {
-  --color-primary: #4da3ff;
-  --color-primary-dark: #1a8cff;
-  --color-secondary: #00d48a;
-  --color-accent: #ff6b9d;
-  --color-background: #0a0e27;
-  --color-surface: #1a1f3a;
-  --color-text: #e9ecef;
-  --color-text-muted: #adb5bd;
-  --color-border: #2d3561;
-  --color-error: #ff6b6b;
-  --color-success: #51cf66;
+@media (min-width: 48rem) {
+  :root { --gutter: 2rem; }
 }
 
-/* Automatic dark mode */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --color-primary: #4da3ff;
-    --color-primary-dark: #1a8cff;
-    --color-secondary: #00d48a;
-    --color-accent: #ff6b9d;
-    --color-background: #0a0e27;
-    --color-surface: #1a1f3a;
-    --color-text: #e9ecef;
-    --color-text-muted: #adb5bd;
-    --color-border: #2d3561;
-    --color-error: #ff6b6b;
-    --color-success: #51cf66;
+  :root:not([data-theme='light']) {
+    --color-canvas: #0f1013;
+    --color-surface: #16181d;
+    --color-surface-sunken: #1c1f25;
+    --color-ink: #ececea;
+    --color-ink-muted: #b6bac2;
+    --color-ink-subtle: #969ca7;
+    --color-line: #2c2f36;
+    --color-line-strong: #434751;
+    --color-input-border: #737886;
+    --color-accent: #8aaeff;
+    --color-accent-hover: #b0c8ff;
+    --color-accent-ink: #0f1013;
+    --color-focus: #8aaeff;
+    --tone-neutral-bg: #23262c;
+    --tone-neutral-ink: #cdd0d6;
+    --tone-neutral-line: #3a3e46;
+    --tone-progress-bg: #33280f;
+    --tone-progress-ink: #f2c46a;
+    --tone-progress-line: #5c4818;
+    --tone-tested-bg: #11291b;
+    --tone-tested-ink: #92d8ab;
+    --tone-tested-line: #24513a;
+    --tone-verified-bg: #142247;
+    --tone-verified-ink: #adc5ff;
+    --tone-verified-line: #2a4380;
+    --tone-caution-bg: #3a1713;
+    --tone-caution-ink: #f6a69c;
+    --tone-caution-line: #6b2b24;
+    --shadow-raised: 0 1px 2px rgb(0 0 0 / 40%);
   }
 }
 
-/* Global Styles */
-* {
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-sans);
-  font-size: var(--font-size-base);
-  line-height: 1.6;
-  color: var(--color-text);
-  background-color: var(--color-background);
-  transition: background-color var(--transition-base), color var(--transition-base);
-}
-
-/* Focus styles for accessibility */
-*:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-*:focus:not(:focus-visible) {
-  outline: none;
-}
-
-/* Skip to main content link */
-.skip-nav {
-  position: absolute;
-  left: -9999px;
-  z-index: var(--z-tooltip);
-  padding: var(--space-sm) var(--space-md);
-  background-color: var(--color-primary);
-  color: white;
-  text-decoration: none;
-  border-radius: 0 0 4px 0;
-}
-
-.skip-nav:focus {
-  left: 0;
-  top: 0;
-}
-
-/* Utility classes */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--space-md);
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes countUp {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.6s ease-out forwards;
-}
-
-/* Component styles */
-.btn {
-  display: inline-block;
-  padding: var(--space-sm) var(--space-lg);
-  font-size: var(--font-size-base);
-  font-weight: 500;
-  text-align: center;
-  text-decoration: none;
-  border: 2px solid transparent;
-  border-radius: 4px;
-  transition: all var(--transition-base);
-  cursor: pointer;
-}
-
-.btn-primary {
-  background-color: var(--color-primary);
-  color: white;
-  border-color: var(--color-primary);
-}
-
-.btn-primary:hover,
-.btn-primary:focus {
-  background-color: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: var(--color-primary);
-  border-color: var(--color-primary);
-}
-
-.btn-secondary:hover,
-.btn-secondary:focus {
-  background-color: var(--color-primary);
-  color: white;
-}
-
-/* Card component */
-.card {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: var(--space-lg);
-  transition: all var(--transition-base);
-}
-
-.card:hover {
-  box-shadow: var(--shadow-lg);
-}
-
-/* Code blocks */
-pre, code {
-  font-family: var(--font-mono);
-}
-
-code {
-  padding: 2px 4px;
-  background-color: var(--color-surface);
-  border-radius: 3px;
-}
-
-pre {
-  padding: var(--space-md);
-  background-color: var(--color-surface);
-  border-radius: 8px;
-  overflow-x: auto;
-}
-
-/* Tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: var(--space-lg) 0;
-}
-
-th, td {
-  padding: var(--space-sm) var(--space-md);
-  text-align: left;
-  border-bottom: 1px solid var(--color-border);
-}
-
-th {
-  font-weight: 600;
-  background-color: var(--color-surface);
-}
-
-/* Forms */
-input, textarea, select {
-  width: 100%;
-  padding: var(--space-sm) var(--space-md);
-  font-size: var(--font-size-base);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  background-color: var(--color-background);
-  color: var(--color-text);
-  transition: border-color var(--transition-base);
-}
-
-input:focus, textarea:focus, select:focus {
-  border-color: var(--color-primary);
-}
-
-label {
-  display: block;
-  margin-bottom: var(--space-xs);
-  font-weight: 500;
-}
-
-/* Responsive utilities */
-@media (max-width: 768px) {
-  .hide-mobile {
-    display: none;
-  }
-}
-
-@media (min-width: 769px) {
-  .hide-desktop {
-    display: none;
-  }
+:root[data-theme='dark'] {
+  --color-canvas: #0f1013;
+  --color-surface: #16181d;
+  --color-surface-sunken: #1c1f25;
+  --color-ink: #ececea;
+  --color-ink-muted: #b6bac2;
+  --color-ink-subtle: #969ca7;
+  --color-line: #2c2f36;
+  --color-line-strong: #434751;
+  --color-input-border: #737886;
+  --color-accent: #8aaeff;
+  --color-accent-hover: #b0c8ff;
+  --color-accent-ink: #0f1013;
+  --color-focus: #8aaeff;
+  --tone-neutral-bg: #23262c;
+  --tone-neutral-ink: #cdd0d6;
+  --tone-neutral-line: #3a3e46;
+  --tone-progress-bg: #33280f;
+  --tone-progress-ink: #f2c46a;
+  --tone-progress-line: #5c4818;
+  --tone-tested-bg: #11291b;
+  --tone-tested-ink: #92d8ab;
+  --tone-tested-line: #24513a;
+  --tone-verified-bg: #142247;
+  --tone-verified-ink: #adc5ff;
+  --tone-verified-line: #2a4380;
+  --tone-caution-bg: #3a1713;
+  --tone-caution-ink: #f6a69c;
+  --tone-caution-line: #6b2b24;
+  --shadow-raised: 0 1px 2px rgb(0 0 0 / 40%);
 }

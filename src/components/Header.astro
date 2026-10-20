@@ -1,113 +1,214 @@
 ---
-// Primary navigation. Flat, no dropdowns, no project-family menus.
-//
-// Rebuild 2026-08-26: ByteLite stays first and the technology pages come before the products,
-// because the site's job is still to explain ByteLite. The retired route families are not
-// "unlinked" any more - their source is deleted and they 301 or return 410. Nothing here can
-// point at a page that no longer exists.
-const currentPath = Astro.url.pathname;
-function isActive(href: string) {
-  if (href === '/') return currentPath === '/';
-  return currentPath === href || currentPath.startsWith(href + '/');
+import { PRIMARY_LINKS, RESEARCH_MENU } from '../data/navigation';
+
+export interface Props {
+  currentPath: string;
 }
 
-const NAV = [
-  { label: 'How It Works', href: '/how-it-works' },
-  { label: 'Validation', href: '/validation' },
-  { label: 'Licensing', href: '/licensing' },
-  { label: 'Founder Access', href: '/founder-access' },
-  { label: 'About', href: '/about' },
-];
+const { currentPath } = Astro.props;
+const normalizedCurrentPath = currentPath === '/' ? '/' : currentPath.replace(/\/$/, '');
+
+function isCurrentSection(href: string): boolean {
+  if (href === '/') return normalizedCurrentPath === '/';
+  return normalizedCurrentPath === href || normalizedCurrentPath.startsWith(`${href}/`);
+}
+
+const researchSectionIsCurrent = normalizedCurrentPath.startsWith('/research');
 ---
 
-<header class="site-header">
-  <nav class="container nav-inner" aria-label="Primary">
-    <a href="/" class="nav-logo" aria-label="ByteLite home">
-      <img src="/bytelite-logo.png" alt="" width="30" height="30" />
-      <span class="nav-logo-text">ByteLite</span>
+<header class="site-header" data-site-header>
+  <div class="wrap header-bar">
+    <a href="/" class="brand" aria-label="ByteLite LLC home">
+      <img src="/bytelite-mark-64.png" alt="" width="32" height="32" />
+      <span class="brand-name">ByteLite <span class="brand-suffix">LLC</span></span>
     </a>
 
-    <div class="nav-links" id="navLinks">
-      {NAV.map((item) => (
-        <a href={item.href} class:list={['nav-link', { active: isActive(item.href) }]}>{item.label}</a>
-      ))}
-    </div>
-
-    <a href="/contact" class="nav-contact-cta">Contact</a>
-
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
-      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-        <line x1="3" y1="6" x2="21" y2="6" />
-        <line x1="3" y1="12" x2="21" y2="12" />
-        <line x1="3" y1="18" x2="21" y2="18" />
-      </svg>
+    <button
+      type="button"
+      class="menu-toggle"
+      aria-expanded="false"
+      aria-controls="site-navigation"
+      data-menu-toggle
+    >
+      <span class="menu-toggle-label">Menu</span>
     </button>
-  </nav>
+
+    <nav id="site-navigation" class="site-navigation" aria-label="Primary" data-site-navigation>
+      <ul class="navigation-list">
+        <li class="navigation-item navigation-item-group">
+          <div class="group-heading">
+            <a
+              href="/research"
+              class:list={['navigation-link', { 'is-current': researchSectionIsCurrent }]}
+              aria-current={normalizedCurrentPath === '/research' ? 'page' : undefined}
+            >{RESEARCH_MENU.label}</a>
+            <button
+              type="button"
+              class="group-toggle"
+              aria-expanded="false"
+              aria-controls="research-menu"
+              data-group-toggle
+            >
+              <span class="visually-hidden">Show research pages</span>
+              <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg>
+            </button>
+          </div>
+          <ul id="research-menu" class="group-menu" data-group-menu>
+            {RESEARCH_MENU.links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="group-menu-link"
+                  aria-current={normalizedCurrentPath === link.href ? 'page' : undefined}
+                >
+                  <span class="group-menu-title">{link.label}</span>
+                  {link.description && <span class="group-menu-description">{link.description}</span>}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </li>
+        {PRIMARY_LINKS.map((link) => (
+          <li class="navigation-item">
+            <a
+              href={link.href}
+              class:list={['navigation-link', { 'is-current': isCurrentSection(link.href) }]}
+              aria-current={normalizedCurrentPath === link.href ? 'page' : undefined}
+            >{link.label}</a>
+          </li>
+        ))}
+        <li class="navigation-item navigation-item-contact">
+          <a href="/contact" class="button button-primary contact-button" aria-current={normalizedCurrentPath === '/contact' ? 'page' : undefined}>Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <script>
-  const toggle = document.getElementById('navToggle');
-  const links = document.getElementById('navLinks');
-  toggle?.addEventListener('click', () => {
-    const open = links?.classList.toggle('nav-open');
-    toggle.setAttribute('aria-expanded', String(!!open));
-  });
-  links?.querySelectorAll('a').forEach((a) =>
-    a.addEventListener('click', () => {
-      links.classList.remove('nav-open');
-      toggle?.setAttribute('aria-expanded', 'false');
-    })
-  );
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      links?.classList.remove('nav-open');
-      toggle?.setAttribute('aria-expanded', 'false');
-    }
-  });
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  const menuToggle = header?.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const navigation = header?.querySelector<HTMLElement>('[data-site-navigation]');
+  const groupToggle = header?.querySelector<HTMLButtonElement>('[data-group-toggle]');
+  const groupMenu = header?.querySelector<HTMLElement>('[data-group-menu]');
+  const menuToggleLabel = menuToggle?.querySelector<HTMLElement>('.menu-toggle-label');
+
+  function setExpanded(control: HTMLButtonElement | null | undefined, expanded: boolean) {
+    control?.setAttribute('aria-expanded', String(expanded));
+  }
+
+  function closeResearchMenu() {
+    setExpanded(groupToggle, false);
+  }
+
+  function closeMobileMenu() {
+    setExpanded(menuToggle, false);
+    if (menuToggleLabel) menuToggleLabel.textContent = 'Menu';
+    closeResearchMenu();
+  }
+
+  if (header && menuToggle && navigation && groupToggle && groupMenu) {
+    header.dataset.enhanced = 'true';
+
+    menuToggle.addEventListener('click', () => {
+      const willOpen = menuToggle.getAttribute('aria-expanded') !== 'true';
+      setExpanded(menuToggle, willOpen);
+      if (menuToggleLabel) menuToggleLabel.textContent = willOpen ? 'Close' : 'Menu';
+    });
+
+    groupToggle.addEventListener('click', () => {
+      const willOpen = groupToggle.getAttribute('aria-expanded') !== 'true';
+      setExpanded(groupToggle, willOpen);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      if (groupToggle.getAttribute('aria-expanded') === 'true') {
+        closeResearchMenu();
+        groupToggle.focus();
+      } else if (menuToggle.getAttribute('aria-expanded') === 'true') {
+        closeMobileMenu();
+        menuToggle.focus();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!(event.target instanceof Node)) return;
+      if (!groupMenu.parentElement?.contains(event.target)) closeResearchMenu();
+      if (!header.contains(event.target)) closeMobileMenu();
+    });
+
+    groupMenu.parentElement?.addEventListener('focusout', (event) => {
+      const nextFocus = event.relatedTarget;
+      if (nextFocus instanceof Node && groupMenu.parentElement?.contains(nextFocus)) return;
+      closeResearchMenu();
+    });
+  }
 </script>
 
 <style>
-.site-header {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(7,9,15,.94);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid #1a2235;
-}
-.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 4rem; gap: 1.25rem; }
-.nav-logo { display: flex; align-items: center; gap: .625rem; flex-shrink: 0; }
-.nav-logo img { border-radius: .25rem; }
-.nav-logo-text { font-size: 1rem; font-weight: 700; color: #e4e7f2; letter-spacing: -.01em; white-space: nowrap; }
-.nav-logo:hover .nav-logo-text { color: #818cf8; }
-.nav-links { display: flex; align-items: center; gap: .25rem; flex: 1; justify-content: center; }
-.nav-link {
-  padding: .5rem .875rem; font-size: .875rem; font-weight: 450; color: #7b829e;
-  border-radius: .375rem; transition: color .15s, background .15s; white-space: nowrap;
-}
-.nav-link:hover, .nav-link:focus-visible { color: #e4e7f2; background: rgba(255,255,255,.04); }
-.nav-link.active { color: #e4e7f2; }
-.nav-contact-cta {
-  flex-shrink: 0; padding: .5rem 1.125rem; font-size: .875rem; font-weight: 600;
-  background: rgba(99,102,241,.12); color: #818cf8;
-  border: 1px solid rgba(99,102,241,.22); border-radius: .375rem;
-  transition: background .15s, color .15s;
-}
-.nav-contact-cta:hover, .nav-contact-cta:focus-visible { background: #6366f1; color: #fff; }
-.nav-toggle { display: none; background: none; border: none; color: #7b829e; padding: .375rem; border-radius: .375rem; flex-shrink: 0; }
-.nav-toggle:hover { color: #e4e7f2; background: rgba(255,255,255,.05); }
-
-/* 860px, not 720px. The nav gained a fifth item ("Founder Access") in the 2026-08-26 rebuild and
-   the row stopped fitting: measured 791px of content inside a 768px viewport, a 23px overflow on
-   every page in Chromium, Firefox and Mobile Chrome. The collapse point has to clear the widest
-   the row can get, so it moves with the item count - do not lower it to "look more desktop". */
-@media (max-width: 860px) {
-  .nav-links { display: none; }
-  .nav-toggle { display: flex; align-items: center; justify-content: center; }
-  .nav-links.nav-open {
-    display: flex; flex-direction: column; align-items: stretch; gap: .125rem;
-    position: absolute; top: 4rem; left: 0; right: 0;
-    background: #0d1120; border-bottom: 1px solid #1a2235;
-    padding: .75rem 1rem; max-height: calc(100vh - 4rem); overflow-y: auto;
+  .site-header {
+    position: sticky; top: 0; z-index: 100;
+    background: color-mix(in srgb, var(--color-canvas) 94%, transparent);
+    backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid var(--color-line);
   }
-  .nav-links.nav-open .nav-link { padding: .75rem 1rem; font-size: 1rem; border-radius: .5rem; }
-}
+  .header-bar { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 4rem; }
+  .brand { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-ink); text-decoration: none; flex-shrink: 0; }
+  .brand img { border-radius: var(--radius-sm); }
+  .brand-name { font-weight: 700; letter-spacing: -0.01em; }
+  .brand-suffix { font-weight: 500; color: var(--color-ink-subtle); }
+
+  .menu-toggle { display: none; }
+  .navigation-list { display: flex; align-items: center; gap: var(--space-1); list-style: none; }
+  .navigation-item { position: relative; }
+  .navigation-link {
+    display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 var(--space-3);
+    color: var(--color-ink-muted); text-decoration: none; font-size: var(--text-sm); font-weight: 500; border-radius: var(--radius-md);
+  }
+  .navigation-link:hover { color: var(--color-ink); background: var(--color-surface-sunken); }
+  .navigation-link.is-current { color: var(--color-ink); box-shadow: inset 0 -2px 0 var(--color-ink); border-radius: 0; }
+  .group-heading { display: flex; align-items: center; }
+  .group-toggle {
+    display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; margin-left: calc(-1 * var(--space-2));
+    background: none; border: 0; color: var(--color-ink-muted); cursor: pointer; border-radius: var(--radius-md);
+  }
+  .group-toggle:hover { color: var(--color-ink); background: var(--color-surface-sunken); }
+  .group-toggle[aria-expanded='true'] svg { transform: rotate(180deg); }
+  .group-menu {
+    list-style: none; display: none;
+    position: absolute; top: calc(100% + var(--space-1)); left: 0; width: 22rem;
+    background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-raised); padding: var(--space-2);
+  }
+  .group-heading:has(.group-toggle[aria-expanded='true']) + .group-menu { display: grid; }
+  .group-menu-link { display: grid; gap: 0.1rem; padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); text-decoration: none; }
+  .group-menu-link:hover { background: var(--color-surface-sunken); }
+  .group-menu-link[aria-current='page'] { background: var(--color-surface-sunken); }
+  .group-menu-title { color: var(--color-ink); font-weight: 600; font-size: var(--text-sm); }
+  .group-menu-description { color: var(--color-ink-subtle); font-size: var(--text-xs); }
+  .navigation-item-contact { margin-left: var(--space-2); }
+  .contact-button { min-height: 2.5rem; }
+
+  @media (max-width: 63.99rem) {
+    .header-bar { flex-wrap: wrap; }
+    .site-header[data-enhanced='true'] .menu-toggle {
+      display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 var(--space-4);
+      background: var(--color-surface); border: 1px solid var(--color-input-border); border-radius: var(--radius-md);
+      font: inherit; font-weight: 600; font-size: var(--text-sm); color: var(--color-ink); cursor: pointer;
+    }
+    .site-navigation { width: 100%; }
+    .site-header[data-enhanced='true'] .site-navigation { display: none; }
+    .site-header[data-enhanced='true']:has(.menu-toggle[aria-expanded='true']) .site-navigation { display: block; }
+    .site-header:has(.menu-toggle[aria-expanded='true']) { background: var(--color-canvas); backdrop-filter: none; }
+    .site-header:has(.menu-toggle[aria-expanded='true']) .site-navigation { max-height: calc(100dvh - 4rem); overflow-y: auto; overscroll-behavior: contain; }
+    .navigation-list { flex-direction: column; align-items: stretch; gap: 0; padding-bottom: var(--space-4); }
+    .navigation-link { width: 100%; padding: 0 var(--space-2); font-size: var(--text-base); }
+    .navigation-link.is-current { box-shadow: inset 3px 0 0 var(--color-ink); padding-left: var(--space-3); }
+    .group-heading { justify-content: space-between; }
+    .group-menu { position: static; width: auto; box-shadow: none; border: 0; padding: 0 0 var(--space-2) var(--space-3); background: transparent; }
+    .site-header:not([data-enhanced='true']) .group-menu { display: grid; }
+    .navigation-item-contact { margin: var(--space-3) 0 0; }
+    .contact-button { width: 100%; }
+  }
 </style>

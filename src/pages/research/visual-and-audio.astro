@@ -1,0 +1,81 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageIntro from '../../components/site/PageIntro.astro';
+import MilestoneCard from '../../components/site/MilestoneCard.astro';
+import { milestonesFor } from '../../data/milestones';
+import { COMPANY_NAME } from '../../data/company';
+
+const sensoryMilestones = milestonesFor('visual-and-audio');
+---
+
+<Layout
+  title={`Visual and Audio Research | ${COMPANY_NAME}`}
+  description="Early ByteLite LLC research into deterministic, structured representations of images and sound. No visual understanding or speech comprehension is claimed."
+  path="/research/visual-and-audio"
+>
+  <PageIntro
+    eyebrow="Research program"
+    heading="Visual and acoustic information."
+    lede="Early research into describing images and sound in deterministic, structured forms that other systems can rely on. This is the least mature of the research programs."
+  />
+
+  <section class="section" aria-labelledby="visual-heading">
+    <div class="wrap split">
+      <div class="prose">
+        <p class="eyebrow">Visual information</p>
+        <h2 id="visual-heading">Repeatable descriptions of image structure.</h2>
+        <p>
+          The visual research asks whether the structure of an image can be described in a form that
+          is exact, repeatable and explainable, so that later systems can reason about it with known
+          provenance.
+        </p>
+        <p>
+          Core components pass internal automated tests on synthetic test images. That is the full
+          extent of the evidence. No visual understanding, object recognition or scene
+          interpretation is claimed.
+        </p>
+      </div>
+      <div class="prose">
+        <p class="eyebrow">Audio and speech</p>
+        <h2>An architecture, not yet a capability.</h2>
+        <p>
+          The audio research defines the structure of a future system for representing sound and
+          speech. An architectural skeleton exists, and most of its behaviour has not yet been
+          specified.
+        </p>
+        <p>
+          No speech recognition, speech comprehension or audio analysis capability is claimed.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-sunken" aria-labelledby="relationship-heading">
+    <div class="wrap prose">
+      <p class="eyebrow">Relationship to the other programs</p>
+      <h2 id="relationship-heading">Designed to supply structured information, not to interpret it.</h2>
+      <p>
+        The long-term intent is for sensory systems to supply structured information through
+        defined interfaces, and for interpretation to happen in the governed cognition research. No
+        such integration exists today.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="milestones-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Milestones</p>
+        <h2 id="milestones-heading">Current milestones.</h2>
+        <p class="lede"><a href="/research/milestones">See all research milestones</a>.</p>
+      </div>
+      <div class="milestone-stack">
+        {sensoryMilestones.map((milestone) => <MilestoneCard milestone={milestone} />)}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .milestone-stack { display: grid; gap: var(--space-4); }
+</style>

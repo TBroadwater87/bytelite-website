@@ -1,246 +1,146 @@
-# BYTE LITE WEBSITE CANONICAL LAW
+# BYTELITE LLC WEBSITE CANONICAL LAW
 
 Read this file before touching this repository. It is law, not a diary. It states what is
-true, what may be said, and what must never be done. Historical narrative belongs in
-OWNER_README.md; dated evidence belongs in `qa/`.
+true, what may be said, and what must never be done.
 
 If this file and any other document in this repository disagree, this file wins.
-If this file and observed reality disagree, verify reality with the commands in
-OWNER_README.md section 9 and correct this file.
+If this file and observed reality disagree, verify reality and correct this file.
 
 ASCII only in this file. No emoji, no smart quotes, no box-drawing characters.
+
+**This repository is PUBLIC.** Nothing that section 3 forbids publishing may be written into any
+file here, including this one, commit messages, tests and documentation.
 
 ---
 
 ## 0. WHAT THIS REPOSITORY IS
 
-The public marketing and explanation website for **ByteLite**, served at
-`https://www.thebytelite.com`. Astro 5 static build, React 19 islands, Tailwind, TypeScript
-strict mode. One server-side function: `POST /api/contact`.
+The public website of **ByteLite LLC**, an independent computing research and development
+company, served at `https://www.thebytelite.com`. Astro 5 static build, TypeScript strict mode,
+Vercel Functions in `api/` for contact and the (disabled) commerce surface.
 
-It is not a product, not the compression engine, and not a portfolio site.
+Rewritten 2026-10-20 by owner directive from a ByteLite-only site into a company website. The
+data representation research (the original ByteLite program) remains a central program but no
+longer stands for the whole company.
+
+It is not a research system, not a demonstration of one, and not connected to any private
+research repository. Nothing in this repository may fetch from, embed or describe a private
+research system.
 
 ---
 
-## 1. PUBLIC SCOPE
+## 1. PUBLIC SCOPE AND NAMING
 
-**Rewritten 2026-08-26 by owner decision.** thebytelite.com was a ByteLite-only site with the
-retired portfolio kept alive at `noindex`. Both halves of that changed: **Cordel is now a public
-commercial product family**, and the retired families are **deleted**, not hidden.
+**Discoverable (sitemap allowlist `DISCOVERABLE_ROUTES` in `astro.config.mjs`):**
 
-ByteLite still comes first. It is the reason the site exists, it owns the homepage, and the
-technology pages precede the product pages in every navigation surface.
+`/` . `/research` . `/research/machine-cognition` . `/research/data-representation` .
+`/research/visual-and-audio` . `/research/milestones` . `/research/approaches-to-ai` .
+`/validation` . `/products` . `/compatibility-app` . `/cordel-play` . `/founder-access` .
+`/support` . `/licensing` . `/about` . `/contact` . `/privacy` . `/terms`
 
-**Discoverable (in the sitemap allowlist in `astro.config.mjs`):**
+**Resolvable, not discoverable (`noindex`):** `/checkout/success`, `/checkout/cancel`,
+`/billing`, `/responsible-disclosure`, `/404`.
 
-`/` . `/how-it-works` . `/validation` . `/licensing` . `/about` . `/contact` .
-`/founder-access` . `/support` . `/cordel-connect` . `/cordel-play` . `/privacy` . `/terms`
+**Withdrawn:** `/preorder-terms`, `/supporter-terms` (unreviewed drafts; 404; never link to
+them). `/how-it-works` was replaced by `/research/data-representation` and now 301s there.
 
-**Resolvable but deliberately not discoverable:** `/checkout/success`, `/checkout/cancel`,
-`/billing`, `/responsible-disclosure`, `/404`. The first three are steps inside a flow, not
-destinations; a search result landing on a bare success page would be meaningless.
+**Historical URLs** 301 to their real successor or return 410 from `api/gone.ts`. Every known
+historical URL is listed in `tests/unit/route-disposition.test.ts`; no redirect or rewrite may
+capture a canonical route, and that is tested.
 
-**Withdrawn 2026-08-29:** `/preorder-terms` and `/supporter-terms`. Both were unreviewed drafts
-carrying a visible DRAFT badge. They are **deleted from the build and return 404**, not merely
-de-indexed: `noindex` keeps a page out of a search index, but anyone holding the URL could still
-read an unapproved legal document and reasonably treat it as ByteLite LLC's settled position.
-Their content is in git history. Recreate them only when the terms are approved, and add them to
-the sitemap allowlist at the same time. Until then, **no page may link to them**, and every
-checkout that would depend on them stays disabled.
+**Naming rules:**
 
-**Deleted, not retired.** `architecture/`, `company/`, `marketing/`, `preorder/`, `products/`,
-`progress/`, `research/`, `technologies/`, `architecture.astro` and `src/pages/api/` no longer
-exist. Every one of those URLs now either 301s to a real successor or returns **410 Gone** from
-`api/gone.ts`. See `vercel.json`.
+1. The machine cognition program is published only under a neutral descriptive name
+   ("Machine Cognition", "Governed machine cognition"). Its internal engineering name, its
+   provisional future brand, and the names of its internal architectures and governance layers
+   are not published until the owner explicitly approves a public name.
+2. Retired or superseded product and project names appear on no public surface. The list is kept
+   privately and loaded by the disclosure tests (see below).
+3. Consumer product display names live in exactly one place, `src/data/products.ts`. A product
+   rename is a one-line change there. No page hardcodes a product name.
+4. No page states or implies that any name is a registered trademark, or that any invention is
+   patented or patent pending.
 
-**410 rather than 404, and rather than a noindex 200.** A 200 with `noindex` still serves the
-stale page to anyone with the link and still costs a crawl. A 404 says "try again later". A 410
-says "this is gone deliberately", and it leaves the index far faster. Those pages named retired
-systems, so getting them out of the index *is* the job.
-
-Rules that survive, all enforced by tests:
-
-1. **The sitemap is an allowlist**, not a denylist. Adding a page under `src/pages/` can never
-   put it into search discovery by accident.
-2. **No public page links to a route that no longer exists.** Enforced against the built HTML.
-3. **These names stay off every public surface:** Deep Kore, ByteSight, ByteOracle, ByteFlow,
-   ByteCost, AIya, Aion, Genesis Goalkeeper, Revelation Vanguard, HeartStrings, and the
-   misspellings Codrel / Cordea / Cordia. Not in pages, titles, descriptions, alt text,
-   structured data, sitemaps, client-shipped comments, or public assets.
-   **Cordel Connect and Cordel Play are no longer on that list.** They are current products with
-   their own canonical pages.
-4. **A 410 body names nothing.** A gone-page that recites the retired product it replaced would
-   republish the exact vocabulary the retirement removed.
-
-Do not resurrect the obsolete portfolio, the abandoned architecture pages, or the speculative
-technology-stack claims. Cordel being public is not permission to bring any of that back.
-
-Do not reinstate the `/about -> /company` or `/licensing -> /company/partnerships` redirects.
-Both shadowed real pages.
+The disclosure tests (`tests/e2e/public-scope-vocabulary.spec.ts` and
+`tests/unit/public-build-disclosure.test.ts`) scan rendered pages and every file of the built site.
+Their term lists are private: set `BYTELITE_DISCLOSURE_DENYLIST` to the path of the owner's private
+denylist file before running tests. The tests fail when it is not set. Never copy the list into this
+repository.
 
 ---
 
 ## 2. CLAIM LAW
 
-Five states. Never collapse one into another, in either direction:
+Implementation, testing, internal validation, independent verification, production
+qualification and deployment are different things. Never collapse one into another.
 
-| State | Meaning |
-|---|---|
-| ARCHITECTURAL TARGET | What ByteLite is being built to achieve |
-| CURRENT ENGINEERING STATE | What the work can do today |
-| COMPLETED PROOF | Closed on internal evidence |
-| INDEPENDENT VALIDATION | Someone outside ByteLite LLC reproduced it |
-| PRODUCTION QUALIFICATION | Proven dependable enough for real workloads |
-
-**The architectural target.** Universal deterministic lossless shrink: every eligible source
-file represented by a complete self-contained ByteLite artifact smaller than the original,
-from which the original is reconstructed exactly.
-
-**Never narrow the target.** These sentences are forbidden and are tested for:
-
-- "only expects structured files to shrink" / "structured files only"
-- "random files are inherently expected not to shrink"
-- "only intended to find savings in some classes of files"
-- "does not promise that every file shrinks"
-- "some data has no lawful reusable structure to find"
-
-**Never complete the proof.** Also forbidden and tested for: "has proven universal
-compression", "universal shrink is complete", "universally compresses every file",
-"third-party verified", "peer reviewed", "production qualified", plus the information-theory
-overreaches ("Shannon does not apply", "defeated information theory").
-
-Independent validation and production qualification are **open gates**. Say so.
-
-**Never state a compression ratio as achieved.** No "1GB to 15 bytes", no "quantum-scale",
-no fabricated API response showing a ratio. `critical-paths.spec.ts` asserts the absence of
-"1GB into 15 bytes" from the rendered site; do not reintroduce it into documentation either.
-
-**The current development state.** ByteLite writes reconstruction evidence out explicitly so
-transformations can be inspected, replayed and falsified. Publicly this is *"explicit
-reconstruction evidence"* and *"a research scaffold, not the intended final artifact"* -
-never the internal classification vocabulary. The final artifact is self-contained: all
-reconstruction-essential information ends up inside the counted representation.
-
-The site describes its own objective. It does not litigate information theory.
+- Every public status comes from `src/data/milestones.ts` using the vocabulary in
+  `src/data/evidence-status.ts`. Pages render the manifest; they never restate a status.
+- A milestone changes only through a separately approved evidence-status update. Internal source
+  commits never advance a public milestone. No percentage-complete figures, ever.
+- Every milestone states what is demonstrated, what is not, the next observable result and its
+  last review date. Neither list may be empty (tested).
+- **Data representation:** no lossless method can make every possible input smaller, so the site
+  never claims universal reduction. The objective is exact, deterministic, fully accounted
+  representation that is smaller where the data and the complete representation permit it. Net
+  size reduction has not been demonstrated and the site says so. No compression ratio, saving or
+  benchmark result is stated.
+- **Machine cognition:** the site does not claim that the full system works, that it reasons in
+  general, AGI or superintelligence, solved alignment, or completed self-construction. It says
+  plainly that the full chain has not been demonstrated end to end and that governance is not
+  complete. No live or simulated demonstration is published.
+- **Comparisons with mainstream AI** describe differences in priorities, cite published sources,
+  and contain no scores, rankings or superiority claims.
+- No product is described as available, shipping or manufactured unless it is.
 
 ---
 
 ## 3. PUBLIC IP LAW
 
-The site may say WHAT ByteLite intends to achieve. It may never say HOW.
+The site may say WHAT a program intends to achieve and how results are judged. It may never say
+HOW any system works internally.
 
-**Allowed publicly, at a high level:**
+Never publish, in any file of this repository or the built site: source code of research
+systems; algorithms; formulas or construction laws; internal format names or file extensions;
+internal component, module or protocol names; dimensional, positional, alignment, dependency or
+learning mechanics; governance enforcement mechanics; unresolved trust-boundary or security
+findings; internal test fixtures, corpora, snapshots or unpublished benchmarks; private
+repository paths, hostnames, machine configuration or commit references; private funding or
+investor material.
 
-- deterministic; lossless; exact reconstruction
-- self-contained final artifact as the target
-- the `.root` artifact name (it names the target output)
-- the name **Bit Motion Encoding (BME)**
-- complete accounting: reported size is counted from the complete artifact
-- target-vs-proof status
-- the public licensing model
-- observable behavior
+A high-level statement is not safe merely because it contains no code. Consider whether it
+discloses a novel combination of methods, a mechanism or enough structure to aid replication.
 
-Preferred high-level wording when BME is named:
-
-> ByteLite implements Bit Motion Encoding (BME), a deterministic recursive motion-encoding
-> architecture with stream-built foundations.
-
-BME expands to **Bit Motion Encoding**. It is never "ByteLite Motion Encoding".
-
-**Never publish:**
-
-- opcode construction law
-- Ogram construction law
-- Foundation construction internals; stream-built Foundation mechanics beyond the wording above
-- motion-program rules
-- pairing / private mapping laws
-- reset / switch mechanics
-- library-of-libraries construction law; root-of-roots implementation
-- library selection or construction
-- recursive metadata integration method
-- sidecar compaction mechanism; carrier construction
-- private serialization grammar
-- unpublished reconstruction state machinery
-- source code that constitutes protected mechanism disclosure
-- private validation material not approved for publication
-
-No page may show or describe the transition from today's explicit evidence to the compact
-in-band state. `CurrentVsFinal.astro` deliberately draws two columns with nothing between
-them. **That gap is load-bearing, not a layout oversight.**
+Every diagram is a component that carries a classification from
+`src/data/figure-classification.ts`: conceptual illustration, actual validated system output,
+product concept rendering, or physical product photograph. A conceptual illustration is never
+presented as system output.
 
 Do not make the site more technical in order to make it more impressive.
 
 ---
 
-## 4. WHAT BYTELITE IS NOT
+## 4. WHAT THE RESEARCH IS NOT
 
-State the boundary. Never describe the replacement mechanism.
-
-- Not a generative AI system. Reconstruction is not inference.
-- Not lossy. If exact reconstruction cannot be proven, the result does not qualify.
-- Not "close enough". "Looks the same" and "means the same thing" are not accepted.
-- Not confidence-score or probabilistic reconstruction.
-- Not probabilistic entropy coding.
-- Not independently validated. That gate is open.
-- Not production-qualified. That gate is open.
-
-Canonical wording is in `src/data/bytelite.ts` (`IS_NOT`). Import it; never restate it inline.
+Canonical boundary wording lives in `src/data/bytelite.ts` (`WHAT_IT_IS_NOT`) and on the machine
+cognition page. State the boundary; never describe the replacement mechanism.
 
 ---
 
 ## 5. PRICING LAW
 
-Two billing models, not two feature tiers. Canonical values live in `src/data/bytelite.ts`
-(`PERSONAL_PLAN`). Import them; never hardcode a price in a page.
-
-**PERSONAL** - flat subscription.
-
-- `$9.99` / month, `$99.99` / year
-- **No percentage-of-savings fee, ever.** An individual might process one very large file;
-  a percentage model would turn that into a surprise bill. Flat pricing exists to make that
-  impossible.
-- Do not advertise "unlimited". No production economics support that promise.
-- Current wording: "Subject to reasonable personal-use and service-capacity limits."
-  Do not invent a specific byte or file-size cap either.
-
-**BUSINESS / ENTERPRISE** - value-based licensing.
-
-- ByteLite receives **50% of verified qualifying savings**. The customer retains the other 50%.
-- No verified qualifying saving means no savings-share fee attributable to that saving.
-- The 50/50 split is of the **savings**, not of the customer's costs. It is never
-  "costs fall by half".
-
-**No worked economic example. Removed 2026-08-26, permanently.**
-
-This section used to carry a $1,000 -> $100 -> 50/50 chain, and `src/data/bytelite.ts` used to
-export `SAVINGS_EXAMPLE` and `BALANCE_EXAMPLE` (a $42.18 balance, a $25.00 minimum, a $100.00
-auto-reload, an $18.40 settlement). Every one of those numbers was invented. Labelling them a
-target kept them technically honest, but an invented number laid out like an invoice still reads
-to a visitor as something ByteLite already did for somebody.
-
-**Never put a currency figure on a public page that did not come from a measured result.** The
-model is fully expressible in words - 50% of verified qualifying savings, and no verified saving
-means no fee - and words cannot be mistaken for an operational account.
-
-The only prices that may appear are `PERSONAL_PLAN`'s `$9.99` / `$99.99`, because those are
-decided public prices rather than modelled outcomes.
-
-**FOUNDER PRICING.** The founder benefit is exactly two things and they are never combined:
-
-- **10% lower founder price**
-- **10% additional qualifying entitlement**
-
-They are not "20% off". One is a discount on money; the other is more of whatever the product
-meters. Adding them is arithmetic on two different units.
-
-**Nothing in this repository computes a founder price.** 10% off `$9.99` is `$8.991`, and Stripe
-prices are integer minor units. Rounding that is a commercial decision with a legal consequence,
-so the rounded figure lives in an owner-approved Stripe Price object and reaches the code only as
-an ID in an environment variable. Never write `* 0.9` anywhere.
-
-**The meaning of the additional 10% is undefined and must stay undefined until the owner sets
-it.** No page may invent a unit for it. `src/data/commerce.ts` says so in
-`FOUNDER_ENTITLEMENT_UNDEFINED_NOTE`; import that rather than paraphrasing it.
+- No price appears on any public page (tested). The previously published personal prices are
+  withheld pending owner confirmation, because no working product exists to price.
+- Proposed business model, in words only: 50% of verified qualifying savings to ByteLite LLC, 50%
+  retained by the customer; no verified saving means no fee for that saving. It is a split of
+  measured savings, never "costs fall by half".
+- Never put a currency figure on a public page that did not come from a measured result or an
+  owner-approved price.
+- The founder benefit is exactly two things, never combined: **10% lower founder price** and
+  **10% additional qualifying entitlement**. Nothing in this repository computes a founder price.
+  The meaning of the additional 10% stays undefined until the owner sets it
+  (`FOUNDER_ENTITLEMENT_UNDEFINED_NOTE`).
+- Nothing on this site offers or solicits an investment or a security.
 
 ---
 
@@ -300,6 +200,8 @@ Absolute rules:
     produces confident nonsense - a "working" 200 that never touched the build, or a "broken"
     site that is perfectly fine.
 11. **Never restore the superseded Vercel path.** See below.
+12. **Confirm the deployment topology before every push to `main`.** Check which project and
+    account hold the custom domains and which projects build from this repository.
 
 **The superseded path - historical fact, never current.** Until 2026-08-25, `www.thebytelite.com`
 was served by a project under a different Vercel account (`Tash Broadwater's projects`). It ran
@@ -375,7 +277,7 @@ API by accident.
 | The mailbox received it | Someone looked in the destination inbox and saw it |
 
 Closed on 2026-08-25 against `https://www.thebytelite.com` at commit `0e5ffab`, all three
-parts separately: `qa/contact-verification-2026-08-25.md`. Mail path is SendGrid ->
+parts separately (record kept privately by the owner). Mail path is SendGrid ->
 `tash@thebytelite.com` -> Cloudflare Email Routing -> the owner's mailbox. A future agent that
 re-verifies this must confirm the third part by inspection, never by inferring it from the
 first two.
@@ -418,68 +320,35 @@ Rules:
 
 ## 10. CANONICAL DATA LAW
 
-Four modules under `src/data/` are the single source of truth for anything the site asserts.
-Never restate one of these facts inline in a page - import it, so it cannot drift.
+Modules under `src/data/` are the single source of truth for anything the site asserts. Never
+restate one of these facts inline in a page - import it, so it cannot drift.
 
-| Module | Owns | Never hardcode in a page |
-|---|---|---|
-| `src/data/projects.ts` | Every project's status, capabilities, validation statements, availability, routes | Technology/project counts (`TECHNOLOGY_COUNT_WORD`, `PUBLIC_PROJECT_COUNT_WORD`), status labels, validation prose |
-| `src/data/company.ts` | Company identity and dates | "Founded" years - `RESEARCH_BEGAN_YEAR` (2024, when the work began) and `LEGAL_FORMATION_YEAR` (2025, the LLC) are **not interchangeable** and must never collapse into one "founded" year |
-| `src/data/research.ts` | Research publication metadata, the canonical progression figure, the maturity table, evidence vocabulary, bibliography, disclosure language | Research route paths (`RESEARCH_ROUTES`), disclosure-boundary wording, publication date/version |
-| `src/data/bytelite.ts` | The public ByteLite surface: the two-line law, the validation ladder and current rung, the enwik9 state, the licensing/billing figures, the illustrative-only labels | Stage states and labels, savings-split numbers, "Illustrative only" wording, prices |
+| Module | Owns |
+|---|---|
+| `src/data/company.ts` | Company identity and dates. `RESEARCH_BEGAN_YEAR` (2024) and `LEGAL_FORMATION_YEAR` (2025) are never collapsed into one "founded" year |
+| `src/data/evidence-status.ts` | The status vocabulary and its definitions |
+| `src/data/milestones.ts` | Every public milestone and the update policy |
+| `src/data/research-programs.ts` | The published research programs |
+| `src/data/products.ts` | Consumer product names, availability and what does and does not exist |
+| `src/data/commerce.ts` | Founder cards, founder benefits, Supporter Pack disclosure, build-time commerce phase |
+| `src/data/bytelite.ts` | Data representation objective, counting-limit statement, principles and boundaries |
+| `src/data/ai-approaches.ts` | The mainstream-AI comparison and its external sources |
+| `src/data/navigation.ts` | Header and footer navigation |
 
-`ProjectRecord.validation` is a list of `ValidationStatement`s, each tagged `evidence` or
-`limitation` via the `evidence()` / `limitation()` helpers. `/progress/validation-evidence`
-regroups them into a public ledger - it never filters, so a negative finding cannot be dropped
-by adding a statement in the wrong place.
-
-**Public evidence rule**: commit ids stay (they anchor a result to a state of the work); local
-paths, drive letters, build locations, and branch plumbing do not. Translate a branch
-discrepancy into its evidentiary meaning ("integration parity has not been qualified") rather
-than describing the repository layout.
+**Public evidence rule:** no commit ids, local paths, drive letters, hostnames, build locations or
+branch names appear on a public page.
 
 ---
 
-## 11. TEACHING DIAGRAMS
+## 11. DIAGRAMS AND IMAGES
 
-**Teaching diagrams** live in `src/components/bytelite/` and are pure CSS/HTML - no images, so
-they survive zoom, reflow, and a screen reader. That has not changed and must not: a diagram whose
-meaning lives only in pixels is unreadable at 320px and invisible to a screen reader.
+Diagrams are HTML components in `src/components/site/`, wrapped in `ClassifiedFigure`, so their
+meaning survives zoom, reflow and screen readers and every one carries its classification.
 
-**Brand and marketing graphics are a separate category, added 2026-08-26.** The nine approved
-IP-safe PNGs in `public/bytelite/` may appear in primary page content, under one rule that is not
-negotiable:
-
-> **The image may never be the only carrier of its meaning.** Every graphic that contains words
-> must sit beside real semantic HTML saying the same thing - a list, a table, or prose. The image
-> is reinforcement.
-
-The reason is measured, not stylistic: these renders are 1672px wide and their sub-labels land at
-roughly 5px inside a 320px viewport. At that size the text is gone. The HTML beside it is what a
-phone, a zoomed browser and a screen reader actually read.
-
-Every such image also carries intrinsic `width` and `height` (so the box is reserved and nothing
-shifts), `height: auto` (so nothing stretches), and `loading="lazy"` unless it is the homepage
-hero - which is `eager` with `fetchpriority="high"`, because lazy-loading the largest element on
-the first screen delays the LCP rather than helping it.
-
-`milestone-timeline.png` is **not published**. See section 16.
-
-No safe real screenshot of the development tooling exists in this repository; do not fabricate
-one, and do not publish an unsanitised capture.
-
-| Diagram | Teaches |
-|---|---|
-| `ByteLiteFlow` | The target: source -> self-contained representation -> exact original |
-| `CurrentStatusBox` | Currently / still required, both columns always |
-| `CurrentVsFinal` | Development proof scaffold vs the self-contained final artifact |
-| `ExactRoundtrip` | `hash(original) = hash(reconstructed)`, no partial credit |
-| `ByteAccounting` | Any compression claim rests on the complete artifact |
-| `ReductionGate` | Claim discipline - what may be claimed today |
-| `DevelopmentRoadmap` | Eleven gates, exactly one current position |
-| `WhatItIsNot` | The boundary, never the replacement mechanism |
-| `ValidationDashboard` | Ten categories, ByteLite only, state written in words |
-| `SavingsSplit` / `BalanceAutoReload` | Planned economics, labelled illustrative |
+Only images the site actually requests are kept in `public/`. Product images are concept
+renderings and are labelled as such; there is no product photography because nothing has been
+manufactured. Every image has alt text and intrinsic width and height. No screenshot of internal
+tooling is published.
 
 ---
 
@@ -501,7 +370,7 @@ Delete code or config only when ALL of these hold:
 5. It is not required for legal disclosure.
 6. It is clearly superseded.
 
-If uncertain: keep it and record it as UNKNOWN in OWNER_README.md section 16.
+If uncertain: keep it and record it as UNKNOWN in the owner's private operations notes section 16.
 
 Edit files in place. Do not rename source files. Do not add new source files unless asked.
 
@@ -509,12 +378,11 @@ Edit files in place. Do not rename source files. Do not add new source files unl
 
 ## 13. IMPORTANT CONTEXT
 
-- Patent US 63/807,027 (pending).
-- Founder: Tash Broadwater, Helena MT.
-- **Multi-Version System: NOT IMPLEMENTED.** Ignore legacy documentation mentioning
-  "Commercial / Lighthouse / Strategic" versions. This is a single unified website.
-- Research pages state hypotheses; they must never state capability. Anything that exists
-  belongs in `projects.ts` and is surfaced through Current Status and Validation Evidence.
+- Founder: Tash Broadwater, Helena MT. Solo-founder LLC.
+- Patent and trademark status is not stated anywhere on the site. Any such statement requires
+  owner and legal approval first.
+- Research pages state objectives and evidence; they never state capability beyond the
+  milestone record.
 
 ---
 
@@ -580,13 +448,13 @@ error path, or a report. Report finding *types* and locations. A caught fetch er
 ---
 
 **Operational detail, service-by-service troubleshooting, deployment commands, recovery
-procedure, and the current open blockers live in `OWNER_README.md`.**
+procedure, and the current open blockers live in `the owner's private operations notes`.**
 
 Last reviewed against reality: 2026-08-25, against commit `8ea2de6` serving production
 (deployment `dpl_8SvCeGwcFguaxy1aMmQD2bGDPi7T`).
 
 The custom-domain cutover is closed and contact delivery is proven to the mailbox; the runtime
-evidence is `qa/contact-verification-2026-08-25.md`, taken against `https://www.thebytelite.com`
+evidence is kept privately by the owner, taken against `https://www.thebytelite.com`
 serving commit `0e5ffab`. A security and dependency hardening pass followed
 (`2c348d6..5a73c76`): all seven security headers are now served from `vercel.json`, the contact
 route requires `application/json` and bounds its provider call, and the rate-limit key no longer
@@ -596,13 +464,23 @@ Verified live at `8ea2de6`: 200 on `www`, 308 from the apex, 404 on the deleted 
 `GET /api/contact`, 415 on a non-JSON POST, 400 on an invalid JSON POST.
 
 **WEBSITE_ACTIVE_DEVELOPMENT=REOPENED 2026-08-26** for the owner-authorised canon rebuild
-(Cordel public scope, founder voice, IP-safe graphics, Stripe test-mode commerce). The freeze in
-`reports/WEBSITE_AUTHORITATIVE_HANDOFF.md` is superseded for this work only; everything that
+(Cordel public scope, founder voice, IP-safe graphics, Stripe test-mode commerce). The freeze in the
+earlier handoff record is superseded for this work only; everything that
 document says about DNS, hosting, the superseded Vercel path and contact delivery stands.
 
 ---
 
 ## 15. COMMERCE LAW
+
+**Live financial transactions require owner authorization in code.** `LIVE_FINANCIAL_TRANSACTIONS_OWNER_AUTHORIZED`
+in `api/_lib/commerce-core.ts` is `false`. While it is false, the `live` phase refuses every plan and no live
+Stripe key is accepted in any phase. Changing it is a reviewed code change made only on the owner's explicit
+written authorization; no environment variable can substitute for it.
+
+**A Stripe key must match its phase.** `getStripe()` refuses to construct a client unless
+`stripeKeyPermittedForPhase()` allows the phase and key mode: no Stripe use while `disabled`; `test` and
+`reservation` accept test keys only; `live` accepts a live key only with the code authorization above; an
+unrecognised key shape is always refused. Checkout, session lookup and the webhook all go through `getStripe()`.
 
 Added 2026-08-26. Stripe is the payment processor. Everything below is enforced in
 `api/_lib/commerce-core.ts` and its tests.
@@ -670,34 +548,25 @@ the claim state changes - not before. It is not in this repository at all: the f
 history and in the source refresh package. **The website repository is not an asset archive** -
 do not park unpublished artwork here, inside `public/` or beside it.
 
-**Published images are WebP, and PNG masters do not ship.** The nine published graphics are served
-from `public/bytelite/*.webp` at 1400px wide - 928 KB in total, down from 14.6 MB of PNG. Re-encode
-with `sharp` at `quality: 90, effort: 6`; below that, the fine label text in these diagrams smears
-before anything else does. Verify labels are still readable after any re-encode. Keep the `width`
-and `height` attributes matching the real intrinsic size (1400x788), not the original master.
-
-**`public/` is a published surface, and a URL is public whether or not a page links to it.** On
-2026-08-29, 35 unreferenced image files whose *filenames* contained a retired system name (`aiya`,
-`aion`, `bytesight`, `deep-kore`, ...) were still being served at enumerable URLs.
-
-**`public/` now contains only what the built site actually requests.** That is 13 images plus
-`favicon.svg`, `robots.txt` and `site.webmanifest` - 1.28 MB of images, down from 26.97 MB. The
-deleted material (Cordel screenshots and renders, tier cards, brand copies, unused fonts, the
-unrelated `preview/tacodelsol` client site, `browserconfig.xml` and its missing tile image) lives
-in git history and in the canonical Cordel project; the website repository does not archive it.
-
+**`public/` is a published surface, and a URL is public whether or not a page links to it.**
+It contains only what the built site requests: the logo and its two small marks, the social
+preview image, two Cordel Play concept renderings, `robots.txt` and `site.webmanifest`. The
+2026-10-20 rewrite removed the earlier brand graphics because their baked-in text no longer
+matched the evidence; they remain in git history. `tests/unit/public-build-disclosure.test.ts`
+fails if an unrequested top-level file is published.
 Before adding a file to `public/`, ask whether a page requests it. If not, it does not belong here.
 
 Open decisions that block activation, and which no agent may resolve by assumption:
 
 - the rounded founder monthly and annual prices for ByteLite;
-- the public monthly and annual prices for Cordel Connect;
+- the public monthly and annual prices for the compatibility application, and its public name;
 - what "10% additional qualifying entitlement" is measured in, per product;
 - whether founder reservations collect a payment method or contact details only;
 - Cordel Play's price, shipment estimate, refund and delay-consent processes;
 - the Supporter Pack's reward files and minimum amount;
 - tax registrations and whether `STRIPE_AUTOMATIC_TAX_ENABLED` may become `true`;
 - final legal approval of the drafts on `/preorder-terms` and `/supporter-terms`;
-- the move from Stripe test mode to live mode.
+- the move from Stripe test mode to live mode;
+- confirmation of the personal subscription prices before any price is shown again.
 
 Until each is closed, the affected control stays disabled at the server, not merely hidden.

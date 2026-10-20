@@ -1,167 +1,87 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { CORDEL_PLAY } from '../data/projects';
+import PageIntro from '../components/site/PageIntro.astro';
+import ClassifiedFigure from '../components/site/ClassifiedFigure.astro';
+import { consumerProduct, PRODUCT_AVAILABILITY_LABEL } from '../data/products';
+import { COMPANY_NAME } from '../data/company';
 
-// Every fact on this page comes from the canonical project record. Nothing about components,
-// contents, price, shipping or availability is written inline, so this page cannot drift away
-// from what the company actually claims elsewhere.
-const record = CORDEL_PLAY;
+const product = consumerProduct('party-game');
 ---
 
 <Layout
-  title="Cordel Play | ByteLite LLC"
-  description="Cordel Play is a consent-first adult board game from ByteLite LLC. Product design is complete; manufacturing is in preparation. No retail release date has been announced."
-  keywords="Cordel Play, adult board game, consent-first, ByteLite LLC"
-  canonical="https://www.thebytelite.com/cordel-play/"
+  title={`${product.displayName} | ${COMPANY_NAME}`}
+  description={`${product.displayName} is a consent-first adult board game from ${COMPANY_NAME}, at prototype stage. It has not been manufactured, and no price, shipping date or preorder exists.`}
+  path="/cordel-play"
 >
-  <Header slot="header" />
+  <PageIntro eyebrow={`${product.category} · 18+`} heading={product.displayName} lede={product.oneLine}>
+    <p class="audience-notice">This is an adult product, intended for people aged 18 or over.</p>
+    <p><span class="status-badge tone-neutral">{PRODUCT_AVAILABILITY_LABEL[product.availability]}</span></p>
+  </PageIntro>
 
-  <section class="page-hero">
-    <div class="container narrow">
-      <p class="eyebrow">Product &middot; 18+</p>
-      <h1>Cordel Play</h1>
-      <p class="hero-sub">{record.shortDescription}</p>
-      <p class="age-gate">
-        This is an adult product. It is intended for people aged 18 or over.
-      </p>
-    </div>
-  </section>
-
-  <!-- Design renders of finished component designs, deliberately labelled as such. There is no
-       photography of a manufactured unit, because nothing has been manufactured - presenting a
-       render as a product photo would be exactly the fabricated finished-product claim this site
-       exists to avoid. The board render is NOT published: it carries a nude line figure, and this
-       page is publicly indexed and reached from a company site whose other audience is enterprise
-       licensing. The components below say what the game is without it. -->
-  <section class="section-sm">
-    <div class="container narrow">
-      <figure class="fig">
-        <img
-          src="/cordel/cordel-play-tier-deck-backs-final.webp"
-          alt="The seven Cordel Play card backs, left to right: Initiate, Connect, Seduce, Stimulate, Edge, Climax and Decree."
-          width="1400" height="268" loading="lazy" decoding="async"
-        />
-        <figcaption>Six escalation tiers plus the Decree deck. Players choose how far the evening goes.</figcaption>
-      </figure>
-
-      <figure class="fig fig-narrow">
-        <img
-          src="/cordel/cordel-play-consent-cup-final.webp"
-          alt="The Cordel Play Consent Cup: a black lidded cup with a viewing dome, shown next to a cutaway view of the tokens inside."
-          width="1000" height="750" loading="lazy" decoding="async"
-        />
-        <figcaption>The Consent Cup. Consent is a physical component of the game, not a rule someone has to remember.</figcaption>
-      </figure>
-
-      <p class="render-note">
-        These are renders of the finished component designs. Nothing has been manufactured yet, so
-        there is no photography of a real unit to show you.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container narrow">
-      <h2>What it is.</h2>
-      <p class="body">{record.mission}</p>
-
-      <h2 class="mt">Where it actually is.</h2>
-      <dl class="facts">
-        <div><dt>Status</dt><dd>{record.status}</dd></div>
-        <div><dt>Availability</dt><dd>{record.availability}</dd></div>
-        <div><dt>Next milestone</dt><dd>{record.nextMilestone}</dd></div>
-        <div><dt>Validation focus</dt><dd>{record.validationFocus}</dd></div>
-      </dl>
-
-      <h3 class="mt">Done</h3>
-      <ul class="list">
-        {record.currentCapabilities.map((c) => <li>{c.label}</li>)}
-      </ul>
-
-      <h3 class="mt">Not done</h3>
-      <ul class="list list-open">
-        {record.inDevelopment.map((c) => <li>{c}</li>)}
-      </ul>
-
-      <h2 class="mt">The honest limitations.</h2>
-      <ul class="list list-limit">
-        {record.validation.map((v) => <li>{v.text}</li>)}
-      </ul>
-    </div>
-  </section>
-
-  <!-- The commercial rule that governs this product. It is a legal constraint, not a preference,
-       so it is stated on the product page and not buried in terms. -->
-  <section class="section section-alt">
-    <div class="container narrow">
-      <h2>Why you cannot buy it here.</h2>
-      <p class="body">
-        Cordel Play is a physical product in a box. It is not a subscription and will never be sold
-        as one.
-      </p>
-      <p class="body">
-        I am not taking paid preorders for it. Under the FTC Mail, Internet, or Telephone Order
-        Merchandise Rule, taking your money means committing to ship within a stated time, or
-        within 30 days if no time is stated, and having a real process for getting your consent or
-        refunding you when that slips. There is no approved shipment date, no approved price and no
-        approved refund process yet, so there is nothing here I could honestly charge you for.
-      </p>
-      <p class="body">
-        You can register interest without paying anything. That records that you want it and locks
-        the founder benefit. It stores no payment method and takes no money.
-      </p>
-      <div class="cta-row">
-        <a href="/founder-access" class="btn btn-primary">Register interest &mdash; no charge</a>
-        <a href="/contact" class="btn btn-outline">Ask me about it</a>
+  <section class="section" aria-labelledby="components-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <h2 id="components-heading">Component designs.</h2>
+        <p class="lede">
+          These images are renderings of component designs. Nothing has been manufactured, so there
+          is no photograph of a real unit.
+        </p>
+      </div>
+      <div class="figures">
+        <ClassifiedFigure classification="Product concept rendering" caption="Card deck backs for six escalation tiers and a Decree deck. Players choose how far the evening goes.">
+          <img
+            src="/cordel/cordel-play-tier-deck-backs-final.webp"
+            alt="Seven card backs, left to right: Initiate, Connect, Seduce, Stimulate, Edge, Climax and Decree."
+            width="1400" height="268" loading="lazy" decoding="async"
+          />
+        </ClassifiedFigure>
+        <div class="consent-cup-figure"><ClassifiedFigure classification="Product concept rendering" caption="The consent cup: consent as a physical component of the game rather than a rule to remember.">
+          <img
+            src="/cordel/cordel-play-consent-cup-final.webp"
+            alt="A black lidded cup with a viewing dome, shown beside a cutaway view of the tokens inside."
+            width="1000" height="750" loading="lazy" decoding="async"
+            class="consent-cup"
+          />
+        </ClassifiedFigure></div>
       </div>
     </div>
   </section>
 
-  <Footer slot="footer" />
+  <section class="section section-sunken" aria-labelledby="status-heading">
+    <div class="wrap split">
+      <div class="prose">
+        <h2 id="status-heading">Where it stands.</h2>
+        <p>{product.availabilityDetail}</p>
+        <h3>Exists today</h3>
+        <ul class="fact-list fact-list-yes">{product.whatExistsToday.map((item) => <li>{item}</li>)}</ul>
+        <h3>Does not exist yet</h3>
+        <ul class="fact-list fact-list-no">{product.whatDoesNotExist.map((item) => <li>{item}</li>)}</ul>
+      </div>
+      <div class="prose">
+        <h2>Why it cannot be bought here.</h2>
+        <p>
+          {product.displayName} is planned as a physical product in a box. It is not a subscription and
+          will not be sold as one.
+        </p>
+        <p>
+          {COMPANY_NAME} is not taking paid preorders. Under the United States Federal Trade
+          Commission's Mail, Internet, or Telephone Order Merchandise Rule, a seller that takes payment
+          must have a reasonable basis to ship within the stated time, or within 30 days if no time is
+          stated, and must have a process for obtaining consent to delays or issuing refunds. No shipping date, price or
+          refund process has been approved, so nothing can honestly be charged.
+        </p>
+        <div class="button-row">
+          <a class="button button-secondary" href="/founder-access">Founder access status</a>
+          <a class="button button-secondary" href="/contact">Ask about it</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <style>
-.narrow { max-width: 780px; }
-.page-hero { padding: 3.5rem 0 2rem; }
-.hero-sub { max-width: 640px; font-size: 1.0625rem; margin-top: 1rem; color: #a0a8c0; line-height: 1.8; }
-.age-gate {
-  display: inline-block; margin-top: 1.25rem;
-  font-size: .8125rem; font-weight: 600;
-  color: #fbbf24; background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.3);
-  border-radius: .5rem; padding: .5rem .875rem;
-}
-.fig { margin: 0 0 2rem; }
-.fig img {
-  display: block; width: 100%; height: auto;
-  border: 1px solid #1a2235; border-radius: .75rem; background: #0d1120;
-}
-.fig-narrow { max-width: 520px; }
-.fig figcaption { margin-top: .75rem; font-size: .875rem; color: #7b829e; line-height: 1.6; }
-.render-note {
-  font-size: .8125rem; color: #7b829e; line-height: 1.7; margin: 0;
-  border-left: 3px solid #fbbf24; padding-left: .875rem;
-}
-h2 { margin-bottom: .75rem; }
-h3 { font-size: 1rem; color: #e4e7f2; margin-bottom: .625rem; }
-.mt { margin-top: 2.5rem; }
-.body { font-size: 1rem; color: #a0a8c0; line-height: 1.8; margin-top: 1rem; }
-.facts {
-  margin: 1.25rem 0 0; padding: 1.5rem;
-  background: #0d1120; border: 1px solid #1a2235; border-radius: .75rem;
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 2rem;
-}
-@media (max-width: 560px) { .facts { grid-template-columns: 1fr; } }
-.facts dt { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #555e7a; }
-.facts dd { margin: .2rem 0 0; font-size: .9375rem; color: #e4e7f2; }
-.list { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
-.list li {
-  font-size: .9375rem; color: #a0a8c0; line-height: 1.65;
-  padding: .625rem .875rem; background: #0d1120;
-  border: 1px solid #1a2235; border-left: 3px solid #34d399; border-radius: .5rem;
-}
-.list-open li { border-left-color: #fbbf24; }
-.list-limit li { border-left-color: #f472b6; }
-.cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.75rem; }
+  .audience-notice { font-weight: 700; color: var(--color-ink); }
+  .figures { display: grid; gap: var(--space-6); }
+  .consent-cup { max-width: 100%; margin-inline: auto; }
+  .consent-cup-figure { max-width: 36rem; }
 </style>
