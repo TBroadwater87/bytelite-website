@@ -186,7 +186,7 @@ main:focus { outline: none; }
   --color-line: #2a2f3a; --color-line-strong: #454c5a; --color-surface: #161a22; --color-canvas: #0c0f15;
   --color-accent: #8fb3ff; --color-accent-hover: #b8ceff; --color-accent-ink: #0c0f15; --color-focus: #8fb3ff;
   --tone-tested-ink: #8ee0ad; --tone-caution-ink: #ffaba0;
-  background: radial-gradient(120% 140% at 85% 0%, #1b2a4d 0%, #0c0f15 55%); color: var(--color-ink);
+  background-color: #0c0f15; background-image: radial-gradient(120% 140% at 85% 0%, #1b2a4d 0%, #0c0f15 55%); color: var(--color-ink);
 }
 .band-dark .button-secondary { background: transparent; color: var(--color-ink); border-color: var(--color-line-strong); }
 

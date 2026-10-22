@@ -121,14 +121,18 @@ test.describe('Contrast and focus', () => {
           const darker = Math.min(luminance(foreground), luminance(background));
           return (lighter + 0.05) / (darker + 0.05);
         }
-        const canvas = getComputedStyle(document.body).backgroundColor;
-        const selectors = ['p', '.small-print', '.eyebrow', '.status-badge', 'a', '.milestone-label'];
+        function paintedBackground(element: Element): string {
+          for (let ancestor: Element | null = element; ancestor; ancestor = ancestor.parentElement) {
+            const backgroundColor = getComputedStyle(ancestor).backgroundColor;
+            if (backgroundColor !== 'rgba(0, 0, 0, 0)' && backgroundColor !== 'transparent') return backgroundColor;
+          }
+          return 'rgb(255, 255, 255)';
+        }
+        const selectors = ['p', '.small-print', '.eyebrow', '.status-badge', 'a', '.milestone-label', 'main p', '.milestone p', '.stage-name'];
         return selectors.map((selector) => {
           const element = document.querySelector(selector);
           if (!element) return { selector, ratio: 99 };
-          const style = getComputedStyle(element);
-          const background = style.backgroundColor === 'rgba(0, 0, 0, 0)' ? canvas : style.backgroundColor;
-          return { selector, ratio: contrast(style.color, background) };
+          return { selector, ratio: contrast(getComputedStyle(element).color, paintedBackground(element)) };
         });
       });
       for (const { selector, ratio } of ratios) {
