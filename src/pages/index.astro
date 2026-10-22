@@ -1,238 +1,123 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ProgramCard from '../components/site/ProgramCard.astro';
+import ProofTile from '../components/site/ProofTile.astro';
 import ResearchRelationshipDiagram from '../components/site/ResearchRelationshipDiagram.astro';
-import { RESEARCH_PROGRAMS, researchProgram } from '../data/research-programs';
-import { PUBLIC_MILESTONES, type PublicMilestone } from '../data/milestones';
+import { RESEARCH_PROGRAMS } from '../data/research-programs';
+import { HOME_PAGE_CAPABILITIES } from '../data/established-capabilities';
 import { CONSUMER_PRODUCTS, PRODUCT_AVAILABILITY_LABEL } from '../data/products';
 import { COMPANY_NAME, COMPANY_LOCATION } from '../data/company';
-
-const DEMONSTRATED_STATUSES = new Set(['internally-tested', 'internally-validated', 'independently-verified', 'production-qualified']);
-const IN_PROGRESS_STATUSES = new Set(['implemented-unverified', 'active-development']);
-
-const demonstratedInternally = PUBLIC_MILESTONES.filter((milestone) => DEMONSTRATED_STATUSES.has(milestone.status));
-const inProgress = PUBLIC_MILESTONES.filter((milestone) => IN_PROGRESS_STATUSES.has(milestone.status));
-const notYetDemonstrated = PUBLIC_MILESTONES.filter(
-  (milestone) => !DEMONSTRATED_STATUSES.has(milestone.status) && !IN_PROGRESS_STATUSES.has(milestone.status),
-);
-
-function programName(milestone: PublicMilestone): string {
-  return researchProgram(milestone.programId).name;
-}
-
-const REALITY_COLUMNS = [
-  { heading: 'Demonstrated in internal tests', milestones: demonstratedInternally, listClass: 'fact-list-yes' },
-  { heading: 'Built or being built, not yet verified', milestones: inProgress, listClass: 'fact-list-plain' },
-  { heading: 'Not yet demonstrated', milestones: notYetDemonstrated, listClass: 'fact-list-no' },
-];
-
-const DESIGN_COMMITMENTS = [
-  { title: 'Explicit correctness criteria', body: 'Each program states in advance what a correct result is, so success and failure can be told apart.' },
-  { title: 'Deterministic, accountable computation', body: 'Where determinism applies, the same input and software must give the same result, and every output must be accounted for.' },
-  { title: 'Reproducible evidence', body: 'A result counts when it can be repeated from recorded inputs, not when it looked right once.' },
-  { title: 'Traceable knowledge', body: 'Knowledge carries where it came from, so any conclusion can be traced back to its sources.' },
-  { title: 'Visible uncertainty', body: 'What is not known is reported as unknown rather than filled in with a plausible guess.' },
-  { title: 'Governed behaviour', body: 'Systems act inside explicit constraints that are checked, not merely intended.' },
-];
-
-const COLLABORATION_ROUTES = [
-  { title: 'Independent evaluation', body: 'Proposals to reproduce or test a specific published claim under conditions you control.', href: '/contact?type=validation-partnership' },
-  { title: 'Technology partnerships', body: 'Bounded research collaboration that does not require disclosure of proprietary methods.', href: '/contact?type=technology-partnership' },
-  { title: 'Licensing', body: 'The proposed commercial models. Nothing is available to license today.', href: '/licensing' },
-  { title: 'Business and investor inquiries', body: 'General conversations about the company. This website does not offer or sell securities.', href: '/contact?type=investor' },
-];
 ---
 
 <Layout
-  title="ByteLite LLC | Computing research and development"
-  description="ByteLite LLC is an independent research and development company working on deterministic data representation, governed machine cognition and related products. Each claim states its evidence."
+  title="ByteLite LLC | Exact data, traceable knowledge"
+  description="ByteLite LLC builds computing systems you can check: data that rebuilds byte for byte, and machine cognition designed to answer only from knowledge it can trace. Every result is labelled with its evidence."
   path="/"
 >
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow">{COMPANY_NAME} &middot; Computing research and development</p>
-        <h1>Working toward systems that preserve information, establish what is known, and make uncertainty visible.</h1>
-        <p class="lede">
-          {COMPANY_NAME} is an independent research and development company in {COMPANY_LOCATION}. It
-          works on deterministic data representation, governed machine cognition, and the products
-          built around them. Some foundations work and pass internal tests. The larger systems are
-          still being built, and every page on this site says which is which.
-        </p>
-        <div class="button-row">
-          <a class="button button-primary" href="/research">Explore the research</a>
-          <a class="button button-secondary" href="/research/milestones">See the milestones</a>
-        </div>
+  <section class="hero band-dark">
+    <div class="wrap hero-inner">
+      <p class="eyebrow">{COMPANY_NAME} &middot; Research and development &middot; {COMPANY_LOCATION}</p>
+      <h1>Exact data.<br />Traceable knowledge.<br /><span class="hero-accent">No guessing.</span></h1>
+      <p class="hero-lede">
+        We build computing you can check: data that rebuilds byte for byte, and machine cognition
+        designed to answer only from knowledge it can trace.
+      </p>
+      <div class="button-row">
+        <a class="button button-primary" href="#proven">See what works today</a>
+        <a class="button button-secondary" href="/research/milestones">Track every milestone</a>
       </div>
-      <aside class="hero-status" aria-labelledby="hero-status-heading">
-        <p class="eyebrow" id="hero-status-heading">Where things stand</p>
-        <ul class="fact-list fact-list-plain">
-          <li>All evidence to date is internal. Nothing has been independently verified.</li>
-          <li>No research system is available to the public.</li>
-          <li>No product is on sale, and checkout is switched off.</li>
-        </ul>
-        <a class="text-link" href="/validation">How evidence is classified &rarr;</a>
-      </aside>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="programs-heading">
-    <div class="wrap">
-      <div class="section-heading">
-        <p class="eyebrow">Research programs</p>
-        <h2 id="programs-heading">Three lines of research, at different stages.</h2>
-        <p class="lede">
-          Each program has its own question, its own evidence and its own open problems. None of
-          them is presented as finished.
-        </p>
-      </div>
-      <div class="card-grid">
-        {RESEARCH_PROGRAMS.map((program) => <ProgramCard program={program} />)}
-      </div>
-      <p class="after-grid">
-        Supporting systems and consumer applications are listed separately on the
-        <a href="/products">products page</a>, with their real availability.
+      <p class="hero-status">
+        Evidence to date is internal. Nothing has been independently verified. No product is on sale,
+        and checkout is switched off. <a href="/validation">How we label evidence</a>
       </p>
     </div>
   </section>
 
-  <section class="section section-sunken" aria-labelledby="commitments-heading">
+  <section class="section" id="proven" aria-labelledby="proven-heading">
     <div class="wrap">
       <div class="section-heading">
-        <p class="eyebrow">Approach</p>
-        <h2 id="commitments-heading">What the work is held to.</h2>
-        <p class="lede">
-          These are design commitments. They describe how results are judged. They are not a claim
-          that every system already meets them.
-        </p>
+        <p class="eyebrow">Proven in our labs</p>
+        <h2 id="proven-heading">What works today.</h2>
+        <p class="lede">Measured results from our own automated test runs. Each figure says exactly what it covers.</p>
       </div>
-      <ul class="commitments">
-        {DESIGN_COMMITMENTS.map((commitment) => (
-          <li>
-            <h3>{commitment.title}</h3>
-            <p>{commitment.body}</p>
-          </li>
-        ))}
+      <ul class="proof-grid">
+        {HOME_PAGE_CAPABILITIES.map((capability) => <ProofTile capability={capability} />)}
       </ul>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="reality-heading">
+  <section class="section section-sunken" aria-labelledby="programs-heading">
     <div class="wrap">
       <div class="section-heading">
-        <p class="eyebrow">Current reality</p>
-        <h2 id="reality-heading">What exists today, and what does not.</h2>
-        <p class="lede">
-          Drawn directly from the public milestone record. A milestone moves only when its evidence
-          does.
-        </p>
+        <p class="eyebrow">Research programs</p>
+        <h2 id="programs-heading">Three programs. One standard: prove it.</h2>
       </div>
-      <div class="reality">
-        {REALITY_COLUMNS.map((column) => (
-          <div class="reality-column">
-            <h3>{column.heading}</h3>
-            <ul class={`fact-list ${column.listClass}`}>
-              {column.milestones.map((milestone) => (
-                <li>
-                  <a href={`/research/milestones#${milestone.id}`}>{milestone.title}</a>
-                  <span class="reality-program"> &middot; {programName(milestone)}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+      <div class="summary-grid">
+        {RESEARCH_PROGRAMS.map((program) => <ProgramCard program={program} />)}
       </div>
     </div>
   </section>
 
-  <section class="section section-sunken" aria-labelledby="vision-heading">
+  <section class="section" aria-labelledby="vision-heading">
     <div class="wrap">
       <div class="section-heading">
-        <p class="eyebrow">Long-term direction</p>
-        <h2 id="vision-heading">How the programs are meant to fit together.</h2>
-        <p class="lede">
-          The long-term aim is a set of systems in which information is preserved exactly, sensory
-          information is described in structured forms, conceptual understanding is built from
-          established knowledge, and behaviour stays inside explicit, checkable constraints. Each
-          connection below is an objective, not an existing integration.
-        </p>
+        <p class="eyebrow">Where it is going</p>
+        <h2 id="vision-heading">How the programs fit together.</h2>
       </div>
       <ResearchRelationshipDiagram />
     </div>
   </section>
 
-  <section class="section" aria-labelledby="products-heading">
+  <section class="section section-sunken" aria-labelledby="products-heading">
     <div class="wrap">
-      <div class="section-heading">
-        <p class="eyebrow">Products and applications</p>
-        <h2 id="products-heading">Products are separate from the research.</h2>
-        <p class="lede">None of these products is available today. Each one says exactly what stage it is at.</p>
+      <div class="products-head">
+        <h2 id="products-heading">Products</h2>
+        <a class="text-link" href="/products">All products &rarr;</a>
       </div>
       <ul class="product-list">
         {CONSUMER_PRODUCTS.map((product) => (
-          <li class="product-row">
-            <div>
-              <h3><a href={product.href}>{product.displayName}</a></h3>
-              <p>{product.oneLine}</p>
-            </div>
-            <span class="status-badge tone-neutral">{PRODUCT_AVAILABILITY_LABEL[product.availability]}</span>
+          <li>
+            <a class="product-tile" href={product.href}>
+              <span class="product-name">{product.displayName}</span>
+              <span class="product-line">{product.oneLine}</span>
+              <span class="status-badge tone-neutral">{PRODUCT_AVAILABILITY_LABEL[product.availability]}</span>
+            </a>
           </li>
         ))}
       </ul>
-      <p class="after-grid"><a class="text-link" href="/products">All products and their status &rarr;</a></p>
     </div>
   </section>
 
-  <section class="section section-sunken" aria-labelledby="collaboration-heading">
-    <div class="wrap">
-      <div class="section-heading">
-        <p class="eyebrow">Validation and collaboration</p>
-        <h2 id="collaboration-heading">Ways to work with {COMPANY_NAME}.</h2>
-        <p class="lede">
-          Evidence that falsifies a statement on this site is as welcome as evidence that supports
-          it.
-        </p>
-      </div>
-      <div class="card-grid">
-        {COLLABORATION_ROUTES.map((route) => (
-          <a class="route-card" href={route.href}>
-            <span class="route-title">{route.title}</span>
-            <span class="route-body">{route.body}</span>
-          </a>
-        ))}
+  <section class="section band-dark cta" aria-labelledby="cta-heading">
+    <div class="wrap cta-inner">
+      <h2 id="cta-heading">Test our claims.</h2>
+      <p>Independent evaluators, research partners and licensees: pick a result and check it under your own conditions.</p>
+      <div class="button-row">
+        <a class="button button-primary" href="/contact?type=validation-partnership">Propose an evaluation</a>
+        <a class="button button-secondary" href="/licensing">Licensing and partnerships</a>
       </div>
     </div>
   </section>
 </Layout>
 
 <style>
-  .hero { padding-block: var(--space-9) var(--space-8); border-bottom: 1px solid var(--color-line); }
-  .hero-grid { display: grid; gap: var(--space-7); align-items: end; }
-  @media (min-width: 64rem) { .hero-grid { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); } }
-  .hero-copy { display: grid; gap: var(--space-5); }
-  .hero-copy h1 { max-width: 26ch; }
-  .hero-status { display: grid; gap: var(--space-3); padding: var(--space-5); border: 1px solid var(--color-line); border-radius: var(--radius-lg); background: var(--color-surface); }
-  @media (max-width: 47.99rem) { .hero { padding-block: var(--space-7) var(--space-6); } }
+  .hero { padding-block: var(--space-9) var(--space-7); }
+  .hero-inner { display: grid; gap: var(--space-5); }
+  .hero h1 { font-size: clamp(2.5rem, 1.6rem + 4.5vw, 5rem); line-height: 1.02; letter-spacing: -0.035em; max-width: 16ch; }
+  .hero-accent { color: var(--color-accent); }
+  .hero-lede { font-size: var(--text-lg); max-width: 40rem; color: var(--color-ink-muted); }
+  .hero-status { margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--color-line); font-size: var(--text-sm); color: var(--color-ink-subtle); max-width: 48rem; }
+  .hero-status a { font-weight: 600; }
+  @media (max-width: 47.99rem) { .hero { padding-block: var(--space-8) var(--space-6); } }
 
-  .after-grid { margin-top: var(--space-5); }
+  .products-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4); margin-bottom: var(--space-5); }
+  .product-list { list-style: none; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); }
+  .product-tile { height: 100%; display: grid; gap: var(--space-2); align-content: start; justify-items: start; padding: var(--space-5); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-lg); text-decoration: none; }
+  .product-tile:hover { border-color: var(--color-ink); }
+  .product-name { font-weight: 700; font-size: var(--text-lg); color: var(--color-ink); }
+  .product-line { font-size: var(--text-sm); color: var(--color-ink-muted); }
 
-  .commitments { list-style: none; display: grid; gap: var(--space-5) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
-  .commitments li { display: grid; gap: var(--space-2); align-content: start; padding-top: var(--space-4); border-top: 2px solid var(--color-ink); }
-  .commitments h3 { font-size: var(--text-base); }
-
-  .reality { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
-  .reality-column { display: grid; gap: var(--space-3); align-content: start; padding: var(--space-5); border: 1px solid var(--color-line); border-radius: var(--radius-lg); background: var(--color-surface); }
-  .reality-column h3 { font-size: var(--text-base); }
-  .reality-column a { color: var(--color-ink); }
-  .reality-program { color: var(--color-ink-subtle); font-size: var(--text-sm); }
-
-  .product-list { list-style: none; display: grid; border-top: 1px solid var(--color-line); }
-  .product-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-3) var(--space-5); padding-block: var(--space-4); border-bottom: 1px solid var(--color-line); }
-  .product-row h3 { font-size: var(--text-base); }
-  .product-row h3 a { color: var(--color-ink); }
-
-  .route-card { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-5); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-lg); text-decoration: none; }
-  .route-card:hover { border-color: var(--color-ink); }
-  .route-title { font-weight: 600; color: var(--color-ink); }
-  .route-body { color: var(--color-ink-muted); font-size: var(--text-sm); }
+  .cta { border-top: 0 !important; }
+  .cta-inner { display: grid; gap: var(--space-4); justify-items: start; }
+  .cta-inner p { max-width: 40rem; font-size: var(--text-md); }
 </style>

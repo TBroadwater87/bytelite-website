@@ -43,7 +43,10 @@ test.describe('Images', () => {
   test('every image loads and keeps its aspect ratio', async ({ page }) => {
     for (const route of ['/', '/cordel-play']) {
       await page.goto(route);
-      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      for (const image of await page.locator('img').all()) {
+        await image.scrollIntoViewIfNeeded();
+        await image.evaluate((element) => (element as HTMLImageElement).decode().catch(() => undefined));
+      }
       await page.waitForLoadState('networkidle');
       const problems = await page.locator('img').evaluateAll((elements) =>
         elements

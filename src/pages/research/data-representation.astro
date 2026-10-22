@@ -1,101 +1,56 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageIntro from '../../components/site/PageIntro.astro';
-import MilestoneCard from '../../components/site/MilestoneCard.astro';
+import MilestoneSummary from '../../components/site/MilestoneSummary.astro';
+import ProofTile from '../../components/site/ProofTile.astro';
 import ClassifiedFigure from '../../components/site/ClassifiedFigure.astro';
 import { milestonesFor } from '../../data/milestones';
-import {
-  DATA_REPRESENTATION_OBJECTIVE,
-  COUNTING_LIMIT_STATEMENT,
-  DETERMINISM_STATEMENT,
-  CURRENT_REDUCTION_STATUS,
-  REPRESENTATION_PRINCIPLES,
-  WHAT_IT_IS_NOT,
-  PROPRIETARY_METHODS_STATEMENT,
-} from '../../data/bytelite';
+import { researchProgram } from '../../data/research-programs';
+import { establishedCapabilitiesFor } from '../../data/established-capabilities';
+import { COUNTING_LIMIT_STATEMENT, DETERMINISM_STATEMENT, CURRENT_REDUCTION_STATUS } from '../../data/bytelite';
 import { COMPANY_NAME } from '../../data/company';
 
+const program = researchProgram('data-representation');
 const representationMilestones = milestonesFor('data-representation');
+const provenCapabilities = establishedCapabilitiesFor('data-representation');
 
 const ACCEPTANCE_STEPS = [
-  { title: 'Declared input', body: 'The input and its size are recorded before anything runs.' },
-  { title: 'Complete representation', body: 'Everything needed to rebuild the input is counted, with nothing held outside.' },
-  { title: 'Exact rebuild', body: 'The rebuilt data is compared with the original byte for byte.' },
-  { title: 'Reported result', body: 'Size is reported only when the rebuild is exact, and only for that input.' },
+  { title: 'Declare', body: 'Record the input and its size before anything runs.' },
+  { title: 'Represent', body: 'Count everything needed to rebuild it. Nothing held outside.' },
+  { title: 'Rebuild', body: 'Decode and compare with the original, byte for byte.' },
+  { title: 'Report', body: 'Publish a size only if the rebuild was exact.' },
 ];
 ---
 
 <Layout
   title={`Data Representation Research | ${COMPANY_NAME}`}
-  description="ByteLite LLC data representation research: deterministic, lossless representation aiming at exact reconstruction and complete accounting. Net size reduction has not been demonstrated."
+  description="ByteLite LLC data representation research: deterministic, lossless representation with byte-exact reconstruction. Every one of 4,515 test encodings rebuilt exactly. Net size reduction has not been demonstrated."
   path="/research/data-representation"
 >
-  <PageIntro
-    eyebrow="Research program"
-    heading="Deterministic, lossless data representation."
-    lede="The original ByteLite research program. It asks whether data can be represented deterministically, rebuilt exactly, accounted for completely, and made smaller where the data allows it."
-  />
+  <PageIntro eyebrow="Research program" heading="Exact, deterministic data representation." lede={program.pitch} />
 
-  <section class="section" aria-labelledby="objective-heading">
-    <div class="wrap split">
-      <div class="prose">
-        <p class="eyebrow">The objective</p>
-        <h2 id="objective-heading">What the research is trying to achieve.</h2>
-        <p>{DATA_REPRESENTATION_OBJECTIVE}</p>
-        <p>{DETERMINISM_STATEMENT}</p>
-      </div>
-      <div class="notice">
-        <p class="eyebrow">Current status</p>
-        <p><strong>{CURRENT_REDUCTION_STATUS}</strong></p>
-        <p>
-          Exact reconstruction and deterministic operation pass internal tests. Complete accounting is
-          measured for the current single-round format only. None of it has been independently verified.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-sunken" aria-labelledby="limit-heading">
-    <div class="wrap prose">
-      <p class="eyebrow">A mathematical limit</p>
-      <h2 id="limit-heading">Why no universal reduction is claimed.</h2>
-      <p>{COUNTING_LIMIT_STATEMENT}</p>
-      <p>
-        Earlier versions of this website described universal reduction as the research target. That
-        description was wrong and has been withdrawn. The research looks for representations that
-        are exact, deterministic and fully accounted for, and that are smaller where the data and
-        the complete representation make that possible.
-      </p>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="principles-heading">
+  <section class="section" aria-labelledby="proven-heading">
     <div class="wrap">
       <div class="section-heading">
-        <p class="eyebrow">Principles</p>
-        <h2 id="principles-heading">How every result is judged.</h2>
+        <p class="eyebrow">Proven in internal tests</p>
+        <h2 id="proven-heading">What works today.</h2>
       </div>
-      <ul class="principles">
-        {REPRESENTATION_PRINCIPLES.map((principle) => (
-          <li>
-            <h3>{principle.title}</h3>
-            <p>{principle.description}</p>
-          </li>
-        ))}
+      <ul class="proof-grid">
+        {provenCapabilities.map((capability) => <ProofTile capability={capability} />)}
       </ul>
+      <p class="status-strip"><strong>{CURRENT_REDUCTION_STATUS}</strong></p>
     </div>
   </section>
 
   <section class="section section-sunken" aria-labelledby="acceptance-heading">
     <div class="wrap">
       <div class="section-heading">
-        <p class="eyebrow">Acceptance</p>
-        <h2 id="acceptance-heading">When a result counts.</h2>
-        <p class="lede">{PROPRIETARY_METHODS_STATEMENT}</p>
+        <p class="eyebrow">The rule every result must pass</p>
+        <h2 id="acceptance-heading">Exact, or it does not count.</h2>
       </div>
       <ClassifiedFigure
         classification="Conceptual illustration"
-        caption="The acceptance rule every reported result must pass. It describes how results are checked, not how a representation is produced."
+        caption="How results are checked, not how a representation is produced. The methods are proprietary."
       >
         <ol class="acceptance">
           {ACCEPTANCE_STEPS.map((step, index) => (
@@ -110,20 +65,17 @@ const ACCEPTANCE_STEPS = [
     </div>
   </section>
 
-  <section class="section" aria-labelledby="boundaries-heading">
-    <div class="wrap">
-      <div class="section-heading">
-        <p class="eyebrow">Boundaries</p>
-        <h2 id="boundaries-heading">What this research is not.</h2>
+  <section class="section" aria-labelledby="limit-heading">
+    <div class="wrap facts-pair">
+      <div class="fact-block">
+        <p class="eyebrow">Deterministic, not predictive</p>
+        <p>{DETERMINISM_STATEMENT}</p>
       </div>
-      <ul class="boundaries">
-        {WHAT_IT_IS_NOT.map((boundary) => (
-          <li>
-            <h3>{boundary.headline}</h3>
-            <p>{boundary.body}</p>
-          </li>
-        ))}
-      </ul>
+      <div class="fact-block">
+        <p class="eyebrow" id="limit-heading">A mathematical limit we respect</p>
+        <p>{COUNTING_LIMIT_STATEMENT}</p>
+        <p>Earlier versions of this website described universal reduction as the goal. That was wrong and has been withdrawn.</p>
+      </div>
     </div>
   </section>
 
@@ -131,39 +83,36 @@ const ACCEPTANCE_STEPS = [
     <div class="wrap">
       <div class="section-heading">
         <p class="eyebrow">Milestones</p>
-        <h2 id="milestones-heading">Where each gate stands.</h2>
-        <p class="lede"><a href="/research/milestones">See all research milestones</a>.</p>
+        <h2 id="milestones-heading">Every gate, and where it stands.</h2>
       </div>
-      <div class="milestone-stack">
-        {representationMilestones.map((milestone) => <MilestoneCard milestone={milestone} />)}
-      </div>
+      <ul class="summary-grid milestone-list">
+        {representationMilestones.map((milestone) => <MilestoneSummary milestone={milestone} />)}
+      </ul>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="next-heading">
-    <div class="wrap prose">
-      <h2 id="next-heading">Licensing and evaluation.</h2>
-      <p>
-        Nothing is available to license today. The proposed commercial models are described on the
-        <a href="/licensing">licensing and partnerships page</a>. Proposals to evaluate a specific
-        result independently are welcome.
-      </p>
+  <section class="section band-dark" aria-labelledby="next-heading">
+    <div class="wrap cta-inner">
+      <h2 id="next-heading">Check a result yourself.</h2>
+      <p>Nothing is available to license yet. Proposals to evaluate a specific result are welcome.</p>
       <div class="button-row">
         <a class="button button-primary" href="/contact?type=validation-partnership">Propose an evaluation</a>
-        <a class="button button-secondary" href="/validation">How evidence is classified</a>
+        <a class="button button-secondary" href="/licensing">Licensing models</a>
       </div>
     </div>
   </section>
 </Layout>
 
 <style>
-  .principles, .boundaries { list-style: none; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
-  .principles li, .boundaries li { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-5); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-lg); }
-  .principles h3, .boundaries h3 { font-size: var(--text-base); }
-  .acceptance { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); }
-  .acceptance li { display: grid; gap: var(--space-1); padding: var(--space-4); border: 1px solid var(--color-line); border-radius: var(--radius-md); background: var(--color-canvas); }
-  .acceptance-number { font-family: var(--font-mono); font-weight: 700; color: var(--color-ink-subtle); }
-  .acceptance-title { font-weight: 600; color: var(--color-ink); }
+  .status-strip { margin-top: var(--space-5); padding: var(--space-4) var(--space-5); border-left: 4px solid var(--tone-progress-ink); background: var(--tone-progress-bg); border-radius: var(--radius-md); font-size: var(--text-sm); }
+  .status-strip strong { color: var(--tone-progress-ink); }
+  .acceptance { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); }
+  .acceptance li { display: grid; gap: var(--space-2); padding: var(--space-4); border: 1px solid var(--color-line); border-radius: var(--radius-md); background: var(--color-canvas); }
+  .acceptance-number { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--color-ink); color: var(--color-canvas); font-family: var(--font-mono); font-weight: 700; font-size: var(--text-sm); }
+  .acceptance-title { font-weight: 700; font-size: var(--text-lg); color: var(--color-ink); }
   .acceptance-body { font-size: var(--text-sm); color: var(--color-ink-muted); }
-  .milestone-stack { display: grid; gap: var(--space-4); }
+  .facts-pair { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+  .fact-block { display: grid; gap: var(--space-3); align-content: start; }
+  .milestone-list { list-style: none; }
+  .cta-inner { display: grid; gap: var(--space-4); justify-items: start; }
 </style>

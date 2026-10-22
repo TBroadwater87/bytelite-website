@@ -2,212 +2,92 @@
 import Layout from '../../layouts/Layout.astro';
 import PageIntro from '../../components/site/PageIntro.astro';
 import CognitionProcessDiagram from '../../components/site/CognitionProcessDiagram.astro';
-import MilestoneCard from '../../components/site/MilestoneCard.astro';
+import MilestoneSummary from '../../components/site/MilestoneSummary.astro';
+import ProofTile from '../../components/site/ProofTile.astro';
 import { milestonesFor } from '../../data/milestones';
+import { researchProgram } from '../../data/research-programs';
+import { establishedCapabilitiesFor } from '../../data/established-capabilities';
 import { COMPANY_NAME } from '../../data/company';
 
+const program = researchProgram('machine-cognition');
 const cognitionMilestones = milestonesFor('machine-cognition');
+const provenCapabilities = establishedCapabilitiesFor('machine-cognition');
 
-const WORKS_TODAY = [
-  'Requests are handled through a governed path, with checks at defined points.',
-  'Knowledge is held as explicit records that each carry a record of their stated source.',
-  'Knowledge is captured in fixed, versioned generations, and each request is handled against one fixed generation.',
-  'New knowledge is added through explicit operator steps, never from conversation.',
-  'In tested cases, when the system does not know about a concept, it says so plainly instead of guessing.',
-];
-
-const UNDER_DEVELOPMENT = [
-  'Task-scoped conceptual representation of each request. A first version exists and is not yet verified.',
-  'Governed acquisition of new knowledge over time, including rules for which knowledge sources are trusted.',
-];
-
-const UNRESOLVED = [
-  'Determining the relationships inside a request.',
-  'Precise reporting of missing knowledge.',
-  'Matching a request against established knowledge.',
-  'Completing the supporting knowledge a task depends on.',
-  'Integration with visual and audio information.',
-  'Complete governance.',
-  'Independent evaluation of any part of the system.',
-];
-const COMPLETED_SYSTEM = [
-  'Answer a question from established, traceable knowledge, and show which knowledge it used.',
-  'Separate what it knows, what is uncertain, and what it would need to learn to answer fully.',
-  'Refuse to fill gaps with plausible guesses.',
-  'Add knowledge over time without losing the record of where each piece came from.',
-  'Act only inside explicit, checkable constraints.',
-];
-
-const VERIFICATION_PLAN = [
-  'Each capability has written acceptance criteria before it is claimed.',
-  'Behaviour is checked with automated tests on recorded inputs, so results can be repeated.',
-  'Determinism is confirmed by repeating the same request against the same knowledge.',
-  'Governance is reviewed against its stated constraints, including attempts to get around them.',
-  'Outside evaluators are invited to test specific claims under conditions they control before any capability is called verified.',
+const DIFFERENCES = [
+  { title: 'Answers from records', body: 'Knowledge is held as explicit records with their source, not as patterns inside a trained model.' },
+  { title: 'Fixed knowledge versions', body: 'Every request runs against one fixed, versioned body of knowledge, so results can be repeated.' },
+  { title: 'Taught deliberately', body: 'New knowledge enters only through explicit operator steps. It never learns from chat.' },
+  { title: 'Governed by design', body: 'Requests pass checks at defined points instead of relying on after-the-fact filters.' },
 ];
 ---
 
 <Layout
   title={`Machine Cognition Research | ${COMPANY_NAME}`}
-  description="ByteLite LLC's governed machine cognition research: what it aims to achieve, what works today in internal tests, what is still in development, and how it will be verified."
+  description="ByteLite LLC machine cognition research: AI designed to answer only from traceable knowledge and say when it does not know. What works today in internal tests, and what comes next."
   path="/research/machine-cognition"
 >
-  <PageIntro
-    eyebrow="Research program"
-    heading="Governed machine cognition."
-    lede="Research into systems that represent connected concepts explicitly, know which of their knowledge is established, and can say precisely what a task still requires. It is early-stage research. It is not a generative chatbot, and it is not available to the public."
-  />
+  <PageIntro eyebrow="Research program" heading="Governed machine cognition." lede={program.pitch} />
 
-  <section class="section" aria-labelledby="aim-heading">
-    <div class="wrap split">
-      <div class="prose">
-        <p class="eyebrow">The objective</p>
-        <h2 id="aim-heading">What this research is trying to achieve.</h2>
-        <p>
-          The goal is a system whose answers come from knowledge it can point to. It should
-          represent concepts and the relationships between them explicitly, keep track of where
-          each piece of knowledge came from, and tell the difference between what is established,
-          what is uncertain, and what is missing.
-        </p>
-        <p>
-          When it lacks the knowledge a task needs, it should say exactly what is missing rather
-          than producing a confident guess. And everything it does should stay inside explicit
-          constraints that can be checked.
-        </p>
+  <section class="section" aria-labelledby="proven-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Proven in internal tests</p>
+        <h2 id="proven-heading">What works today.</h2>
       </div>
-      <div class="prose">
-        <p class="eyebrow">Why it is different</p>
-        <h2>A different objective from typical chatbot development.</h2>
-        <p>
-          Most conversational AI today is built on generative language models trained on very large
-          collections of text. Those systems are broad and capable. This research takes a different
-          emphasis: explicit knowledge, traceable provenance, visible uncertainty and governed
-          behaviour, accepting much narrower coverage in exchange.
-        </p>
-        <p>
-          That is a difference in priorities, not a claim of superiority. There is no evidence today
-          that this approach outperforms mainstream systems at anything. The
-          <a href="/research/approaches-to-ai">approaches comparison</a> sets out the differences
-          carefully, with sources.
-        </p>
-      </div>
+      <ul class="proof-grid">
+        {provenCapabilities.map((capability) => <ProofTile capability={capability} />)}
+      </ul>
     </div>
   </section>
 
   <section class="section section-sunken" aria-labelledby="process-heading">
     <div class="wrap">
       <div class="section-heading">
-        <p class="eyebrow">The intended process</p>
-        <h2 id="process-heading">How a completed system is meant to handle a request.</h2>
-        <p class="lede">
-          A plain-language outline of the intended process, with the honest status of each step.
-          It describes what each step should achieve, not how.
-        </p>
+        <p class="eyebrow">The path of a request</p>
+        <h2 id="process-heading">Five stages. One is proven.</h2>
       </div>
       <CognitionProcessDiagram />
     </div>
   </section>
 
-  <section class="section" aria-labelledby="status-heading">
+  <section class="section" aria-labelledby="difference-heading">
     <div class="wrap">
       <div class="section-heading">
-        <p class="eyebrow">Current status</p>
-        <h2 id="status-heading">What works, what is being built, and what is unresolved.</h2>
-      </div>
-      <div class="status-columns">
-        <div class="panel">
-          <h3>Works today, in internal tests</h3>
-          <ul class="fact-list fact-list-yes">{WORKS_TODAY.map((item) => <li>{item}</li>)}</ul>
-        </div>
-        <div class="panel">
-          <h3>Under development</h3>
-          <ul class="fact-list fact-list-plain">{UNDER_DEVELOPMENT.map((item) => <li>{item}</li>)}</ul>
-        </div>
-        <div class="panel">
-          <h3>Unresolved</h3>
-          <ul class="fact-list fact-list-no">{UNRESOLVED.map((item) => <li>{item}</li>)}</ul>
-        </div>
-      </div>
-      <p class="notice status-note">
-        <strong>Not demonstrated end to end.</strong>
-        <span>
-          The full chain from a request to its concepts, relationships, missing knowledge and a
-          supported answer has not been demonstrated. An implemented component is not a
-          demonstrated capability, and passing internal tests is not independent certification.
-        </span>
-      </p>
-    </div>
-  </section>
-
-  <section class="section section-sunken" aria-labelledby="governance-heading" id="governance">
-    <div class="wrap split">
-      <div class="prose">
-        <p class="eyebrow">Governance</p>
-        <h2 id="governance-heading">Governance as a foundation, not an add-on.</h2>
-        <p>
-          A central objective is independently governed cognition and action: a system whose
-          behaviour is held inside explicit constraints that are checked at defined points, with
-          a record of why each decision was made.
-        </p>
-        <p>
-          Parts of that governing path exist and pass internal tests. Complete governance has not been
-          demonstrated, and public-facing use of the system stays disabled until its governance has
-          been independently verified.
+        <p class="eyebrow">A different design</p>
+        <h2 id="difference-heading">Not a chatbot built on a trained model.</h2>
+        <p class="lede">
+          A different set of priorities from mainstream generative AI, traded for much narrower coverage.
+          <a href="/research/approaches-to-ai">Compare the approaches, with sources</a>.
         </p>
       </div>
-      <div class="prose">
-        <p class="eyebrow">Verification</p>
-        <h2>How capabilities will be verified.</h2>
-        <ul class="fact-list fact-list-plain">{VERIFICATION_PLAN.map((item) => <li>{item}</li>)}</ul>
-      </div>
+      <ul class="difference-grid">
+        {DIFFERENCES.map((difference) => (
+          <li><h3>{difference.title}</h3><p>{difference.body}</p></li>
+        ))}
+      </ul>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="completed-heading">
-    <div class="wrap split">
-      <div class="prose">
-        <p class="eyebrow">If the research succeeds</p>
-        <h2 id="completed-heading">What a completed system should be able to do.</h2>
-        <p>These are objectives. None of them is a current capability.</p>
-        <ul class="fact-list fact-list-plain">{COMPLETED_SYSTEM.map((item) => <li>{item}</li>)}</ul>
-      </div>
-      <div class="prose">
-        <p class="eyebrow">What this is not</p>
-        <h2>Claims this page does not make.</h2>
-        <ul class="fact-list fact-list-no">
-          <li>It does not claim general intelligence, artificial general intelligence or superintelligence.</li>
-          <li>It does not claim general autonomous reasoning or self-construction.</li>
-          <li>It does not claim that alignment or AI safety is solved.</li>
-          <li>It does not claim the system can answer arbitrary questions. It cannot.</li>
-          <li>There is no public demonstration on this site, and none is simulated.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-sunken" aria-labelledby="milestones-heading">
+  <section class="section section-sunken" aria-labelledby="milestones-heading" id="governance">
     <div class="wrap">
       <div class="section-heading">
         <p class="eyebrow">Milestones</p>
-        <h2 id="milestones-heading">Every milestone, with its evidence.</h2>
-        <p class="lede">
-          Status changes only through an approved evidence update.
-          <a href="/research/milestones">See all research milestones</a>.
-        </p>
+        <h2 id="milestones-heading">Every gate, and where it stands.</h2>
       </div>
-      <div class="milestone-stack">
-        {cognitionMilestones.map((milestone) => <MilestoneCard milestone={milestone} />)}
-      </div>
+      <ul class="summary-grid milestone-list">
+        {cognitionMilestones.map((milestone) => <MilestoneSummary milestone={milestone} />)}
+      </ul>
+      <ul class="limits">
+        <li><strong>Not demonstrated end to end.</strong> The full path from a request to a supported answer is still being built.</li>
+        <li>Complete governance has not been demonstrated. Public use stays off until it is independently verified.</li>
+        <li>There is no public demonstration on this site, and none is simulated.</li>
+      </ul>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="contact-heading">
-    <div class="wrap prose">
+  <section class="section band-dark" aria-labelledby="contact-heading">
+    <div class="wrap cta-inner">
       <h2 id="contact-heading">Evaluate this work.</h2>
-      <p>
-        Researchers and organisations interested in independently evaluating a specific claim, or
-        in a bounded research collaboration, can reach {COMPANY_NAME} directly.
-      </p>
       <div class="button-row">
         <a class="button button-primary" href="/contact?type=validation-partnership">Propose an evaluation</a>
         <a class="button button-secondary" href="/contact?type=technology-partnership">Discuss a collaboration</a>
@@ -217,9 +97,11 @@ const VERIFICATION_PLAN = [
 </Layout>
 
 <style>
-  .status-columns { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
-  .status-columns .panel { display: grid; gap: var(--space-3); align-content: start; }
-  .status-columns h3 { font-size: var(--text-base); }
-  .status-note { margin-top: var(--space-5); }
-  .milestone-stack { display: grid; gap: var(--space-4); }
+  .difference-grid { list-style: none; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+  .difference-grid li { display: grid; gap: var(--space-2); align-content: start; padding-top: var(--space-4); border-top: 3px solid var(--color-ink); }
+  .difference-grid h3 { font-size: var(--text-base); }
+  .difference-grid p { font-size: var(--text-sm); }
+  .milestone-list { list-style: none; }
+  .limits { list-style: none; display: grid; gap: var(--space-2); margin-top: var(--space-6); padding: var(--space-4) var(--space-5); border-left: 4px solid var(--color-ink); background: var(--color-surface); border-radius: var(--radius-md); font-size: var(--text-sm); color: var(--color-ink-muted); }
+  .cta-inner { display: grid; gap: var(--space-4); justify-items: start; }
 </style>

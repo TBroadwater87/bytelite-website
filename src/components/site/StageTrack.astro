@@ -1,0 +1,34 @@
+---
+import type { EvidenceStatus } from '../../data/evidence-status';
+import { EVIDENCE_STAGES, evidenceStageReached } from '../../data/evidence-stages';
+
+export interface Props {
+  status: EvidenceStatus;
+  label: string;
+}
+
+const { status, label } = Astro.props;
+const stageReached = evidenceStageReached(status);
+const reachedStageName = stageReached === null ? 'No stage reached yet' : EVIDENCE_STAGES[stageReached];
+---
+
+<div class="stage-track" role="img" aria-label={`${label}: ${reachedStageName}`}>
+  <ol aria-hidden="true">
+    {EVIDENCE_STAGES.map((stageName, stageIndex) => (
+      <li class={stageReached !== null && stageIndex <= stageReached ? (stageIndex === stageReached ? 'stage-current' : 'stage-passed') : 'stage-ahead'}>
+        <span class="stage-name">{stageName}</span>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .stage-track ol { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3px; }
+  .stage-track li { display: grid; gap: var(--space-1); align-content: start; }
+  .stage-track li::before { content: ''; display: block; height: 6px; border-radius: var(--radius-pill); background: var(--color-line); }
+  .stage-passed::before { background: var(--tone-tested-ink) !important; opacity: 0.55; }
+  .stage-current::before { background: var(--tone-tested-ink) !important; }
+  .stage-name { font-size: 0.6875rem; line-height: 1.2; color: var(--color-ink-subtle); }
+  .stage-current .stage-name { color: var(--color-ink); font-weight: 700; }
+  @media (max-width: 30rem) { .stage-ahead .stage-name, .stage-passed .stage-name { visibility: hidden; } }
+</style>

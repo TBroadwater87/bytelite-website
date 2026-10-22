@@ -16,8 +16,8 @@ import { COMPANY_NAME } from '../../data/company';
 >
   <PageIntro
     eyebrow="Research milestones"
-    heading="Progress shown as gates, not percentages."
-    lede="Each milestone states what has been demonstrated, what has not, the evidence behind it and the next result that would move it. There are no completion percentages anywhere on this page."
+    heading="Every gate, in the open."
+    lede="What each milestone has shown, what it has not, and the next result that moves it."
   >
     <p class="small-print">Last reviewed <time datetime={MILESTONE_REVIEW_DATE}>{MILESTONE_REVIEW_DATE}</time>.</p>
   </PageIntro>
@@ -43,7 +43,7 @@ import { COMPANY_NAME } from '../../data/company';
         <div class="section-heading">
           <p class="eyebrow">Program</p>
           <h2 id={`${program.id}-heading`}><a href={program.href}>{program.name}</a></h2>
-          <p class="lede">{program.question}</p>
+          <p class="lede">{program.pitch}</p>
         </div>
         <div class="milestone-stack">
           {milestonesFor(program.id).map((milestone) => <MilestoneCard milestone={milestone} />)}
@@ -57,10 +57,7 @@ import { COMPANY_NAME } from '../../data/company';
       <div class="section-heading">
         <p class="eyebrow">Definitions</p>
         <h2 id="definitions-heading">What each status means.</h2>
-        <p class="lede">
-          Implementation and evidence are different things. Software can exist without being
-          verified, and internal testing is never presented as independent verification.
-        </p>
+        <p class="lede">Internal testing is never presented as independent verification.</p>
       </div>
       <dl class="definitions">
         {EVIDENCE_STATUS_DEFINITIONS.map((definition) => (

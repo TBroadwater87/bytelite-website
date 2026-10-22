@@ -9,19 +9,19 @@ import { COMPANY_NAME } from '../../data/company';
 
 <Layout
   title={`Research | ${COMPANY_NAME}`}
-  description="The research programs of ByteLite LLC: machine cognition, data representation, and visual and audio information, with the current evidence for each."
+  description="The research programs of ByteLite LLC: machine cognition, data representation, and visual and audio information, each with its measured results and next gate."
   path="/research"
 >
   <PageIntro
     eyebrow="Research"
-    heading="A research portfolio built on proof before claim."
-    lede={`${COMPANY_NAME} runs a small number of connected research programs. Each one is described here by the question it asks, what it has established, and what it has not.`}
+    heading="Three programs. Proof before claim."
+    lede="Each program shows what it has proven, what comes next, and how far along the path to independent verification it is."
   />
 
   <section class="section" aria-labelledby="programs-heading">
     <div class="wrap">
       <h2 id="programs-heading" class="visually-hidden">Research programs</h2>
-      <div class="card-grid">
+      <div class="summary-grid">
         {RESEARCH_PROGRAMS.map((program) => <ProgramCard program={program} />)}
       </div>
     </div>
@@ -32,39 +32,30 @@ import { COMPANY_NAME } from '../../data/company';
       <div class="section-heading">
         <p class="eyebrow">How they relate</p>
         <h2 id="relationship-heading">One direction, separate evidence.</h2>
-        <p class="lede">
-          The programs share a direction: preserve information exactly, establish what is known,
-          and keep behaviour governed. They do not share evidence. A result in one program says
-          nothing about another, and no integration between them exists today.
-        </p>
+        <p class="lede">A result in one program says nothing about another. No integration between them exists yet.</p>
       </div>
       <ResearchRelationshipDiagram />
     </div>
   </section>
 
-  <section class="section" aria-labelledby="disclosure-heading">
-    <div class="wrap split">
-      <div class="prose">
-        <p class="eyebrow">What this site publishes</p>
-        <h2 id="disclosure-heading">Objectives and evidence, not mechanisms.</h2>
-        <p>
-          These pages explain what each program is trying to achieve, why it matters, and how
-          results will be judged. They do not describe the methods used to achieve them. Those
-          methods are proprietary.
-        </p>
-        <p>
-          Every diagram on this site is labelled. A conceptual illustration shows an idea. It is
-          never a screenshot of a working capability.
-        </p>
-      </div>
-      <div class="prose">
-        <p class="eyebrow">Where to go next</p>
-        <ul class="fact-list fact-list-plain">
-          <li><a href="/research/milestones">Research milestones</a>: every public milestone with its status and evidence.</li>
-          <li><a href="/research/approaches-to-ai">Approaches to AI</a>: how the cognition research differs from mainstream AI, with sources.</li>
-          <li><a href="/validation">Validation</a>: how evidence is classified and how to propose an independent evaluation.</li>
-        </ul>
-      </div>
+  <section class="section" aria-labelledby="next-heading">
+    <div class="wrap">
+      <h2 id="next-heading" class="visually-hidden">Go further</h2>
+      <ul class="route-grid">
+        <li><a class="route-card" href="/research/milestones"><span class="route-title">Milestones &rarr;</span><span class="route-body">Every gate, its evidence and what moves it next.</span></a></li>
+        <li><a class="route-card" href="/research/approaches-to-ai"><span class="route-title">Approaches to AI &rarr;</span><span class="route-body">How this differs from mainstream AI, with sources.</span></a></li>
+        <li><a class="route-card" href="/validation"><span class="route-title">Validation &rarr;</span><span class="route-body">How evidence is labelled, and how to test a claim.</span></a></li>
+      </ul>
+      <p class="disclosure-line route-note">These pages publish objectives and results, not methods. The methods are proprietary.</p>
     </div>
   </section>
 </Layout>
+
+<style>
+  .route-grid { list-style: none; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); }
+  .route-card { height: 100%; display: grid; gap: var(--space-2); align-content: start; padding: var(--space-5); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-lg); text-decoration: none; }
+  .route-card:hover { border-color: var(--color-ink); }
+  .route-title { font-weight: 700; font-size: var(--text-lg); color: var(--color-ink); }
+  .route-body { font-size: var(--text-sm); color: var(--color-ink-muted); }
+  .route-note { margin-top: var(--space-5); }
+</style>

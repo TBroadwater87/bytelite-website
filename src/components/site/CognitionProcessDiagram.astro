@@ -6,75 +6,38 @@ import type { EvidenceStatus } from '../../data/evidence-status';
 interface IntendedOutcome {
   title: string;
   intent: string;
-  today: string;
   status: EvidenceStatus;
 }
 
 const INTENDED_OUTCOMES: readonly IntendedOutcome[] = [
-  {
-    title: 'A question or task is received',
-    intent: 'The request is handled under governance from the start.',
-    today: 'Governed request handling passes internal tests. Complete governance has not been demonstrated.',
-    status: 'internally-tested',
-  },
-  {
-    title: 'The concepts and relationships involved are determined',
-    intent: 'The system works out what the request is about.',
-    today: 'Not yet demonstrated.',
-    status: 'not-yet-demonstrated',
-  },
-  {
-    title: 'Established knowledge is consulted',
-    intent: 'Justified relationships are distinguished from missing or ambiguous ones.',
-    today: 'Not yet demonstrated.',
-    status: 'not-yet-demonstrated',
-  },
-  {
-    title: 'What is still needed is identified',
-    intent: 'The system states which additional knowledge the task requires.',
-    today: 'Basic "I do not know" reporting exists. Precise reports are not yet demonstrated.',
-    status: 'not-yet-demonstrated',
-  },
-  {
-    title: 'A governed response is produced',
-    intent: 'The response is supported by established evidence.',
-    today: 'Not yet demonstrated end to end.',
-    status: 'not-yet-demonstrated',
-  },
+  { title: 'Receive', intent: 'The request enters a governed path.', status: 'internally-tested' },
+  { title: 'Understand', intent: 'Work out the concepts and how they relate.', status: 'implemented-unverified' },
+  { title: 'Consult', intent: 'Match them against established knowledge.', status: 'not-yet-demonstrated' },
+  { title: 'Find gaps', intent: 'State exactly what knowledge is missing.', status: 'not-yet-demonstrated' },
+  { title: 'Answer', intent: 'Respond only with what the evidence supports.', status: 'not-yet-demonstrated' },
 ];
 ---
 
 <ClassifiedFigure
   classification="Conceptual illustration"
-  caption="The intended outcome of each stage, in plain language. It does not describe how any stage works, and it is not a screenshot of a working capability."
+  caption="The intended path of every request, with where each stage stands today. It shows outcomes, not how any stage works."
 >
   <ol class="process">
     {INTENDED_OUTCOMES.map((outcome, index) => (
       <li class="process-step">
         <span class="process-number" aria-hidden="true">{index + 1}</span>
-        <div class="process-body">
-          <h3 class="process-title">{outcome.title}</h3>
-          <p>{outcome.intent}</p>
-          <p class="process-today"><StatusBadge status={outcome.status} /> <span>{outcome.today}</span></p>
-        </div>
+        <h3 class="process-title">{outcome.title}</h3>
+        <p class="process-intent">{outcome.intent}</p>
+        <StatusBadge status={outcome.status} />
       </li>
     ))}
   </ol>
 </ClassifiedFigure>
 
 <style>
-  .process { list-style: none; display: grid; gap: 0; }
-  .process-step { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); gap: var(--space-4); position: relative; padding-bottom: var(--space-5); }
-  .process-step:last-child { padding-bottom: 0; }
-  .process-step:not(:last-child)::before {
-    content: ''; position: absolute; left: calc(1.125rem - 1px); top: 2.25rem; bottom: 0; width: 2px; background: var(--color-line);
-  }
-  .process-number {
-    display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 50%;
-    border: 1px solid var(--color-line-strong); background: var(--color-canvas);
-    font-family: var(--font-mono); font-weight: 700; color: var(--color-ink);
-  }
-  .process-body { display: grid; gap: var(--space-2); padding-top: 0.35rem; }
-  .process-title { font-size: var(--text-base); font-family: var(--font-text); }
-  .process-today { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: baseline; font-size: var(--text-sm); }
+  .process { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); counter-reset: none; }
+  .process-step { display: grid; gap: var(--space-2); align-content: start; justify-items: start; padding: var(--space-4); border: 1px solid var(--color-line); border-radius: var(--radius-md); background: var(--color-canvas); }
+  .process-number { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--color-ink); color: var(--color-canvas); font-family: var(--font-mono); font-weight: 700; font-size: var(--text-sm); }
+  .process-title { font-size: var(--text-lg); }
+  .process-intent { font-size: var(--text-sm); }
 </style>

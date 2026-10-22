@@ -5,6 +5,7 @@ import StatusBadge from '../components/site/StatusBadge.astro';
 import { PUBLIC_MILESTONES } from '../data/milestones';
 import { researchProgram } from '../data/research-programs';
 import { EVIDENCE_STATUS_DEFINITIONS, EVIDENCE_SCOPE_LABEL } from '../data/evidence-status';
+import { EVIDENCE_STAGES } from '../data/evidence-stages';
 import { COMPANY_NAME } from '../data/company';
 
 const EVALUATION_REQUIREMENTS = [
@@ -23,7 +24,7 @@ const EVALUATION_REQUIREMENTS = [
   <PageIntro
     eyebrow="Validation"
     heading="What has been shown, and by whom."
-    lede="Every public statement about the research rests on evidence of a stated strength. This page explains the classifications and lists the current evidence for every milestone."
+    lede="Every result on this site is labelled with how strong its evidence is, and who produced it."
   >
     <p class="notice"><strong>All evidence to date is internal. None of it has been independently verified.</strong></p>
   </PageIntro>
@@ -32,12 +33,14 @@ const EVALUATION_REQUIREMENTS = [
     <div class="wrap">
       <div class="section-heading">
         <p class="eyebrow">Classifications</p>
-        <h2 id="ladder-heading">Evidence classifications.</h2>
-        <p class="lede">
-          Building something, testing it, validating it, having it verified independently and
-          qualifying it for production are separate steps. They are never merged into one claim.
-        </p>
+        <h2 id="ladder-heading">Five stages. Never merged.</h2>
       </div>
+      <ol class="stage-ladder">
+        {EVIDENCE_STAGES.map((stageName, stageIndex) => (
+          <li><span class="stage-ladder-number" aria-hidden="true">{stageIndex + 1}</span><span>{stageName}</span></li>
+        ))}
+      </ol>
+      <p class="stage-ladder-note">Everything on this site today has reached at most stage 3, tested in-house.</p>
       <dl class="classification-list">
         {EVIDENCE_STATUS_DEFINITIONS.map((definition) => (
           <div class="classification">
@@ -101,13 +104,8 @@ const EVALUATION_REQUIREMENTS = [
         <p class="eyebrow">What internal evidence means here</p>
         <h2>Internal tests, stated as internal tests.</h2>
         <p>
-          "Internally tested" means automated tests written by {COMPANY_NAME} pass for the stated
-          scope. It is useful evidence that something works as designed. It is not proof that the
-          design is right, and it is not a substitute for someone else checking.
-        </p>
-        <p>
-          Public milestones are updated only through a separately approved evidence review. Internal
-          source changes never move a public status on their own.
+          It shows something works as designed. It is not a substitute for someone else checking,
+          which is why we invite evaluation.
         </p>
       </div>
     </div>
@@ -115,6 +113,11 @@ const EVALUATION_REQUIREMENTS = [
 </Layout>
 
 <style>
+  .stage-ladder { list-style: none; display: grid; gap: var(--space-2); grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); margin-bottom: var(--space-3); }
+  .stage-ladder li { display: flex; gap: var(--space-3); align-items: center; padding: var(--space-4); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-md); font-weight: 700; color: var(--color-ink); }
+  .stage-ladder li:nth-child(-n+3) { border-color: var(--tone-tested-line); background: var(--tone-tested-bg); color: var(--tone-tested-ink); }
+  .stage-ladder-number { display: grid; place-items: center; width: 1.75rem; height: 1.75rem; flex-shrink: 0; border-radius: 50%; border: 2px solid currentColor; font-family: var(--font-mono); font-size: var(--text-sm); }
+  .stage-ladder-note { font-size: var(--text-sm); margin-bottom: var(--space-6); }
   .classification-list { display: grid; gap: var(--space-3); margin: 0; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
   .classification { display: grid; gap: var(--space-2); padding: var(--space-4); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-md); }
   .classification dd { margin: 0; display: grid; gap: var(--space-1); font-size: var(--text-sm); color: var(--color-ink-muted); }

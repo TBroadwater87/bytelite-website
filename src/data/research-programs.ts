@@ -6,10 +6,13 @@ export interface ResearchProgram {
   id: ResearchProgramId;
   name: string;
   href: string;
+  pitch: string;
   question: string;
   summary: string;
   overallStatus: EvidenceStatus;
+  leadingStatus: EvidenceStatus;
   establishedToday: string;
+  nextGate: string;
   notYetEstablished: string;
 }
 
@@ -18,13 +21,15 @@ export const RESEARCH_PROGRAMS: readonly ResearchProgram[] = [
     id: 'machine-cognition',
     name: 'Machine Cognition',
     href: '/research/machine-cognition',
+    pitch: 'Building AI that answers only from knowledge it can point to, and says "I don\'t know" instead of guessing.',
     question:
       'Can a system represent connected concepts explicitly, know which of its knowledge is established, and show what a task still requires?',
     summary:
-      'Research into governed machine cognition: explicit knowledge records with provenance, fixed knowledge generations, and governance checks at defined points in every request.',
+      'Governed machine cognition: explicit knowledge records with their sources, fixed knowledge versions, and checks at defined points in every request.',
     overallStatus: 'active-development',
-    establishedToday:
-      'Governed request handling, explicit knowledge records and versioned knowledge snapshots pass internal tests.',
+    leadingStatus: 'internally-tested',
+    establishedToday: 'Governed request handling, sourced knowledge records, fixed knowledge versions and operator-only teaching.',
+    nextGate: 'Understanding how the parts of a request relate, then matching them to established knowledge.',
     notYetEstablished:
       'The full chain from a request to its concepts, relationships, missing knowledge and a supported answer has not been demonstrated end to end.',
   },
@@ -32,26 +37,28 @@ export const RESEARCH_PROGRAMS: readonly ResearchProgram[] = [
     id: 'data-representation',
     name: 'Data Representation',
     href: '/research/data-representation',
+    pitch: 'Representing data so it rebuilds exactly, byte for byte, every time, with every byte accounted for.',
     question:
       'Can data be represented deterministically, rebuilt exactly, accounted for completely, and made smaller where the data allows it?',
     summary:
       'The original ByteLite research program: deterministic lossless representation, aiming at exact reconstruction and complete accounting of every byte.',
     overallStatus: 'active-development',
-    establishedToday:
-      'Exact byte-for-byte reconstruction and deterministic operation pass internal tests. Complete accounting is measured for the current single-round format only.',
-    notYetEstablished:
-      'Net size reduction has not been demonstrated. The current development representation is larger than its input.',
+    leadingStatus: 'internally-tested',
+    establishedToday: 'Exact byte-for-byte reconstruction and identical output on repeated runs.',
+    nextGate: 'A complete representation measurably smaller than its input on a declared test collection.',
+    notYetEstablished: 'Net size reduction has not been demonstrated. The current development representation is larger than its input.',
   },
   {
     id: 'visual-and-audio',
-    name: 'Visual and Audio Information',
+    name: 'Visual and Audio',
     href: '/research/visual-and-audio',
+    pitch: 'Describing images and sound in exact, repeatable structures that other systems can rely on.',
     question: 'Can images and sound be described in deterministic, structured forms that other systems can rely on?',
-    summary:
-      'Early research into structured, repeatable representations of visual and acoustic information.',
+    summary: 'Early research into structured, repeatable representations of visual and acoustic information.',
     overallStatus: 'active-development',
-    establishedToday:
-      'Deterministic image-structure components pass internal tests on synthetic images. An audio architecture skeleton exists.',
+    leadingStatus: 'internally-tested',
+    establishedToday: 'Deterministic image-structure components on synthetic test images.',
+    nextGate: 'The remaining image behaviours implemented, then results on real-world images.',
     notYetEstablished: 'No visual understanding, speech recognition or speech comprehension is claimed.',
   },
 ];

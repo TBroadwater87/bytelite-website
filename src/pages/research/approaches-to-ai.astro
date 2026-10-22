@@ -20,33 +20,32 @@ const COLUMN_LABELS = {
 >
   <PageIntro
     eyebrow="Approaches to AI"
-    heading="Different priorities, stated carefully."
-    lede="How ByteLite LLC's cognition research differs from mainstream generative AI, and how it does not. This page compares research priorities and architecture. It contains no performance comparison, because no comparable evidence exists."
+    heading="A different bet from mainstream AI."
+    lede="Where this research differs from generative AI, and where it does not, with published sources for every comparison."
   />
 
-  <section class="section" aria-labelledby="ground-rules-heading">
-    <div class="wrap split">
-      <div class="prose">
-        <p class="eyebrow">How to read this page</p>
-        <h2 id="ground-rules-heading">Four columns, kept apart.</h2>
-        <p>
-          For each topic the table separates what typical mainstream systems do, what various
-          mainstream implementations also support, what the ByteLite LLC research demonstrates
-          today, and what it is intended to support in the future.
-        </p>
-        <p>
-          Mainstream AI is not one thing. Many systems combine language models with retrieval,
-          structured knowledge, deterministic tools and safety controls. Statements about external
-          systems are linked to published sources wherever a specific source applies.
+  <section class="section" aria-labelledby="summary-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">In short</p>
+        <h2 id="summary-heading">Breadth today, versus proof by design.</h2>
+        <p class="lede">
+          Mainstream generative AI is broad, capable and widely used. This research gives up that breadth for now
+          to make every answer traceable, every gap visible and every behaviour governed.
         </p>
       </div>
-      <div class="notice">
-        <p class="eyebrow">What this page does not claim</p>
+      <ul class="contrast-grid">
+        <li><p class="contrast-label">Knowledge</p><p><strong>Mainstream:</strong> patterns learned from very large text collections.</p><p><strong>This research:</strong> explicit records, each with its source.</p></li>
+        <li><p class="contrast-label">Unknowns</p><p><strong>Mainstream:</strong> can produce a fluent answer either way.</p><p><strong>This research:</strong> says it does not know.</p></li>
+        <li><p class="contrast-label">Learning</p><p><strong>Mainstream:</strong> training and fine-tuning on data.</p><p><strong>This research:</strong> explicit operator teaching only.</p></li>
+        <li><p class="contrast-label">Coverage</p><p><strong>Mainstream:</strong> very broad.</p><p><strong>This research:</strong> narrow, and not yet public.</p></li>
+      </ul>
+      <div class="claims-line">
+        <p class="eyebrow">Not claimed on this page</p>
         <ul class="fact-list fact-list-no">
-          <li>That mainstream systems lack reasoning, memory, structured knowledge or safety controls.</li>
           <li>That the ByteLite LLC approach is better. There is no comparable evidence.</li>
           <li>Any benchmark score, ranking or performance figure.</li>
-          <li>Artificial general intelligence or superintelligence, achieved or near.</li>
+          <li>That mainstream systems lack reasoning, memory, structured knowledge or safety controls. Many combine them.</li>
         </ul>
       </div>
     </div>
@@ -93,32 +92,7 @@ const COLUMN_LABELS = {
     </div>
   </section>
 
-  <section class="section" aria-labelledby="summary-heading">
-    <div class="wrap split">
-      <div class="prose">
-        <p class="eyebrow">In short</p>
-        <h2 id="summary-heading">What the difference amounts to.</h2>
-        <p>
-          Mainstream generative systems are broad, capable and widely used today. The ByteLite LLC
-          research gives up that breadth for now in order to pursue explicit knowledge, traceable
-          provenance, visible uncertainty and governed behaviour as first principles.
-        </p>
-        <p>
-          Whether that trade produces useful systems is an open research question. It will be
-          answered by evidence, including independent evaluation, not by this page.
-        </p>
-      </div>
-      <div class="prose">
-        <p class="eyebrow">Read more</p>
-        <ul class="fact-list fact-list-plain">
-          <li><a href="/research/machine-cognition">Machine cognition research</a></li>
-          <li><a href="/research/milestones">Research milestones</a></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-sunken" aria-labelledby="sources-heading">
+  <section class="section" aria-labelledby="sources-heading">
     <div class="wrap">
       <div class="section-heading">
         <p class="eyebrow">Sources</p>
@@ -137,6 +111,10 @@ const COLUMN_LABELS = {
 </Layout>
 
 <style>
+  .contrast-grid { list-style: none; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+  .contrast-grid li { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-5); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-lg); font-size: var(--text-sm); }
+  .contrast-label { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-ink); }
+  .claims-line { display: grid; gap: var(--space-2); margin-top: var(--space-6); max-width: var(--measure); font-size: var(--text-sm); }
   .comparison tbody th { min-width: 9rem; }
   .source-references { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-1); font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 500; }
   .source-references a { display: inline-grid; place-items: center; min-width: 1.75rem; min-height: 1.75rem; }

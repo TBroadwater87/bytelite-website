@@ -1,0 +1,37 @@
+---
+import StageTrack from './StageTrack.astro';
+import type { PublicMilestone } from '../../data/milestones';
+
+export interface Props {
+  milestone: PublicMilestone;
+}
+
+const { milestone } = Astro.props;
+---
+
+<li class="milestone-summary" id={milestone.id}>
+  <div class="milestone-summary-head">
+    <h3>{milestone.title}</h3>
+    <p>{milestone.explanation}</p>
+  </div>
+  <StageTrack status={milestone.status} label={`${milestone.title} stage`} />
+  <details class="more">
+    <summary>Evidence and next gate</summary>
+    <div class="more-body">
+      <p><strong>Shown:</strong> {milestone.demonstrated.join(' ')}</p>
+      <p><strong>Not yet shown:</strong> {milestone.notDemonstrated.join(' ')}</p>
+      <p><strong>Next gate:</strong> {milestone.nextObservableResult}</p>
+    </div>
+  </details>
+</li>
+
+<style>
+  .milestone-summary {
+    display: grid; gap: var(--space-3); align-content: start; padding: var(--space-5);
+    background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-lg);
+  }
+  .milestone-summary-head { display: grid; gap: var(--space-1); }
+  .milestone-summary h3 { font-size: var(--text-base); }
+  .milestone-summary-head p { font-size: var(--text-sm); }
+  .more-body p { font-size: var(--text-sm); }
+</style>

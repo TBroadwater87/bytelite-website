@@ -1,5 +1,5 @@
 ---
-import StatusBadge from './StatusBadge.astro';
+import StageTrack from './StageTrack.astro';
 import type { ResearchProgram } from '../../data/research-programs';
 
 export interface Props {
@@ -10,31 +10,30 @@ const { program } = Astro.props;
 ---
 
 <article class="program-card">
-  <div class="program-card-top">
-    <h3><a href={program.href}>{program.name}</a></h3>
-    <StatusBadge status={program.overallStatus} />
-  </div>
-  <p class="program-question">{program.question}</p>
+  <h3><a href={program.href}>{program.name}</a></h3>
+  <p class="program-pitch">{program.pitch}</p>
+  <StageTrack status={program.leadingStatus} label={`${program.name} furthest stage reached`} />
   <dl class="program-facts">
-    <div><dt>Established today</dt><dd>{program.establishedToday}</dd></div>
-    <div><dt>Not yet established</dt><dd>{program.notYetEstablished}</dd></div>
+    <div><dt>Proven</dt><dd>{program.establishedToday}</dd></div>
+    <div><dt>Next</dt><dd>{program.nextGate}</dd></div>
   </dl>
-  <a class="text-link program-more" href={program.href}>Read more<span class="visually-hidden"> about {program.name}</span> &rarr;</a>
+  <a class="text-link program-more" href={program.href}>Explore<span class="visually-hidden"> {program.name}</span> &rarr;</a>
 </article>
 
 <style>
   .program-card {
-    position: relative; display: flex; flex-direction: column; gap: var(--space-4);
+    display: flex; flex-direction: column; gap: var(--space-4);
     padding: var(--space-5); background: var(--color-surface);
     border: 1px solid var(--color-line); border-radius: var(--radius-lg);
+    transition: border-color var(--motion-quick), transform var(--motion-quick);
   }
-  .program-card:hover { border-color: var(--color-line-strong); }
-  .program-card-top { display: grid; gap: var(--space-2); justify-items: start; }
+  .program-card:hover { border-color: var(--color-line-strong); transform: translateY(-2px); }
+  .program-card h3 { font-size: var(--text-xl); letter-spacing: -0.015em; }
   .program-card h3 a { color: var(--color-ink); text-decoration: none; }
-  .program-card h3 a:hover { text-decoration: underline; }
-  .program-question { color: var(--color-ink); }
-  .program-facts { display: grid; gap: var(--space-3); margin: 0; font-size: var(--text-sm); }
-  .program-facts dt { font-weight: 600; color: var(--color-ink); }
+  .program-pitch { color: var(--color-ink); font-size: var(--text-md); }
+  .program-facts { display: grid; gap: var(--space-2); margin: 0; font-size: var(--text-sm); }
+  .program-facts div { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: var(--space-2); }
+  .program-facts dt { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-ink-subtle); padding-top: 0.15rem; }
   .program-facts dd { margin: 0; color: var(--color-ink-muted); }
   .program-more { font-size: var(--text-sm); margin-top: auto; }
 </style>

@@ -1,64 +1,51 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageIntro from '../../components/site/PageIntro.astro';
-import MilestoneCard from '../../components/site/MilestoneCard.astro';
+import MilestoneSummary from '../../components/site/MilestoneSummary.astro';
+import ProofTile from '../../components/site/ProofTile.astro';
 import { milestonesFor } from '../../data/milestones';
+import { researchProgram } from '../../data/research-programs';
+import { establishedCapabilitiesFor } from '../../data/established-capabilities';
 import { COMPANY_NAME } from '../../data/company';
 
+const program = researchProgram('visual-and-audio');
 const sensoryMilestones = milestonesFor('visual-and-audio');
+const provenCapabilities = establishedCapabilitiesFor('visual-and-audio');
 ---
 
 <Layout
   title={`Visual and Audio Research | ${COMPANY_NAME}`}
-  description="Early ByteLite LLC research into deterministic, structured representations of images and sound. No visual understanding or speech comprehension is claimed."
+  description="ByteLite LLC research into deterministic, structured representations of images and sound: 573 of 573 image checks and 213 of 213 audio architecture tests pass. No visual understanding or speech comprehension is claimed."
   path="/research/visual-and-audio"
 >
-  <PageIntro
-    eyebrow="Research program"
-    heading="Visual and acoustic information."
-    lede="Early research into describing images and sound in deterministic, structured forms that other systems can rely on. This is the least mature of the research programs."
-  />
+  <PageIntro eyebrow="Research program" heading="Visual and audio information." lede={program.pitch} />
 
-  <section class="section" aria-labelledby="visual-heading">
-    <div class="wrap split">
-      <div class="prose">
-        <p class="eyebrow">Visual information</p>
-        <h2 id="visual-heading">Repeatable descriptions of image structure.</h2>
-        <p>
-          The visual research asks whether the structure of an image can be described in a form that
-          is exact, repeatable and explainable, so that later systems can reason about it with known
-          provenance.
-        </p>
-        <p>
-          Core components pass internal automated tests on synthetic test images. That is the full
-          extent of the evidence. No visual understanding, object recognition or scene
-          interpretation is claimed.
-        </p>
+  <section class="section" aria-labelledby="proven-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Proven in internal tests</p>
+        <h2 id="proven-heading">What works today.</h2>
       </div>
-      <div class="prose">
-        <p class="eyebrow">Audio and speech</p>
-        <h2>An architecture, not yet a capability.</h2>
-        <p>
-          The audio research defines the structure of a future system for representing sound and
-          speech. An architectural skeleton exists, and most of its behaviour has not yet been
-          specified.
-        </p>
-        <p>
-          No speech recognition, speech comprehension or audio analysis capability is claimed.
-        </p>
-      </div>
+      <ul class="proof-grid">
+        {provenCapabilities.map((capability) => <ProofTile capability={capability} />)}
+      </ul>
     </div>
   </section>
 
-  <section class="section section-sunken" aria-labelledby="relationship-heading">
-    <div class="wrap prose">
-      <p class="eyebrow">Relationship to the other programs</p>
-      <h2 id="relationship-heading">Designed to supply structured information, not to interpret it.</h2>
-      <p>
-        The long-term intent is for sensory systems to supply structured information through
-        defined interfaces, and for interpretation to happen in the governed cognition research. No
-        such integration exists today.
-      </p>
+  <section class="section section-sunken" aria-labelledby="direction-heading">
+    <div class="wrap split">
+      <div class="direction">
+        <p class="eyebrow">Images</p>
+        <h2 id="direction-heading">Exact, repeatable image structure.</h2>
+        <p>Describe the structure of an image the same way every time, so later systems can rely on it.</p>
+        <p class="direction-next"><strong>Next:</strong> results on real-world photographs.</p>
+      </div>
+      <div class="direction">
+        <p class="eyebrow">Sound</p>
+        <h2>An audio foundation, ready to build on.</h2>
+        <p>The architecture for representing sound and speech is in place and fully tested.</p>
+        <p class="direction-next"><strong>Next:</strong> the first audio measurements. No speech recognition, speech comprehension or audio analysis capability is claimed.</p>
+      </div>
     </div>
   </section>
 
@@ -66,16 +53,17 @@ const sensoryMilestones = milestonesFor('visual-and-audio');
     <div class="wrap">
       <div class="section-heading">
         <p class="eyebrow">Milestones</p>
-        <h2 id="milestones-heading">Current milestones.</h2>
-        <p class="lede"><a href="/research/milestones">See all research milestones</a>.</p>
+        <h2 id="milestones-heading">Every gate, and where it stands.</h2>
       </div>
-      <div class="milestone-stack">
-        {sensoryMilestones.map((milestone) => <MilestoneCard milestone={milestone} />)}
-      </div>
+      <ul class="summary-grid milestone-list">
+        {sensoryMilestones.map((milestone) => <MilestoneSummary milestone={milestone} />)}
+      </ul>
     </div>
   </section>
 </Layout>
 
 <style>
-  .milestone-stack { display: grid; gap: var(--space-4); }
+  .direction { display: grid; gap: var(--space-3); align-content: start; }
+  .direction-next { font-size: var(--text-sm); }
+  .milestone-list { list-style: none; }
 </style>
