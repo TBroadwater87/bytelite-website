@@ -28,7 +28,7 @@ test.describe('Artwork placement', () => {
         expect(((await image.getAttribute('alt')) ?? '').length).toBeGreaterThan(20);
         await expect(image).toHaveAttribute('loading', source === artwork.aboveTheFold ? 'eager' : 'lazy');
 
-        const figure = page.locator('figure.art-figure', { has: image });
+        const figure = page.locator('figure.art-figure', { has: page.locator(`img[src="${source}"]`) });
         await expect(figure.locator('.figure-classification')).toHaveText('Conceptual illustration');
         await expect(figure.locator('figcaption')).toBeVisible();
 
