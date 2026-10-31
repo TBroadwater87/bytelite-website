@@ -4,6 +4,7 @@ import PageIntro from '../../components/site/PageIntro.astro';
 import CognitionProcessDiagram from '../../components/site/CognitionProcessDiagram.astro';
 import MilestoneSummary from '../../components/site/MilestoneSummary.astro';
 import ProofTile from '../../components/site/ProofTile.astro';
+import ArtFigure from '../../components/site/ArtFigure.astro';
 import { milestonesFor } from '../../data/milestones';
 import { researchProgram } from '../../data/research-programs';
 import { establishedCapabilitiesFor } from '../../data/established-capabilities';
@@ -26,12 +27,12 @@ const DIFFERENCES = [
   description="ByteLite LLC machine cognition research: AI designed to answer only from traceable knowledge and say when it does not know. What works today in internal tests, and what comes next."
   path="/research/machine-cognition"
 >
-  <PageIntro eyebrow="Research program" heading="Governed machine cognition." lede={program.pitch} />
+  <PageIntro eyebrow="Research program" heading="Governed machine cognition." lede={program.pitch} art={{ src: '/art/cognition-structure.webp', alt: 'A symmetrical violet crystalline lattice of connected nodes.', width: 1672, height: 941, caption: 'An abstract impression of connected knowledge. It is not an algorithm or a working system.' }} />
 
   <section class="section" aria-labelledby="proven-heading">
     <div class="wrap">
       <div class="section-heading">
-        <p class="eyebrow">Proven in internal tests</p>
+        <p class="eyebrow">Tested in-house</p>
         <h2 id="proven-heading">What works today.</h2>
       </div>
       <ul class="proof-grid">
@@ -60,6 +61,7 @@ const DIFFERENCES = [
           <a href="/research/approaches-to-ai">Compare the approaches, with sources</a>.
         </p>
       </div>
+      <div class="art-lead"><ArtFigure image={{ src: '/art/cognition-sources.webp', alt: 'Glass panels linked by thin lines around a central stack of layered records.', width: 1672, height: 941, caption: 'Records, their sources and open questions as an idea. It is not a real trace.' }} /></div>
       <ul class="difference-grid">
         {DIFFERENCES.map((difference) => (
           <li><h3>{difference.title}</h3><p>{difference.body}</p></li>
@@ -97,6 +99,7 @@ const DIFFERENCES = [
 </Layout>
 
 <style>
+  .art-lead { max-width: 52rem; margin-bottom: var(--space-6); }
   .difference-grid { list-style: none; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
   .difference-grid li { display: grid; gap: var(--space-2); align-content: start; padding-top: var(--space-4); border-top: 3px solid var(--color-ink); }
   .difference-grid h3 { font-size: var(--text-base); }

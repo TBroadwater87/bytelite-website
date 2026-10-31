@@ -14,7 +14,7 @@ const { program } = Astro.props;
   <p class="program-pitch">{program.pitch}</p>
   <StageTrack status={program.leadingStatus} label={`${program.name} furthest stage reached`} />
   <dl class="program-facts">
-    <div><dt>Proven</dt><dd>{program.establishedToday}</dd></div>
+    <div><dt>Tested</dt><dd>{program.establishedToday}</dd></div>
     <div><dt>Next</dt><dd>{program.nextGate}</dd></div>
   </dl>
   <a class="text-link program-more" href={program.href}>Explore<span class="visually-hidden"> {program.name}</span> &rarr;</a>

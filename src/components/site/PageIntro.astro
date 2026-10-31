@@ -1,26 +1,36 @@
 ---
+import ArtFigure, { type ArtImage } from './ArtFigure.astro';
+
 export interface Props {
   eyebrow: string;
   heading: string;
   lede?: string;
+  art?: ArtImage;
 }
 
-const { eyebrow, heading, lede } = Astro.props;
+const { eyebrow, heading, lede, art } = Astro.props;
 ---
 
-<section class="page-intro band-dark">
-  <div class="wrap">
-    <p class="eyebrow">{eyebrow}</p>
-    <h1>{heading}</h1>
-    {lede && <p class="page-lede">{lede}</p>}
-    <slot />
+<section class:list={['page-intro', 'band-dark', { 'page-intro-with-art': art }]}>
+  <div class="wrap page-intro-layout">
+    <div class="page-intro-copy">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{heading}</h1>
+      {lede && <p class="page-lede">{lede}</p>}
+      <slot />
+    </div>
+    {art && <ArtFigure image={{ ...art, loadsAboveTheFold: true }} />}
   </div>
 </section>
 
 <style>
   .page-intro { padding-block: var(--space-8) var(--space-7); }
-  .page-intro .wrap { display: grid; gap: var(--space-4); }
+  .page-intro-layout { display: grid; gap: var(--space-6); align-items: center; }
+  .page-intro-copy { display: grid; gap: var(--space-4); min-width: 0; }
   .page-intro h1 { max-width: 20ch; font-size: clamp(2.25rem, 1.5rem + 3vw, 3.75rem); line-height: 1.05; }
   .page-lede { font-size: var(--text-lg); max-width: 44rem; color: var(--color-ink-muted); }
+  @media (min-width: 64rem) {
+    .page-intro-with-art .page-intro-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
+  }
   @media (max-width: 47.99rem) { .page-intro { padding-block: var(--space-7) var(--space-6); } }
 </style>

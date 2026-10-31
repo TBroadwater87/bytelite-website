@@ -1,0 +1,41 @@
+---
+import type { FigureClassification } from '../../data/figure-classification';
+
+export interface ArtImage {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption: string;
+  classification?: FigureClassification;
+  loadsAboveTheFold?: boolean;
+}
+
+export interface Props {
+  image: ArtImage;
+}
+
+const { image } = Astro.props;
+const classification = image.classification ?? 'Conceptual illustration';
+---
+
+<figure class="art-figure" data-figure-classification={classification}>
+  <img
+    src={image.src}
+    alt={image.alt}
+    width={image.width}
+    height={image.height}
+    decoding="async"
+    loading={image.loadsAboveTheFold ? 'eager' : 'lazy'}
+    fetchpriority={image.loadsAboveTheFold ? 'high' : 'auto'}
+  />
+  <figcaption class="figure-caption">
+    <span class="figure-classification">{classification}</span>
+    <span>{image.caption}</span>
+  </figcaption>
+</figure>
+
+<style>
+  .art-figure { margin: 0; display: grid; gap: var(--space-3); min-width: 0; }
+  .art-figure img { width: 100%; height: auto; border-radius: var(--radius-lg); }
+</style>

@@ -4,6 +4,7 @@ import PageIntro from '../../components/site/PageIntro.astro';
 import MilestoneSummary from '../../components/site/MilestoneSummary.astro';
 import ProofTile from '../../components/site/ProofTile.astro';
 import ClassifiedFigure from '../../components/site/ClassifiedFigure.astro';
+import ArtFigure from '../../components/site/ArtFigure.astro';
 import { milestonesFor } from '../../data/milestones';
 import { researchProgram } from '../../data/research-programs';
 import { establishedCapabilitiesFor } from '../../data/established-capabilities';
@@ -24,15 +25,15 @@ const ACCEPTANCE_STEPS = [
 
 <Layout
   title={`Data Representation Research | ${COMPANY_NAME}`}
-  description="ByteLite LLC data representation research: deterministic, lossless representation with byte-exact reconstruction. Every one of 4,515 test encodings rebuilt exactly. Net size reduction has not been demonstrated."
+  description="ByteLite LLC data representation research: deterministic, lossless representation with byte-exact reconstruction. Every one of 4,515 test encodings rebuilt exactly (Compression release of 12 October 2026). Net size reduction has not been demonstrated: the outputs were larger than their inputs."
   path="/research/data-representation"
 >
-  <PageIntro eyebrow="Research program" heading="Exact, deterministic data representation." lede={program.pitch} />
+  <PageIntro eyebrow="Research program" heading="Exact, deterministic data representation." lede={program.pitch} art={{ src: '/art/data-flow.webp', alt: 'Streams of light passing through a tall lattice of glass panels.', width: 1672, height: 941, caption: 'An impression of structured data. It does not show compression or a real format.' }} />
 
   <section class="section" aria-labelledby="proven-heading">
     <div class="wrap">
       <div class="section-heading">
-        <p class="eyebrow">Proven in internal tests</p>
+        <p class="eyebrow">Tested in-house</p>
         <h2 id="proven-heading">What works today.</h2>
       </div>
       <ul class="proof-grid">
@@ -62,6 +63,10 @@ const ACCEPTANCE_STEPS = [
           ))}
         </ol>
       </ClassifiedFigure>
+      <div class="art-pair">
+        <ArtFigure image={{ src: '/art/data-exact-rebuild.webp', alt: 'Two identical glass cubes joined by a band of light, one on each side.', width: 1672, height: 941, caption: 'A round trip: what is rebuilt is identical to the original. It does not show any size reduction.' }} />
+        <ArtFigure image={{ src: '/art/data-whole-artifact.webp', alt: 'A clear glass block holding stacked, glowing layers.', width: 1536, height: 1024, caption: 'The goal of counting the whole artifact. Complete accounting is not yet established for every output form.' }} />
+      </div>
     </div>
   </section>
 
@@ -111,6 +116,7 @@ const ACCEPTANCE_STEPS = [
   .acceptance-number { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--color-ink); color: var(--color-canvas); font-family: var(--font-mono); font-weight: 700; font-size: var(--text-sm); }
   .acceptance-title { font-weight: 700; font-size: var(--text-lg); color: var(--color-ink); }
   .acceptance-body { font-size: var(--text-sm); color: var(--color-ink-muted); }
+  .art-pair { display: grid; gap: var(--space-5); margin-top: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); align-items: start; }
   .facts-pair { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
   .fact-block { display: grid; gap: var(--space-3); align-content: start; }
   .milestone-list { list-style: none; }

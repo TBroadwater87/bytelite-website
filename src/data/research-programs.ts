@@ -21,7 +21,7 @@ export const RESEARCH_PROGRAMS: readonly ResearchProgram[] = [
     id: 'machine-cognition',
     name: 'Machine Cognition',
     href: '/research/machine-cognition',
-    pitch: 'Building AI that answers only from knowledge it can point to, and says "I don\'t know" instead of guessing.',
+    pitch: 'Building AI designed to answer only from knowledge it can point to, and to say "I don\'t know" rather than guess.',
     question:
       'Can a system represent connected concepts explicitly, know which of its knowledge is established, and show what a task still requires?',
     summary:
