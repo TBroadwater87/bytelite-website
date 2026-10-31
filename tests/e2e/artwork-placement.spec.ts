@@ -33,7 +33,9 @@ test.describe('Artwork placement', () => {
         await expect(figure.locator('figcaption')).toBeVisible();
 
         await image.scrollIntoViewIfNeeded();
-        await image.evaluate((element) => (element as HTMLImageElement).decode());
+        await expect
+          .poll(() => image.evaluate((element) => (element as HTMLImageElement).complete && (element as HTMLImageElement).naturalWidth > 0), { message: `${source} loads` })
+          .toBe(true);
         const size = await image.evaluate((element) => {
           const picture = element as HTMLImageElement;
           const box = picture.getBoundingClientRect();
