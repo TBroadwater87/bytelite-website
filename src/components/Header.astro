@@ -8,8 +8,11 @@ export interface Props {
 const { currentPath } = Astro.props;
 const normalizedCurrentPath = currentPath === '/' ? '/' : currentPath.replace(/\/$/, '');
 
+const PRODUCT_SECTION_PATHS = ['/compatibility-app', '/cordel-play', '/founder-access', '/support'];
+
 function isCurrentSection(href: string): boolean {
   if (href === '/') return normalizedCurrentPath === '/';
+  if (href === '/products' && PRODUCT_SECTION_PATHS.includes(normalizedCurrentPath)) return true;
   return normalizedCurrentPath === href || normalizedCurrentPath.startsWith(`${href}/`);
 }
 
@@ -87,60 +90,60 @@ const researchSectionIsCurrent = normalizedCurrentPath.startsWith('/research');
 
 <script>
   const header = document.querySelector<HTMLElement>('[data-site-header]');
-  const menuToggle = header?.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const mobileMenuToggle = header?.querySelector<HTMLButtonElement>('[data-menu-toggle]');
   const navigation = header?.querySelector<HTMLElement>('[data-site-navigation]');
-  const groupToggle = header?.querySelector<HTMLButtonElement>('[data-group-toggle]');
-  const groupMenu = header?.querySelector<HTMLElement>('[data-group-menu]');
-  const menuToggleLabel = menuToggle?.querySelector<HTMLElement>('.menu-toggle-label');
+  const researchMenuToggle = header?.querySelector<HTMLButtonElement>('[data-group-toggle]');
+  const researchMenu = header?.querySelector<HTMLElement>('[data-group-menu]');
+  const mobileMenuToggleLabel = mobileMenuToggle?.querySelector<HTMLElement>('.menu-toggle-label');
 
   function setExpanded(control: HTMLButtonElement | null | undefined, expanded: boolean) {
     control?.setAttribute('aria-expanded', String(expanded));
   }
 
   function closeResearchMenu() {
-    setExpanded(groupToggle, false);
+    setExpanded(researchMenuToggle, false);
   }
 
   function closeMobileMenu() {
-    setExpanded(menuToggle, false);
-    if (menuToggleLabel) menuToggleLabel.textContent = 'Menu';
+    setExpanded(mobileMenuToggle, false);
+    if (mobileMenuToggleLabel) mobileMenuToggleLabel.textContent = 'Menu';
     closeResearchMenu();
   }
 
-  if (header && menuToggle && navigation && groupToggle && groupMenu) {
+  if (header && mobileMenuToggle && navigation && researchMenuToggle && researchMenu) {
     header.dataset.enhanced = 'true';
 
-    menuToggle.addEventListener('click', () => {
-      const willOpen = menuToggle.getAttribute('aria-expanded') !== 'true';
-      setExpanded(menuToggle, willOpen);
-      if (menuToggleLabel) menuToggleLabel.textContent = willOpen ? 'Close' : 'Menu';
+    mobileMenuToggle.addEventListener('click', () => {
+      const willOpen = mobileMenuToggle.getAttribute('aria-expanded') !== 'true';
+      setExpanded(mobileMenuToggle, willOpen);
+      if (mobileMenuToggleLabel) mobileMenuToggleLabel.textContent = willOpen ? 'Close' : 'Menu';
     });
 
-    groupToggle.addEventListener('click', () => {
-      const willOpen = groupToggle.getAttribute('aria-expanded') !== 'true';
-      setExpanded(groupToggle, willOpen);
+    researchMenuToggle.addEventListener('click', () => {
+      const willOpen = researchMenuToggle.getAttribute('aria-expanded') !== 'true';
+      setExpanded(researchMenuToggle, willOpen);
     });
 
     document.addEventListener('keydown', (event) => {
       if (event.key !== 'Escape') return;
-      if (groupToggle.getAttribute('aria-expanded') === 'true') {
+      if (researchMenuToggle.getAttribute('aria-expanded') === 'true') {
         closeResearchMenu();
-        groupToggle.focus();
-      } else if (menuToggle.getAttribute('aria-expanded') === 'true') {
+        researchMenuToggle.focus();
+      } else if (mobileMenuToggle.getAttribute('aria-expanded') === 'true') {
         closeMobileMenu();
-        menuToggle.focus();
+        mobileMenuToggle.focus();
       }
     });
 
     document.addEventListener('click', (event) => {
       if (!(event.target instanceof Node)) return;
-      if (!groupMenu.parentElement?.contains(event.target)) closeResearchMenu();
+      if (!researchMenu.parentElement?.contains(event.target)) closeResearchMenu();
       if (!header.contains(event.target)) closeMobileMenu();
     });
 
-    groupMenu.parentElement?.addEventListener('focusout', (event) => {
+    researchMenu.parentElement?.addEventListener('focusout', (event) => {
       const nextFocus = event.relatedTarget;
-      if (nextFocus instanceof Node && groupMenu.parentElement?.contains(nextFocus)) return;
+      if (nextFocus instanceof Node && researchMenu.parentElement?.contains(nextFocus)) return;
       closeResearchMenu();
     });
   }
@@ -155,7 +158,7 @@ const researchSectionIsCurrent = normalizedCurrentPath.startsWith('/research');
   }
   .header-bar { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 4rem; }
   .brand { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-ink); text-decoration: none; flex-shrink: 0; }
-  .brand img { border-radius: var(--radius-sm); }
+  .brand img { border-radius: var(--radius-sm); box-shadow: 0 0 0 1px var(--color-line-strong); }
   .brand-name { font-weight: 700; letter-spacing: -0.01em; }
   .brand-suffix { font-weight: 500; color: var(--color-ink-subtle); }
 
@@ -188,7 +191,8 @@ const researchSectionIsCurrent = normalizedCurrentPath.startsWith('/research');
   .group-menu-title { color: var(--color-ink); font-weight: 600; font-size: var(--text-sm); }
   .group-menu-description { color: var(--color-ink-subtle); font-size: var(--text-xs); }
   .navigation-item-contact { margin-left: var(--space-2); }
-  .contact-button { min-height: 2.5rem; }
+  .contact-button { min-height: 2.75rem; }
+  .contact-button[aria-current='page'] { outline: 2px solid var(--color-ink); outline-offset: 2px; }
 
   @media (max-width: 63.99rem) {
     .header-bar { flex-wrap: wrap; }

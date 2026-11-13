@@ -7,7 +7,7 @@ export interface ArtImage {
   width: number;
   height: number;
   caption: string;
-  classification?: FigureClassification;
+  classification: FigureClassification;
   loadsAboveTheFold?: boolean;
 }
 
@@ -16,10 +16,9 @@ export interface Props {
 }
 
 const { image } = Astro.props;
-const classification = image.classification ?? 'Conceptual illustration';
 ---
 
-<figure class="art-figure" data-figure-classification={classification}>
+<figure class="art-figure" data-figure-classification={image.classification}>
   <img
     src={image.src}
     alt={image.alt}
@@ -30,7 +29,7 @@ const classification = image.classification ?? 'Conceptual illustration';
     fetchpriority={image.loadsAboveTheFold ? 'high' : 'auto'}
   />
   <figcaption class="figure-caption">
-    <span class="figure-classification">{classification}</span>
+    <span class="figure-classification">{image.classification}</span>
     <span>{image.caption}</span>
   </figcaption>
 </figure>

@@ -1,0 +1,34 @@
+---
+import type { ResearchProgram } from '../../data/research-programs';
+import { DEMONSTRATED_CLAIM_CLASS, DESIGN_POSSIBILITY_CLAIM_CLASS, FUTURE_WORK_CLAIM_CLASS } from '../../data/evidence-status';
+
+export interface Props {
+  program: ResearchProgram;
+}
+
+const { program } = Astro.props;
+
+const claimBoundaries = [
+  { claimClass: DEMONSTRATED_CLAIM_CLASS, statements: [program.demonstratedSoFar] },
+  { claimClass: DESIGN_POSSIBILITY_CLAIM_CLASS, statements: [program.designPossibility] },
+  { claimClass: FUTURE_WORK_CLAIM_CLASS, statements: [program.nextObservableResult, program.notYetDemonstrated] },
+];
+---
+
+<ul class="claim-boundaries">
+  {claimBoundaries.map(({ claimClass, statements }) => (
+    <li class="claim-boundary">
+      <h3>{claimClass.label}</h3>
+      <p class="claim-meaning">{claimClass.meaning}</p>
+      {statements.map((statement) => <p>{statement}</p>)}
+    </li>
+  ))}
+</ul>
+
+<style>
+  .claim-boundaries { list-style: none; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+  .claim-boundary { display: grid; gap: var(--space-2); align-content: start; padding-top: var(--space-4); border-top: 3px solid var(--color-ink); }
+  .claim-boundary h3 { font-size: var(--text-lg); }
+  .claim-boundary p { font-size: var(--text-sm); }
+  .claim-meaning { font-family: var(--font-mono); font-size: var(--text-xs) !important; color: var(--color-ink-subtle); }
+</style>

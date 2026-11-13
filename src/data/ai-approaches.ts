@@ -91,8 +91,8 @@ export interface ApproachComparisonRow {
   topic: string;
   typicalMainstream: string;
   alsoFoundInMainstream: string;
-  byteliteToday: string;
-  byteliteIntended: string;
+  machineCognitionToday: string;
+  machineCognitionIntended: string;
   sourceIds: readonly string[];
 }
 
@@ -103,9 +103,9 @@ export const APPROACH_COMPARISON: readonly ApproachComparisonRow[] = [
       'Large neural networks trained on very large text collections generate a response one token at a time.',
     alsoFoundInMainstream:
       'Many products combine the model with search, databases, code execution and other tools.',
-    byteliteToday:
+    machineCognitionToday:
       'No generative language model is used. Replies come from governed knowledge records, from structured information supplied with the request, or from fixed conversation templates, all through one governed processing path.',
-    byteliteIntended:
+    machineCognitionIntended:
       'Responses built from explicitly represented concepts and their relationships.',
     sourceIds: ['vaswani-2017', 'brown-2020'],
   },
@@ -114,9 +114,9 @@ export const APPROACH_COMPARISON: readonly ApproachComparisonRow[] = [
     typicalMainstream:
       'Broad, general-purpose language ability across writing, translation, coding, summarisation and question answering, used by very large numbers of people.',
     alsoFoundInMainstream: 'Image, audio and video input and output in many current systems.',
-    byteliteToday:
+    machineCognitionToday:
       'Narrow. A research system with limited knowledge coverage that is not available to the public.',
-    byteliteIntended: 'Broader coverage, added only as fast as it can be governed and verified.',
+    machineCognitionIntended: 'Broader coverage, added only as fast as it can be governed and verified.',
     sourceIds: ['brown-2020'],
   },
   {
@@ -124,9 +124,9 @@ export const APPROACH_COMPARISON: readonly ApproachComparisonRow[] = [
     typicalMainstream: 'Most knowledge is held implicitly in the model\'s learned parameters.',
     alsoFoundInMainstream:
       'Knowledge graphs, databases and retrieval systems supply explicit knowledge alongside the model.',
-    byteliteToday:
+    machineCognitionToday:
       'Knowledge is held as explicit records that carry where they came from.',
-    byteliteIntended:
+    machineCognitionIntended:
       'Connected concepts and relationships as the primary foundation of the system, not an add-on.',
     sourceIds: ['hogan-2021', 'garcez-2023'],
   },
@@ -136,9 +136,9 @@ export const APPROACH_COMPARISON: readonly ApproachComparisonRow[] = [
       'Multi-step reasoning emerges from the model and is strengthened with prompting and with training methods such as reinforcement learning.',
     alsoFoundInMainstream:
       'Reasoning interleaved with tool calls, external checkers and symbolic components.',
-    byteliteToday:
+    machineCognitionToday:
       'Limited. The parts that would let the system reason over a request\'s structure are early, not verified and not connected to answers.',
-    byteliteIntended:
+    machineCognitionIntended:
       'Reasoning over explicit relationships, with each step traceable to established knowledge.',
     sourceIds: ['wei-2022', 'yao-2023', 'deepseek-2025'],
   },
@@ -147,8 +147,8 @@ export const APPROACH_COMPARISON: readonly ApproachComparisonRow[] = [
     typicalMainstream:
       'Retrieval-augmented generation and tool calling are widely used to add current or specialised information.',
     alsoFoundInMainstream: 'Models that learn when and how to call external tools.',
-    byteliteToday: 'The system uses its own governed knowledge records and information supplied with the request. It does not search the web or call outside tools.',
-    byteliteIntended:
+    machineCognitionToday: 'The system uses its own governed knowledge records and information supplied with the request. It does not search the web or call outside tools.',
+    machineCognitionIntended:
       'Requests for information from other specialised systems, such as visual or audio systems, through defined interfaces.',
     sourceIds: ['lewis-2020', 'schick-2023'],
   },
@@ -157,8 +157,8 @@ export const APPROACH_COMPARISON: readonly ApproachComparisonRow[] = [
     typicalMainstream:
       'A model on its own generally cannot identify which training data produced a given statement.',
     alsoFoundInMainstream: 'Retrieval systems can cite the documents they retrieved.',
-    byteliteToday: 'Every knowledge record carries a record of its stated source. How sources are trusted is still being decided.',
-    byteliteIntended: 'Every answer traceable to the exact records and knowledge generation it used.',
+    machineCognitionToday: 'Every knowledge record carries a record of its stated source. How sources are trusted is still being decided.',
+    machineCognitionIntended: 'Every answer traceable to the exact records and knowledge generation it used.',
     sourceIds: ['lewis-2020'],
   },
   {
@@ -167,9 +167,9 @@ export const APPROACH_COMPARISON: readonly ApproachComparisonRow[] = [
       'Models can produce fluent statements that are wrong, an effect widely studied as hallucination.',
     alsoFoundInMainstream:
       'Research shows models can often estimate their own confidence, and products add citation and verification steps.',
-    byteliteToday:
+    machineCognitionToday:
       'In tested cases, the system says plainly when it does not know about a concept.',
-    byteliteIntended:
+    machineCognitionIntended:
       'A precise account of which knowledge a task requires and which of it is missing.',
     sourceIds: ['ji-2023', 'kadavath-2022'],
   },
@@ -179,9 +179,9 @@ export const APPROACH_COMPARISON: readonly ApproachComparisonRow[] = [
       'Output is commonly sampled, so the same prompt can produce different responses.',
     alsoFoundInMainstream:
       'Lower-randomness settings, and deterministic tools called by the model, are widely available.',
-    byteliteToday:
+    machineCognitionToday:
       'The same request against the same knowledge produces the same response in internal tests on one machine.',
-    byteliteIntended: 'Determinism as a property that outside reviewers can confirm.',
+    machineCognitionIntended: 'Determinism as a property that outside reviewers can confirm.',
     sourceIds: [],
   },
   {
@@ -189,9 +189,9 @@ export const APPROACH_COMPARISON: readonly ApproachComparisonRow[] = [
     typicalMainstream:
       'Learned parameters are fixed after training. Updating them requires further training, and continual learning is a known open problem.',
     alsoFoundInMainstream: 'Memory features that store information outside the model.',
-    byteliteToday:
+    machineCognitionToday:
       'Knowledge changes only through explicit operator steps. The system does not learn from conversations.',
-    byteliteIntended: 'Continuing knowledge acquisition under governance, with provenance kept for every addition.',
+    machineCognitionIntended: 'Continuing knowledge acquisition under governance, with provenance kept for every addition.',
     sourceIds: ['kirkpatrick-2017'],
   },
   {
@@ -199,9 +199,9 @@ export const APPROACH_COMPARISON: readonly ApproachComparisonRow[] = [
     typicalMainstream:
       'Behaviour is shaped by training with human or AI feedback, plus policy filters around the model.',
     alsoFoundInMainstream: 'Organisational risk-management frameworks applied to the whole system.',
-    byteliteToday:
+    machineCognitionToday:
       'Parts of a governed processing path exist and pass internal tests. Complete governance has not been demonstrated, so public use stays disabled.',
-    byteliteIntended:
+    machineCognitionIntended:
       'Governance that is explicit, inspectable and independently verified before any public use.',
     sourceIds: ['ouyang-2022', 'bai-2022', 'nist-2023'],
   },
@@ -210,8 +210,8 @@ export const APPROACH_COMPARISON: readonly ApproachComparisonRow[] = [
     typicalMainstream:
       'Systems are evaluated on broad public benchmarks and in third-party evaluations.',
     alsoFoundInMainstream: 'Holistic evaluation suites that measure many properties at once.',
-    byteliteToday: 'Internal automated tests only. No independent evaluation has taken place.',
-    byteliteIntended: 'Independent evaluation against published criteria before any capability claim.',
+    machineCognitionToday: 'Internal automated tests only. No independent evaluation has taken place.',
+    machineCognitionIntended: 'Independent evaluation against published criteria before any capability claim.',
     sourceIds: ['liang-2023'],
   },
 ];

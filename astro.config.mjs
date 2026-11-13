@@ -25,7 +25,7 @@ export const DISCOVERABLE_ROUTES = [
   '/terms',
 ];
 
-function routePathOf(absoluteUrl) {
+function routePathOfAbsoluteUrl(absoluteUrl) {
   return absoluteUrl.replace(/^https?:\/\/[^/]+/, '').replace(/\/$/, '') || '/';
 }
 
@@ -34,9 +34,9 @@ export default defineConfig({
   integrations: [
     tailwind({ applyBaseStyles: false }),
     sitemap({
-      filter: (page) => DISCOVERABLE_ROUTES.includes(routePathOf(page)),
+      filter: (pageUrl) => DISCOVERABLE_ROUTES.includes(routePathOfAbsoluteUrl(pageUrl)),
       serialize: (item) => {
-        const routePath = routePathOf(item.url);
+        const routePath = routePathOfAbsoluteUrl(item.url);
         return { ...item, url: routePath === '/' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${routePath}` };
       },
     }),

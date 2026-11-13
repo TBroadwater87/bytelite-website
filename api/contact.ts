@@ -1,11 +1,4 @@
 /**
- * PRODUCTION contact route.
- *
- * Canonical Vercel project: ByteLite_LLC / bytelite-website (CLI scope slug `bytelitellc`).
- * NOTE: this header previously named `bytelite-site`, an older project that no longer holds the
- * configuration. Do not treat a project name written in a comment as current - verify it, with
- * the commands in OWNER_README.md section 9.
- *
  * A zero-config Vercel Serverless Function at POST /api/contact - the path the form on /contact
  * already posts to, so no page changed. The site remains a static Astro build: this function
  * coexists with it rather than converting anything to SSR.

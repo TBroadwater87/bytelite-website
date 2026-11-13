@@ -1,8 +1,36 @@
 import { describe, test, expect } from 'vitest';
 import { PUBLIC_MILESTONES, MILESTONE_REVIEW_DATE } from '../../src/data/milestones';
-import { EVIDENCE_STATUS_DEFINITIONS, definitionOf } from '../../src/data/evidence-status';
+import { EVIDENCE_STATUS_DEFINITIONS, definitionOf, type EvidenceScope } from '../../src/data/evidence-status';
 import { RESEARCH_PROGRAMS } from '../../src/data/research-programs';
 import { CONSUMER_PRODUCTS } from '../../src/data/products';
+import { ESTABLISHED_CAPABILITIES } from '../../src/data/established-capabilities';
+
+const OWNER_APPROVED_PUBLISHED_FIGURES = [
+  '0 of 335',
+  '16,777,216',
+  '213 / 213',
+  '39 / 39',
+  '4,515 / 4,515',
+  '4,758 / 4,758',
+  '573 / 573',
+  '83,332',
+  'By design',
+];
+
+describe('published capability figures', () => {
+  test('the site publishes exactly the owner-approved figures, each once', () => {
+    const publishedFigures = ESTABLISHED_CAPABILITIES.map((capability) => capability.figure).sort();
+    expect(publishedFigures).toEqual([...OWNER_APPROVED_PUBLISHED_FIGURES].sort());
+  });
+
+  test('every published figure carries a scope line and belongs to a published milestone', () => {
+    const milestoneIdentifiers = new Set(PUBLIC_MILESTONES.map((milestone) => milestone.id));
+    for (const capability of ESTABLISHED_CAPABILITIES) {
+      expect(capability.scope.trim().length, `${capability.id} has no scope line`).toBeGreaterThan(0);
+      expect(milestoneIdentifiers.has(capability.milestoneId), `${capability.id} names an unknown milestone`).toBe(true);
+    }
+  });
+});
 
 const PUBLICATION_DATE = '2026-10-20';
 
@@ -69,7 +97,15 @@ describe('evidence status taxonomy', () => {
     for (const milestone of PUBLIC_MILESTONES) expect(() => definitionOf(milestone.status)).not.toThrow();
     for (const definition of EVIDENCE_STATUS_DEFINITIONS) {
       const independent = definition.status === 'independently-verified' || definition.status === 'production-qualified';
-      expect(definition.evidenceScope === 'independent').toBe(independent);
+      expect(definition.evidenceScopeCeiling === 'independent').toBe(independent);
+    }
+  });
+
+  test('no milestone claims more evidence than its status definition allows', () => {
+    const scopeStrength: Record<EvidenceScope, number> = { none: 0, internal: 1, independent: 2 };
+    for (const milestone of PUBLIC_MILESTONES) {
+      const statusScopeCeiling = definitionOf(milestone.status).evidenceScopeCeiling;
+      expect(scopeStrength[milestone.evidenceScope], `${milestone.id} is ${milestone.evidenceScope} under ${milestone.status}`).toBeLessThanOrEqual(scopeStrength[statusScopeCeiling]);
     }
   });
 });

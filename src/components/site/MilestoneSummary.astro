@@ -1,5 +1,6 @@
 ---
 import StageTrack from './StageTrack.astro';
+import StatusBadge from './StatusBadge.astro';
 import type { PublicMilestone } from '../../data/milestones';
 
 export interface Props {
@@ -12,6 +13,7 @@ const { milestone } = Astro.props;
 <li class="milestone-summary" id={milestone.id}>
   <div class="milestone-summary-head">
     <h3>{milestone.title}</h3>
+    <StatusBadge status={milestone.status} />
     <p>{milestone.explanation}</p>
   </div>
   <StageTrack status={milestone.status} label={`${milestone.title} stage`} />
@@ -30,7 +32,7 @@ const { milestone } = Astro.props;
     display: grid; gap: var(--space-3); align-content: start; padding: var(--space-5);
     background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-lg);
   }
-  .milestone-summary-head { display: grid; gap: var(--space-1); }
+  .milestone-summary-head { display: grid; gap: var(--space-2); justify-items: start; }
   .milestone-summary h3 { font-size: var(--text-base); }
   .milestone-summary-head p { font-size: var(--text-sm); }
   .more-body p { font-size: var(--text-sm); }

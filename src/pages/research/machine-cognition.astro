@@ -4,6 +4,7 @@ import PageIntro from '../../components/site/PageIntro.astro';
 import CognitionProcessDiagram from '../../components/site/CognitionProcessDiagram.astro';
 import MilestoneSummary from '../../components/site/MilestoneSummary.astro';
 import ProofTile from '../../components/site/ProofTile.astro';
+import ClaimBoundaries from '../../components/site/ClaimBoundaries.astro';
 import ArtFigure from '../../components/site/ArtFigure.astro';
 import { milestonesFor } from '../../data/milestones';
 import { researchProgram } from '../../data/research-programs';
@@ -14,26 +15,26 @@ const program = researchProgram('machine-cognition');
 const cognitionMilestones = milestonesFor('machine-cognition');
 const provenCapabilities = establishedCapabilitiesFor('machine-cognition');
 
-const DIFFERENCES = [
-  { title: 'Answers from records', body: 'Knowledge is held as explicit records with their source, not as patterns inside a trained model.' },
-  { title: 'Fixed knowledge versions', body: 'Every request runs against one fixed, versioned body of knowledge, so results can be repeated.' },
-  { title: 'Taught deliberately', body: 'New knowledge enters only through explicit operator steps. It never learns from chat.' },
-  { title: 'Governed by design', body: 'Requests pass checks at defined points instead of relying on after-the-fact filters.' },
+const DESIGN_DIFFERENCES = [
+  { title: 'Answers from records', body: 'Designed to hold knowledge as explicit records with their source, not as patterns inside a trained model.' },
+  { title: 'Fixed knowledge versions', body: 'Designed so each request runs against one fixed, versioned body of knowledge, so results can be repeated.' },
+  { title: 'Taught deliberately', body: 'Designed so new knowledge enters only through explicit operator steps, never from chat.' },
+  { title: 'Governed by design', body: 'Designed so requests pass checks at defined points instead of relying on after-the-fact filters.' },
 ];
 ---
 
 <Layout
   title={`Machine Cognition Research | ${COMPANY_NAME}`}
-  description="ByteLite LLC machine cognition research: AI designed to answer only from traceable knowledge and say when it does not know. What works today in internal tests, and what comes next."
+  description="ByteLite LLC machine cognition research: AI designed to answer only from traceable knowledge and say when it does not know. What is tested internally, what is only designed, and what comes next."
   path="/research/machine-cognition"
 >
-  <PageIntro eyebrow="Research program" heading="Governed machine cognition." lede={program.pitch} art={{ src: '/art/cognition-structure.webp', alt: 'A symmetrical violet crystalline lattice of connected nodes.', width: 1672, height: 941, caption: 'An abstract impression of connected knowledge. It is not an algorithm or a working system.' }} />
+  <PageIntro eyebrow="Research program" heading="Governed machine cognition." lede={program.pitch} art={{ classification: 'Conceptual illustration', src: '/art/cognition-structure.webp', alt: 'A symmetrical violet crystalline lattice of connected nodes.', width: 1672, height: 941, caption: 'An abstract impression of connected knowledge. It is not an algorithm or a working system.' }} />
 
   <section class="section" aria-labelledby="proven-heading">
     <div class="wrap">
       <div class="section-heading">
         <p class="eyebrow">Tested in-house</p>
-        <h2 id="proven-heading">What works today.</h2>
+        <h2 id="proven-heading">Tested internally, and what is still design.</h2>
       </div>
       <ul class="proof-grid">
         {provenCapabilities.map((capability) => <ProofTile capability={capability} />)}
@@ -41,11 +42,21 @@ const DIFFERENCES = [
     </div>
   </section>
 
+  <section class="section" aria-labelledby="boundaries-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Reading these results</p>
+        <h2 id="boundaries-heading">Shown, possible, still to do.</h2>
+      </div>
+      <ClaimBoundaries program={program} />
+    </div>
+  </section>
+
   <section class="section section-sunken" aria-labelledby="process-heading">
     <div class="wrap">
       <div class="section-heading">
         <p class="eyebrow">The path of a request</p>
-        <h2 id="process-heading">Five stages. One is proven.</h2>
+        <h2 id="process-heading">Five stages. One is tested in-house.</h2>
       </div>
       <CognitionProcessDiagram />
     </div>
@@ -58,12 +69,13 @@ const DIFFERENCES = [
         <h2 id="difference-heading">Not a chatbot built on a trained model.</h2>
         <p class="lede">
           A different set of priorities from mainstream generative AI, traded for much narrower coverage.
+          These are design choices. The milestones below show how far each has been tested.
           <a href="/research/approaches-to-ai">Compare the approaches, with sources</a>.
         </p>
       </div>
-      <div class="art-lead"><ArtFigure image={{ src: '/art/cognition-sources.webp', alt: 'Glass panels linked by thin lines around a central stack of layered records.', width: 1672, height: 941, caption: 'Records, their sources and open questions as an idea. It is not a real trace.' }} /></div>
+      <div class="art-lead"><ArtFigure image={{ classification: 'Conceptual illustration', src: '/art/cognition-sources.webp', alt: 'Glass panels linked by thin lines around a central stack of layered records.', width: 1672, height: 941, caption: 'Records, their sources and open questions as an idea. It is not a real trace.' }} /></div>
       <ul class="difference-grid">
-        {DIFFERENCES.map((difference) => (
+        {DESIGN_DIFFERENCES.map((difference) => (
           <li><h3>{difference.title}</h3><p>{difference.body}</p></li>
         ))}
       </ul>

@@ -72,7 +72,7 @@ export const CONSUMER_PRODUCTS: readonly ConsumerProduct[] = [
   {
     id: 'personal-representation-service',
     displayName: PERSONAL_REPRESENTATION_SERVICE_NAME,
-    href: '/licensing',
+    href: '/licensing#models-heading',
     category: 'Planned subscription',
     oneLine: 'A planned personal subscription to the data representation research, if and when it works.',
     availability: 'planned',

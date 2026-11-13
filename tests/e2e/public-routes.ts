@@ -41,6 +41,6 @@ export const RETIRED_ROUTE_PREFIXES = [
   '/cordel-connect',
 ] as const;
 
-export function routePathOf(href: string): string {
+export function routePathOfInternalHref(href: string): string {
   return href.split('#')[0]!.split('?')[0]!.replace(/\/$/, '') || '/';
 }

@@ -12,10 +12,10 @@ const { program } = Astro.props;
 <article class="program-card">
   <h3><a href={program.href}>{program.name}</a></h3>
   <p class="program-pitch">{program.pitch}</p>
-  <StageTrack status={program.leadingStatus} label={`${program.name} furthest stage reached`} />
+  <StageTrack status={program.furthestStatusReached} label={`${program.name} furthest stage reached`} />
   <dl class="program-facts">
-    <div><dt>Tested</dt><dd>{program.establishedToday}</dd></div>
-    <div><dt>Next</dt><dd>{program.nextGate}</dd></div>
+    <div><dt>Tested</dt><dd>{program.demonstratedSoFar}</dd></div>
+    <div><dt>Next</dt><dd>{program.nextObservableResult}</dd></div>
   </dl>
   <a class="text-link program-more" href={program.href}>Explore<span class="visually-hidden"> {program.name}</span> &rarr;</a>
 </article>

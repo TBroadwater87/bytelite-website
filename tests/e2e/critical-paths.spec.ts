@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { ALL_PAGE_ROUTES, DISCOVERABLE_ROUTES, RETIRED_ROUTE_PREFIXES, routePathOf } from './public-routes';
+import { ALL_PAGE_ROUTES, DISCOVERABLE_ROUTES, RETIRED_ROUTE_PREFIXES, routePathOfInternalHref } from './public-routes';
 
 const KNOWN_ROUTES = new Set<string>(ALL_PAGE_ROUTES);
 
@@ -9,7 +9,7 @@ test.describe('Every internal link goes somewhere that exists', () => {
       await page.goto(route);
       const hrefs = await page.locator('a[href^="/"]').evaluateAll((links) => links.map((link) => link.getAttribute('href') ?? ''));
       const deadLinks = hrefs.filter((href) => {
-        const linkPath = routePathOf(href);
+        const linkPath = routePathOfInternalHref(href);
         const pointsAtRetiredRoute = RETIRED_ROUTE_PREFIXES.some((prefix) => linkPath === prefix || linkPath.startsWith(`${prefix}/`));
         return pointsAtRetiredRoute || !KNOWN_ROUTES.has(linkPath);
       });
@@ -35,7 +35,7 @@ test.describe('Every internal link goes somewhere that exists', () => {
     const chromeHrefs = await page
       .locator('header a[href^="/"], footer a[href^="/"]')
       .evaluateAll((links) => links.map((link) => link.getAttribute('href') ?? ''));
-    const chromePaths = new Set(chromeHrefs.map(routePathOf));
+    const chromePaths = new Set(chromeHrefs.map(routePathOfInternalHref));
     for (const route of DISCOVERABLE_ROUTES) {
       expect(chromePaths.has(route), `${route} is not reachable from the header or footer`).toBe(true);
     }
@@ -162,6 +162,87 @@ test.describe('The commerce surface tells the truth', () => {
       }
     }
   });
+});
+
+test.describe('Layout and presentation regressions', () => {
+  test('every cognition stage keeps its text and status inside its card', async ({ page }) => {
+    await page.goto('/research/machine-cognition');
+    const cardsWithEscapingContent = await page.locator('.process-step').evaluateAll((cards) =>
+      cards.filter((card) => {
+        const cardRight = card.getBoundingClientRect().right;
+        return Array.from(card.children).some((child) => child.getBoundingClientRect().right > cardRight + 0.5);
+      }).length,
+    );
+    expect(cardsWithEscapingContent).toBe(0);
+  });
+
+  test('a phone visitor can jump straight to the contact form', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 812 });
+    await page.goto('/contact');
+    await page.locator('.contact-jump').click();
+    await expect(page.locator('#contact-name')).toBeInViewport();
+  });
+
+  test('milestone summaries show their status without opening a disclosure', async ({ page }) => {
+    await page.goto('/research/data-representation');
+    const summary = page.locator('.milestone-summary', { hasText: 'Measured net size reduction' });
+    await expect(summary.locator('.status-badge')).toBeVisible();
+    await expect(summary.locator('.status-badge')).toContainText('Not yet demonstrated');
+  });
+
+  test('a milestone that has not reached testing does not use the tested colour', async ({ page }) => {
+    await page.goto('/research/data-representation');
+    const untestedTrack = page.locator('.milestone-summary', { hasText: 'Measured net size reduction' }).locator('.stage-track');
+    await expect(untestedTrack).toHaveClass(/stage-track-untested/);
+    await expect(page.locator('.milestone-summary', { hasText: 'Exact reconstruction' }).locator('.stage-track')).not.toHaveClass(/stage-track-untested/);
+  });
+
+  test('the footer offers no billing link while no customer portal is configured', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('footer a[href="/billing"]')).toHaveCount(0);
+  });
+
+  test('milestone details stay reachable through a native disclosure', async ({ page }) => {
+    await page.goto('/research/milestones');
+    const firstCard = page.locator('article.milestone').first();
+    await expect(firstCard.locator('.milestone-facts')).toBeHidden();
+    await firstCard.locator('details.more > summary').click();
+    await expect(firstCard.locator('.milestone-facts')).toBeVisible();
+  });
+
+  test('founder cards for the personal service link to the proposed models, not the top of licensing', async ({ page }) => {
+    await page.goto('/founder-access');
+    const licensingLinks = page.locator('a[href^="/licensing"]', { hasText: 'What this is' });
+    await expect(licensingLinks).not.toHaveCount(0);
+    for (const href of await licensingLinks.evaluateAll((links) => links.map((link) => link.getAttribute('href')))) {
+      expect(href).toBe('/licensing#models-heading');
+    }
+  });
+
+  test('the four partnership routes never leave one card alone on a row', async ({ page }) => {
+    await page.setViewportSize({ width: 1366, height: 900 });
+    await page.goto('/licensing');
+    const routeRowTops = await page.locator('article.route').evaluateAll((routes) =>
+      routes.map((route) => Math.round(route.getBoundingClientRect().top)),
+    );
+    expect(routeRowTops).toHaveLength(4);
+    const cardsPerRow = [...new Set(routeRowTops)].map((top) => routeRowTops.filter((rowTop) => rowTop === top).length);
+    expect(cardsPerRow.every((count) => count !== 1)).toBe(true);
+  });
+});
+
+test.describe('Every page runs without browser errors', () => {
+  for (const route of ALL_PAGE_ROUTES) {
+    test(`${route} loads with no console error and no uncaught exception`, async ({ page }) => {
+      const browserErrors: string[] = [];
+      page.on('pageerror', (uncaughtException) => browserErrors.push(`uncaught: ${uncaughtException.message}`));
+      page.on('console', (message) => {
+        if (message.type() === 'error') browserErrors.push(`console: ${message.text()}`);
+      });
+      await page.goto(route, { waitUntil: 'networkidle' });
+      expect(browserErrors, `${route} reported browser errors`).toEqual([]);
+    });
+  }
 });
 
 test.describe('Contact refuses to overpromise', () => {

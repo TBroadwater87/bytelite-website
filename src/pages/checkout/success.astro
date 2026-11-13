@@ -48,34 +48,34 @@ import { COMPANY_NAME } from '../../data/company';
 <script>
   const checkoutSessionId = new URLSearchParams(window.location.search).get('session_id') ?? '';
   const heading = document.getElementById('checkout-heading');
-  const body = document.getElementById('checkout-body');
+  const checkoutStatusText = document.getElementById('checkout-body');
   const detail = document.getElementById('checkout-detail');
   const reward = document.getElementById('checkout-reward');
   const failure = document.getElementById('checkout-failure');
 
-  function showFailure(message: string) {
+  function showNotConfirmed(message: string) {
     if (heading) heading.textContent = 'Not confirmed.';
-    if (body) body.textContent = message;
+    if (checkoutStatusText) checkoutStatusText.textContent = message;
     if (failure) failure.hidden = false;
   }
 
-  async function verifyCheckoutSession() {
+  async function requestServerCheckoutConfirmationAndShowResult() {
     if (!checkoutSessionId) {
-      showFailure('This page was opened without a checkout reference, so there is nothing to confirm.');
+      showNotConfirmed('This page was opened without a checkout reference, so there is nothing to confirm.');
       return;
     }
     try {
       const response = await fetch(`/api/checkout-session?session_id=${encodeURIComponent(checkoutSessionId)}`);
       const result = await response.json().catch(() => ({}));
       if (!response.ok || !result.confirmed) {
-        showFailure('This checkout could not be confirmed.');
+        showNotConfirmed('This checkout could not be confirmed.');
         return;
       }
       const isReservation = result.kind === 'reservation';
       const isSubscription = result.mode === 'subscription';
       if (heading) heading.textContent = isReservation ? 'Reservation recorded.' : isSubscription ? 'Subscription started.' : 'Payment received.';
-      if (body) {
-        body.textContent = isReservation
+      if (checkoutStatusText) {
+        checkoutStatusText.textContent = isReservation
           ? 'Nothing was charged, and this is not a subscription. You will be shown the exact price and terms before anything is ever charged, and you will have to confirm it yourself.'
           : isSubscription
             ? 'Your subscription is confirmed. Billing and cancellation are managed in the Stripe customer portal.'
@@ -88,14 +88,15 @@ import { COMPANY_NAME } from '../../data/company';
       if (detail) detail.hidden = false;
       if (result.supporterPackUnlocked && reward) reward.hidden = false;
     } catch {
-      showFailure('This order could not be confirmed right now.');
+      showNotConfirmed('This order could not be confirmed right now.');
     }
   }
 
-  verifyCheckoutSession();
+  requestServerCheckoutConfirmationAndShowResult();
 </script>
 
 <style>
+  #checkout-failure:not([hidden]), #checkout-reward:not([hidden]) { display: grid; gap: var(--space-3); }
   .page-intro-plain { padding-block: var(--space-8) var(--space-6); border-bottom: 1px solid var(--color-line); }
   .checkout-facts { display: grid; gap: var(--space-3) var(--space-6); margin: 0; padding: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-lg); }
   .checkout-facts dt { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; color: var(--color-ink-subtle); }

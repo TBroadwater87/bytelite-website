@@ -1,7 +1,8 @@
 import { describe, test, expect } from 'vitest';
-import { readFileSync, existsSync, readdirSync } from 'node:fs';
-import { resolve, relative, extname } from 'node:path';
-import { loadDisclosureDenylist, disclosureFindings } from '../disclosure-denylist';
+import { readFileSync, existsSync, readdirSync, mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join, resolve, relative, extname } from 'node:path';
+import { loadDisclosureDenylist, disclosureFindings, DISCLOSURE_DENYLIST_ENVIRONMENT_VARIABLE } from '../disclosure-denylist';
 
 const distributionDirectory = resolve(__dirname, '../../dist');
 const built = existsSync(distributionDirectory);
@@ -15,6 +16,25 @@ function filesUnder(directory: string): string[] {
 
 const TEXT_EXTENSIONS = new Set(['.html', '.js', '.mjs', '.css', '.xml', '.json', '.txt', '.webmanifest', '.svg']);
 const SECRET_VALUE_SHAPES = [/sk_(live|test)_[A-Za-z0-9]{8,}/, /whsec_[A-Za-z0-9]{8,}/, /SG\.[A-Za-z0-9_-]{16,}/, /-----BEGIN [A-Z ]*PRIVATE KEY-----/];
+
+describe('the disclosure denylist cannot pass vacuously', () => {
+  const COMPLETE_DENYLIST = { caseSensitiveNames: ['Name'], caseInsensitiveTerms: ['term'], regularExpressions: ['pattern'], serverSecretNames: ['NAME'] };
+
+  test.each(Object.keys(COMPLETE_DENYLIST))('a list with no %s entries is refused', (requiredCategory) => {
+    const configuredDenylistPath = process.env[DISCLOSURE_DENYLIST_ENVIRONMENT_VARIABLE];
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), 'disclosure-denylist-'));
+    const incompleteDenylistPath = join(temporaryDirectory, 'incomplete.json');
+    writeFileSync(incompleteDenylistPath, JSON.stringify({ ...COMPLETE_DENYLIST, [requiredCategory]: [] }));
+    process.env[DISCLOSURE_DENYLIST_ENVIRONMENT_VARIABLE] = incompleteDenylistPath;
+    try {
+      expect(() => loadDisclosureDenylist()).toThrow(requiredCategory);
+    } finally {
+      if (configuredDenylistPath === undefined) delete process.env[DISCLOSURE_DENYLIST_ENVIRONMENT_VARIABLE];
+      else process.env[DISCLOSURE_DENYLIST_ENVIRONMENT_VARIABLE] = configuredDenylistPath;
+      rmSync(temporaryDirectory, { recursive: true });
+    }
+  });
+});
 
 describe('the public build discloses nothing private', () => {
   test('the built site exists, so the disclosure checks below are not vacuous', () => {

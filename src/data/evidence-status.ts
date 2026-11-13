@@ -18,7 +18,7 @@ export interface EvidenceStatusDefinition {
   label: string;
   meaning: string;
   tone: StatusTone;
-  evidenceScope: EvidenceScope;
+  evidenceScopeCeiling: EvidenceScope;
 }
 
 export const EVIDENCE_STATUS_DEFINITIONS: readonly EvidenceStatusDefinition[] = [
@@ -27,14 +27,14 @@ export const EVIDENCE_STATUS_DEFINITIONS: readonly EvidenceStatusDefinition[] = 
     label: 'Research concept',
     meaning: 'A defined research question or intended capability. Nothing has been built for it yet.',
     tone: 'neutral',
-    evidenceScope: 'none',
+    evidenceScopeCeiling: 'none',
   },
   {
     status: 'active-development',
     label: 'Active development',
     meaning: 'Engineering work is under way. Any internal results so far are listed with the milestone; the milestone itself is not complete.',
     tone: 'progress',
-    evidenceScope: 'internal',
+    evidenceScopeCeiling: 'internal',
   },
   {
     status: 'implemented-unverified',
@@ -42,7 +42,7 @@ export const EVIDENCE_STATUS_DEFINITIONS: readonly EvidenceStatusDefinition[] = 
     meaning:
       'Software exists in the company source tree, but its required checks have not yet been completed and accepted.',
     tone: 'progress',
-    evidenceScope: 'internal',
+    evidenceScopeCeiling: 'internal',
   },
   {
     status: 'internally-tested',
@@ -50,7 +50,7 @@ export const EVIDENCE_STATUS_DEFINITIONS: readonly EvidenceStatusDefinition[] = 
     meaning:
       'Automated tests written by ByteLite LLC pass for the stated scope. Nobody outside the company has checked the result.',
     tone: 'tested',
-    evidenceScope: 'internal',
+    evidenceScopeCeiling: 'internal',
   },
   {
     status: 'internally-validated',
@@ -58,35 +58,35 @@ export const EVIDENCE_STATUS_DEFINITIONS: readonly EvidenceStatusDefinition[] = 
     meaning:
       'Tested, and the result has also been reviewed against written acceptance criteria inside the company. Still not independent.',
     tone: 'tested',
-    evidenceScope: 'internal',
+    evidenceScopeCeiling: 'internal',
   },
   {
     status: 'independently-verified',
     label: 'Independently verified',
     meaning: 'Someone outside ByteLite LLC has reproduced the result under conditions they controlled.',
     tone: 'verified',
-    evidenceScope: 'independent',
+    evidenceScopeCeiling: 'independent',
   },
   {
     status: 'production-qualified',
     label: 'Production qualified',
     meaning: 'Shown to be dependable enough to run real workloads for real users.',
     tone: 'verified',
-    evidenceScope: 'independent',
+    evidenceScopeCeiling: 'independent',
   },
   {
     status: 'not-yet-demonstrated',
     label: 'Not yet demonstrated',
     meaning: 'An intended capability that has not been shown to work. It is a goal, not a result. Any partial internal results are listed with the milestone.',
     tone: 'neutral',
-    evidenceScope: 'internal',
+    evidenceScopeCeiling: 'internal',
   },
   {
     status: 'blocked-under-review',
     label: 'Blocked / under review',
     meaning: 'Work is paused until an open engineering, governance or business decision is resolved.',
     tone: 'caution',
-    evidenceScope: 'none',
+    evidenceScopeCeiling: 'none',
   },
 ];
 
@@ -95,6 +95,28 @@ export function definitionOf(status: EvidenceStatus): EvidenceStatusDefinition {
   if (!definition) throw new Error(`Unknown evidence status: ${status}`);
   return definition;
 }
+
+export interface ClaimClass {
+  label: string;
+  meaning: string;
+}
+
+export const DEMONSTRATED_CLAIM_CLASS: ClaimClass = {
+  label: 'Shown so far',
+  meaning: 'Measured in our own tests, within the stated scope.',
+};
+
+export const DESIGN_POSSIBILITY_CLAIM_CLASS: ClaimClass = {
+  label: 'Possible by design',
+  meaning: 'What the architecture is meant to allow. It has not been shown, so it is not a result.',
+};
+
+export const FUTURE_WORK_CLAIM_CLASS: ClaimClass = {
+  label: 'Future work',
+  meaning: 'The next steps and what they must show. None of this is a result yet.',
+};
+
+export const CLAIM_CLASSES: readonly ClaimClass[] = [DEMONSTRATED_CLAIM_CLASS, DESIGN_POSSIBILITY_CLAIM_CLASS, FUTURE_WORK_CLAIM_CLASS];
 
 export const EVIDENCE_SCOPE_LABEL: Record<EvidenceScope, string> = {
   none: 'No evidence claimed',

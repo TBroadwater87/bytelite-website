@@ -2,6 +2,7 @@ import { describe, test, expect } from 'vitest';
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { loadDisclosureDenylist, disclosureFindings } from '../disclosure-denylist';
+import { COMPANY_NAME, LEGAL_FORMATION_YEAR, RESEARCH_BEGAN_YEAR, SITE_ORIGIN } from '../../src/data/company';
 
 const repositoryRoot = resolve(__dirname, '../..');
 const vercelConfiguration = JSON.parse(readFileSync(resolve(repositoryRoot, 'vercel.json'), 'utf8')) as {
@@ -234,5 +235,21 @@ describe('built output', () => {
   test.skipIf(!built)('robots.txt points at the sitemap', () => {
     const robots = readFileSync(resolve(repositoryRoot, 'public/robots.txt'), 'utf8');
     expect(robots).toContain('Sitemap: https://www.thebytelite.com/sitemap-index.xml');
+  });
+
+  test.skipIf(!built)('the home page describes the company as one Organization with its legal formation year and a published logo', () => {
+    const homePage = readFileSync(resolve(distributionDirectory, 'index.html'), 'utf8');
+    const structuredDataBlocks = [...homePage.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]!));
+    expect(structuredDataBlocks).toHaveLength(1);
+    const organization = structuredDataBlocks[0] as Record<string, unknown> & { address: Record<string, unknown> };
+    expect(organization['@context']).toBe('https://schema.org');
+    expect(organization['@type']).toBe('Organization');
+    expect(organization.name).toBe(COMPANY_NAME);
+    expect(organization.url).toBe(`${SITE_ORIGIN}/`);
+    expect(organization.foundingDate).toBe(LEGAL_FORMATION_YEAR);
+    expect(organization.foundingDate).not.toBe(RESEARCH_BEGAN_YEAR);
+    expect(organization.address['@type']).toBe('PostalAddress');
+    const logoPath = String(organization.logo).replace(SITE_ORIGIN, '');
+    expect(existsSync(resolve(distributionDirectory, `.${logoPath}`)), `${logoPath} is not published`).toBe(true);
   });
 });

@@ -3,13 +3,14 @@ import Layout from '../../layouts/Layout.astro';
 import PageIntro from '../../components/site/PageIntro.astro';
 import MilestoneSummary from '../../components/site/MilestoneSummary.astro';
 import ProofTile from '../../components/site/ProofTile.astro';
+import ClaimBoundaries from '../../components/site/ClaimBoundaries.astro';
 import { milestonesFor } from '../../data/milestones';
 import { researchProgram } from '../../data/research-programs';
 import { establishedCapabilitiesFor } from '../../data/established-capabilities';
 import { COMPANY_NAME } from '../../data/company';
 
 const program = researchProgram('visual-and-audio');
-const sensoryMilestones = milestonesFor('visual-and-audio');
+const visualAndAudioMilestones = milestonesFor('visual-and-audio');
 const provenCapabilities = establishedCapabilitiesFor('visual-and-audio');
 ---
 
@@ -18,7 +19,7 @@ const provenCapabilities = establishedCapabilitiesFor('visual-and-audio');
   description="ByteLite LLC research into deterministic, structured representations of images and sound: 573 of 573 image checks and 213 of 213 audio architecture tests pass. No visual understanding or speech comprehension is claimed."
   path="/research/visual-and-audio"
 >
-  <PageIntro eyebrow="Research program" heading="Visual and audio information." lede={program.pitch} art={{ src: '/art/vision-pixel-structure.webp', alt: 'A pixel grid of a sunset, with one area enlarged and its colour contours mapped.', width: 1672, height: 941, caption: 'An impression of pixel-level structure. It is not measured engine output.' }} />
+  <PageIntro eyebrow="Research program" heading="Visual and audio information." lede={program.pitch} art={{ classification: 'Conceptual illustration', src: '/art/vision-pixel-structure.webp', alt: 'A pixel grid of a sunset, with one area enlarged and its colour contours mapped.', width: 1672, height: 941, caption: 'An impression of pixel-level structure. It is not measured engine output.' }} />
 
   <section class="section" aria-labelledby="proven-heading">
     <div class="wrap">
@@ -32,6 +33,16 @@ const provenCapabilities = establishedCapabilitiesFor('visual-and-audio');
     </div>
   </section>
 
+  <section class="section" aria-labelledby="boundaries-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Reading these results</p>
+        <h2 id="boundaries-heading">Shown, possible, still to do.</h2>
+      </div>
+      <ClaimBoundaries program={program} />
+    </div>
+  </section>
+
   <section class="section section-sunken" aria-labelledby="direction-heading">
     <div class="wrap split">
       <div class="direction">
@@ -42,8 +53,8 @@ const provenCapabilities = establishedCapabilitiesFor('visual-and-audio');
       </div>
       <div class="direction">
         <p class="eyebrow">Sound</p>
-        <h2>An audio foundation, ready to build on.</h2>
-        <p>The architecture for representing sound and speech is in place and fully tested.</p>
+        <h2>An early audio architecture.</h2>
+        <p>An architectural skeleton for sound and speech research passes its structural tests. Most behaviour is not yet defined.</p>
         <p class="direction-next"><strong>Next:</strong> the first audio measurements. No speech recognition, speech comprehension or audio analysis capability is claimed.</p>
       </div>
     </div>
@@ -56,7 +67,7 @@ const provenCapabilities = establishedCapabilitiesFor('visual-and-audio');
         <h2 id="milestones-heading">Every gate, and where it stands.</h2>
       </div>
       <ul class="summary-grid milestone-list">
-        {sensoryMilestones.map((milestone) => <MilestoneSummary milestone={milestone} />)}
+        {visualAndAudioMilestones.map((milestone) => <MilestoneSummary milestone={milestone} />)}
       </ul>
     </div>
   </section>

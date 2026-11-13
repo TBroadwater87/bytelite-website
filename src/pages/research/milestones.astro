@@ -86,10 +86,11 @@ import { COMPANY_NAME } from '../../data/company';
   const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-filter-program]'));
   const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-program-section]'));
   const announcement = document.querySelector<HTMLElement>('[data-filter-status]');
+  const ALL_PROGRAMS_FILTER = 'all';
 
-  function showProgram(programId: string, label: string) {
+  function showOnlyMilestonesOfProgram(programId: string, label: string) {
     for (const section of sections) {
-      section.hidden = programId !== 'all' && section.dataset.programSection !== programId;
+      section.hidden = programId !== ALL_PROGRAMS_FILTER && section.dataset.programSection !== programId;
     }
     for (const button of buttons) {
       button.setAttribute('aria-pressed', String(button.dataset.filterProgram === programId));
@@ -101,7 +102,7 @@ import { COMPANY_NAME } from '../../data/company';
     filter.hidden = false;
     for (const button of buttons) {
       button.addEventListener('click', () => {
-        showProgram(button.dataset.filterProgram ?? 'all', button.textContent?.trim() ?? 'all programs');
+        showOnlyMilestonesOfProgram(button.dataset.filterProgram ?? ALL_PROGRAMS_FILTER,button.textContent?.trim() ?? 'all programs');
       });
     }
   }
@@ -113,7 +114,7 @@ import { COMPANY_NAME } from '../../data/company';
   .filter-label { font-weight: 600; color: var(--color-ink); }
   .filter-buttons { display: flex; flex-wrap: wrap; gap: var(--space-2); }
   .filter-button {
-    min-height: 2.5rem; padding: 0 var(--space-4); font: inherit; font-size: var(--text-sm); font-weight: 600;
+    min-height: 2.75rem; padding: 0 var(--space-4); font: inherit; font-size: var(--text-sm); font-weight: 600;
     background: var(--color-surface); color: var(--color-ink); border: 1px solid var(--color-input-border); border-radius: var(--radius-pill); cursor: pointer;
   }
   .filter-button[aria-pressed='true'] { background: var(--color-ink); color: var(--color-canvas); border-color: var(--color-ink); }

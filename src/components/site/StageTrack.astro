@@ -10,12 +10,19 @@ export interface Props {
 const { status, label } = Astro.props;
 const stageReached = evidenceStageReached(status);
 const reachedStageName = stageReached === null ? 'No stage reached yet' : EVIDENCE_STAGES[stageReached];
+const TESTED_IN_HOUSE_STAGE_INDEX = EVIDENCE_STAGES.indexOf('Tested in-house');
+const hasReachedTesting = stageReached !== null && stageReached >= TESTED_IN_HOUSE_STAGE_INDEX;
+
+function stageProgressClass(stageIndex: number): 'stage-passed' | 'stage-current' | 'stage-ahead' {
+  if (stageReached === null || stageIndex > stageReached) return 'stage-ahead';
+  return stageIndex === stageReached ? 'stage-current' : 'stage-passed';
+}
 ---
 
-<div class="stage-track" role="img" aria-label={`${label}: ${reachedStageName}`}>
+<div class:list={['stage-track', { 'stage-track-untested': !hasReachedTesting }]} role="img" aria-label={`${label}: ${reachedStageName}`}>
   <ol aria-hidden="true">
     {EVIDENCE_STAGES.map((stageName, stageIndex) => (
-      <li class={stageReached !== null && stageIndex <= stageReached ? (stageIndex === stageReached ? 'stage-current' : 'stage-passed') : 'stage-ahead'}>
+      <li class={stageProgressClass(stageIndex)}>
         <span class="stage-name">{stageName}</span>
       </li>
     ))}
@@ -28,7 +35,8 @@ const reachedStageName = stageReached === null ? 'No stage reached yet' : EVIDEN
   .stage-track li::before { content: ''; display: block; height: 6px; border-radius: var(--radius-pill); background: var(--color-line); }
   .stage-passed::before { background: var(--tone-tested-ink) !important; opacity: 0.55; }
   .stage-current::before { background: var(--tone-tested-ink) !important; }
+  .stage-track-untested .stage-passed::before, .stage-track-untested .stage-current::before { background: var(--color-ink-subtle) !important; }
   .stage-name { font-size: 0.6875rem; line-height: 1.2; color: var(--color-ink-subtle); }
   .stage-current .stage-name { color: var(--color-ink); font-weight: 700; }
-  @media (max-width: 30rem) { .stage-ahead .stage-name, .stage-passed .stage-name { visibility: hidden; } }
+  @media (max-width: 30rem) { .stage-ahead .stage-name, .stage-passed .stage-name { display: none; } }
 </style>

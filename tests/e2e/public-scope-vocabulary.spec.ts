@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { ALL_PAGE_ROUTES, DISCOVERABLE_ROUTES } from './public-routes';
 import { loadDisclosureDenylist, disclosureFindings } from '../disclosure-denylist';
+import { CLAIM_CLASSES } from '../../src/data/evidence-status';
 
 const OVERCLAIMS = [
   'universal compression',
@@ -27,6 +28,12 @@ const OVERCLAIMS = [
   '1tb to',
   'one-terabyte',
   'four hundred kilobytes',
+  'fully tested',
+  'in our labs',
+  'is proven',
+  'has proven',
+  'proof before claim',
+  'proof by design',
 ];
 
 const HYPE = ['revolutionary', 'disruptive', 'breakthrough', 'world-changing', 'next-generation', 'industry-leading', 'game-changing'];
@@ -52,6 +59,19 @@ for (const route of ALL_PAGE_ROUTES) {
 }
 
 test.describe('Required honesty statements', () => {
+  for (const route of ['/research/machine-cognition', '/research/data-representation', '/research/visual-and-audio']) {
+    test(`${route} separates shown results, design possibilities and future work`, async ({ page }) => {
+      await page.goto(route);
+      await expect(page.locator('.claim-boundary h3')).toHaveText(CLAIM_CLASSES.map((claimClass) => claimClass.label));
+      await expect(page.locator('.claim-boundary').nth(1)).toContainText('It has not been shown, so it is not a result.');
+    });
+  }
+
+  test('validation defines the three kinds of statement', async ({ page }) => {
+    await page.goto('/validation');
+    await expect(page.locator('.claim-classes dt')).toHaveText(CLAIM_CLASSES.map((claimClass) => claimClass.label));
+  });
+
   test('validation states that nothing is independently verified', async ({ page }) => {
     await page.goto('/validation');
     await expect(page.locator('body')).toContainText('None of it has been independently verified.');

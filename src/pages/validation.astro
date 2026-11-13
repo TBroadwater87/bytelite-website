@@ -4,7 +4,7 @@ import PageIntro from '../components/site/PageIntro.astro';
 import StatusBadge from '../components/site/StatusBadge.astro';
 import { PUBLIC_MILESTONES } from '../data/milestones';
 import { researchProgram } from '../data/research-programs';
-import { EVIDENCE_STATUS_DEFINITIONS, EVIDENCE_SCOPE_LABEL } from '../data/evidence-status';
+import { EVIDENCE_STATUS_DEFINITIONS, EVIDENCE_SCOPE_LABEL, CLAIM_CLASSES } from '../data/evidence-status';
 import { EVIDENCE_STAGES } from '../data/evidence-stages';
 import { COMPANY_NAME } from '../data/company';
 
@@ -47,9 +47,18 @@ const EVALUATION_REQUIREMENTS = [
             <dt><StatusBadge status={definition.status} /></dt>
             <dd>
               {definition.meaning}
-              <span class="classification-scope">{EVIDENCE_SCOPE_LABEL[definition.evidenceScope]}</span>
+              <span class="classification-scope">{EVIDENCE_SCOPE_LABEL[definition.evidenceScopeCeiling]}</span>
             </dd>
           </div>
+        ))}
+      </dl>
+      <div class="section-heading claim-classes-heading">
+        <p class="eyebrow">Three kinds of statement</p>
+        <h2 id="claim-classes-heading">A result, a possibility and a plan are different things.</h2>
+      </div>
+      <dl class="claim-classes" aria-labelledby="claim-classes-heading">
+        {CLAIM_CLASSES.map((claimClass) => (
+          <div><dt>{claimClass.label}</dt><dd>{claimClass.meaning}</dd></div>
         ))}
       </dl>
     </div>
@@ -62,7 +71,7 @@ const EVALUATION_REQUIREMENTS = [
         <h2 id="register-heading">Every public milestone at a glance.</h2>
         <p class="lede">Select a milestone for what has and has not been demonstrated.</p>
       </div>
-      <table class="data-table data-table-stacked">
+      <table class="data-table data-table-stacked data-table-compact">
         <caption>Public milestones, their status and the scope of their evidence.</caption>
         <thead>
           <tr>
@@ -115,12 +124,17 @@ const EVALUATION_REQUIREMENTS = [
 <style>
   .stage-ladder { list-style: none; display: grid; gap: var(--space-2); grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); margin-bottom: var(--space-3); }
   .stage-ladder li { display: flex; gap: var(--space-3); align-items: center; padding: var(--space-4); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-md); font-weight: 700; color: var(--color-ink); }
-  .stage-ladder li:nth-child(-n+3) { border-color: var(--tone-tested-line); background: var(--tone-tested-bg); color: var(--tone-tested-ink); }
+  .stage-ladder li:nth-child(3) { border-color: var(--tone-tested-line); background: var(--tone-tested-bg); color: var(--tone-tested-ink); }
   .stage-ladder-number { display: grid; place-items: center; width: 1.75rem; height: 1.75rem; flex-shrink: 0; border-radius: 50%; border: 2px solid currentColor; font-family: var(--font-mono); font-size: var(--text-sm); }
   .stage-ladder-note { font-size: var(--text-sm); margin-bottom: var(--space-6); }
   .classification-list { display: grid; gap: var(--space-3); margin: 0; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
   .classification { display: grid; gap: var(--space-2); padding: var(--space-4); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-md); }
   .classification dd { margin: 0; display: grid; gap: var(--space-1); font-size: var(--text-sm); color: var(--color-ink-muted); }
   .classification-scope { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-ink-subtle); }
+  .claim-classes-heading { margin-top: var(--space-7); }
+  .claim-classes { display: grid; gap: var(--space-4); margin: 0; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+  .claim-classes div { display: grid; gap: var(--space-2); align-content: start; padding-top: var(--space-4); border-top: 3px solid var(--color-ink); }
+  .claim-classes dt { font-weight: 700; color: var(--color-ink); }
+  .claim-classes dd { margin: 0; font-size: var(--text-sm); color: var(--color-ink-muted); }
   .data-table tbody th a { color: var(--color-ink); }
 </style>

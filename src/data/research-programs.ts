@@ -10,10 +10,11 @@ export interface ResearchProgram {
   question: string;
   summary: string;
   overallStatus: EvidenceStatus;
-  leadingStatus: EvidenceStatus;
-  establishedToday: string;
-  nextGate: string;
-  notYetEstablished: string;
+  furthestStatusReached: EvidenceStatus;
+  demonstratedSoFar: string;
+  designPossibility: string;
+  nextObservableResult: string;
+  notYetDemonstrated: string;
 }
 
 export const RESEARCH_PROGRAMS: readonly ResearchProgram[] = [
@@ -27,10 +28,11 @@ export const RESEARCH_PROGRAMS: readonly ResearchProgram[] = [
     summary:
       'Governed machine cognition: explicit knowledge records with their sources, fixed knowledge versions, and checks at defined points in every request.',
     overallStatus: 'active-development',
-    leadingStatus: 'internally-tested',
-    establishedToday: 'Governed request handling, sourced knowledge records, fixed knowledge versions and operator-only teaching.',
-    nextGate: 'Understanding how the parts of a request relate, then matching them to established knowledge.',
-    notYetEstablished:
+    furthestStatusReached:'internally-tested',
+    demonstratedSoFar:'Governed request handling, sourced knowledge records, fixed knowledge versions and operator-only teaching.',
+    designPossibility: 'A system that answers only from knowledge it can trace, and states exactly what a task still needs.',
+    nextObservableResult:'Understanding how the parts of a request relate, then matching them to established knowledge.',
+    notYetDemonstrated:
       'The full chain from a request to its concepts, relationships, missing knowledge and a supported answer has not been demonstrated end to end.',
   },
   {
@@ -43,10 +45,11 @@ export const RESEARCH_PROGRAMS: readonly ResearchProgram[] = [
     summary:
       'The original ByteLite research program: deterministic lossless representation, aiming at exact reconstruction and complete accounting of every byte.',
     overallStatus: 'active-development',
-    leadingStatus: 'internally-tested',
-    establishedToday: 'Exact byte-for-byte reconstruction and identical output on repeated runs.',
-    nextGate: 'A complete representation measurably smaller than its input on a declared test collection.',
-    notYetEstablished: 'Net size reduction has not been demonstrated. The current development representation is larger than its input.',
+    furthestStatusReached:'internally-tested',
+    demonstratedSoFar:'Exact byte-for-byte reconstruction and identical output on repeated runs.',
+    designPossibility: 'Complete representations smaller than their input, where the data and the complete representation permit it.',
+    nextObservableResult:'A complete representation measurably smaller than its input on a declared test collection.',
+    notYetDemonstrated: 'Net size reduction has not been demonstrated. The current development representation is larger than its input.',
   },
   {
     id: 'visual-and-audio',
@@ -56,10 +59,11 @@ export const RESEARCH_PROGRAMS: readonly ResearchProgram[] = [
     question: 'Can images and sound be described in deterministic, structured forms that other systems can rely on?',
     summary: 'Early research into structured, repeatable representations of visual and acoustic information.',
     overallStatus: 'active-development',
-    leadingStatus: 'internally-tested',
-    establishedToday: 'Deterministic image-structure components on synthetic test images.',
-    nextGate: 'The remaining image behaviours implemented, then results on real-world images.',
-    notYetEstablished: 'No visual understanding, speech recognition or speech comprehension is claimed.',
+    furthestStatusReached:'internally-tested',
+    demonstratedSoFar:'Deterministic image-structure components on synthetic test images.',
+    designPossibility: 'Image and sound descriptions repeatable enough for other systems to rely on.',
+    nextObservableResult:'The remaining image behaviours implemented, then results on real-world images.',
+    notYetDemonstrated: 'No visual understanding, speech recognition or speech comprehension is claimed.',
   },
 ];
 

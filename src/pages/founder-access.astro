@@ -74,7 +74,7 @@ const anyCardActionable = founderCards.some((card) => card.actionable);
             <h3>{card.title}</h3>
             <p>{card.what}</p>
             <p class="small-print">{card.actionable ? actionableStateFor(card) : card.state}</p>
-            <p class="founder-kind">{card.kind === 'reservation' ? 'Physical product reservation' : `Subscription, billed per ${card.interval}`}</p>
+            <p class="founder-kind">{card.kind === 'reservation' ? 'Planned physical product reservation' : `Planned subscription, billed per ${card.interval}`}</p>
             {card.actionable ? (
               <button type="button" class="button button-primary founder-button" data-plan={card.planKey}>{actionLabelFor(card)}</button>
             ) : (

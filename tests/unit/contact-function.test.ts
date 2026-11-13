@@ -6,8 +6,7 @@ import vercelHandler from '../../api/contact';
 // credential. What these tests protect is that the route cannot (a) claim a success it did not
 // have, (b) invent a recipient, or (c) leak the bearer token into a response or a log line.
 //
-// They target the SHARED CORE, so they cover the Vercel production route and the Cloudflare
-// adapter at once - the two cannot drift apart without failing here.
+// They target the shared core and the Vercel production route that adapts it.
 
 const FAKE_KEY = 'SG.test-not-a-real-key';
 const CONFIG = {

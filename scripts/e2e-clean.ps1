@@ -6,31 +6,31 @@
 # Usage: powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/e2e-clean.ps1 [playwright args...]
 
 $ErrorActionPreference = 'Stop'
-$port = 4321
+$previewServerPort = 4321
 $repoMarker = 'bytelite-website'
 
-$conn = Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue
-if ($conn) {
-    $ownerPid = $conn[0].OwningProcess
-    $proc = Get-CimInstance Win32_Process -Filter "ProcessId = $ownerPid" -ErrorAction SilentlyContinue
+$listeningConnection = Get-NetTCPConnection -LocalPort $previewServerPort -State Listen -ErrorAction SilentlyContinue
+if ($listeningConnection) {
+    $ownerPid = $listeningConnection[0].OwningProcess
+    $owningProcess = Get-CimInstance Win32_Process -Filter "ProcessId = $ownerPid" -ErrorAction SilentlyContinue
 
-    if ($null -eq $proc) {
-        Write-Error "Port $port is occupied by PID $ownerPid but its process info could not be read. Refusing to guess - aborting."
+    if ($null -eq $owningProcess) {
+        Write-Error "Port $previewServerPort is occupied by PID $ownerPid but its process info could not be read. Refusing to guess - aborting."
         exit 1
     }
 
-    $cmd = $proc.CommandLine
-    if ($cmd -and $cmd.ToLower().Contains($repoMarker) -and $cmd.ToLower().Contains('preview')) {
-        Write-Host "Port $port is held by a stale $repoMarker preview server (PID $ownerPid). Terminating it."
-        Write-Host "  CommandLine: $cmd"
+    $owningCommandLine = $owningProcess.CommandLine
+    if ($owningCommandLine -and $owningCommandLine.ToLower().Contains($repoMarker) -and $owningCommandLine.ToLower().Contains('preview')) {
+        Write-Host "Port $previewServerPort is held by a stale $repoMarker preview server (PID $ownerPid). Terminating it."
+        Write-Host "  CommandLine: $owningCommandLine"
         Stop-Process -Id $ownerPid -Force
         Start-Sleep -Milliseconds 500
     } else {
-        Write-Error "Port $port is occupied by PID $ownerPid, whose command line does not identify it as a $repoMarker preview server:`n  $cmd`nThis may belong to another project. Refusing to terminate it - aborting."
+        Write-Error "Port $previewServerPort is occupied by PID $ownerPid, whose command line does not identify it as a $repoMarker preview server:`n  $owningCommandLine`nThis may belong to another project. Refusing to terminate it - aborting."
         exit 1
     }
 } else {
-    Write-Host "Port $port is clear."
+    Write-Host "Port $previewServerPort is clear."
 }
 
 Write-Host "Handing off to Playwright (fresh build + preview start, verified-ready before tests run)."

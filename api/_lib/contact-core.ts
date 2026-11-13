@@ -2,9 +2,7 @@
  * The contact-submission logic. This is the ONLY contact core.
  *
  * Production runs on Vercel through the thin adapter in api/contact.ts, which is the only
- * adapter. A Cloudflare Pages adapter used to sit beside it; it was never deployed and was
- * removed on 2026-08-24 (see OWNER_README.md section 16). Do not add a second adapter without
- * a live platform to run it on - an inert one only makes the hosting question ambiguous again.
+ * adapter.
  *
  * Keeping every rule that matters here - validation, size limits, header-injection defence,
  * provider-error handling, secret hygiene - is still the point: the adapter stays trivial and
@@ -25,8 +23,8 @@
 
 export const MAX_FIELD_LEN = 200;
 export const MAX_MESSAGE_LEN = 5000;
-export const RATE_LIMIT_WINDOW = 60_000;
-export const MAX_PER_WINDOW = 5;
+export const RATE_LIMIT_WINDOW_MS = 60_000;
+export const MAX_SUBMISSIONS_PER_RATE_LIMIT_KEY_PER_WINDOW = 5;
 
 /**
  * How long to wait on the mail provider before giving up.
@@ -45,11 +43,11 @@ export const PROVIDER_TIMEOUT_MS = 10_000;
  * NOT a distributed rate limit and must not be described as one - it only blunts a single client
  * hammering a single instance. A real control would need a shared store.
  */
-const RATE_LIMIT_MAP = new Map<string, { count: number; reset: number }>();
+const perInstanceRateLimitWindowsByKey = new Map<string, { count: number; windowEndsAtMs: number }>();
 
 /** Test seam: the limiter is module state, so suites need a way back to a known baseline. */
 export function __resetRateLimit(): void {
-  RATE_LIMIT_MAP.clear();
+  perInstanceRateLimitWindowsByKey.clear();
 }
 
 /**
@@ -106,22 +104,22 @@ interface RawPayload {
  * Strips CR, LF and NUL from anything that reaches an email header. Without this a name of
  * "x\r\nBcc: someone@else" could inject a header into the outgoing message.
  */
-export function stripControlChars(value: string): string {
+export function replaceHeaderBreakingCharacters(value: string): string {
   return value.replace(/[\r\n\0]/g, ' ').trim();
 }
 
-function asString(v: unknown): string {
+function stringOrEmpty(v: unknown): string {
   return typeof v === 'string' ? v : '';
 }
 
-function withinRate(clientId: string, now: number): boolean {
-  const rec = RATE_LIMIT_MAP.get(clientId);
-  if (!rec || now > rec.reset) {
-    RATE_LIMIT_MAP.set(clientId, { count: 1, reset: now + RATE_LIMIT_WINDOW });
+function admitSubmissionUnderRateLimit(clientId: string, now: number): boolean {
+  const rateLimitWindow = perInstanceRateLimitWindowsByKey.get(clientId);
+  if (!rateLimitWindow || now > rateLimitWindow.windowEndsAtMs) {
+    perInstanceRateLimitWindowsByKey.set(clientId, { count: 1, windowEndsAtMs: now + RATE_LIMIT_WINDOW_MS });
     return true;
   }
-  if (rec.count >= MAX_PER_WINDOW) return false;
-  rec.count++;
+  if (rateLimitWindow.count >= MAX_SUBMISSIONS_PER_RATE_LIMIT_KEY_PER_WINDOW) return false;
+  rateLimitWindow.count++;
   return true;
 }
 
@@ -155,7 +153,7 @@ export async function handleContact(
     };
   }
 
-  if (!withinRate(clientId, now)) {
+  if (!admitSubmissionUnderRateLimit(clientId, now)) {
     return { status: 429, body: { error: 'Rate limit exceeded. Please try again in a minute.' } };
   }
 
@@ -164,11 +162,11 @@ export async function handleContact(
   }
   const payload = raw as RawPayload;
 
-  const name = stripControlChars(asString(payload.name));
-  const email = stripControlChars(asString(payload.email));
-  const inquiryType = asString(payload.inquiryType);
-  const message = stripControlChars(asString(payload.message));
-  const organization = stripControlChars(asString(payload.organization)).slice(0, MAX_FIELD_LEN);
+  const name = replaceHeaderBreakingCharacters(stringOrEmpty(payload.name));
+  const email = replaceHeaderBreakingCharacters(stringOrEmpty(payload.email));
+  const inquiryType = stringOrEmpty(payload.inquiryType);
+  const message = replaceHeaderBreakingCharacters(stringOrEmpty(payload.message));
+  const organization = replaceHeaderBreakingCharacters(stringOrEmpty(payload.organization)).slice(0, MAX_FIELD_LEN);
 
   if (!name || name.length > MAX_FIELD_LEN) {
     return { status: 400, body: { error: 'Name is required.' } };

@@ -9,7 +9,7 @@ export const COUNTING_LIMIT_STATEMENT =
 export const DETERMINISM_STATEMENT =
   'The core encoding and decoding process is deterministic. It does not rely on probabilistic inference or confidence scores to decide what the original data probably was.';
 
-export const CURRENT_REDUCTION_STATUS =
+export const CURRENT_REDUCTION_STATEMENT =
   'Net size reduction has not been demonstrated. The current development representation is larger than its input, and no compression ratio is claimed.';
 
 export interface RepresentationPrinciple {

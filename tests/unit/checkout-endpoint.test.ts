@@ -351,6 +351,37 @@ describe('a live Stripe key cannot be used through phase configuration alone', (
       res
     );
     expect(captured.status).toBe(503);
+    expect(captured.body.received).toBeUndefined();
+    expect(stripeClientMock.constructions).toBe(0);
+  });
+
+  test.each(['reservation', 'live'])('the session lookup refuses a live key in the %s phase', async (commercePhase) => {
+    process.env.COMMERCE_PHASE = commercePhase;
+    process.env.STRIPE_SECRET_KEY = LIVE_SHAPED_KEY;
+    const { res, captured } = mockRes();
+    await checkoutSession(mockReq({ method: 'GET', url: '/api/checkout-session?session_id=cs_test_abcdefghijklmnop' }), res);
+    expect(captured.status).toBe(503);
+    expect(captured.body.confirmed).toBeUndefined();
+    expect(stripeClientMock.constructions).toBe(0);
+  });
+
+  test.each(['reservation', 'live'])('the webhook refuses a live key in the %s phase', async (commercePhase) => {
+    process.env.COMMERCE_PHASE = commercePhase;
+    process.env.STRIPE_WEBHOOK_SECRET = 'whsec_notarealsecret000000';
+    process.env.STRIPE_SECRET_KEY = LIVE_SHAPED_KEY;
+    const { res, captured } = mockRes();
+    await webhook(
+      mockReq({
+        headers: { 'stripe-signature': 't=1,v1=deadbeef' },
+        async *[Symbol.asyncIterator]() {
+          yield Buffer.from('{"id":"evt_x"}');
+        },
+      }) as never,
+      res
+    );
+    expect(captured.status).toBe(503);
+    expect(captured.body.received).toBeUndefined();
+    expect(stripeClientMock.constructions).toBe(0);
   });
 
   test('an unrecognised key shape is refused', async () => {
@@ -373,6 +404,7 @@ describe('webhook signature verification is the real Stripe check', () => {
     process.env.STRIPE_SECRET_KEY = 'sk_test_thisisnotarealkey000000';
     const payload = JSON.stringify({ id: 'evt_signed_in_test', type: 'customer.created', data: { object: { id: 'cus_test' } } });
     const signatureHeader = new Stripe('sk_test_signingfixture00000000').webhooks.generateTestHeaderString({ payload, secret: WEBHOOK_SIGNING_SECRET });
+    stripeClientMock.constructions = 0;
     const { res, captured } = mockRes();
     await webhook(
       mockReq({
@@ -385,6 +417,7 @@ describe('webhook signature verification is the real Stripe check', () => {
     );
     expect(captured.status).toBe(200);
     expect(captured.body.received).toBe(true);
+    expect(stripeClientMock.constructions, 'the zero-construction refusal assertions depend on this counter seeing the getStripe path').toBe(1);
   });
 
   test('the same payload with a signature made from a different secret is rejected', async () => {

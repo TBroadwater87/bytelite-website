@@ -1,4 +1,5 @@
 import { COMPATIBILITY_APP_NAME, PARTY_GAME_NAME } from './products';
+import { CUSTOMER_PORTAL_URL } from './commerce';
 
 export interface NavigationLink {
   label: string;
@@ -59,7 +60,7 @@ export const FOOTER_GROUPS: readonly NavigationGroup[] = [
       { label: 'About', href: '/about' },
       { label: 'Licensing and partnerships', href: '/licensing' },
       { label: 'Contact', href: '/contact' },
-      { label: 'Billing', href: '/billing' },
+      ...(CUSTOMER_PORTAL_URL ? [{ label: 'Billing', href: '/billing' }] : []),
     ],
   },
   {

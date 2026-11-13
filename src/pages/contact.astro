@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import PageIntro from '../components/site/PageIntro.astro';
 import { COMPANY_NAME, COMPANY_LOCATION } from '../data/company';
+import { MAX_FIELD_LEN, MAX_MESSAGE_LEN } from '../../api/_lib/contact-core';
 
 const INQUIRY_OPTIONS = [
   { value: 'general', label: 'General inquiry or product question' },
@@ -22,8 +23,10 @@ const INQUIRY_OPTIONS = [
     eyebrow="Contact"
     heading={`Contact ${COMPANY_NAME}.`}
     lede="Messages reach the company directly. Evidence that something on this site is wrong is as welcome as any other message."
-    art={{ src: '/art/partnerships.webp', alt: 'Two separate glowing structures linked by fine lines rising from a shared base.', width: 1536, height: 1024, caption: 'An abstract idea of working together. No partnership is implied.' }}
-  />
+    art={{ classification: 'Conceptual illustration', src: '/art/partnerships.webp', alt: 'Two separate glowing structures linked by fine lines rising from a shared base.', width: 1536, height: 1024, caption: 'An abstract idea of working together. No partnership is implied.' }}
+  >
+    <a class="button button-primary contact-jump" href="#contact-form">Go to the form</a>
+  </PageIntro>
 
   <section class="section">
     <div class="wrap contact-layout">
@@ -31,11 +34,11 @@ const INQUIRY_OPTIONS = [
         <p class="small-print">Fields marked <span class="required-mark" aria-hidden="true">*</span><span class="visually-hidden">with an asterisk</span> are required.</p>
         <div class="form-field">
           <label for="contact-name">Name <span class="required-mark" aria-hidden="true">*</span></label>
-          <input type="text" id="contact-name" name="name" required maxlength="200" autocomplete="name" />
+          <input type="text" id="contact-name" name="name" required maxlength={MAX_FIELD_LEN} autocomplete="name" />
         </div>
         <div class="form-field">
           <label for="contact-email">Email <span class="required-mark" aria-hidden="true">*</span></label>
-          <input type="email" id="contact-email" name="email" required maxlength="200" autocomplete="email" />
+          <input type="email" id="contact-email" name="email" required maxlength={MAX_FIELD_LEN} autocomplete="email" />
         </div>
         <div class="form-field">
           <label for="contact-inquiry-type">Inquiry type <span class="required-mark" aria-hidden="true">*</span></label>
@@ -47,11 +50,11 @@ const INQUIRY_OPTIONS = [
         </div>
         <div class="form-field" id="contact-organization-field" hidden>
           <label for="contact-organization">Organization <span class="form-hint">(optional)</span></label>
-          <input type="text" id="contact-organization" name="organization" maxlength="200" autocomplete="organization" disabled />
+          <input type="text" id="contact-organization" name="organization" maxlength={MAX_FIELD_LEN} autocomplete="organization" disabled />
         </div>
         <div class="form-field">
           <label for="contact-message">Message <span class="required-mark" aria-hidden="true">*</span></label>
-          <textarea id="contact-message" name="message" required maxlength="5000" rows="7"></textarea>
+          <textarea id="contact-message" name="message" required maxlength={MAX_MESSAGE_LEN} rows="7"></textarea>
         </div>
         <label class="form-checkbox">
           <input type="checkbox" id="contact-consent" name="consent" required />
@@ -103,10 +106,10 @@ const INQUIRY_OPTIONS = [
   const inquiryHint = document.querySelector<HTMLElement>('[data-inquiry-hint]');
   const organizationField = document.getElementById('contact-organization-field');
   const organizationInput = document.getElementById('contact-organization') as HTMLInputElement | null;
-  const statusMessage = document.getElementById('contact-status');
+  const contactStatus = document.getElementById('contact-status');
   const NOT_SENT_MESSAGE = 'Your message was not sent. Nothing was stored, so please try again.';
 
-  function applyInquiryType(inquiryType: string) {
+  function showHintAndOrganizationFieldForInquiryType(inquiryType: string) {
     const details = INQUIRY_DETAILS[inquiryType];
     if (inquiryHint) inquiryHint.textContent = details?.hint ?? '';
     const showOrganization = details?.asksForOrganization ?? false;
@@ -121,8 +124,8 @@ const INQUIRY_OPTIONS = [
   if (inquirySelect && requestedInquiryType && INQUIRY_DETAILS[requestedInquiryType]) {
     inquirySelect.value = requestedInquiryType;
   }
-  applyInquiryType(inquirySelect?.value ?? '');
-  inquirySelect?.addEventListener('change', () => applyInquiryType(inquirySelect.value));
+  showHintAndOrganizationFieldForInquiryType(inquirySelect?.value ?? '');
+  inquirySelect?.addEventListener('change', () => showHintAndOrganizationFieldForInquiryType(inquirySelect.value));
 
   form?.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -133,7 +136,7 @@ const INQUIRY_OPTIONS = [
     const formData = new FormData(form);
     const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
     if (submitButton) submitButton.disabled = true;
-    if (statusMessage) statusMessage.textContent = 'Sending...';
+    if (contactStatus) contactStatus.textContent = 'Sending...';
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -147,13 +150,14 @@ const INQUIRY_OPTIONS = [
         }),
       });
       const result = await response.json().catch(() => ({}));
-      if (response.status === 404) throw new Error(NOT_SENT_MESSAGE);
+      const contactFunctionAbsentFromDeployment = response.status === 404;
+      if (contactFunctionAbsentFromDeployment) throw new Error(NOT_SENT_MESSAGE);
       if (!response.ok) throw new Error(result.error || NOT_SENT_MESSAGE);
-      if (statusMessage) statusMessage.textContent = 'Message sent. This confirms it was sent, not that any request has been accepted.';
+      if (contactStatus) contactStatus.textContent = 'Message sent. This confirms it was sent, not that any request has been accepted.';
       form.reset();
-      applyInquiryType('');
+      showHintAndOrganizationFieldForInquiryType('');
     } catch (error) {
-      if (statusMessage) statusMessage.textContent = error instanceof Error ? error.message : NOT_SENT_MESSAGE;
+      if (contactStatus) contactStatus.textContent = error instanceof Error ? error.message : NOT_SENT_MESSAGE;
     } finally {
       if (submitButton) submitButton.disabled = false;
     }
@@ -161,6 +165,9 @@ const INQUIRY_OPTIONS = [
 </script>
 
 <style>
+  .contact-jump { justify-self: start; }
+  @media (min-width: 48rem) { .contact-jump { display: none; } }
+  @media (max-width: 47.99rem) { :global(.page-intro .art-figure img) { max-width: 11rem; } }
   .contact-layout { display: grid; gap: var(--space-7); grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 60rem) { .contact-layout { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); } }
   .contact-form { max-width: 40rem; }

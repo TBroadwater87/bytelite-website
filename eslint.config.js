@@ -1,6 +1,3 @@
-// ESLint 9 flat config. Replaces .eslintrc.cjs, which ESLint 9 no longer reads by default
-// (see PROJECT-FIXES-SUMMARY.md / SITE_FULL_PUBLIC_REDESIGN_AND_DEPLOY_REPORT.md — this was
-// tracked as pre-existing "PARTIAL" lint tooling debt predating this rebuild).
 import js from '@eslint/js';
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';

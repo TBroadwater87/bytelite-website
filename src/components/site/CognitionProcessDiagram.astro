@@ -36,7 +36,8 @@ const INTENDED_OUTCOMES: readonly IntendedOutcome[] = [
 
 <style>
   .process { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); counter-reset: none; }
-  .process-step { display: grid; gap: var(--space-2); align-content: start; justify-items: start; padding: var(--space-4); border: 1px solid var(--color-line); border-radius: var(--radius-md); background: var(--color-canvas); }
+  .process-step { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); align-content: start; justify-items: start; padding: var(--space-4); border: 1px solid var(--color-line); border-radius: var(--radius-md); background: var(--color-canvas); }
+  .process-step :global(.status-badge) { white-space: normal; max-width: 100%; }
   .process-number { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--color-ink); color: var(--color-canvas); font-family: var(--font-mono); font-weight: 700; font-size: var(--text-sm); }
   .process-title { font-size: var(--text-lg); }
   .process-intent { font-size: var(--text-sm); }

@@ -25,11 +25,11 @@ import { COMPANY_NAME, COMPANY_LOCATION } from '../data/company';
         designed to answer only from knowledge it can trace.
       </p>
       <div class="button-row">
-        <a class="button button-primary" href="#proven">See what works today</a>
+        <a class="button button-primary" href="#proven">See the internal results</a>
         <a class="button button-secondary" href="/research/milestones">Track every milestone</a>
       </div>
       </div>
-      <ArtFigure image={{ src: '/art/home-information-flow.webp', alt: 'Ribbons of blue light flowing through a transparent lattice of glass panels.', width: 1672, height: 941, caption: 'An impression of ordered information. It is not a working system.', loadsAboveTheFold: true }} />
+      <ArtFigure image={{ classification: 'Conceptual illustration', src: '/art/home-information-flow.webp', alt: 'Ribbons of blue light flowing through a transparent lattice of glass panels.', width: 1672, height: 941, caption: 'An impression of ordered information. It is not a working system.', loadsAboveTheFold: true }} />
       <p class="hero-status">
         Evidence to date is internal. Nothing has been independently verified. No product is on sale,
         and checkout is switched off. <a href="/validation">How we label evidence</a>
@@ -40,8 +40,8 @@ import { COMPANY_NAME, COMPANY_LOCATION } from '../data/company';
   <section class="section" id="proven" aria-labelledby="proven-heading">
     <div class="wrap">
       <div class="section-heading">
-        <p class="eyebrow">Tested in our labs</p>
-        <h2 id="proven-heading">What works today.</h2>
+        <p class="eyebrow">Tested in-house</p>
+        <h2 id="proven-heading">Tested internally, and what is still design.</h2>
         <p class="lede">Measured results from our own automated test runs. Each figure says exactly what it covers.</p>
       </div>
       <ul class="proof-grid">
@@ -54,7 +54,7 @@ import { COMPANY_NAME, COMPANY_LOCATION } from '../data/company';
     <div class="wrap">
       <div class="section-heading">
         <p class="eyebrow">Research programs</p>
-        <h2 id="programs-heading">Three programs. One standard: prove it.</h2>
+        <h2 id="programs-heading">Three programs. One standard: show the evidence.</h2>
       </div>
       <div class="summary-grid">
         {RESEARCH_PROGRAMS.map((program) => <ProgramCard program={program} />)}
@@ -114,6 +114,10 @@ import { COMPANY_NAME, COMPANY_LOCATION } from '../data/company';
   .hero-lede { font-size: var(--text-lg); max-width: 40rem; color: var(--color-ink-muted); }
   .hero-status { margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--color-line); font-size: var(--text-sm); color: var(--color-ink-subtle); max-width: 48rem; }
   .hero-status a { font-weight: 600; }
+  @media (max-width: 63.99rem) {
+    .hero-inner :global(.art-figure) { order: 2; }
+    .hero-status { order: 1; margin-top: 0; }
+  }
   @media (max-width: 47.99rem) { .hero { padding-block: var(--space-8) var(--space-6); } }
 
   .products-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4); margin-bottom: var(--space-5); }

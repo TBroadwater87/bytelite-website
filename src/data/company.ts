@@ -3,7 +3,7 @@ export const COMPANY_LOCALITY = 'Helena';
 export const COMPANY_REGION = 'MT';
 export const COMPANY_REGION_NAME = 'Montana';
 export const COMPANY_COUNTRY = 'US';
-export const COMPANY_LOCATION = 'Helena, Montana, USA';
+export const COMPANY_LOCATION = `${COMPANY_LOCALITY}, ${COMPANY_REGION_NAME}, USA`;
 export const COMPANY_STRUCTURE = 'Solo-founder LLC';
 export const FOUNDER_NAME = 'Tash Broadwater';
 

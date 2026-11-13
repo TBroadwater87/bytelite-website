@@ -71,7 +71,7 @@ export const FOUNDER_CARDS: readonly FounderCard[] = [
     kind: 'subscription',
     interval: 'month',
     priceEnvVar: 'STRIPE_PRICE_BYTELITE_MONTHLY_FOUNDER',
-    href: '/licensing',
+    href: '/licensing#models-heading',
   },
   {
     planKey: 'bytelite-annual-founder',
@@ -82,7 +82,7 @@ export const FOUNDER_CARDS: readonly FounderCard[] = [
     kind: 'subscription',
     interval: 'year',
     priceEnvVar: 'STRIPE_PRICE_BYTELITE_ANNUAL_FOUNDER',
-    href: '/licensing',
+    href: '/licensing#models-heading',
   },
   {
     planKey: 'cordel-connect-monthly-founder',

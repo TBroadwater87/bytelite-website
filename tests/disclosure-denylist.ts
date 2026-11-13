@@ -24,6 +24,10 @@ export function loadDisclosureDenylist(): DisclosureDenylist {
     serverSecretNames: string[];
     slugTermsForBuiltOutput?: string[];
   };
+  const emptyRequiredLists = (['caseSensitiveNames', 'caseInsensitiveTerms', 'regularExpressions', 'serverSecretNames'] as const).filter((listName) => !parsed[listName]?.length);
+  if (emptyRequiredLists.length) {
+    throw new Error(`The disclosure denylist has no entries in: ${emptyRequiredLists.join(', ')}. An empty list would let every disclosure test pass vacuously.`);
+  }
   return {
     caseSensitiveNames: parsed.caseSensitiveNames,
     caseInsensitiveTerms: parsed.caseInsensitiveTerms.map((term) => term.toLowerCase()),

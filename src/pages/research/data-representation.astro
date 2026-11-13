@@ -3,12 +3,13 @@ import Layout from '../../layouts/Layout.astro';
 import PageIntro from '../../components/site/PageIntro.astro';
 import MilestoneSummary from '../../components/site/MilestoneSummary.astro';
 import ProofTile from '../../components/site/ProofTile.astro';
+import ClaimBoundaries from '../../components/site/ClaimBoundaries.astro';
 import ClassifiedFigure from '../../components/site/ClassifiedFigure.astro';
 import ArtFigure from '../../components/site/ArtFigure.astro';
 import { milestonesFor } from '../../data/milestones';
 import { researchProgram } from '../../data/research-programs';
 import { establishedCapabilitiesFor } from '../../data/established-capabilities';
-import { COUNTING_LIMIT_STATEMENT, DETERMINISM_STATEMENT, CURRENT_REDUCTION_STATUS } from '../../data/bytelite';
+import { COUNTING_LIMIT_STATEMENT, DETERMINISM_STATEMENT, CURRENT_REDUCTION_STATEMENT } from '../../data/bytelite';
 import { COMPANY_NAME } from '../../data/company';
 
 const program = researchProgram('data-representation');
@@ -25,21 +26,31 @@ const ACCEPTANCE_STEPS = [
 
 <Layout
   title={`Data Representation Research | ${COMPANY_NAME}`}
-  description="ByteLite LLC data representation research: deterministic, lossless representation with byte-exact reconstruction. Every one of 4,515 test encodings rebuilt exactly (Compression release of 12 October 2026). Net size reduction has not been demonstrated: the outputs were larger than their inputs."
+  description="ByteLite LLC data representation research: deterministic, lossless representation with byte-exact reconstruction. Every one of 4,515 test encodings rebuilt exactly in internal tests. Net size reduction has not been demonstrated."
   path="/research/data-representation"
 >
-  <PageIntro eyebrow="Research program" heading="Exact, deterministic data representation." lede={program.pitch} art={{ src: '/art/data-flow.webp', alt: 'Streams of light passing through a tall lattice of glass panels.', width: 1672, height: 941, caption: 'An impression of structured data. It does not show compression or a real format.' }} />
+  <PageIntro eyebrow="Research program" heading="Exact, deterministic data representation." lede={program.pitch} art={{ classification: 'Conceptual illustration', src: '/art/data-flow.webp', alt: 'Streams of light passing through a tall lattice of glass panels.', width: 1672, height: 941, caption: 'An impression of structured data. It does not show compression or a real format.' }} />
 
   <section class="section" aria-labelledby="proven-heading">
     <div class="wrap">
       <div class="section-heading">
         <p class="eyebrow">Tested in-house</p>
-        <h2 id="proven-heading">What works today.</h2>
+        <h2 id="proven-heading">Tested internally, and what is still design.</h2>
       </div>
       <ul class="proof-grid">
         {provenCapabilities.map((capability) => <ProofTile capability={capability} />)}
       </ul>
-      <p class="status-strip"><strong>{CURRENT_REDUCTION_STATUS}</strong></p>
+      <p class="status-strip"><strong>{CURRENT_REDUCTION_STATEMENT}</strong></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="boundaries-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Reading these results</p>
+        <h2 id="boundaries-heading">Shown, possible, still to do.</h2>
+      </div>
+      <ClaimBoundaries program={program} />
     </div>
   </section>
 
@@ -64,8 +75,8 @@ const ACCEPTANCE_STEPS = [
         </ol>
       </ClassifiedFigure>
       <div class="art-pair">
-        <ArtFigure image={{ src: '/art/data-exact-rebuild.webp', alt: 'Two identical glass cubes joined by a band of light, one on each side.', width: 1672, height: 941, caption: 'A round trip: what is rebuilt is identical to the original. It does not show any size reduction.' }} />
-        <ArtFigure image={{ src: '/art/data-whole-artifact.webp', alt: 'A clear glass block holding stacked, glowing layers.', width: 1536, height: 1024, caption: 'The goal of counting the whole artifact. Complete accounting is not yet established for every output form.' }} />
+        <ArtFigure image={{ classification: 'Conceptual illustration', src: '/art/data-exact-rebuild.webp', alt: 'Two identical glass cubes joined by a band of light, one on each side.', width: 1672, height: 941, caption: 'A round trip: what is rebuilt is identical to the original. It does not show any size reduction.' }} />
+        <ArtFigure image={{ classification: 'Conceptual illustration', src: '/art/data-whole-artifact.webp', alt: 'A clear glass block holding stacked, glowing layers.', width: 1536, height: 1024, caption: 'The goal of counting the whole artifact. Complete accounting is not yet established for every output form.' }} />
       </div>
     </div>
   </section>

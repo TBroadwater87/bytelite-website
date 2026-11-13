@@ -1,5 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const PREVIEW_SERVER_PORT = 4321;
+const BUILD_AND_PREVIEW_STARTUP_TIMEOUT_MS = 120_000;
+
 export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
@@ -15,7 +18,7 @@ export default defineConfig({
   // not block indefinitely serving it over HTTP waiting for a human to press Ctrl+C.
   reporter: [['html', { open: 'never' }]],
   use: {
-    baseURL: 'http://localhost:4321',
+    baseURL: `http://localhost:${PREVIEW_SERVER_PORT}`,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
@@ -45,9 +48,9 @@ export default defineConfig({
 
   webServer: {
     // Production preview, not `astro dev` - the dev toolbar overlay intercepts pointer events
-    // and blocks real click interactions in tests (e.g. the cookie banner's Accept button).
+    // and blocks real click interactions in tests.
     command: 'npm run build && npm run preview',
-    port: 4321,
+    port: PREVIEW_SERVER_PORT,
     // Never reuse a server this run did not start, locally or in CI.
     //
     // The hazard is NOT that a lingering server pins an old dist - measured, `astro preview`
@@ -63,6 +66,6 @@ export default defineConfig({
     // fails loudly with a legible port collision. It never silently tests stale output.
     // `npm run test:e2e:clean` (scripts/e2e-clean.ps1) clears a stale server of our own first.
     reuseExistingServer: false,
-    timeout: 120_000,
+    timeout: BUILD_AND_PREVIEW_STARTUP_TIMEOUT_MS,
   },
 });

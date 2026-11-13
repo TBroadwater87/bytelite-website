@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import PageIntro from '../components/site/PageIntro.astro';
 import ClassifiedFigure from '../components/site/ClassifiedFigure.astro';
-import ArtFigure from '../components/site/ArtFigure.astro';
 import { consumerProduct, PRODUCT_AVAILABILITY_LABEL } from '../data/products';
 import { COMPANY_NAME } from '../data/company';
 
@@ -29,14 +28,6 @@ const product = consumerProduct('party-game');
         </p>
       </div>
       <div class="figures">
-        <ArtFigure image={{ src: '/cordel/cordel-play-board-landscape.webp', alt: 'The Cordel Play board: a path of tiles around two line-drawn figures, with the six tier decks, the Decree deck and two character portraits.', width: 2560, height: 1440, classification: 'Product concept rendering', caption: 'The Cordel Play board design. Prototype artwork, not a photograph of a manufactured board.' }} />
-        <ClassifiedFigure classification="Product concept rendering" caption="Card deck backs for six escalation tiers and a Decree deck. Players choose how far the evening goes.">
-          <img
-            src="/cordel/cordel-play-tier-deck-backs-final.webp"
-            alt="Seven card backs, left to right: Initiate, Connect, Seduce, Stimulate, Edge, Climax and Decree."
-            width="1400" height="268" loading="lazy" decoding="async"
-          />
-        </ClassifiedFigure>
         <div class="consent-cup-figure"><ClassifiedFigure classification="Product concept rendering" caption="The consent cup: consent as a physical component of the game rather than a rule to remember.">
           <img
             src="/cordel/cordel-play-consent-cup-final.webp"

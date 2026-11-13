@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { ALL_PAGE_ROUTES } from './public-routes';
 
 const REFLOW_WIDTHS = [320, 375, 640, 768, 1024, 1366, 1920];
+const WCAG_AA_NORMAL_TEXT_MINIMUM_CONTRAST = 4.5;
 
 for (const width of REFLOW_WIDTHS) {
   test.describe(`No horizontal overflow at ${width}px`, () => {
@@ -136,7 +137,7 @@ test.describe('Contrast and focus', () => {
         });
       });
       for (const { selector, ratio } of ratios) {
-        expect(ratio, `${selector} contrast in ${colorScheme} scheme`).toBeGreaterThanOrEqual(4.5);
+        expect(ratio, `${selector} contrast in ${colorScheme} scheme`).toBeGreaterThanOrEqual(WCAG_AA_NORMAL_TEXT_MINIMUM_CONTRAST);
       }
     }
   });
@@ -145,11 +146,11 @@ test.describe('Contrast and focus', () => {
     await page.goto('/contact?type=licensing');
     for (const selector of ['#contact-name', '#contact-email', '#contact-inquiry-type', '#contact-organization', '#contact-message', '#contact-consent']) {
       await page.locator(selector).focus();
-      const indicator = await page.locator(selector).evaluate((element) => {
+      const hasVisibleFocusIndicator = await page.locator(selector).evaluate((element) => {
         const style = getComputedStyle(element);
         return style.outlineStyle !== 'none' && style.outlineWidth !== '0px';
       });
-      expect(indicator, `${selector} must show a focus indicator`).toBe(true);
+      expect(hasVisibleFocusIndicator, `${selector} must show a focus indicator`).toBe(true);
     }
   });
 
